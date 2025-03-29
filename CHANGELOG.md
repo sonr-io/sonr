@@ -1,3 +1,39 @@
+## v0.6.4 (2025-03-28)
+
+### Feat
+
+- streamline development and release workflow
+- introduce commitizen configuration for standardized commits
+- configure default authorization policies for DWN operators (#1255)
+- streamline release process with enhanced automation and feedback
+- streamline release process with interactive feedback and automation
+- enable GitHub Actions to trigger releases
+- enhance development environment with ripgrep and gh-milestone (#1252)
+- enhance release process with Doppler integration (#1251)
+- automate release process with conventional commits
+- streamline app initialization and dependency management
+- enable task management with Taskfile
+- introduce Taskfile automation for build and deployment
+- **deploy**: add hdPath and coinType to sonr-1 chain config
+- add go dependency and enhance devbox environment variables
+- implement HTMX for dynamic updates
+- add CI/CD infrastructure for development and deployment
+
+### Fix
+
+- Refactor crypto
+- Deploy config
+- resolve minor formatting inconsistencies in Dockerfile and accumulator.go
+- correct typo in workflow name
+
+### Refactor
+
+- remove evmos chain from deployment configuration
+- simplify deployment infrastructure using starship
+- remove unnecessary Caddyfile
+- remove process-compose and individual start scripts
+- remove devnet and testnet network configurations
+
 ## v0.6.3 (2025-01-06)
 
 ### Feat
