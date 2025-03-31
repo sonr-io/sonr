@@ -16,7 +16,7 @@ const (
 	ServiceWorkerFileName = "sw.js"
 )
 
-// spawnVaultDirectory creates a new directory with the default files
+// NewVaultFS creates a new directory with the default files
 func NewVaultFS(cfg *motr.Config) (files.Directory, error) {
 	manifestBz, err := NewWebManifest()
 	if err != nil {
