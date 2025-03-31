@@ -8,7 +8,7 @@ import (
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	"github.com/cosmos/gogoproto/proto"
 
-	"github.com/onsonr/sonr/internal/transaction"
+	"github.com/sonr-io/snrd/internal/transaction"
 )
 
 // ProtoMsgG is a generic interface for protobuf messages.

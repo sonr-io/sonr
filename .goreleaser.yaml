@@ -1,15 +1,9 @@
 # yaml-language-server: $schema=https://goreleaser.com/static/schema-pro.json
 version: 2
 project_name: sonr
-
-before:
-  hooks:
-    - echo "Release date is {{ .Env.RELEASE_DATE }}"
-
 builds:
   - id: sonr
-    main: ./cmd/sonrd
-    binary: sonrd
+    binary: snrd
     mod_timestamp: "{{ .CommitTimestamp }}"
     goos:
       - linux
@@ -24,7 +18,7 @@ builds:
       - -trimpath
     ldflags:
       - -X github.com/cosmos/cosmos-sdk/version.Name=sonr
-      - -X github.com/cosmos/cosmos-sdk/version.AppName=sonrd
+      - -X github.com/cosmos/cosmos-sdk/version.AppName=snrd
       - -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}}
       - -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
       - -X "github.com/cosmos/cosmos-sdk/version.BuildTags=netgo,ledger"
@@ -34,24 +28,22 @@ builds:
 
 archives:
   - id: sonr
-    builds: [sonr]
     name_template: >-
       sonr_{{ .Os }}_{{- if eq .Arch "amd64" }}x86_64
       {{- else if eq .Arch "386" }}i386
       {{- else }}{{ .Arch }}{{ end }}
-    format: tar.gz
+    formats: ["tar.gz"]
     files:
       - src: README*
     wrap_in_directory: true
 
 nfpms:
   - id: sonr
-    package_name: sonrd
-    file_name_template: "sonrd_{{ .Os }}_{{ .Arch }}{{ .ConventionalExtension }}"
-    builds: [sonr]
+    package_name: snrd
+    file_name_template: "sonr_{{ .Os }}_{{ .Arch }}{{ .ConventionalExtension }}"
     vendor: Sonr
-    homepage: "https://onsonr.dev"
-    maintainer: "Sonr <support@onsonr.dev>"
+    homepage: "https://sonr.io"
+    maintainer: "Sonr <support@sonr.io>"
     description: "Sonr is a decentralized, permissionless, and censorship-resistant identity network."
     license: "Apache 2.0"
     formats:
@@ -62,35 +54,35 @@ nfpms:
       - ipfs
     contents:
       - src: README*
-        dst: /usr/share/doc/sonrd
+        dst: /usr/share/doc/snrd
     bindir: /usr/bin
     section: net
     priority: optional
     # Add these lines to match build config
 
 brews:
-  - name: sonr
+  - name: snrd
     ids: [sonr]
     commit_author:
       name: goreleaserbot
       email: bot@goreleaser.com
     directory: Formula
     caveats: "Run a local sonr node and access it with the hway proxy"
-    homepage: "https://onson.dev"
+    homepage: "https://sonr.io"
     description: "Sonr is a decentralized, permissionless, and censorship-resistant identity network."
     dependencies:
       - name: ipfs
     repository:
-      owner: onsonr
+      owner: sonr-io
       name: homebrew-tap
       branch: master
-      token: "{{ .Env.GITHUB_PERSONAL_AUTH_TOKEN }}"
+      token: "{{ .Env.GITHUB_PAT_TOKEN }}"
 
 release:
   github:
-    owner: onsonr
-    name: sonr
-  name_template: "{{ .Tag }}  [{{ .Env.RELEASE_DATE }}]"
+    owner: sonr-io
+    name: snrd
+  name_template: "{{ .Tag }}"
   draft: false
   replace_existing_draft: true
   replace_existing_artifacts: true

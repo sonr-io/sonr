@@ -1,0 +1,30 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.14.0/.schema/devbox.schema.json",
+  "packages": [
+    "buf@latest",
+    "go@latest",
+    "docker@latest",
+    "gum@latest",
+    "go-task@latest",
+    "goreleaser@latest",
+    "commitizen@latest",
+    "doppler@latest",
+    "ripgrep@latest"
+  ],
+  "env": {
+    "GOPATH":        "$HOME/go",
+    "PATH":          "$PATH:$PWD/bin",
+    "DOPPLER_TOKEN": "$DOPPLER_SONR_RELEASE_TOKEN"
+  },
+  "shell": {
+    "init_hook": [
+      "gh extension install valeriobelli/gh-milestone"
+    ],
+    "scripts": {
+      "release": [
+        "doppler secrets download --no-file --format env > .env",
+        "task -t .taskfile.dist.yml bump"
+      ]
+    }
+  }
+}

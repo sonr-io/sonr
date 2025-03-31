@@ -14,7 +14,7 @@ import (
 	authkeeper "github.com/cosmos/cosmos-sdk/x/auth/keeper"
 	consensusparamkeeper "github.com/cosmos/cosmos-sdk/x/consensus/keeper"
 	paramskeeper "github.com/cosmos/cosmos-sdk/x/params/keeper"
-	didkeeper "github.com/onsonr/sonr/x/did/keeper"
+	didkeeper "github.com/sonr-io/snrd/x/did/keeper"
 )
 
 type AppKeepers struct {

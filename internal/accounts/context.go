@@ -8,8 +8,8 @@ import (
 	"cosmossdk.io/core/store"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/onsonr/sonr/internal/prefixstore"
-	"github.com/onsonr/sonr/internal/transaction"
+	"github.com/sonr-io/snrd/internal/prefixstore"
+	"github.com/sonr-io/snrd/internal/transaction"
 )
 
 var AccountStatePrefix = collections.NewPrefix(255)

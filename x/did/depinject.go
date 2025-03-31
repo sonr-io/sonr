@@ -16,8 +16,8 @@ import (
 	slashingkeeper "github.com/cosmos/cosmos-sdk/x/slashing/keeper"
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 
-	modulev1 "github.com/onsonr/sonr/api/did/module/v1"
-	"github.com/onsonr/sonr/x/did/keeper"
+	modulev1 "github.com/sonr-io/snrd/api/did/module/v1"
+	"github.com/sonr-io/snrd/x/did/keeper"
 )
 
 var _ appmodule.AppModule = AppModule{}

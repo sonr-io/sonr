@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/onsonr/sonr/x/did/types"
+	"github.com/sonr-io/snrd/x/did/types"
 )
 
 func TestGenesis(t *testing.T) {

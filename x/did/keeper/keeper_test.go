@@ -25,9 +25,9 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
 
-	module "github.com/onsonr/sonr/x/did"
-	"github.com/onsonr/sonr/x/did/keeper"
-	"github.com/onsonr/sonr/x/did/types"
+	module "github.com/sonr-io/snrd/x/did"
+	"github.com/sonr-io/snrd/x/did/keeper"
+	"github.com/sonr-io/snrd/x/did/types"
 )
 
 var maccPerms = map[string][]string{

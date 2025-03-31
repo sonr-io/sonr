@@ -13,7 +13,7 @@ chains:
     hdPath: m/44'/118'/0'/0/0
     coinType: 118
     coins: 100000000000000usnr,100000000000000snr
-    repo: https://github.com/onsonr/sonr
+    repo: https://github.com/sonr-io/snrd
     numValidators: 1
     ports:
       rest: 1317

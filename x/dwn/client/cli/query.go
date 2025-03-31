@@ -6,7 +6,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 
-	"github.com/onsonr/sonr/x/dwn/types"
+	"github.com/sonr-io/snrd/x/dwn/types"
 )
 
 // !NOTE: Must enable in module.go (disabled in favor of autocli.go)

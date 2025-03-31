@@ -18,8 +18,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 
-	"github.com/onsonr/sonr/x/did/keeper"
-	"github.com/onsonr/sonr/x/did/types"
+	"github.com/sonr-io/snrd/x/did/keeper"
+	"github.com/sonr-io/snrd/x/did/types"
 	// this line is used by starport scaffolding # 1
 )
 

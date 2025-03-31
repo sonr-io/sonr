@@ -1,3 +1,80 @@
+## v0.6.4 (2025-03-27)
+
+### Feat
+
+- enable GitHub Actions to trigger releases
+- enhance development environment with ripgrep and gh-milestone (#1252)
+- enhance release process with Doppler integration (#1251)
+
+## v0.6.4 (2025-03-27)
+
+### Feat
+
+- enhance release process with dynamic version display and streamlined automation
+- enhance release process with real-time version feedback
+- improve release process with interactive feedback
+- enhance Docker image publishing with piped credentials
+- streamline release process with Taskfile and conventional commits
+- streamline development and release workflow
+- streamline release process with improved automation
+- consolidate release notes
+- enhance goreleaser output with title for better UX
+- streamline development and release processes
+- streamline development and release processes
+- streamline release process and update project metadata
+- upgrade to go 1.24 and align binary name
+- streamline build process by removing release target
+- streamline build process and configuration
+- streamline release process and update project metadata
+- enable commit-less version bumping
+- streamline release process with Devbox
+- integrate Doppler for secrets management
+- introduce devbox for consistent development environment
+- automate release process with conventional commits
+- streamline app initialization and dependency management
+- enable task management with Taskfile
+- introduce Taskfile automation for build and deployment
+- **deploy**: add hdPath and coinType to sonr-1 chain config
+- add go dependency and enhance devbox environment variables
+- implement HTMX for dynamic updates
+- add CI/CD infrastructure for development and deployment
+
+### Fix
+
+- Refactor crypto
+- Deploy config
+- resolve minor formatting inconsistencies in Dockerfile and accumulator.go
+- correct typo in workflow name
+
+### Refactor
+
+- streamline release process and simplify dev environment
+- streamline release process by removing redundant version display
+- streamline release process with Taskfile
+- rename project from onsonr/sonr to sonr-io/snrd (#1249)
+- remove evmos chain from deployment configuration
+- simplify deployment infrastructure using starship
+- remove unnecessary Caddyfile
+- remove process-compose and individual start scripts
+- remove devnet and testnet network configurations
+
+## v0.6.3 (2025-01-06)
+
+### Feat
+
+- Add release date to workflow environment
+- automate release creation and deployment on tag push
+
+### Fix
+
+- revert version number to 0.6.2
+- checkout main branch before updating version
+- Specify main branch and fetch tags in merge workflow
+
+### Refactor
+
+- Rename workflow file for clarity
+
 ## v0.6.2 (2025-01-06)
 
 ### Refactor

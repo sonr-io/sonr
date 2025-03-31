@@ -3,7 +3,7 @@ package dwn.v1;
 
 import "cosmos/orm/v1/orm.proto";
 
-option go_package = "github.com/onsonr/sonr/x/dwn/types";
+option go_package = "github.com/sonr-io/snrd/x/dwn/types";
 
 // https://github.com/cosmos/cosmos-sdk/blob/main/orm/README.md
 

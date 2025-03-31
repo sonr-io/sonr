@@ -25,9 +25,9 @@ import (
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	module "github.com/onsonr/sonr/x/svc"
-	"github.com/onsonr/sonr/x/svc/keeper"
-	"github.com/onsonr/sonr/x/svc/types"
+	module "github.com/sonr-io/snrd/x/svc"
+	"github.com/sonr-io/snrd/x/svc/keeper"
+	"github.com/sonr-io/snrd/x/svc/types"
 )
 
 var maccPerms = map[string][]string{

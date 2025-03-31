@@ -6,7 +6,7 @@ import (
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 
 	"cosmossdk.io/errors"
-	"github.com/onsonr/sonr/x/dwn/types"
+	"github.com/sonr-io/snrd/x/dwn/types"
 )
 
 type msgServer struct {
@@ -31,6 +31,5 @@ func (ms msgServer) UpdateParams(ctx context.Context, msg *types.MsgUpdateParams
 // Initialize implements types.MsgServer.
 func (ms msgServer) Initialize(ctx context.Context, msg *types.MsgInitialize) (*types.MsgInitializeResponse, error) {
 	// ctx := sdk.UnwrapSDKContext(goCtx)
-	panic("Initialize is unimplemented")
 	return &types.MsgInitializeResponse{}, nil
 }

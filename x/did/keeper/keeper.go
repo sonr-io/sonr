@@ -12,8 +12,8 @@ import (
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	stakkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 
-	apiv1 "github.com/onsonr/sonr/api/did/v1"
-	"github.com/onsonr/sonr/x/did/types"
+	apiv1 "github.com/sonr-io/snrd/api/did/v1"
+	"github.com/sonr-io/snrd/x/did/types"
 )
 
 // Keeper defines the middleware keeper.

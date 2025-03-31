@@ -11,9 +11,9 @@ The svc module is responsible for managing the registration and authorization of
 
 ### Dependencies
 
-- [x/did](https://github.com/onsonr/sonr/tree/master/x/did)
-- [x/group](https://github.com/onsonr/sonr/tree/master/x/group)
-- [x/nft](https://github.com/onsonr/sonr/tree/master/x/nft)
+- [x/did](https://github.com/sonr-io/snrd/tree/master/x/did)
+- [x/group](https://github.com/sonr-io/snrd/tree/master/x/group)
+- [x/nft](https://github.com/sonr-io/snrd/tree/master/x/nft)
 
 ## State
 

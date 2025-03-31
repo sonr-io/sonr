@@ -4,7 +4,7 @@ package did.v1;
 import "amino/amino.proto";
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/onsonr/sonr/x/did/types";
+option go_package = "github.com/sonr-io/snrd/x/did/types";
 
 // GenesisState defines the module genesis state
 message GenesisState {
@@ -52,6 +52,3 @@ message Document {
   repeated string capability_invocation = 6;
   repeated string service = 7;
 }
-
-
-

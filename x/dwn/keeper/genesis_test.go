@@ -3,7 +3,7 @@ package keeper_test
 import (
 	"testing"
 
-	"github.com/onsonr/sonr/x/dwn/types"
+	"github.com/sonr-io/snrd/x/dwn/types"
 	"github.com/stretchr/testify/require"
 )
 

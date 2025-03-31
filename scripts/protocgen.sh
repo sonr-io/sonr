@@ -2,7 +2,7 @@
 
 set -e
 
-GO_MOD_PACKAGE="github.com/onsonr/sonr"
+GO_MOD_PACKAGE="github.com/sonr-io/snrd"
 ROOT_DIR=$(git rev-parse --show-toplevel)
 
 echo "Generating gogo proto code"
@@ -49,4 +49,3 @@ for module in $base_namespace; do
 
   rm -rf $module
 done
-

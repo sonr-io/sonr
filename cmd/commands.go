@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"errors"
@@ -7,7 +7,7 @@ import (
 
 	cmtcfg "github.com/cometbft/cometbft/config"
 	dbm "github.com/cosmos/cosmos-db"
-	"github.com/onsonr/sonr/app"
+	"github.com/sonr-io/snrd/app"
 	"github.com/spf13/cast"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"

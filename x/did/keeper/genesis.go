@@ -6,7 +6,7 @@ import (
 	"cosmossdk.io/log"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/onsonr/sonr/x/did/types"
+	"github.com/sonr-io/snrd/x/did/types"
 )
 
 //	func (k Keeper) ResolveController(ctx sdk.Context, did string) (controller.ControllerI, error) {

@@ -3,7 +3,7 @@ package keeper_test
 import (
 	"testing"
 
-	"github.com/onsonr/sonr/x/svc/types"
+	"github.com/sonr-io/snrd/x/svc/types"
 	"github.com/stretchr/testify/require"
 )
 

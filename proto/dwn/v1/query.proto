@@ -4,7 +4,7 @@ package dwn.v1;
 import "google/api/annotations.proto";
 import "dwn/v1/genesis.proto";
 
-option go_package = "github.com/onsonr/sonr/x/dwn/types";
+option go_package = "github.com/sonr-io/snrd/x/dwn/types";
 
 // ╭─────────────────────────────────────────────────────────╮
 // │                  RPC Query Service                      │
@@ -30,4 +30,3 @@ message QueryParamsResponse {
   // params defines the parameters of the module.
   Params params = 1;
 }
-

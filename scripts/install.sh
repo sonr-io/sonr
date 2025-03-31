@@ -16,7 +16,7 @@ detect_platform() {
 
 # Function to get latest release version
 get_latest_version() {
-	LATEST_VERSION=$(curl -s https://api.github.com/repos/onsonr/sonr/releases/latest | grep "tag_name" | cut -d '"' -f 4)
+	LATEST_VERSION=$(curl -s https://api.github.com/repos/sonr-io/snrd/releases/latest | grep "tag_name" | cut -d '"' -f 4)
 	LATEST_VERSION=${LATEST_VERSION#v} # Remove 'v' prefix
 }
 
@@ -24,7 +24,7 @@ get_latest_version() {
 install_tar() {
 	local OS_NAME=$1
 	echo "Installing Sonr for ${OS_NAME} (${ARCH})..."
-	DOWNLOAD_URL="https://github.com/onsonr/sonr/releases/download/v${LATEST_VERSION}/sonr_${LATEST_VERSION}_${OS_NAME}_${ARCH}.tar.gz"
+	DOWNLOAD_URL="https://github.com/sonr-io/snrd/releases/download/v${LATEST_VERSION}/sonr_${LATEST_VERSION}_${OS_NAME}_${ARCH}.tar.gz"
 
 	# Download and extract
 	echo "Downloading Sonr..."
@@ -48,8 +48,8 @@ install_tar() {
 # Function to install on Debian/Ubuntu
 install_debian() {
 	echo "Installing Sonr for Debian/Ubuntu (${ARCH})..."
-	SONRD_URL="https://github.com/onsonr/sonr/releases/download/v${LATEST_VERSION}/sonrd_${LATEST_VERSION}_${ARCH}.deb"
-	HWAY_URL="https://github.com/onsonr/sonr/releases/download/v${LATEST_VERSION}/hway_${LATEST_VERSION}_${ARCH}.deb"
+	SONRD_URL="https://github.com/sonr-io/snrd/releases/download/v${LATEST_VERSION}/sonrd_${LATEST_VERSION}_${ARCH}.deb"
+	HWAY_URL="https://github.com/sonr-io/snrd/releases/download/v${LATEST_VERSION}/hway_${LATEST_VERSION}_${ARCH}.deb"
 
 	# Download packages
 	TMP_DIR=$(mktemp -d)

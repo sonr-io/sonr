@@ -5,7 +5,7 @@ package did.v1;
 import "cosmos/orm/v1/orm.proto";
 import "did/v1/genesis.proto";
 
-option go_package = "github.com/onsonr/sonr/x/did/types";
+option go_package = "github.com/sonr-io/snrd/x/did/types";
 
 message Account {
   option (cosmos.orm.v1.table) = {

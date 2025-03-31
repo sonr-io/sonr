@@ -1,4 +1,4 @@
-FROM golang:1.23-alpine AS go-builder
+FROM golang:1.24-alpine AS go-builder
 
 SHELL ["/bin/sh", "-ecuxo", "pipefail"]
 
@@ -24,16 +24,16 @@ COPY . /code
 # then log output of file /code/bin/sonrd
 # then ensure static linking
 RUN LEDGER_ENABLED=false BUILD_TAGS=muslc LINK_STATICALLY=true make build \
-  && file /code/build/sonrd \
+  && file /code/bin/snrd \
   && echo "Ensuring binary is statically linked ..." \
-  && (file /code/build/sonrd | grep "statically linked")
+  && (file /code/bin/snrd | grep "statically linked")
 
 # --------------------------------------------------------
 FROM alpine:3.17
 
-LABEL org.opencontainers.image.title="sonr"
+LABEL org.opencontainers.image.title="snrd"
 LABEL org.opencontainers.image.authors="diDAO <hi@didao.xyz>"
-LABEL org.opencontainers.image.source=https://github.com/onsonr/sonr
+LABEL org.opencontainers.image.source=https://github.com/sonr-io/snrd
 
 COPY --from=go-builder /code/build/sonrd /usr/bin/sonrd
 

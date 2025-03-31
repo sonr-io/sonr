@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"os"
@@ -18,8 +18,8 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	"github.com/spf13/cobra"
 
-	"github.com/onsonr/sonr/app"
-	"github.com/onsonr/sonr/app/params"
+	"github.com/sonr-io/snrd/app"
+	"github.com/sonr-io/snrd/app/params"
 )
 
 func NewRootCmd() *cobra.Command {

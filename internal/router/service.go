@@ -3,7 +3,7 @@ package router
 import (
 	"context"
 
-	"github.com/onsonr/sonr/internal/transaction"
+	"github.com/sonr-io/snrd/internal/transaction"
 )
 
 // Service is the interface that wraps the basic methods for a router.

@@ -8,7 +8,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/types/module"
 
-	"github.com/onsonr/sonr/app/upgrades"
+	"github.com/sonr-io/snrd/app/upgrades"
 )
 
 // NewUpgrade constructor

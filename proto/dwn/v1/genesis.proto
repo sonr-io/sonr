@@ -4,7 +4,7 @@ package dwn.v1;
 import "gogoproto/gogo.proto";
 import "amino/amino.proto";
 
-option go_package = "github.com/onsonr/sonr/x/dwn/types";
+option go_package = "github.com/sonr-io/snrd/x/dwn/types";
 
 // GenesisState defines the module genesis state
 message GenesisState {
@@ -42,4 +42,3 @@ message Resource {
   string kind = 1;
   string template = 2;
 }
-

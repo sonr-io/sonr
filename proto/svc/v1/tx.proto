@@ -6,7 +6,7 @@ import "svc/v1/genesis.proto";
 import "gogoproto/gogo.proto";
 import "cosmos_proto/cosmos.proto";
 
-option go_package = "github.com/onsonr/sonr/x/svc/types";
+option go_package = "github.com/sonr-io/snrd/x/svc/types";
 
 // Msg defines the Msg service.
 service Msg {

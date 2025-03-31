@@ -90,9 +90,9 @@ func (app *SonrApp) prepForZeroHeightGenesis(ctx sdk.Context, jailAllowedAddrs [
 	}
 
 	for _, delegation := range dels {
-		valAddr, err := sdk.ValAddressFromBech32(delegation.ValidatorAddress)
-		if err != nil {
-			panic(err)
+		valAddr, errB := sdk.ValAddressFromBech32(delegation.ValidatorAddress)
+		if errB != nil {
+			panic(errB)
 		}
 
 		delAddr := sdk.MustAccAddressFromBech32(delegation.DelegatorAddress)
@@ -114,26 +114,26 @@ func (app *SonrApp) prepForZeroHeightGenesis(ctx sdk.Context, jailAllowedAddrs [
 
 	// reinitialize all validators
 	err = app.StakingKeeper.IterateValidators(ctx, func(_ int64, val stakingtypes.ValidatorI) (stop bool) {
-		valBz, err := app.StakingKeeper.ValidatorAddressCodec().StringToBytes(val.GetOperator())
-		if err != nil {
-			panic(err)
+		valBz, errB := app.StakingKeeper.ValidatorAddressCodec().StringToBytes(val.GetOperator())
+		if errB != nil {
+			panic(errB)
 		}
 		// donate any unwithdrawn outstanding reward fraction tokens to the community pool
-		scraps, err := app.DistrKeeper.GetValidatorOutstandingRewardsCoins(ctx, valBz)
-		if err != nil {
-			panic(err)
+		scraps, errC := app.DistrKeeper.GetValidatorOutstandingRewardsCoins(ctx, valBz)
+		if errC != nil {
+			panic(errC)
 		}
-		feePool, err := app.DistrKeeper.FeePool.Get(ctx)
-		if err != nil {
-			panic(err)
+		feePool, errD := app.DistrKeeper.FeePool.Get(ctx)
+		if errD != nil {
+			panic(errD)
 		}
 		feePool.CommunityPool = feePool.CommunityPool.Add(scraps...)
-		if err := app.DistrKeeper.FeePool.Set(ctx, feePool); err != nil {
-			panic(err)
+		if errE := app.DistrKeeper.FeePool.Set(ctx, feePool); errE != nil {
+			panic(errE)
 		}
 
-		if err := app.DistrKeeper.Hooks().AfterValidatorCreated(ctx, valBz); err != nil {
-			panic(err)
+		if errF := app.DistrKeeper.Hooks().AfterValidatorCreated(ctx, valBz); errF != nil {
+			panic(errF)
 		}
 		return false
 	})
@@ -143,20 +143,20 @@ func (app *SonrApp) prepForZeroHeightGenesis(ctx sdk.Context, jailAllowedAddrs [
 
 	// reinitialize all delegations
 	for _, del := range dels {
-		valAddr, err := sdk.ValAddressFromBech32(del.ValidatorAddress)
-		if err != nil {
-			panic(err)
+		valAddr, errcc := sdk.ValAddressFromBech32(del.ValidatorAddress)
+		if errcc != nil {
+			panic(errcc)
 		}
 		delAddr := sdk.MustAccAddressFromBech32(del.DelegatorAddress)
 
-		if err := app.DistrKeeper.Hooks().BeforeDelegationCreated(ctx, delAddr, valAddr); err != nil {
+		if errcb := app.DistrKeeper.Hooks().BeforeDelegationCreated(ctx, delAddr, valAddr); errcb != nil {
 			// never called as BeforeDelegationCreated always returns nil
-			panic(fmt.Errorf("error while incrementing period: %w", err))
+			panic(fmt.Errorf("error while incrementing period: %w", errcb))
 		}
 
-		if err := app.DistrKeeper.Hooks().AfterDelegationModified(ctx, delAddr, valAddr); err != nil {
+		if errcd := app.DistrKeeper.Hooks().AfterDelegationModified(ctx, delAddr, valAddr); errcd != nil {
 			// never called as AfterDelegationModified always returns nil
-			panic(fmt.Errorf("error while creating a new delegation period record: %w", err))
+			panic(fmt.Errorf("error while creating a new delegation period record: %w", errcd))
 		}
 	}
 
@@ -202,8 +202,8 @@ func (app *SonrApp) prepForZeroHeightGenesis(ctx sdk.Context, jailAllowedAddrs [
 
 	for ; iter.Valid(); iter.Next() {
 		addr := sdk.ValAddress(stakingtypes.AddressFromValidatorsKey(iter.Key()))
-		validator, err := app.StakingKeeper.GetValidator(ctx, addr)
-		if err != nil {
+		validator, errr := app.StakingKeeper.GetValidator(ctx, addr)
+		if errr != nil {
 			panic("expected validator, not found")
 		}
 
@@ -218,8 +218,8 @@ func (app *SonrApp) prepForZeroHeightGenesis(ctx sdk.Context, jailAllowedAddrs [
 		}
 	}
 
-	if err := iter.Close(); err != nil {
-		app.Logger().Error("error while closing the key-value store reverse prefix iterator: ", err)
+	if erra := iter.Close(); erra != nil {
+		app.Logger().Error("error while closing the key-value store reverse prefix iterator: ", erra)
 		return
 	}
 
@@ -235,8 +235,8 @@ func (app *SonrApp) prepForZeroHeightGenesis(ctx sdk.Context, jailAllowedAddrs [
 		ctx,
 		func(addr sdk.ConsAddress, info slashingtypes.ValidatorSigningInfo) (stop bool) {
 			info.StartHeight = 0
-			if err := app.SlashingKeeper.SetValidatorSigningInfo(ctx, addr, info); err != nil {
-				panic(err)
+			if errb := app.SlashingKeeper.SetValidatorSigningInfo(ctx, addr, info); errb != nil {
+				panic(errb)
 			}
 			return false
 		},

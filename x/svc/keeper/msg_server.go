@@ -6,7 +6,7 @@ import (
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 
 	"cosmossdk.io/errors"
-	"github.com/onsonr/sonr/x/svc/types"
+	"github.com/sonr-io/snrd/x/svc/types"
 )
 
 type msgServer struct {

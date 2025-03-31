@@ -18,8 +18,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 
-	"github.com/onsonr/sonr/x/dwn/keeper"
-	"github.com/onsonr/sonr/x/dwn/types"
+	"github.com/sonr-io/snrd/x/dwn/keeper"
+	"github.com/sonr-io/snrd/x/dwn/types"
 )
 
 const (

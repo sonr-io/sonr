@@ -1,5 +1,7 @@
 # Aider related generated files
 .aider-context
+bin
+.env
 
 # Binaries
 .task
