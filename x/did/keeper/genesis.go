@@ -48,7 +48,7 @@ func (k *Keeper) ExportGenesis(ctx context.Context) *types.GenesisState {
 	}
 }
 
-// CurrentSchema returns the current schema
+// CurrentParams returns the current schema
 func (k Keeper) CurrentParams(ctx sdk.Context) (*types.Params, error) {
 	p, err := k.Params.Get(ctx)
 	if err != nil {
