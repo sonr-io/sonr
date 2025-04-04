@@ -1,3 +1,5 @@
+*.aiderscript
+
 # Aider related generated files
 .aider-context
 bin
