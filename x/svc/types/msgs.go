@@ -27,7 +27,7 @@ func NewMsgUpdateParams(
 // Route returns the name of the module
 func (msg MsgUpdateParams) Route() string { return ModuleName }
 
-// Type returns the the action
+// Type returns the action
 func (msg MsgUpdateParams) Type() string { return "update_params" }
 
 // GetSignBytes implements the LegacyMsg interface.
