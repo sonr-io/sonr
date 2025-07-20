@@ -29,7 +29,7 @@ RUN LEDGER_ENABLED=false BUILD_TAGS=muslc LINK_STATICALLY=true make build \
   && (file /code/bin/snrd | grep "statically linked")
 
 # --------------------------------------------------------
-FROM alpine:3.17
+FROM alpine:3.22.1
 
 LABEL org.opencontainers.image.title="snrd"
 LABEL org.opencontainers.image.authors="diDAO <hi@didao.xyz>"
