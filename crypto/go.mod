@@ -12,7 +12,7 @@ require (
 	github.com/cosmos/btcutil v1.0.5
 	github.com/cosmos/cosmos-sdk v0.53.4
 	github.com/dustinxie/ecc v0.0.0-20210511000915-959544187564
-	github.com/ecies/go/v2 v2.0.10
+	github.com/ecies/go/v2 v2.0.11
 	github.com/golang-jwt/jwt/v5 v5.3.0
 	github.com/gtank/merlin v0.1.1
 	github.com/ipfs/go-cid v0.5.0
