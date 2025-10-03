@@ -6,7 +6,7 @@ require (
 	filippo.io/edwards25519 v1.1.0
 	git.sr.ht/~sircmpwn/go-bare v0.0.0-20210406120253-ab86bc2846d9
 	github.com/Oudwins/zog v0.21.6
-	github.com/btcsuite/btcd/btcec/v2 v2.3.4
+	github.com/btcsuite/btcd/btcec/v2 v2.3.5
 	github.com/bwesterb/go-ristretto v1.2.3
 	github.com/consensys/gnark-crypto v0.19.0
 	github.com/cosmos/btcutil v1.0.5
