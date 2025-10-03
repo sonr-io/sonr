@@ -1,0 +1,66 @@
+---
+openapi: post /svc.v1.Msg/InitiateDomainVerification
+title: Start Domain Verification
+description: Generate DNS TXT record token for domain ownership proof
+og:title: Domain Ownership Verification
+---
+
+<Info>
+  Domain verification ensures only legitimate domain owners can register services, establishing trust in the ecosystem.
+</Info>
+
+## Verification Process
+
+### Step 1: Initiate Verification
+Call this endpoint to generate a unique verification token:
+```bash
+snrd tx svc initiate-domain-verification example.com --from alice
+```
+
+### Step 2: Add DNS TXT Record
+Add the provided token to your domain's DNS:
+```
+Type: TXT
+Name: @ (or subdomain)
+Value: sonr-verification=<token>
+TTL: 300
+```
+
+### Step 3: Complete Verification
+After DNS propagation (5-30 minutes), verify:
+```bash
+snrd tx svc verify-domain example.com --from alice
+```
+
+## DNS Provider Examples
+
+### Cloudflare
+1. Go to DNS settings
+2. Add record → Type: TXT
+3. Name: @ → Value: sonr-verification=<token>
+4. Save and wait for propagation
+
+### Route53 (AWS)
+1. Navigate to Hosted zones
+2. Create record → Type: TXT
+3. Record name: (leave blank for root)
+4. Value: "sonr-verification=<token>"
+
+<Tip>
+  Use DNS lookup tools to verify your TXT record is propagated before completing verification:
+  ```bash
+  dig TXT example.com
+  nslookup -type=TXT example.com
+  ```
+</Tip>
+
+## Requirements
+
+- **Valid TLD**: Must be a registered top-level domain
+- **DNS Access**: Ability to manage DNS records
+- **Unique Ownership**: Each domain can only have one owner
+- **Time Limit**: Complete within 7 days of initiation
+
+<Warning>
+  Verification tokens expire after 7 days. If expired, you must initiate a new verification.
+</Warning>

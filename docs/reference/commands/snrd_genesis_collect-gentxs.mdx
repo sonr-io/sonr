@@ -1,0 +1,98 @@
+---
+title: snrd genesis collect-gentxs
+description: Collect genesis txs and output a genesis.json file
+---
+
+# snrd genesis collect-gentxs
+
+Collect genesis txs and output a genesis.json file. This command iterates over all genesis transactions in the gentx directory and merges them into the genesis.json file.
+
+## Usage
+
+```shell
+snrd genesis collect-gentxs [flags]
+```
+
+## Flags
+
+<ParamField path="gentx-dir" type="string">
+  Override default "gentx" directory from which collect and execute genesis transactions; default [--home]/config/gentx/
+</ParamField>
+
+<ParamField path="help" type="boolean">
+  Help for collect-gentxs
+</ParamField>
+
+<ParamField path="home" type="string" default="~/.sonr">
+  The application home directory
+</ParamField>
+
+## Global Flags
+
+<ParamField path="broadcast-mode" type="string" default="sync">
+  Transaction broadcasting mode (sync|async)
+</ParamField>
+
+<ParamField path="chain-id" type="string">
+  Specify Chain ID for sending Tx
+</ParamField>
+
+<ParamField path="fees" type="string">
+  Fees to pay along with transaction (e.g., 10aatom)
+</ParamField>
+
+<ParamField path="from" type="string">
+  Name or address of private key with which to sign
+</ParamField>
+
+<ParamField path="gas-adjustment" type="float" default="1">
+  Adjustment factor to be multiplied against the estimate returned by the tx simulation; if the gas limit is set manually this flag is ignored
+</ParamField>
+
+<ParamField path="gas-prices" type="string">
+  Gas prices to determine the transaction fee (e.g., 10aatom)
+</ParamField>
+
+<ParamField path="keyring-backend" type="string" default="os">
+  Select keyring's backend
+</ParamField>
+
+<ParamField path="log_format" type="string" default="plain">
+  The logging format (json|plain)
+</ParamField>
+
+<ParamField path="log_level" type="string" default="info">
+  The logging level (trace|debug|info|warn|error|fatal|panic|disabled or '*:&lt;level&gt;,&lt;key&gt;:&lt;level&gt;')
+</ParamField>
+
+<ParamField path="log_no_color" type="boolean">
+  Disable colored logs
+</ParamField>
+
+<ParamField path="node" type="string" default="tcp://localhost:26657">
+  &lt;host&gt;:&lt;port&gt; to tendermint rpc interface for this chain
+</ParamField>
+
+<ParamField path="trace" type="boolean">
+  Print out full stack trace on errors
+</ParamField>
+
+## Examples
+
+### Collect genesis transactions
+
+```shell
+snrd genesis collect-gentxs
+```
+
+### Collect from custom directory
+
+```shell
+snrd genesis collect-gentxs --gentx-dir ./custom-gentx/
+```
+
+## See Also
+
+- [snrd genesis](./snrd_genesis.mdx) - Genesis-related subcommands
+- [snrd genesis gentx](./snrd_genesis_gentx.mdx) - Generate a genesis tx carrying a self delegation
+- [snrd genesis add-genesis-account](./snrd_genesis_add-genesis-account.mdx) - Add a genesis account to genesis.json

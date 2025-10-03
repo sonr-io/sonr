@@ -1,0 +1,16 @@
+---
+openapi: get /sonr/dex/v1/orders/{did}/{connectionId}
+title: List User Orders
+description: Retrieve limit orders for a DID on specific DEX chains
+og:title: Query Cross-Chain Orders
+---
+
+<Tip>
+  Use the `status` filter to query only active orders for portfolio management
+  or historical orders for tax reporting.
+</Tip>
+
+<Note>
+  Order history is retained for a limited time on most DEXs.
+  Archive important order data locally.
+</Note>

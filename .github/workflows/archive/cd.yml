@@ -1,0 +1,129 @@
+name: CD
+on:
+  workflow_call:
+    inputs:
+      bump:
+        required: false
+        type: string
+      release:
+        required: false
+        type: string
+      publish:
+        required: false
+        type: string
+      deploy:
+        required: false
+        type: string
+      continue-on-error:
+        required: false
+        default: false
+        type: boolean
+      devbox-version:
+        required: false
+        default: 0.16.0
+        type: string
+      enable-cache:
+        required: false
+        default: false
+        type: boolean
+      fetch-depth:
+        required: false
+        default: 0
+        type: number
+      persist-credentials:
+        required: false
+        default: false
+        type: boolean
+      runs-on:
+        required: false
+        default: ubuntu-latest
+        type: string
+
+jobs:
+  bump:
+    runs-on: ${{ inputs.runs-on }}
+    environment: staging - cd
+    if: ${{ inputs.test != '' }}
+    name: Bump
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: ${{ inputs.persist-credentials }}
+          fetch-depth: ${{ inputs.fetch-depth }}
+      - name: Install devbox
+        uses: jetify-com/devbox-install-action@v0.13.0
+        with:
+          enable-cache: ${{ inputs.enable-cache }}
+          devbox-version: ${{ inputs.devbox-version }}
+      - name: "Bump ${{ inputs.bump }}"
+        run: devbox run bump:${{ inputs.bump }}
+        if: ${{ inputs.bump != '' }}
+        continue-on-error: ${{ inputs.continue-on-error }}
+
+  release:
+    runs-on: ${{ inputs.runs-on }}
+    environment: staging - cd
+    if: ${{ inputs.release != '' }}
+    name: Release
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: ${{ inputs.persist-credentials }}
+          fetch-depth: ${{ inputs.fetch-depth }}
+      - name: Install devbox
+        uses: jetify-com/devbox-install-action@v0.13.0
+        with:
+          enable-cache: ${{ inputs.enable-cache }}
+          devbox-version: ${{ inputs.devbox-version }}
+      - name: "Release ${{ inputs.release }}"
+        run: devbox run release:${{ inputs.release }}
+        if: ${{ inputs.release != '' }}
+        continue-on-error: ${{ inputs.continue-on-error }}
+
+  publish:
+    runs-on: ${{ inputs.runs-on }}
+    environment: staging - publish
+    if: ${{ inputs.publish != '' }}
+    name: Publish
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: ${{ inputs.persist-credentials }}
+          fetch-depth: ${{ inputs.fetch-depth }}
+      - name: Install devbox
+        uses: jetify-com/devbox-install-action@v0.13.0
+        with:
+          enable-cache: ${{ inputs.enable-cache }}
+          devbox-version: ${{ inputs.devbox-version }}
+      - name: "Install ${{ inputs.install }}"
+        run: devbox run install:${{ inputs.install }}
+      - name: "Publish ${{ inputs.publish }}"
+        run: devbox run publish:${{ inputs.publish }}
+        if: ${{ inputs.publish != '' }}
+        continue-on-error: ${{ inputs.continue-on-error }}
+
+  deploy:
+    runs-on: ${{ inputs.runs-on }}
+    environment: staging - deploy
+    if: ${{ inputs.deploy != '' }}
+    name: Deploy
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: ${{ inputs.persist-credentials }}
+          fetch-depth: ${{ inputs.fetch-depth }}
+      - name: Install devbox
+        uses: jetify-com/devbox-install-action@v0.13.0
+        with:
+          enable-cache: ${{ inputs.enable-cache }}
+          devbox-version: ${{ inputs.devbox-version }}
+      - name: "Install ${{ inputs.install }}"
+        run: devbox run install:${{ inputs.install }}
+      - name: "Deploy ${{ inputs.deploy }}"
+        run: devbox run deploy:${{ inputs.deploy }}
+        if: ${{ inputs.deploy != '' }}
+        continue-on-error: ${{ inputs.continue-on-error }}

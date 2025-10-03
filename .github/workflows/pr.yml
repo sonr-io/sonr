@@ -1,0 +1,61 @@
+name: PR CI
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+concurrency:
+  group: pr-${{ github.head_ref }}
+  cancel-in-progress: true
+
+env:
+  DEVBOX_VERSION: 0.16.0
+
+jobs:
+  validate:
+    name: Validate & Test
+    runs-on: builder  # Self-hosted runner
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Required for github-env.sh comparisons
+      # Cache can be local on self-hosted runner for better performance
+      - name: Cache Dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/go/pkg/mod
+            ~/.cache/go-build
+            ~/.local/share/pnpm/store
+            ~/.devbox
+          key: deps-builder-${{ hashFiles('go.sum', 'pnpm-lock.yaml', 'devbox.json') }}
+          restore-keys: deps-builder-
+
+      - name: Install Dependencies
+        run: devbox install
+
+      - name: Test Affected Scopes
+        run: |
+          echo "🔍 Analyzing changes..."
+          ./scripts/github-env.sh git-context
+          echo ""
+          devbox run test
+
+      - name: Build Affected Scopes
+        run: devbox run build
+
+      - name: Verify Build Artifacts
+        run: |
+          # Verify critical build outputs exist
+          if [ -d "build/" ]; then
+            ls -la build/
+          fi
+
+      # Cleanup workspace for self-hosted runner
+      - name: Cleanup
+        if: always()
+        run: |
+          # Clean build artifacts to prevent disk fill
+          make clean || true
+          # Keep caches but remove build outputs
+          rm -rf dist/ build/ || true

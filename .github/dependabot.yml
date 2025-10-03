@@ -1,0 +1,103 @@
+version: 2
+updates:
+  # Go modules
+  - package-ecosystem: gomod
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "02:00"
+    labels:
+      - dependencies
+      - go
+    commit-message:
+      prefix: chore
+      include: scope
+
+  # Go modules in subdirectories
+  - package-ecosystem: gomod
+    directory: "/cmd/hway"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "02:00"
+    labels:
+      - dependencies
+      - hway
+    commit-message:
+      prefix: "chore(hway)"
+
+  - package-ecosystem: gomod
+    directory: "/cmd/motr"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "02:00"
+    labels:
+      - dependencies
+      - motr
+    commit-message:
+      prefix: "chore(motr)"
+
+  - package-ecosystem: gomod
+    directory: "/cmd/vault"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "02:00"
+    labels:
+      - dependencies
+      - vault
+    commit-message:
+      prefix: "chore(vault)"
+
+  - package-ecosystem: gomod
+    directory: "/client"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "02:00"
+    labels:
+      - dependencies
+      - client
+    commit-message:
+      prefix: "chore(client)"
+
+  - package-ecosystem: gomod
+    directory: "/crypto"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "02:00"
+    labels:
+      - dependencies
+      - crypto
+    commit-message:
+      prefix: "chore(crypto)"
+
+  # JavaScript/TypeScript packages
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "03:00"
+    labels:
+      - dependencies
+      - javascript
+    commit-message:
+      prefix: chore
+      include: scope
+
+  # GitHub Actions
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "04:00"
+    labels:
+      - dependencies
+      - ci
+    commit-message:
+      prefix: "chore(ci)"

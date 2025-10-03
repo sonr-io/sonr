@@ -1,0 +1,53 @@
+open module matrix.synapse.Synapse
+
+server_name: String
+pid_file: String
+public_baseurl: String
+extra_well_known_client_content: ExtraWellKnownClientContent
+app_service_config_files: Listing<String>
+listeners: Listing<Listener>
+database: Database
+log_config: String
+enable_registration: Boolean
+enable_registration_without_verification: Boolean
+media_store_path: String
+report_stats: Boolean
+signing_key_path: String
+trusted_key_servers: Listing<TrustedKeyServer>
+
+class ExtraWellKnownClientContent {
+  `org.matrix.msc3575.proxy`: OrgMatrixMsc3575Proxy
+}
+
+class OrgMatrixMsc3575Proxy {
+  url: String
+}
+
+class Listener {
+  port: Number
+  tls: Boolean
+  type: String
+  x_forwarded: Boolean
+  resources: Listing<Resource>
+}
+
+class Resource {
+  names: Listing<String>
+  compress: Boolean
+}
+
+class Database {
+  name: String
+  args: Args
+}
+
+class Args {
+  user: String
+  password: String
+  dbname: String
+  host: String
+}
+
+class TrustedKeyServer {
+  server_name: String
+}

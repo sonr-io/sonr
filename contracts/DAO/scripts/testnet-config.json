@@ -1,0 +1,68 @@
+{
+  "cosmos_hub_testnet": {
+    "chain_id": "theta-testnet-001",
+    "rpc_endpoints": [
+      "https://rpc.sentry-01.theta-testnet.polypore.xyz",
+      "https://rpc.sentry-02.theta-testnet.polypore.xyz"
+    ],
+    "grpc_endpoints": [
+      "grpc.sentry-01.theta-testnet.polypore.xyz:9090",
+      "grpc.sentry-02.theta-testnet.polypore.xyz:9090"
+    ],
+    "explorer": "https://explorer.theta-testnet.polypore.xyz",
+    "faucet": "https://discord.com/channels/669268347736686612/953697793476821092"
+  },
+  "sonr_testnet": {
+    "chain_id": "sonrtest_1-1",
+    "rpc_endpoints": [
+      "http://localhost:26657",
+      "https://testnet-rpc.sonr.io"
+    ],
+    "grpc_endpoints": [
+      "localhost:9090",
+      "testnet-grpc.sonr.io:443"
+    ]
+  },
+  "ibc_config": {
+    "connection_version": "1",
+    "channel_version": "identity-dao-1",
+    "packet_timeout": "10m",
+    "ports": {
+      "voting": "wasm.identity_dao_voting",
+      "proposals": "wasm.identity_dao_proposals",
+      "core": "wasm.identity_dao_core"
+    },
+    "sonr_ports": {
+      "did": "did",
+      "dwn": "dwn",
+      "svc": "svc"
+    }
+  },
+  "deployment_params": {
+    "gas_prices": {
+      "cosmos_hub": "0.025uatom",
+      "sonr": "0.025usnr"
+    },
+    "gas_adjustment": 1.5,
+    "deposit_amount": "1000000",
+    "min_verification_level": 1,
+    "voting_periods": {
+      "min_seconds": 86400,
+      "max_seconds": 604800
+    },
+    "pass_threshold": {
+      "percentage": "0.5"
+    }
+  },
+  "relayer_config": {
+    "type": "hermes",
+    "version": "1.7.0",
+    "clear_interval": 100,
+    "packet_timeout": "10m",
+    "trusting_period": "14days",
+    "trust_threshold": {
+      "numerator": 2,
+      "denominator": 3
+    }
+  }
+}

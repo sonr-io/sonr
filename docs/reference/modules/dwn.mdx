@@ -1,0 +1,166 @@
+---
+title: "Decentralized Web Node (x/dwn)"
+sidebarTitle: "Smart Wallets"
+description: "Decentralized Web Node (DWN) Module: Personal Data Stores, Protocols, and Secure Vaults"
+icon: "wallet"
+tag: "x/dwn"
+---
+
+# Decentralized Web Node (DWN) Module
+
+The `x/dwn` module is the foundational engine of the Sonr ecosystem. It provides a comprehensive **Decentralized Web Node (DWN)** implementation that serves as the backbone for user-controlled data storage, protocol management, and secure vault operations. The module enables users to maintain sovereign control over their data while participating in a decentralized ecosystem.
+
+## Overview
+
+The DWN module implements the [Decentralized Web Node specification](https://identity.foundation/decentralized-web-node/spec/), providing:
+
+- **Personal Data Stores**: User-controlled storage for structured data records
+- **Protocol-Based Interactions**: Define and enforce data schemas and interaction patterns
+- **Granular Permissions**: Fine-grained access control using capability-based authorization
+- **Secure Vaults**: Enclave-based key management and transaction signing via WebAssembly
+- **Multi-Chain Transaction Building**: Support for both Cosmos SDK and EVM transaction construction
+- **Enhanced Address Derivation**: BIP44 HD wallet address derivation for multiple blockchain networks
+
+## Core Concepts
+
+### Decentralized Web Nodes (DWNs)
+
+A DWN is a personal data store that enables individuals to manage their data independently of centralized providers. Each user's DWN serves as their agent in the decentralized web, storing data, managing permissions, and executing protocols on their behalf.
+
+### Records
+
+Records are the fundamental unit of data storage in a DWN. Each record can:
+
+- Store arbitrary data with optional encryption
+- Be organized hierarchically using parent-child relationships
+- Conform to specific protocols and schemas
+- Be published for public access or kept private
+
+### Protocols
+
+Protocols define structured ways for applications to interact with DWN data. They specify:
+
+- Data schemas for validation
+- Permission models
+- Interaction patterns between different parties
+
+### Permissions
+
+The DWN uses a capability-based permission system where:
+
+- Permissions are granted as signed tokens (JWTs)
+- Access can be scoped to specific interfaces, methods, protocols, or records
+- Permissions can be delegated and revoked
+
+### Vaults
+
+Vaults provide secure, enclave-based key management enabling:
+
+- Hardware-backed key generation and storage
+- Secure transaction signing without exposing private keys
+- Multi-party computation capabilities
+- WebAssembly-based secure execution environment
+- Multi-chain transaction building for Cosmos SDK and EVM networks
+- BIP44 HD wallet address derivation with configurable coin types
+
+## Integration Guide
+
+### For Application Developers
+
+1. **Define Your Protocol**: Create a protocol definition that describes your data structures and permissions
+2. **Configure Protocol**: Register your protocol with target DWNs
+3. **Request Permissions**: Use the SVC module to request necessary permissions from users
+4. **Store Data**: Write records that conform to your protocol
+5. **Query Data**: Read records based on granted permissions
+
+### For Wallet Developers
+
+1. **VaultKeeper Integration**:
+
+   - Use `CreateVault` for secure key generation in WebAssembly enclaves
+   - Implement `RefreshVault` calls based on configured refresh intervals
+   - Use `SignWithVault` for transaction signing without exposing private keys
+   - Leverage `BroadcastTx` for direct transaction submission through vaults
+   - Utilize multi-chain transaction building for both Cosmos SDK and EVM networks
+   - Implement address derivation for multi-chain wallet support
+
+2. **Vault Management UI**:
+   - Display vault states and ownership information
+   - Show vault public keys and enclave data
+   - Provide refresh status and last refresh timestamps
+   - Enable vault-based message signing interfaces
+   - Show derived addresses for multiple blockchain networks
+   - Display transaction building capabilities and fee estimations
+
+## CLI Examples
+
+### Records Operations
+
+```bash
+# Write a new record
+snrd tx dwn records-write did:example:123 '{"interface_name":"Records","method":"Write"}' '{"name":"Alice","age":30}' \
+  --protocol example.com/profile/v1 \
+  --published \
+  --from alice
+
+# Query records
+snrd query dwn records did:example:123 --protocol example.com/profile/v1
+
+# Delete a record
+snrd tx dwn records-delete did:example:123 record-123 '{"interface_name":"Records","method":"Delete"}' \
+  --from alice
+```
+
+### Vault Operations
+
+```bash
+# Create a vault with enclave-based key generation
+snrd tx dwn create-vault my-vault key-1 --from alice
+
+# Refresh vault enclave state (requires minimum interval)
+snrd tx dwn refresh-vault my-vault --from alice
+
+# Sign a message with vault's secure enclave
+snrd tx dwn sign-with-vault my-vault "48656c6c6f20576f726c64" --from alice
+
+# Broadcast a transaction using vault's enclave
+snrd tx dwn broadcast-tx my-vault "transaction-bytes" --from alice
+```
+
+## Security Considerations
+
+1. **Authorization**: All write operations require proper authorization (JWT/signature)
+2. **Encryption**: Sensitive data should be encrypted before storage
+3. **Vault Security**:
+   - Vaults use WebAssembly enclaves for tamper-resistant key protection
+   - Private keys never leave the secure enclave environment
+   - VaultKeeper enforces ownership verification for all operations
+   - Refresh intervals prevent stale enclave states
+4. **Permission Scoping**: Grant minimal required permissions
+5. **Revocation**: Regularly review and revoke unused permissions
+
+## Building and Testing
+
+### Building the Motor Client
+
+```bash
+# Build the motor WASM client
+make -C x/dwn motr
+
+# Run unit tests
+make -C x/dwn test
+
+# Generate coverage report
+make -C x/dwn test-cover
+```
+
+## Future Enhancements
+
+- **Replication**: Multi-node data replication for availability
+- **Sync Protocol**: Efficient data synchronization between nodes
+- **Advanced Queries**: GraphQL-like query capabilities
+- **Compression**: Automatic data compression for efficiency
+- **IPFS Integration**: Content-addressed storage backend
+- **Cross-Chain Interoperability**: Enhanced cross-chain transaction capabilities
+- **Advanced MPC Features**: Extended multi-party computation capabilities
+

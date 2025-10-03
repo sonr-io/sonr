@@ -1,0 +1,16 @@
+---
+openapi: post /dex.v1.Msg/RemoveLiquidity
+title: Remove Liquidity from Pool
+description: Withdraw assets from DEX pools by burning LP tokens
+og:title: Withdraw Liquidity from Cross-Chain Pools
+tag: x/dex
+---
+
+<Warning>
+  Removing liquidity during high volatility may result in receiving different asset ratios
+  than initially provided.
+</Warning>
+
+<Tip>
+  Set appropriate minimum amounts to protect against unfavorable price movements.
+</Tip>

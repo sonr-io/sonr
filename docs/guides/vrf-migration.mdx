@@ -1,0 +1,562 @@
+---
+title: VRF Key Migration Guide
+description: Migrate existing validator nodes to use VRF keys without downtime
+---
+
+# VRF Key Migration Guide
+
+This guide provides step-by-step instructions for adding VRF keys to existing Sonr validator nodes that were initialized before VRF key support was added.
+
+## Overview
+
+VRF (Verifiable Random Function) keys are required for:
+- Multi-validator encryption features (added in v0.1.12)
+- Consensus-based key rotation
+- Secure encryption key derivation
+
+Existing nodes initialized before v0.1.12 may not have VRF keys generated.
+
+## Pre-Migration Checklist
+
+Before starting the migration:
+
+- [ ] **Backup** your validator keys and configuration
+- [ ] **Identify** which validators need VRF keys
+- [ ] **Plan** migration during low-traffic period
+- [ ] **Coordinate** with other validators (for governance proposals)
+- [ ] **Test** on testnet first
+
+## Migration Scenarios
+
+### Scenario 1: Encryption Not Needed
+
+If your network doesn't use encryption features, you can disable encryption instead of generating VRF keys.
+
+**Option A: Disable via Governance**
+
+1. Create governance proposal:
+
+```bash
+cat > disable-encryption-proposal.json <<EOF
+{
+  "messages": [
+    {
+      "@type": "/cosmos.params.v1beta1.MsgUpdateParams",
+      "authority": "sonr10d07y265gmmuvt4z0w9aw880jnsr700j8yv32t",
+      "params": {
+        "encryption_enabled": false
+      }
+    }
+  ],
+  "metadata": "Disable encryption until VRF keys are configured",
+  "deposit": "10000000usnr",
+  "title": "Disable DWN Encryption",
+  "summary": "Temporary disable encryption to allow gradual VRF key rollout"
+}
+EOF
+```
+
+2. Submit proposal:
+
+```bash
+snrd tx gov submit-proposal disable-encryption-proposal.json \
+  --from validator \
+  --chain-id sonrtest_1-1 \
+  --gas auto \
+  --gas-adjustment 1.5
+```
+
+3. Vote and wait for execution.
+
+**Option B: Genesis Parameter (New Networks Only)**
+
+For new networks, set in genesis:
+
+```json
+{
+  "app_state": {
+    "dwn": {
+      "params": {
+        "encryption_enabled": false
+      }
+    }
+  }
+}
+```
+
+### Scenario 2: Gradual Migration (Recommended)
+
+Migrate validators one at a time to minimize risk.
+
+**Step 1: Disable Encryption Temporarily**
+
+Follow Scenario 1, Option A to disable encryption via governance.
+
+**Step 2: Generate VRF Keys for Each Validator**
+
+On each validator node:
+
+1. **Stop the validator** (optional, but recommended):
+   ```bash
+   systemctl stop snrd
+   # or
+   pkill snrd
+   ```
+
+2. **Generate VRF keys**:
+   ```bash
+   snrd keys vrf generate --chain-id sonrtest_1-1
+   ```
+
+3. **Verify generation**:
+   ```bash
+   snrd keys vrf show
+   snrd keys vrf verify
+   ```
+
+4. **Check permissions**:
+   ```bash
+   ls -la ~/.sonr/vrf_secret.key
+   # Should show: -rw------- (0600)
+   ```
+
+5. **Restart validator**:
+   ```bash
+   systemctl start snrd
+   # or start manually
+   ```
+
+6. **Verify node is syncing**:
+   ```bash
+   snrd status | jq '.SyncInfo'
+   ```
+
+**Step 3: Verify All Validators Have VRF Keys**
+
+On each validator, run:
+
+```bash
+snrd keys vrf verify
+```
+
+All validators should show:
+```
+✓ VRF keys are fully functional
+```
+
+**Step 4: Re-enable Encryption**
+
+Once all validators have VRF keys:
+
+1. Create governance proposal:
+
+```bash
+cat > enable-encryption-proposal.json <<EOF
+{
+  "messages": [
+    {
+      "@type": "/cosmos.params.v1beta1.MsgUpdateParams",
+      "authority": "sonr10d07y265gmmuvt4z0w9aw880jnsr700j8yv32t",
+      "params": {
+        "encryption_enabled": true
+      }
+    }
+  ],
+  "metadata": "Re-enable encryption after VRF key deployment",
+  "deposit": "10000000usnr",
+  "title": "Enable DWN Encryption",
+  "summary": "Re-enable encryption now that all validators have VRF keys"
+}
+EOF
+```
+
+2. Submit and execute proposal.
+
+### Scenario 3: Coordinated Network Upgrade
+
+For critical production networks, coordinate a network-wide upgrade.
+
+**Phase 1: Preparation (1-2 weeks before)**
+
+1. **Announce upgrade** to all validators
+2. **Share migration plan** and timeline
+3. **Test on testnet** with same validator set
+4. **Prepare rollback plan**
+
+**Phase 2: Pre-Upgrade (1 day before)**
+
+1. **Verify all validators** are ready:
+   ```bash
+   # Check validator set
+   snrd query staking validators --output json | jq '.validators[] | {moniker, status}'
+   ```
+
+2. **Backup critical data**:
+   ```bash
+   # Backup validator state
+   tar -czf validator-backup-$(date +%Y%m%d).tar.gz \
+     ~/.sonr/config/ \
+     ~/.sonr/data/priv_validator_state.json
+   ```
+
+3. **Sync upgrade binary**:
+   ```bash
+   # Ensure all validators have same version
+   snrd version
+   ```
+
+**Phase 3: Migration Window**
+
+1. **Stop network** at agreed block height:
+   ```bash
+   # All validators stop
+   systemctl stop snrd
+   ```
+
+2. **Generate VRF keys** on each validator:
+   ```bash
+   snrd keys vrf generate --chain-id sonrtest_1-1
+   snrd keys vrf verify
+   ```
+
+3. **Verify permissions**:
+   ```bash
+   chmod 0600 ~/.sonr/vrf_secret.key
+   ```
+
+4. **Restart validators** in coordination:
+   ```bash
+   systemctl start snrd
+   ```
+
+5. **Monitor network recovery**:
+   ```bash
+   # Watch consensus
+   snrd status | jq '.SyncInfo.catching_up'
+
+   # Watch block production
+   watch -n 1 'snrd status | jq ".SyncInfo.latest_block_height"'
+   ```
+
+**Phase 4: Post-Migration Verification**
+
+1. **Check all validators online**:
+   ```bash
+   snrd query tendermint-validator-set | jq '.validators[].address'
+   ```
+
+2. **Verify VRF functionality**:
+   ```bash
+   # On each validator
+   snrd keys vrf verify
+   ```
+
+3. **Test encryption features**:
+   ```bash
+   # Create encrypted record
+   snrd tx dwn create-record \
+     --protocol "encrypted-protocol" \
+     --data "test-data" \
+     --from validator
+   ```
+
+4. **Monitor for errors**:
+   ```bash
+   journalctl -u snrd -f | grep -i "vrf\|encryption"
+   ```
+
+## Rollback Procedures
+
+If issues arise during migration:
+
+### Emergency Rollback
+
+1. **Stop affected validators**:
+   ```bash
+   systemctl stop snrd
+   ```
+
+2. **Disable encryption via governance** (if network is running):
+   ```bash
+   # Submit emergency proposal
+   snrd tx gov submit-proposal disable-encryption-proposal.json --expedited
+   ```
+
+3. **Restore from backup**:
+   ```bash
+   # Stop node
+   systemctl stop snrd
+
+   # Restore backup
+   tar -xzf validator-backup-YYYYMMDD.tar.gz -C ~/
+
+   # Restart
+   systemctl start snrd
+   ```
+
+4. **Verify recovery**:
+   ```bash
+   snrd status
+   ```
+
+### Gradual Rollback
+
+If only some validators have issues:
+
+1. Keep VRF keys on working validators
+2. Remove VRF keys from problematic validators:
+   ```bash
+   mv ~/.sonr/vrf_secret.key ~/.sonr/vrf_secret.key.backup
+   ```
+3. Disable encryption temporarily
+4. Debug issues before retry
+
+## Validation & Testing
+
+### Pre-Migration Testing
+
+Test on a private testnet first:
+
+```bash
+# Setup test network
+CHAIN_ID="test-migration" make localnet
+
+# Test VRF generation
+snrd keys vrf generate --chain-id test-migration
+snrd keys vrf verify
+
+# Test with encryption enabled
+snrd query dwn params
+
+# Test key rotation
+# (trigger validator set change)
+```
+
+### Post-Migration Validation
+
+After migration, verify:
+
+1. **All validators have VRF keys**:
+   ```bash
+   # On each validator
+   snrd keys vrf show
+   ```
+
+2. **No VRF errors in logs**:
+   ```bash
+   journalctl -u snrd --since "1 hour ago" | grep -i "vrf" | grep -i "error"
+   # Should return nothing
+   ```
+
+3. **Encryption working**:
+   ```bash
+   snrd query dwn params | jq '.params.encryption_enabled'
+   # Should return: true
+   ```
+
+4. **Key rotation functional**:
+   ```bash
+   # Check encryption state
+   snrd query dwn encryption-state
+   ```
+
+## Troubleshooting
+
+### Issue: "VRF keys not loaded"
+
+**Cause**: Keys not generated or file permissions incorrect.
+
+**Fix**:
+```bash
+# Regenerate keys
+snrd keys vrf generate --chain-id <your-chain-id> --force
+
+# Fix permissions
+chmod 0600 ~/.sonr/vrf_secret.key
+
+# Verify
+snrd keys vrf verify
+```
+
+### Issue: "Failed to check and perform key rotation"
+
+**Cause**: Encryption enabled but VRF keys missing on some validators.
+
+**Fix**:
+1. Identify validators without VRF keys
+2. Temporarily disable encryption
+3. Generate VRF keys on all validators
+4. Re-enable encryption
+
+### Issue: Network Stalled During Migration
+
+**Cause**: Too many validators offline simultaneously.
+
+**Fix**:
+1. Ensure >2/3 voting power online
+2. Coordinate restart timing
+3. Use smaller migration windows per validator
+
+### Issue: Inconsistent VRF Keys
+
+**Cause**: Different chain-id used during generation.
+
+**Fix**:
+```bash
+# Check chain-id in genesis
+jq '.chain_id' ~/.sonr/config/genesis.json
+
+# Regenerate with correct chain-id
+snrd keys vrf generate --chain-id <correct-chain-id> --force
+```
+
+## Best Practices
+
+### Before Migration
+
+- ✅ Test on testnet with same topology
+- ✅ Backup all validator data
+- ✅ Document rollback procedures
+- ✅ Prepare monitoring dashboards
+- ✅ Schedule during low-traffic period
+
+### During Migration
+
+- ✅ Migrate one validator at a time (gradual)
+- ✅ Monitor logs continuously
+- ✅ Verify each step before proceeding
+- ✅ Keep communication channels open
+- ✅ Document any issues encountered
+
+### After Migration
+
+- ✅ Verify all validators functional
+- ✅ Test encryption features
+- ✅ Monitor performance metrics
+- ✅ Update documentation
+- ✅ Schedule follow-up verification
+
+## Timeline Recommendations
+
+### Small Network (3-5 validators)
+- **Preparation**: 3-5 days
+- **Migration**: 1-2 hours
+- **Verification**: 1 day
+
+### Medium Network (10-20 validators)
+- **Preparation**: 1 week
+- **Migration**: 4-6 hours (gradual) or 30 minutes (coordinated)
+- **Verification**: 2-3 days
+
+### Large Network (50+ validators)
+- **Preparation**: 2-3 weeks
+- **Migration**: 1-2 days (gradual) or network upgrade
+- **Verification**: 1 week
+
+## Support & Resources
+
+- **VRF Key Management Guide**: `/guides/vrf-key-management`
+- **GitHub Issues**: https://github.com/sonr-io/sonr/issues
+- **Discord**: Validator support channel
+- **Documentation**: https://docs.sonr.io
+
+## Appendix: Automation Script
+
+For networks with many validators, use this automation script:
+
+```bash
+#!/bin/bash
+# vrf-migration.sh - Automated VRF key migration helper
+
+set -e
+
+CHAIN_ID="${CHAIN_ID:-sonrtest_1-1}"
+BACKUP_DIR="${BACKUP_DIR:-$HOME/vrf-backup}"
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+log_info() {
+    echo -e "${GREEN}[INFO]${NC} $1"
+}
+
+log_warn() {
+    echo -e "${YELLOW}[WARN]${NC} $1"
+}
+
+log_error() {
+    echo -e "${RED}[ERROR]${NC} $1"
+}
+
+# Backup existing data
+backup_validator() {
+    log_info "Creating backup..."
+    mkdir -p "$BACKUP_DIR"
+    tar -czf "$BACKUP_DIR/validator-$(date +%Y%m%d-%H%M%S).tar.gz" \
+        ~/.sonr/config/ \
+        ~/.sonr/data/priv_validator_state.json 2>/dev/null || true
+    log_info "Backup created at $BACKUP_DIR"
+}
+
+# Generate VRF keys
+generate_vrf() {
+    log_info "Generating VRF keys for chain: $CHAIN_ID"
+    if snrd keys vrf generate --chain-id "$CHAIN_ID"; then
+        log_info "VRF keys generated successfully"
+    else
+        log_error "Failed to generate VRF keys"
+        exit 1
+    fi
+}
+
+# Verify VRF keys
+verify_vrf() {
+    log_info "Verifying VRF keys..."
+    if snrd keys vrf verify; then
+        log_info "VRF keys verified successfully"
+    else
+        log_error "VRF key verification failed"
+        exit 1
+    fi
+}
+
+# Fix permissions
+fix_permissions() {
+    log_info "Fixing VRF key permissions..."
+    chmod 0600 ~/.sonr/vrf_secret.key
+    log_info "Permissions set to 0600"
+}
+
+# Main migration flow
+main() {
+    log_info "Starting VRF key migration..."
+    log_info "Chain ID: $CHAIN_ID"
+
+    # Backup
+    backup_validator
+
+    # Generate keys
+    generate_vrf
+
+    # Fix permissions
+    fix_permissions
+
+    # Verify
+    verify_vrf
+
+    log_info "Migration completed successfully!"
+    log_info "Please restart your validator node"
+}
+
+# Run migration
+main
+```
+
+Save and run:
+```bash
+chmod +x vrf-migration.sh
+CHAIN_ID="sonrtest_1-1" ./vrf-migration.sh
+```

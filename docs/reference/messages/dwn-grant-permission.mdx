@@ -1,0 +1,104 @@
+---
+openapi: post /dwn.v1.Msg/PermissionsGrant
+title: Grant DWN Access Permission
+description: Authorize other users to access your data with fine-grained control
+og:title: DWN Permission Management
+---
+
+<Info>
+  DWN permissions enable secure data sharing with granular access control down to individual records.
+</Info>
+
+## Permission Scopes
+
+### Interface-Level
+Grant access to entire interfaces:
+- **Records**: Read/write any records
+- **Protocols**: Configure protocols
+- **Permissions**: Delegate permission management
+
+### Method-Level
+Restrict to specific operations:
+- **Records.Write**: Create/update only
+- **Records.Query**: Read-only access
+- **Records.Delete**: Deletion rights
+
+### Protocol-Level
+Scope to protocol-compliant records:
+```json
+{
+  "protocol": "https://protocols.sonr.io/health/v1",
+  "interfaceName": "Records",
+  "method": "Query"
+}
+```
+
+### Record-Level
+Grant access to specific records:
+```json
+{
+  "recordId": "record_abc123",
+  "method": "Write"
+}
+```
+
+## Conditional Permissions
+
+<Tip>
+  Use conditions to create dynamic access rules that adapt to context.
+</Tip>
+
+### Time-Based Conditions
+```json
+{
+  "validFrom": "2024-01-01T00:00:00Z",
+  "validUntil": "2024-12-31T23:59:59Z",
+  "timezone": "UTC"
+}
+```
+
+### Usage Limits
+```json
+{
+  "maxReads": 100,
+  "maxWrites": 10,
+  "rateLimit": "10/hour"
+}
+```
+
+### Custom Rules
+```json
+{
+  "ipWhitelist": ["192.168.1.0/24"],
+  "requireMFA": true,
+  "allowedActions": ["read", "query"]
+}
+```
+
+## Security Best Practices
+
+<Warning>
+  Always set expiration times for permissions to limit exposure window.
+</Warning>
+
+1. **Principle of Least Privilege**: Grant minimum necessary access
+2. **Time Limits**: Use `expiresAt` for temporary access
+3. **Scope Restriction**: Be specific about what's accessible
+4. **Regular Audits**: Review and revoke unused permissions
+
+## Common Use Cases
+
+### Healthcare Data Sharing
+- Grant doctor temporary access to medical records
+- Scope to specific record types
+- Auto-expire after appointment
+
+### Collaborative Apps
+- Share project documents with team
+- Allow comments but not edits
+- Revoke when project ends
+
+### IoT Device Access
+- Grant device write-only permission
+- Restrict to sensor data protocol
+- Rate limit submissions

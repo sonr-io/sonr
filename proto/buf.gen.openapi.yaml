@@ -1,0 +1,28 @@
+version: v1
+plugins:
+  # Generate OpenAPI v2 (Swagger) documentation
+  - name: openapiv2
+    out: ../docs/static/openapi
+    opt:
+      - logtostderr=true
+      - simple_operation_ids=true
+      - openapi_naming_strategy=simple
+      - json_names_for_fields=true
+      - allow_merge=false
+      - output_format=yaml
+      # Generate methods without HTTP bindings
+      - generate_unbound_methods=true
+      # Include service tags
+      - disable_service_tags=false
+      # Preserve RPC order
+      - preserve_rpc_order=true
+      # Only generate for files with actual services
+      - include_package_in_tags=false
+      # Go package mappings
+      - Mgoogle/protobuf/any.proto=github.com/cosmos/gogoproto/types
+      - Mcosmos/app/v1alpha1/module.proto=cosmossdk.io/api/cosmos/app/v1alpha1
+      - Mcosmos/orm/v1/orm.proto=cosmossdk.io/orm
+      - Mdex/module/v1/module.proto=github.com/sonr-io/sonr/x/dex
+      - Mdid/module/v1/module.proto=github.com/sonr-io/sonr/x/did
+      - Mdwn/module/v1/module.proto=github.com/sonr-io/sonr/x/dwn
+      - Msvc/module/v1/module.proto=github.com/sonr-io/sonr/x/svc

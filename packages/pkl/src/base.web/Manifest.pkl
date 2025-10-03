@@ -1,0 +1,56 @@
+module base.webapi.Manifest
+
+name: String
+short_name: String
+description: String?
+display: ("fullscreen"|"standalone"|"minimal-ui"|"browser")?
+display_override: Listing<String>?
+theme_color: String?
+background_color: String?
+orientation: ("any"|"natural"|"landscape"|"portrait")?
+start_url: String
+scope: String?
+service_worker: ServiceWorker?
+icons: Listing<ShortcutIcon>?
+related_applications: Listing<RelatedApplication>?
+prefer_related_applications: Boolean?
+shortcuts: Listing<Shortcut>?
+file_handlers: Listing<FileHandler>?
+protocol_handlers: Listing<ProtocolHandler>?
+
+class ServiceWorker {
+  scope: String
+  src: String
+  use_cache: Boolean
+}
+
+class ShortcutIcon {
+  src: String
+  sizes: String
+  type: String?
+  purpose: String?
+}
+
+class RelatedApplication {
+  platform: String
+  url: String?
+  id: String?
+}
+
+class Shortcut {
+  name: String
+  short_name: String?
+  description: String?
+  url: String
+  icons: Listing<ShortcutIcon>?
+}
+
+class FileHandler {
+  action: String
+  accept: Mapping<String, Listing<String>>
+}
+
+class ProtocolHandler {
+  scheme: String
+  url: String
+}

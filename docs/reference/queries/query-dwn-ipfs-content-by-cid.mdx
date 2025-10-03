@@ -1,0 +1,50 @@
+---
+openapi: get /dwn/v1/ipfs/{cid}
+title: Retrieve IPFS Content
+description: Fetch distributed content using its Content Identifier
+og:title: IPFS Content Retrieval
+---
+
+<Info>
+  Content Identifiers (CIDs) are cryptographic hashes that uniquely identify content in IPFS.
+</Info>
+
+## CID Resolution
+
+### Resolution Process
+1. Query local IPFS node cache
+2. Search connected peers
+3. Fetch from distributed network
+4. Return raw content data
+
+### CID Formats
+- **CIDv0**: Legacy format (starts with 'Qm')
+- **CIDv1**: Modern format (starts with 'bafy')
+
+Example CIDs:
+```
+CIDv0: QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG
+CIDv1: bafybeigdyrzt5sfp7udm7hu76uh7y26nf3efuylqabf3oclgtqy55fbzdi
+```
+
+## Performance Considerations
+
+<Tip>
+  Pin frequently accessed content to your local IPFS node for faster retrieval.
+</Tip>
+
+### Caching Strategy
+- Hot data: Keep pinned locally
+- Warm data: Cache with TTL
+- Cold data: Fetch on demand
+
+<Warning>
+  Large files may take time to retrieve if not cached locally or on nearby peers.
+</Warning>
+
+## Error Handling
+
+Common errors:
+- **404**: CID not found in network
+- **408**: Timeout fetching content
+- **507**: Local storage full

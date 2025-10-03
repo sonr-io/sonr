@@ -1,0 +1,438 @@
+---
+title: "Sign in with Sonr: Developer Guide"
+description: "OAuth 2.0 authentication for decentralized applications with UCAN capabilities"
+sidebarTitle: "Sign in with Sonr"
+icon: "key"
+---
+
+<Info>
+  This guide covers OAuth 2.0 authentication for decentralized applications using Sonr's advanced Web3 capabilities.
+</Info>
+
+## Overview
+
+Sign in with Sonr provides OAuth 2.0 authentication for decentralized applications, combining traditional OAuth flows with Web3 capabilities through UCAN (User Controlled Authorization Networks) delegation.
+
+<CardGroup cols={2}>
+  <Card title="OAuth 2.0 + OIDC" icon="lock">
+    Industry-standard authentication with OpenID Connect
+  </Card>
+  <Card title="WebAuthn Support" icon="fingerprint">
+    Passwordless authentication with hardware security
+  </Card>
+  <Card title="UCAN Capabilities" icon="network">
+    Fine-grained permission delegation for Web3
+  </Card>
+  <Card title="Decentralized Identity" icon="id-card">
+    W3C DID-based identity management
+  </Card>
+</CardGroup>
+
+## Quick Start
+
+### Installation
+
+<CodeGroup>
+```bash npm
+npm install @sonr.io/ui
+```
+```bash pnpm
+pnpm add @sonr.io/ui
+```
+```bash yarn
+yarn add @sonr.io/ui
+```
+</CodeGroup>
+
+### Basic Implementation
+
+<CodeGroup>
+```tsx React
+import { SignInWithSonr } from '@sonr.io/ui';
+
+function App() {
+  return (
+    <SignInWithSonr
+      clientId="your-client-id"
+      redirectUri="http://localhost:3000/callback"
+      scopes={['openid', 'profile', 'vault:read']}
+    />
+  );
+}
+```
+</CodeGroup>
+
+## Configuration
+
+### OAuth Client Registration
+
+<CodeGroup>
+```typescript Configuration
+const clientConfig = {
+  clientId: 'your-client-id',
+  clientSecret: 'your-client-secret', // Only for confidential clients
+  redirectUris: ['http://localhost:3000/callback'],
+  grantTypes: ['authorization_code', 'refresh_token'],
+  responseTypes: ['code'],
+  scopes: ['openid', 'profile', 'vault:read', 'vault:write'],
+  tokenEndpointAuthMethod: 'none', // For public clients
+};
+```
+</CodeGroup>
+
+### Environment Variables
+
+<CodeGroup>
+```env OAuth Endpoints
+# OAuth Endpoints
+NEXT_PUBLIC_SONR_CLIENT_ID=your-client-id
+NEXT_PUBLIC_REDIRECT_URI=http://localhost:3000/callback
+NEXT_PUBLIC_AUTH_URL=https://auth.sonr.io/oauth/authorize
+NEXT_PUBLIC_TOKEN_URL=https://auth.sonr.io/oauth/token
+NEXT_PUBLIC_USERINFO_URL=https://auth.sonr.io/oauth/userinfo
+```
+</CodeGroup>
+
+## OAuth Scopes & UCAN Capabilities
+
+<Tabs>
+  <Tab title="Standard Scopes">
+    <table>
+      <thead>
+        <tr>
+          <th>Scope</th>
+          <th>Description</th>
+          <th>UCAN Capabilities</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>`openid`</td>
+          <td>OpenID Connect identity</td>
+          <td>Basic identity claims</td>
+        </tr>
+        <tr>
+          <td>`profile`</td>
+          <td>User profile information</td>
+          <td>Name, picture, metadata</td>
+        </tr>
+        <tr>
+          <td>`email`</td>
+          <td>Email address</td>
+          <td>Email and verification status</td>
+        </tr>
+        <tr>
+          <td>`offline_access`</td>
+          <td>Refresh token issuance</td>
+          <td>Long-lived access</td>
+        </tr>
+      </tbody>
+    </table>
+  </Tab>
+  <Tab title="Vault Scopes">
+    <table>
+      <thead>
+        <tr>
+          <th>Scope</th>
+          <th>Description</th>
+          <th>UCAN Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>`vault:read`</td>
+          <td>Read vault contents</td>
+          <td>`vault/read`, `vault/list`</td>
+        </tr>
+        <tr>
+          <td>`vault:write`</td>
+          <td>Modify vault contents</td>
+          <td>`vault/write`, `vault/create`, `vault/update`</td>
+        </tr>
+        <tr>
+          <td>`vault:delete`</td>
+          <td>Delete vault items</td>
+          <td>`vault/delete`</td>
+        </tr>
+        <tr>
+          <td>`vault:admin`</td>
+          <td>Full vault control</td>
+          <td>All vault actions</td>
+        </tr>
+      </tbody>
+    </table>
+  </Tab>
+</Tabs>
+
+## Integration Examples
+
+<Tabs>
+  <Tab title="React Hooks">
+    <CodeGroup>
+    ```tsx React Hooks
+    import { useSignInWithSonr } from '@sonr.io/ui';
+
+    function LoginComponent() {
+      const {
+        user,
+        token,
+        isAuthenticated,
+        isLoading,
+        signIn,
+        signOut,
+        refreshToken,
+      } = useSignInWithSonr({
+        clientId: 'your-client-id',
+        redirectUri: 'http://localhost:3000/callback',
+        scopes: ['openid', 'profile', 'vault:read'],
+      });
+
+      if (isLoading) return <div>Loading...</div>;
+
+      if (isAuthenticated) {
+        return (
+          <div>
+            <p>Welcome, {user.name}!</p>
+            <button onClick={signOut}>Sign Out</button>
+          </div>
+        );
+      }
+
+      return <button onClick={signIn}>Sign in with Sonr</button>;
+    }
+    ```
+    </CodeGroup>
+  </Tab>
+  
+  <Tab title="Next.js App Router">
+    <CodeGroup>
+    ```tsx Next.js Layout
+    // app/layout.tsx
+    import { AuthProvider } from '@/components/AuthProvider';
+
+    export default function RootLayout({ children }) {
+      return (
+        <html>
+          <body>
+            <AuthProvider>{children}</AuthProvider>
+          </body>
+        </html>
+      );
+    }
+    ```
+
+    ```tsx Auth Provider
+    'use client';
+
+    import { createContext, useContext, useEffect, useState } from 'react';
+    import { OAuth2Client } from '@sonr.io/ui';
+
+    const AuthContext = createContext();
+
+    export function AuthProvider({ children }) {
+      const [client] = useState(() => new OAuth2Client({
+        clientId: process.env.NEXT_PUBLIC_SONR_CLIENT_ID,
+        redirectUri: process.env.NEXT_PUBLIC_REDIRECT_URI,
+      }));
+
+      // ... authentication logic
+
+      return (
+        <AuthContext.Provider value={{ client, /* ... */ }}>
+          {children}
+        </AuthContext.Provider>
+      );
+    }
+
+    export const useAuth = () => useContext(AuthContext);
+    ```
+    </CodeGroup>
+  </Tab>
+</Tabs>
+
+## Advanced Features
+
+### Custom Authorization
+
+<CodeGroup>
+```tsx Custom Authorization
+<SignInWithSonr
+  clientId="your-client-id"
+  redirectUri="http://localhost:3000/callback"
+  authorizationUrl="https://auth.sonr.io/oauth/authorize"
+  state={generateRandomState()} // CSRF protection
+  scopes={['openid', 'profile', 'vault:admin']}
+  // Additional parameters
+  onAuthStart={() => console.log('Starting auth...')}
+  onAuthError={(error) => console.error('Auth failed:', error)}
+/>
+```
+</CodeGroup>
+
+### Token Management
+
+<CodeGroup>
+```typescript Token Management
+const client = new OAuth2Client(config);
+
+// Check authentication status
+if (client.isAuthenticated()) {
+  // Get current access token
+  const accessToken = client.getAccessToken();
+  
+  // Refresh token before expiry
+  const newToken = await client.refreshToken();
+  
+  // Get user information
+  const userInfo = await client.getUserInfo();
+  
+  // Revoke tokens on logout
+  await client.logout();
+}
+```
+</CodeGroup>
+
+## Security Considerations
+
+<Warning>
+  Always implement robust security practices when integrating authentication.
+</Warning>
+
+### PKCE Implementation
+
+<CodeGroup>
+```typescript PKCE Configuration
+const client = new OAuth2Client({
+  clientId: 'public-client',
+  pkce: true, // Enabled by default for public clients
+});
+```
+</CodeGroup>
+
+### State Parameter Prevention
+
+<CodeGroup>
+```typescript State Validation
+// Generate random state
+const state = crypto.randomUUID();
+sessionStorage.setItem('oauth_state', state);
+
+// Validate on callback
+const returnedState = params.get('state');
+const savedState = sessionStorage.getItem('oauth_state');
+if (returnedState !== savedState) {
+  throw new Error('State mismatch - possible CSRF attack');
+}
+```
+</CodeGroup>
+
+## Troubleshooting
+
+<Accordion title="Common Authentication Issues">
+  <AccordionItem title="CORS Errors">
+    - Ensure your redirect URI is whitelisted
+    - Check allowed origins in OAuth server config
+  </AccordionItem>
+  
+  <AccordionItem title="Invalid Grant">
+    - Authorization code can only be used once
+    - Code expires after 10 minutes
+    - Verify redirect URI matches exactly
+  </AccordionItem>
+  
+  <AccordionItem title="Token Expiry">
+    - Implement automatic refresh before expiry
+    - Handle refresh token rotation
+  </AccordionItem>
+</Accordion>
+
+<Note>
+  Enable debug mode for additional troubleshooting insights:
+  ```typescript
+  const client = new OAuth2Client({
+    clientId: 'your-client-id',
+    debug: true, // Enable console logging
+  });
+  ```
+</Note>
+
+## API Reference
+
+### SignInWithSonr Props
+
+```typescript
+interface SignInWithSonrProps {
+  clientId: string;
+  redirectUri: string;
+  authorizationUrl?: string;
+  scopes?: string[];
+  state?: string;
+  variant?: 'default' | 'outline' | 'ghost' | 'dark';
+  size?: 'default' | 'sm' | 'lg';
+  isLoading?: boolean;
+  text?: string;
+  showLogo?: boolean;
+  onAuthStart?: () => void;
+  onAuthError?: (error: Error) => void;
+}
+```
+
+## Resources
+
+<CardGroup cols={2}>
+  <Card
+    title="OAuth 2.0 Specification"
+    href="https://datatracker.ietf.org/doc/html/rfc6749"
+  >
+    RFC 6749 - OAuth 2.0 Authorization Framework
+  </Card>
+  
+  <Card
+    title="OpenID Connect"
+    href="https://openid.net/specs/openid-connect-core-1_0.html"
+  >
+    Core specification for identity layers
+  </Card>
+  
+  <Card
+    title="UCAN Specification"
+    href="https://github.com/ucan-wg/spec"
+  >
+    User Controlled Authorization Networks
+  </Card>
+  
+  <Card
+    title="WebAuthn"
+    href="https://www.w3.org/TR/webauthn/"
+  >
+    Web Authentication API specification
+  </Card>
+</CardGroup>
+
+## Support
+
+<CardGroup cols={3}>
+  <Card
+    title="GitHub"
+    icon="github"
+    href="https://github.com/sonr-io/sonr"
+  >
+    Report issues or contribute
+  </Card>
+  
+  <Card
+    title="Documentation"
+    icon="book"
+    href="https://sonr.dev"
+  >
+    Explore full documentation
+  </Card>
+  
+  <Card
+    title="Discord"
+    icon="discord"
+    href="https://discord.gg/sonr"
+  >
+    Join our community
+  </Card>
+</CardGroup>

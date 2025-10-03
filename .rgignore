@@ -1,0 +1,17 @@
+.dockerignore
+.goreleaser.yml
+api
+contracts
+chains
+crypto
+proto
+test
+**/_test.go
+.golangci.yml
+tsconfig.json
+pnpm-workspace.yaml
+biome.json
+CLAUDE.md
+CONSTITUTION.md
+CHANGELOG.md
+Caddyfile

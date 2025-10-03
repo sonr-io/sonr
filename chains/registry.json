@@ -1,0 +1,95 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cosmos/chain-registry/master/chain.schema.json",
+  "chain_name": "sonr",
+  "chain_type": "eip155",
+  "status": "upcoming",
+  "website": "https://sonr.io",
+  "network_type": "testnet",
+  "pretty_name": "Sonr",
+  "chain_id": "sonr-testnet-1",
+  "bech32_prefix": "idx",
+  "daemon_name": "snrd",
+  "node_home": "$HOME/.sonr",
+  "key_algos": ["ethsecp256k1"],
+  "slip44": 60,
+  "fees": {
+    "fee_tokens": [
+      {
+        "denom": "usnr",
+        "fixed_min_gas_price": 0,
+        "low_gas_price": 0,
+        "average_gas_price": 0.025,
+        "high_gas_price": 0.04
+      }
+    ]
+  },
+  "staking": {
+    "staking_tokens": [
+      {
+        "denom": "usnr"
+      }
+    ],
+    "lock_duration": {
+      "time": "1814400s"
+    }
+  },
+  "codebase": {
+    "git_repo": "https://github.com/sonr-io/sonr",
+    "recommended_version": "v1.0.0",
+    "compatible_versions": ["v0.9.0"],
+    "cosmos_sdk_version": "0.50",
+    "consensus": {
+      "type": "tendermint",
+      "version": "0.38"
+    },
+    "cosmwasm_version": "",
+    "cosmwasm_enabled": true,
+    "ibc_go_version": "8",
+    "ics_enabled": ["ics20-1"],
+    "genesis": {
+      "name": "v1",
+      "genesis_url": "https://github.com/sonr-io/sonr/networks/raw/main/genesis.json"
+    },
+    "versions": [
+      {
+        "name": "v1.0.0",
+        "tag": "v1.0.0",
+        "height": 0,
+        "next_version_name": "v2",
+        "consensus": {}
+      }
+    ]
+  },
+  "images": [
+    {
+      "png": "https://raw.githubusercontent.com/sonr-io/sonr/main/logo.png",
+      "theme": {
+        "primary_color_hex": "#1E40AF"
+      }
+    }
+  ],
+  "peers": {},
+  "apis": {
+    "rpc": [
+      {
+        "address": "http://127.0.0.1:26657",
+        "provider": "localhost"
+      }
+    ],
+    "rest": [
+      {
+        "address": "http://127.0.0.1:1317",
+        "provider": "localhost"
+      }
+    ]
+  },
+  "explorers": [
+    {
+      "kind": "cosmos",
+      "url": "https://explorer.sonr.io",
+      "tx_page": "https://explorer.sonr.io/tx/${txHash}",
+      "account_page": "https://explorer.sonr.io/account/${accountAddress}"
+    }
+  ],
+  "keywords": ["cosmos", "sonr"]
+}

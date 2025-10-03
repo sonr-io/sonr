@@ -1,0 +1,22 @@
+---
+openapi: post /did.v1.Msg/LinkExternalWallet
+title: Link External Wallet to DID
+description: Connect MetaMask, Keplr, or other wallets to your decentralized identity
+og:title: External Wallet Integration
+tag: x/did
+---
+
+<Note>
+  Each wallet can only be linked to one DID. Attempting to link the same wallet
+  to multiple DIDs will fail.
+</Note>
+
+<Warning>
+  Ensure you have control of the wallet before linking. Lost wallet access
+  means losing this verification method.
+</Warning>
+
+<Tip>
+  After linking, you can use your external wallet to sign transactions
+  and authenticate operations on behalf of your DID.
+</Tip>

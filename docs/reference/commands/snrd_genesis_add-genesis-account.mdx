@@ -1,0 +1,122 @@
+---
+title: snrd genesis add-genesis-account
+description: Add a genesis account to genesis.json. The provided account must specify
+---
+
+# snrd genesis add-genesis-account
+
+Add a genesis account to genesis.json. The provided account must specify
+
+## Usage
+
+```shell
+snrd genesis add-genesis-account [address_or_key_name] [coin][,[coin]] [flags]
+```
+
+## Flags
+
+<ParamField path="append" type="string">
+  the coins to an account already in the genesis.json file
+</ParamField>
+
+<ParamField path="grpc-addr" type="string">
+  the gRPC endpoint to use for this chain
+</ParamField>
+
+<ParamField path="grpc-insecure" type="string">
+  gRPC over insecure channels, if not the server must use TLS
+</ParamField>
+
+<ParamField path="height" type="integer">
+  Use a specific height to query state at (this can error if the node is pruning state)
+</ParamField>
+
+<ParamField path="help" type="string">
+  for add-genesis-account
+</ParamField>
+
+<ParamField path="home" type="string" default="/Users/prad/.sonr">
+  The application home directory
+</ParamField>
+
+<ParamField path="keyring-backend" type="string" default="os">
+  Select keyring's backend (os|file|kwallet|pass|test)
+</ParamField>
+
+<ParamField path="module-name" type="string">
+  module account name
+</ParamField>
+
+<ParamField path="node" type="string" default="tcp://localhost:26657">
+  &lt;host&gt;:&lt;port&gt; to CometBFT RPC interface for this chain
+</ParamField>
+
+<ParamField path="output" type="string" default="text">
+  Output format (text|json)
+</ParamField>
+
+<ParamField path="vesting-amount" type="string">
+  amount of coins for vesting accounts
+</ParamField>
+
+<ParamField path="vesting-end-time" type="integer">
+  schedule end time (unix epoch) for vesting accounts
+</ParamField>
+
+<ParamField path="vesting-start-time" type="integer">
+  schedule start time (unix epoch) for vesting accounts
+</ParamField>
+
+## Global Flags
+
+<ParamField path="broadcast-mode" type="string" default="sync">
+  Transaction broadcasting mode (sync|async)
+</ParamField>
+
+<ParamField path="chain-id" type="string">
+  Specify Chain ID for sending Tx
+</ParamField>
+
+<ParamField path="fees" type="string">
+  Fees to pay along with transaction; eg: 10aatom
+</ParamField>
+
+<ParamField path="from" type="string">
+  Name or address of private key with which to sign
+</ParamField>
+
+<ParamField path="gas-adjustment" type="float" default="1">
+  adjustment factor to be multiplied against the estimate returned by the tx simulation; if the gas limit is set manually this flag is ignored
+</ParamField>
+
+<ParamField path="gas-prices" type="string">
+  Gas prices to determine the transaction fee (e.g. 10aatom)
+</ParamField>
+
+<ParamField path="log_format" type="string" default="plain">
+  The logging format (json|plain)
+</ParamField>
+
+<ParamField path="log_level" type="string" default="info">
+  The logging level (trace|debug|info|warn|error|fatal|panic|disabled or '*:&lt;level&gt;,&lt;key&gt;:&lt;level&gt;')
+</ParamField>
+
+<ParamField path="log_no_color" type="string">
+  colored logs
+</ParamField>
+
+<ParamField path="trace" type="string">
+  out full stack trace on errors
+</ParamField>
+
+## Examples
+
+### Add account with initial coins
+
+```shell
+snrd genesis add-genesis-account alice 1000000snr
+```
+
+## See Also
+
+- [snrd genesis](./snrd_genesis.mdx) - Parent command

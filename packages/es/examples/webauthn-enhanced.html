@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced WebAuthn Example - Sonr ES</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .preset-selector {
+            margin-bottom: 30px;
+        }
+        
+        .preset-selector label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .preset-selector select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            background: white;
+            cursor: pointer;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .webauthn-button {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .webauthn-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .webauthn-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .webauthn-button.webauthn-success {
+            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+        }
+        
+        .webauthn-button.webauthn-error {
+            background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+        }
+        
+        .webauthn-button.webauthn-warning {
+            background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
+        }
+        
+        .status-box {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            min-height: 60px;
+        }
+        
+        .status-box h3 {
+            color: #333;
+            font-size: 14px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        #status {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .callback-log {
+            background: #2d3748;
+            color: #a0aec0;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .callback-log .log-entry {
+            margin-bottom: 5px;
+            padding: 5px;
+            border-left: 3px solid #4a5568;
+            padding-left: 10px;
+        }
+        
+        .callback-log .log-entry.info {
+            border-left-color: #667eea;
+        }
+        
+        .callback-log .log-entry.success {
+            border-left-color: #56ab2f;
+        }
+        
+        .callback-log .log-entry.error {
+            border-left-color: #ff416c;
+        }
+        
+        .callback-log .log-entry.warning {
+            border-left-color: #f7971e;
+        }
+        
+        .support-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .support-item {
+            text-align: center;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .support-item.supported {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .support-item.unsupported {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Enhanced WebAuthn Demo</h1>
+        <p class="subtitle">Sonr ES Package - Advanced Passkey Features</p>
+        
+        <div class="support-info" id="supportInfo">
+            <div class="support-item" id="webauthnSupport">WebAuthn: Checking...</div>
+            <div class="support-item" id="platformSupport">Platform: Checking...</div>
+            <div class="support-item" id="autofillSupport">Autofill: Checking...</div>
+        </div>
+        
+        <div class="preset-selector">
+            <label for="presetSelect">Configuration Preset:</label>
+            <select id="presetSelect">
+                <option value="BROAD_COMPATIBILITY">Broad Compatibility (Default)</option>
+                <option value="PLATFORM_ONLY">Platform Only (Biometrics)</option>
+                <option value="SECURITY_KEY">Security Key Focus</option>
+                <option value="MOBILE_FRIENDLY">Mobile Friendly (QR)</option>
+                <option value="HIGH_SECURITY">High Security (Enterprise)</option>
+            </select>
+        </div>
+        
+        <div class="input-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="Enter your username" value="demo@example.com">
+        </div>
+        
+        <div class="button-group">
+            <button id="registerBtn" class="webauthn-button">Register with Passkey</button>
+            <button id="loginBtn" class="webauthn-button">Login with Passkey</button>
+        </div>
+        
+        <div class="status-box">
+            <h3>Status</h3>
+            <div id="status">Ready to start...</div>
+        </div>
+        
+        <div class="callback-log" id="callbackLog">
+            <div class="log-entry info">Console initialized. Callbacks will appear here...</div>
+        </div>
+    </div>
+
+    <!-- Load the Sonr ES autoloader -->
+    <script type="module">
+        import '../dist/autoloader.js';
+        
+        // Wait for Sonr to be ready
+        window.addEventListener('sonr:ready', async (event) => {
+            const Sonr = event.detail;
+            console.log('Sonr ES loaded:', Sonr);
+            
+            // Check support
+            const support = await Sonr.webauthn.checkSupport();
+            
+            // Update support indicators
+            document.getElementById('webauthnSupport').textContent = `WebAuthn: ${support.supported ? '✓' : '✗'}`;
+            document.getElementById('webauthnSupport').className = `support-item ${support.supported ? 'supported' : 'unsupported'}`;
+            
+            document.getElementById('platformSupport').textContent = `Platform: ${support.platformAuthenticator ? '✓' : '✗'}`;
+            document.getElementById('platformSupport').className = `support-item ${support.platformAuthenticator ? 'supported' : 'unsupported'}`;
+            
+            document.getElementById('autofillSupport').textContent = `Autofill: ${support.available ? '✓' : '✗'}`;
+            document.getElementById('autofillSupport').className = `support-item ${support.available ? 'supported' : 'unsupported'}`;
+            
+            // Log function
+            const addLog = (message, type = 'info') => {
+                const log = document.getElementById('callbackLog');
+                const entry = document.createElement('div');
+                entry.className = `log-entry ${type}`;
+                const timestamp = new Date().toLocaleTimeString();
+                entry.textContent = `[${timestamp}] ${message}`;
+                log.appendChild(entry);
+                log.scrollTop = log.scrollHeight;
+            };
+            
+            // Get selected preset
+            const getSelectedPreset = () => {
+                const presetName = document.getElementById('presetSelect').value;
+                return Sonr.webauthn.presets[presetName];
+            };
+            
+            // Register button
+            document.getElementById('registerBtn').addEventListener('click', async () => {
+                const username = document.getElementById('username').value;
+                if (!username) {
+                    alert('Please enter a username');
+                    return;
+                }
+                
+                const preset = getSelectedPreset();
+                addLog(`Using preset: ${document.getElementById('presetSelect').value}`, 'info');
+                
+                const result = await Sonr.webauthn.register('http://localhost:8080', {
+                    username,
+                    displayName: username,
+                    config: {
+                        ...preset,
+                        onRegistrationStart: (options) => {
+                            addLog('Registration started', 'info');
+                            addLog(`Challenge: ${options.challenge.substring(0, 20)}...`, 'info');
+                        },
+                        onRegistrationComplete: (credential) => {
+                            addLog('Registration completed!', 'success');
+                            addLog(`Credential ID: ${credential.id.substring(0, 30)}...`, 'success');
+                        },
+                        onRegistrationError: (error) => {
+                            addLog(`Registration error: ${error.message}`, 'error');
+                        },
+                        onStatusUpdate: (status, type) => {
+                            document.getElementById('status').textContent = status;
+                            addLog(status, type);
+                        }
+                    }
+                });
+                
+                if (result.success) {
+                    addLog('✅ Registration successful!', 'success');
+                    if (result.details) {
+                        addLog(`Authenticator: ${result.details.authenticatorAttachment || 'cross-platform'}`, 'info');
+                    }
+                } else {
+                    addLog(`❌ Registration failed: ${result.error}`, 'error');
+                }
+            });
+            
+            // Login button
+            document.getElementById('loginBtn').addEventListener('click', async () => {
+                const username = document.getElementById('username').value;
+                
+                const preset = getSelectedPreset();
+                addLog(`Using preset: ${document.getElementById('presetSelect').value}`, 'info');
+                
+                const result = await Sonr.webauthn.login('http://localhost:8080', {
+                    username: username || undefined,
+                    config: {
+                        ...preset,
+                        onAuthenticationStart: (options) => {
+                            addLog('Authentication started', 'info');
+                            addLog(`Challenge: ${options.challenge.substring(0, 20)}...`, 'info');
+                        },
+                        onAuthenticationComplete: (credential) => {
+                            addLog('Authentication completed!', 'success');
+                            addLog(`Credential ID: ${credential.id.substring(0, 30)}...`, 'success');
+                        },
+                        onAuthenticationError: (error) => {
+                            addLog(`Authentication error: ${error.message}`, 'error');
+                        },
+                        onStatusUpdate: (status, type) => {
+                            document.getElementById('status').textContent = status;
+                            addLog(status, type);
+                        }
+                    }
+                });
+                
+                if (result.success) {
+                    addLog('✅ Login successful!', 'success');
+                    if (result.details) {
+                        addLog(`Authenticator: ${result.details.authenticatorAttachment || 'cross-platform'}`, 'info');
+                    }
+                } else {
+                    addLog(`❌ Login failed: ${result.error}`, 'error');
+                }
+            });
+            
+            // Initial log
+            addLog('Sonr ES WebAuthn Enhanced loaded and ready', 'success');
+        });
+    </script>
+</body>
+</html>

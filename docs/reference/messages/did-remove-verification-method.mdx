@@ -1,0 +1,17 @@
+---
+openapi: post /did.v1.Msg/RemoveVerificationMethod
+title: Remove Verification Method
+description: Remove keys and authentication methods from your DID
+og:title: Remove DID Verification Method
+tag: x/did
+---
+
+<Warning>
+  Ensure you have alternative verification methods before removing.
+  Removing all methods locks you out of your DID.
+</Warning>
+
+<Tip>
+  Best practice: Add new verification methods before removing old ones
+  to maintain continuous access.
+</Tip>

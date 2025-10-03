@@ -1,0 +1,140 @@
+# ======================================
+# Sonr Blockchain & Monorepo .gitignore
+# ======================================
+
+# ===== Operating System Files =====
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
+.logs/
+.venv/
+services/
+
+# ===== IDE & Editor Files =====
+.vscode/
+.idea/
+*.tmp
+.aider*
+.opencode
+
+# ===== Build Artifacts & Binaries =====
+*.wasm
+bin/
+dist/
+dist*/
+build/
+out/
+*.test
+*.wasm
+
+# Go binaries (but allow docs references)
+snrd
+hway
+motr
+!cmd/motr/
+!cmd/hway/
+!cmd/snrd/
+!docs/**/motr
+!docs/**/hway
+
+# Allow specific CLI binaries
+!cli/join-testnet/bin/
+!cli/install/bin/
+
+# ===== Node.js & Frontend =====
+node_modules/
+.pnpm-debug.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+*.tsbuildinfo
+
+# Next.js
+.next/
+.vercel/
+**/.open-next
+
+# ===== Go Development =====
+pkg/mod/
+go.work
+go.work.sum
+go.work.mod
+coverage.out
+coverage.txt
+profile.out
+*.cover
+
+# ===== Rust/CosmWasm Development =====
+target/
+Cargo.lock
+artifacts/
+**/target/
+**/Cargo.lock
+
+# Contract-specific
+contracts/DAO/deployment_ids.env
+contracts/DAO/deployment_report_*.md
+contracts/DAO/relayer.pid
+contracts/DAO/*.mnemonic
+contracts/DAO/tx_*.json
+contracts/DAO/signed_*.json
+contracts/DAO/init_*.json
+contracts/DAO/MAINNET_DEPLOYMENT_INSTRUCTIONS.md
+contracts/DAO/backups/
+contracts/wSNR/remappings.txt
+
+# ===== Blockchain & Cosmos SDK =====
+.snrd/
+.hway/
+keyring-test/
+mytestnet/
+docker/testnet/testnet-data
+
+# ===== Monorepo & Build Tools =====
+.turbo/
+.gitwork/
+.changeset/.cli-state
+.biome/
+.devbox/
+.task*
+Taskfile.yml
+
+# ===== Testing & Coverage =====
+testdata/
+coverage/
+
+# ===== Logs & Temporary Files =====
+logs/
+*.log
+configs/logs.json
+tmp/
+tmp*
+
+# ===== Environment & Secrets =====
+.env
+.env.local
+.env.production
+.env.development
+*.key
+*.pem
+
+# ===== Documentation & Planning =====
+PLAN.md
+ANALYSIS.md
+COMPLETION_SUMMARY.md
+**/CLAUDE.md
+
+# ===== Miscellaneous =====
+.claude/
+**/.claude
+.gmap
+.aim
+.spawn
+.wrangler/
+.browser-echo-mcp.json
+data/
+compose/
+heighliner*
+**/*.swagger.yaml

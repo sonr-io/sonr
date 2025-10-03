@@ -1,0 +1,125 @@
+---
+title: "Decentralized Identity"
+sidebarTitle: "Universal Identifiers"
+description: "Sonr's Decentralized Identifier (DID) Module: W3C-Compliant Identity Management"
+icon: "fingerprint"
+tag: "x/did"
+---
+
+# Decentralized Identifier (DID) Module
+
+The Sonr DID module implements a comprehensive W3C DID specification, providing a decentralized identity layer that enables self-sovereign identity management across the Sonr blockchain ecosystem.
+
+## Key Features
+
+- **W3C DID Documents**: Full implementation of the W3C DID Core specification
+- **Verifiable Credentials**: Issue and manage W3C Verifiable Credentials
+- **Multiple Verification Methods**: Support for various key types and WebAuthn
+- **Signature Verification**: Multi-algorithm cryptographic signature verification
+- **Service Endpoints**: Associate services with DIDs
+- **Decentralized Resolution**: On-chain DID resolution without external dependencies
+
+## Core Concepts
+
+### Decentralized Identifiers (DIDs)
+
+DIDs are globally unique identifiers created and controlled by their owners without requiring a central authority. In Sonr, DIDs follow the format: `did:sonr:<unique-identifier>`.
+
+### DID Documents
+
+DID Documents are core data structures containing:
+- Verification methods (public keys, WebAuthn credentials)
+- Service endpoints
+- Controller relationships
+- Authentication and verification relationships
+
+### Verifiable Credentials
+
+Digital credentials that can be cryptographically verified, containing claims about subjects and issued by trusted authorities.
+
+## Revolutionary WebAuthn Integration
+
+### Gasless WebAuthn Registration
+
+The DID module introduces a groundbreaking **gasless registration** system that allows users to create their first decentralized identity without requiring any cryptocurrency. This removes traditional Web3 onboarding barriers.
+
+#### Key Benefits
+- **Zero Cost**: Create DIDs without tokens
+- **Biometric Authentication**: Use device biometrics for identity creation
+- **Instant Usability**: Immediate access to the Sonr ecosystem
+- **Cross-Platform**: Works across all major browsers and operating systems
+
+### CLI Usage Example
+
+```bash
+# Create DID with WebAuthn credential (no tokens required)
+snrd auth register --username alice
+
+# Register with automatic vault creation
+snrd auth register --username bob --auto-vault
+```
+
+## Supported Verification Methods
+
+1. **Ed25519**: High-performance, compact signatures
+2. **JSON Web Signature**: Flexible web-compatible signature format
+3. **WebAuthn**: Device-based authentication with biometrics
+4. **ECDSA (Secp256k1)**: Blockchain-compatible signatures
+5. **RSA**: Legacy system compatibility
+
+## External Wallet Integration
+
+Link external wallets like MetaMask and Keplr directly to your DID, enabling cross-platform identity management.
+
+### Supported Wallet Types
+- **Ethereum Wallets**: MetaMask, Coinbase Wallet
+- **Cosmos Wallets**: Keplr, Leap Wallet, Cosmostation
+
+## Security Considerations
+
+- **Comprehensive Cryptographic Verification**
+- **Origin Validation**
+- **Anti-Replay Protection**
+- **Credential Uniqueness Enforcement**
+
+## Use Cases
+
+- **Passwordless Authentication**
+- **Cross-Platform Identity**
+- **Verifiable Credentials**
+- **Service Authentication**
+
+## Standards Compliance
+
+- W3C DID Core
+- W3C Verifiable Credentials
+- WebAuthn
+- JSON-LD
+- JSON Web Key/Signature
+
+## Getting Started
+
+### For Application Developers
+1. Generate DID and initial document
+2. Add verification methods
+3. Register application services
+4. Issue user credentials
+5. Implement WebAuthn login
+
+### For Wallet Developers
+1. Implement DID resolution
+2. Build credential management UI
+3. Support WebAuthn authentication
+4. Implement key recovery mechanisms
+
+## Future Roadmap
+
+- Off-chain DID resolution
+- Zero-knowledge proof credentials
+- Social key recovery
+- Cross-chain DID interoperability
+- Advanced credential schemas
+
+## Documentation and Examples
+
+Refer to the [Blockchain Documentation](/blockchain/) for detailed guides, API references, and integration tutorials.

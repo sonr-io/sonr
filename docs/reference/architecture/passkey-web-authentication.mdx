@@ -1,0 +1,238 @@
+---
+title: "WebAuthn Integration"
+description: "Comprehensive guide to Sonr's WebAuthn/FIDO2 implementation for passwordless authentication"
+icon: "key"
+sidebarTitle: "WebAuthn Integration"
+---
+
+<Note>
+  This documentation covers the WebAuthn implementation in the Sonr blockchain,
+  providing a secure, passwordless authentication mechanism through
+  W3C-compliant WebAuthn protocols.
+</Note>
+
+## Overview
+
+Sonr's WebAuthn implementation enables gasless onboarding and secure transaction authorization without requiring users to hold tokens initially. This document provides a comprehensive guide to understanding and using our WebAuthn client.
+
+## Architecture
+
+<Frame>
+  <img
+    src="https://cdn.sonr.io/diagrams/passkey-jwt.png"
+    alt="WebAuthn Architecture Diagram"
+  />
+</Frame>
+
+The WebAuthn implementation is structured across three primary layers:
+
+1. **Client Layer** (`client/auth/webauthn.go`)
+
+   - WebAuthnClient interface
+   - Registration and Authentication flows
+   - DID integration
+
+2. **Internal WebAuthn Package** (`internal/webauthn/`)
+
+   - COSE key parsing
+   - CBOR encoding/decoding
+   - Attestation verification
+   - Signature verification (ES256/RS256)
+
+3. **DID Module Layer** (`x/did/keeper/`)
+   - WebAuthn controller verifier
+   - Credential storage in DID documents
+   - Challenge generation and validation
+
+## API Reference
+
+### WebAuthnClient Interface
+
+<CodeGroup>
+```go
+type WebAuthnClient interface {
+    // Registration Operations
+    BeginRegistration(ctx context.Context, opts *RegistrationOptions) (*RegistrationChallenge, error)
+    CompleteRegistration(ctx context.Context, challenge *RegistrationChallenge, response *AuthenticatorAttestationResponse) (*WebAuthnCredential, error)
+    
+    // Authentication Operations
+    BeginAuthentication(ctx context.Context, opts *AuthenticationOptions) (*AuthenticationChallenge, error)
+    CompleteAuthentication(ctx context.Context, challenge *AuthenticationChallenge, response *AuthenticatorAssertionResponse, credentialID string) (*AuthenticationResult, error)
+    
+    // Credential Management Methods...
+}
+```
+</CodeGroup>
+
+## Usage Examples
+
+### Registration Flow
+
+<CodeGroup>
+```go Registration Example
+func registerWebAuthn() error {
+    client := auth.NewWebAuthnClient()
+    ctx := context.Background()
+    
+    // Begin registration
+    regOpts := &auth.RegistrationOptions{
+        UserID:      "user123",
+        Username:    "alice@example.com",
+        DisplayName: "Alice Smith",
+        UserVerification: "preferred",
+    }
+    
+    challenge, err := client.BeginRegistration(ctx, regOpts)
+    if err != nil {
+        return err
+    }
+    
+    // Complete registration
+    response := &auth.AuthenticatorAttestationResponse{
+        ClientDataJSON:    clientDataJSON,
+        AttestationObject: attestationObject,
+    }
+    
+    credential, err := client.CompleteRegistration(ctx, challenge, response)
+    return err
+}
+```
+</CodeGroup>
+
+### Authentication Flow
+
+<CodeGroup>
+```go Authentication Example
+func authenticateWebAuthn(credentialID string) error {
+    client := auth.NewWebAuthnClient()
+    ctx := context.Background()
+    
+    // Begin authentication
+    authOpts := &auth.AuthenticationOptions{
+        UserVerification: "required",
+        AllowedCredentials: []*auth.CredentialDescriptor{
+            {
+                Type: "public-key",
+                ID:   []byte(credentialID),
+            },
+        },
+    }
+    
+    challenge, err := client.BeginAuthentication(ctx, authOpts)
+    if err != nil {
+        return err
+    }
+    
+    // Complete authentication
+    response := &auth.AuthenticatorAssertionResponse{
+        ClientDataJSON:    clientDataJSON,
+        AuthenticatorData: authenticatorData,
+        Signature:         signature,
+        UserHandle:        userHandle,
+    }
+    
+    result, err := client.CompleteAuthentication(ctx, challenge, response, credentialID)
+    return err
+}
+```
+</CodeGroup>
+
+## Security Considerations
+
+### Supported Algorithms
+
+<Tabs>
+  <Tab title="ES256">ECDSA with P-256 curve and SHA-256</Tab>
+  <Tab title="RS256">RSASSA-PKCS1-v1_5 with SHA-256</Tab>
+</Tabs>
+
+### Attestation Formats
+
+<Callout type="info">
+  1. **none**: No attestation (development/testing) 2. **packed**:
+  Self-attestation or certificate chain 3. **fido-u2f**: Legacy U2F
+  authenticators 4. **android-safetynet**: Android device attestation
+</Callout>
+
+### Security Features
+
+- **Challenge uniqueness**: Each challenge is unique and time-bound
+- **Origin validation**: Ensures requests come from trusted origins
+- **User verification**: Requires biometric or PIN when configured
+- **Counter tracking**: Detects cloned credentials
+- **Credential isolation**: Each DID has separate credential namespace
+
+## Configuration
+
+### Chain Parameters
+
+<CodeGroup>
+```json Configuration Example
+{
+  "webauthn": {
+    "rp_id": "sonr.io",
+    "rp_name": "Sonr Network",
+    "timeout": 60000,
+    "user_verification": "preferred",
+    "attestation": "none",
+    "allowed_origins": [
+      "https://sonr.io",
+      "https://app.sonr.io"
+    ]
+  }
+}
+```
+</CodeGroup>
+
+## Troubleshooting
+
+<Accordion title="Common WebAuthn Issues">
+  - **"Invalid attestation format"**: Ensure authenticator supports the
+  configured format - **"Challenge mismatch"**: Verify challenge hasn't expired
+  - **"Origin validation failed"**: Check allowed origins list - **"User
+  verification required"**: Ensure authenticator supports verification
+</Accordion>
+
+## Contributing
+
+### Development Setup
+
+<CodeGroup>
+```bash Setup Commands
+# Clone repository
+git clone https://github.com/sonr-io/sonr.git
+
+# Install dependencies
+
+make install
+
+# Run WebAuthn tests
+
+make test-webauthn
+
+```
+</CodeGroup>
+
+## References
+
+<Card
+  title="WebAuthn Specifications"
+  icon="link"
+  href="https://www.w3.org/TR/webauthn/"
+>
+  Official W3C WebAuthn Specification
+</Card>
+
+<Card
+  title="FIDO2 CTAP"
+  icon="lock"
+  href="https://fidoalliance.org/specs/fido-v2.0/"
+>
+  FIDO2 Client to Authenticator Protocol
+</Card>
+
+## License
+
+Copyright 2024 Sonr Inc. Licensed under the Apache License, Version 2.0.
+```
+

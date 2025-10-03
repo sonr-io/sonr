@@ -1,0 +1,22 @@
+version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/sonr-io/sonr/api
+    except:
+      - buf.build/googleapis/googleapis
+      - buf.build/cosmos/gogo-proto
+      - buf.build/cosmos/cosmos-proto
+    override:
+      buf.build/cosmos/cosmos-sdk: cosmossdk.io/api # required to import the Cosmos SDK api module for the orm
+plugins:
+  - name: go-pulsar
+    out: ..
+    opt: paths=source_relative
+  - name: go-grpc
+    out: ..
+    opt: paths=source_relative
+    # go install cosmossdk.io/orm/cmd/protoc-gen-go-cosmos-orm@latest
+  - name: go-cosmos-orm
+    out: ..
+    opt: paths=source_relative

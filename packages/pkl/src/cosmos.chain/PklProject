@@ -1,0 +1,12 @@
+amends "../basePklProject.pkl"
+
+
+dependencies {
+  ["toml"] { uri = "package://pkg.pkl-lang.org/pkl-pantry/pkl.toml@1.0.2" }
+}
+
+package {
+  version = "0.0.1"
+  description = "Cosmos chain configuration for Sonr.io"
+}
+

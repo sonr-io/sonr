@@ -1,0 +1,21 @@
+---
+openapi: get /sonr/dex/v1/history/{did}
+title: Query Trading History
+description: Access complete cross-chain trading history for a DID
+og:title: DEX Transaction History
+---
+
+<Info>
+  Transaction history is stored permanently on the Sonr chain,
+  providing a complete audit trail of all DEX operations.
+</Info>
+
+<Tip>
+  Export historical data regularly for tax reporting and portfolio analysis.
+  Use filters to focus on specific time periods or operation types.
+</Tip>
+
+<Note>
+  Large histories may require multiple paginated requests.
+  Use the pagination key for efficient retrieval.
+</Note>

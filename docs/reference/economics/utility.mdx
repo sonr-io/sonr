@@ -1,0 +1,201 @@
+---
+title: Utility
+description: Use cases and utility functions of the SNR token including staking, governance, and network operations
+sidebarTitle: "Network Utility"
+icon: "cog"
+---
+
+## Overview
+
+The SNR token serves as the native utility token of the Sonr network, enabling various functions from transaction processing to governance participation. Its multi-faceted utility design ensures sustained demand and value accrual.
+
+<Note>
+  The SNR token's utility is designed to grow with the network, adding new use
+  cases as the ecosystem expands while maintaining core functions for network
+  security and operations.
+</Note>
+
+## Core Utilities
+
+### 1. Means of Payment
+
+The primary utility of SNR is facilitating transactions across the Sonr blockchain for user account management and application operations.
+
+<CardGroup>
+  <Card title="Transaction Fees">
+    All on-chain operations require SNR for gas fees and computational resources
+  </Card>
+  <Card title="Service Payments">
+    Payment for Highway services, storage, and off-chain computation
+  </Card>
+  <Card title="Application Fees">
+    Developers pay SNR to register and update applications on the network
+  </Card>
+</CardGroup>
+
+### 2. Staking Mechanisms
+
+SNR tokens enable network security and participation through various staking options:
+
+#### Validator Staking
+
+- **Minimum Stake**: Required SNR deposit to run a validator node
+- **Delegated Staking**: Users can delegate SNR to validators for rewards
+- **Slashing Protection**: Validators must maintain good behavior or risk stake loss
+
+#### Service Node Staking
+
+- **Highway Nodes**: Stake required for running Highway service nodes
+- **IPFS Storage**: Minimum stake for operating storage infrastructure
+- **Availability Guarantee**: Staking ensures node uptime and reliability
+
+<Warning>
+  Staking locks tokens for a specified period, reducing circulating supply while
+  earning rewards for network participation.
+</Warning>
+
+### 3. Governance Participation
+
+SNR tokens grant voting power in the decentralized governance system:
+
+<CardGroup>
+  <Card title="Proposal Creation">
+    Stake SNR to submit governance proposals with anti-spam mechanisms
+  </Card>
+  <Card title="Voting Rights">
+    One token equals one vote in governance decisions
+  </Card>
+  <Card title="Participation Rewards">
+    Earn SNR for active governance participation and quality proposals
+  </Card>
+</CardGroup>
+
+## Module-Specific Operations
+
+### Service Module (x/svc)
+
+SNR tokens are required for service operations within the decentralized service marketplace:
+
+- **Service Registration**: Pay SNR registration fees to claim unique TLD domains (e.g., `music.sonr`, `defi.sonr`)
+- **Capability Requests**: SNR deposits for requesting root capabilities via MPC signing
+- **Service Updates**: Fees for modifying service metadata or requesting additional permissions
+- **TLD Management**: Economic safeguards prevent domain squatting through registration fees
+
+<Note>
+  Service registration fees are burned or sent to the community pool based on
+  governance parameters, creating deflationary pressure.
+</Note>
+
+### DWN Module (x/dwn)
+
+The DWN module enables revolutionary gasless onboarding while using SNR for advanced operations:
+
+- **Gasless Vault Claiming**: Initial `MsgClaimVault` transactions require no SNR fees
+- **Vault Configuration**: SNR fees for updating vault settings and WASM runtime upgrades
+- **MPC Operations**: Transaction fees for multi-party computation within secure enclaves
+- **Cross-Chain Operations**: SNR payments for bridging assets and multi-chain vault management
+
+### UCAN Module (x/ucan)
+
+Authorization operations require SNR for security and spam prevention:
+
+- **Root Capability Issuance**: SNR fees for initiating MPC threshold signing requests
+- **Revocation Processing**: Transaction fees for on-chain capability revocations
+- **Delegation Chain Verification**: Computational costs for validating complex authorization chains
+- **MPC Signing Participation**: Validator rewards for participating in multi-party computation
+
+### DID Module (x/did)
+
+Identity operations use SNR for registration and management:
+
+- **DID Registration**: Fees for creating new decentralized identifiers
+- **Authentication Linking**: SNR costs for adding WebAuthn credentials or other auth methods
+- **Assertion Management**: Fees for linking/unlinking identity claims and verifications
+- **Transaction Execution**: SNR payments for UCAN-authorized transactions on behalf of DIDs
+
+## Economic Mechanisms
+
+### Demand Drivers
+
+The token's value is driven by multiple demand sources:
+
+```math
+\text{Demand} = \text{Transaction Volume} + \text{Staking Locked} + \text{Governance Participation}
+```
+
+<CardGroup>
+  <Card title="Network Growth">
+    More users and applications increase transaction demand
+  </Card>
+  <Card title="Staking Returns">
+    Attractive yields encourage long-term token locking
+  </Card>
+  <Card title="Utility Expansion">
+    New features and services create additional use cases
+  </Card>
+</CardGroup>
+
+### Supply Dynamics
+
+Effective supply is reduced through:
+
+- **Staking Lockups**: Validators and delegators lock tokens
+- **Governance Stakes**: Proposal creation requires token deposits
+- **Service Collateral**: Service providers stake SNR for TLD registration
+- **Fee Burns**: Partial fee burning reduces total supply
+
+## Developer Incentives
+
+### Service Development
+
+- **Service Registration Subsidies**: Reduced TLD domain costs for verified developers
+- **Root Capability Grants**: Free MPC signing for approved service capabilities
+- **Revenue Sharing**: Earn portion of service interaction fees through UCAN delegation
+- **Integration Support**: Subsidized vault interaction costs for new services
+
+### Infrastructure Provision
+
+- **Validator Operations**: SNR staking rewards for consensus participation and MPC signing
+- **MPC Node Operations**: Additional rewards for multi-party computation services
+- **IPFS Storage**: Compensation for decentralized vault configuration storage
+- **UCAN Verification**: Fees for running delegation chain validation services
+
+<Check>
+  The SNR token creates a sustainable economic model where users, developers,
+  and infrastructure providers all benefit from network growth.
+</Check>
+
+## Future Utilities
+
+### Enhanced Module Features
+
+- **Advanced UCAN Features**: Zero-knowledge capability proofs and cross-chain validation
+- **Vault Upgrades**: Seamless WASM runtime updates and social recovery mechanisms
+- **Service Marketplace**: Categorized service discovery with reputation systems
+- **Multi-sig Services**: Shared service ownership through DAO governance
+
+### Cross-Chain Integration
+
+- **IBC UCAN Verification**: Cross-chain capability validation fees
+- **Multi-Chain Vault Operations**: Enhanced cross-chain asset management
+- **Bridge Service Registration**: Specialized TLD domains for bridge operators
+- **Interchain DID Resolution**: Cross-chain identity verification services
+
+### Privacy and Security Enhancements
+
+- **Privacy-Preserving MPC**: Enhanced secure multi-party computation features
+- **Conditional Revocations**: Time or event-based capability revocations
+- **Hardware Vault Support**: Integration with dedicated secure hardware
+- **AI-Powered Workflows**: Natural language vault command processing
+
+## Utility Summary
+
+The SNR token's utility encompasses:
+
+1. **Essential Operations**: Core network functions and transactions
+2. **Security Provision**: Staking for network consensus and safety
+3. **Governance Rights**: Democratic participation in protocol decisions
+4. **Economic Incentives**: Rewards for valuable contributions
+5. **Access Control**: Gateway to premium features and services
+
+This comprehensive utility design ensures the SNR token remains central to the Sonr ecosystem's growth and sustainability.

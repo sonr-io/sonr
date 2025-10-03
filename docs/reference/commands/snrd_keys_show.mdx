@@ -1,0 +1,114 @@
+---
+title: snrd keys show
+description: Display keys details. If multiple names or addresses are provided,
+---
+
+# snrd keys show
+
+Display keys details. If multiple names or addresses are provided,
+
+## Usage
+
+```shell
+snrd keys show [name_or_address [name_or_address...]] [flags]
+```
+
+## Flags
+
+<ParamField path="address" type="string">
+  the address only (cannot be used with --output)
+</ParamField>
+
+<ParamField path="bech" type="string" default="acc">
+  The Bech32 prefix encoding for a key (acc|val|cons)
+</ParamField>
+
+<ParamField path="device" type="string">
+  the address in a ledger device (cannot be used with --pubkey)
+</ParamField>
+
+<ParamField path="help" type="string">
+  for show
+</ParamField>
+
+<ParamField path="multisig-threshold" type="integer" default="1">
+  K out of N required signatures
+</ParamField>
+
+<ParamField path="pubkey" type="string">
+  the public key only (cannot be used with --output)
+</ParamField>
+
+## Global Flags
+
+<ParamField path="broadcast-mode" type="string" default="sync">
+  Transaction broadcasting mode (sync|async)
+</ParamField>
+
+<ParamField path="chain-id" type="string">
+  Specify Chain ID for sending Tx
+</ParamField>
+
+<ParamField path="fees" type="string">
+  Fees to pay along with transaction; eg: 10aatom
+</ParamField>
+
+<ParamField path="from" type="string">
+  Name or address of private key with which to sign
+</ParamField>
+
+<ParamField path="gas-adjustment" type="float" default="1">
+  adjustment factor to be multiplied against the estimate returned by the tx simulation; if the gas limit is set manually this flag is ignored
+</ParamField>
+
+<ParamField path="gas-prices" type="string">
+  Gas prices to determine the transaction fee (e.g. 10aatom)
+</ParamField>
+
+<ParamField path="home" type="string" default="/Users/prad/.sonr">
+  The application home directory
+</ParamField>
+
+<ParamField path="keyring-backend" type="string" default="os">
+  Select keyring's backend (os|file|test)
+</ParamField>
+
+<ParamField path="keyring-dir" type="string">
+  The client Keyring directory; if omitted, the default 'home' directory will be used
+</ParamField>
+
+<ParamField path="log_format" type="string" default="plain">
+  The logging format (json|plain)
+</ParamField>
+
+<ParamField path="log_level" type="string" default="info">
+  The logging level (trace|debug|info|warn|error|fatal|panic|disabled or '*:&lt;level&gt;,&lt;key&gt;:&lt;level&gt;')
+</ParamField>
+
+<ParamField path="log_no_color" type="string">
+  colored logs
+</ParamField>
+
+<ParamField path="node" type="string" default="tcp://localhost:26657">
+  &lt;host&gt;:&lt;port&gt; to tendermint rpc interface for this chain
+</ParamField>
+
+<ParamField path="output" type="string" default="text">
+  Output format (text|json)
+</ParamField>
+
+<ParamField path="trace" type="string">
+  out full stack trace on errors
+</ParamField>
+
+## Examples
+
+### Basic usage
+
+```shell
+snrd keys show
+```
+
+## See Also
+
+- [snrd keys](./snrd_keys.mdx) - Parent command

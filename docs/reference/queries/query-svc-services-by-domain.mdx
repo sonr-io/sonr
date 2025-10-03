@@ -1,0 +1,167 @@
+---
+openapi: get /svc/v1/services/domain/{domain}
+title: Query Services by Domain
+description: Discover all services registered under a specific domain
+og:title: Domain Service Discovery
+---
+
+<Info>
+  Domain-based discovery helps users find and trust services through verified domain ownership.
+</Info>
+
+## Discovery Patterns
+
+### Find Services by Domain
+```bash
+# Query services for a domain
+snrd query svc services-by-domain example.com
+
+# Parse service IDs
+snrd query svc services-by-domain example.com -o json | 
+  jq -r '.services[].id'
+```
+
+### Trust Verification
+Domain binding provides trust through:
+- **DNS Ownership**: Proven control of domain
+- **Brand Association**: Services linked to known domains
+- **Discovery Path**: Find services via familiar domains
+
+## Integration Scenarios
+
+### Service Discovery Flow
+```javascript
+async function discoverServices(domain) {
+  // 1. Query services by domain
+  const services = await queryServicesByDomain(domain);
+  
+  // 2. Filter active services
+  const active = services.filter(s => 
+    s.status === 'ACTIVE'
+  );
+  
+  // 3. Categorize by permissions
+  return {
+    dataServices: active.filter(s => 
+      s.permissions.includes('dwn:read')
+    ),
+    vaultServices: active.filter(s => 
+      s.permissions.includes('vault:access')
+    ),
+    identityServices: active.filter(s => 
+      s.permissions.includes('identity:read')
+    )
+  };
+}
+```
+
+### Multi-Service Domains
+```json
+{
+  "services": [
+    {
+      "id": "chat",
+      "domain": "example.com",
+      "permissions": ["dwn:read", "dwn:write"]
+    },
+    {
+      "id": "storage",
+      "domain": "example.com",
+      "permissions": ["dwn:write", "vault:access"]
+    },
+    {
+      "id": "auth",
+      "domain": "example.com",
+      "permissions": ["identity:read", "credentials:verify"]
+    }
+  ]
+}
+```
+
+## Domain Organization
+
+### Service Naming Conventions
+
+#### By Function
+- `auth@example.com` - Authentication service
+- `storage@example.com` - Storage service
+- `api@example.com` - API gateway
+
+#### By Product
+- `chat@social.example.com` - Chat application
+- `vault@secure.example.com` - Vault manager
+- `wallet@finance.example.com` - Wallet service
+
+<Tip>
+  Use subdomains to organize services by category or security level.
+</Tip>
+
+## Trust Establishment
+
+### Verify Domain Services
+```bash
+# Check domain ownership
+DOMAIN_STATUS=$(snrd query svc domain example.com -o json)
+
+# If verified, query services
+if [ $(echo $DOMAIN_STATUS | jq -r '.status') = "VERIFIED" ]; then
+  snrd query svc services-by-domain example.com
+fi
+```
+
+### Service Validation
+```javascript
+// Validate service belongs to expected domain
+function validateService(service, expectedDomain) {
+  return service.domain === expectedDomain && 
+         service.status === 'ACTIVE';
+}
+
+// Check all services for domain
+async function auditDomain(domain) {
+  const services = await queryServicesByDomain(domain);
+  return services.map(s => ({
+    id: s.id,
+    valid: validateService(s, domain),
+    permissions: s.permissions
+  }));
+}
+```
+
+## Common Patterns
+
+### Enterprise Domains
+Multiple services under corporate domain:
+- `api@company.com` - Public API
+- `admin@company.com` - Admin panel
+- `user@company.com` - User portal
+
+### Development Domains
+Test services on subdomains:
+- `test@dev.example.com` - Test service
+- `staging@dev.example.com` - Staging service
+- `prod@example.com` - Production service
+
+<Warning>
+  Always verify domain ownership status before trusting services bound to that domain.
+</Warning>
+
+## Usage Analytics
+
+### Service Count by Domain
+```bash
+# Count services per domain
+snrd query svc services-by-domain example.com -o json | 
+  jq '.services | length'
+```
+
+### Permission Summary
+```bash
+# Aggregate permissions across domain services
+snrd query svc services-by-domain example.com -o json | 
+  jq '[.services[].permissions] | flatten | unique'
+```
+
+<Note>
+  Domains can host multiple services, each with unique IDs and permission sets. Plan your service architecture accordingly.
+</Note>

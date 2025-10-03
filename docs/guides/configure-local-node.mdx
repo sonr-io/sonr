@@ -1,0 +1,48 @@
+---
+title: "Configuring a Validator Node"
+sidebarTitle: "Command Line"
+description: "Setup a validator node on the Sonar Network in your local environment"
+icon: "terminal"
+---
+
+**1. Initialize a blockchain node**
+
+```sh
+sonrd init localnet
+```
+
+**2. Generate account keys**
+
+```sh
+sonrd keys add test-validator
+```
+
+**3. Add the account to the genesis file**
+
+```sh
+sonrd add-genesis-account $(sonrd keys show test-validator -a) 1000000000000000000000000000stake,1000000000000000000000000000snr
+```
+
+**4. Generate a genesis transaction**
+
+```sh
+sonrd gentx test-validator 1000000000000000000000000000stake --chain-id localnet
+```
+
+**5. Collect genesis transactions**
+
+```sh
+sonrd collect-gentxs
+```
+
+**6. Validate the genesis file**
+
+```sh
+sonrd validate-genesis
+```
+
+**7. Start the blockchain node**
+
+```sh
+sonrd start
+```

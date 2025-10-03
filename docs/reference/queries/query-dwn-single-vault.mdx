@@ -1,0 +1,87 @@
+---
+openapi: get /dwn/v1/vaults/{vaultId}
+title: Query Vault Details
+description: Get comprehensive information about a secure vault instance
+og:title: DWN Vault Information
+---
+
+<Info>
+  Vaults provide hardware-backed secure key management through WebAssembly enclaves.
+</Info>
+
+## Vault Components
+
+### Core Information
+- **vaultId**: Unique identifier
+- **owner**: DID or address of owner
+- **publicKey**: Public key for verification
+- **createdAt**: Creation timestamp
+- **lastRefreshed**: Last key rotation
+
+### Enclave Data
+- **enclaveId**: WASM enclave identifier
+- **version**: Enclave version number
+- **privateData**: Encrypted key material
+
+### Security Metadata
+- **encryptionMetadata**: Consensus encryption details
+- **keyVersion**: Current key version
+- **validatorSet**: Participating validators
+
+## Vault Health Check
+
+<Tip>
+  Monitor vault refresh intervals to ensure keys are rotated on schedule.
+</Tip>
+
+### Health Indicators
+```javascript
+// Check if refresh is due
+const refreshDue = 
+  (currentBlock - lastRefreshed) > minVaultRefreshInterval;
+
+// Check key age
+const keyAge = 
+  (currentTime - lastRefreshed) / (24 * 60 * 60);
+const needsRotation = keyAge > keyRotationDays;
+```
+
+## Security Features
+
+### WebAssembly Isolation
+- Sandboxed execution environment
+- No direct memory access
+- Deterministic operations
+
+### Hardware Security
+- TPM integration when available
+- Secure enclave support
+- Hardware key storage
+
+<Warning>
+  Never expose or log vault private data. It's encrypted for a reason.
+</Warning>
+
+## Vault Operations
+
+### Key Rotation Status
+```bash
+# Check rotation schedule
+snrd query dwn vault vault_alice_123
+
+# Compare with module params
+snrd query dwn params
+```
+
+### Export/Import
+```bash
+# Export vault to IPFS (encrypted)
+snrd tx dwn vault-export vault_alice_123
+
+# Import from IPFS backup
+snrd tx dwn vault-import <ipfs_cid>
+```
+
+<Note>
+  Vault queries return public metadata only. Private keys remain encrypted in the enclave.
+</Note>

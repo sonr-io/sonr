@@ -1,0 +1,62 @@
+---
+openapi: post /dwn.v1.Msg/PermissionsRevoke
+title: Revoke DWN Permission
+description: Immediately remove access rights previously granted to other users
+og:title: DWN Permission Revocation
+---
+
+<Warning>
+  Permission revocation takes effect **immediately**. Active sessions using the permission will be terminated.
+</Warning>
+
+## Revocation Process
+
+### Immediate Effects
+- Permission becomes invalid instantly
+- Active operations are interrupted
+- Cached permissions are invalidated
+- No grace period provided
+
+### What Gets Revoked
+- The specific permission identified by `permissionId`
+- All derived sub-permissions
+- Any delegated permissions from this grant
+
+## Finding Permissions to Revoke
+
+<Tip>
+  Query your active permissions before revoking:
+  ```bash
+  snrd query dwn permissions-request --grantor <your_did>
+  ```
+</Tip>
+
+## Authorization Requirements
+
+You must be either:
+- **Original Grantor**: The entity who created the permission
+- **Admin Permission Holder**: Have permission management rights
+
+## Revocation Scenarios
+
+### Security Incident
+```bash
+# Revoke all permissions for compromised account
+snrd tx dwn permissions-revoke --grantee <compromised_did> --all
+```
+
+### Project Completion
+```bash
+# Revoke team access after project ends
+snrd tx dwn permissions-revoke --permission-id <team_permission>
+```
+
+### Access Audit
+```bash
+# Revoke unused permissions discovered in audit
+snrd tx dwn permissions-revoke --permission-id <unused_permission>
+```
+
+<Note>
+  Consider notifying affected users before revoking permissions to avoid disruption.
+</Note>

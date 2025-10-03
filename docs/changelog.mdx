@@ -1,0 +1,580 @@
+---
+title: Version History
+sidebarTitle: Changelog
+description: All notable changes to the Sonr blockchain
+icon: "hourglass"
+---
+
+
+<Update label="2025-09-04" description="v0.13.3" tags={["DevOps", "Infrastructure", "Docker"]}>
+  Consolidate deployment infrastructure with Docker Compose and enhance build targets (#248)
+  - Unified backend services configuration (Highway, Redis, Caddy, IPFS, snrd)
+  - Implemented multi-stage Dockerfile build targets
+  - Enhanced Makefile with Docker management targets
+  - Introduced health check and readiness probe system
+</Update>
+
+<Update label="2025-09-04" description="v0.13.2" tags={["Authentication", "WebAuthn", "OIDC"]}>
+  Implement OpenID Connect provider with WebAuthn in bridge handlers (#244)
+  - Full WebAuthn passwordless authentication integration
+  - Implemented Self-Issued OpenID Provider (SIOP) v2
+  - Blockchain-based WebAuthn credential broadcasting
+  - Supports Authorization Code Flow with PKCE
+</Update>
+
+<Update label="2025-09-03" description="v0.13.0" tags={["Cryptography", "Security", "Testing"]}>
+  Fix cryptographic implementations and enable disabled tests (#243)
+  - Fixed and re-enabled previously disabled cryptographic tests
+  - Enhanced security validation for cryptographic modules
+  - Improved test coverage for core security components
+</Update>
+
+---
+
+<Update label="2025-09-03" description="v0.12.11" tags={["WebAuthn", "Authentication"]}>
+  WebAuthn attestation and verification improvements (#242)
+  - Enhanced attestation verification logic
+  - Improved security checks for authentication ceremonies
+  - Refined credential validation mechanisms
+</Update>
+
+<Update label="2025-09-03" description="v0.12.10" tags={["Services", "Module", "Configuration"]}>
+  Implement Service module capability system and parameters (#241)
+  - Introduced comprehensive capability management for services
+  - Added robust parameter validation for service configurations
+  - Enhanced service module flexibility and security
+</Update>
+
+<Update label="2025-09-03" description="v0.12.9" tags={["DID", "WebAuthn"]}>
+  Complete DID module WebAuthn and parameter implementation (#240)
+  - Full W3C WebAuthn Level 2 compliance with passwordless authentication
+  - Implemented CBOR-based attestation parsing
+  - Multi-algorithm signature verification (ES256, RS256, EdDSA)
+  - Added 9 new DID module parameters with validation
+</Update>
+
+<Update label="2025-09-03" description="v0.12.8" tags={["DWN", "Security", "IPFS"]}>
+  Introduce key rotation events and IPFS status endpoint (#238)
+  - Vault key rotation with Motor plugin integration
+  - Consensus-based encryption using validator set
+  - HMAC-SHA256 validation for data integrity
+  - IPFS status query endpoint with health metrics
+</Update>
+
+<Update label="2025-09-02" description="v0.12.7" tags={["Module Configuration"]}>
+  Implement module parameter validation and defaults (#237)
+  - Comprehensive parameter validation for DID and SVC modules
+  - Default parameters with FIDO2-compliant WebAuthn settings
+  - Enhanced parameter validation for service limits and timeouts
+</Update>
+
+<Update label="2025-08-30" description="v0.12.6" tags={["Events", "Modules"]}>
+  Complete remaining event emissions for DID and DWN modules (#235)
+  - Implemented typed Protobuf events for all state-changing operations
+  - Added detailed event types with enhanced observability
+  - Updated event emission patterns to follow Cosmos SDK v0.50.14 best practices
+</Update>
+
+<Update label="2025-08-27" description="v0.12.5" tags={["Events", "Protobuf"]}>
+  Implement typed Protobuf events for x/did, x/dwn, and x/svc modules (#233)
+  - Typed events following Cosmos SDK's ADR-032 pattern
+  - Event-driven application support with CometBFT websockets
+  - Backward compatibility maintained with legacy events
+</Update>
+
+<Update label="2025-08-24" description="v0.12.4" tags={["IBC", "DEX"]}>
+  Integrate Interchain Accounts for cross-chain DEX functionality
+  - Enhanced cross-chain interoperability for trading
+  - IBC integration for decentralized exchange operations
+</Update>
+
+<Update label="2025-08-24" description="v0.12.3" tags={["ICA", "DEX"]}>
+  Implement ICA Controller system in x/dex module for cross-chain DEX operations (#221)
+  - Full Interchain Account Controller implementation
+  - Cross-chain DEX trading capability
+  - Enhanced IBC protocol support
+</Update>
+
+<Update label="2025-08-20" description="v0.12.1" tags={["Testing", "Starship"]}>
+  Replace InterchainTest with Starship-based E2E testing framework (#217)
+  - Modern testing infrastructure with Starship
+  - Improved E2E test reliability and speed
+  - Better multi-chain testing support
+</Update>
+
+<Update label="2025-08-18" description="v0.12.0" tags={["Cryptography", "JWK"]}>
+  Add support for additional elliptic curves and JWK verification (#216)
+  - Extended elliptic curve support beyond secp256k1
+  - JSON Web Key (JWK) verification implementation
+  - Enhanced cryptographic flexibility
+</Update>
+
+---
+
+<Update label="2025-08-18" description="v0.11.4" tags={["WebAuthn", "FIDO2"]}>
+  Complete WebAuthn/FIDO2 implementation for passwordless authentication (#215)
+  - Full FIDO2 compliance with passwordless authentication
+  - Hardware security key support
+  - Biometric authentication integration
+</Update>
+
+<Update label="2025-08-17" description="v0.11.3" tags={["DID", "W3C"]}>
+  Complete DID keeper implementation with W3C compliance and WebAuthn authentication (#214)
+  - Full W3C DID specification compliance
+  - WebAuthn integration for DID authentication
+  - Enhanced identity management capabilities
+</Update>
+
+<Update label="2025-08-16" description="v0.11.2" tags={["UI", "Monorepo"]}>
+  Transform UI package to shadcn monorepo architecture for uniform styling (#213)
+  - Migrated to shadcn component architecture
+  - Consistent design system across applications
+  - Improved component reusability
+</Update>
+
+<Update label="2025-08-15" description="v0.11.1" tags={["Security", "Memory"]}>
+  Improve secure memory handling for enhanced security (#201)
+  - Zero-memory clearing for sensitive data
+  - Protected memory allocation for cryptographic operations
+  - Enhanced key material security
+</Update>
+
+<Update label="2025-08-15" description="v0.11.0" tags={["Cryptography", "Security"]}>
+  Implement comprehensive cryptographic security enhancements (#200)
+  - Major cryptographic subsystem overhaul
+  - Enhanced encryption algorithms
+  - Improved key management system
+</Update>
+
+---
+
+<Update label="2025-08-15" description="v0.10.34" tags={["CLI", "Wallet"]}>
+  Implement CLI commands for wallet module (#198)
+  - Comprehensive wallet management via CLI
+  - Transaction signing and broadcasting commands
+  - Key management operations
+</Update>
+
+<Update label="2025-08-14" description="v0.10.33" tags={["UCAN", "Wallet"]}>
+  Implement UCAN permission validation for wallet transactions (#197)
+  - User-Controlled Authorization Networks integration
+  - Permission-based transaction validation
+  - Enhanced wallet security model
+</Update>
+
+<Update label="2025-08-14" description="v0.10.32" tags={["SDK", "Go"]}>
+  Implement Go client SDK with transaction signing and broadcasting (#196)
+  - Complete Go SDK for chain interaction
+  - Transaction building and signing utilities
+  - gRPC and REST endpoint support
+</Update>
+
+<Update label="2025-08-13" description="v0.10.31" tags={["Docker", "Testnet"]}>
+  Enable Docker-based testnet execution
+  - Simplified testnet deployment via Docker
+  - Containerized node operation
+  - Quick local testing environment
+</Update>
+
+<Update label="2025-08-13" description="v0.10.28" tags={["Monorepo", "pnpm"]}>
+  Implement monorepo structure with pnpm workspaces and changesets (#189)
+  - Modern monorepo architecture
+  - pnpm workspace management
+  - Automated versioning with changesets
+</Update>
+
+<Update label="2025-08-12" description="v0.10.27" tags={["WebAuthn", "Gasless"]}>
+  Implement WebAuthn gasless transactions with comprehensive protocol integration (#186)
+  - Gasless onboarding for new users
+  - WebAuthn-based transaction signing
+  - Eliminated token requirement for registration
+</Update>
+
+<Update label="2025-08-11" description="v0.10.25" tags={["WebAuthn", "Security"]}>
+  Implement gasless WebAuthn registration with comprehensive security audit (#182)
+  - Security-audited gasless registration flow
+  - Anti-abuse mechanisms
+  - Credential uniqueness enforcement
+</Update>
+
+<Update label="2025-08-09" description="v0.10.24" tags={["DWN", "Encryption"]}>
+  Implement consensus-based encryption for DWN module (#181)
+  - Validator-based encryption keys
+  - Consensus-driven key management
+  - Enhanced data privacy
+</Update>
+
+<Update label="2025-08-09" description="v0.10.23" tags={["VRF", "Context"]}>
+  Enhance init command with VRF keypair generation and SonrContext system (#180)
+  - Verifiable Random Function integration
+  - SonrContext for session management
+  - Enhanced initialization process
+</Update>
+
+<Update label="2025-08-09" description="v0.10.22" tags={["Testing", "Refactor"]}>
+  Move interchain tests to dedicated location (#178)
+  - Improved test organization
+  - Separated integration tests
+  - Better test maintainability
+</Update>
+
+<Update label="2025-08-08" description="v0.10.20" tags={["Motor", "WASM", "MPC"]}>
+  Refactor Motor WASM plugin as MPC-based UCAN source (#177)
+  - Multi-party computation integration
+  - WASM-based secure execution
+  - UCAN capability management
+</Update>
+
+<Update label="2025-08-08" description="v0.10.19" tags={["Documentation", "UCAN"]}>
+  Migrate documentation to Mintlify structure (#172) and migrate x/ucan module to internal library (#174)
+  - Documentation platform migration
+  - UCAN module refactoring
+  - Improved code organization
+</Update>
+
+<Update label="2025-08-06" description="v0.10.17" tags={["WebAuthn", "CLI"]}>
+  Implement WebAuthn CLI registration with gasless transactions (#168)
+  - CLI-based WebAuthn registration
+  - Browser integration for credential creation
+  - Gasless onboarding flow
+</Update>
+
+<Update label="2025-08-06" description="v0.10.16" tags={["DWN", "Security"]}>
+  Implement auto-create DWN vault with comprehensive security improvements (#161)
+  - Automatic vault provisioning
+  - Enhanced security measures
+  - Improved user onboarding
+</Update>
+
+<Update label="2025-08-05" description="v0.10.15" tags={["Highway", "WebSocket"]}>
+  Migrate Highway service to Echo framework with WebSocket/SSE and JWT auth (#159)
+  - Echo framework migration
+  - Real-time WebSocket support
+  - JWT authentication system
+</Update>
+
+<Update label="2025-08-05" description="v0.10.14" tags={["Highway", "Asynq"]}>
+  Complete Highway proxy server implementation with asynq and proto.Actor (#157)
+  - Asynq task queue integration
+  - Actor-based concurrency model
+  - Improved task processing
+</Update>
+
+<Update label="2025-08-05" description="v0.10.13" tags={["DWN", "Gasless"]}>
+  Refactor x/dwn vaults and introduce gasless transactions (#154)
+  - Vault system refactoring
+  - Gasless transaction support
+  - Enhanced user experience
+</Update>
+
+<Update label="2025-08-03" description="v0.10.12" tags={["Monorepo", "CI/CD"]}>
+  Monorepo restructure with internal packages and enhanced CI/CD (#151)
+  - Internal package architecture
+  - CI/CD pipeline improvements
+  - Better code organization
+</Update>
+
+<Update label="2025-08-02" description="v0.10.9" tags={["Testnet", "Infrastructure"]}>
+  Enhance testnet configuration with faucet and explorer settings (#145)
+  - Testnet faucet integration
+  - Block explorer configuration
+  - Improved developer experience
+</Update>
+
+<Update label="2025-08-01" description="v0.10.8" tags={["Deployment", "Infrastructure"]}>
+  Optimize deployment workflows and update infrastructure configuration (#141)
+  - Streamlined deployment process
+  - Infrastructure updates
+  - Performance optimizations
+</Update>
+
+<Update label="2025-08-01" description="v0.10.6" tags={["Starship", "Network"]}>
+  Introduce Starship network configurations for devnet and testnet (#139)
+  - Starship integration for local development
+  - Multi-network configuration support
+  - Simplified network management
+</Update>
+
+<Update label="2025-07-31" description="v0.10.3" tags={["Docker", "Build"]}>
+  Streamline Docker build for enhanced efficiency (#136)
+  - Optimized Docker build process
+  - Reduced image sizes
+  - Faster build times
+</Update>
+
+<Update label="2025-07-31" description="v0.10.2" tags={["Starship", "Development"]}>
+  Streamline starship configuration and local development (#135)
+  - Simplified Starship setup
+  - Enhanced local development workflow
+  - Better developer experience
+</Update>
+
+<Update label="2025-07-31" description="v0.10.1" tags={["CI/CD", "Wallet", "EVM"]}>
+  Major infrastructure and wallet improvements (#134, #131, #128, #127)
+  - Optimized CI/CD workflows with smart testing
+  - Fee grant integration with BasicAllowance
+  - EVM transaction support in wallet module
+  - External wallet linking as DID assertion methods
+</Update>
+
+<Update label="2025-07-21" description="v0.10.0" tags={["Security", "WASM"]}>
+  Implement secure key management with WASM enclaves (#126)
+  - WASM-based secure enclaves
+  - Hardware-level key protection
+  - Enhanced cryptographic isolation
+</Update>
+
+---
+
+<Update label="2025-07-21" description="v0.9.22" tags={["Vault", "IPFS"]}>
+  Implement vault export/import with IPFS encryption (#125)
+  - IPFS-based vault backup
+  - Encrypted vault exports
+  - Decentralized storage integration
+</Update>
+
+<Update label="2025-07-20" description="v0.9.20" tags={["Transactions", "Release"]}>
+  Add transaction building framework and streamline release process (#123)
+  - Comprehensive transaction builder
+  - Automated release pipeline
+  - Improved developer tools
+</Update>
+
+<Update label="2025-07-20" description="v0.9.19" tags={["Testing", "CI"]}>
+  Add cross-module keeper integration tests and optimize CI performance (#122)
+  - Cross-module testing framework
+  - CI pipeline optimization
+  - Better test coverage
+</Update>
+
+<Update label="2025-07-20" description="v0.9.18" tags={["Service", "UCAN"]}>
+  Improve service validation and UCAN integration (#121)
+  - Enhanced service validation logic
+  - UCAN capability improvements
+  - Better error handling
+</Update>
+
+<Update label="2025-07-20" description="v0.9.17" tags={["DWN", "Service"]}>
+  Implement ServiceKeeper interface for x/dwn module (#120)
+  - Service abstraction layer
+  - Improved module interactions
+  - Enhanced modularity
+</Update>
+
+<Update label="2025-07-20" description="v0.9.16" tags={["DWN", "UCAN"]}>
+  Implement UCANKeeper interface for x/dwn module (#119)
+  - UCAN integration for DWN
+  - Capability-based permissions
+  - Enhanced authorization
+</Update>
+
+<Update label="2025-07-18" description="v0.9.15" tags={["Service", "UCAN"]}>
+  Implement UCANKeeper interface for x/svc module (#117)
+  - Service module UCAN support
+  - Permission management
+  - Improved security model
+</Update>
+
+<Update label="2025-07-18" description="v0.9.14" tags={["Service", "DID"]}>
+  Implement DIDKeeper interface for x/svc module (#116)
+  - DID integration for services
+  - Identity-based service management
+  - Enhanced authentication
+</Update>
+
+<Update label="2025-07-18" description="v0.9.11" tags={["Service", "Keeper"]}>
+  Implement ServiceKeeper interface methods in x/svc keeper (#113)
+  - Complete service keeper implementation
+  - Core service functionality
+  - Module integration
+</Update>
+
+<Update label="2025-07-18" description="v0.9.10" tags={["UCAN", "Error Handling"]}>
+  Implement UCANKeeper interface methods and centralize error handling (#112)
+  - UCAN keeper implementation
+  - Centralized error management
+  - Improved code maintainability
+</Update>
+
+<Update label="2025-07-18" description="v0.9.9" tags={["DID", "Signatures"]}>
+  Implement VerifyDIDDocumentSignature method with multi-algorithm support (#111)
+  - Multi-algorithm signature verification
+  - Ed25519, ECDSA, RSA support
+  - Enhanced DID security
+</Update>
+
+<Update label="2025-07-18" description="v0.9.8" tags={["Wallet", "Architecture"]}>
+  Implement wallet derivation and keeper interface architecture (#110)
+  - HD wallet derivation
+  - Keeper interface design
+  - Improved wallet architecture
+</Update>
+
+<Update label="2025-07-16" description="v0.9.6" tags={["Vault", "Interface"]}>
+  Introduce VaultKeeper interface for enhanced modularity (#99)
+  - Vault abstraction layer
+  - Improved code organization
+  - Better testability
+</Update>
+
+<Update label="2025-07-15" description="v0.9.5" tags={["DWN", "Vault"]}>
+  Enable DWN vault spawning via query API and add comprehensive tests (#98)
+  - Query-based vault creation
+  - Comprehensive test suite
+  - API improvements
+</Update>
+
+<Update label="2025-07-14" description="v0.9.4" tags={["Testnet", "DAO"]}>
+  Update testnet configuration for DAO governance (#84)
+  - DAO governance integration
+  - Testnet parameter updates
+  - Governance readiness
+</Update>
+
+<Update label="2025-07-09" description="v0.9.3" tags={["Vault", "Actor"]}>
+  Centralize vault actor system and optimize plugin management (#83)
+  - Actor system centralization
+  - Plugin optimization
+  - Performance improvements
+</Update>
+
+<Update label="2025-07-06" description="v0.9.0" tags={["DWN", "WASM"]}>
+  Refactor x/dwn module structure and integrate WebAssembly motor client (#81)
+  - Major DWN module refactoring
+  - WASM motor client integration
+  - Enhanced documentation
+</Update>
+
+---
+
+<Update label="2025-07-05" description="v0.8.12" tags={["Analytics", "Documentation"]}>
+  Implement Rybbit analytics and update documentation site styling (#80)
+  - Analytics integration
+  - Documentation improvements
+  - Better user insights
+</Update>
+
+<Update label="2025-07-04" description="v0.8.11" tags={["UI", "Migration"]}>
+  Complete shadcn/TemplUI migration from NebulaUI (#79)
+  - UI library migration
+  - Modern component system
+  - Improved styling
+</Update>
+
+<Update label="2025-07-02" description="v0.8.2" tags={["Documentation", "Branding"]}>
+  Enhanced documentation landing page with custom branding (#69)
+  - Custom branding implementation
+  - Improved documentation UI
+  - Better user experience
+</Update>
+
+<Update label="2025-07-02" description="v0.8.0" tags={["Quality", "Linting"]}>
+  Integrate Trunk.io for code quality and linting (#65)
+  - Trunk.io integration
+  - Automated code quality checks
+  - Enhanced linting rules
+</Update>
+
+---
+
+<Update label="2025-07-01" description="v0.7.0" tags={["DWN", "DIF"]}>
+  Implement DWN module with enclave signing and DIF specification (#64)
+  - Decentralized Web Node implementation
+  - DIF specification compliance
+  - Enclave-based signing
+</Update>
+
+---
+
+<Update label="2025-07-01" description="v0.6.1" tags={["Protobuf", "Client"]}>
+  ES-client protobuf generation (#63)
+  - JavaScript client protobuf support
+  - Improved client SDK
+  - Better developer tools
+</Update>
+
+<Update label="2025-07-01" description="v0.6.0" tags={["API", "Documentation"]}>
+  Automated API Reference Generation for Cosmos Modules and Highway REST Service (#62)
+  - Automated API documentation
+  - REST service documentation
+  - Improved developer resources
+</Update>
+
+---
+
+<Update label="2025-06-30" description="v0.5.1" tags={["TUI", "Dashboard"]}>
+  Enhance TUI Dashboard with real-time data visualization and testnet support (#59)
+  - Real-time data visualization
+  - Testnet dashboard support
+  - Enhanced monitoring
+</Update>
+
+<Update label="2025-06-30" description="v0.5.0" tags={["UCAN", "Handlers"]}>
+  Implement x/ucan msgServer handlers with capability templates (#55)
+  - UCAN message handlers
+  - Capability templates
+  - Authorization framework
+</Update>
+
+---
+
+<Update label="2025-06-30" description="v0.4.1" tags={["UI", "Components"]}>
+  Integrate Nebula UI Component Library (#54)
+  - UI component library integration
+  - Reusable components
+  - Design consistency
+</Update>
+
+<Update label="2025-06-29" description="v0.4.0" tags={["DID", "WebAuthn", "Testing"]}>
+  W3C DID Controller with WebAuthn support and comprehensive testing improvements (#52)
+  - W3C DID controller implementation
+  - WebAuthn authentication
+  - Enhanced test coverage
+</Update>
+
+---
+
+<Update label="2025-06-29" description="v0.3.0" tags={["UCAN", "Migration"]}>
+  Migrate UCAN capability definitions to x/ucan module (#49)
+  - UCAN module creation
+  - Capability migration
+  - Improved architecture
+</Update>
+
+---
+
+<Update label="2025-06-28" description="v0.2.0" tags={["DNS", "UCAN"]}>
+  Implement DNS record verification with UCAN delegation for x/svc (#41)
+  - DNS verification system
+  - UCAN-based delegation
+  - Service authentication
+</Update>
+
+---
+
+<Update label="2025-06-28" description="v0.1.0" tags={["Highway", "API"]}>
+  Implement Highway Service API Handlers (#39)
+  - Highway service implementation
+  - API handler creation
+  - Core service functionality
+</Update>
+
+<Update label="2025-06-26" description="v0.0.23" tags={["IPFS", "CI/CD", "Documentation"]}>
+  Major infrastructure and documentation improvements (#38, #37, #36)
+  - IPFS private network support
+  - Enhanced CI/CD workflows
+  - Comprehensive tokenomics documentation
+  - Client integration guide
+  - Research section with whitepapers
+</Update>
+
+<Update label="2025-06-22" description="v0.0.1" tags={["Initial", "Core"]}>
+  Initial release with core blockchain features
+  - Automated version bumping and changelog generation
+  - Highway service for enhanced authentication
+  - Database migration using goose
+  - CosmWasm VM for smart contracts
+  - IPFS Kubo v0.35.0 integration
+  - Decentralized web node runtime with WASM enclave
+  - Complete database schema for core entities
+</Update>

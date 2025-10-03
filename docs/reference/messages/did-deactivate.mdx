@@ -1,0 +1,18 @@
+---
+openapi: post /did.v1.Msg/DeactivateDID
+title: Deactivate DID Document
+description: Permanently disable a decentralized identifier
+og:title: Deactivate Digital Identity
+tag: x/did
+---
+
+<Warning>
+  **This operation is PERMANENT and IRREVERSIBLE.**
+  Deactivated DIDs cannot be reactivated. Ensure you have migrated
+  any necessary data before deactivation.
+</Warning>
+
+<Info>
+  Deactivation is useful for key compromise scenarios or when
+  transitioning to a new identity.
+</Info>

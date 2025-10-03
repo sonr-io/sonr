@@ -1,0 +1,95 @@
+---
+openapi: post /dwn.v1.Msg/RotateVaultKeys
+title: Rotate Vault Encryption Keys
+description: Perform cryptographic key rotation for enhanced vault security
+og:title: DWN Vault Key Rotation
+---
+
+<Warning>
+  Key rotation is a **critical security operation** that requires validator consensus or governance approval.
+</Warning>
+
+## Key Rotation Architecture
+
+### WebAssembly Secure Enclave
+- Keys are rotated within WASM sandbox
+- Old keys archived for decryption only
+- New keys generated using quantum-resistant algorithms
+- Zero-knowledge proof of proper rotation
+
+### Distributed Key Generation (DKG)
+- Requires `minValidatorsForKeyGen` participation
+- Threshold cryptography for key shares
+- No single point of failure
+- Automatic share distribution
+
+## Rotation Triggers
+
+### Scheduled Rotation
+- Automatic based on `keyRotationDays` parameter
+- Predictable security maintenance
+- Minimal user impact
+
+### Emergency Rotation
+- Security incident response
+- Validator compromise detection
+- Governance-initiated action
+- Uses `force: true` flag
+
+### Manual Rotation
+- User-requested for specific vaults
+- Compliance requirements
+- Pre-emptive security measures
+
+## Rotation Process
+
+<Info>
+  The rotation process is designed to be seamless with zero downtime for users.
+</Info>
+
+### Phase 1: Preparation
+1. Generate new key material in enclave
+2. Distribute shares to validators
+3. Verify threshold participation
+
+### Phase 2: Transition
+1. Mark old keys as decrypt-only
+2. Activate new keys for encryption
+3. Update vault metadata
+
+### Phase 3: Migration
+1. Re-encrypt recent hot data
+2. Schedule lazy migration for cold data
+3. Archive old key material
+
+## Security Considerations
+
+### Single-Node Fallback
+<Note>
+  In development mode with `singleNodeFallback: true`, rotation uses local key generation.
+</Note>
+
+### Production Requirements
+- Minimum validator participation (67% default)
+- Secure communication channels
+- Audit logging of all operations
+- Rollback capability for 24 hours
+
+## Impact on Users
+
+### Transparent Operation
+- No action required from users
+- Automatic key selection for decrypt
+- New encryptions use latest keys
+
+### Performance
+- Slight latency during rotation (< 1s)
+- Background re-encryption process
+- No data availability impact
+
+<Tip>
+  Monitor rotation events via:
+  ```bash
+  snrd query dwn vault-status --vault-id <id>
+  ```
+</Tip>

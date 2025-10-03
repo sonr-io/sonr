@@ -1,0 +1,68 @@
+{
+  "name": "@sonr.io/monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Sonr - Decentralized identity and asset management monorepo",
+  "author": "diDAO",
+  "license": "MIT",
+  "homepage": "https://github.com/sonr-io/sonr",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sonr-io/sonr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sonr-io/sonr/issues"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "packageManager": "pnpm@10.14.0",
+  "scripts": {
+    "build": "turbo run build",
+    "preview": "turbo run preview",
+    "test": "turbo run test",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "build:cloudflare": "pnpm --filter ./web build:cloudflare",
+    "docs": "cd docs && npx -y mint dev",
+    "docs:convert-swagger": "node scripts/convert-swagger.js",
+    "typecheck": "turbo run typecheck",
+    "dev:auth": "cd web/auth && pnpm run dev",
+    "dev:dash": "cd web/dash && pnpm run dev",
+    "deploy:auth": "cd web/auth && pnpm run deploy",
+    "deploy:dash": "cd web/dash && pnpm run deploy"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.2.3",
+    "@types/node": "^24.3.1",
+    "@vitest/ui": "^3.2.4",
+    "happy-dom": "^18.0.1",
+    "turbo": "^2.5.6",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4",
+    "wrangler": "^4.34.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "esbuild": "0.20.0"
+    },
+    "peerDependencyRules": {
+      "ignoreMissing": []
+    },
+    "onlyBuiltDependencies": [
+      "@biomejs/biome",
+      "@bufbuild/buf",
+      "es5-ext",
+      "esbuild",
+      "sharp",
+      "workerd"
+    ]
+  },
+  "dependencies": {
+    "glob": "^11.0.3",
+    "swagger2openapi": "^7.0.8",
+    "yaml": "^2.8.1"
+  }
+}

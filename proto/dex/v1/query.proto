@@ -1,0 +1,273 @@
+syntax = "proto3";
+
+package dex.v1;
+
+option go_package = "github.com/sonr-io/sonr/x/dex/types";
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "dex/v1/genesis.proto";
+import "dex/v1/ica.proto";
+import "cosmos/base/v1beta1/coin.proto";
+
+// Query defines the DEX Query service
+service Query {
+  // Params queries the parameters of the module
+  //
+  // {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+  // It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+  //
+  // {{import "dex_query_docs.md"}}
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/sonr/dex/v1/params";
+  }
+  
+  // Account queries a DEX account by DID and connection
+  //
+  // {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+  // It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+  //
+  // {{import "dex_query_docs.md"}}
+  rpc Account(QueryAccountRequest) returns (QueryAccountResponse) {
+    option (google.api.http).get = "/sonr/dex/v1/account/{did}/{connection_id}";
+  }
+  
+  // Accounts queries all DEX accounts for a DID
+  //
+  // {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+  // It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+  //
+  // {{import "dex_query_docs.md"}}
+  rpc Accounts(QueryAccountsRequest) returns (QueryAccountsResponse) {
+    option (google.api.http).get = "/sonr/dex/v1/accounts/{did}";
+  }
+  
+  // Balance queries remote chain balance
+  //
+  // {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+  // It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+  //
+  // {{import "dex_query_docs.md"}}
+  rpc Balance(QueryBalanceRequest) returns (QueryBalanceResponse) {
+    option (google.api.http).get = "/sonr/dex/v1/balance/{did}/{connection_id}";
+  }
+  
+  // Pool queries pool information
+  //
+  // {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+  // It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+  //
+  // {{import "dex_query_docs.md"}}
+  rpc Pool(QueryPoolRequest) returns (QueryPoolResponse) {
+    option (google.api.http).get = "/sonr/dex/v1/pool/{connection_id}/{pool_id}";
+  }
+  
+  // Orders queries orders for a DID
+  //
+  // {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+  // It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+  //
+  // {{import "dex_query_docs.md"}}
+  rpc Orders(QueryOrdersRequest) returns (QueryOrdersResponse) {
+    option (google.api.http).get = "/sonr/dex/v1/orders/{did}/{connection_id}";
+  }
+  
+  // History queries transaction history
+  //
+  // {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+  // It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+  //
+  // {{import "dex_query_docs.md"}}
+  rpc History(QueryHistoryRequest) returns (QueryHistoryResponse) {
+    option (google.api.http).get = "/sonr/dex/v1/history/{did}";
+  }
+}
+
+// QueryParamsRequest is request type for Query/Params RPC method
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for Query/Params RPC method
+message QueryParamsResponse {
+  // params holds all the parameters of this module
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+// QueryAccountRequest is request type for Query/Account RPC method
+message QueryAccountRequest {
+  // DID of the account owner
+  string did = 1;
+  
+  // IBC connection ID
+  string connection_id = 2;
+}
+
+// QueryAccountResponse is response type for Query/Account RPC method
+message QueryAccountResponse {
+  // The DEX account
+  InterchainDEXAccount account = 1;
+}
+
+// QueryAccountsRequest is request type for Query/Accounts RPC method
+message QueryAccountsRequest {
+  // DID of the account owner
+  string did = 1;
+  
+  // pagination defines optional pagination
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
+}
+
+// QueryAccountsResponse is response type for Query/Accounts RPC method
+message QueryAccountsResponse {
+  // List of DEX accounts
+  repeated InterchainDEXAccount accounts = 1;
+  
+  // pagination defines the pagination in the response
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// QueryBalanceRequest is request type for Query/Balance RPC method
+message QueryBalanceRequest {
+  // DID of the account owner
+  string did = 1;
+  
+  // IBC connection ID
+  string connection_id = 2;
+  
+  // Optional specific denom to query
+  string denom = 3;
+}
+
+// QueryBalanceResponse is response type for Query/Balance RPC method
+message QueryBalanceResponse {
+  // Balances on the remote chain
+  repeated cosmos.base.v1beta1.Coin balances = 1
+      [(gogoproto.nullable) = false, (gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];
+}
+
+// QueryPoolRequest is request type for Query/Pool RPC method
+message QueryPoolRequest {
+  // IBC connection ID
+  string connection_id = 1;
+  
+  // Pool ID to query
+  string pool_id = 2;
+}
+
+// QueryPoolResponse is response type for Query/Pool RPC method
+message QueryPoolResponse {
+  // Pool information
+  PoolInfo pool = 1;
+}
+
+// PoolInfo contains pool information
+message PoolInfo {
+  // Pool ID
+  string pool_id = 1;
+  
+  // Pool assets
+  repeated cosmos.base.v1beta1.Coin assets = 2
+      [(gogoproto.nullable) = false, (gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];
+  
+  // Total shares
+  string total_shares = 3;
+  
+  // Swap fee
+  string swap_fee = 4;
+}
+
+// QueryOrdersRequest is request type for Query/Orders RPC method
+message QueryOrdersRequest {
+  // DID of the account owner
+  string did = 1;
+  
+  // IBC connection ID
+  string connection_id = 2;
+  
+  // Filter by status (optional)
+  string status = 3;
+  
+  // pagination defines optional pagination
+  cosmos.base.query.v1beta1.PageRequest pagination = 4;
+}
+
+// QueryOrdersResponse is response type for Query/Orders RPC method
+message QueryOrdersResponse {
+  // List of orders
+  repeated Order orders = 1;
+  
+  // pagination defines the pagination in the response
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// Order represents a DEX order
+message Order {
+  // Order ID
+  string order_id = 1;
+  
+  // Order type
+  string order_type = 2;
+  
+  // Sell token
+  string sell_denom = 3;
+  
+  // Buy token
+  string buy_denom = 4;
+  
+  // Amount
+  string amount = 5;
+  
+  // Price
+  string price = 6;
+  
+  // Status
+  string status = 7;
+  
+  // Creation time
+  string created_at = 8;
+}
+
+// QueryHistoryRequest is request type for Query/History RPC method
+message QueryHistoryRequest {
+  // DID of the account owner
+  string did = 1;
+  
+  // Optional connection filter
+  string connection_id = 2;
+  
+  // Optional operation type filter
+  string operation_type = 3;
+  
+  // pagination defines optional pagination
+  cosmos.base.query.v1beta1.PageRequest pagination = 4;
+}
+
+// QueryHistoryResponse is response type for Query/History RPC method
+message QueryHistoryResponse {
+  // List of historical transactions
+  repeated Transaction transactions = 1;
+  
+  // pagination defines the pagination in the response
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// Transaction represents a historical transaction
+message Transaction {
+  // Transaction ID
+  string tx_id = 1;
+  
+  // Operation type (swap, provide_liquidity, etc.)
+  string operation_type = 2;
+  
+  // Connection ID
+  string connection_id = 3;
+  
+  // Transaction details (JSON)
+  string details = 4;
+  
+  // Status
+  string status = 5;
+  
+  // Timestamp
+  string timestamp = 6;
+}

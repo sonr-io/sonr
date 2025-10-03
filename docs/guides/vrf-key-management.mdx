@@ -1,0 +1,294 @@
+---
+title: VRF Key Management
+description: Guide to managing VRF keys for multi-validator encryption
+---
+
+# VRF Key Management
+
+VRF (Verifiable Random Function) keys are essential for consensus-based encryption in multi-validator Sonr networks. This guide explains how VRF keys work, how to manage them, and how to troubleshoot common issues.
+
+## Overview
+
+VRF keys enable:
+- **Deterministic randomness** in distributed systems
+- **Multi-validator encryption** key derivation
+- **Consensus-based key rotation** when validator sets change
+- **Secure encryption** without requiring shared secrets
+
+## Automatic Generation
+
+VRF keys are automatically generated when you initialize a new node:
+
+```bash
+snrd init <moniker> --chain-id sonrtest_1-1
+```
+
+This creates:
+- VRF keypair at `~/.sonr/vrf_secret.key`
+- Deterministic generation from chain-id
+- Secure 0600 permissions (owner read/write only)
+
+## VRF Key Commands
+
+The `snrd keys vrf` command suite provides complete VRF key management:
+
+### Show VRF Key Information
+
+Display your node's VRF public key and verify configuration:
+
+```bash
+snrd keys vrf show
+```
+
+Example output:
+```
+VRF Key Information:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Key Path:        /home/user/.sonr/vrf_secret.key
+Public Key:      d2d8f52119ba12f7f41b004314e3d040526393f09ba434f5b4196c4242ddac0d
+Key Size:        64 bytes
+Public Key Size: 32 bytes
+Permissions:     -rw-------
+Modified:        2025-09-27 00:33:11
+
+✓ VRF keys are properly configured
+```
+
+### Verify VRF Functionality
+
+Test that VRF keys are working correctly:
+
+```bash
+snrd keys vrf verify
+```
+
+This performs:
+- VRF key loading
+- Public key derivation
+- Test VRF computation with proof
+- Cryptographic verification
+
+### Generate New VRF Keys
+
+Generate or regenerate VRF keys (with backup):
+
+```bash
+# Generate for current chain
+snrd keys vrf generate
+
+# Generate for specific chain
+snrd keys vrf generate --chain-id sonrtest_1-1
+
+# Force regenerate (creates backup)
+snrd keys vrf generate --force
+```
+
+**⚠️ Warning**: Regenerating VRF keys will invalidate existing consensus-based encryption keys. Only do this if you understand the implications.
+
+## Multi-Validator Testnet Setup
+
+When setting up a multi-validator testnet, ensure each validator generates unique VRF keys:
+
+### Using Scripts
+
+The testnet scripts automatically generate VRF keys:
+
+```bash
+# Single node testnet
+CHAIN_ID="sonrtest_1-1" CLEAN=true bash scripts/test_node.sh
+
+# Multi-node testnet with Starship
+make start
+```
+
+### Manual Setup
+
+For manual validator setup:
+
+1. **Initialize each validator**:
+   ```bash
+   snrd init validator-01 --chain-id sonrtest_1-1
+   ```
+
+2. **Verify VRF keys**:
+   ```bash
+   snrd keys vrf verify
+   ```
+
+3. **Check permissions**:
+   ```bash
+   ls -la ~/.sonr/vrf_secret.key
+   # Should show: -rw------- (0600)
+   ```
+
+## Encryption Configuration
+
+VRF keys are only required when encryption is enabled. You can control encryption via module parameters:
+
+### Check Encryption Status
+
+```bash
+snrd query dwn params
+```
+
+Look for the `encryption_enabled` field.
+
+### Disable Encryption
+
+If you don't need encryption features, you can disable them:
+
+```bash
+# Via governance proposal
+snrd tx gov submit-proposal param-change proposal.json
+```
+
+With `proposal.json`:
+```json
+{
+  "title": "Disable DWN Encryption",
+  "description": "Disable encryption features",
+  "changes": [
+    {
+      "subspace": "dwn",
+      "key": "EncryptionEnabled",
+      "value": "false"
+    }
+  ]
+}
+```
+
+## Troubleshooting
+
+### Error: "VRF keys not loaded"
+
+**Cause**: VRF keys are missing or corrupted.
+
+**Solution**:
+1. Check if keys exist:
+   ```bash
+   ls -la ~/.sonr/vrf_secret.key
+   ```
+
+2. If missing, generate keys:
+   ```bash
+   snrd keys vrf generate --chain-id sonrtest_1-1
+   ```
+
+3. If present but corrupted, regenerate:
+   ```bash
+   snrd keys vrf generate --force
+   ```
+
+### Error: "Failed to check and perform key rotation"
+
+**Cause**: VRF keys not available during EndBlock, but encryption is enabled.
+
+**Solution**:
+1. Verify VRF keys:
+   ```bash
+   snrd keys vrf verify
+   ```
+
+2. Or disable encryption if not needed:
+   ```bash
+   # Check current params
+   snrd query dwn params
+
+   # Submit governance proposal to disable
+   ```
+
+### Incorrect Permissions
+
+**Cause**: VRF key file has insecure permissions.
+
+**Fix**:
+```bash
+chmod 0600 ~/.sonr/vrf_secret.key
+```
+
+### Single-Node vs Multi-Validator
+
+- **Single-node development**: Works without VRF keys (deterministic fallback)
+- **Multi-validator testnet**: Requires VRF keys for consensus encryption
+- **Production**: Always use VRF keys with proper security
+
+## Security Best Practices
+
+### Key Storage
+
+- **Never share** VRF private keys between validators
+- **Backup** VRF keys securely (offline storage)
+- **Rotate** validator nodes if keys are compromised
+- **Monitor** file permissions regularly
+
+### File Permissions
+
+Always ensure restrictive permissions:
+
+```bash
+# Check permissions
+ls -la ~/.sonr/vrf_secret.key
+
+# Fix if needed
+chmod 0600 ~/.sonr/vrf_secret.key
+chown $(whoami):$(whoami) ~/.sonr/vrf_secret.key
+```
+
+### Key Backup
+
+Backup your VRF keys securely:
+
+```bash
+# Create encrypted backup
+tar -czf vrf-backup.tar.gz -C ~/.sonr vrf_secret.key
+gpg --symmetric --cipher-algo AES256 vrf-backup.tar.gz
+
+# Store vrf-backup.tar.gz.gpg securely offline
+```
+
+### Recovery
+
+Restore from backup:
+
+```bash
+# Decrypt backup
+gpg --decrypt vrf-backup.tar.gz.gpg > vrf-backup.tar.gz
+
+# Extract to correct location
+tar -xzf vrf-backup.tar.gz -C ~/.sonr/
+
+# Verify permissions
+chmod 0600 ~/.sonr/vrf_secret.key
+snrd keys vrf verify
+```
+
+## Advanced Topics
+
+### Deterministic Generation
+
+VRF keys are generated deterministically from the chain-id using SHA256. This means:
+- Same chain-id = same VRF keys
+- Different validators should use different chain configurations
+- Re-running `snrd init` with same chain-id produces same keys
+
+### VRF Algorithm
+
+Sonr uses **VRF based on Ed25519** (Curve25519):
+- Private key: 64 bytes (32 bytes secret + 32 bytes public)
+- Public key: 32 bytes
+- Proof: 80 bytes
+- Output: 32 bytes of verifiable randomness
+
+### Consensus Encryption
+
+Multi-validator encryption key derivation:
+1. Each validator computes VRF output from consensus input
+2. VRF outputs are combined to derive encryption key
+3. Automatic rotation when validator set changes
+4. Keys are never transmitted over network
+
+## See Also
+
+- [Configure Local Node](/guides/configure-local-node) - Node setup guide
+- [Development](/guides/development) - Development environment setup
+- [Deployment](/guides/deployment) - Production deployment guide

@@ -1,0 +1,51 @@
+# E2E Test Configuration for Starship
+chain:
+  id: "sonrtest_1-1"
+  base_url: "http://localhost:1317"
+  rpc_url: "http://localhost:26657"
+  grpc_url: "localhost:9090"
+
+faucet:
+  url: "http://localhost:8000"
+  
+denoms:
+  staking: "usnr"
+  normal: "snr"
+
+timeouts:
+  default: "30s"
+  tx_wait: "60s"
+  block_time: "2s"
+
+test_accounts:
+  acc0:
+    address: "idx1fcqk3crpnyvyhtd4jepsnx5eat5ehc920epq29"
+    mnemonic: "notice oak worry limit wrap speak medal online prefer cluster roof addict wrist behave treat actual wasp year salad speed social layer crew genius"
+  acc1:
+    address: "idx10n78mn09nx0f056wam35wkfvanf37kepuj28x4"
+    mnemonic: "wealth flavor believe regret funny network recall kiss grape useless pepper cram hint member few certain unveil rather brick bargain curious require crowd raise"
+  user0:
+    address: "idx1jyq30438zx0g4urancle25r6tk5td6pgeytpfu"
+    mnemonic: "love group axis climb enlist evoke cactus sentence mule virtual dose river pepper path chapter ridge merry glow parent swear famous milk two raw"
+  user1:
+    address: "idx1wz5qn36kdakkqunkvwuuvpr2l4amd7y0m3qdq6"
+    mnemonic: "sight buffalo monitor immune awake proof keen help connect steak attack trophy try day know wheel soon gesture switch poverty imitate weird bargain resist"
+
+amounts:
+  default_fund: "10000000"      # 10 SNR
+  large_fund: "100000000"       # 100 SNR
+  ibc_transfer: "1000000"       # 1 SNR
+
+starship:
+  config_path: "../../chains/standalone.json"
+  network_name: "devnet"
+  
+ports:
+  rest: 1317
+  rpc: 26657
+  grpc: 9090
+  faucet: 8000
+
+logging:
+  level: "info"
+  format: "json"

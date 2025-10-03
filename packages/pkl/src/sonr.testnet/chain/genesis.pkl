@@ -1,0 +1,2 @@
+extends "https://mod.pkl.sh/cosmos.chain/Genesis.pkl"
+

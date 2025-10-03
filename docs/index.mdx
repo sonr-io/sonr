@@ -1,0 +1,272 @@
+---
+title: Introduction
+description: The peer-to-peer identity and asset management system that makes Web3 as easy as Web2 through DID documents, WebAuthn, and IPFS—providing users with secure, portable decentralized identity
+sidebarTitle: "Overview"
+icon: "play"
+---
+
+# Introduction to Sonr
+
+<Note title="Scope">
+  This document introduces Sonr's blockchain architecture, core components, and
+  integration patterns. It covers identity management, authentication, data
+  sovereignty, and cross-chain operations. This document does not cover
+  implementation details or code examples—see the Quick Start Guide for hands-on
+  tutorials.
+</Note>
+
+<Note title="Audience">
+  **Developers** building Web3 applications who want simple integration
+  patterns. **Validators** interested in securing a next-generation blockchain
+  network. **Users** seeking sovereign digital identity solutions.
+  Prerequisites: Basic understanding of web development (HTML/JavaScript) for
+  developers; blockchain consensus for validators.
+</Note>
+
+## Summary
+
+Sonr is a Cosmos SDK blockchain that simplifies Web3 through **Decentralized Identity (DIDs)**, **passwordless authentication (WebAuthn)**, and **user-controlled agents (Vaults)**. Developers integrate crypto features using standard web technologies. Validators secure a network bridging Web2 and Web3. Users gain digital sovereignty without complexity.
+
+## What is Sonr?
+
+Sonr transforms blockchain interaction through four innovations:
+
+1. **W3C-compliant DIDs** replace wallet addresses
+2. **WebAuthn** eliminates seed phrases
+3. **Personal Vaults** automate blockchain operations
+4. **UCAN permissions** prevent unlimited approvals
+
+These components create a system where users onboard in 30 seconds using biometrics, developers add crypto features with HTML forms, and validators earn rewards securing digital sovereignty.
+
+## Why Sonr Matters
+
+### Current Problems
+
+Traditional Web3 forces users to:
+
+- Manage 24-word seed phrases
+- Install browser extensions
+- Understand gas fees
+- Navigate multiple wallets
+
+One mistake loses everything.
+
+### Sonr's Solution
+
+Sonr provides:
+
+- **30-second onboarding** with Face ID or fingerprint
+- **No seed phrases** through WebAuthn security
+- **No gas fees** for account creation
+- **Universal compatibility** across all devices
+- **Automatic recovery** via social and biometric methods
+
+## Core Architecture
+
+<CardGroup>
+  <Card title="Decentralized Identity (DID)" href="/blockchain/modules/did/">
+    W3C-compliant identity system using WebAuthn for passwordless authentication
+  </Card>
+  <Card title="Decentralized Web Nodes (DWN)" href="/blockchain/modules/dwn/">
+    Personal Vaults acting as user-controlled agents for blockchain interactions
+  </Card>
+  <Card title="UCAN Authorization" href="/blockchain/modules/svc/ucan">
+    Capability-based permissions replacing dangerous unlimited approve patterns
+  </Card>
+  <Card title="Service Registry" href="/blockchain/modules/svc/">
+    Stake-based trust system for service discovery and DNS verification
+  </Card>
+</CardGroup>
+
+## For Developers
+
+### Integration Benefits
+
+Sonr enables crypto features without blockchain knowledge:
+
+- **Use existing skills**: HTML, CSS, JavaScript
+- **Zero dependencies**: No SDKs or wallet libraries
+- **Progressive enhancement**: Start simple, add features
+- **Enterprise ready**: Integrates with existing auth systems
+
+### Simple Payment Example
+
+Transform any HTML form into a crypto payment interface:
+
+```html
+<form hx-post="/api/sonr/payment" hx-target="#result">
+  <input type="email" name="recipient" placeholder="alice@sonr.id" />
+  <input type="number" name="amount" placeholder="25.00" />
+  <select name="currency">
+    <option value="USDC">USDC</option>
+    <option value="ATOM">ATOM</option>
+  </select>
+  <button type="submit">Send Payment</button>
+</form>
+```
+
+Users approve with biometrics. Vaults handle transactions. No wallet connections required.
+
+### Developer Resources
+
+<CardGroup>
+  <Card title="Browser Integration" href="/quickstart/browser">
+    Web browser integration patterns and examples
+  </Card>
+  <Card title="Highway Wallet" href="/highway/">
+    Highway system powering user sovereignty
+  </Card>
+  <Card title="Payment Integration" href="/highway/wallets/sending-payments">
+    Payment integration guide
+  </Card>
+  <Card title="Blockchain Modules" href="/blockchain/">
+    Core blockchain modules and architecture
+  </Card>
+</CardGroup>
+
+## For Validators
+
+### Network Components
+
+Validators secure four critical systems:
+
+<CardGroup>
+  <Card title="Blockchain Core" href="/blockchain/">
+    Cosmos SDK with IBC for cross-chain operations
+  </Card>
+  <Card title="Token Economics" href="/blockchain/token/">
+    Tokenomics, staking, and governance
+  </Card>
+  <Card title="Highway Proxy" href="/highway/">
+    HTTP bridge supporting WebAuthn authentication
+  </Card>
+  <Card title="Validator Setup" href="/quickstart/validators">
+    Validator node setup and operations
+  </Card>
+</CardGroup>
+
+### Validator Operations
+
+Validators perform five key functions:
+
+1. **Validate identities**: Process DID operations and WebAuthn credentials
+2. **Execute Vaults**: Run capability delegations and revocations
+3. **Bridge chains**: Process IBC and InterchainAccount transactions
+4. **Verify services**: Validate DNS ownership and registrations
+5. **Coordinate MPC**: Participate in multi-party key management
+
+### Economic Incentives
+
+- **Block rewards**: Earn from transaction fees and inflation
+- **Service fees**: Share revenue from registrations
+- **MEV protection**: Built-in maximal extractable value prevention
+- **Sustainable model**: Long-term network health design
+
+## Key Concepts
+
+### Identity Management
+
+<CardGroup>
+  <Card title="Identity System" href="/blockchain/modules/did/">
+    W3C DIDs with WebAuthn for digital sovereignty
+  </Card>
+  <Card title="DID Module" href="/blockchain/modules/did/">
+    Blockchain implementation of identity management
+  </Card>
+</CardGroup>
+
+### Data Sovereignty
+
+<CardGroup>
+  <Card title="DWN Module" href="/blockchain/modules/dwn/">
+    Personal Vaults for user-controlled data and agents
+  </Card>
+  <Card title="Blockchain Network" href="/blockchain/network">
+    Network architecture and specifications
+  </Card>
+</CardGroup>
+
+### Authorization System
+
+<CardGroup>
+  <Card title="UCAN Module" href="/blockchain/modules/svc/ucan">
+    Capability-based permissions for secure delegation
+  </Card>
+  <Card title="Service Module" href="/blockchain/modules/svc/">
+    Registration, verification, and trust management
+  </Card>
+</CardGroup>
+
+### Cross-Chain Features
+
+<CardGroup>
+  <Card title="Blockchain Network" href="/blockchain/network">
+    Network architecture and cross-chain features
+  </Card>
+  <Card title="Payment Handler" href="/highway/wallets/sending-payments">
+    W3C API for seamless crypto payments
+  </Card>
+</CardGroup>
+
+## Getting Started
+
+### Developers
+
+Build Web3 applications without blockchain complexity:
+
+<CardGroup>
+  <Card title="Quick Start" href="/quickstart/">
+    Create your first Sonr application in 10 minutes
+  </Card>
+  <Card title="Browser Integration" href="/quickstart/browser">
+    Real-world integration patterns for web applications
+  </Card>
+  <Card title="CLI Tools" href="/quickstart/cli">
+    Command line tools and utilities
+  </Card>
+</CardGroup>
+
+### Validators
+
+Secure the future of digital sovereignty:
+
+<CardGroup>
+  <Card title="Node Setup" href="/quickstart/validators">
+    Complete validator installation guide
+  </Card>
+  <Card title="Token Economics" href="/blockchain/token/">
+    Token distribution, staking, and governance
+  </Card>
+  <Card title="Security" href="/reference/security/">
+    Security practices and compliance
+  </Card>
+</CardGroup>
+
+### Users
+
+Experience true digital ownership:
+
+<CardGroup>
+  <Card title="Create Identity" href="/blockchain/modules/did/onboarding">
+    30-second setup with biometric authentication
+  </Card>
+  <Card title="Use Your Vault" href="/blockchain/modules/dwn/">
+    Master your personal Web3 agent
+  </Card>
+  <Card title="Security Guide" href="/reference/security/">
+    Privacy and sovereignty protection
+  </Card>
+</CardGroup>
+
+## Next Steps
+
+<Note title="Ready to Build?" type="success">
+**Developers**: Start with the [Quick Start Guide](/quickstart/) to build your first Sonr application.
+
+**Validators**: Follow the [Node Setup Guide](/quickstart/validators) to join the network.
+
+**Users**: [Create your identity](/blockchain/modules/did/onboarding) in under 30 seconds.
+
+</Note>
+
+Explore the concepts above or dive into specific topics using the navigation menu. Join us in building the sovereign internet where identity belongs to individuals, not platforms.

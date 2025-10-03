@@ -1,0 +1,127 @@
+---
+openapi: get /svc/v1/service/{serviceId}
+title: Query Service Details
+description: Get comprehensive information about a registered service
+og:title: Service Information
+---
+
+<Info>
+  This endpoint provides complete service details needed for integration and trust verification.
+</Info>
+
+## Service Information
+
+### Core Identity
+- **id**: Unique service identifier
+- **domain**: DNS-verified domain binding
+- **owner**: Blockchain address of owner
+- **status**: ACTIVE, SUSPENDED, or REVOKED
+
+### Authorization
+- **rootCapabilityCid**: IPFS CID for UCAN root
+- **permissions**: List of requested capabilities
+
+### Timestamps
+- **createdAt**: Registration timestamp
+- **updatedAt**: Last modification time
+
+## Service Status Values
+
+### ACTIVE
+- Fully operational
+- Can interact with users
+- Accepts new authorizations
+
+### SUSPENDED
+- Temporarily disabled
+- Usually for violations
+- May be reactivated
+
+### REVOKED
+- Permanently disabled
+- Cannot be reactivated
+- Historical record only
+
+## Integration Guide
+
+### Verify Service Trust
+```javascript
+// 1. Query service
+const service = await queryService(serviceId);
+
+// 2. Verify domain ownership
+if (service.domain !== expectedDomain) {
+  throw new Error('Domain mismatch');
+}
+
+// 3. Check status
+if (service.status !== 'ACTIVE') {
+  throw new Error('Service not active');
+}
+
+// 4. Validate permissions
+const hasRequired = requiredPerms.every(p => 
+  service.permissions.includes(p)
+);
+```
+
+### Retrieve UCAN Root
+```bash
+# Get service details
+SERVICE=$(snrd query svc service my-app -o json)
+
+# Extract root capability CID
+CID=$(echo $SERVICE | jq -r '.rootCapabilityCid')
+
+# Fetch from IPFS
+ipfs cat $CID
+```
+
+## Permission Verification
+
+<Tip>
+  Always verify service permissions match your security requirements before granting access.
+</Tip>
+
+### Common Permission Sets
+
+#### Read-Only Service
+```json
+["dwn:read", "identity:read"]
+```
+
+#### Interactive Application
+```json
+["dwn:read", "dwn:write", "identity:read"]
+```
+
+#### Vault Manager
+```json
+["vault:access", "identity:read", "credentials:verify"]
+```
+
+## Usage Patterns
+
+### Service Discovery
+```bash
+# By service ID
+snrd query svc service chat-app
+
+# Parse for integration
+snrd query svc service chat-app -o json | jq '.permissions'
+```
+
+### Trust Verification
+```bash
+# Verify domain binding
+SERVICE_DOMAIN=$(snrd query svc service my-app -o json | jq -r '.domain')
+EXPECTED="example.com"
+
+if [ "$SERVICE_DOMAIN" = "$EXPECTED" ]; then
+  echo "Domain verified"
+fi
+```
+
+<Warning>
+  Never trust a service without verifying its domain binding and active status.
+</Warning>

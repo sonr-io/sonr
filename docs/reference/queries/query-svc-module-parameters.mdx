@@ -1,0 +1,44 @@
+---
+openapi: get /svc/v1/params
+title: Query SVC Module Parameters
+description: Get current service registration and domain verification settings
+og:title: SVC Module Configuration
+---
+
+<Info>
+  Module parameters define the operational constraints and requirements for all services on the network.
+</Info>
+
+## Parameter Overview
+
+### Service Constraints
+- **maxServicesPerAccount**: How many services one account can register
+- **maxDomainsPerService**: Domain binding limits per service
+- **maxEndpointsPerService**: API endpoint limits
+- **maxServiceDescriptionLength**: Description character limit
+
+### Verification Settings
+- **domainVerificationTimeout**: Time window for DNS verification
+- **requireDomainOwnershipProof**: Cryptographic proof requirement
+- **requireHttps**: HTTPS enforcement for endpoints
+- **allowLocalhost**: Development mode support
+
+### UCAN Configuration
+- **maxDelegationChainDepth**: How deep delegation chains can go
+- **ucanMaxLifetime**: Maximum token validity period
+- **ucanMinLifetime**: Minimum token validity period
+- **supportedSignatureAlgorithms**: Accepted signing algorithms
+
+### Economic Parameters
+- **serviceRegistrationFee**: Cost to register a service
+- **domainVerificationFee**: Cost to verify a domain
+- **minServiceStake**: Stake required to maintain service
+
+### Rate Limits
+- **maxRegistrationsPerBlock**: Registration spam prevention
+- **maxUpdatesPerBlock**: Update spam prevention
+- **maxCapabilityGrantsPerBlock**: Grant spam prevention
+
+<Tip>
+  Check these parameters before designing your service to ensure compliance with network limits.
+</Tip>

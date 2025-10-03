@@ -1,0 +1,16 @@
+---
+openapi: get /did/v1/documents
+title: List All DID Documents
+description: Browse all decentralized identifiers in the system
+og:title: DID Directory
+---
+
+<Note>
+  This endpoint returns all DIDs including deactivated ones.
+  Filter by the `deactivated` field for active DIDs only.
+</Note>
+
+<Tip>
+  For large systems, use pagination parameters to retrieve documents
+  in manageable chunks. Start with a reasonable limit like 50-100.
+</Tip>

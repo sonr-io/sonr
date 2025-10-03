@@ -1,0 +1,35 @@
+open module matrix.service.AppService
+
+id: String
+
+as_token: String
+
+hs_token: String
+
+namespaces: Namespaces
+
+sender_localpart: String
+
+url: String
+
+rate_limited: Boolean
+
+`de.sorunome.msc2409.push_ephemeral`: Boolean
+
+push_ephemeral: Boolean
+
+`org.matrix.msc3202`: Boolean
+
+class Namespaces {
+  rooms: Listing<Any>
+
+  users: Listing<Alias>
+
+  aliases: Listing<Alias>
+}
+
+class Alias {
+  regex: String
+
+  exclusive: Boolean
+}

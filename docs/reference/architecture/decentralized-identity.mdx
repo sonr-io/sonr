@@ -1,0 +1,129 @@
+---
+title: "DID Generation and Management"
+description: "Learn how to generate and manage Decentralized Identifiers (DIDs) using advanced crypto interfaces"
+sidebarTitle: "Identity Generation"
+icon: "signature"
+---
+
+# DID Generation Patterns
+
+The Sonr project provides a robust and flexible DID (Decentralized Identifier) generation system supporting multiple key types and cryptographic methods.
+
+## Supported Key Types
+
+The `didkey.go` interface supports the following key types:
+
+- RSA Public Keys
+- Ed25519 Public Keys
+- Secp256k1 Public Keys
+
+## Basic DID Generation
+
+### Creating a DID from a Public Key
+
+```go
+import (
+    "github.com/libp2p/go-libp2p/core/crypto"
+    "github.com/sonr-io/sonr/crypto/keys"
+)
+
+// Generate a new key pair
+privateKey, publicKey, err := crypto.GenerateKeyPair(crypto.Ed25519, -1)
+
+// Create a DID
+did, err := keys.NewDID(publicKey)
+```
+
+### Parsing an Existing DID
+
+```go
+// Parse a DID string
+did, err := keys.Parse("did:key:z6MkhaXgBZDvotDkL5257faiztiGiC2QtKLGTsyDFWYviJr4")
+```
+
+## Advanced DID Operations
+
+### Address Derivation
+
+```go
+// Get a blockchain-compatible address from a DID
+address, err := did.Address()
+```
+
+### Compressed Public Key Retrieval
+
+```go
+// Get a compressed public key (for Secp256k1)
+compressedPubKey, err := did.CompressedPubKey()
+```
+
+## MPC Enclave DID Generation
+
+For MPC (Multi-Party Computation) enclaves, use a specialized method:
+
+```go
+// Create a DID from MPC enclave public key bytes
+did, err := keys.NewFromMPCPubKey(enclavePublicKeyBytes)
+```
+
+## DID Validation
+
+```go
+// Validate a DID format
+err := keys.ValidateFormat("did:key:example123")
+```
+
+## Multicodec Support
+
+The library supports various multicodec prefixes for different key types:
+
+- RSA: `0x1205`
+- Ed25519: `0xed`
+- Secp256k1: `0xe7`
+
+## Security Considerations
+
+- Always generate keys using cryptographically secure methods
+- Validate DIDs before using them in critical operations
+- Use the appropriate key type for your security requirements
+
+## Example: Complete DID Workflow
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/libp2p/go-libp2p/core/crypto"
+    "github.com/sonr-io/sonr/crypto/keys"
+)
+
+func main() {
+    // Generate a new key pair
+    privateKey, publicKey, err := crypto.GenerateKeyPair(crypto.Ed25519, -1)
+    if err != nil {
+        panic(err)
+    }
+
+    // Create a DID
+    did, err := keys.NewDID(publicKey)
+    if err != nil {
+        panic(err)
+    }
+
+    // Get the DID string
+    didString := did.String()
+    fmt.Println("Generated DID:", didString)
+
+    // Derive blockchain address
+    address, err := did.Address()
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("Blockchain Address:", address)
+}
+```
+
+## Compatibility and Interoperability
+
+The Sonr DID implementation follows the W3C DID specification, ensuring broad compatibility with other decentralized identity systems.

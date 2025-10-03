@@ -1,0 +1,43 @@
+{
+  "name": "snrd",
+  "version": "0.1.0",
+  "description": "Plugin for Sonr PostgreSQL Docker image with pgsodium support and auto-start service",
+  "packages": ["docker@latest"],
+  "env": {
+    "POSTGRES_HOST": "localhost",
+    "POSTGRES_PORT": "${POSTGRES_PORT:-5432}",
+    "POSTGRES_USER": "${POSTGRES_USER:-postgres}",
+    "POSTGRES_PASSWORD": "${POSTGRES_PASSWORD:-password}",
+    "POSTGRES_DB": "${POSTGRES_DB:-sonr}",
+    "PGSODIUM_ROOT_KEY": "${PGSODIUM_ROOT_KEY:-}",
+    "POSTGRES_DATA_DIR": "{{ .Virtenv }}/data",
+    "POSTGRES_DOCKER_IMAGE": "ghcr.io/sonr-io/postgres:latest",
+    "POSTGRES_HOST_AUTH_METHOD": "trust",
+    "POSTGRES_CONTAINER_NAME": "devbox-postgres-sonr"
+  },
+  "create_files": {
+    "{{ .Virtenv }}/data": "",
+    "{{ .Virtenv }}/logs": "",
+    "{{ .Virtenv }}/process-compose.yaml": "etc/process-compose.yaml",
+    "{{ .DevboxDir }}/init.sh": "etc/init.sh"
+  },
+  "shell": {
+    "init_hook": ["chmod +x {{ .DevboxDir }}/init.sh", "{{ .DevboxDir }}/init.sh"],
+    "scripts": {
+      "start": "devbox services start postgres-sonr",
+      "stop": "devbox services stop postgres-sonr",
+      "restart": "devbox services restart postgres-sonr",
+      "logs": "docker logs -f ${POSTGRES_CONTAINER_NAME}",
+      "shell": "docker exec -it ${POSTGRES_CONTAINER_NAME} psql -U ${POSTGRES_USER} -d ${POSTGRES_DB}",
+      "exec": "docker exec -it ${POSTGRES_CONTAINER_NAME} bash",
+      "status": "docker exec ${POSTGRES_CONTAINER_NAME} pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB} && echo 'PostgreSQL is ready' || echo 'PostgreSQL is not ready'",
+      "backup": "docker exec ${POSTGRES_CONTAINER_NAME} pg_dumpall -U ${POSTGRES_USER} > {{ .DevboxProjectDir }}/backup-$(date +%Y%m%d-%H%M%S).sql",
+      "reset": [
+        "devbox services stop postgres-sonr",
+        "rm -rf {{ .Virtenv }}/data/*",
+        "devbox services start postgres-sonr"
+      ],
+      "generate-key": "openssl rand -hex 32"
+    }
+  }
+}

@@ -1,0 +1,100 @@
+---
+title: snrd genesis init
+description: Application's genesis-related subcommands
+---
+
+# snrd genesis init
+
+Application's genesis-related subcommands
+
+## Usage
+
+```shell
+snrd genesis [flags]
+```
+
+```shell
+snrd genesis [command]
+```
+
+## Available Commands
+
+| Command | Description |
+|---------|-------------|
+| `add-genesis-account` | Add a genesis account to genesis.json |
+| `collect-gentxs` | Collect genesis txs and output a genesis.json file |
+| `gentx` | Generate a genesis tx carrying a self delegation |
+| `migrate` | Migrate genesis to a specified target version |
+| `validate` | Validates the genesis file at the default location or at the location passed as an arg |
+
+## Flags
+
+<ParamField path="help" type="string">
+  for genesis
+</ParamField>
+
+## Global Flags
+
+<ParamField path="broadcast-mode" type="string" default="sync">
+  Transaction broadcasting mode (sync|async)
+</ParamField>
+
+<ParamField path="chain-id" type="string">
+  Specify Chain ID for sending Tx
+</ParamField>
+
+<ParamField path="fees" type="string">
+  Fees to pay along with transaction; eg: 10aatom
+</ParamField>
+
+<ParamField path="from" type="string">
+  Name or address of private key with which to sign
+</ParamField>
+
+<ParamField path="gas-adjustment" type="float" default="1">
+  adjustment factor to be multiplied against the estimate returned by the tx simulation; if the gas limit is set manually this flag is ignored
+</ParamField>
+
+<ParamField path="gas-prices" type="string">
+  Gas prices to determine the transaction fee (e.g. 10aatom)
+</ParamField>
+
+<ParamField path="home" type="string" default="/Users/prad/.sonr">
+  directory for config and data
+</ParamField>
+
+<ParamField path="keyring-backend" type="string" default="os">
+  Select keyring's backend
+</ParamField>
+
+<ParamField path="log_format" type="string" default="plain">
+  The logging format (json|plain)
+</ParamField>
+
+<ParamField path="log_level" type="string" default="info">
+  The logging level (trace|debug|info|warn|error|fatal|panic|disabled or '*:&lt;level&gt;,&lt;key&gt;:&lt;level&gt;')
+</ParamField>
+
+<ParamField path="log_no_color" type="string">
+  colored logs
+</ParamField>
+
+<ParamField path="node" type="string" default="tcp://localhost:26657">
+  &lt;host&gt;:&lt;port&gt; to tendermint rpc interface for this chain
+</ParamField>
+
+<ParamField path="trace" type="string">
+  out full stack trace on errors
+</ParamField>
+
+## Examples
+
+### Basic usage
+
+```shell
+snrd genesis init
+```
+
+## See Also
+
+- [snrd genesis](./snrd_genesis.mdx) - Parent command

@@ -1,0 +1,297 @@
+# Process Compose configuration for Sonr development environment
+# Manages all services with health checks and dependencies
+
+version: "0.5"
+
+log_level: info
+log_length: 100
+log_location: .logs/process-compose.log
+
+# Environment variables for all processes
+environment:
+  - "LOG_LEVEL=info"
+  - "ENVIRONMENT=development"
+
+# Shell configuration for process execution
+shell:
+  shell_command: "/bin/bash"
+  shell_argument: "-c"
+
+processes:
+  # Redis - Required for Highway service
+  redis:
+    command: ./scripts/containers.sh redis-up
+    namespace: core
+    log_location: .logs/redis.log
+    disabled: false
+    availability:
+      restart: "on_failure"
+      backoff_seconds: 15
+      max_restarts: 3
+    readiness_probe:
+      exec:
+        command: "./scripts/containers.sh redis-ready"
+      initial_delay_seconds: 2
+      period_seconds: 5
+      timeout_seconds: 2
+      success_threshold: 1
+      failure_threshold: 3
+    shutdown:
+      command: "./scripts/containers.sh redis-down"
+      timeout_seconds: 10
+      signal: 15
+
+  # IPFS - Required for vault operations
+  ipfs:
+    command: ./scripts/containers.sh ipfs-up
+    namespace: core
+    log_location: .logs/ipfs.log
+    disabled: false
+    availability:
+      restart: "on_failure"
+      backoff_seconds: 10
+      max_restarts: 3
+    readiness_probe:
+      exec:
+        command: "./scripts/containers.sh ipfs-ready"
+      initial_delay_seconds: 5
+      period_seconds: 10
+      timeout_seconds: 5
+      success_threshold: 1
+      failure_threshold: 3
+    liveness_probe:
+      exec:
+        command: "./scripts/containers.sh ipfs-alive"
+      initial_delay_seconds: 10
+      period_seconds: 30
+      timeout_seconds: 5
+      failure_threshold: 3
+    shutdown:
+      command: "./scripts/containers.sh ipfs-down"
+      timeout_seconds: 15
+      signal: 15
+
+  # PostgreSQL - Database for services
+  postgres:
+    command: ./scripts/containers.sh postgres-up
+    namespace: core
+    log_location: .logs/postgres.log
+    disabled: true
+    availability:
+      restart: "on_failure"
+      backoff_seconds: 5
+      max_restarts: 5
+    readiness_probe:
+      exec:
+        command: "./scripts/containers.sh postgres-ready"
+      initial_delay_seconds: 15
+      period_seconds: 10
+    shutdown:
+      command: "./scripts/containers.sh postgres-down"
+      timeout_seconds: 30
+
+  # Sonr blockchain node
+  chain:
+    command: ./scripts/containers.sh snrd-up
+    namespace: net
+    log_location: .logs/snrd.log
+    disabled: false
+    depends_on:
+      ipfs:
+        condition: process_healthy
+    availability:
+      restart: "on_failure"
+      backoff_seconds: 10
+      max_restarts: 5
+    readiness_probe:
+      http_get:
+        host: "127.0.0.1"
+        port: 26657
+        path: "/status"
+      initial_delay_seconds: 10
+      period_seconds: 10
+      timeout_seconds: 5
+      success_threshold: 1
+      failure_threshold: 10
+    liveness_probe:
+      http_get:
+        host: "127.0.0.1"
+        port: 26657
+        path: "/health"
+      initial_delay_seconds: 10
+      period_seconds: 15
+      timeout_seconds: 10
+      failure_threshold: 5
+    shutdown:
+      command: "./scripts/containers.sh snrd-down"
+      timeout_seconds: 30
+      signal: 15
+
+  # Highway service - Task processor
+  bridge:
+    command: ./scripts/containers.sh hway-up
+    namespace: net
+    log_location: .logs/hway.log
+    disabled: false
+    depends_on:
+      redis:
+        condition: process_healthy
+      ipfs:
+        condition: process_healthy
+    availability:
+      restart: "on_failure"
+      backoff_seconds: 5
+      max_restarts: 10
+    readiness_probe:
+      http_get:
+        host: "127.0.0.1"
+        port: 8090
+        path: "/health"
+      initial_delay_seconds: 10
+      period_seconds: 15
+      timeout_seconds: 10
+      success_threshold: 1
+      failure_threshold: 10
+    liveness_probe:
+      exec:
+        command: "./scripts/containers.sh hway-alive"
+      initial_delay_seconds: 10
+      period_seconds: 30
+      timeout_seconds: 15
+      failure_threshold: 10
+    shutdown:
+      command: "./scripts/containers.sh hway-down"
+      timeout_seconds: 10
+      signal: 15
+
+  # Web Auth application
+  auth:
+    command: pnpm run dev:auth
+    namespace: public
+    log_location: .logs/web-auth.log
+    working_dir: "."
+    disabled: true
+    depends_on:
+      chain:
+        condition: process_healthy
+    availability:
+      restart: "on_failure"
+      backoff_seconds: 10
+      max_restarts: 3
+    readiness_probe:
+      http_get:
+        host: "127.0.0.1"
+        port: 3100
+        path: "/"
+      initial_delay_seconds: 10
+      period_seconds: 10
+      timeout_seconds: 5
+      success_threshold: 1
+      failure_threshold: 3
+    environment:
+      - "NODE_ENV=development"
+      - "PORT=3100"
+    shutdown:
+      signal: 15
+      timeout_seconds: 10
+
+  # Web Dashboard application
+  dash:
+    command: pnpm run dev:dash
+    namespace: public
+    log_location: .logs/web-dash.log
+    working_dir: "."
+    disabled: true
+    depends_on:
+      auth:
+        condition: process_healthy
+      chain:
+        condition: process_healthy
+      bridge:
+        condition: process_healthy
+    availability:
+      restart: "on_failure"
+      backoff_seconds: 10
+      max_restarts: 3
+    readiness_probe:
+      http_get:
+        host: "127.0.0.1"
+        port: 3200
+        path: "/"
+      initial_delay_seconds: 10
+      period_seconds: 10
+      timeout_seconds: 5
+      success_threshold: 1
+      failure_threshold: 3
+    environment:
+      - "NODE_ENV=development"
+      - "PORT=3200"
+    shutdown:
+      signal: 15
+      timeout_seconds: 10
+
+  # Caddy reverse proxy - Optional for web services
+  caddy:
+    command: ./scripts/containers.sh caddy-up
+    namespace: core
+    log_location: .logs/caddy.log
+    disabled: true
+    depends_on:
+      chain:
+        condition: process_healthy
+    availability:
+      restart: "on_failure"
+      backoff_seconds: 10
+      max_restarts: 3
+    readiness_probe:
+      http_get:
+        host: "127.0.0.1"
+        port: 80
+        path: "/"
+      initial_delay_seconds: 5
+      period_seconds: 10
+      timeout_seconds: 5
+      success_threshold: 1
+      failure_threshold: 3
+    environment:
+      - "CADDY_DOMAIN=${CADDY_DOMAIN:-localhost}"
+    shutdown:
+      command: "./scripts/containers.sh caddy-down"
+      timeout_seconds: 10
+      signal: 15
+
+# Process groups for easier management
+groups:
+  # Infrastructure services (Redis, IPFS, PostgreSQL, Caddy)
+  core:
+    processes:
+      - redis
+      - ipfs
+      - postgres
+      # - caddy  # Uncomment to enable
+
+  # Blockchain and core services
+  net:
+    processes:
+      - chain
+      - bridge
+    depends_on:
+      - core
+
+  # Web applications
+  web:
+    processes:
+      - auth
+      - dash
+    depends_on:
+      - net
+
+  all:
+    processes:
+      - redis
+      - ipfs
+      - postgres
+      - chain
+      - bridge
+      - auth
+      - dash

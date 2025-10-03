@@ -1,0 +1,48 @@
+---
+openapi: post /dwn.v1.Msg/RecordsWrite
+title: Write Data Record to DWN
+description: Store structured data in your personal data vault with encryption and access control
+og:title: DWN Record Storage
+---
+
+<Info>
+  Records are the fundamental unit of data storage in DWN, supporting any data type with optional encryption.
+</Info>
+
+## Key Features
+
+### Data Organization
+- **Hierarchical Structure**: Use `parentId` to create nested record relationships
+- **Protocol Compliance**: Conform to defined data structures via `protocol` and `protocolPath`
+- **Schema Validation**: Enforce data integrity with JSON Schema URIs
+
+### Privacy & Security
+- **Encryption**: Client-side encryption before storage
+- **Published Flag**: Control public accessibility
+- **Attestations**: Cryptographic proofs of data integrity
+
+### Common Use Cases
+- **Personal Documents**: Store encrypted files and documents
+- **Application Data**: Persist app-specific user data
+- **Social Content**: Share public posts or media
+- **Health Records**: Store sensitive medical data with encryption
+
+<Tip>
+  Use protocol definitions to ensure data interoperability across applications.
+</Tip>
+
+## Example Record Types
+
+```json
+{
+  "protocol": "https://protocols.sonr.io/social/v1",
+  "protocolPath": "/posts/2024",
+  "schema": "https://schema.org/BlogPosting",
+  "published": true,
+  "data": "base64_encoded_content"
+}
+```
+
+<Warning>
+  Records exceeding `maxRecordSize` will be rejected. Large files should be stored in IPFS with only metadata on-chain.
+</Warning>

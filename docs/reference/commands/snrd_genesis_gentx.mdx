@@ -1,0 +1,210 @@
+---
+title: snrd genesis gentx
+description: Generate a genesis transaction that creates a validator with a self-delegation,
+---
+
+# snrd genesis gentx
+
+Generate a genesis transaction that creates a validator with a self-delegation,
+
+## Usage
+
+```shell
+snrd genesis gentx [key_name] [amount] [flags]
+```
+
+## Flags
+
+<ParamField path="account-number" type="string">
+  The account number of the signing account (offline mode only)
+</ParamField>
+
+<ParamField path="amount" type="string">
+  Amount of coins to bond
+</ParamField>
+
+<ParamField path="aux" type="string">
+  aux signer data instead of sending a tx
+</ParamField>
+
+<ParamField path="broadcast-mode" type="string" default="sync">
+  Transaction broadcasting mode (sync|async)
+</ParamField>
+
+<ParamField path="chain-id" type="string">
+  The network chain ID
+</ParamField>
+
+<ParamField path="commission-max-change-rate" type="string">
+  The maximum commission change rate percentage (per day)
+</ParamField>
+
+<ParamField path="commission-max-rate" type="string">
+  The maximum commission rate percentage
+</ParamField>
+
+<ParamField path="commission-rate" type="string">
+  The initial commission rate percentage
+</ParamField>
+
+<ParamField path="details" type="string">
+  The validator's (optional) details
+</ParamField>
+
+<ParamField path="dry-run" type="string">
+  the --gas flag and perform a simulation of a transaction, but don't broadcast it (when enabled, the local Keybase is not accessible)
+</ParamField>
+
+<ParamField path="fee-granter" type="string">
+  Fee granter grants fees for the transaction
+</ParamField>
+
+<ParamField path="fee-payer" type="string">
+  Fee payer pays fees for the transaction instead of deducting from the signer
+</ParamField>
+
+<ParamField path="fees" type="string">
+  Fees to pay along with transaction; eg: 10uatom
+</ParamField>
+
+<ParamField path="from" type="string">
+  Name or address of private key with which to sign
+</ParamField>
+
+<ParamField path="gas" type="string" default="200000">
+  gas limit to set per-transaction; set to "auto" to calculate sufficient gas automatically. Note: "auto" option doesn't always report accurate results. Set a valid coin value to adjust the result. Can be used instead of "fees".
+</ParamField>
+
+<ParamField path="gas-adjustment" type="float" default="1">
+  adjustment factor to be multiplied against the estimate returned by the tx simulation; if the gas limit is set manually this flag is ignored
+</ParamField>
+
+<ParamField path="gas-prices" type="string">
+  Gas prices in decimal format to determine the transaction fee (e.g. 0.1uatom)
+</ParamField>
+
+<ParamField path="generate-only" type="string">
+  an unsigned transaction and write it to STDOUT (when enabled, the local Keybase only accessed when providing a key name)
+</ParamField>
+
+<ParamField path="help" type="string">
+  for gentx
+</ParamField>
+
+<ParamField path="home" type="string" default="/Users/prad/.sonr">
+  The application home directory
+</ParamField>
+
+<ParamField path="identity" type="string">
+  The (optional) identity signature (ex. UPort or Keybase)
+</ParamField>
+
+<ParamField path="ip" type="string" default="192.168.1.203">
+  The node's public P2P IP
+</ParamField>
+
+<ParamField path="keyring-backend" type="string" default="os">
+  Select keyring's backend (os|file|kwallet|pass|test|memory)
+</ParamField>
+
+<ParamField path="keyring-dir" type="string">
+  The client Keyring directory; if omitted, the default 'home' directory will be used
+</ParamField>
+
+<ParamField path="ledger" type="string">
+  a connected Ledger device
+</ParamField>
+
+<ParamField path="min-self-delegation" type="string">
+  The minimum self delegation required on the validator
+</ParamField>
+
+<ParamField path="moniker" type="string">
+  The validator's (optional) moniker
+</ParamField>
+
+<ParamField path="node" type="string" default="tcp://localhost:26657">
+  &lt;host&gt;:&lt;port&gt; to CometBFT rpc interface for this chain
+</ParamField>
+
+<ParamField path="node-id" type="string">
+  The node's NodeID
+</ParamField>
+
+<ParamField path="note" type="string">
+  Note to add a description to the transaction (previously --memo)
+</ParamField>
+
+<ParamField path="offline" type="string">
+  mode (does not allow any online functionality)
+</ParamField>
+
+<ParamField path="output-document" type="string">
+  Write the genesis transaction JSON document to the given file instead of the default location
+</ParamField>
+
+<ParamField path="p2p-port" type="string" default="26656">
+  The node's public P2P port
+</ParamField>
+
+<ParamField path="pubkey" type="string">
+  The validator's Protobuf JSON encoded public key
+</ParamField>
+
+<ParamField path="security-contact" type="string">
+  The validator's (optional) security contact email
+</ParamField>
+
+<ParamField path="sequence" type="string">
+  The sequence number of the signing account (offline mode only)
+</ParamField>
+
+<ParamField path="sign-mode" type="string">
+  Choose sign mode (direct|amino-json|direct-aux|textual), this is an advanced feature
+</ParamField>
+
+<ParamField path="timeout-height" type="string">
+  Set a block timeout height to prevent the tx from being committed past a certain height
+</ParamField>
+
+<ParamField path="tip" type="string">
+  Tip is the amount that is going to be transferred to the fee payer on the target chain. This flag is only valid when used with --aux, and is ignored if the target chain didn't enable the TipDecorator
+</ParamField>
+
+<ParamField path="website" type="string">
+  The validator's (optional) website
+</ParamField>
+
+<ParamField path="yes" type="string">
+  tx broadcasting prompt confirmation
+</ParamField>
+
+## Global Flags
+
+<ParamField path="log_format" type="string" default="plain">
+  The logging format (json|plain)
+</ParamField>
+
+<ParamField path="log_level" type="string" default="info">
+  The logging level (trace|debug|info|warn|error|fatal|panic|disabled or '*:&lt;level&gt;,&lt;key&gt;:&lt;level&gt;')
+</ParamField>
+
+<ParamField path="log_no_color" type="string">
+  colored logs
+</ParamField>
+
+<ParamField path="trace" type="string">
+  out full stack trace on errors
+</ParamField>
+
+## Examples
+
+### Generate genesis transaction
+
+```shell
+snrd genesis gentx alice 1000000snr --chain-id sonrtest_1-1
+```
+
+## See Also
+
+- [snrd genesis](./snrd_genesis.mdx) - Parent command

@@ -1,0 +1,87 @@
+---
+openapi: get /dwn/v1/protocols/{target}/{protocolUri}
+title: Query Specific Protocol
+description: Get detailed protocol definition and configuration
+og:title: DWN Protocol Details
+---
+
+<Info>
+  Protocol definitions specify the complete data model and access rules for structured interactions.
+</Info>
+
+## Protocol Structure
+
+### Definition Components
+```json
+{
+  "types": {
+    "post": {
+      "schema": "https://schema.org/BlogPosting",
+      "dataFormats": ["application/json"]
+    },
+    "comment": {
+      "schema": "https://schema.org/Comment",
+      "dataFormats": ["application/json"]
+    }
+  },
+  "structure": {
+    "post": {
+      "comment": {}
+    }
+  },
+  "permissions": {
+    "post": ["author", "admin"],
+    "comment": ["anyone"]
+  }
+}
+```
+
+### Key Elements
+- **Types**: Record type definitions with schemas
+- **Structure**: Hierarchical relationships
+- **Permissions**: Access control rules
+- **Actions**: Allowed operations per type
+
+## Protocol Analysis
+
+<Tip>
+  Examine existing protocols to understand best practices before creating your own.
+</Tip>
+
+### Understanding a Protocol
+1. **Review Types**: What data can be stored?
+2. **Check Structure**: How is data organized?
+3. **Verify Permissions**: Who can access what?
+4. **Test Compatibility**: Does it meet your needs?
+
+## Common Protocol Patterns
+
+### Social Media Protocol
+- Posts, comments, reactions hierarchy
+- Public read, authenticated write
+- Media attachment support
+
+### Healthcare Protocol
+- Patient records, visits, prescriptions
+- Strict access control
+- Mandatory encryption
+
+### IoT Protocol
+- Device registry, telemetry, commands
+- Time-series data structure
+- Rate-limited writes
+
+<Warning>
+  Protocol URIs must be URL-encoded when used as path parameters.
+</Warning>
+
+## Integration Example
+
+```bash
+# Get protocol definition
+PROTOCOL_URI="https://protocols.sonr.io/social/v1"
+snrd query dwn protocol did:sonr:alice "$PROTOCOL_URI"
+
+# Parse and adopt
+snrd tx dwn protocols-configure --copy-from did:sonr:alice --protocol "$PROTOCOL_URI"
+```

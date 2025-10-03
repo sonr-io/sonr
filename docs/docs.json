@@ -1,0 +1,366 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "maple",
+  "name": "Sonr Docs",
+  "logo": {
+    "light": "https://cdn.sonr.io/logos/docs/logo.svg",
+    "dark": "https://cdn.sonr.io/logos/docs/logo-dark.svg"
+  },
+  "favicon": "https://cdn.sonr.io/favicon.ico",
+  "colors": {
+    "primary": "#17c2FF",
+    "light": "#17c2FF",
+    "dark": "#279cff"
+  },
+  "icons": {
+    "library": "lucide"
+  },
+  "navigation": {
+    "dropdowns": [
+      {
+        "dropdown": "Documentation",
+        "description": "Sonr Fundamentals",
+        "icon": "lightbulb",
+        "pages": [
+          {
+            "group": "Getting Started",
+            "icon": "rocket",
+            "pages": [
+              "index",
+              "reference/install",
+              "changelog",
+              "faq"
+            ]
+          },
+          {
+            "group": "Learn Concepts",
+            "icon": "lightbulb",
+            "pages": [
+              {
+                "group": "Sonr Blockchain",
+                "icon": "combine",
+                "pages": ["concepts/sonr", "modules/did/index", "modules/dwn/index", "modules/svc/index", "modules/dex/index"]
+              },
+              {
+                "group": "Gateway Services",
+                "icon": "radio-tower",
+                "pages": [
+                  "concepts/hway",
+                  "concepts/gasless-onboarding",
+                  "concepts/webauthn-integration"
+                ]
+              },
+              {
+                "group": "Light Clients",
+                "icon": "plug",
+                "pages": [
+                  "concepts/motr",
+                  "concepts/decentralized-auth",
+                  "concepts/identity-generation",
+                  "concepts/dwn-architecture"
+                ]
+              },
+              {
+                "group": "Token Economics",
+                "icon": "coins",
+                "pages": [
+                  "concepts/token",
+                  "economics/values",
+                  "economics/utility",
+                  "economics/staking",
+                  "economics/rewards",
+                  "economics/governance",
+                  "economics/distribution"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Build Apps",
+            "icon": "hammer",
+            "pages": [
+              {
+                "group": "Client SDKs",
+                "icon": "code",
+                "pages": [
+                  "quickstart/react",
+                  "quickstart/browser",
+                  "quickstart/golang"
+                ]
+              },
+              {
+                "group": "Service Management",
+                "icon": "globe",
+                "pages": [
+                  "guides/register-records",
+                  "guides/authorize-clients",
+                  "guides/broadcast-transactions",
+                  "guides/issue-payments",
+                  "guides/establish-connection"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Validator Guides",
+            "icon": "shield-check",
+            "pages": [
+              "guides/onboarding",
+              "guides/development",
+              "guides/deployment",
+              {
+                "group": "Security Report",
+                "icon": "shield",
+                "pages": [
+                  "reference/security/audit-report",
+                  "reference/security/compliance",
+                  "reference/security/cryptography",
+                  "reference/security/vulnerabilities"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Next Steps",
+            "icon": "play",
+            "pages": []
+          }
+        ]
+      },
+      {
+        "dropdown": "Reference",
+        "description": "API Reference",
+        "icon": "code",
+        "pages": [
+          {
+            "group": "CLI Commands",
+            "icon": "terminal",
+            "root": "cli-commands",
+            "pages": [
+              "reference/commands/snrd",
+              "reference/commands/snrd_auth",
+              "reference/commands/snrd_auth_register",
+              "reference/commands/snrd_genesis",
+              "reference/commands/snrd_genesis_add-genesis-account",
+              "reference/commands/snrd_genesis_collect-gentxs",
+              "reference/commands/snrd_genesis_export",
+              "reference/commands/snrd_genesis_gentx",
+              "reference/commands/snrd_genesis_init",
+              "reference/commands/snrd_genesis_migrate",
+              "reference/commands/snrd_genesis_validate",
+              "reference/commands/snrd_help",
+              "reference/commands/snrd_init",
+              "reference/commands/snrd_keys",
+              "reference/commands/snrd_keys_add",
+              "reference/commands/snrd_keys_delete",
+              "reference/commands/snrd_keys_export",
+              "reference/commands/snrd_keys_import",
+              "reference/commands/snrd_keys_list",
+              "reference/commands/snrd_keys_migrate",
+              "reference/commands/snrd_keys_parse",
+              "reference/commands/snrd_keys_show",
+              "reference/commands/snrd_migrate",
+              "reference/commands/snrd_node",
+              "reference/commands/snrd_prune",
+              "reference/commands/snrd_query",
+              "reference/commands/snrd_query_account",
+              "reference/commands/snrd_query_accounts",
+              "reference/commands/snrd_query_auth",
+              "reference/commands/snrd_query_bank",
+              "reference/commands/snrd_query_consensus",
+              "reference/commands/snrd_query_delegation",
+              "reference/commands/snrd_query_did",
+              "reference/commands/snrd_query_distribution",
+              "reference/commands/snrd_query_dwn",
+              "reference/commands/snrd_query_feegrant",
+              "reference/commands/snrd_query_gov",
+              "reference/commands/snrd_query_slashing",
+              "reference/commands/snrd_query_staking",
+              "reference/commands/snrd_query_svc",
+              "reference/commands/snrd_query_tendermint",
+              "reference/commands/snrd_query_tx",
+              "reference/commands/snrd_rollback",
+              "reference/commands/snrd_status",
+              "reference/commands/snrd_tendermint",
+              "reference/commands/snrd_tx",
+              "reference/commands/snrd_tx_bank",
+              "reference/commands/snrd_tx_consensus",
+              "reference/commands/snrd_tx_crisis",
+              "reference/commands/snrd_tx_did",
+              "reference/commands/snrd_tx_distribution",
+              "reference/commands/snrd_tx_dwn",
+              "reference/commands/snrd_tx_feegrant",
+              "reference/commands/snrd_tx_gov",
+              "reference/commands/snrd_tx_slashing",
+              "reference/commands/snrd_tx_staking",
+              "reference/commands/snrd_tx_svc",
+              "reference/commands/snrd_version"
+            ]
+          },
+          {
+            "group": "Decentralized Exchange",
+            "icon": "arrow-right-left",
+            "tag": "x/dex",
+            "pages": [
+              {
+                "group": "HTTP Endpoints",
+                "tag": "Query",
+                "icon": "rss",
+                "pages": [
+                  "api-reference/dex/get-dex-account",
+                  "api-reference/dex/get-module-parameters",
+                  "api-reference/dex/get-pool-information",
+                  "api-reference/dex/get-remote-chain-balance",
+                  "api-reference/dex/get-transaction-history",
+                  "api-reference/dex/list-all-dex-accounts",
+                  "api-reference/dex/list-orders"
+                ]
+              },
+              {
+                "group": "GRPC Methods",
+                "tag": "TxMsg",
+                "icon": "plug",
+                "pages": [
+                  "api-reference/dex/add-liquidity",
+                  "api-reference/dex/cancel-order",
+                  "api-reference/dex/create-dex-account",
+                  "api-reference/dex/create-limit-order",
+                  "api-reference/dex/execute-token-swap",
+                  "api-reference/dex/remove-liquidity"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Decentralized Identifiers",
+            "icon": "contact-round",
+            "tag": "x/did",
+            "pages": [
+              {
+                "group": "HTTP Endpoints",
+                "tag": "Query",
+                "icon": "rss",
+                "pages": [
+                  "api-reference/did/get-all-credentials-by-did",
+                  "api-reference/did/get-did-document",
+                  "api-reference/did/get-dids-by-controller",
+                  "api-reference/did/get-module-parameters",
+                  "api-reference/did/get-service-endpoint",
+                  "api-reference/did/get-verifiable-credential",
+                  "api-reference/did/get-verification-method",
+                  "api-reference/did/list-all-did-documents",
+                  "api-reference/did/list-verifiable-credentials",
+                  "api-reference/did/resolve-did"
+                ]
+              },
+              {
+                "group": "GRPC Methods",
+                "tag": "TxMsg",
+                "icon": "plug",
+                "pages": [
+                  "api-reference/did/add-service-endpoint",
+                  "api-reference/did/add-verification-method",
+                  "api-reference/did/create-did-document",
+                  "api-reference/did/deactivate-did",
+                  "api-reference/did/issue-verifiable-credential",
+                  "api-reference/did/link-external-wallet",
+                  "api-reference/did/register-webauthn-credential-gasless",
+                  "api-reference/did/remove-service-endpoint",
+                  "api-reference/did/remove-verification-method",
+                  "api-reference/did/revoke-verifiable-credential",
+                  "api-reference/did/update-did-document",
+                  "api-reference/did/update-module-parameters"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Decentralized Web Nodes",
+            "icon": "wallet",
+            "tag": "x/dwn",
+            "pages": [
+              {
+                "group": "HTTP Endpoints",
+                "tag": "Query",
+                "icon": "rss",
+                "pages": [
+                  "api-reference/dwn/query-dwn-permissions",
+                  "api-reference/dwn/query-dwn-protocols",
+                  "api-reference/dwn/query-dwn-records",
+                  "api-reference/dwn/query-encrypted-record-with-decryption",
+                  "api-reference/dwn/query-encryption-system-status",
+                  "api-reference/dwn/query-ipfs-node-status",
+                  "api-reference/dwn/query-module-parameters",
+                  "api-reference/dwn/query-specific-dwn-record",
+                  "api-reference/dwn/query-specific-dwn-protocol",
+                  "api-reference/dwn/query-specific-vault",
+                  "api-reference/dwn/query-vaults-by-owner",
+                  "api-reference/dwn/query-vrf-consensus-contributions",
+                  "api-reference/dwn/retrieve-ipfs-content-by-cid"
+                ]
+              },
+              {
+                "group": "GRPC Methods",
+                "tag": "TxMsg",
+                "icon": "plug",
+                "pages": [
+                  "api-reference/dwn/configure-dwn-protocol",
+                  "api-reference/dwn/delete-record-from-dwn",
+                  "api-reference/dwn/grant-dwn-permission",
+                  "api-reference/dwn/revoke-dwn-permission",
+                  "api-reference/dwn/rotate-vault-encryption-keys",
+                  "api-reference/dwn/update-dwn-module-parameters",
+                  "api-reference/dwn/write-record-to-dwn"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Service Registry",
+            "icon": "shield-check",
+            "tag": "x/svc",
+            "pages": [
+              {
+                "group": "HTTP Endpoints",
+                "tag": "Query",
+                "icon": "rss",
+                "pages": [
+                  "api-reference/svc/query-domain-verification-status",
+                  "api-reference/svc/query-module-parameters",
+                  "api-reference/svc/query-service-by-id",
+                  "api-reference/svc/query-services-by-domain",
+                  "api-reference/svc/query-services-by-owner"
+                ]
+              },
+              {
+                "group": "GRPC Methods",
+                "tag": "TxMsg",
+                "icon": "plug",
+                "pages": [
+                  "api-reference/svc/complete-domain-verification",
+                  "api-reference/svc/initiate-domain-verification",
+                  "api-reference/svc/register-service-with-verified-domain",
+                  "api-reference/svc/update-module-parameters"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "socials": {
+      "discord": "https://sonr.io/discord",
+      "github": "https://github.com/sonr-io",
+      "twitter": "https://twitter.com/sonr_io",
+      "youtube": "https://youtube.com/@sonrhq",
+      "website": "https://sonr.io"
+    }
+  },
+  "integrations": {
+    "ga4": {
+      "measurementId": "G-FY0WZBSGH8"
+    }
+  }
+}

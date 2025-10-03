@@ -1,0 +1,13 @@
+packages:
+  # CLI tools
+  - "cli/*"
+  # Core packages
+  - "packages/*"
+  # Template packages
+  - "templates/*"
+  # Web applications
+  - "web/*"
+  # Example applications
+  - "examples/*"
+  # Documentation (if needed in future)
+  # - "docs"

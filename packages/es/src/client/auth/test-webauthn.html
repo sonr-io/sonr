@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonr WebAuthn Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-8">
+    <div class="max-w-2xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8">Sonr WebAuthn Test Page</h1>
+        
+        <div class="bg-white rounded-lg shadow p-6 mb-6">
+            <h2 class="text-xl font-semibold mb-4">WebAuthn Support</h2>
+            <div id="support-status" class="space-y-2"></div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow p-6 mb-6">
+            <h2 class="text-xl font-semibold mb-4">Registration</h2>
+            <input type="text" id="username" placeholder="Enter username" 
+                   class="w-full p-2 border rounded mb-4">
+            <button onclick="testRegistration()" 
+                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Register with WebAuthn
+            </button>
+            <div id="registration-result" class="mt-4"></div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-xl font-semibold mb-4">Authentication</h2>
+            <input type="text" id="login-username" placeholder="Enter username" 
+                   class="w-full p-2 border rounded mb-4">
+            <button onclick="testAuthentication()" 
+                    class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                Login with WebAuthn
+            </button>
+            <div id="authentication-result" class="mt-4"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        // This would normally import from @sonr.io/es/auth
+        // For testing, you'd need to build and serve the package
+        
+        // Mock functions for demonstration
+        async function checkSupport() {
+            const supportDiv = document.getElementById('support-status');
+            
+            const isSupported = !!(window?.PublicKeyCredential);
+            const isPlatformAvailable = isSupported && 
+                await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable();
+            const isConditionalAvailable = isSupported && 
+                await PublicKeyCredential.isConditionalMediationAvailable?.();
+            
+            supportDiv.innerHTML = `
+                <p>✅ WebAuthn Supported: ${isSupported}</p>
+                <p>✅ Platform Authenticator: ${isPlatformAvailable}</p>
+                <p>✅ Conditional Mediation: ${isConditionalAvailable || false}</p>
+            `;
+        }
+        
+        window.testRegistration = async function() {
+            const username = document.getElementById('username').value;
+            const resultDiv = document.getElementById('registration-result');
+            
+            if (!username) {
+                resultDiv.innerHTML = '<p class="text-red-500">Please enter a username</p>';
+                return;
+            }
+            
+            resultDiv.innerHTML = '<p class="text-blue-500">Initiating registration...</p>';
+            
+            // This would call the actual registerWebAuthn function
+            // from @sonr.io/es/auth
+            try {
+                // Simulated call
+                resultDiv.innerHTML = '<p class="text-green-500">Registration would be initiated for: ' + username + '</p>';
+                console.log('Would call registerWebAuthn with:', {
+                    apiUrl: 'http://localhost:8080',
+                    username,
+                    rpId: 'localhost',
+                    rpName: 'Sonr Local'
+                });
+            } catch (error) {
+                resultDiv.innerHTML = '<p class="text-red-500">Registration failed: ' + error.message + '</p>';
+            }
+        };
+        
+        window.testAuthentication = async function() {
+            const username = document.getElementById('login-username').value;
+            const resultDiv = document.getElementById('authentication-result');
+            
+            if (!username) {
+                resultDiv.innerHTML = '<p class="text-red-500">Please enter a username</p>';
+                return;
+            }
+            
+            resultDiv.innerHTML = '<p class="text-blue-500">Initiating authentication...</p>';
+            
+            // This would call the actual loginWebAuthn function
+            // from @sonr.io/es/auth
+            try {
+                // Simulated call
+                resultDiv.innerHTML = '<p class="text-green-500">Authentication would be initiated for: ' + username + '</p>';
+                console.log('Would call loginWebAuthn with:', {
+                    apiUrl: 'http://localhost:8080',
+                    username,
+                    rpId: 'localhost'
+                });
+            } catch (error) {
+                resultDiv.innerHTML = '<p class="text-red-500">Authentication failed: ' + error.message + '</p>';
+            }
+        };
+        
+        // Check support on load
+        checkSupport();
+    </script>
+</body>
+</html>

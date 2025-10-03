@@ -1,0 +1,98 @@
+---
+title: snrd tx feegrant
+description: Grant and revoke fee allowance for a grantee by a granter
+---
+
+# snrd tx feegrant
+
+Grant and revoke fee allowance for a grantee by a granter
+
+## Usage
+
+```shell
+snrd tx feegrant [flags]
+```
+
+```shell
+snrd tx feegrant [command]
+```
+
+## Available Commands
+
+| Command | Description |
+|---------|-------------|
+| `grant` | Grant Fee allowance to an address |
+| `prune` | Prune expired allowances |
+| `revoke` | Revoke a fee grant |
+
+## Flags
+
+<ParamField path="help" type="string">
+  for feegrant
+</ParamField>
+
+## Global Flags
+
+<ParamField path="broadcast-mode" type="string" default="sync">
+  Transaction broadcasting mode (sync|async)
+</ParamField>
+
+<ParamField path="chain-id" type="string">
+  The network chain ID
+</ParamField>
+
+<ParamField path="fees" type="string">
+  Fees to pay along with transaction; eg: 10aatom
+</ParamField>
+
+<ParamField path="from" type="string">
+  Name or address of private key with which to sign
+</ParamField>
+
+<ParamField path="gas-adjustment" type="float" default="1">
+  adjustment factor to be multiplied against the estimate returned by the tx simulation; if the gas limit is set manually this flag is ignored
+</ParamField>
+
+<ParamField path="gas-prices" type="string">
+  Gas prices to determine the transaction fee (e.g. 10aatom)
+</ParamField>
+
+<ParamField path="home" type="string" default="/Users/prad/.sonr">
+  directory for config and data
+</ParamField>
+
+<ParamField path="keyring-backend" type="string" default="os">
+  Select keyring's backend
+</ParamField>
+
+<ParamField path="log_format" type="string" default="plain">
+  The logging format (json|plain)
+</ParamField>
+
+<ParamField path="log_level" type="string" default="info">
+  The logging level (trace|debug|info|warn|error|fatal|panic|disabled or '*:&lt;level&gt;,&lt;key&gt;:&lt;level&gt;')
+</ParamField>
+
+<ParamField path="log_no_color" type="string">
+  colored logs
+</ParamField>
+
+<ParamField path="node" type="string" default="tcp://localhost:26657">
+  &lt;host&gt;:&lt;port&gt; to tendermint rpc interface for this chain
+</ParamField>
+
+<ParamField path="trace" type="string">
+  out full stack trace on errors
+</ParamField>
+
+## Examples
+
+### Submit transaction
+
+```shell
+snrd tx feegrant --from alice --chain-id sonrtest_1-1
+```
+
+## See Also
+
+- [snrd tx](./snrd_tx.mdx) - Parent command

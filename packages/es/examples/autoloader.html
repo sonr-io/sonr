@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonr ES Autoloader Example</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sonr ES Autoloader Example</h1>
+    
+    <div class="section">
+        <h2>Library Status</h2>
+        <div id="loadStatus" class="status info">Loading Sonr ES library...</div>
+        <div id="environment" class="status info" style="display: none;"></div>
+    </div>
+
+    <div class="section">
+        <h2>WebAuthn Demo</h2>
+        <div id="webauthnStatus" class="status info">Checking WebAuthn availability...</div>
+        
+        <div id="webauthnDemo" style="display: none;">
+            <h3>Register with Passkey</h3>
+            <input type="text" id="username" placeholder="Enter username" style="padding: 8px; margin: 5px;">
+            <button id="registerBtn" onclick="registerUser()">Register</button>
+            
+            <h3>Login with Passkey</h3>
+            <button id="loginBtn" onclick="loginUser()">Login</button>
+            
+            <div id="webauthnResult" style="margin-top: 20px;"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Available Modules</h2>
+        <div id="modules"></div>
+    </div>
+
+    <div class="section">
+        <h2>Console Output</h2>
+        <pre id="console"></pre>
+    </div>
+
+    <!-- Load the Sonr ES autoloader -->
+    <script type="module">
+        // Import from local build (change to CDN URL in production)
+        import '../dist/autoloader.js';
+        
+        // Custom console logger
+        const consoleEl = document.getElementById('console');
+        const originalLog = console.log;
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            const message = args.map(arg => 
+                typeof arg === 'object' ? JSON.stringify(arg, null, 2) : arg
+            ).join(' ');
+            consoleEl.textContent += message + '\n';
+        };
+
+        // Wait for Sonr to be ready
+        window.addEventListener('sonr:ready', (event) => {
+            const Sonr = event.detail;
+            
+            // Update load status
+            document.getElementById('loadStatus').className = 'status success';
+            document.getElementById('loadStatus').textContent = 'Sonr ES library loaded successfully!';
+            
+            // Show environment info
+            const env = Sonr.getEnvironment();
+            document.getElementById('environment').style.display = 'block';
+            document.getElementById('environment').innerHTML = `
+                <strong>Environment:</strong> ${env.type}<br>
+                <strong>WebAuthn:</strong> ${env.webauthn ? 'Supported' : 'Not supported'}<br>
+                <strong>Service Worker:</strong> ${env.serviceWorker ? 'Supported' : 'Not supported'}
+            `;
+            
+            // Check WebAuthn
+            checkWebAuthn();
+            
+            // List available modules
+            listModules();
+        });
+
+        async function checkWebAuthn() {
+            if (window.Sonr && window.Sonr.webauthn) {
+                const isAvailable = await window.Sonr.webauthn.isAvailable();
+                const isConditional = await window.Sonr.webauthn.isConditionalAvailable();
+                
+                const statusEl = document.getElementById('webauthnStatus');
+                if (isAvailable) {
+                    statusEl.className = 'status success';
+                    statusEl.innerHTML = `
+                        WebAuthn is available!<br>
+                        Conditional mediation (autofill): ${isConditional ? 'Supported' : 'Not supported'}
+                    `;
+                    document.getElementById('webauthnDemo').style.display = 'block';
+                } else {
+                    statusEl.className = 'status error';
+                    statusEl.textContent = 'WebAuthn is not available in this browser';
+                }
+            }
+        }
+
+        function listModules() {
+            const modulesEl = document.getElementById('modules');
+            if (window.Sonr) {
+                const modules = [
+                    'auth - Authentication utilities',
+                    'client - Blockchain client',
+                    'codec - Encoding/decoding utilities',
+                    'wallet - Wallet management',
+                    'registry - Chain registry',
+                    'plugins - WASM plugins (motor, vault)',
+                    'webauthn - WebAuthn shortcuts'
+                ];
+                
+                modulesEl.innerHTML = '<ul>' + 
+                    modules.map(m => `<li><code>window.Sonr.${m.split(' - ')[0]}</code> - ${m.split(' - ')[1]}</li>`).join('') +
+                    '</ul>';
+            }
+        }
+
+        // Make functions available globally
+        window.registerUser = async function() {
+            const username = document.getElementById('username').value;
+            if (!username) {
+                alert('Please enter a username');
+                return;
+            }
+            
+            const resultEl = document.getElementById('webauthnResult');
+            resultEl.className = 'status info';
+            resultEl.textContent = 'Starting registration...';
+            
+            try {
+                const result = await window.Sonr.webauthn.register({
+                    username,
+                    displayName: username,
+                    // Add your RP info here
+                    rpId: window.location.hostname,
+                    rpName: 'Sonr ES Demo'
+                });
+                
+                console.log('Registration successful:', result);
+                resultEl.className = 'status success';
+                resultEl.innerHTML = `
+                    <strong>Registration successful!</strong><br>
+                    Credential ID: ${result.credentialId}<br>
+                    User verified: ${result.userVerified}
+                `;
+            } catch (error) {
+                console.error('Registration failed:', error);
+                resultEl.className = 'status error';
+                resultEl.textContent = `Registration failed: ${error.message}`;
+            }
+        };
+
+        window.loginUser = async function() {
+            const resultEl = document.getElementById('webauthnResult');
+            resultEl.className = 'status info';
+            resultEl.textContent = 'Starting login...';
+            
+            try {
+                const result = await window.Sonr.webauthn.login({
+                    rpId: window.location.hostname
+                });
+                
+                console.log('Login successful:', result);
+                resultEl.className = 'status success';
+                resultEl.innerHTML = `
+                    <strong>Login successful!</strong><br>
+                    Credential ID: ${result.credentialId}<br>
+                    User verified: ${result.userVerified}
+                `;
+            } catch (error) {
+                console.error('Login failed:', error);
+                resultEl.className = 'status error';
+                resultEl.textContent = `Login failed: ${error.message}`;
+            }
+        };
+    </script>
+
+    <!-- Alternative: Load from CDN -->
+    <!-- <script type="module" src="https://unpkg.com/@sonr.io/es@latest/dist/autoloader.js"></script> -->
+    
+    <!-- Alternative: Load with regular script tag (non-module) -->
+    <!-- 
+    <script>
+        // The library will be available as window.Sonr after loading
+        window.addEventListener('sonr:ready', function(event) {
+            console.log('Sonr is ready!', window.Sonr);
+        });
+    </script>
+    <script src="https://unpkg.com/@sonr.io/es@latest/dist/autoloader.js"></script>
+    -->
+</body>
+</html>

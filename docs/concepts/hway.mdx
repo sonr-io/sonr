@@ -1,0 +1,375 @@
+---
+title: "Highway Service"
+sidebarTitle: "Hway Overview"
+description: "High-performance task processing service for Sonr's decentralized vault system"
+icon: "play"
+---
+
+# Highway Service (hway)
+
+Highway is a high-performance task processing service for Sonr's decentralized vault system. It provides asynchronous, durable execution of cryptographic operations using WebAssembly enclaves and Redis-backed job queues.
+
+## Overview
+
+Highway acts as a distributed task processor that handles secure cryptographic operations for the Sonr blockchain ecosystem. It leverages:
+
+- **Asynq** for reliable job queue management with Redis
+- **Proto.Actor** for actor-based concurrency
+- **WebAssembly enclaves** for secure cryptographic operations
+- **IPFS integration** for decentralized storage
+
+## Quick Start
+
+### Prerequisites
+
+- Redis server running on `127.0.0.1:6379`
+- Go 1.24.4 or later
+
+### Installation
+
+```bash
+# Build and install the Highway service
+make install
+
+# Or build directly
+cd cmd/hway
+go build -o hway .
+```
+
+### Running the Service
+
+```bash
+# Start the Highway service
+./hway
+```
+
+The service will connect to Redis and begin processing vault tasks with the following configuration:
+
+- **Concurrency**: 10 workers
+- **Queue Priorities**:
+  - `critical`: 6 workers
+  - `default`: 3 workers
+  - `low`: 1 worker
+
+## Architecture
+
+Highway implements a multi-layered architecture for secure task processing:
+
+```
+
+   Task Queue          Highway Service       Vault Actor
+   (Redis)              (Asynq)             (Proto.Actor)
+
+
+
+
+                                                 WASM Enclave
+                                                  (Extism)
+
+```
+
+### Core Components
+
+1. **Task Processing Layer** (`main.go`)
+
+   - Asynq server configuration
+   - Task routing and worker management
+   - Redis connection handling
+
+2. **Actor System** (`internal/vault/plugin/actor.go`)
+
+   - Proto.Actor based concurrency
+   - Behavioral state management
+   - Lifecycle management for WASM plugins
+
+3. **Plugin Interface** (`internal/vault/plugin/plugin.go`)
+
+   - WebAssembly plugin abstraction
+   - Secure cryptographic operations
+   - Type-safe method calls
+
+4. **Task Definitions** (`internal/vault/tasks/`)
+   - Task type definitions
+   - Payload serialization
+   - Task processing logic
+
+## Supported Operations
+
+Highway supports the following cryptographic operations through its vault system:
+
+### Key Generation
+
+```go
+// Generate a new cryptographic key pair
+type GenerateRequest struct {
+    ID string `json:"id"`
+}
+
+type GenerateResponse struct {
+    Data      *mpc.EnclaveData `json:"data"`
+    PublicKey []byte           `json:"public_key"`
+}
+```
+
+### Digital Signatures
+
+```go
+// Sign a message
+type SignRequest struct {
+    Message []byte           `json:"message"`
+    Enclave *mpc.EnclaveData `json:"enclave"`
+}
+
+type SignResponse struct {
+    Signature []byte `json:"signature"`
+}
+```
+
+### Signature Verification
+
+```go
+// Verify a signature
+type VerifyRequest struct {
+    PublicKey []byte `json:"public_key"`
+    Message   []byte `json:"message"`
+    Signature []byte `json:"signature"`
+}
+
+type VerifyResponse struct {
+    Valid bool `json:"valid"`
+}
+```
+
+### Vault Management
+
+#### Export to IPFS
+
+```go
+type ExportRequest struct {
+    Enclave  *mpc.EnclaveData `json:"enclave,omitempty"`
+    Password []byte           `json:"password,omitempty"`
+}
+
+type ExportResponse struct {
+    CID     string `json:"cid,omitempty"`
+    Success bool   `json:"success"`
+}
+```
+
+#### Import from IPFS
+
+```go
+type ImportRequest struct {
+    CID      string `json:"cid,omitempty"`
+    Password []byte `json:"password,omitempty"`
+}
+
+type ImportResponse struct {
+    Enclave *mpc.EnclaveData `json:"enclave,omitempty"`
+    Success bool             `json:"success"`
+}
+```
+
+#### Vault Refresh
+
+```go
+type RefreshRequest struct {
+    Enclave *mpc.EnclaveData `json:"enclave,omitempty"`
+}
+
+type RefreshResponse struct {
+    Okay bool             `json:"okay"`
+    Data *mpc.EnclaveData `json:"data,omitempty"`
+}
+```
+
+## Task Management
+
+### Creating Tasks
+
+Tasks are created using the Asynq task creation utilities:
+
+```go
+import "github.com/sonr-io/sonr/internal/vault/tasks"
+
+// Create a vault generation task
+task, err := tasks.NewVaultGenerateTask(userID)
+if err != nil {
+    return err
+}
+
+// Enqueue the task
+client := asynq.NewClient(asynq.RedisClientOpt{Addr: "127.0.0.1:6379"})
+info, err := client.Enqueue(task)
+```
+
+### Task Types
+
+Highway currently supports the following task types:
+
+- `vault:generate` - Generate new cryptographic key pairs
+
+Additional task types can be registered by:
+
+1. Defining the task type constant in `internal/vault/tasks/types.go`
+2. Creating appropriate payload and response structures
+3. Implementing the task processor
+4. Registering the handler in `main.go`
+
+## Configuration
+
+### Redis Configuration
+
+Highway connects to Redis using the following default settings:
+
+```go
+const redisAddr = "127.0.0.1:6379"
+```
+
+### Worker Configuration
+
+```go
+asynq.Config{
+    Concurrency: 10,
+    Queues: map[string]int{
+        "critical": 6,  // High priority tasks
+        "default":  3,  // Normal priority tasks
+        "low":      1,  // Low priority tasks
+    },
+}
+```
+
+### Actor System Configuration
+
+```go
+const KRequestTimeout = 20 * time.Second
+```
+
+## Security Model
+
+Highway implements a multi-layered security approach:
+
+1. **WebAssembly Isolation**: All cryptographic operations run in WASM enclaves
+2. **Actor Encapsulation**: Each vault actor maintains isolated state
+3. **Encrypted Storage**: Vault data is encrypted before IPFS storage
+4. **Password Protection**: Additional password layer for import/export operations
+5. **Request Validation**: All requests undergo validation before processing
+
+## Development
+
+### Adding New Task Types
+
+1. **Define the task type**:
+
+   ```go
+   // In internal/vault/tasks/types.go
+   const TypeNewOperation = "vault:new_operation"
+   ```
+
+2. **Create payload structures**:
+
+   ```go
+   type NewOperationPayload struct {
+       Field1 string `json:"field1"`
+       Field2 int    `json:"field2"`
+   }
+
+   func NewNewOperationTask(field1 string, field2 int) (*asynq.Task, error) {
+       payload, err := json.Marshal(NewOperationPayload{
+           Field1: field1,
+           Field2: field2,
+       })
+       if err != nil {
+           return nil, err
+       }
+       return asynq.NewTask(TypeNewOperation, payload), nil
+   }
+   ```
+
+3. **Implement the processor**:
+
+   ```go
+   func (processor *VaultProcessor) ProcessNewOperation(ctx context.Context, t *asynq.Task) error {
+       var p NewOperationPayload
+       if err := json.Unmarshal(t.Payload(), &p); err != nil {
+           return fmt.Errorf("json.Unmarshal failed: %v: %w", err, asynq.SkipRetry)
+       }
+
+       // Process the task
+       // ...
+
+       return nil
+   }
+   ```
+
+4. **Register the handler**:
+   ```go
+   // In main.go
+   mux.Handle(tasks.TypeNewOperation, tasks.NewVaultProcessor())
+   ```
+
+### Testing
+
+Highway includes comprehensive test suites for:
+
+- Task processing logic
+- Actor system behavior
+- WASM plugin integration
+- Redis queue operations
+
+Run tests with:
+
+```bash
+make test-vaults
+```
+
+## Monitoring and Observability
+
+Highway provides detailed logging for:
+
+- Task processing events
+- Actor lifecycle management
+- Plugin operation results
+- Error conditions and recovery
+
+All logs use structured logging with slog for consistent formatting and filtering.
+
+## Performance Considerations
+
+- **Concurrency**: Adjust worker count based on CPU cores and workload
+- **Queue Priorities**: Balance task priorities according to business requirements
+- **Redis Memory Usage**: Monitor Redis memory consumption with large task volumes
+- **WASM Performance**: Plugin operations are CPU-intensive; size workers accordingly
+
+## Troubleshooting
+
+### Common Issues
+
+**Redis Connection Failed**
+
+```
+could not run server: dial tcp 127.0.0.1:6379: connect: connection refused
+```
+
+- Ensure Redis server is running on the configured address
+- Check Redis configuration and network connectivity
+
+**Plugin Load Failed**
+
+```
+failed to create enclave host: plugin load error
+```
+
+- Verify WASM plugin file exists and is accessible
+- Check plugin manifest configuration
+- Review Extism runtime requirements
+
+**Actor Initialization Failed**
+
+```
+Enclave actor failed to start
+```
+
+- Review plugin loading prerequisites
+- Check system memory and resource availability
+- Verify Proto.Actor system configuration

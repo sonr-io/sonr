@@ -1,0 +1,81 @@
+---
+openapi: get /dwn/v1/vaults
+title: Query Vaults
+description: List secure vaults with optional owner filtering
+og:title: DWN Vault Listing
+---
+
+<Info>
+  Users typically have one primary vault, but may have multiple for different security contexts.
+</Info>
+
+## Query Patterns
+
+### List My Vaults
+```bash
+?owner=did:sonr:alice
+```
+
+### List All Vaults (Governance)
+```bash
+# No filter - requires admin permissions
+?pagination.limit=100
+```
+
+## Vault Management
+
+<Tip>
+  Create separate vaults for different security levels (personal, business, high-security).
+</Tip>
+
+### Vault Strategy
+
+#### Primary Vault
+- Daily operations
+- Standard security
+- Regular key rotation
+
+#### High-Security Vault
+- Sensitive operations
+- Enhanced encryption
+- Frequent rotation
+
+#### Archive Vault
+- Long-term storage
+- Infrequent access
+- Extended rotation
+
+## Vault Creation
+
+### Prerequisites
+- `vaultCreationEnabled` must be true
+- Sufficient gas for creation
+- Valid DID or account
+
+### Creation Process
+```bash
+# Create new vault
+snrd tx dwn vault-create --from alice
+
+# Verify creation
+snrd query dwn vaults --owner did:sonr:alice
+```
+
+<Warning>
+  Vault creation may be disabled by governance. Check module parameters first.
+</Warning>
+
+## Pagination
+
+### Efficient Queries
+```bash
+# First page
+?owner=did:sonr:alice&pagination.limit=10
+
+# Next page
+?owner=did:sonr:alice&pagination.key=<next_key>
+```
+
+<Note>
+  Most users have 1-3 vaults. Pagination is mainly for system-wide queries.
+</Note>

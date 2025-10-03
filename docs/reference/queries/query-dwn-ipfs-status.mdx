@@ -1,0 +1,41 @@
+---
+openapi: get /dwn/v1/ipfs
+title: Query IPFS Node Status
+description: Check connectivity and status of the distributed storage layer
+og:title: IPFS Node Information
+---
+
+<Info>
+  IPFS provides distributed storage for large objects, vault exports, and encrypted backups.
+</Info>
+
+## IPFS Integration
+
+### Node Information
+- **Peer ID**: Unique identifier for the IPFS node
+- **Peer Name**: Human-readable node name
+- **Peer Type**: Node configuration (gateway, full, light)
+- **Version**: IPFS daemon version
+
+### Use Cases
+- **Large Files**: Store files exceeding `maxRecordSize`
+- **Vault Exports**: Backup encrypted vault data
+- **Protocol Assets**: Store protocol-related media
+- **Public Content**: Distribute public records efficiently
+
+<Tip>
+  Store only metadata and CIDs on-chain for gas efficiency, with actual data in IPFS.
+</Tip>
+
+## Common Patterns
+
+```bash
+# Upload to IPFS first
+ipfs add large_file.pdf
+# Store CID in DWN record
+snrd tx dwn records-write --data-cid <cid>
+```
+
+<Warning>
+  Ensure IPFS node is running and accessible before storing large objects.
+</Warning>

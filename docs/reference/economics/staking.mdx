@@ -1,0 +1,40 @@
+---
+title: "Staking"
+sidebarTitle: "Staking Functions"
+description: "Understand the staking mechanism on Sonr"
+icon: "vault"
+---
+
+The clear path for the underlying application for staking is utilizing a Delegated Proof of Stake (DPoS) validation mechanism. Down the line Sonr will provide IPFS storage nodes, and governance participation in the staking model.
+
+<Tip>
+Demand = Obtain rewards, goods, or services through staking or locking up the token.
+Supply = Tokens staked or locked up.
+
+</Tip>
+
+On Sonr we will be leveraging a **delegate stake** mechanism in order to **optimize buy-in** for users in the network. It imposes an **excess opportunity cost** if **slashing** is implemented.
+
+With this being said, there are some challenges in implementing staking:
+
+- The token must already have value
+- Allocating power or influence via staking gives major edge to wealthy users
+- They are frequently subject to gaming and coordination problems
+
+However there is substantial benefit in incorporating a staking mechanism, with the following criteria met we can create a sustainable design:
+
+1. The upfront capital required to stake should not significantly discourage them to stake
+2. If a stakeholder group is making decisions that materially harm the network, they would be punished via slashing the stake.
+3. Stakeholders can make decisions that positively impact the future network health and token price, therefore holding stake can promote positive Sonr growth
+
+### Validator Nodes for Cosmos ASB
+
+Sonr is a Cosmos powered blockchain which is powered by a TenderMint validation mechanism. The default consensus for TenderMint is DPoS and works with our current ABCI implementation for Transaction Verification. DPoS is a twist on Proof of Stake consensus that relies upon a group of delegates to validate blocks on behalf of all nodes in the network . Witnesses are elected by stakeholders at a rate of one vote per share per witness . Coin age is irrelevant. All coins that are mature will add the same staking weight (usually 1 in the wallet hover display) Results in stable, consistent interest only for active wallets and only with small inputs.
+
+### IPFS Storage Nodes (excluding FileCoin)
+
+When deploying standalone highway nodes, requiring minimum stake would be an additional method to enforce availability requirements. By having a stake we can ensure that the user deploying a node has a base level of buy-in within the ecosystem.
+
+### Governance Participants
+
+We will be incorporating a similar strategy to AlgoRand in our governance rollout. This is covered more extensively in the [Governance](https://www.notion.so/Governance-af1251b1b7aa41fab16c53dd9fe6ef63) section.

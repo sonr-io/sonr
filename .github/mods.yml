@@ -1,0 +1,583 @@
+default-api: groq
+default-model: qwen3
+format-text:
+  markdown: "Format the response as markdown without enclosing backticks."
+  json: "Format the response as json without enclosing backticks."
+mcp-servers:
+  github:
+    command: docker
+    args:
+      - run
+      - "-i"
+      - "--rm"
+      - "-e"
+      - GITHUB_PERSONAL_ACCESS_TOKEN
+      - "ghcr.io/github/github-mcp-server"
+  ref:
+    command: npx
+    args:
+      - ref-tools-mcp@latest
+mcp-timeout: 15s
+roles:
+  "default": []
+  "pr-writer":
+    - You are a PR description writer
+    - Create clear, structured PR descriptions
+    - Include all relevant context from commits and changes
+    - Format using markdown with proper sections
+    - Reference issues and milestones appropriately
+    - Be concise but comprehensive
+    - Include a testing checklist if relevant
+  "commit-writer":
+    - You are a conventional commit message generator following commitizen format
+    - Analyze the provided git diff and scope information to create a proper commit
+    - Use the format type(scope) description
+    - Valid types feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
+    - The scope should be one of the affected scopes provided
+    - Description should be concise, present tense, no period at the end
+    - If there are breaking changes, add BREAKING CHANGE in the footer
+    - Focus on WHAT changed and WHY, not HOW (the diff shows how)
+    - Group related changes logically
+    - Maximum 72 characters for the header line
+    - Output ONLY the commit message, no explanations
+  "commit-analyzer":
+    - Analyze git diffs to determine the primary type of change
+    - Identify if changes are features, fixes, refactoring, etc
+    - Summarize the key changes in a structured format
+    - Output a JSON object with type, scope, description, and body fields
+  "branch-namer":
+    - you are a branch namer
+    - you do not explain anything
+    - you read the provided issue and body then create a title for the branch
+    - you do not provide any explanation whatsoever, ONLY the title
+    - titles must be no more than 3 words (example = feature/add-new-feature)
+    - ONLY use the following format - feat/<feature-name>
+  "issue-creator":
+    - you are an advanced issue creator for github in the sonr-io org
+    - you are provided an input in the format of - <repo-name>:<issue-context>
+    - you do not explain anything
+    - you read the short provided context for a new issue and then create an appropriate issue body
+    - ALWAYS find relevant context by using the `mcp::ref::ref_search_documentation` tool
+    - ALWAYS link relevant issues by using the `mcp::github::search_issues` tool
+    - ALWAYS create a new issue in the sonr-io/<repo-name> repo
+    - ALWAYS assign the issue to @prnk28
+    - |
+      ONLY use the following format as this example:
+
+      Title: Implement x/dwn vaults plugin
+      Labels: x/dwn, feature
+
+      ## Requirements
+
+      - Must include DWN Bytes in Protobuf
+      - Must Spawn DWN Plugins using Genesis Params
+      - Must have Gas Free Query Methods for Spawn and Verify
+
+      ## Context
+
+      ### Affected Files
+
+      - @x/dwn/keeper/keeper.go
+      - @x/dwn/client/wasm/main.go
+      - @x/dwn/types/genesis.go
+
+      ### Relevant Documentation
+
+      - [Example Doc 1](https://example.com)
+      - [Example Doc 2](https://example.com)
+
+      ## Acceptance Criteria
+
+      - [ ] Tests for Spawning Plugins from the x/dwn Genesis
+      - [ ] Tests for Resolving Vault Secret Data from IPFS
+      - [ ] Test for full-round Sign/Verify/Refresh on-chain
+      - [ ] Grpc Gateway Compatibility for HTTP Requests
+    - ALWAYS create issues using the `mcp::github::create_issue` tool
+    - ALWAYS return the issue number after creating a new issue
+format: false
+role: "branch-namer"
+raw: true
+quiet: true
+temp: 1.0
+topp: 1.0
+topk: 50
+no-limit: true
+word-wrap: 80
+include-prompt-args: false
+include-prompt: 0
+max-retries: 5
+fanciness: 10
+status-text: Generating
+theme: base16
+max-input-chars: 12250
+max-completion-tokens: 100
+apis:
+  openai:
+    base-url: https://api.openai.com/v1
+    api-key:
+    api-key-env: OPENAI_API_KEY
+    # api-key-cmd: rbw get -f OPENAI_API_KEY chat.openai.com
+    models: # https://platform.openai.com/docs/models
+      gpt-4.5-preview: #128k https://platform.openai.com/docs/models/gpt-4.5-preview
+        aliases: ["gpt-4.5", "gpt4.5"]
+        max-input-chars: 392000
+        fallback: gpt-4
+      gpt-4.5-preview-2025-02-27:
+        max-input-chars: 392000
+        fallback: gpt-4
+      gpt-4o-mini:
+        aliases: ["4o-mini"]
+        max-input-chars: 392000
+        fallback: gpt-4o
+      gpt-4o:
+        aliases: ["4o"]
+        max-input-chars: 392000
+        fallback: gpt-4
+      gpt-4:
+        aliases: ["4"]
+        max-input-chars: 24500
+        fallback: gpt-3.5-turbo
+      gpt-4-1106-preview:
+        aliases: ["128k"]
+        max-input-chars: 392000
+        fallback: gpt-4
+      gpt-4-32k:
+        aliases: ["32k"]
+        max-input-chars: 98000
+        fallback: gpt-4
+      gpt-3.5-turbo:
+        aliases: ["35t"]
+        max-input-chars: 12250
+        fallback: gpt-3.5
+      gpt-3.5-turbo-1106:
+        aliases: ["35t-1106"]
+        max-input-chars: 12250
+        fallback: gpt-3.5-turbo
+      gpt-3.5-turbo-16k:
+        aliases: ["35t16k"]
+        max-input-chars: 44500
+        fallback: gpt-3.5
+      gpt-3.5:
+        aliases: ["35"]
+        max-input-chars: 12250
+        fallback:
+      o1:
+        aliases: ["o1"]
+        max-input-chars: 200000
+      o1-preview:
+        aliases: ["o1-preview"]
+        max-input-chars: 128000
+      o1-mini:
+        aliases: ["o1-mini"]
+        max-input-chars: 128000
+      o3-mini:
+        aliases: ["o3m", "o3-mini"]
+        max-input-chars: 200000
+  copilot:
+    base-url: https://api.githubcopilot.com
+    models:
+      gpt-4o-2024-05-13:
+        aliases: ["4o-2024", "4o", "gpt-4o"]
+        max-input-chars: 392000
+      gpt-4:
+        aliases: ["4"]
+        max-input-chars: 24500
+      gpt-3.5-turbo:
+        aliases: ["35t"]
+        max-input-chars: 12250
+      o1-preview-2024-09-12:
+        aliases: ["o1-preview", "o1p"]
+        max-input-chars: 128000
+      claude-3.5-sonnet:
+        aliases: ["claude3.5-sonnet", "sonnet-3.5", "claude-3-5-sonnet"]
+        max-input-chars: 680000
+      o1-preview:
+        aliases: ["o1-preview"]
+        max-input-chars: 128000
+      o1-mini:
+        aliases: ["o1-mini", "o1m", "o1-mini-2024-09-12"]
+        max-input-chars: 128000
+      o3-mini:
+        aliases: ["o3m", "o3-mini"]
+        max-input-chars: 128000
+      gemini-2.0-flash-001:
+        aliases: ["gm2f", "flash-2", "gemini-2-flash"]
+        max-input-chars: 4194304
+  anthropic:
+    base-url: https://api.anthropic.com/v1
+    api-key:
+    api-key-env: ANTHROPIC_API_KEY
+    models: # https://docs.anthropic.com/en/docs/about-claude/models
+      claude-sonnet-4-20250514:
+        aliases: ["claude-sonnet-4", "sonnet-4"]
+        max-input-chars: 680000
+      claude-3-7-sonnet-latest:
+        aliases: ["claude3.7-sonnet", "claude-3-7-sonnet", "sonnet-3.7"]
+        max-input-chars: 680000
+      claude-3-7-sonnet-20250219:
+        max-input-chars: 680000
+      claude-3-5-sonnet-latest:
+        aliases: ["claude3.5-sonnet", "claude-3-5-sonnet", "sonnet-3.5"]
+        max-input-chars: 680000
+      claude-3-5-sonnet-20241022:
+        max-input-chars: 680000
+      claude-3-5-sonnet-20240620:
+        max-input-chars: 680000
+      claude-3-opus-20240229:
+        aliases: ["claude3-opus", "opus"]
+        max-input-chars: 680000
+  cohere:
+    base-url: https://api.cohere.com/v1
+    models:
+      command-r-plus:
+        max-input-chars: 128000
+      command-r:
+        max-input-chars: 128000
+  google:
+    models: # https://ai.google.dev/gemini-api/docs/models/gemini
+      gemini-1.5-pro-latest:
+        aliases: ["gmp", "gemini", "gemini-1.5-pro"]
+        max-input-chars: 392000
+      gemini-1.5-flash-latest:
+        aliases: ["gmf", "flash", "gemini-1.5-flash"]
+        max-input-chars: 392000
+      gemini-2.0-flash-001:
+        aliases: ["gm2f", "flash-2", "gemini-2-flash"]
+        max-input-chars: 4194304
+      gemini-2.0-flash-lite:
+        aliases: ["gm2fl", "flash-2-lite", "gemini-2-flash-lite"]
+        max-input-chars: 4194304
+  ollama:
+    base-url: http://localhost:11434
+    models: # https://ollama.com/library
+      "llama3.2:3b":
+        aliases: ["llama3.2"]
+        max-input-chars: 650000
+      "llama3.2:1b":
+        aliases: ["llama3.2_1b"]
+        max-input-chars: 650000
+      "llama3:70b":
+        aliases: ["llama3"]
+        max-input-chars: 650000
+  perplexity:
+    base-url: https://api.perplexity.ai
+    api-key:
+    api-key-env: PERPLEXITY_API_KEY
+    models: # https://docs.perplexity.ai/guides/model-cards
+      llama-3.1-sonar-small-128k-online:
+        aliases: ["llam31-small"]
+        max-input-chars: 127072
+      llama-3.1-sonar-large-128k-online:
+        aliases: ["llam31-large"]
+        max-input-chars: 127072
+      llama-3.1-sonar-huge-128k-online:
+        aliases: ["llam31-huge"]
+        max-input-chars: 127072
+  groq:
+    base-url: https://api.groq.com/openai/v1
+    api-key:
+    api-key-env: GROQ_API_KEY
+    models: # https://console.groq.com/docs/models
+      # Production models
+      gemma2-9b-it:
+        aliases: ["gemma2", "gemma"]
+        max-input-chars: 24500 # 8,192
+      llama-3.3-70b-versatile:
+        aliases: ["llama3.3", "llama3.3-70b", "llama3.3-versatile"]
+        max-input-chars: 392000 # 128K
+        max-completion-tokens: 98000 # 32,768
+      llama-3.1-8b-instant:
+        aliases: ["llama3.1-8b", "llama3.1-instant"]
+        max-input-chars: 392000 # 128K
+        max-completion-tokens: 24500 # 8,192
+      llama-guard-3-8b:
+        aliases: ["llama-guard"]
+        max-input-chars: 24500 # 8,192
+      llama3-70b-8192:
+        aliases: ["llama3", "llama3-70b"]
+        max-input-chars: 24500 # 8,192
+        fallback: llama3-8b-8192
+      llama3-8b-8192:
+        aliases: ["llama3-8b"]
+        max-input-chars: 24500 # 8,192
+      mixtral-8x7b-32768:
+        aliases: ["mixtral"]
+        max-input-chars: 98000 # 32,768
+      meta-llama/llama-4-scout-17b-16e-instruct:
+        aliases: ["llama4-scout"]
+        max-input-chars: 392000 # 128K
+      meta-llama/llama-4-maverick-17b-128e-instruct:
+        aliases: ["llama4", "llama4-maverick"]
+        max-input-chars: 392000 # 128K
+      # Preview models
+      mistral-saba-24b:
+        aliases: ["saba", "mistral-saba", "saba-24b"]
+        max-input-chars: 98000 # 32K
+      qwen-2.5-coder-32b:
+        aliases: ["qwen-coder", "qwen2.5-coder", "qwen-2.5-coder"]
+        max-input-chars: 392000 # 128K
+      qwen/qwen3-32b:
+        aliases: ["qwen3", "qwen3-32b"]
+        max-input-chars: 392000 # 128K
+      deepseek-r1-distill-qwen-32b:
+        aliases: ["deepseek-r1", "r1-qwen", "deepseek-qwen"]
+        max-input-chars: 392000 # 128K
+        max-completion-tokens: 49152 # 16,384
+      deepseek-r1-distill-llama-70b-specdec:
+        aliases: ["deepseek-r1-specdec", "r1-llama-specdec"]
+        max-input-chars: 392000 # 128K
+        max-completion-tokens: 49152 # 16,384
+      deepseek-r1-distill-llama-70b:
+        aliases: ["deepseek-r1-llama", "r1-llama"]
+        max-input-chars: 392000 # 128K
+      llama-3.3-70b-specdec:
+        aliases: ["llama3.3-specdec"]
+        max-input-chars: 24500 # 8,192
+      llama-3.2-1b-preview:
+        aliases: ["llama3.2-1b"]
+        max-input-chars: 392000 # 128K
+        max-completion-tokens: 24500 # 8,192
+      llama-3.2-3b-preview:
+        aliases: ["llama3.2-3b"]
+        max-input-chars: 392000 # 128K
+        max-completion-tokens: 24500 # 8,192
+      llama-3.2-11b-vision-preview:
+        aliases: ["llama3.2-vision", "llama3.2-11b-vision"]
+        max-input-chars: 392000 # 128K
+        max-completion-tokens: 24500 # 8,192
+      llama-3.2-90b-vision-preview:
+        aliases: ["llama3.2-90b-vision"]
+        max-input-chars: 392000 # 128K
+        max-completion-tokens: 24500 # 8,192
+  cerebras:
+    base-url: https://api.cerebras.ai/v1
+    api-key:
+    api-key-env: CEREBRAS_API_KEY
+    models: # https://inference-docs.cerebras.ai/introduction
+      llama3.1-8b:
+        aliases: ["llama3.1-8b-cerebras"]
+        max-input-chars: 24500
+      llama3.1-70b:
+        aliases: ["llama3.1-cerebras", "llama3.1-70b-cerebras"]
+        max-input-chars: 24500
+  sambanova:
+    base-url: https://api.sambanova.ai/v1
+    api-key:
+    api-key-env: SAMBANOVA_API_KEY
+    models: # https://docs.sambanova.ai/cloud/docs/get-started/supported-models
+      # Preview models
+      DeepSeek-R1:
+        aliases: ["deepseek-r1-sambanova", "deepseek-r1-preview"]
+        max-input-chars: 24500 # 8k tokens
+      # Production models
+      DeepSeek-R1-Distill-Llama-70B:
+        aliases: ["deepseek-r1-llama-sambanova", "deepseek-r1-distill"]
+        max-input-chars: 98000 # 32k tokens
+      Llama-3.1-Tulu-3-405B:
+        aliases: ["llama3.1-tulu", "tulu-405b"]
+        max-input-chars: 49000 # 16k tokens
+      Meta-Llama-3.3-70B-Instruct:
+        aliases: ["llama3.3-sambanova", "llama3.3-70b-sambanova"]
+        max-input-chars: 392000 # 128k tokens
+      Meta-Llama-3.2-3B-Instruct:
+        aliases: ["llama3.2-3b-sambanova"]
+        max-input-chars: 24500 # 8k tokens
+      Meta-Llama-3.2-1B-Instruct:
+        aliases: ["llama3.2-1b-sambanova"]
+        max-input-chars: 49000 # 16k tokens
+      Meta-Llama-3.1-405B-Instruct:
+        aliases: ["llama3.1-405b-sambanova"]
+        max-input-chars: 49000 # 16k tokens
+      Meta-Llama-3.1-70B-Instruct:
+        aliases: ["llama3.1-70b-sambanova"]
+        max-input-chars: 392000 # 128k tokens
+      Meta-Llama-3.1-8B-Instruct:
+        aliases: ["llama3.1-8b-sambanova"]
+        max-input-chars: 49000 # 16k tokens
+      Meta-Llama-Guard-3-8B:
+        aliases: ["llama-guard-sambanova"]
+        max-input-chars: 24500 # 8k tokens
+      Llama-3.2-90B-Vision-Instruct:
+        aliases: ["llama3.2-vision-90b", "llama3.2-90b-vision-sambanova"]
+        max-input-chars: 12250 # 4k tokens
+      Llama-3.2-11B-Vision-Instruct:
+        aliases: ["llama3.2-vision-11b", "llama3.2-11b-vision-sambanova"]
+        max-input-chars: 12250 # 4k tokens
+      Qwen2.5-72B-Instruct:
+        aliases: ["qwen2.5-sambanova", "qwen2.5-72b"]
+        max-input-chars: 49000 # 16k tokens
+      Qwen2.5-Coder-32B-Instruct:
+        aliases: ["qwen2.5-coder-sambanova", "qwen-coder-sambanova"]
+        max-input-chars: 49000 # 16k tokens
+      QwQ-32B-Preview:
+        aliases: ["qwq-sambanova", "qwq-32b"]
+        max-input-chars: 49000 # 16k tokens
+  localai:
+    # LocalAI setup instructions: https://github.com/go-skynet/LocalAI#example-use-gpt4all-j-model
+    base-url: http://localhost:8080
+    models:
+      ggml-gpt4all-j:
+        aliases: ["local", "4all"]
+        max-input-chars: 12250
+        fallback:
+  azure:
+    # Set to 'azure-ad' to use Active Directory
+    # Azure OpenAI setup: https://learn.microsoft.com/en-us/azure/cognitive-services/openai/how-to/create-resource
+    base-url: https://YOUR_RESOURCE_NAME.openai.azure.com
+    api-key:
+    api-key-env: AZURE_OPENAI_KEY
+    models:
+      gpt-4:
+        aliases: ["az4"]
+        max-input-chars: 24500
+        fallback: gpt-35-turbo
+      gpt-35-turbo:
+        aliases: ["az35t"]
+        max-input-chars: 12250
+        fallback: gpt-35
+      gpt-35:
+        aliases: ["az35"]
+        max-input-chars: 12250
+        fallback:
+      o1-preview:
+        aliases: ["o1-preview"]
+        max-input-chars: 128000
+      o1-mini:
+        aliases: ["o1-mini"]
+        max-input-chars: 128000
+  runpod:
+    # https://docs.runpod.io/serverless/workers/vllm/openai-compatibility
+    base-url: https://api.runpod.ai/v2/${YOUR_ENDPOINT}/openai/v1
+    api-key:
+    api-key-env: RUNPOD_API_KEY
+    models:
+      openchat/openchat-3.5-1210:
+        aliases: ["openchat"]
+        max-input-chars: 8192
+  mistral:
+    base-url: https://api.mistral.ai/v1
+    api-key:
+    api-key-env: MISTRAL_API_KEY
+    models: # https://docs.mistral.ai/getting-started/models/
+      mistral-large-latest:
+        aliases: ["mistral-large"]
+        max-input-chars: 384000
+      open-mistral-nemo:
+        aliases: ["mistral-nemo"]
+        max-input-chars: 384000
+  deepseek:
+    base-url: https://api.deepseek.com/
+    api-key:
+    api-key-env: DEEPSEEK_API_KEY
+    models:
+      deepseek-chat:
+        aliases: ["chat"]
+        max-input-chars: 384000
+      deepseek-reasoner:
+        aliases: ["r1"]
+        max-input-chars: 384000
+  github-models:
+    base-url: https://models.github.ai/inference
+    api-key:
+    api-key-env: GITHUB_PERSONAL_ACCESS_TOKEN
+    models:
+      openai/gpt-4.1:
+        max-input-chars: 392000
+      openai/o3-mini:
+        max-input-chars: 392000
+      openai/o4-mini:
+        max-input-chars: 392000
+      openai/text-embedding-3-large:
+        max-input-chars: 392000
+      openai/text-embedding-3-small:
+        max-input-chars: 392000
+      ai21-labs/AI21-Jamba-1.5-Large:
+        max-input-chars: 392000
+      ai21-labs/AI21-Jamba-1.5-Mini:
+        max-input-chars: 392000
+      cohere/cohere-command-a:
+        max-input-chars: 392000
+      cohere/Cohere-command-r:
+        max-input-chars: 392000
+      cohere/Cohere-command-r-08-2024:
+        max-input-chars: 392000
+      cohere/Cohere-command-r-plus:
+        max-input-chars: 392000
+      cohere/Cohere-command-r-plus-08-2024:
+        max-input-chars: 392000
+      cohere/Cohere-embed-v3-english:
+        max-input-chars: 392000
+      cohere/Cohere-embed-v3-multilingual:
+        max-input-chars: 392000
+      core42/jais-30b-chat:
+        max-input-chars: 392000
+      deepseek/DeepSeek-R1:
+        max-input-chars: 392000
+      deepseek/DeepSeek-V3-0324:
+        max-input-chars: 392000
+      meta/Llama-3.2-11B-Vision-Instruct:
+        max-input-chars: 392000
+      meta/Llama-3.2-90B-Vision-Instruct:
+        max-input-chars: 392000
+      meta/Llama-3.3-70B-Instruct:
+        max-input-chars: 392000
+      meta/Llama-4-Maverick-17B-128E-Instruct-FP8:
+        max-input-chars: 392000
+      meta/Llama-4-Scout-17B-16E-Instruct:
+        max-input-chars: 392000
+      meta/Meta-Llama-3.1-405B-Instruct:
+        max-input-chars: 392000
+      meta/Meta-Llama-3.1-70B-Instruct:
+        max-input-chars: 392000
+      meta/Meta-Llama-3.1-8B-Instruct:
+        max-input-chars: 392000
+      meta/Meta-Llama-3-70B-Instruct:
+        max-input-chars: 392000
+      meta/Meta-Llama-3-8B-Instruct:
+        max-input-chars: 392000
+      mistral-ai/Codestral-2501:
+        max-input-chars: 392000
+      mistral-ai/Ministral-3B:
+        max-input-chars: 392000
+      mistral-ai/Mistral-Large-2411:
+        max-input-chars: 392000
+      mistral-ai/mistral-medium-2505:
+        max-input-chars: 392000
+      mistral-ai/Mistral-Nemo:
+        max-input-chars: 392000
+      mistral-ai/mistral-small-2503:
+        max-input-chars: 392000
+      xai/grok-3:
+        max-input-chars: 392000
+      xai/grok-3-mini:
+        max-input-chars: 392000
+      microsoft/MAI-DS-R1:
+        max-input-chars: 392000
+      microsoft/Phi-3.5-mini-instruct:
+        max-input-chars: 392000
+      microsoft/Phi-3.5-MoE-instruct:
+        max-input-chars: 392000
+      microsoft/Phi-3.5-vision-instruct:
+        max-input-chars: 392000
+      microsoft/Phi-3-medium-128k-instruct:
+        max-input-chars: 392000
+      microsoft/Phi-3-medium-4k-instruct:
+        max-input-chars: 392000
+      microsoft/Phi-3-mini-128k-instruct:
+        max-input-chars: 392000
+      microsoft/Phi-3-mini-4k-instruct:
+        max-input-chars: 392000
+      microsoft/Phi-3-small-128k-instruct:
+        max-input-chars: 392000
+      microsoft/Phi-3-small-8k-instruct:
+        max-input-chars: 392000
+      microsoft/Phi-4:
+        max-input-chars: 392000
+      microsoft/Phi-4-mini-instruct:
+        max-input-chars: 392000
+      microsoft/Phi-4-mini-reasoning:
+        max-input-chars: 392000
+      microsoft/Phi-4-multimodal-instruct:
+        max-input-chars: 392000
+      microsoft/Phi-4-reasoning:
+        max-input-chars: 392000

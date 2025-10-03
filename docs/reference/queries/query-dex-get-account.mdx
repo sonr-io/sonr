@@ -1,0 +1,11 @@
+---
+openapi: get /sonr/dex/v1/account/{did}/{connectionId}
+title: Query DEX Account Details
+description: Get information about a specific Interchain Account for DEX operations
+og:title: DEX Account Information
+---
+
+<Note>
+  Account addresses are only available after successful IBC acknowledgment.
+  Pending accounts will have an empty address field.
+</Note>

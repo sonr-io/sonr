@@ -1,0 +1,191 @@
+---
+title: Getting Started with Browser/ESM
+description: A quick start guide for using Sonr in web browsers with WebAuthn integration
+sidebarTitle: Browser Quickstart
+icon: "globe"
+---
+
+This guide will walk you through creating a simple web application that interacts with the Sonr network directly from the browser. We will use the Sonr JavaScript SDK to create a new user identity, claim a Vault, and send a transaction.
+
+## Prerequisites
+
+- A local Sonr network running. See the [Validator Setup Guide](/quickstart/validators) for instructions
+- A modern web browser with WebAuthn support (Chrome, Firefox, Safari, Edge)
+
+## 1. Project Setup
+
+<Steps>
+<Step>
+### Create an HTML File
+
+Create a new `index.html` file and add the following basic structure:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sonr Browser Quickstart</title>
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <h1>Sonr Browser Quickstart</h1>
+    <button id="create-identity">Create Identity</button>
+    <div id="output"></div>
+  </body>
+</html>
+```
+
+</Step>
+
+<Step>
+### Create a JavaScript File
+
+Create a new `app.js` file in the same directory. This is where we will write our application logic.
+
+</Step>
+
+<Step>
+### Install the Sonr SDK
+
+For this quickstart, we will use the Sonr SDK from a CDN. Add the following script tag to the `<head>` of your `index.html` file:
+
+```html
+<script type="module">
+  import { Sonr, WebAuthn } from "https://cdn.jsdelivr.net/npm/@sonr/sdk";
+  window.Sonr = Sonr;
+  window.WebAuthn = WebAuthn;
+</script>
+```
+
+</Step>
+</Steps>
+
+## 2. Creating an Identity
+
+Now, let's add the logic to create a new user identity and claim a Vault.
+
+<Steps>
+<Step>
+### Add Event Listener
+
+In `app.js`, add an event listener to the "Create Identity" button:
+
+```javascript
+document
+  .getElementById("create-identity")
+  .addEventListener("click", async () => {
+    const output = document.getElementById("output");
+    output.innerHTML = "Creating identity...";
+
+    try {
+      // Code to create identity will go here
+    } catch (error) {
+      output.innerHTML = `Error: ${error.message}`;
+    }
+  });
+```
+
+</Step>
+
+<Step>
+### Implement Identity Creation
+
+Inside the event listener, use the `WebAuthn.createCredential` method to create a new WebAuthn credential and the `Sonr.claimVault` method to claim a new Vault on the network.
+
+```javascript
+// Inside the try block
+const credential = await WebAuthn.createCredential({
+  rp: { name: "Sonr Quickstart" },
+  user: {
+    id: new Uint8Array(16), // Should be a unique user ID
+    name: "user@example.com",
+    displayName: "Test User",
+  },
+});
+
+output.innerHTML = `Credential created: ${credential.id}`;
+
+const sonr = new Sonr({ httpUrl: "http://localhost:1317" });
+const vault = await sonr.claimVault(credential);
+
+output.innerHTML = `Vault claimed! DID: ${vault.did}`;
+```
+
+<Note type="warning">
+  In a real application, the user ID should be a unique and stable identifier
+  for the user, not a random value.
+</Note>
+</Step>
+</Steps>
+
+## 3. Running the Application
+
+To run the application, you need a simple web server. You can use the `http-server` package for this.
+
+```bash
+# Install http-server
+npm install -g http-server
+
+# Start the server
+http-server
+```
+
+Now, open your browser and navigate to `http://localhost:8080`. When you click the "Create Identity" button, your browser will prompt you to create a new passkey using your device's biometrics or a security key.
+
+## 4. Sending a Transaction
+
+Once you have a Vault, you can use it to send transactions.
+
+<Steps>
+<Step>
+### Add a Send Button
+
+Add a new button to your `index.html` file:
+
+```html
+<button id="send-transaction" disabled>Send Transaction</button>
+```
+
+</Step>
+
+<Step>
+### Implement Transaction Sending
+
+In `app.js`, add an event listener to the new button. This will use the `sonr.send` method to send a transaction.
+
+```javascript
+let vaultInstance;
+
+// After claiming the vault...
+vaultInstance = vault;
+document.getElementById("send-transaction").disabled = false;
+
+document
+  .getElementById("send-transaction")
+  .addEventListener("click", async () => {
+    const output = document.getElementById("output");
+    output.innerHTML = "Sending transaction...";
+
+    try {
+      const result = await vaultInstance.send({
+        to: "snr1..._recipient_address_...",
+        amount: "1000000usnr", // 1 SNR
+      });
+
+      output.innerHTML = `Transaction successful! TxHash: ${result.txhash}`;
+    } catch (error) {
+      output.innerHTML = `Error: ${error.message}`;
+    }
+  });
+```
+
+</Step>
+</Steps>
+
+## Next Steps
+
+Congratulations! You have successfully created a web application that interacts with the Sonr network. From here, you can explore more advanced features:
+
+- **Service Registration**: Register your application as a trusted service on the network
+- **UCAN Authorization**: Request and manage user permissions for your application
+- **Cross-Chain Operations**: Interact with other blockchains through IBC

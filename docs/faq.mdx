@@ -1,0 +1,121 @@
+---
+title: "Frequently Asked Questions"
+sidebarTitle: "FAQ"
+description: "A Collection of commonly asked questions about Sonr"
+icon: "life-buoy"
+---
+
+<iframe
+  width="750"
+  height="422"
+  src="https://www.youtube-nocookie.com/embed/lJloI0ugJI8?controls=0"
+  title="How the DWeb works under the hood"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+></iframe>
+
+
+## General
+
+<AccordionGroup>
+    <Accordion title="What Components make up the Sonr stack?">
+        **Network** -- We've built a global decentralized network that leverages our breakthrough identity module allowing for device based authentication, realtime content delivery, and true digital asset ownership. Users are provided the promised utility of Web3 without any lagging experience.
+
+        **Motor** -- The Sonr Motor node is an end to end client suite which provides all the features of our Network in an easily approachable SDK. Motor offers the easiest consumer onboarding experience in Web3 by stripping away seed phrases, and introducing multi-party computation for Quantum computing resistant encryption.
+
+        **Blockchain** -- The Blockchain is the perfect marriage for Sonr's global decentralized network. With Cosmos, we can quickly and easily connect to other blockchains, providing our users with the ability to build interoperable experiences. IBC is the perfect specification for cross-chain communication, and GravityBridge provides us with the perfect way to bridge to Ethereum. Sonr’s blockchain also provides developer with the peace of mind of knowing that user data is securely distributed across IPFS with a native bridge to Filecoin.
+
+        </Accordion>
+
+        <Accordion title="What’s preventing Web3 Mobile Apps from going mainstream?">
+        There are several factors that may prevent the widespread adoption of web3 mobile apps. Some of the main challenges and barriers to the adoption of web3 mobile apps include:
+            - Limited awareness and understanding of web3 and decentralized technologies among the general public
+            - Limited adoption of decentralized technologies and infrastructure by developers and businesses
+            - Limited availability of user-friendly web3 mobile apps and tools
+            - Limited scalability and performance of decentralized networks and applications
+            - Regulatory uncertainty and potential legal challenges
+
+        Overall, the adoption of web3 mobile apps is currently limited by a range of technical, market, and regulatory challenges. These challenges will need to be addressed in order for web3 mobile apps to become more widely used and adopted.
+        </Accordion>
+
+        <Accordion title="Will DIDs replace traditional authentication in the future?">
+        It is possible that DIDs (decentralized IDs) could eventually replace traditional forms of authentication, such as username and password combinations, in the future. DIDs are a key component of the decentralized identity (DID) ecosystem, which is being developed to provide individuals and organizations with control over their own digital identities and data. DIDs are designed to be secure, decentralized, and interoperable, and can be used to represent a wide range of identity-related information in a secure and decentralized way.
+
+        The use of DIDs for authentication has several potential benefits over traditional forms of authentication. For example, DIDs can provide a more secure and decentralized way to authenticate users, as they are stored on a decentralized ledger (such as a blockchain) and can be accessed and verified by anyone with the appropriate permissions. This can help to improve the security and privacy of online authentication, and can reduce the risk of identity theft and other security threats. DIDs can also be more user-friendly and convenient for users, as they can be easily accessed and managed using a variety of different devices and applications.
+
+        Overall, it is possible that DIDs could eventually replace traditional forms of authentication, but this will depend on the continued development and adoption of decentralized identity technologies and infrastructure.
+
+        </Accordion>
+
+        <Accordion title="How large is the Cosmos Ecosystem?">
+        The exact size of the Cosmos ecosystem is difficult to determine, as it includes a wide range of projects, applications, and stakeholders. However, the Cosmos ecosystem is generally considered to be one of the largest and most active communities in the decentralized technology space, and it continues to grow and evolve over time.
+
+        The Cosmos ecosystem is focused on building an open, interoperable, and scalable ecosystem of decentralized networks and applications. This ecosystem is based on the Cosmos SDK, a framework for building blockchain applications, and the Inter-Blockchain Communication (IBC) protocol, which allows different blockchain networks to interoperate with each other. The Cosmos ecosystem also includes a range of tools, services, and resources that are designed to support the development and adoption of decentralized technologies and applications.
+
+        </Accordion>
+
+        <Accordion title="What was Tim Berners Lee’s Original Vision for the Internet?">
+
+        Tim Berners-Lee, the inventor of the World Wide Web, has expressed a vision for the future of the internet that emphasizes decentralization, interoperability, and user control. In this vision, the internet would be a more open, transparent, and democratic platform, where users have more control over their own data and online experiences.
+
+        Berners-Lee has referred to this vision as the "POD" (Personal Online Data) model, and has described it as a way to "take back the web" from the large technology companies that currently dominate the internet landscape. In the POD model, users would be able to store their own data on personal servers or other decentralized storage systems,
+        and would be able to control who has access to that data. This would enable users to have more control over their own data and online experiences, and would help to reduce the concentration of power and control in the hands of a few large technology companies.
+
+        </Accordion>
+    </AccordionGroup>
+
+## Developers
+
+<AccordionGroup>
+    <Accordion title="Why build on Sonr?">
+
+    Sonr's decentralized, realtime network provides Web3 developers with a tool-set that to quickly deploy scalable Web3 applications, with verifiable data that can be reused and shared across all Sonr powered applications.
+
+    - **Developer Experience** -- We believe application development should be as straight forward as possible. Sonr's SDK's is an all-in-one solution for developing applications for the Sonr network. We believe in consistency and openness, as our libraries are built on open standards.
+    - **Composable by Design** -- Our protocols are flexible and are capable of wrapping custom protocols. These protocols are extendable and support merging, which allows for reusability and composability.
+
+    </Accordion>
+    <Accordion title="Does Sonr have Wallet to Wallet Messaging?">
+        We utilize libp2p, DID documents, and MPC to have decentralized wallet-to-wallet messaging, you can follow these steps:
+
+        1. Use the libp2p library to establish a peer-to-peer network between the two wallets. This will allow the wallets to communicate directly with each other, without going through a central server.
+
+        2. Use DID documents to identify and authenticate the users of the wallets. Each user should have a DID document that contains their public keys and other relevant information. This information can be used to verify the user's identity and to establish trust between the wallets.
+
+        3. Use multi-party computation (MPC) to generate and manage the keys that are used for encrypting and signing the messages that are sent between the wallets. MPC allows multiple parties to jointly compute a function without revealing their inputs to each other, ensuring that the keys can be generated and managed in a secure, decentralized manner.
+
+        4. Use the libp2p library to send messages between the wallets, using the keys that were generated with MPC. These messages can be encrypted to ensure privacy, and can be signed to ensure authenticity.
+
+        By following these steps, it is possible to utilize libp2p, DID documents, and MPC to create decentralized wallet-to-wallet messaging. This approach allows users to securely and privately communicate with each other, while also maintaining control over their own data and assets.
+    </Accordion>
+</AccordionGroup>
+
+
+## Token
+
+<AccordionGroup>
+    <Accordion title="What is the Total Supply of Tokens?">
+
+    500M, See our Distribution [here](https://www.notion.so/Token-Supply-0578a472c3364718a8634efa8c290e4b).
+
+    </Accordion>
+
+    <Accordion title="When is the Sonr Team anticipating on going to MainNet?">
+
+    We’re gearing for a Summer 2023 Launch
+
+    </Accordion>
+
+    <Accordion title="Do Developers receive Airdrops?">
+
+    Yes! Developers can receive AirDrops for submitting proposals or participating in Sonr sponsored events.
+
+    </Accordion>
+
+    <Accordion title="Whats the price of $SNR?">
+
+    The Sonr team cannot provide an anticipated price for $SNR due to the [SEC’s rules](https://cryptolawinsider.com/security-token/) on Securities.
+
+    </Accordion>
+</AccordionGroup>

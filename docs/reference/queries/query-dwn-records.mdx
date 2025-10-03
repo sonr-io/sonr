@@ -1,0 +1,90 @@
+---
+openapi: get /dwn/v1/records/{target}
+title: Query DWN Records
+description: Search and retrieve data records with advanced filtering
+og:title: DWN Record Query
+---
+
+<Info>
+  This endpoint provides powerful querying capabilities for exploring DWN data with multiple filter options.
+</Info>
+
+## Query Filters
+
+### Protocol Filter
+Query records conforming to specific protocols:
+```bash
+?protocol=https://protocols.sonr.io/social/v1
+```
+
+### Schema Filter
+Find records matching schema types:
+```bash
+?schema=https://schema.org/BlogPosting
+```
+
+### Hierarchical Queries
+Get child records of a parent:
+```bash
+?parentId=record_parent_123
+```
+
+### Visibility Filter
+Show only public records:
+```bash
+?publishedOnly=true
+```
+
+## Pagination Strategy
+
+<Tip>
+  Use cursor-based pagination with `pagination.key` for optimal performance on large datasets.
+</Tip>
+
+### Efficient Pagination
+```bash
+# First page
+?pagination.limit=20
+
+# Next page using cursor
+?pagination.key=<next_key_from_response>
+```
+
+### Offset Pagination
+```bash
+# Less efficient but simpler
+?pagination.offset=20&pagination.limit=20
+```
+
+## Common Query Patterns
+
+### Social Media Posts
+```bash
+?protocol=https://protocols.sonr.io/social/v1&schema=https://schema.org/SocialMediaPosting&publishedOnly=true
+```
+
+### Medical Records
+```bash
+?protocol=https://protocols.sonr.io/health/v1&schema=https://schema.org/MedicalRecord
+```
+
+### File System Structure
+```bash
+?parentId=folder_root&pagination.limit=100
+```
+
+<Warning>
+  Encrypted records will return encrypted data unless you have decryption permissions.
+</Warning>
+
+## Response Handling
+
+### Record States
+- **Published**: Publicly accessible
+- **Private**: Requires permissions
+- **Encrypted**: Needs decryption keys
+- **Deleted**: Tombstone markers
+
+<Note>
+  Use `pagination.countTotal=true` sparingly as it impacts query performance.
+</Note>

@@ -1,0 +1,179 @@
+syntax = "proto3";
+
+package dex.v1;
+
+option go_package = "github.com/sonr-io/sonr/x/dex/types";
+
+import "gogoproto/gogo.proto";
+import "cosmos/base/v1beta1/coin.proto";
+
+// EventDEXAccountRegistered is emitted when a new DEX account is registered
+message EventDEXAccountRegistered {
+  // DID of the account owner
+  string did = 1;
+  
+  // IBC connection ID
+  string connection_id = 2;
+  
+  // Generated port ID
+  string port_id = 3;
+  
+  // Remote account address (when available)
+  string account_address = 4;
+}
+
+// EventSwapExecuted is emitted when a swap is executed
+message EventSwapExecuted {
+  // DID of the trader
+  string did = 1;
+  
+  // IBC connection ID
+  string connection_id = 2;
+  
+  // Source token and amount
+  cosmos.base.v1beta1.Coin source = 3 [(gogoproto.nullable) = false];
+  
+  // Target token and amount received
+  cosmos.base.v1beta1.Coin target = 4 [(gogoproto.nullable) = false];
+  
+  // Transaction hash on remote chain
+  string tx_hash = 5;
+  
+  // IBC packet sequence
+  uint64 sequence = 6;
+}
+
+// EventLiquidityProvided is emitted when liquidity is added
+message EventLiquidityProvided {
+  // DID of the liquidity provider
+  string did = 1;
+  
+  // IBC connection ID
+  string connection_id = 2;
+  
+  // Pool ID
+  string pool_id = 3;
+  
+  // Assets provided
+  repeated cosmos.base.v1beta1.Coin assets = 4
+      [(gogoproto.nullable) = false, (gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];
+  
+  // Shares received
+  string shares_received = 5;
+  
+  // Transaction hash on remote chain
+  string tx_hash = 6;
+}
+
+// EventLiquidityRemoved is emitted when liquidity is removed
+message EventLiquidityRemoved {
+  // DID of the liquidity provider
+  string did = 1;
+  
+  // IBC connection ID
+  string connection_id = 2;
+  
+  // Pool ID
+  string pool_id = 3;
+  
+  // Shares removed
+  string shares_removed = 4;
+  
+  // Assets received
+  repeated cosmos.base.v1beta1.Coin assets = 5
+      [(gogoproto.nullable) = false, (gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];
+  
+  // Transaction hash on remote chain
+  string tx_hash = 6;
+}
+
+// EventOrderCreated is emitted when a limit order is created
+message EventOrderCreated {
+  // DID of the trader
+  string did = 1;
+  
+  // IBC connection ID
+  string connection_id = 2;
+  
+  // Order ID on remote chain
+  string order_id = 3;
+  
+  // Order details
+  string sell_denom = 4;
+  string buy_denom = 5;
+  string amount = 6;
+  string price = 7;
+  
+  // Transaction hash on remote chain
+  string tx_hash = 8;
+}
+
+// EventOrderCancelled is emitted when an order is cancelled
+message EventOrderCancelled {
+  // DID of the trader
+  string did = 1;
+  
+  // IBC connection ID
+  string connection_id = 2;
+  
+  // Order ID that was cancelled
+  string order_id = 3;
+  
+  // Transaction hash on remote chain
+  string tx_hash = 4;
+}
+
+// EventOrderFilled is emitted when an order is filled
+message EventOrderFilled {
+  // DID of the trader
+  string did = 1;
+  
+  // IBC connection ID
+  string connection_id = 2;
+  
+  // Order ID that was filled
+  string order_id = 3;
+  
+  // Fill details
+  string fill_amount = 4;
+  string fill_price = 5;
+  
+  // Transaction hash on remote chain
+  string tx_hash = 6;
+}
+
+// EventICAPacketSent is emitted when an ICA packet is sent
+message EventICAPacketSent {
+  // DID of the sender
+  string did = 1;
+  
+  // IBC connection ID
+  string connection_id = 2;
+  
+  // Packet type (swap, liquidity, order, etc.)
+  string packet_type = 3;
+  
+  // IBC packet sequence
+  uint64 sequence = 4;
+}
+
+// EventICAPacketAcknowledged is emitted when an ICA packet is acknowledged
+message EventICAPacketAcknowledged {
+  // DID of the sender
+  string did = 1;
+  
+  // IBC connection ID
+  string connection_id = 2;
+  
+  // Packet type
+  string packet_type = 3;
+  
+  // IBC packet sequence
+  uint64 sequence = 4;
+  
+  // Success status
+  bool success = 5;
+  
+  // Error message if failed
+  string error = 6;
+}

@@ -1,0 +1,97 @@
+name: Bump version
+on:
+  push:
+    branches:
+      - master
+env:
+  NODE_VERSION: 20
+  PNPM_VERSION: 10
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      minor: ${{ steps.check-milestone.outputs.minor }}
+      non-docs: ${{ steps.filter.outputs.non-docs }}
+      packages: ${{ steps.filter.outputs.packages }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            non-docs:
+              - '!docs/**'
+              - '!README.md'
+            packages:
+              - 'packages/**'
+              - 'cli/**'
+              - 'web/**'
+              - 'pnpm-lock.yaml'
+      # Check if any milestone has all issues closed
+      - name: Check milestone completion
+        id: check-milestone
+        run: |
+          # Get all open milestones and check if any have all issues closed
+          MILESTONES=$(gh api repos/${{ github.repository }}/milestones --jq '.[] | select(.state == "open") | {title, open_issues}')
+
+          # Check if any milestone has 0 open issues
+          MINOR_BUMP=false
+          while IFS= read -r milestone; do
+            if [ -n "$milestone" ]; then
+              OPEN_ISSUES=$(echo "$milestone" | jq -r '.open_issues')
+              TITLE=$(echo "$milestone" | jq -r '.title')
+              if [ "$OPEN_ISSUES" = "0" ]; then
+                echo "Milestone '$TITLE' is complete (0 open issues). Minor bump required."
+                MINOR_BUMP=true
+                break
+              fi
+            fi
+          done <<< "$(echo "$MILESTONES" | jq -c '.')"
+
+          echo "minor=$MINOR_BUMP" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT_TOKEN }}  # Handle Go/Binary versioning with commitizen
+
+  version-go:
+    needs: changes
+    if: "!startsWith(github.event.head_commit.message, 'bump:') && !startsWith(github.event.head_commit.message, 'hotfix:') && !startsWith(github.event.head_commit.message, 'Version Packages') && needs.changes.outputs.non-docs == 'true'"
+    runs-on: ubuntu-latest
+    name: "Bump Go binary version and create changelog"
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ssh-key: "${{ secrets.COMMIT_KEY }}"
+      - name: Determine increment type
+        id: increment
+        run: |
+          # Use the version-bump.sh script to determine increment type
+          INCREMENT_TYPE=$(./scripts/version-bump.sh increment-type true ${{ github.repository }})
+          echo "type=$INCREMENT_TYPE" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT_TOKEN }}
+      - name: Create bump and changelog
+        uses: commitizen-tools/commitizen-action@master
+        with:
+          push: false
+          increment: ${{ steps.increment.outputs.type }}
+      - name: Push using ssh
+        run: |
+          git push origin master --tags
+
+  close-milestone:
+    needs: [changes, version-go]
+    if: "needs.changes.outputs.minor == 'true'"
+    runs-on: ubuntu-latest
+    name: "Close completed milestone"
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+      - name: Close completed milestone
+        run: |
+          ./scripts/version-bump.sh close-milestone ${{ github.repository }}
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT_TOKEN }}

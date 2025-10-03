@@ -1,0 +1,158 @@
+---
+title: Sending Payments
+description: A guide for sending payments and transactions on the Sonr blockchain network
+icon: "credit-card"
+---
+
+Sending payments on the Sonr network is designed to be simple and secure, whether you are building a user-facing application or a backend service. This guide covers the different ways to initiate and manage payments.
+
+## The Sonr Payment Model
+
+Sonr payments are built on a capability-based system using UCANs. This means that instead of signing every transaction, users delegate permission to their Vault to execute payments within predefined limits.
+
+<CardGroup>
+  <Card title="Programmable Payments" href="/blockchain/modules/svc/ucan">
+    Automate recurring payments and subscriptions with UCANs.
+  </Card>
+  <Card title="Cross-Chain Transfers" href="/blockchain/network">
+    Send assets to other blockchains seamlessly through IBC.
+  </Card>
+  <Card title="Token Economics" href="/blockchain/token/">
+    Learn about token distribution and transaction fees.
+  </Card>
+</CardGroup>
+
+## Sending a Simple Transfer
+
+This example demonstrates how to send a simple transfer from a user's Vault in a browser application.
+
+<Steps>
+<Step>
+### 1. Authenticate the User
+
+First, ensure the user is authenticated and you have a valid session.
+
+```javascript
+import { Sonr } from "@sonr/sdk";
+
+const sonr = new Sonr({ httpUrl: "http://localhost:1317" });
+const session = await sonr.authenticate();
+```
+
+</Step>
+
+<Step>
+### 2. Request Payment Capability
+
+Before sending a payment, your application must request the necessary permission from the user.
+
+```javascript
+const paymentCapability = await session.vault.requestCapability({
+  action: "bank/send",
+  constraints: {
+    maxAmount: "10000000usnr", // 10 SNR
+    to: "snr1..._recipient_address_...",
+  },
+});
+
+if (!paymentCapability.approved) {
+  throw new Error("Payment not authorized by user");
+}
+```
+
+</Step>
+
+<Step>
+### 3. Execute the Payment
+
+Once you have the capability, you can execute the payment.
+
+```javascript
+const result = await session.vault.send({
+  to: "snr1..._recipient_address_...",
+  amount: "1000000usnr", // 1 SNR
+  ucan: paymentCapability.ucan, // Provide the authorized UCAN
+});
+
+console.log(`Payment successful! TxHash: ${result.txhash}`);
+```
+
+</Step>
+</Steps>
+
+## Backend Payments
+
+For backend services, payments can be initiated using a delegated UCAN.
+
+<Steps>
+<Step>
+### 1. Obtain a Delegated UCAN
+
+Your service must first obtain a delegated UCAN from the user that grants permission to send payments on their behalf.
+
+</Step>
+
+<Step>
+### 2. Use the Go SDK to Send
+
+Your Go backend can use the delegated UCAN to send a payment.
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+
+    "github.com/sonr-io/sonr/x/sonr/pkgs/sdk"
+)
+
+func SendPaymentOnBehalfOfUser(userDID, recipientAddress, amount, delegatedUcan string) error {
+    sonr, _ := sdk.NewSonr(rpcEndpoint, "")
+
+    // The SDK will automatically use the UCAN for authorization
+    result, err := sonr.SendFrom(userDID, recipientAddress, amount, delegatedUcan)
+    if err != nil {
+        return err
+    }
+
+    fmt.Printf("Payment sent! TxHash: %s\n", result.TxHash)
+    return nil
+}
+```
+
+</Step>
+</Steps>
+
+## Cross-Chain Payments
+
+Sonr supports cross-chain payments through the Inter-Blockchain Communication (IBC) protocol.
+
+### Sending to another IBC-enabled chain
+
+```javascript
+const result = await session.vault.send({
+  to: "osmo1..._recipient_address_...", // An Osmosis address
+  amount: "1000000usdc", // 1 USDC
+  via: "ibc/transfer/channel-0", // The IBC channel to use
+});
+
+console.log(`Cross-chain payment successful! TxHash: ${result.txhash}`);
+```
+
+## Querying Payment History
+
+You can query a user's payment history from their Vault.
+
+```javascript
+const history = await session.vault.getPaymentHistory({ limit: 10 });
+
+console.log("Payment History:", history.records);
+```
+
+## Next Steps
+
+- [Explore the UCAN authorization model](/blockchain/modules/svc/ucan)
+- [Learn about blockchain modules](/blockchain/)
+- [See the API Reference](/reference/)
+
