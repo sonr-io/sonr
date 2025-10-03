@@ -33,7 +33,7 @@
     "autoprefixer": "^10.4.16",
     "tailwindcss": "^3.4.0",
     "typescript": "^5.3.0",
-    "vercel": "^47.0.5",
+    "vercel": "^48.2.0",
     "wrangler": "^4.34.0"
   }
 }
