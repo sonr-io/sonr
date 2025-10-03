@@ -38,7 +38,6 @@ export function isValidDomain(domain: string): boolean {
  * Validate API key format
  */
 export function isValidApiKey(key: string): boolean {
-  // Example: sk_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   const apiKeyRegex = /^sk_(test|live)_[a-zA-Z0-9]{24,}$/;
   return apiKeyRegex.test(key);
 }
