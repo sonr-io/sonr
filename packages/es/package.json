@@ -143,7 +143,7 @@
     "@libp2p/webrtc": "^4.0.0",
     "@libp2p/websockets": "^8.0.0",
     "@chainsafe/libp2p-noise": "^15.0.0",
-    "@chainsafe/libp2p-yamux": "^6.0.0",
+    "@chainsafe/libp2p-yamux": "^8.0.0",
     "multiformats": "^13.0.0",
     "uint8arrays": "^5.0.0",
     "@tanstack/query-core": "^5.0.0"
