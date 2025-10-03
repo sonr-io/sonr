@@ -137,7 +137,7 @@
     "@simplewebauthn/browser": "^9.0.1",
     "dexie": "^4.0.1",
     "helia": "^4.0.0",
-    "@helia/unixfs": "^3.0.0",
+    "@helia/unixfs": "^5.1.0",
     "@helia/verified-fetch": "^1.0.0",
     "@helia/strings": "^3.0.0",
     "@libp2p/webrtc": "^4.0.0",
