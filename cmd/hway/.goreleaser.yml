@@ -149,8 +149,10 @@ nix:
     path: pkgs/hway/default.nix
     commit_msg_template: "hway: {{ .Tag }}"
     dependencies:
+      - stdenv
       - glibc
-      - stdenv.cc.cc.lib
+    extra_install: |-
+      wrapProgram $out/bin/hway --prefix PATH : ${lib.makeBinPath [ glibc stdenv.cc.cc.lib ]}
     repository:
       owner: sonr-io
       name: nur

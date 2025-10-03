@@ -181,8 +181,10 @@ nix:
     path: pkgs/snrd/default.nix
     commit_msg_template: "snrd: {{ .Tag }}"
     dependencies:
+      - stdenv
       - glibc
-      - stdenv.cc.cc.lib
+    extra_install: |-
+      wrapProgram $out/bin/snrd --prefix PATH : ${lib.makeBinPath [ glibc stdenv.cc.cc.lib ]}
     repository:
       owner: sonr-io
       name: nur
