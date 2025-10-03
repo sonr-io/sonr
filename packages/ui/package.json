@@ -58,7 +58,7 @@
     "date-fns": "^4.1.0",
     "framer-motion": "^12.23.12",
     "lucide-react": "^0.263.1",
-    "next": "14.2.32",
+    "next": "15.5.4",
     "react-day-picker": "^9.9.0",
     "react-hook-form": "^7.62.0",
     "recharts": "^3.1.2",
