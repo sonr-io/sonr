@@ -1,0 +1,51 @@
+/// Generated schema for Root
+///
+/// This module was generated from JSON Schema from
+/// <file:///Users/prad/Developer/github.com/sonr-io/pkljar/ibc.json>.
+///
+/// WARN: The root schema describes open-ended properties, but this is not possible to describe at the
+/// module level.
+module cosmos.params.Asset
+
+class Coin {
+  type: String
+  denom: String
+  name: String
+  symbol: String
+  description: String
+  decimals: Number
+  image: String
+  coinGeckoId: String
+  ibc_info: IbcInfo?
+  bridge_info: BridgeInfo?
+}
+
+class BridgeInfo {
+  path: String
+  enable: Boolean
+  counterparty: BridgeCounterparty
+}
+
+class BridgeCounterparty {
+  chain: String
+  contract: String
+}
+
+class IbcInfo {
+  path: String
+  client: IbcClient
+  counterparty: IbcCounterparty
+}
+
+class IbcClient {
+  channel: String
+  port: String
+}
+
+class IbcCounterparty {
+  channel: String
+  port: String
+  chain: String
+  denom: String
+}
+

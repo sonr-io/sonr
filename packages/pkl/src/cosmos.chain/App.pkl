@@ -1,0 +1,81 @@
+open module cosmos.chain.App
+
+`minimum-gas-prices`: String
+`query-gas-limit`: String
+`pruning-keep-recent`: String
+`pruning-interval`: String
+`halt-height`: Number
+`halt-time`: Number
+`min-retain-blocks`: Number
+`inter-block-cache`: Boolean
+`index-events`: Listing<Any>
+`iavl-cache-size`: Number
+`iavl-disable-fastnode`: Boolean
+`app-db-backend`: String
+`grpc-web`: GrpcWeb
+`state-sync`: StateSync
+
+pruning: String
+telemetry: Telemetry
+api: Api
+grpc: Grpc
+streaming: Streaming
+mempool: Mempool
+
+class Telemetry {
+  `service-name`: String
+  enabled: Boolean
+  `enable-hostname`: Boolean
+  `enable-hostname-label`: Boolean
+  `enable-service-label`: Boolean
+  `prometheus-retention-time`: Number
+  `global-labels`: Listing<Any>
+  `metrics-sink`: String
+  `statsd-addr`: String
+  `datadog-hostname`: String
+}
+
+class Api {
+  enable: Boolean
+  swagger: Boolean
+  address: String
+  `max-open-connections`: Number
+  `rpc-read-timeout`: Number
+  `rpc-write-timeout`: Number
+  `rpc-max-body-bytes`: Number
+  `enabled-unsafe-cors`: Boolean
+}
+
+class Grpc {
+  enable: Boolean
+  address: String
+  `max-recv-msg-size`: String
+  `max-send-msg-size`: String
+}
+
+class GrpcWeb {
+  enable: Boolean
+}
+
+class StateSync {
+  `snapshot-interval`: Number
+  `snapshot-keep-recent`: Number
+}
+
+class Streaming {
+  abci: Abci
+}
+
+class Abci {
+  keys: Listing<Any>
+  plugin: String
+  `stop-node-on-err`: Boolean
+}
+
+class Mempool {
+  `max-txs`: Number
+}
+
+output {
+  renderer = new toml.Renderer {}
+}

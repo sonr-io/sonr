@@ -1,0 +1,75 @@
+---
+openapi: post /dwn.v1.Msg/ProtocolsConfigure
+title: Configure DWN Protocol
+description: Define structured data models and access patterns for interoperable applications
+og:title: DWN Protocol Configuration
+---
+
+<Info>
+  Protocols are the foundation of data interoperability in DWN, enabling applications to share and understand structured data.
+</Info>
+
+## Protocol Architecture
+
+### Protocol Definition Structure
+```json
+{
+  "protocol": "https://protocols.sonr.io/health/v1",
+  "published": true,
+  "types": {
+    "vitals": {
+      "schema": "https://schema.org/VitalSign",
+      "dataFormats": ["application/json"]
+    },
+    "records": {
+      "schema": "https://schema.org/MedicalRecord",
+      "dataFormats": ["application/json", "application/pdf"]
+    }
+  },
+  "structure": {
+    "vitals": {},
+    "records": {
+      "vitals": {}
+    }
+  }
+}
+```
+
+### Key Components
+
+- **Types**: Define record types with schemas and formats
+- **Structure**: Specify hierarchical relationships
+- **Permissions**: Control access patterns
+- **Actions**: Define allowed operations
+
+## Publishing Protocols
+
+<Tip>
+  Set `published: true` to make your protocol discoverable and reusable by the community.
+</Tip>
+
+### Benefits of Published Protocols
+- **Discoverability**: Others can find and adopt your protocol
+- **Standardization**: Create industry-standard data models
+- **Ecosystem Growth**: Enable app interoperability
+
+## Common Protocol Patterns
+
+### Healthcare Protocol
+- Patient records hierarchy
+- Encrypted by default
+- Granular permission model
+
+### Social Protocol
+- Posts, comments, reactions
+- Public/private content mixing
+- Media attachments
+
+### IoT Protocol
+- Device data streams
+- Time-series organization
+- Aggregation rules
+
+<Warning>
+  Protocol URIs must be unique. Consider using versioned URIs (e.g., `/v1`, `/v2`) for upgrades.
+</Warning>

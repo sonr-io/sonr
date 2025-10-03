@@ -1,0 +1,33 @@
+---
+openapi: get /dwn/v1/params
+title: Query DWN Module Parameters
+description: Get current configuration settings for the DWN module
+og:title: DWN Module Configuration
+---
+
+<Info>
+  Module parameters control the global behavior of all DWN operations on the network.
+</Info>
+
+## Parameter Categories
+
+### Storage Configuration
+- **maxRecordSize**: Maximum bytes per record (default: 10MB)
+- **maxProtocolsPerDwn**: Protocol limit per DWN
+- **maxPermissionsPerDwn**: Permission limit per DWN
+
+### Vault Security
+- **vaultCreationEnabled**: Whether new vaults can be created
+- **minVaultRefreshInterval**: Blocks between key refreshes
+- **keyRotationDays**: Automatic rotation schedule
+- **minValidatorsForKeyGen**: Validator consensus threshold
+
+### Encryption Policies
+- **encryptionEnabled**: Global encryption enforcement
+- **encryptedProtocols**: Protocols requiring encryption
+- **encryptedSchemas**: Schemas requiring encryption
+- **singleNodeFallback**: Development mode setting
+
+<Tip>
+  Query parameters before designing your application to ensure compliance with network limits.
+</Tip>

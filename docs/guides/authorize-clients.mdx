@@ -1,0 +1,221 @@
+---
+title: "Authorization with UCAN"
+description: "Comprehensive guide to creating, validating, and managing User-Controlled Authorization Network (UCAN) tokens"
+sidebarTitle: Client Authorization
+icon: "badge-check"
+---
+
+# UCAN Token Operations
+
+User-Controlled Authorization Networks (UCAN) provide a decentralized authorization mechanism that enables flexible, portable, and secure token-based access control.
+
+## Overview
+
+UCAN tokens are JWT-based authorization tokens that allow:
+
+- Decentralized identity verification
+- Granular access control
+- Delegatable permissions
+- Cryptographic proof of authorization
+
+## Token Structure
+
+A UCAN token consists of:
+
+- Issuer DID
+- Audience DID
+- Capabilities (Attenuations)
+- Proofs (Optional parent tokens)
+- Time-based constraints
+
+## Creating Origin Tokens
+
+An origin token is the first token in a delegation chain:
+
+```go
+type NewOriginTokenRequest struct {
+    AudienceDID  string                   // Target DID
+    Attenuations []map[string]any // Token restrictions
+    Facts        []string                 // Additional claims
+    NotBefore    int64                    // Token activation time
+    ExpiresAt    int64                    // Token expiration time
+}
+
+// Example origin token creation
+originToken := NewOriginTokenRequest{
+    AudienceDID: "did:sonr:example-recipient",
+    Attenuations: []{
+        {
+            "capability": "read",
+            "resource": "/storage/documents"
+        }
+    },
+    Facts: ["authenticated_user"],
+    NotBefore: time.Now().Unix(),
+    ExpiresAt: time.Now().Add(24 * time.Hour).Unix()
+}
+```
+
+## Creating Attenuated Tokens
+
+Attenuated tokens derive from existing tokens, further restricting capabilities:
+
+```go
+type NewAttenuatedTokenRequest struct {
+    ParentToken  string                   // Previous token
+    AudienceDID  string                   // New token recipient
+    Attenuations []map[string]any // Further restrictions
+    Facts        []string                 // Additional claims
+    NotBefore    int64                    // Token activation time
+    ExpiresAt    int64                    // Token expiration time
+}
+
+// Example attenuated token
+attenuatedToken := NewAttenuatedTokenRequest{
+    ParentToken: originTokenString,
+    AudienceDID: "did:sonr:delegated-user",
+    Attenuations: []{
+        {
+            "capability": "read",
+            "resource": "/storage/documents/public"
+        }
+    }
+}
+```
+
+## Token Validation Workflow
+
+```go
+func ValidateUCANToken(token string) (bool, error) {
+    // 1. Parse the token
+    parsedToken, err := jwt.Parse(token, keyFunc)
+    if err != nil {
+        return false, err
+    }
+
+    // 2. Verify issuer DID
+    issuerDID := parsedToken.Claims["iss"]
+    if !isDIDValid(issuerDID) {
+        return false, errors.New("invalid issuer DID")
+    }
+
+    // 3. Check audience
+    audienceDID := parsedToken.Claims["aud"]
+    if !isCurrentUserAudience(audienceDID) {
+        return false, errors.New("token not intended for this audience")
+    }
+
+    // 4. Validate time constraints
+    if isTokenExpired(parsedToken) {
+        return false, errors.New("token has expired")
+    }
+
+    // 5. Check capabilities
+    capabilities := parsedToken.Claims["att"]
+    if !validateCapabilities(capabilities) {
+        return false, errors.New("insufficient capabilities")
+    }
+
+    // 6. Verify proofs (if present)
+    proofs := parsedToken.Claims["prf"]
+    if !validateProofChain(proofs) {
+        return false, errors.New("invalid proof chain")
+    }
+
+    return true, nil
+}
+```
+
+## Capability Patterns
+
+### Read Capabilities
+
+```json
+{
+  "capability": "read",
+  "resource": "/storage/documents",
+  "conditions": {
+    "max_size": "10MB",
+    "allowed_types": ["pdf", "txt"]
+  }
+}
+```
+
+### Write Capabilities
+
+```json
+{
+  "capability": "write",
+  "resource": "/storage/documents",
+  "conditions": {
+    "max_files": 5,
+    "max_file_size": "50MB"
+  }
+}
+```
+
+## Practical Examples
+
+### Decentralized File Sharing
+
+```go
+// Create an origin token for file access
+originToken := NewOriginTokenRequest{
+    AudienceDID: "did:sonr:collaborator",
+    Attenuations: []{
+        {
+            "capability": "read",
+            "resource": "/project/design-docs"
+        },
+        {
+            "capability": "write",
+            "resource": "/project/design-docs/comments"
+        }
+    },
+    ExpiresAt: time.Now().Add(30 * 24 * time.Hour).Unix()
+}
+
+// Later, create a more restricted token
+limitedToken := NewAttenuatedTokenRequest{
+    ParentToken: originTokenString,
+    AudienceDID: "did:sonr:junior-designer",
+    Attenuations: []{
+        {
+            "capability": "read",
+            "resource": "/project/design-docs/public"
+        }
+    }
+}
+```
+
+## Security Considerations
+
+- Use the shortest possible token lifetime
+- Implement granular capabilities
+- Validate all tokens before use
+- Rotate keys regularly
+- Log and monitor token usage
+
+## Performance Optimization
+
+- Cache validated tokens
+- Use efficient JWT parsing
+- Implement token revocation lists
+
+## Advanced Topics
+
+- [DID Module](/blockchain/modules/did/)
+- [DWN Architecture](/blockchain/modules/dwn/architecture)
+- [Service Registry](/blockchain/modules/svc/)
+
+## Error Handling
+
+```go
+type UCANError struct {
+    Code    string
+    Message string
+    Details map[string]any
+}
+```
+
+By leveraging UCAN tokens, you can create a flexible, secure, and decentralized authorization system that puts users in control of their access.

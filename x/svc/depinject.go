@@ -16,8 +16,9 @@ import (
 	"cosmossdk.io/depinject"
 	"cosmossdk.io/log"
 
-	modulev1 "github.com/sonr-io/snrd/api/svc/module/v1"
-	"github.com/sonr-io/snrd/x/svc/keeper"
+	modulev1 "github.com/sonr-io/sonr/api/svc/module/v1"
+	didkeeper "github.com/sonr-io/sonr/x/did/keeper"
+	"github.com/sonr-io/sonr/x/svc/keeper"
 )
 
 var _ appmodule.AppModule = AppModule{}
@@ -44,6 +45,7 @@ type ModuleInputs struct {
 
 	StakingKeeper  stakingkeeper.Keeper
 	SlashingKeeper slashingkeeper.Keeper
+	DIDKeeper      didkeeper.Keeper
 }
 
 type ModuleOutputs struct {
@@ -56,7 +58,13 @@ type ModuleOutputs struct {
 func ProvideModule(in ModuleInputs) ModuleOutputs {
 	govAddr := authtypes.NewModuleAddress(govtypes.ModuleName).String()
 
-	k := keeper.NewKeeper(in.Cdc, in.StoreService, log.NewLogger(os.Stderr), govAddr)
+	k := keeper.NewKeeper(
+		in.Cdc,
+		in.StoreService,
+		log.NewLogger(os.Stderr),
+		govAddr,
+		in.DIDKeeper,
+	)
 	m := NewAppModule(in.Cdc, k)
 
 	return ModuleOutputs{Module: m, Keeper: k, Out: depinject.Out{}}

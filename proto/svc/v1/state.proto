@@ -3,55 +3,299 @@ package svc.v1;
 
 import "cosmos/orm/v1/orm.proto";
 
-option go_package = "github.com/sonr-io/snrd/x/svc/types";
-
+option go_package = "github.com/sonr-io/sonr/x/svc/types";
 
 // https://github.com/cosmos/cosmos-sdk/blob/main/orm/README.md
 
-message Domain {
+// Service represents a registered service with domain binding and UCAN
+// capabilities
+message Service {
   option (cosmos.orm.v1.table) = {
     id: 1
-    primary_key: {
-      fields: "id"
-      auto_increment: true
-    }
-    index: {
-      id: 1
-      fields: "origin"
-      unique: true
-    }
-  };
-
-  uint64 id = 1;
-  string origin = 2;
-  string name = 3;
-  string description = 4;
-  string category = 5;
-  string icon = 6;
-  repeated string tags = 7;
-}
-
-// Metadata represents a DID alias
-message Metadata {
-  option (cosmos.orm.v1.table) = {
-    id: 2
     primary_key: {fields: "id"}
     index: {
       id: 1
-      fields: "subject,origin"
+      fields: "domain"
+      unique: true
+    }
+    index: {
+      id: 2
+      fields: "owner"
+    }
+    index: {
+      id: 3
+      fields: "status"
+    }
+  };
+
+  // Unique identifier for the service
+  string id = 1;
+
+  // DNS-verified domain bound to this service
+  string domain = 2;
+
+  // Owner address who registered the service
+  string owner = 3;
+
+  // IPFS CID of the UCAN root capability for this service
+  string root_capability_cid = 4;
+
+  // List of permissions granted to this service
+  repeated string permissions = 5;
+
+  // Current status of the service
+  ServiceStatus status = 6;
+
+  // Unix timestamp when the service was registered
+  int64 created_at = 7;
+
+  // Unix timestamp of last update
+  int64 updated_at = 8;
+}
+
+// DomainVerification represents a domain ownership verification record
+message DomainVerification {
+  option (cosmos.orm.v1.table) = {
+    id: 2
+    primary_key: {fields: "domain"}
+    index: {
+      id: 1
+      fields: "owner"
+    }
+    index: {
+      id: 2
+      fields: "status"
+    }
+  };
+
+  // The domain being verified (e.g., "example.com")
+  string domain = 1;
+
+  // The owner's address who initiated the verification
+  string owner = 2;
+
+  // Unique verification token to be placed in DNS TXT record
+  string verification_token = 3;
+
+  // Current status of domain verification
+  DomainVerificationStatus status = 4;
+
+  // Unix timestamp when the verification expires if not completed
+  int64 expires_at = 5;
+
+  // Unix timestamp when the domain was verified (if applicable)
+  int64 verified_at = 6;
+}
+
+// DomainVerificationStatus represents the current state of domain verification
+enum DomainVerificationStatus {
+  // Pending verification - DNS TXT record not yet confirmed
+  DOMAIN_VERIFICATION_STATUS_PENDING = 0;
+
+  // Successfully verified - DNS TXT record confirmed
+  DOMAIN_VERIFICATION_STATUS_VERIFIED = 1;
+
+  // Verification expired - exceeded time limit
+  DOMAIN_VERIFICATION_STATUS_EXPIRED = 2;
+
+  // Verification failed - DNS lookup failed or record mismatch
+  DOMAIN_VERIFICATION_STATUS_FAILED = 3;
+}
+
+// ServiceCapability represents a service-specific capability with permissions
+message ServiceCapability {
+  option (cosmos.orm.v1.table) = {
+    id: 3
+    primary_key: {fields: "capability_id"}
+    index: {
+      id: 1
+      fields: "service_id"
+    }
+    index: {
+      id: 2
+      fields: "owner"
+    }
+    index: {
+      id: 3
+      fields: "revoked"
+    }
+  };
+
+  // Unique identifier for the capability
+  string capability_id = 1;
+
+  // Service ID this capability belongs to
+  string service_id = 2;
+
+  // DNS domain associated with the capability
+  string domain = 3;
+
+  // List of abilities/actions granted by this capability
+  repeated string abilities = 4;
+
+  // Owner address who holds this capability
+  string owner = 5;
+
+  // Unix timestamp when the capability was created
+  int64 created_at = 6;
+
+  // Unix timestamp when the capability expires (0 for no expiration)
+  int64 expires_at = 7;
+
+  // Whether this capability has been revoked
+  bool revoked = 8;
+}
+
+// ServiceResource represents a resource that can be accessed with capabilities
+message ServiceResource {
+  option (cosmos.orm.v1.table) = {
+    id: 4
+    primary_key: {fields: "resource_id"}
+    index: {
+      id: 1
+      fields: "service_id"
+    }
+    index: {
+      id: 2
+      fields: "resource_type"
+    }
+  };
+
+  // Unique identifier for the resource
+  string resource_id = 1;
+
+  // Service ID this resource belongs to
+  string service_id = 2;
+
+  // Type of resource (e.g., "api", "data", "file")
+  string resource_type = 3;
+
+  // List of abilities that can be performed on this resource
+  repeated string allowed_abilities = 4;
+
+  // Additional metadata for the resource
+  map<string, string> metadata = 5;
+}
+
+// ServiceStatus represents the operational state of a service
+enum ServiceStatus {
+  // Service is active and operational
+  SERVICE_STATUS_ACTIVE = 0;
+
+  // Service is temporarily suspended
+  SERVICE_STATUS_SUSPENDED = 1;
+
+  // Service has been permanently revoked
+  SERVICE_STATUS_REVOKED = 2;
+}
+
+// ServiceOIDCConfig represents OpenID Connect configuration for a service
+message ServiceOIDCConfig {
+  option (cosmos.orm.v1.table) = {
+    id: 5
+    primary_key: {fields: "service_id"}
+    index: {
+      id: 1
+      fields: "issuer"
       unique: true
     }
   };
 
-  // The unique identifier of the alias
-  string id = 1;
+  // Service ID this OIDC config belongs to
+  string service_id = 1;
+  
+  // OIDC issuer URL (must match the service's verified domain)
+  string issuer = 2;
+  
+  // Authorization endpoint URL
+  string authorization_endpoint = 3;
+  
+  // Token endpoint URL
+  string token_endpoint = 4;
+  
+  // JWKS URI for public key retrieval
+  string jwks_uri = 5;
+  
+  // UserInfo endpoint URL
+  string userinfo_endpoint = 6;
+  
+  // Supported OIDC scopes for this service
+  repeated string scopes_supported = 7;
+  
+  // Supported response types
+  repeated string response_types_supported = 8;
+  
+  // Supported grant types
+  repeated string grant_types_supported = 9;
+  
+  // ID token signing algorithm values supported
+  repeated string id_token_signing_alg_values_supported = 10;
+  
+  // Subject types supported
+  repeated string subject_types_supported = 11;
+  
+  // Token endpoint auth methods supported
+  repeated string token_endpoint_auth_methods_supported = 12;
+  
+  // Claims supported in ID tokens
+  repeated string claims_supported = 13;
+  
+  // Response modes supported
+  repeated string response_modes_supported = 14;
+  
+  // Additional OIDC metadata as key-value pairs
+  map<string, string> metadata = 15;
+  
+  // Unix timestamp when this config was created
+  int64 created_at = 16;
+  
+  // Unix timestamp when this config was last updated
+  int64 updated_at = 17;
+}
 
-  // The alias of the DID
-  string subject = 2;
+// JWK represents a JSON Web Key for OIDC
+message JWK {
+  // Key type (e.g., "RSA", "EC")
+  string kty = 1;
+  
+  // Key use (e.g., "sig", "enc")
+  string use = 2;
+  
+  // Key ID
+  string kid = 3;
+  
+  // Algorithm (e.g., "RS256", "ES256")
+  string alg = 4;
+  
+  // RSA modulus (for RSA keys)
+  string n = 5;
+  
+  // RSA exponent (for RSA keys)
+  string e = 6;
+  
+  // Elliptic curve (for EC keys)
+  string crv = 7;
+  
+  // X coordinate (for EC keys)
+  string x = 8;
+  
+  // Y coordinate (for EC keys)
+  string y = 9;
+}
 
-  // Origin of the alias
-  string origin = 3;
+// ServiceJWKS represents the JSON Web Key Set for a service
+message ServiceJWKS {
+  option (cosmos.orm.v1.table) = {
+    id: 6
+    primary_key: {fields: "service_id"}
+  };
 
-  // Controller of the alias
-  string controller = 4;
+  // Service ID this JWKS belongs to
+  string service_id = 1;
+  
+  // List of public keys
+  repeated JWK keys = 2;
+  
+  // Unix timestamp when this JWKS was last rotated
+  int64 rotated_at = 3;
 }

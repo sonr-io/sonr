@@ -1,0 +1,55 @@
+// PklProject template for Sonr.io packages
+module basePklProject
+
+amends "pkl:Project"
+
+import "pkl:reflect"
+
+// Automatically determine package name from directory structure
+local myModule = reflect.Module(module)
+
+local packageName: String =
+  findRootModule(myModule)
+    .relativePathTo(module)
+    .last
+
+local function findRootModule(mod: reflect.Module): Module =
+  let (supermodule = mod.supermodule)
+    if (supermodule == null || !supermodule.isAmend) mod.reflectee
+    else findRootModule(supermodule)
+
+// Find all test files
+const local allTests = import*("**/tests/**.pkl").keys.filter((it) -> !it.contains("tests/fixtures/"))
+
+// Package configuration
+package {
+  name = packageName
+  baseUri = "package://pkl.sh/\(name)"
+  packageZipUrl = "https://github.com/sonr-io/pkljar/releases/download/v\(version)/\(name)-\(version).zip"
+  license = "Apache-2.0"
+  
+  authors {
+    "Sonr.io <dev@sonr.io>"
+  }
+  
+  exclude {
+    "examples/**"
+    "tests/**"
+    "**/.DS_Store"
+    "**/.idea/**"
+  }
+  
+  description = myModule.docComment
+  issueTracker = "https://github.com/sonr-io/pkljar/issues"
+  sourceCode = "https://github.com/sonr-io/pkljar/tree/v\(version)/packages/\(name)"
+  sourceCodeUrlScheme = "https://github.com/sonr-io/pkljar/blob/v\(version)/packages/\(name)%{path}#L%{line}-%{endLine}"
+}
+
+
+// Default dependencies (can be extended in specific PklProject files)
+dependencies {
+  // Common dependencies can be added here
+  // ["example-dep"] {
+  //   uri = "package://pkl.sh/example-dep@1.0.0"
+  // }
+}

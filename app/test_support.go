@@ -10,26 +10,26 @@ import (
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 )
 
-func (app *SonrApp) GetIBCKeeper() *ibckeeper.Keeper {
+func (app *ChainApp) GetIBCKeeper() *ibckeeper.Keeper {
 	return app.IBCKeeper
 }
 
-func (app *SonrApp) GetScopedIBCKeeper() capabilitykeeper.ScopedKeeper {
+func (app *ChainApp) GetScopedIBCKeeper() capabilitykeeper.ScopedKeeper {
 	return app.ScopedIBCKeeper
 }
 
-func (app *SonrApp) GetBaseApp() *baseapp.BaseApp {
+func (app *ChainApp) GetBaseApp() *baseapp.BaseApp {
 	return app.BaseApp
 }
 
-func (app *SonrApp) GetBankKeeper() bankkeeper.Keeper {
+func (app *ChainApp) GetBankKeeper() bankkeeper.Keeper {
 	return app.BankKeeper
 }
 
-func (app *SonrApp) GetStakingKeeper() *stakingkeeper.Keeper {
+func (app *ChainApp) GetStakingKeeper() *stakingkeeper.Keeper {
 	return app.StakingKeeper
 }
 
-func (app *SonrApp) GetAccountKeeper() authkeeper.AccountKeeper {
+func (app *ChainApp) GetAccountKeeper() authkeeper.AccountKeeper {
 	return app.AccountKeeper
 }

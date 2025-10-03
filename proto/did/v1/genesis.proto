@@ -4,12 +4,15 @@ package did.v1;
 import "amino/amino.proto";
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/sonr-io/snrd/x/did/types";
+option go_package = "github.com/sonr-io/sonr/x/did/types";
 
 // GenesisState defines the module genesis state
 message GenesisState {
   // Params defines all the parameters of the module.
   Params params = 1 [(gogoproto.nullable) = false];
+  
+  // Export format version for future migrations
+  uint32 export_version = 2;
 }
 
 // Params defines the set of module parameters.
@@ -18,37 +21,74 @@ message Params {
   option (gogoproto.equal) = true;
   option (gogoproto.goproto_stringer) = false;
 
-  repeated Attenuation attenuations = 1;
+  DocumentParams document = 1;
+  WebauthnParams webauthn = 2;
 }
 
-// Attenuation defines the attenuation of a resource
-message Attenuation {
-  Resource resource = 1;
-  repeated Capability capabilities = 2;
+// DocumentParams defines the parameters for the DID module.
+message DocumentParams {
+  option (gogoproto.equal) = true;
+  
+  // AutoCreateVault enables automatic vault creation upon DID registration
+  bool auto_create_vault = 1;
+
+  // MaxVerificationMethods limits the number of verification methods
+  int32 max_verification_methods = 2;
+
+  // MaxServiceEndpoints limits the number of service endpoints
+  int32 max_service_endpoints = 3;
+
+  // MaxControllers limits the number of controllers per DID document
+  int32 max_controllers = 4;
+
+  // DidDocumentMaxSize limits the maximum size of a DID document in bytes
+  int64 did_document_max_size = 5;
+
+  // DidResolutionTimeout is the timeout for resolution operations in seconds
+  int64 did_resolution_timeout = 6;
+
+  // KeyRotationInterval is the recommended interval for key rotation in seconds
+  int64 key_rotation_interval = 7;
+
+  // CredentialLifetime is the default lifetime in seconds
+  int64 credential_lifetime = 8;
+
+  // Supported Assertion methods
+  repeated string supported_assertion_methods = 9;
+  
+  // Supported Authentication methods
+  repeated string supported_authentication_methods = 10;
+  
+  // Supported Invocation methods
+  repeated string supported_invocation_methods = 11;
+  
+  // Supported Delegation methods
+  repeated string supported_delegation_methods = 12;
 }
 
-// Capability reprensents the available capabilities of a decentralized web node
-message Capability {
-  string name = 1;
-  string parent = 2;
-  string description = 3;
-  repeated string resources = 4;
+// WebauthnParams defines the parameters for the WebAuthn module.
+message WebauthnParams {
+  option (gogoproto.equal) = true;
+  
+  // ChallengeTimeout is the default timeout in seconds
+  int64 challenge_timeout = 1;
+
+  // AllowedOrigins are the allowed WebAuthn origins for credential creation
+  repeated string allowed_origins = 2;
+
+  // SupportedAlgorithms are the supported signature for WebAuthn credentials
+  repeated string supported_algorithms = 3;
+
+  // RequireUserVerification enforces verification for WebAuthn credentials
+  bool require_user_verification = 4;
+
+  // MaxCredentialsPerDID limits the number of WebAuthn credentials per DID
+  int32 max_credentials_per_did = 5;
+
+  // DefaultRPID is the default Relying Party ID for WebAuthn operations
+  string default_rp_id = 6;
+
+  // DefaultRPName is the default Relying Party name for WebAuthn operations
+  string default_rp_name = 7;
 }
 
-// Resource reprensents the available resources of a decentralized web node
-message Resource {
-  string kind = 1;
-  string template = 2;
-}
-
-
-// Document defines a DID document
-message Document {
-  string id = 1;
-  string controller = 2; // The DID of the controller
-  repeated string authentication = 3;
-  repeated string assertion_method = 4;
-  repeated string capability_delegation = 5;
-  repeated string capability_invocation = 6;
-  repeated string service = 7;
-}

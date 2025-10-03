@@ -1,0 +1,15 @@
+---
+openapi: get /sonr/dex/v1/balance/{did}/{connectionId}
+title: Query Remote Chain Balances
+description: Check token balances in your ICA account on remote chains
+og:title: Cross-Chain Balance Query
+---
+
+<Tip>
+  Use the optional `denom` parameter to check specific token balances
+  without fetching the entire balance list.
+</Tip>
+
+<Note>
+  Balances are fetched in real-time from the remote chain via IBC queries.
+</Note>

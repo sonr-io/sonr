@@ -1,3 +1,5 @@
+// Package decorators provides custom ante handler decorators for transaction processing
+// in the Sonr blockchain application.
 package decorators
 
 import (
@@ -8,7 +10,8 @@ import (
 	"github.com/cosmos/gogoproto/proto"
 )
 
-// MsgFilterDecorator is an ante.go decorator template for filtering messages.
+// MsgFilterDecorator is an ante handler decorator that filters out specific message types
+// from transactions. It prevents certain message types from being processed by the chain.
 type MsgFilterDecorator struct {
 	blockedTypes []sdk.Msg
 }
@@ -17,7 +20,8 @@ type MsgFilterDecorator struct {
 // contains any of the blocked message types.
 //
 // Example:
-// - decorators.FilterDecorator(&banktypes.MsgSend{})
+//   - decorators.FilterDecorator(&banktypes.MsgSend{})
+//
 // This would block any MsgSend messages from being included in a transaction if set in ante.go
 func FilterDecorator(blockedMsgTypes ...sdk.Msg) MsgFilterDecorator {
 	return MsgFilterDecorator{
@@ -25,7 +29,14 @@ func FilterDecorator(blockedMsgTypes ...sdk.Msg) MsgFilterDecorator {
 	}
 }
 
-func (mfd MsgFilterDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate bool, next sdk.AnteHandler) (newCtx sdk.Context, err error) {
+// AnteHandle implements the AnteDecorator interface. It checks if the transaction
+// contains any disallowed message types and rejects it if found.
+func (mfd MsgFilterDecorator) AnteHandle(
+	ctx sdk.Context,
+	tx sdk.Tx,
+	simulate bool,
+	next sdk.AnteHandler,
+) (newCtx sdk.Context, err error) {
 	if mfd.HasDisallowedMessage(ctx, tx.GetMsgs()) {
 		currHeight := ctx.BlockHeight()
 		return ctx, fmt.Errorf("tx contains unsupported message types at height %d", currHeight)
@@ -34,6 +45,9 @@ func (mfd MsgFilterDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate bo
 	return next(ctx, tx, simulate)
 }
 
+// HasDisallowedMessage recursively checks if any of the provided messages or their
+// nested messages (in case of authz.MsgExec) match the blocked message types.
+// Returns true if a disallowed message is found.
 func (mfd MsgFilterDecorator) HasDisallowedMessage(ctx sdk.Context, msgs []sdk.Msg) bool {
 	for _, msg := range msgs {
 		// check nested messages in a recursive manner

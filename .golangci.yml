@@ -1,0 +1,91 @@
+#jsonschema:https://golangci-lint.run/jsonschema/golangci.jsonschema.json
+version: "2"
+linters:
+  enable:
+    - govet
+    - ineffassign
+    - misspell
+    - unconvert
+    - staticcheck
+    - errcheck
+    - gosec
+    - goconst
+    - prealloc
+    - dupl
+    - whitespace
+  disable:
+    - exhaustruct
+  settings:
+    govet:
+      enable-all: true
+      disable:
+        - fieldalignment
+    gocyclo:
+      min-complexity: 15
+    dupl:
+      threshold: 100
+    goconst:
+      min-len: 3
+      min-occurrences: 3
+    funlen:
+      lines: 100
+      statements: 50
+    gocognit:
+      min-complexity: 20
+    gocritic:
+      enabled-checks:
+        - nilValReturn
+        - rangeExprCopy
+    revive:
+      confidence: 0.8
+      rules:
+        - name: exported
+          arguments: [checkPrivateReceivers, sayRepetitiveInsteadOfStutters]
+    staticcheck:
+      checks:
+        [
+          "all",
+          "-SA1019",
+          "-SA1029",
+          "-SA2002",
+          "-SA4006",
+          "-ST1021",
+          "-S1004",
+          "-ST1003",
+          "-ST1005",
+          "-ST1016",
+        ]
+    gosec:
+      excludes:
+        - G204 # Subprocess launched with function call as argument or cmd arguments
+        - G404 # Weak random number generator
+        - G115 # Weak random number generator
+formatters:
+  enable:
+    - gofmt
+    - gofumpt
+    - goimports
+    - golines
+  exclusions:
+    warn-unused: true
+    generated: strict
+    paths:
+      - ".*\\.pb\\.go$"
+      - ".*\\.pulsar\\.go$"
+      - ".*\\.cosmos_orm\\.go$"
+      - ".*\\._orm\\.go$"
+      - "types/webauthn/.*\\.go$"
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+  new: true
+  fix: true
+run:
+  timeout: 5m
+  relative-path-mode: gomod
+  issues-exit-code: 2
+  tests: true
+  modules-download-mode: readonly
+  allow-parallel-runners: true
+  allow-serial-runners: true
+  concurrency: 8

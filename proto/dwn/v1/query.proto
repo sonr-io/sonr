@@ -1,26 +1,86 @@
 syntax = "proto3";
 package dwn.v1;
 
-import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
 import "dwn/v1/genesis.proto";
+import "dwn/v1/state.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
 
-option go_package = "github.com/sonr-io/snrd/x/dwn/types";
-
-// ╭─────────────────────────────────────────────────────────╮
-// │                  RPC Query Service                      │
-// ╰─────────────────────────────────────────────────────────╯
+option go_package = "github.com/sonr-io/sonr/x/dwn/types";
 
 // Query provides defines the gRPC querier service.
 service Query {
   // Params queries all parameters of the module.
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
-    option (google.api.http).get = "/vault/v1/params";
+    option (google.api.http).get = "/dwn/v1/params";
+  }
+
+  // IPFS queries the status of the IPFS node
+  rpc IPFS(QueryIPFSRequest) returns (QueryIPFSResponse) {
+    option (google.api.http).get = "/dwn/v1/ipfs";
+  }
+
+  // CID returns the data for a given CID
+  rpc CID(QueryCIDRequest) returns (QueryCIDResponse) {
+    option (google.api.http).get = "/dwn/v1/ipfs/{cid}";
+  }
+
+  // Records queries DWN records with filters
+  //
+  // {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+  // It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+  //
+  // {{import "dwn_docs.md"}}
+  rpc Records(QueryRecordsRequest) returns (QueryRecordsResponse) {
+    option (google.api.http).get = "/dwn/v1/records/{target}";
+  }
+
+  // Record queries a specific DWN record by ID
+  rpc Record(QueryRecordRequest) returns (QueryRecordResponse) {
+    option (google.api.http).get = "/dwn/v1/records/{target}/{record_id}";
+  }
+
+  // Protocols queries DWN protocols
+  rpc Protocols(QueryProtocolsRequest) returns (QueryProtocolsResponse) {
+    option (google.api.http).get = "/dwn/v1/protocols/{target}";
+  }
+
+  // Protocol queries a specific DWN protocol
+  rpc Protocol(QueryProtocolRequest) returns (QueryProtocolResponse) {
+    option (google.api.http).get = "/dwn/v1/protocols/{target}/{protocol_uri}";
+  }
+
+  // Permissions queries DWN permissions
+  rpc Permissions(QueryPermissionsRequest) returns (QueryPermissionsResponse) {
+    option (google.api.http).get = "/dwn/v1/permissions/{target}";
+  }
+
+  // Vault queries a specific vault
+  rpc Vault(QueryVaultRequest) returns (QueryVaultResponse) {
+    option (google.api.http).get = "/dwn/v1/vaults/{vault_id}";
+  }
+
+  // Vaults queries vaults by owner
+  rpc Vaults(QueryVaultsRequest) returns (QueryVaultsResponse) {
+    option (google.api.http).get = "/dwn/v1/vaults";
+  }
+
+  // EncryptedRecord queries a specific encrypted record with automatic decryption
+  rpc EncryptedRecord(QueryEncryptedRecordRequest) returns (QueryEncryptedRecordResponse) {
+    option (google.api.http).get = "/dwn/v1/encrypted-records/{target}/{record_id}";
+  }
+
+  // EncryptionStatus queries current encryption key state and version
+  rpc EncryptionStatus(QueryEncryptionStatusRequest) returns (QueryEncryptionStatusResponse) {
+    option (google.api.http).get = "/dwn/v1/encryption/status";
+  }
+
+  // VRFContributions lists VRF contributions for current consensus round
+  rpc VRFContributions(QueryVRFContributionsRequest) returns (QueryVRFContributionsResponse) {
+    option (google.api.http).get = "/dwn/v1/encryption/vrf-contributions";
   }
 }
-
-// ╭──────────────────────────────────────────────────────────╮
-// │                  RPC Query Messages                      │
-// ╰──────────────────────────────────────────────────────────╯
 
 // QueryParamsRequest is the request type for the Query/Params RPC method.
 message QueryParamsRequest {}
@@ -30,3 +90,212 @@ message QueryParamsResponse {
   // params defines the parameters of the module.
   Params params = 1;
 }
+
+// QueryIPFSRequest is the request type for the Query/IPFS RPC method.
+message QueryIPFSRequest {}
+
+// QueryIPFSResponse is the response type for the Query/IPFS RPC method.
+message QueryIPFSResponse {
+  // IPFS status
+  IPFSStatus status = 1;
+}
+
+// QueryCIDRequest is the request type for the Query/CID RPC method.
+message QueryCIDRequest {
+  // CID to query
+  string cid = 1;
+}
+
+// QueryCIDResponse is the response type for the Query/CID RPC method.
+message QueryCIDResponse {
+  // Status code
+  int32 status_code = 1;
+
+  // CID data
+  bytes data = 2;
+}
+
+// QueryRecordsRequest is the request type for querying DWN records
+message QueryRecordsRequest {
+  // Target DWN (DID)
+  string target = 1;
+  // Optional protocol filter
+  string protocol = 2;
+  // Optional schema filter
+  string schema = 3;
+  // Optional parent ID filter
+  string parent_id = 4;
+  // Filter by published status
+  bool published_only = 5;
+  // Pagination
+  cosmos.base.query.v1beta1.PageRequest pagination = 6;
+}
+
+// QueryRecordsResponse is the response type for querying DWN records
+message QueryRecordsResponse {
+  // List of records
+  repeated DWNRecord records = 1 [(gogoproto.nullable) = false];
+  // Pagination response
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// QueryRecordRequest is the request type for querying a specific DWN record
+message QueryRecordRequest {
+  // Target DWN (DID)
+  string target = 1;
+  // Record ID
+  string record_id = 2;
+}
+
+// QueryRecordResponse is the response type for querying a specific DWN record
+message QueryRecordResponse {
+  // The record
+  DWNRecord record = 1;
+}
+
+// QueryProtocolsRequest is the request type for querying DWN protocols
+message QueryProtocolsRequest {
+  // Target DWN (DID)
+  string target = 1;
+  // Filter by published status
+  bool published_only = 2;
+  // Pagination
+  cosmos.base.query.v1beta1.PageRequest pagination = 3;
+}
+
+// QueryProtocolsResponse is the response type for querying DWN protocols
+message QueryProtocolsResponse {
+  // List of protocols
+  repeated DWNProtocol protocols = 1 [(gogoproto.nullable) = false];
+  // Pagination response
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// QueryProtocolRequest is the request type for querying a specific DWN protocol
+message QueryProtocolRequest {
+  // Target DWN (DID)
+  string target = 1;
+  // Protocol URI
+  string protocol_uri = 2;
+}
+
+// QueryProtocolResponse is the response type for querying a specific DWN protocol
+message QueryProtocolResponse {
+  // The protocol
+  DWNProtocol protocol = 1;
+}
+
+// QueryPermissionsRequest is the request type for querying DWN permissions
+message QueryPermissionsRequest {
+  // Target DWN (DID)
+  string target = 1;
+  // Optional grantor filter
+  string grantor = 2;
+  // Optional grantee filter
+  string grantee = 3;
+  // Optional interface filter
+  string interface_name = 4;
+  // Optional method filter
+  string method = 5;
+  // Include revoked permissions
+  bool include_revoked = 6;
+  // Pagination
+  cosmos.base.query.v1beta1.PageRequest pagination = 7;
+}
+
+// QueryPermissionsResponse is the response type for querying DWN permissions
+message QueryPermissionsResponse {
+  // List of permissions
+  repeated DWNPermission permissions = 1 [(gogoproto.nullable) = false];
+  // Pagination response
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// QueryVaultRequest is the request type for querying a specific vault
+message QueryVaultRequest {
+  // Vault ID
+  string vault_id = 1;
+}
+
+// QueryVaultResponse is the response type for querying a specific vault
+message QueryVaultResponse {
+  // The vault
+  VaultState vault = 1;
+}
+
+// QueryVaultsRequest is the request type for querying vaults by owner
+message QueryVaultsRequest {
+  // Optional owner filter
+  string owner = 1;
+  // Pagination
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
+}
+
+// QueryVaultsResponse is the response type for querying vaults
+message QueryVaultsResponse {
+  // List of vaults
+  repeated VaultState vaults = 1 [(gogoproto.nullable) = false];
+  // Pagination response
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// QueryEncryptedRecordRequest is the request type for querying encrypted records
+message QueryEncryptedRecordRequest {
+  // Target DWN (DID)
+  string target = 1;
+  // Record ID
+  string record_id = 2;
+  // Optional: return encrypted data instead of decrypting
+  bool return_encrypted = 3;
+}
+
+// QueryEncryptedRecordResponse is the response type for querying encrypted records
+message QueryEncryptedRecordResponse {
+  // The record with decrypted data (if requested)
+  DWNRecord record = 1;
+  // Encryption metadata for the record
+  EncryptionMetadata encryption_metadata = 2;
+  // Whether data was decrypted
+  bool was_decrypted = 3;
+}
+
+// QueryEncryptionStatusRequest is the request type for querying encryption status
+message QueryEncryptionStatusRequest {}
+
+// QueryEncryptionStatusResponse is the response type for querying encryption status
+message QueryEncryptionStatusResponse {
+  // Current encryption key version
+  uint64 current_key_version = 1;
+  // Current validator set participating in consensus
+  repeated string validator_set = 2;
+  // Whether running in single-node mode
+  bool single_node_mode = 3;
+  // Last key rotation timestamp
+  int64 last_rotation = 4;
+  // Next scheduled rotation timestamp
+  int64 next_rotation = 5;
+  // Total encrypted records in the system
+  uint64 total_encrypted_records = 6;
+}
+
+// QueryVRFContributionsRequest is the request type for querying VRF contributions
+message QueryVRFContributionsRequest {
+  // Optional: filter by validator address
+  string validator_address = 1;
+  // Optional: filter by block height
+  int64 block_height = 2;
+  // Pagination
+  cosmos.base.query.v1beta1.PageRequest pagination = 3;
+}
+
+// QueryVRFContributionsResponse is the response type for querying VRF contributions
+message QueryVRFContributionsResponse {
+  // List of VRF contributions
+  repeated VRFContribution contributions = 1 [(gogoproto.nullable) = false];
+  // Current consensus round information
+  VRFConsensusRound current_round = 2;
+  // Pagination response
+  cosmos.base.query.v1beta1.PageResponse pagination = 3;
+}
+
+

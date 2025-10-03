@@ -1,0 +1,161 @@
+syntax = "proto3";
+package did.v1;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/sonr-io/sonr/x/did/types";
+
+// VerificationMethod represents a verification method in a DID document
+message VerificationMethod {
+  // id is the verification method identifier (REQUIRED)
+  string id = 1;
+
+  // verification_method_kind is the verification method type (REQUIRED)
+  string verification_method_kind = 2;
+
+  // controller is the DID that controls this verification method (REQUIRED)
+  string controller = 3;
+
+  // Public key material (optional, only one should be set)
+  // publicKeyJwk represents the public key as a JSON Web Key
+  string public_key_jwk = 4;
+
+  // publicKeyMultibase represents the public key as multibase
+  string public_key_multibase = 5;
+
+  // publicKeyBase58 represents the public key in Base58 (legacy)
+  string public_key_base58 = 6;
+
+  // publicKeyBase64 represents the public key in Base64 (legacy)
+  string public_key_base64 = 7;
+
+  // publicKeyPem represents the public key in PEM format (legacy)
+  string public_key_pem = 8;
+
+  // publicKeyHex represents the public key in hexadecimal (legacy)
+  string public_key_hex = 9;
+
+  // WebAuthn credential information (for WebAuthn integration)
+  WebAuthnCredential webauthn_credential = 10;
+
+  // blockchain_account_id for external wallet linking (CAIP-10 format)
+  // Format: "eip155:1:0x89a932207c485f85226d86f7cd486a89a24fcc12" for Ethereum
+  // Format: "cosmos:cosmoshub-4:cosmos1..." for Cosmos chains
+  string blockchain_account_id = 11;
+}
+
+// VerificationMethodReference can be either an embedded verification method
+// or a reference
+message VerificationMethodReference {
+  // verification_method_id is a reference to a verification method by ID (optional)
+  string verification_method_id = 1;
+
+  // embedded_verification_method is an embedded verification method (optional)
+  VerificationMethod embedded_verification_method = 2;
+}
+
+// Service represents a service endpoint in a DID document
+message Service {
+  // id is the service identifier (REQUIRED)
+  string id = 1;
+
+  // service_kind is the service type (REQUIRED)
+  string service_kind = 2;
+
+  // single_endpoint for a single URL
+  string single_endpoint = 3;
+
+  // multiple_endpoints for multiple URLs
+  ServiceEndpoints multiple_endpoints = 4;
+
+  // complex_endpoint for complex endpoint objects as JSON
+  bytes complex_endpoint = 5;
+
+  // Additional properties for the service
+  map<string, string> properties = 6;
+}
+
+// ServiceEndpoints represents multiple service endpoints
+message ServiceEndpoints {
+  repeated string endpoints = 1;
+}
+
+// WebAuthnCredential represents WebAuthn credential information
+message WebAuthnCredential {
+  // credential_id is the WebAuthn credential ID
+  string credential_id = 1;
+
+  // public_key is the WebAuthn public key
+  bytes public_key = 2;
+
+  // algorithm is the signing algorithm
+  int32 algorithm = 3;
+
+  // attestation_type is the attestation type
+  string attestation_type = 4;
+
+  // origin is the origin where the credential was created
+  string origin = 5;
+
+  // created_at is when the credential was created
+  int64 created_at = 6;
+
+  // rp_id is the Relying Party ID
+  string rp_id = 7;
+
+  // rp_name is the Relying Party Name
+  string rp_name = 8;
+
+  // transports are the authenticator transports
+  repeated string transports = 9;
+
+  // user_verified indicates whether user verification was performed
+  bool user_verified = 10;
+
+  // signature_algorithm provides detailed algorithm information
+  string signature_algorithm = 11;
+
+  // raw_id is the base64url encoded raw credential ID
+  string raw_id = 12;
+
+  // client_data_json is the base64url encoded client data JSON
+  string client_data_json = 13;
+
+  // attestation_object is the base64url encoded attestation object
+  string attestation_object = 14;
+}
+
+// CredentialProof represents a cryptographic proof for a verifiable
+// credential
+message CredentialProof {
+  // proof_kind is the proof type
+  string proof_kind = 1;
+
+  // created is when the proof was created
+  string created = 2;
+
+  // verificationMethod is the verification method used
+  string verification_method = 3;
+
+  // proofPurpose is the purpose of the proof
+  string proof_purpose = 4;
+
+  // signature is the cryptographic signature
+  string signature = 5;
+
+  // Additional proof properties
+  map<string, string> properties = 6;
+}
+
+// CredentialStatus represents the revocation status of a credential
+message CredentialStatus {
+  // id is the status identifier
+  string id = 1;
+
+  // status_kind is the status type
+  string status_kind = 2;
+
+  // Additional status properties
+  map<string, string> properties = 3;
+}

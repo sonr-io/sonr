@@ -1,14 +1,15 @@
+// Package app provides genesis state management for the Sonr blockchain application.
 package app
 
 import (
 	"encoding/json"
 )
 
-// GenesisState of the blockchain is represented here as a map of raw json
-// messages key'd by a identifier string.
-// The identifier is used to determine which module genesis information belongs
-// to so it may be appropriately routed during init chain.
-// Within this application default genesis information is retrieved from
-// the ModuleBasicManager which populates json from each BasicModule
-// object provided to it during init.
+// GenesisState represents the initial state of the blockchain as a map of raw JSON
+// messages keyed by module identifier strings. Each module's genesis state is stored
+// as raw JSON to allow flexible initialization during chain setup.
+//
+// The identifier is used to route genesis information to the appropriate module
+// during the init chain process. Default genesis information is populated by
+// the ModuleBasicManager from each registered BasicModule.
 type GenesisState map[string]json.RawMessage

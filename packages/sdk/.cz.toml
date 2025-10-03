@@ -1,0 +1,16 @@
+[tool.commitizen]
+name = "cz_customize"
+tag_format = "pkg-sdk/v$version"
+ignored_tag_formats = ["*/v${version}", "v${version}"]
+version_scheme = "semver"
+version_provider = "npm"
+update_changelog_on_bump = true
+major_version_zero = true
+pre_bump_hooks = ["bash ../../scripts/hook-bump-pre.sh"]
+post_bump_hooks = ["pnpm --filter '@sonr.io/sdk' publish --no-git-checks"]
+
+[tool.commitizen.customize]
+bump_pattern = "^(feat|fix|refactor|perf|BREAKING CHANGE)"
+bump_map = { "BREAKING CHANGE" = "MAJOR", "feat" = "MINOR", "fix" = "PATCH", "refactor" = "PATCH", "perf" = "PATCH" }
+default_bump = "PATCH"
+changelog_pattern = "^(feat|fix|refactor|docs|build)\\(pkg-sdk\\)(!)?:"

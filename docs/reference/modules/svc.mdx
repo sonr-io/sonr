@@ -1,0 +1,244 @@
+---
+title: "On-Chain Authorization (x/svc)"
+sidebarTitle: "Web Service Registry"
+description: "Service registration and management with domain verification and UCAN integration"
+icon: "factory"
+tag: "x/svc"
+---
+
+# Sonr Service (SVC) Module
+
+The Service (SVC) module manages the registration and operation of decentralized services within the Sonr ecosystem. It provides a comprehensive framework for services to register with verified domains, define their permission requirements, and integrate with the broader Sonr authorization system through UCAN capabilities.
+
+## Key Capabilities
+
+- **Domain Verification**: DNS-based domain ownership verification
+- **Service Registration**: Register services with verified domains
+- **Permission Management**: Define and request specific UCAN permissions
+- **Service Discovery**: Query services by owner, domain, or ID
+- **Capability Integration**: Seamless integration with the UCAN module
+
+## System Architecture
+
+<Mermaid
+  chart={`graph TB
+    subgraph "Client Layer"
+        U[User]
+        B[Browser]
+        WA[WebAuthn API]
+    end
+    
+    subgraph "Application Layer"
+        APP[App Frontend]
+        SDK[Sonr SDK]
+        SVC_SDK[Service SDK]
+    end
+    
+    subgraph "Blockchain Layer"
+        BC[Sonr Blockchain]
+        subgraph "Modules"
+            DID[x/did]
+            DWN[x/dwn]
+            UCAN[x/ucan]
+            SVC[x/svc]
+        end
+    end
+    
+    subgraph "Storage Layer"
+        IPFS[IPFS Network]
+        VAULT[Vault Storage]
+    end
+    
+    U --> B
+    B --> WA
+    B --> APP
+    APP --> SDK
+    APP --> SVC_SDK
+    SDK --> BC
+    SVC_SDK --> BC
+    BC --> DID
+    BC --> DWN
+    BC --> UCAN
+    BC --> SVC
+    DWN --> IPFS
+    DWN --> VAULT
+`}
+/>
+
+## Trust Model
+
+<Mermaid
+  chart={`graph LR
+    subgraph "Trust Anchors"
+        WA[WebAuthn<br/>Hardware]
+        BC[Blockchain<br/>Consensus]
+        DNS[DNS<br/>Domain Verification]
+    end
+    
+    subgraph "Identity Layer"
+        DID[DID Documents]
+        CRED[WebAuthn Credentials]
+    end
+    
+    subgraph "Authorization Layer"
+        UCAN[UCAN Tokens]
+        CAP[Capabilities]
+    end
+    
+    subgraph "Service Layer"
+        SVC[Service Records]
+        PERM[Permissions]
+    end
+    
+    WA --> CRED
+    BC --> DID
+    DNS --> SVC
+    CRED --> DID
+    DID --> UCAN
+    UCAN --> CAP
+    CAP --> PERM
+    SVC --> PERM
+`}
+/>
+
+## Core Concepts
+
+### Domain Verification
+
+Services must verify ownership of their domain through DNS TXT records before registration. This ensures that only legitimate domain owners can register services.
+
+### Service Registration
+
+Once domain ownership is verified, services can be registered with:
+
+- Unique service ID
+- Verified domain binding
+- Requested permissions (UCAN capabilities)
+- Service metadata (name, description)
+
+### Permission Model
+
+Services request specific permissions during registration, which are granted as UCAN capabilities. These permissions define what actions the service can perform on behalf of users.
+
+### Service Identity
+
+Each service has a unique identity composed of:
+
+- Service ID (chosen identifier)
+- Domain (verified TLD)
+- Owner (blockchain address)
+
+## Domain Verification Process
+
+Domain verification follows a strict process to ensure legitimate ownership:
+
+1. **Initiate Verification**:
+
+   ```bash
+   # Initiate domain verification
+   snrd tx svc initiate-domain-verification example.com --from alice
+   ```
+
+2. **Add DNS TXT Record**:
+
+   ```
+   Type: TXT
+   Name: @ (or app if subdomain)
+   Value: sonr-verification=<provided-token>
+   TTL: 300 (5 minutes)
+   ```
+
+3. **Complete Verification**:
+   ```bash
+   # Verify domain after DNS propagation
+   snrd tx svc verify-domain example.com --from alice
+   ```
+
+### Verification Requirements
+
+- Domain must be a valid TLD
+- DNS TXT record must match the generated token
+- Verification expires after 7 days if not completed
+- Each domain can only be verified by one owner
+
+## Service Registration Guide
+
+### For Service Developers
+
+1. **Domain Setup**:
+
+   - Register your domain with a DNS provider
+   - Ensure you have access to manage DNS TXT records
+   - Choose a unique service ID
+
+2. **Service Registration**:
+
+   ```bash
+   # Register a service with basic permissions
+   snrd tx svc register-service my-app example.com \
+     dwn:read,dwn:write,identity:read \
+     --from alice
+
+   # Register with UCAN delegation
+   snrd tx svc register-service vault-service vault.example.com \
+     vault:access,identity:read \
+     --ucan-delegation-chain="<jwt-token>" \
+     --from alice
+   ```
+
+### Common Permission Patterns
+
+- `dwn:read,dwn:write` - Basic data access
+- `identity:read` - Read user identity
+- `vault:access` - Vault operations
+- `credentials:verify` - Verify credentials
+
+## Service Discovery and Queries
+
+### Querying Services
+
+```bash
+# Query a specific service
+snrd query svc service my-app
+
+# Query services by owner
+snrd query svc services-by-owner $(snrd keys show alice -a)
+
+# Query services by domain
+snrd query svc services-by-domain example.com
+```
+
+## Security Considerations
+
+1. **Domain Ownership**: Only verified domain owners can register services
+2. **Permission Scope**: Services can only request, not grant permissions
+3. **UCAN Validation**: All capability chains are validated
+4. **Unique Domains**: Each domain can only have one owner
+5. **Service Isolation**: Services cannot access data from other services
+
+## Best Practices
+
+### For Service Developers
+
+1. Choose meaningful service IDs
+2. Request minimal permissions
+3. Document why each permission is needed
+4. Plan for future permission model updates
+5. Monitor UCAN expiration times
+
+### For Users
+
+1. Verify service domain ownership
+2. Review permission scopes carefully
+3. Conduct regular permission audits
+4. Revoke unused service permissions
+
+## Future Enhancements
+
+- Service categorization
+- Reputation system
+- Permission templates
+- Multi-sig service ownership
+- Service analytics
+- Enhanced subdomain support
+

@@ -1,0 +1,134 @@
+---
+openapi: get /dwn/v1/encryption/vrf-contributions
+title: Query VRF Contributions
+description: Monitor validator participation in consensus key generation
+og:title: DWN VRF Consensus Tracking
+---
+
+<Info>
+  VRF contributions ensure distributed key generation where no single validator knows the complete key.
+</Info>
+
+## VRF Consensus Process
+
+### How It Works
+1. **Round Initiation**: New consensus round begins
+2. **VRF Generation**: Each validator generates random value
+3. **Proof Creation**: Cryptographic proof of randomness
+4. **Contribution Submit**: Broadcast to network
+5. **Threshold Check**: Wait for minimum contributions
+6. **Key Derivation**: Combine for consensus key
+
+### Contribution Components
+- **validatorAddress**: Contributing validator
+- **randomness**: VRF output (32 bytes)
+- **proof**: VRF proof for verification
+- **blockHeight**: Submission height
+- **timestamp**: Contribution time
+
+## Query Filters
+
+<Tip>
+  Filter by validator to track specific node participation.
+</Tip>
+
+### By Validator
+```bash
+?validatorAddress=sonrvaloper1abc...
+```
+
+### By Block Height
+```bash
+?blockHeight=1000000
+```
+
+### Current Round
+```bash
+# No filters shows current round
+/dwn/v1/encryption/vrf-contributions
+```
+
+## Consensus Round Status
+
+### Round States
+- **waiting_for_contributions**: Collecting VRF inputs
+- **complete**: Threshold reached, key generated
+- **expired**: Timeout without consensus
+- **single_node_mode**: Development mode
+
+### Round Metadata
+- **roundNumber**: Sequential round identifier
+- **keyVersion**: Target key version
+- **requiredContributions**: Threshold count
+- **receivedContributions**: Current count
+- **expiryHeight**: Timeout block height
+
+<Warning>
+  Rounds expire if threshold isn't met. Monitor contribution progress.
+</Warning>
+
+## Validator Monitoring
+
+### Participation Tracking
+```javascript
+// Calculate participation rate
+const participationRate = 
+  receivedContributions / requiredContributions * 100;
+
+// Check specific validator
+const hasContributed = contributions
+  .some(c => c.validatorAddress === myValidator);
+
+// Time to expiry
+const blocksRemaining = expiryHeight - currentHeight;
+```
+
+### Missing Validators
+```bash
+# Get active validator set
+VALIDATORS=$(snrd query staking validators -o json | jq -r '.validators[].operator_address')
+
+# Check contributions
+CONTRIBUTIONS=$(snrd query dwn vrf-contributions -o json)
+
+# Find missing validators
+# (Compare lists to identify non-participants)
+```
+
+## Security Properties
+
+### Verifiability
+- Each contribution includes proof
+- Proofs cryptographically verifiable
+- Prevents manipulation
+
+### Unpredictability
+- Output unpredictable before threshold
+- No single party controls result
+- Combines all contributions
+
+### Threshold Security
+- Requires minimum participation
+- Prevents minority attacks
+- Ensures decentralization
+
+<Note>
+  VRF contributions are public but the derived key remains secure through threshold cryptography.
+</Note>
+
+## Troubleshooting
+
+### Low Participation
+- Check validator connectivity
+- Verify consensus parameters
+- Review validator logs
+
+### Expired Rounds
+- Increase timeout parameters
+- Improve validator coordination
+- Check network latency
+
+### Single-Node Fallback
+- Enabled in development
+- Bypasses consensus requirement
+- Not for production use

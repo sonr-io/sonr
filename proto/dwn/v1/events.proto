@@ -1,0 +1,155 @@
+syntax = "proto3";
+
+package dwn.v1;
+
+option go_package = "github.com/sonr-io/sonr/x/dwn/types";
+
+import "gogoproto/gogo.proto";
+import "google/protobuf/timestamp.proto";
+
+// EventRecordWritten is emitted when a record is written to DWN
+message EventRecordWritten {
+  // Record ID
+  string record_id = 1;
+  
+  // Target DID
+  string target = 2;
+  
+  // Protocol URI
+  string protocol = 3;
+  
+  // Schema URI
+  string schema = 4;
+  
+  // Data CID
+  string data_cid = 5;
+  
+  // Data size in bytes
+  uint64 data_size = 6;
+  
+  // Whether data is encrypted
+  bool encrypted = 7;
+  
+  // Block height
+  uint64 block_height = 8;
+}
+
+// EventRecordDeleted is emitted when a record is deleted from DWN
+message EventRecordDeleted {
+  // Record ID
+  string record_id = 1;
+  
+  // Target DID
+  string target = 2;
+  
+  // Deleter address
+  string deleter = 3;
+  
+  // Block height
+  uint64 block_height = 4;
+}
+
+// EventProtocolConfigured is emitted when a protocol is configured
+message EventProtocolConfigured {
+  // Target DID
+  string target = 1;
+  
+  // Protocol URI
+  string protocol_uri = 2;
+  
+  // Whether protocol is published
+  bool published = 3;
+  
+  // Block height
+  uint64 block_height = 4;
+}
+
+// EventPermissionGranted is emitted when a permission is granted
+message EventPermissionGranted {
+  // Permission ID
+  string permission_id = 1;
+  
+  // Grantor DID
+  string grantor = 2;
+  
+  // Grantee DID
+  string grantee = 3;
+  
+  // Interface name
+  string interface_name = 4;
+  
+  // Method name
+  string method = 5;
+  
+  // Expiration timestamp
+  google.protobuf.Timestamp expires_at = 6 [(gogoproto.stdtime) = true, (gogoproto.nullable) = true];
+  
+  // Block height
+  uint64 block_height = 7;
+}
+
+// EventPermissionRevoked is emitted when a permission is revoked
+message EventPermissionRevoked {
+  // Permission ID
+  string permission_id = 1;
+  
+  // Revoker DID
+  string revoker = 2;
+  
+  // Block height
+  uint64 block_height = 3;
+}
+
+// EventVaultCreated is emitted when a vault is created
+message EventVaultCreated {
+  // Vault ID
+  string vault_id = 1;
+  
+  // Owner DID
+  string owner = 2;
+  
+  // Vault public key
+  string public_key = 3;
+  
+  // Block height
+  uint64 block_height = 4;
+}
+
+// EventVaultKeysRotated is emitted when vault keys are rotated
+message EventVaultKeysRotated {
+  // Vault ID
+  string vault_id = 1;
+  
+  // Owner DID
+  string owner = 2;
+  
+  // New public key
+  string new_public_key = 3;
+  
+  // Rotation height
+  uint64 rotation_height = 4;
+  
+  // Block height
+  uint64 block_height = 5;
+}
+
+// EventKeyRotation is emitted when encryption keys are rotated
+message EventKeyRotation {
+  // Previous key version (0 if first rotation)
+  uint64 old_key_version = 1;
+  
+  // New key version
+  uint64 new_key_version = 2;
+  
+  // Reason for rotation
+  string reason = 3;
+  
+  // Block height when rotation occurred
+  uint64 block_height = 4;
+  
+  // Whether running in single node mode
+  bool single_node_mode = 5;
+  
+  // Number of validators at time of rotation
+  uint32 validator_count = 6;
+}

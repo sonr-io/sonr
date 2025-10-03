@@ -10,21 +10,13 @@ import (
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	"github.com/stretchr/testify/suite"
 
-	app "github.com/sonr-io/snrd/app"
-	"github.com/sonr-io/snrd/app/decorators"
+	"github.com/sonr-io/sonr/app/decorators"
 )
 
 type AnteTestSuite struct {
 	suite.Suite
 
 	ctx sdk.Context
-	app *app.SonrApp
-}
-
-func (s *AnteTestSuite) SetupTest() {
-	isCheckTx := false
-	s.app = app.Setup(s.T())
-	s.ctx = s.app.BaseApp.NewContext(isCheckTx)
 }
 
 func TestAnteTestSuite(t *testing.T) {
@@ -48,7 +40,9 @@ func (s *AnteTestSuite) TestAnteMsgFilterLogic() {
 	// validate other messages go through still (such as MsgMultiSend)
 	msgMultiSend := banktypes.NewMsgMultiSend(
 		banktypes.NewInput(acc, sdk.NewCoins(sdk.NewCoin("stake", sdkmath.NewInt(1)))),
-		[]banktypes.Output{banktypes.NewOutput(acc, sdk.NewCoins(sdk.NewCoin("stake", sdkmath.NewInt(1))))},
+		[]banktypes.Output{
+			banktypes.NewOutput(acc, sdk.NewCoins(sdk.NewCoin("stake", sdkmath.NewInt(1)))),
+		},
 	)
 	_, err = ante.AnteHandle(s.ctx, decorators.NewMockTx(msgMultiSend), false, decorators.EmptyAnte)
 	s.Require().NoError(err)

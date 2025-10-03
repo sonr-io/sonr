@@ -1,54 +1,81 @@
 syntax = "proto3";
 package svc.v1;
 
-import "gogoproto/gogo.proto";
 import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "cosmos/base/v1beta1/coin.proto";
+import "cosmos_proto/cosmos.proto";
+import "svc/v1/state.proto";
 
-option go_package = "github.com/sonr-io/snrd/x/svc/types";
+option go_package = "github.com/sonr-io/sonr/x/svc/types";
 
 // GenesisState defines the module genesis state
 message GenesisState {
   // Params defines all the parameters of the module.
-  Params params = 1 [ (gogoproto.nullable) = false ];
+  Params params = 1 [(gogoproto.nullable) = false];
+  
+  // Service capabilities stored in the module
+  repeated ServiceCapability capabilities = 2 [(gogoproto.nullable) = false];
 }
 
 // Params defines the set of module parameters.
 message Params {
-  option (amino.name) = "service/params";
+  option (amino.name) = "svc/params";
   option (gogoproto.equal) = true;
   option (gogoproto.goproto_stringer) = false;
 
-  repeated Attenuation attenuations = 1;
-}
+  // Service Limits
+  // Maximum number of services that can be registered per account
+  uint32 max_services_per_account = 1;
+  // Maximum number of domains that can be bound to a single service
+  uint32 max_domains_per_service = 2;
+  // Maximum number of endpoints that can be registered per service
+  uint32 max_endpoints_per_service = 3;
 
-// Attenuation defines the attenuation of a resource
-message Attenuation {
-  Resource resource = 1;
-  repeated Capability capabilities = 2;
-}
+  // Timeouts and Intervals (in seconds)
+  // Time allowed for domain ownership verification before expiry
+  int64 domain_verification_timeout = 4;
+  // Interval between service health checks
+  int64 service_health_check_interval = 5;
+  // Default expiration time for capabilities if not specified
+  int64 capability_default_expiration = 6;
 
-// Capability reprensents the available capabilities of a decentralized web node
-message Capability {
-  string name = 1;
-  string parent = 2;
-  string description = 3;
-  repeated string resources = 4;
-}
+  // Economic Parameters
+  // Fee required to register a new service
+  cosmos.base.v1beta1.Coin service_registration_fee = 7
+      [(gogoproto.nullable) = false];
+  // Fee required to verify domain ownership
+  cosmos.base.v1beta1.Coin domain_verification_fee = 8
+      [(gogoproto.nullable) = false];
+  // Minimum stake required to keep a service active
+  cosmos.base.v1beta1.Coin min_service_stake = 9
+      [(gogoproto.nullable) = false];
 
-// Resource reprensents the available resources of a decentralized web node
-message Resource {
-  string kind = 1;
-  string template = 2;
-}
+  // UCAN and Capability Settings
+  // Maximum depth of delegation chains for capabilities
+  uint32 max_delegation_chain_depth = 10;
+  // Maximum lifetime for UCAN tokens (in seconds)
+  int64 ucan_max_lifetime = 11;
+  // Minimum lifetime for UCAN tokens (in seconds)
+  int64 ucan_min_lifetime = 12;
+  // List of supported signature algorithms for UCAN
+  repeated string supported_signature_algorithms = 13;
 
-// Service defines a Decentralized Service on the Sonr Blockchain
-message Service {
-  string id = 1;
-  string authority = 2;
-  repeated string origins = 3;
-  string name = 4;
-  string description = 5;
-  repeated Attenuation attenuations = 6;
-  repeated string tags = 7;
-  int64 expiry_height = 8;
+  // Validation Rules
+  // Whether to require cryptographic proof of domain ownership
+  bool require_domain_ownership_proof = 14;
+  // Whether to require HTTPS for service endpoints
+  bool require_https = 15;
+  // Whether to allow localhost domains for development
+  bool allow_localhost = 16;
+  // Maximum length for service description text
+  uint32 max_service_description_length = 17;
+
+  // Rate Limiting
+  // Maximum number of service registrations allowed per block
+  uint32 max_registrations_per_block = 18;
+  // Maximum number of service updates allowed per block
+  uint32 max_updates_per_block = 19;
+  // Maximum number of capability grants allowed per block
+  uint32 max_capability_grants_per_block = 20;
 }

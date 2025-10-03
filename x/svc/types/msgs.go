@@ -7,20 +7,14 @@ import (
 
 var _ sdk.Msg = &MsgUpdateParams{}
 
-// ╭───────────────────────────────────────────────────────────╮
-// │                  MsgUpdateParams type definition          │
-// ╰───────────────────────────────────────────────────────────╯
-
 // NewMsgUpdateParams creates new instance of MsgUpdateParams
 func NewMsgUpdateParams(
 	sender sdk.Address,
-	someValue bool,
+	params Params,
 ) *MsgUpdateParams {
 	return &MsgUpdateParams{
 		Authority: sender.String(),
-		Params:    Params{
-			// SomeValue: someValue,
-		},
+		Params:    params,
 	}
 }
 
@@ -41,14 +35,11 @@ func (msg *MsgUpdateParams) GetSigners() []sdk.AccAddress {
 	return []sdk.AccAddress{addr}
 }
 
-// Validate does a sanity check on the provided data.
+// ValidateBasic does a sanity check on the provided data.
 func (msg *MsgUpdateParams) Validate() error {
 	if _, err := sdk.AccAddressFromBech32(msg.Authority); err != nil {
 		return errors.Wrap(err, "invalid authority address")
 	}
+
 	return msg.Params.Validate()
 }
-
-// ╭───────────────────────────────────────────────────────────╮
-// │                  Registration Components                  │
-// ╰───────────────────────────────────────────────────────────╯

@@ -1,0 +1,16 @@
+---
+openapi: post /dex.v1.Msg/CancelOrder
+title: Cancel Limit Order
+description: Cancel active orders on remote DEX chains
+og:title: Cancel Cross-Chain Orders
+tag: x/dex
+---
+
+<Warning>
+  Order cancellation is not instant. There's a small window where the order
+  might still be filled before cancellation is processed.
+</Warning>
+
+<Tip>
+  Monitor the IBC packet acknowledgment to confirm successful cancellation.
+</Tip>

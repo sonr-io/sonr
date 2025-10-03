@@ -1,0 +1,90 @@
+---
+openapi: get /dwn/v1/encryption/status
+title: Query Encryption Status
+description: Monitor the health and state of the consensus encryption system
+og:title: DWN Encryption System Status
+---
+
+<Info>
+  The encryption system uses validator consensus to generate keys that no single party controls.
+</Info>
+
+## System Components
+
+### Key Management
+- **currentKeyVersion**: Active encryption key version
+- **lastRotation**: Timestamp of last rotation
+- **nextRotation**: Scheduled rotation time
+
+### Validator Participation
+- **validatorSet**: Active validator addresses
+- **singleNodeMode**: Development mode flag
+- **minValidatorsForKeyGen**: Required threshold
+
+### System Metrics
+- **totalEncryptedRecords**: Global encrypted record count
+
+## Health Monitoring
+
+<Tip>
+  Set up alerts for upcoming key rotations to ensure smooth operations.
+</Tip>
+
+### Health Checks
+
+```javascript
+// Check rotation schedule
+const rotationDue = nextRotation < Date.now();
+
+// Verify validator participation
+const hasQuorum = validatorSet.length >= minValidatorsForKeyGen;
+
+// Monitor growth
+const recordGrowthRate = totalEncryptedRecords / daysSinceLaunch;
+```
+
+## Key Rotation Schedule
+
+### Automatic Rotation
+- Triggered by `keyRotationDays` parameter
+- Requires validator consensus
+- Zero-downtime process
+
+### Manual Rotation
+- Governance proposals
+- Security incidents
+- Validator changes
+
+<Warning>
+  Key rotation requires sufficient validator participation. Monitor validator set health.
+</Warning>
+
+## Development vs Production
+
+### Production Mode
+- Full validator consensus
+- Distributed key generation
+- No single point of failure
+
+### Single-Node Mode
+- Local key generation
+- Simplified consensus
+- For development only
+
+## Monitoring Dashboard
+
+<Note>
+  Create monitoring dashboards using these metrics for operational visibility.
+</Note>
+
+### Key Metrics
+```bash
+# Query status
+STATUS=$(snrd query dwn encryption-status -o json)
+
+# Extract metrics
+echo "Key Version: $(echo $STATUS | jq .currentKeyVersion)"
+echo "Validators: $(echo $STATUS | jq '.validatorSet | length')"
+echo "Records: $(echo $STATUS | jq .totalEncryptedRecords)"
+echo "Next Rotation: $(echo $STATUS | jq .nextRotation)"
+```

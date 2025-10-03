@@ -1,0 +1,71 @@
+---
+openapi: post /svc.v1.Msg/VerifyDomain
+title: Complete Domain Verification
+description: Validate DNS TXT record to prove domain ownership
+og:title: Finalize Domain Ownership
+---
+
+<Info>
+  This endpoint validates the DNS TXT record to permanently bind the domain to your address.
+</Info>
+
+## Prerequisites
+
+Before calling this endpoint:
+1. **Initiated Verification**: Must have called `InitiateDomainVerification`
+2. **DNS Record Added**: TXT record with token must be present
+3. **DNS Propagation**: Record must be globally accessible (5-30 minutes)
+4. **Not Expired**: Within 7-day verification window
+
+## Verification Check
+
+The system performs these checks:
+```
+1. Query DNS TXT records for domain
+2. Look for: sonr-verification=<expected_token>
+3. Validate token matches initiated verification
+4. Confirm ownership and bind domain
+```
+
+## Troubleshooting
+
+### Common Issues
+
+#### DNS Not Propagated
+<Tip>
+  Wait 5-30 minutes after adding the TXT record. Check propagation:
+  ```bash
+  dig TXT example.com +short
+  ```
+</Tip>
+
+#### Token Mismatch
+- Ensure exact token from initiation response
+- No extra spaces or quotes in DNS value
+- Format: `sonr-verification=token` (no brackets)
+
+#### Multiple TXT Records
+- Other TXT records don't interfere
+- System searches all TXT records for match
+- SPF, DMARC, etc. can coexist
+
+## Success Result
+
+Once verified:
+- **Permanent Binding**: Domain bound to your address
+- **Service Ready**: Can register services with this domain
+- **Trust Established**: Domain ownership proven
+- **No Re-verification**: One-time process per domain
+
+<Warning>
+  Domain ownership is permanent. Ensure you're verifying with the correct address.
+</Warning>
+
+## Next Steps
+
+After successful verification:
+```bash
+# Register a service
+snrd tx svc register-service my-app example.com \
+  dwn:read,dwn:write --from alice
+```

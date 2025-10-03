@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motor WASM Service Worker Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #555;
+            margin-top: 30px;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 4px solid #007bff;
+            background: #f8f9fa;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .log-entry {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            padding: 2px 0;
+        }
+        #logs {
+            max-height: 300px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Motor WASM Service Worker Test</h1>
+        
+        <div class="test-section">
+            <h2>Service Worker Status</h2>
+            <div id="worker-status" class="status info">Checking service worker support...</div>
+            <button id="register-worker">Register Service Worker</button>
+            <button id="unregister-worker" disabled>Unregister Service Worker</button>
+        </div>
+
+        <div class="test-section">
+            <h2>Plugin Initialization</h2>
+            <div id="plugin-status" class="status info">Plugin not initialized</div>
+            <button id="init-plugin" disabled>Initialize Motor Plugin</button>
+        </div>
+
+        <div class="test-section">
+            <h2>API Tests</h2>
+            <div id="test-results"></div>
+            
+            <h3>Identity Operations</h3>
+            <button id="test-issuer-did" disabled>Test Get Issuer DID</button>
+            
+            <h3>UCAN Token Operations</h3>
+            <button id="test-origin-token" disabled>Test Create Origin Token</button>
+            <button id="test-attenuated-token" disabled>Test Create Attenuated Token</button>
+            
+            <h3>Cryptographic Operations</h3>
+            <button id="test-sign-verify" disabled>Test Sign & Verify</button>
+            
+            <h3>DWN Operations</h3>
+            <button id="test-dwn-crud" disabled>Test DWN CRUD</button>
+        </div>
+
+        <div class="test-section">
+            <h2>Console Logs</h2>
+            <div id="logs"></div>
+            <button id="clear-logs">Clear Logs</button>
+        </div>
+    </div>
+
+    <script type="module">
+        // Logging utility
+        const logContainer = document.getElementById('logs');
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.innerHTML = `<span style="color: ${
+                type === 'error' ? '#dc3545' : 
+                type === 'success' ? '#28a745' : 
+                type === 'warning' ? '#ffc107' : '#007bff'
+            }">[${timestamp}]</span> ${message}`;
+            logContainer.appendChild(entry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+            console.log(`[${type}]`, message);
+        }
+
+        // Clear logs button
+        document.getElementById('clear-logs').addEventListener('click', () => {
+            logContainer.innerHTML = '';
+            log('Logs cleared', 'info');
+        });
+
+        // Check service worker support
+        const workerStatusEl = document.getElementById('worker-status');
+        const registerBtn = document.getElementById('register-worker');
+        const unregisterBtn = document.getElementById('unregister-worker');
+        const initPluginBtn = document.getElementById('init-plugin');
+        const pluginStatusEl = document.getElementById('plugin-status');
+
+        let motorPlugin = null;
+        let serviceWorkerRegistration = null;
+
+        // Check if service workers are supported
+        if ('serviceWorker' in navigator) {
+            workerStatusEl.className = 'status success';
+            workerStatusEl.textContent = '✅ Service Workers are supported in this browser';
+            log('Service Workers supported', 'success');
+            
+            // Check if already registered
+            navigator.serviceWorker.getRegistrations().then(registrations => {
+                if (registrations.length > 0) {
+                    const motorWorker = registrations.find(r => r.active?.scriptURL.includes('motor'));
+                    if (motorWorker) {
+                        serviceWorkerRegistration = motorWorker;
+                        workerStatusEl.textContent = '✅ Motor Service Worker already registered';
+                        unregisterBtn.disabled = false;
+                        initPluginBtn.disabled = false;
+                        log('Found existing Motor service worker', 'info');
+                    }
+                }
+            });
+        } else {
+            workerStatusEl.className = 'status error';
+            workerStatusEl.textContent = '❌ Service Workers are not supported in this browser';
+            registerBtn.disabled = true;
+            log('Service Workers not supported', 'error');
+        }
+
+        // Register service worker
+        registerBtn.addEventListener('click', async () => {
+            try {
+                log('Registering Motor service worker...', 'info');
+                registerBtn.disabled = true;
+                
+                // Check if Motor service worker file exists
+                const workerUrl = '/dist/wasm/motr-sw.js';
+                
+                // Try to fetch the worker file first
+                try {
+                    const response = await fetch(workerUrl);
+                    if (!response.ok) {
+                        throw new Error(`Worker file not found at ${workerUrl}. Status: ${response.status}`);
+                    }
+                    log(`Worker file found at ${workerUrl}`, 'success');
+                } catch (fetchError) {
+                    throw new Error(`Cannot access worker file: ${fetchError.message}. Make sure you're serving the dist/wasm directory.`);
+                }
+                
+                // Register the service worker
+                serviceWorkerRegistration = await navigator.serviceWorker.register(workerUrl, {
+                    scope: '/',
+                    updateViaCache: 'none'
+                });
+                
+                log('Service worker registered successfully', 'success');
+                
+                // Wait for activation
+                await navigator.serviceWorker.ready;
+                
+                workerStatusEl.className = 'status success';
+                workerStatusEl.textContent = '✅ Motor Service Worker registered and active';
+                unregisterBtn.disabled = false;
+                initPluginBtn.disabled = false;
+                log('Service worker is ready', 'success');
+                
+            } catch (error) {
+                workerStatusEl.className = 'status error';
+                workerStatusEl.textContent = `❌ Registration failed: ${error.message}`;
+                log(`Registration failed: ${error.message}`, 'error');
+                registerBtn.disabled = false;
+            }
+        });
+
+        // Unregister service worker
+        unregisterBtn.addEventListener('click', async () => {
+            try {
+                log('Unregistering service worker...', 'info');
+                unregisterBtn.disabled = true;
+                
+                if (serviceWorkerRegistration) {
+                    await serviceWorkerRegistration.unregister();
+                    serviceWorkerRegistration = null;
+                }
+                
+                workerStatusEl.className = 'status info';
+                workerStatusEl.textContent = 'Service Worker unregistered';
+                registerBtn.disabled = false;
+                initPluginBtn.disabled = true;
+                motorPlugin = null;
+                pluginStatusEl.className = 'status info';
+                pluginStatusEl.textContent = 'Plugin not initialized';
+                log('Service worker unregistered', 'success');
+                
+                // Disable all test buttons
+                document.querySelectorAll('button[id^="test-"]').forEach(btn => {
+                    btn.disabled = true;
+                });
+                
+            } catch (error) {
+                log(`Unregistration failed: ${error.message}`, 'error');
+                unregisterBtn.disabled = false;
+            }
+        });
+
+        // Initialize Motor plugin
+        initPluginBtn.addEventListener('click', async () => {
+            try {
+                log('Initializing Motor plugin...', 'info');
+                initPluginBtn.disabled = true;
+                
+                // Dynamically import the Motor plugin
+                // In a real application, this would be imported from @sonr.io/es/client/motor
+                const { createMotorPluginForBrowser } = await import('/dist/client/motor/index.js');
+                
+                motorPlugin = await createMotorPluginForBrowser('/api/motor', {
+                    auto_register_worker: false, // We already registered it
+                    debug: true
+                });
+                
+                pluginStatusEl.className = 'status success';
+                pluginStatusEl.textContent = '✅ Motor Plugin initialized successfully';
+                log('Motor plugin initialized', 'success');
+                
+                // Enable test buttons
+                document.querySelectorAll('button[id^="test-"]').forEach(btn => {
+                    btn.disabled = false;
+                });
+                
+            } catch (error) {
+                pluginStatusEl.className = 'status error';
+                pluginStatusEl.textContent = `❌ Initialization failed: ${error.message}`;
+                log(`Plugin initialization failed: ${error.message}`, 'error');
+                initPluginBtn.disabled = false;
+            }
+        });
+
+        // Test functions
+        function addTestResult(testName, success, message) {
+            const resultsContainer = document.getElementById('test-results');
+            const result = document.createElement('div');
+            result.className = `status ${success ? 'success' : 'error'}`;
+            result.textContent = `${success ? '✅' : '❌'} ${testName}: ${message}`;
+            resultsContainer.appendChild(result);
+            log(`Test "${testName}": ${message}`, success ? 'success' : 'error');
+        }
+
+        // Test Get Issuer DID
+        document.getElementById('test-issuer-did').addEventListener('click', async () => {
+            try {
+                log('Testing Get Issuer DID...', 'info');
+                const result = await motorPlugin.getIssuerDID();
+                addTestResult('Get Issuer DID', true, `DID: ${result.issuer_did}, Address: ${result.address}`);
+            } catch (error) {
+                addTestResult('Get Issuer DID', false, error.message);
+            }
+        });
+
+        // Test Create Origin Token
+        document.getElementById('test-origin-token').addEventListener('click', async () => {
+            try {
+                log('Testing Create Origin Token...', 'info');
+                const result = await motorPlugin.newOriginToken({
+                    audience_did: 'did:sonr:test_audience',
+                    attenuations: [{ can: ['sign', 'verify'], with: 'vault://test' }],
+                    facts: ['test_fact'],
+                    expires_at: Date.now() + 3600000
+                });
+                addTestResult('Create Origin Token', true, `Token created, Issuer: ${result.issuer}`);
+            } catch (error) {
+                addTestResult('Create Origin Token', false, error.message);
+            }
+        });
+
+        // Test Create Attenuated Token
+        document.getElementById('test-attenuated-token').addEventListener('click', async () => {
+            try {
+                log('Testing Create Attenuated Token...', 'info');
+                // First create an origin token
+                const originToken = await motorPlugin.newOriginToken({
+                    audience_did: 'did:sonr:test',
+                    attenuations: [{ can: ['sign', 'verify'], with: 'vault://test' }]
+                });
+                
+                // Then create attenuated token
+                const result = await motorPlugin.newAttenuatedToken({
+                    parent_token: originToken.token,
+                    audience_did: 'did:sonr:delegated',
+                    attenuations: [{ can: ['sign'], with: 'vault://restricted' }]
+                });
+                addTestResult('Create Attenuated Token', true, `Delegated token created`);
+            } catch (error) {
+                addTestResult('Create Attenuated Token', false, error.message);
+            }
+        });
+
+        // Test Sign & Verify
+        document.getElementById('test-sign-verify').addEventListener('click', async () => {
+            try {
+                log('Testing Sign & Verify...', 'info');
+                const message = new TextEncoder().encode('Test message for signing');
+                
+                // Sign the message
+                const signResult = await motorPlugin.signData({ data: message });
+                log(`Signed message, signature length: ${signResult.signature.length} bytes`, 'info');
+                
+                // Verify the signature
+                const verifyResult = await motorPlugin.verifyData({
+                    data: message,
+                    signature: signResult.signature
+                });
+                
+                addTestResult('Sign & Verify', verifyResult.valid, 
+                    verifyResult.valid ? 'Signature verified successfully' : 'Signature verification failed');
+            } catch (error) {
+                addTestResult('Sign & Verify', false, error.message);
+            }
+        });
+
+        // Test DWN CRUD
+        document.getElementById('test-dwn-crud').addEventListener('click', async () => {
+            try {
+                log('Testing DWN CRUD operations...', 'info');
+                
+                // Create a record
+                const createResult = await motorPlugin.createRecord({
+                    schema: 'https://schema.org/Person',
+                    data: new TextEncoder().encode(JSON.stringify({
+                        name: 'Test User',
+                        email: 'test@example.com'
+                    })),
+                    is_encrypted: false
+                });
+                log(`Created record: ${createResult.record_id}`, 'success');
+                
+                // Read the record
+                const readResult = await motorPlugin.readRecord({
+                    record_id: createResult.record_id
+                });
+                log(`Read record: ${readResult.record_id}`, 'success');
+                
+                // Update the record
+                const updateResult = await motorPlugin.updateRecord({
+                    record_id: createResult.record_id,
+                    data: new TextEncoder().encode(JSON.stringify({
+                        name: 'Updated User',
+                        email: 'updated@example.com'
+                    }))
+                });
+                log(`Updated record: ${updateResult.record_id}`, 'success');
+                
+                // Delete the record
+                const deleteResult = await motorPlugin.deleteRecord({
+                    record_id: createResult.record_id
+                });
+                log(`Deleted record: ${deleteResult.success}`, 'success');
+                
+                addTestResult('DWN CRUD', true, 'All CRUD operations completed successfully');
+            } catch (error) {
+                addTestResult('DWN CRUD', false, error.message);
+            }
+        });
+
+        // Initial log
+        log('Motor WASM Service Worker Test Page loaded', 'info');
+        log('Make sure to serve this page over HTTP (not file://) for service workers to work', 'warning');
+        log('Example: python3 -m http.server 8080', 'info');
+    </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+---
+openapi: get /svc/v1/services/owner/{owner}
+title: Query Services by Owner
+description: List all services registered by a specific account
+og:title: Owner Service Portfolio
+---
+
+<Info>
+  This endpoint helps owners manage their service portfolio and monitor service health.
+</Info>
+
+## Use Cases
+
+### Portfolio Management
+- View all owned services
+- Monitor service status
+- Track domain bindings
+- Audit permissions
+
+### Service Administration
+- Identify services needing updates
+- Check for suspended services
+- Plan new registrations
+- Manage service lifecycle
+
+## Query Examples
+
+### List Your Services
+```bash
+# Using your address
+MY_ADDR=$(snrd keys show alice -a)
+snrd query svc services-by-owner $MY_ADDR
+
+# Direct address query
+snrd query svc services-by-owner sonr1xyz...
+```
+
+### Parse Service List
+```javascript
+// Get all active services
+const services = await queryServicesByOwner(ownerAddr);
+const activeServices = services.filter(s => 
+  s.status === 'ACTIVE'
+);
+
+// Group by domain
+const byDomain = services.reduce((acc, svc) => {
+  acc[svc.domain] = acc[svc.domain] || [];
+  acc[svc.domain].push(svc);
+  return acc;
+}, {});
+```
+
+## Response Structure
+
+Returns array of services:
+```json
+{
+  "services": [
+    {
+      "id": "chat-app",
+      "domain": "example.com",
+      "owner": "sonr1xyz...",
+      "permissions": ["dwn:read", "dwn:write"],
+      "status": "ACTIVE"
+    },
+    {
+      "id": "vault-manager",
+      "domain": "secure.example.com",
+      "owner": "sonr1xyz...",
+      "permissions": ["vault:access"],
+      "status": "ACTIVE"
+    }
+  ]
+}
+```
+
+## Management Patterns
+
+### Service Health Check
+```bash
+# Check for non-active services
+SERVICES=$(snrd query svc services-by-owner $ADDR -o json)
+echo $SERVICES | jq '.services[] | select(.status != "ACTIVE")'          ```
+
+### Permission Audit
+```bash
+# List all permissions across services
+echo $SERVICES | jq '.services[].permissions' | 
+  jq -s 'flatten | unique'
+```
+
+### Domain Coverage
+```bash
+# List all domains with services
+echo $SERVICES | jq -r '.services[].domain' | sort | uniq
+```
+
+<Tip>
+  Regularly audit your services to ensure they're active and permissions are appropriate.
+</Tip>
+
+## Limits and Constraints
+
+### Service Limits
+- Maximum services per owner defined by `maxServicesPerAccount`
+- Default limit: 100 services
+- Check current limit: `snrd query svc params`
+
+### Best Practices
+- **Organize by Purpose**: Group related services
+- **Document Services**: Maintain service documentation
+- **Regular Audits**: Review inactive services
+- **Clean Up**: Remove unused services
+
+<Warning>
+  Approaching the service limit? Consider consolidating services or requesting limit increase through governance.
+</Warning>

@@ -1,0 +1,190 @@
+---
+title: Getting Started with ReactJS
+description: A quick start guide for building applications with Sonr using JavaScript and TypeScript
+sidebarTitle: React Quickstart
+icon: "react"
+---
+
+This guide will show you how to set up a Node.js project with TypeScript and use the Sonr SDK to interact with the Sonr network.
+
+## Prerequisites
+
+- A local Sonr network running. See the [Validator Setup Guide](/quickstart/validators) for instructions
+- Node.js version 16 or higher
+- npm or yarn
+
+## 1. Project Setup
+
+<Steps>
+<Step>
+### Initialize a New Project
+
+Create a new directory for your project and initialize it with npm:
+
+```bash
+mkdir sonr-ts-quickstart
+cd sonr-ts-quickstart
+npm init -y
+```
+
+</Step>
+
+<Step>
+### Install Dependencies
+
+Install the Sonr SDK and TypeScript:
+
+```bash
+npm install @sonr/sdk typescript ts-node @types/node
+```
+
+</Step>
+
+<Step>
+### Configure TypeScript
+
+Create a `tsconfig.json` file in your project root with the following configuration:
+
+```json
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  }
+}
+```
+
+</Step>
+</Steps>
+
+## 2. Creating a Wallet
+
+Now, let's create a new TypeScript file and add the logic to create a new Sonr wallet.
+
+<Steps>
+<Step>
+### Create the Main File
+
+Create a new file named `index.ts`.
+
+</Step>
+
+<Step>
+### Implement Wallet Creation
+
+Add the following code to `index.ts` to create a new wallet and log its address and mnemonic:
+
+```typescript
+import { Sonr } from "@sonr/sdk";
+
+async function main() {
+  console.log("Creating a new Sonr wallet...");
+
+  const sonr = new Sonr({ httpUrl: "http://localhost:1317" });
+  const wallet = await sonr.createWallet();
+
+  console.log(`Wallet created!`);
+  console.log(`Address: ${wallet.address}`);
+  console.log(`Mnemonic: ${wallet.mnemonic}`);
+}
+
+main().catch(console.error);
+```
+
+<Note type="warning">
+  **Important**: In a real application, you must store the mnemonic securely.
+  Never expose it in client-side code.
+</Note>
+</Step>
+
+<Step>
+### Run the Script
+
+Execute the script using `ts-node`:
+
+```bash
+npx ts-node index.ts
+```
+
+You should see the new wallet's address and mnemonic printed to the console.
+
+</Step>
+</Steps>
+
+## 3. Querying the Blockchain
+
+Let's query the blockchain to get the balance of our new wallet.
+
+<Steps>
+<Step>
+### Get Account Balance
+
+Modify your `index.ts` file to query the account balance after creating the wallet. You will need to fund this account from the localnet faucet for it to have a balance.
+
+```typescript
+// ... after creating the wallet
+
+console.log("Querying account balance...");
+
+// The localnet validator has funds, so we'll use its address for the query
+const validatorAddress = "snr1..._validator_address_..."; // Replace with the actual validator address from your localnet
+const balance = await sonr.getAccountBalance(validatorAddress);
+
+console.log(`Balance for ${validatorAddress}:`, balance);
+```
+
+</Step>
+
+<Step>
+### Run the Script Again
+
+Run the script to see the account balance:
+
+```bash
+npx ts-node index.ts
+```
+
+</Step>
+</Steps>
+
+## 4. Sending a Transaction
+
+Finally, let's send a transaction from one account to another.
+
+<Steps>
+<Step>
+### Implement Transaction Sending
+
+For this step, you will need two wallets. You can create a second one using the same `createWallet` method. Ensure both wallets have funds from the localnet faucet.
+
+```typescript
+// ... inside your main function
+
+const wallet1 = await sonr.createWallet(); // Fund this from the faucet
+const wallet2 = await sonr.createWallet();
+
+console.log(`Sending 1 SNR from ${wallet1.address} to ${wallet2.address}`);
+
+const result = await wallet1.send({
+  to: wallet2.address,
+  amount: "1000000usnr", // 1 SNR
+});
+
+console.log(`Transaction successful! TxHash: ${result.txhash}`);
+```
+
+</Step>
+</Steps>
+
+## Next Steps
+
+This quickstart has shown you the basics of interacting with the Sonr network using our TypeScript SDK. You can now explore more advanced topics:
+
+- **Service Registration**: Register your application as a trusted service
+- **UCAN Authorization**: Implement capability-based permissions
+- **Smart Contract Interaction**: Call and query smart contracts on the Sonr network
+

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://github.com/cosmos/chain-registry/blob/master/assetlist.schema.json",
+  "chain_name": "sonr",
+  "assets": [
+    {
+      "description": "The native token of Sonr",
+      "denom_units": [
+        {
+          "denom": "usnr",
+          "exponent": 0
+        },
+        {
+          "denom": "snr",
+          "exponent": 6
+        }
+      ],
+      "base": "usnr",
+      "name": "Sonr",
+      "display": "snr",
+      "symbol": "SNR",
+      "logo_URIs": {
+        "png": "https://raw.githubusercontent.com/sonr-io/sonr/main/logo.png",
+        "svg": "https://raw.githubusercontent.com/sonr-io/sonr/main/logo.svg"
+      },
+      "images": [
+        {
+          "png": "https://raw.githubusercontent.com/sonr-io/sonr/main/logo.png",
+          "svg": "https://raw.githubusercontent.com/sonr-io/sonr/main/logo.svg",
+          "theme": {
+            "primary_color_hex": "#1E40AF"
+          }
+        }
+      ],
+      "socials": {
+        "website": "https://sonr.io",
+        "twitter": "https://x.com/sonr_io"
+      }
+    }
+  ]
+}

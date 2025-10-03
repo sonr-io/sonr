@@ -6,6 +6,10 @@ package types
 import (
 	context "context"
 	fmt "fmt"
+	io "io"
+	math "math"
+	math_bits "math/bits"
+
 	_ "github.com/cosmos/cosmos-proto"
 	_ "github.com/cosmos/cosmos-sdk/types/msgservice"
 	_ "github.com/cosmos/gogoproto/gogoproto"
@@ -14,9 +18,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	io "io"
-	math "math"
-	math_bits "math/bits"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -129,20 +130,246 @@ func (m *MsgUpdateParamsResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgUpdateParamsResponse proto.InternalMessageInfo
 
-// MsgRegisterService is the message type for the RegisterService RPC.
+// MsgInitiateDomainVerification initiates domain ownership verification
+type MsgInitiateDomainVerification struct {
+	// Address of the user initiating domain verification
+	Creator string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	// Domain to be verified (e.g., "example.com")
+	Domain string `protobuf:"bytes,2,opt,name=domain,proto3" json:"domain,omitempty"`
+}
+
+func (m *MsgInitiateDomainVerification) Reset()         { *m = MsgInitiateDomainVerification{} }
+func (m *MsgInitiateDomainVerification) String() string { return proto.CompactTextString(m) }
+func (*MsgInitiateDomainVerification) ProtoMessage()    {}
+func (*MsgInitiateDomainVerification) Descriptor() ([]byte, []int) {
+	return fileDescriptor_084252b8c07dd202, []int{2}
+}
+func (m *MsgInitiateDomainVerification) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgInitiateDomainVerification) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgInitiateDomainVerification.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgInitiateDomainVerification) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgInitiateDomainVerification.Merge(m, src)
+}
+func (m *MsgInitiateDomainVerification) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgInitiateDomainVerification) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgInitiateDomainVerification.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgInitiateDomainVerification proto.InternalMessageInfo
+
+func (m *MsgInitiateDomainVerification) GetCreator() string {
+	if m != nil {
+		return m.Creator
+	}
+	return ""
+}
+
+func (m *MsgInitiateDomainVerification) GetDomain() string {
+	if m != nil {
+		return m.Domain
+	}
+	return ""
+}
+
+// MsgInitiateDomainVerificationResponse defines the response for domain
+// verification initiation
+type MsgInitiateDomainVerificationResponse struct {
+	// Verification token to be placed in DNS TXT record
+	VerificationToken string `protobuf:"bytes,1,opt,name=verification_token,json=verificationToken,proto3" json:"verification_token,omitempty"`
+	// Instructions for DNS TXT record setup
+	DnsInstruction string `protobuf:"bytes,2,opt,name=dns_instruction,json=dnsInstruction,proto3" json:"dns_instruction,omitempty"`
+}
+
+func (m *MsgInitiateDomainVerificationResponse) Reset()         { *m = MsgInitiateDomainVerificationResponse{} }
+func (m *MsgInitiateDomainVerificationResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgInitiateDomainVerificationResponse) ProtoMessage()    {}
+func (*MsgInitiateDomainVerificationResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_084252b8c07dd202, []int{3}
+}
+func (m *MsgInitiateDomainVerificationResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgInitiateDomainVerificationResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgInitiateDomainVerificationResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgInitiateDomainVerificationResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgInitiateDomainVerificationResponse.Merge(m, src)
+}
+func (m *MsgInitiateDomainVerificationResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgInitiateDomainVerificationResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgInitiateDomainVerificationResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgInitiateDomainVerificationResponse proto.InternalMessageInfo
+
+func (m *MsgInitiateDomainVerificationResponse) GetVerificationToken() string {
+	if m != nil {
+		return m.VerificationToken
+	}
+	return ""
+}
+
+func (m *MsgInitiateDomainVerificationResponse) GetDnsInstruction() string {
+	if m != nil {
+		return m.DnsInstruction
+	}
+	return ""
+}
+
+// MsgVerifyDomain verifies domain ownership by checking DNS TXT records
+type MsgVerifyDomain struct {
+	// Address of the user verifying domain ownership
+	Creator string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	// Domain to be verified
+	Domain string `protobuf:"bytes,2,opt,name=domain,proto3" json:"domain,omitempty"`
+}
+
+func (m *MsgVerifyDomain) Reset()         { *m = MsgVerifyDomain{} }
+func (m *MsgVerifyDomain) String() string { return proto.CompactTextString(m) }
+func (*MsgVerifyDomain) ProtoMessage()    {}
+func (*MsgVerifyDomain) Descriptor() ([]byte, []int) {
+	return fileDescriptor_084252b8c07dd202, []int{4}
+}
+func (m *MsgVerifyDomain) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgVerifyDomain) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgVerifyDomain.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgVerifyDomain) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgVerifyDomain.Merge(m, src)
+}
+func (m *MsgVerifyDomain) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgVerifyDomain) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgVerifyDomain.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgVerifyDomain proto.InternalMessageInfo
+
+func (m *MsgVerifyDomain) GetCreator() string {
+	if m != nil {
+		return m.Creator
+	}
+	return ""
+}
+
+func (m *MsgVerifyDomain) GetDomain() string {
+	if m != nil {
+		return m.Domain
+	}
+	return ""
+}
+
+// MsgVerifyDomainResponse defines the response for domain verification
+type MsgVerifyDomainResponse struct {
+	// Whether verification was successful
+	Verified bool `protobuf:"varint,1,opt,name=verified,proto3" json:"verified,omitempty"`
+	// Message describing verification result
+	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+}
+
+func (m *MsgVerifyDomainResponse) Reset()         { *m = MsgVerifyDomainResponse{} }
+func (m *MsgVerifyDomainResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgVerifyDomainResponse) ProtoMessage()    {}
+func (*MsgVerifyDomainResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_084252b8c07dd202, []int{5}
+}
+func (m *MsgVerifyDomainResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgVerifyDomainResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgVerifyDomainResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgVerifyDomainResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgVerifyDomainResponse.Merge(m, src)
+}
+func (m *MsgVerifyDomainResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgVerifyDomainResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgVerifyDomainResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgVerifyDomainResponse proto.InternalMessageInfo
+
+func (m *MsgVerifyDomainResponse) GetVerified() bool {
+	if m != nil {
+		return m.Verified
+	}
+	return false
+}
+
+func (m *MsgVerifyDomainResponse) GetMessage() string {
+	if m != nil {
+		return m.Message
+	}
+	return ""
+}
+
+// MsgRegisterService registers a new service with verified domain binding
 type MsgRegisterService struct {
-	// authority is the address of the governance account.
-	Controller string `protobuf:"bytes,1,opt,name=controller,proto3" json:"controller,omitempty"`
-	// origin is the origin of the request in wildcard form. Requires valid TXT
-	// record in DNS.
-	Service *Service `protobuf:"bytes,2,opt,name=service,proto3" json:"service,omitempty"`
+	// Address of the service owner
+	Creator string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	// Unique identifier for the service
+	ServiceId string `protobuf:"bytes,2,opt,name=service_id,json=serviceId,proto3" json:"service_id,omitempty"`
+	// Verified domain to bind to this service
+	Domain string `protobuf:"bytes,3,opt,name=domain,proto3" json:"domain,omitempty"`
+	// List of permissions requested for this service
+	RequestedPermissions []string `protobuf:"bytes,4,rep,name=requested_permissions,json=requestedPermissions,proto3" json:"requested_permissions,omitempty"`
+	// UCAN delegation chain for authorization (JWT-encoded)
+	UcanDelegationChain string `protobuf:"bytes,5,opt,name=ucan_delegation_chain,json=ucanDelegationChain,proto3" json:"ucan_delegation_chain,omitempty"`
 }
 
 func (m *MsgRegisterService) Reset()         { *m = MsgRegisterService{} }
 func (m *MsgRegisterService) String() string { return proto.CompactTextString(m) }
 func (*MsgRegisterService) ProtoMessage()    {}
 func (*MsgRegisterService) Descriptor() ([]byte, []int) {
-	return fileDescriptor_084252b8c07dd202, []int{2}
+	return fileDescriptor_084252b8c07dd202, []int{6}
 }
 func (m *MsgRegisterService) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -171,31 +398,54 @@ func (m *MsgRegisterService) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgRegisterService proto.InternalMessageInfo
 
-func (m *MsgRegisterService) GetController() string {
+func (m *MsgRegisterService) GetCreator() string {
 	if m != nil {
-		return m.Controller
+		return m.Creator
 	}
 	return ""
 }
 
-func (m *MsgRegisterService) GetService() *Service {
+func (m *MsgRegisterService) GetServiceId() string {
 	if m != nil {
-		return m.Service
+		return m.ServiceId
+	}
+	return ""
+}
+
+func (m *MsgRegisterService) GetDomain() string {
+	if m != nil {
+		return m.Domain
+	}
+	return ""
+}
+
+func (m *MsgRegisterService) GetRequestedPermissions() []string {
+	if m != nil {
+		return m.RequestedPermissions
 	}
 	return nil
 }
 
-// MsgRegisterServiceResponse is the response type for the RegisterService RPC.
+func (m *MsgRegisterService) GetUcanDelegationChain() string {
+	if m != nil {
+		return m.UcanDelegationChain
+	}
+	return ""
+}
+
+// MsgRegisterServiceResponse defines the response for service registration
 type MsgRegisterServiceResponse struct {
-	Success bool   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	Did     string `protobuf:"bytes,2,opt,name=did,proto3" json:"did,omitempty"`
+	// IPFS CID of the generated root capability
+	RootCapabilityCid string `protobuf:"bytes,1,opt,name=root_capability_cid,json=rootCapabilityCid,proto3" json:"root_capability_cid,omitempty"`
+	// Service registration details
+	ServiceId string `protobuf:"bytes,2,opt,name=service_id,json=serviceId,proto3" json:"service_id,omitempty"`
 }
 
 func (m *MsgRegisterServiceResponse) Reset()         { *m = MsgRegisterServiceResponse{} }
 func (m *MsgRegisterServiceResponse) String() string { return proto.CompactTextString(m) }
 func (*MsgRegisterServiceResponse) ProtoMessage()    {}
 func (*MsgRegisterServiceResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_084252b8c07dd202, []int{3}
+	return fileDescriptor_084252b8c07dd202, []int{7}
 }
 func (m *MsgRegisterServiceResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -224,16 +474,16 @@ func (m *MsgRegisterServiceResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgRegisterServiceResponse proto.InternalMessageInfo
 
-func (m *MsgRegisterServiceResponse) GetSuccess() bool {
+func (m *MsgRegisterServiceResponse) GetRootCapabilityCid() string {
 	if m != nil {
-		return m.Success
+		return m.RootCapabilityCid
 	}
-	return false
+	return ""
 }
 
-func (m *MsgRegisterServiceResponse) GetDid() string {
+func (m *MsgRegisterServiceResponse) GetServiceId() string {
 	if m != nil {
-		return m.Did
+		return m.ServiceId
 	}
 	return ""
 }
@@ -241,6 +491,10 @@ func (m *MsgRegisterServiceResponse) GetDid() string {
 func init() {
 	proto.RegisterType((*MsgUpdateParams)(nil), "svc.v1.MsgUpdateParams")
 	proto.RegisterType((*MsgUpdateParamsResponse)(nil), "svc.v1.MsgUpdateParamsResponse")
+	proto.RegisterType((*MsgInitiateDomainVerification)(nil), "svc.v1.MsgInitiateDomainVerification")
+	proto.RegisterType((*MsgInitiateDomainVerificationResponse)(nil), "svc.v1.MsgInitiateDomainVerificationResponse")
+	proto.RegisterType((*MsgVerifyDomain)(nil), "svc.v1.MsgVerifyDomain")
+	proto.RegisterType((*MsgVerifyDomainResponse)(nil), "svc.v1.MsgVerifyDomainResponse")
 	proto.RegisterType((*MsgRegisterService)(nil), "svc.v1.MsgRegisterService")
 	proto.RegisterType((*MsgRegisterServiceResponse)(nil), "svc.v1.MsgRegisterServiceResponse")
 }
@@ -248,34 +502,48 @@ func init() {
 func init() { proto.RegisterFile("svc/v1/tx.proto", fileDescriptor_084252b8c07dd202) }
 
 var fileDescriptor_084252b8c07dd202 = []byte{
-	// 432 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x92, 0x41, 0x6b, 0xd4, 0x40,
-	0x14, 0xc7, 0x33, 0x56, 0xb7, 0xee, 0x28, 0x8d, 0x0c, 0x85, 0x4d, 0x73, 0x48, 0x4b, 0xbc, 0xd4,
-	0x62, 0x33, 0xb4, 0x82, 0x48, 0xc1, 0x83, 0x7b, 0xea, 0x65, 0x41, 0x53, 0xbc, 0x78, 0x91, 0x74,
-	0x32, 0x4c, 0x07, 0x9a, 0x4c, 0x98, 0x37, 0x1b, 0xda, 0x9b, 0x78, 0x11, 0x3c, 0xf9, 0x35, 0xbc,
-	0xed, 0xc1, 0x0f, 0xb1, 0xc7, 0xc5, 0x93, 0x27, 0x91, 0xdd, 0xc3, 0x7e, 0x0d, 0x49, 0x26, 0x71,
-	0xd7, 0xc8, 0xe2, 0xed, 0xcd, 0xfc, 0xdf, 0xff, 0x3f, 0xbf, 0x79, 0x3c, 0xec, 0x42, 0xc9, 0x68,
-	0x79, 0x42, 0xcd, 0x4d, 0x54, 0x68, 0x65, 0x14, 0xe9, 0x41, 0xc9, 0xa2, 0xf2, 0xc4, 0x1f, 0x30,
-	0x05, 0x99, 0x02, 0x9a, 0x81, 0xa8, 0xf4, 0x0c, 0x84, 0x6d, 0xf0, 0x77, 0x1b, 0x87, 0xe0, 0x39,
-	0x07, 0x09, 0xed, 0xad, 0x50, 0x42, 0xd5, 0x25, 0xad, 0xaa, 0xe6, 0x76, 0xcf, 0x86, 0xbc, 0xb7,
-	0x82, 0x3d, 0x58, 0x29, 0xfc, 0x84, 0xb0, 0x3b, 0x02, 0xf1, 0xb6, 0x48, 0x13, 0xc3, 0x5f, 0x27,
-	0x3a, 0xc9, 0x80, 0x3c, 0xc7, 0xfd, 0x64, 0x6c, 0xae, 0x94, 0x96, 0xe6, 0xd6, 0x43, 0x07, 0xe8,
-	0xb0, 0x3f, 0xf4, 0xbe, 0x7f, 0x3b, 0xde, 0x6d, 0x8c, 0xaf, 0xd2, 0x54, 0x73, 0x80, 0x0b, 0xa3,
-	0x65, 0x2e, 0xe2, 0x55, 0x2b, 0x79, 0x8a, 0x7b, 0x45, 0x9d, 0xe0, 0xdd, 0x39, 0x40, 0x87, 0x0f,
-	0x4e, 0x77, 0x22, 0xfb, 0x89, 0xc8, 0xe6, 0x0e, 0xef, 0x4e, 0x7f, 0xee, 0x3b, 0x71, 0xd3, 0x73,
-	0xb6, 0xf3, 0x71, 0x39, 0x39, 0x5a, 0xb9, 0xc3, 0x3d, 0x3c, 0xe8, 0x80, 0xc4, 0x1c, 0x0a, 0x95,
-	0x03, 0x0f, 0x3f, 0x23, 0x4c, 0x46, 0x20, 0x62, 0x2e, 0x24, 0x18, 0xae, 0x2f, 0xb8, 0x2e, 0x25,
-	0xe3, 0xe4, 0x05, 0xc6, 0x4c, 0xe5, 0x46, 0xab, 0xeb, 0x6b, 0xae, 0xff, 0x0b, 0xba, 0xd6, 0x4b,
-	0x9e, 0xe0, 0x6d, 0xb0, 0x21, 0x0d, 0xaa, 0xdb, 0xa2, 0x36, 0xd9, 0x71, 0xab, 0x9f, 0xb9, 0x15,
-	0xe6, 0x9a, 0x37, 0x3c, 0xc7, 0xfe, 0xbf, 0x2c, 0x2d, 0x2a, 0xf1, 0xf0, 0x36, 0x8c, 0x19, 0xe3,
-	0x00, 0x35, 0xd0, 0xfd, 0xb8, 0x3d, 0x92, 0x47, 0x78, 0x2b, 0x95, 0x69, 0xfd, 0x5e, 0x3f, 0xae,
-	0xca, 0xd3, 0xaf, 0x08, 0x6f, 0x8d, 0x40, 0x90, 0x73, 0xfc, 0xf0, 0xaf, 0xf9, 0x0f, 0x5a, 0x98,
-	0xce, 0x3c, 0xfc, 0xfd, 0x0d, 0xc2, 0x9f, 0xd7, 0xdf, 0x60, 0xb7, 0x3b, 0x24, 0x7f, 0xcd, 0xd3,
-	0xd1, 0xfc, 0x70, 0xb3, 0xd6, 0x46, 0xfa, 0xf7, 0x3e, 0x2c, 0x27, 0x47, 0x68, 0xf8, 0x72, 0x3a,
-	0x0f, 0xd0, 0x6c, 0x1e, 0xa0, 0x5f, 0xf3, 0x00, 0x7d, 0x59, 0x04, 0xce, 0x6c, 0x11, 0x38, 0x3f,
-	0x16, 0x81, 0xf3, 0xee, 0xb1, 0x90, 0xe6, 0x6a, 0x7c, 0x19, 0x31, 0x95, 0x51, 0x50, 0xb9, 0x3e,
-	0x96, 0x8a, 0x42, 0xae, 0x53, 0x7a, 0x43, 0xab, 0x15, 0x35, 0xb7, 0x05, 0x87, 0xcb, 0x5e, 0xbd,
-	0x6d, 0xcf, 0x7e, 0x07, 0x00, 0x00, 0xff, 0xff, 0xce, 0x06, 0xf5, 0x1a, 0xe8, 0x02, 0x00, 0x00,
+	// 656 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x54, 0xbd, 0x4e, 0x1b, 0x4d,
+	0x14, 0xf5, 0xf2, 0x63, 0xf0, 0x7c, 0x08, 0xeb, 0x1b, 0x20, 0x98, 0x95, 0x30, 0x68, 0x23, 0x14,
+	0x84, 0x62, 0xaf, 0x30, 0x52, 0x0a, 0xa4, 0x14, 0x01, 0x0a, 0x28, 0xac, 0x90, 0x25, 0x49, 0x91,
+	0x66, 0xb5, 0xec, 0x4c, 0xc6, 0x23, 0xd8, 0x99, 0xcd, 0xdc, 0xb1, 0x85, 0xab, 0x44, 0x69, 0xd2,
+	0xe6, 0x51, 0x28, 0xf2, 0x10, 0x94, 0x28, 0x55, 0xaa, 0x28, 0x82, 0x82, 0x37, 0x48, 0x1d, 0xed,
+	0xaf, 0x17, 0x13, 0x20, 0x8a, 0x94, 0xca, 0xbe, 0xf7, 0x9c, 0xb9, 0xe7, 0x9c, 0x9d, 0x1f, 0x54,
+	0x85, 0x9e, 0x6f, 0xf7, 0xd6, 0x6d, 0x7d, 0xd2, 0x0c, 0x95, 0xd4, 0x12, 0x97, 0xa1, 0xe7, 0x37,
+	0x7b, 0xeb, 0xe6, 0xbc, 0x2f, 0x21, 0x90, 0x60, 0x07, 0xc0, 0x22, 0x3c, 0x00, 0x96, 0x10, 0xcc,
+	0x85, 0x04, 0x70, 0xe3, 0xca, 0x4e, 0x8a, 0x14, 0x9a, 0x65, 0x92, 0xc9, 0xa4, 0x1f, 0xfd, 0xcb,
+	0xba, 0xa9, 0x04, 0xa3, 0x82, 0x02, 0x4f, 0xb9, 0xd6, 0x27, 0x03, 0x55, 0xdb, 0xc0, 0x5e, 0x85,
+	0xc4, 0xd3, 0x74, 0xdf, 0x53, 0x5e, 0x00, 0xf8, 0x09, 0xaa, 0x78, 0x5d, 0xdd, 0x91, 0x8a, 0xeb,
+	0x7e, 0xcd, 0x58, 0x36, 0x56, 0x2b, 0x5b, 0xb5, 0xaf, 0x5f, 0x1a, 0xb3, 0xa9, 0xc8, 0x33, 0x42,
+	0x14, 0x05, 0x38, 0xd0, 0x8a, 0x0b, 0xe6, 0x0c, 0xa8, 0xf8, 0x31, 0x2a, 0x87, 0xf1, 0x84, 0xda,
+	0xc8, 0xb2, 0xb1, 0xfa, 0x5f, 0x6b, 0xba, 0x99, 0x84, 0x68, 0x26, 0x73, 0xb7, 0xc6, 0xce, 0xbe,
+	0x2f, 0x95, 0x9c, 0x94, 0xb3, 0x39, 0xfd, 0xf1, 0xea, 0x74, 0x6d, 0xb0, 0xda, 0x5a, 0x40, 0xf3,
+	0x43, 0x46, 0x1c, 0x0a, 0xa1, 0x14, 0x40, 0xad, 0x3e, 0x5a, 0x6c, 0x03, 0xdb, 0x13, 0x5c, 0x73,
+	0x4f, 0xd3, 0x1d, 0x19, 0x78, 0x5c, 0xbc, 0xa6, 0x8a, 0xbf, 0xe5, 0xbe, 0xa7, 0xb9, 0x14, 0xb8,
+	0x85, 0x26, 0x7c, 0x45, 0x3d, 0x2d, 0xd5, 0xbd, 0x7e, 0x33, 0x22, 0x7e, 0x80, 0xca, 0x24, 0x9e,
+	0x14, 0xbb, 0xad, 0x38, 0x69, 0xb5, 0x39, 0x15, 0xf9, 0xca, 0x58, 0xd6, 0x7b, 0xb4, 0x72, 0xa7,
+	0x74, 0xe6, 0x11, 0x37, 0x10, 0xee, 0x15, 0xfa, 0xae, 0x96, 0x47, 0x54, 0x24, 0x6e, 0x9c, 0xff,
+	0x8b, 0xc8, 0xcb, 0x08, 0xc0, 0x8f, 0x50, 0x95, 0x08, 0x70, 0xb9, 0x00, 0xad, 0xba, 0x7e, 0xd4,
+	0x4f, 0x6d, 0x4c, 0x13, 0x01, 0x7b, 0x83, 0xae, 0x75, 0x14, 0xef, 0x4f, 0x2c, 0xd9, 0x4f, 0xe4,
+	0xff, 0x61, 0xda, 0xe7, 0xf1, 0x1e, 0x14, 0xc5, 0xf2, 0x7c, 0x26, 0x9a, 0x4c, 0x52, 0x50, 0x12,
+	0xab, 0x4e, 0x3a, 0x79, 0x8d, 0x6b, 0x68, 0x22, 0xa0, 0x00, 0x1e, 0xa3, 0xe9, 0xf4, 0xac, 0xb4,
+	0x7e, 0x1a, 0x08, 0xb7, 0x81, 0x39, 0x94, 0x71, 0xd0, 0x54, 0x1d, 0x50, 0xd5, 0xe3, 0x3e, 0xfd,
+	0xab, 0x04, 0x8b, 0x08, 0x41, 0xb2, 0xdc, 0xe5, 0x24, 0xd5, 0xa9, 0xa4, 0x9d, 0x3d, 0x52, 0x08,
+	0x38, 0x5a, 0x0c, 0x88, 0x37, 0xd0, 0x9c, 0xa2, 0xef, 0xba, 0x14, 0x34, 0x25, 0x6e, 0x48, 0x55,
+	0xc0, 0x01, 0xb8, 0x14, 0x50, 0x1b, 0x5b, 0x1e, 0x5d, 0xad, 0x38, 0xb3, 0x39, 0xb8, 0x3f, 0xc0,
+	0x70, 0x0b, 0xcd, 0x75, 0x7d, 0x4f, 0xb8, 0x84, 0x1e, 0x53, 0x96, 0xec, 0xa7, 0xdf, 0x89, 0x66,
+	0x8f, 0xc7, 0xb3, 0x67, 0x22, 0x70, 0x27, 0xc7, 0xb6, 0x3b, 0x37, 0xbf, 0xe4, 0x11, 0x32, 0x6f,
+	0xe6, 0xce, 0x3f, 0x66, 0x13, 0xcd, 0x28, 0x29, 0xb5, 0xeb, 0x7b, 0xa1, 0x77, 0xc8, 0x8f, 0xb9,
+	0xee, 0xbb, 0x3e, 0x27, 0xd9, 0x69, 0x89, 0xa0, 0xed, 0x1c, 0xd9, 0xe6, 0xe4, 0x9e, 0xec, 0xad,
+	0xab, 0x11, 0x34, 0xda, 0x06, 0x86, 0x77, 0xd1, 0xd4, 0xb5, 0x8b, 0x3c, 0x9f, 0x5d, 0xc0, 0xa1,
+	0x8b, 0x65, 0x2e, 0xdd, 0x02, 0xe4, 0x06, 0x15, 0x32, 0xef, 0xb8, 0x6e, 0x2b, 0x85, 0xe5, 0xb7,
+	0xd3, 0xcc, 0xc6, 0x1f, 0xd1, 0x72, 0xcd, 0x5d, 0x34, 0x75, 0xed, 0x98, 0x17, 0xdd, 0x17, 0x81,
+	0x6b, 0xee, 0x7f, 0x7b, 0x56, 0x5f, 0xa0, 0xea, 0xf0, 0x89, 0x33, 0x0b, 0x6b, 0x86, 0x30, 0xd3,
+	0xba, 0x1d, 0xcb, 0x46, 0x9a, 0xe3, 0x1f, 0xae, 0x4e, 0xd7, 0x8c, 0xad, 0xa7, 0x67, 0x17, 0x75,
+	0xe3, 0xfc, 0xa2, 0x6e, 0xfc, 0xb8, 0xa8, 0x1b, 0x9f, 0x2f, 0xeb, 0xa5, 0xf3, 0xcb, 0x7a, 0xe9,
+	0xdb, 0x65, 0xbd, 0xf4, 0xe6, 0x21, 0xe3, 0xba, 0xd3, 0x3d, 0x6c, 0xfa, 0x32, 0xb0, 0x41, 0x0a,
+	0xd5, 0xe0, 0x32, 0xfe, 0xb5, 0x4f, 0xec, 0xe8, 0xe1, 0xd5, 0xfd, 0x90, 0xc2, 0x61, 0x39, 0x7e,
+	0x74, 0x37, 0x7e, 0x05, 0x00, 0x00, 0xff, 0xff, 0x72, 0x4c, 0x0b, 0xe8, 0xef, 0x05, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -294,8 +562,16 @@ type MsgClient interface {
 	//
 	// Since: cosmos-sdk 0.47
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
-	// RegisterService initializes a Service with a given permission scope and
-	// URI. The domain must have a valid TXT record containing the public key.
+	// InitiateDomainVerification starts the domain verification process
+	//
+	// {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+	// It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+	//
+	// {{import "svc_docs.md"}}
+	InitiateDomainVerification(ctx context.Context, in *MsgInitiateDomainVerification, opts ...grpc.CallOption) (*MsgInitiateDomainVerificationResponse, error)
+	// VerifyDomain completes domain verification by checking DNS TXT records
+	VerifyDomain(ctx context.Context, in *MsgVerifyDomain, opts ...grpc.CallOption) (*MsgVerifyDomainResponse, error)
+	// RegisterService registers a new service with verified domain binding
 	RegisterService(ctx context.Context, in *MsgRegisterService, opts ...grpc.CallOption) (*MsgRegisterServiceResponse, error)
 }
 
@@ -310,6 +586,24 @@ func NewMsgClient(cc grpc1.ClientConn) MsgClient {
 func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error) {
 	out := new(MsgUpdateParamsResponse)
 	err := c.cc.Invoke(ctx, "/svc.v1.Msg/UpdateParams", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) InitiateDomainVerification(ctx context.Context, in *MsgInitiateDomainVerification, opts ...grpc.CallOption) (*MsgInitiateDomainVerificationResponse, error) {
+	out := new(MsgInitiateDomainVerificationResponse)
+	err := c.cc.Invoke(ctx, "/svc.v1.Msg/InitiateDomainVerification", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) VerifyDomain(ctx context.Context, in *MsgVerifyDomain, opts ...grpc.CallOption) (*MsgVerifyDomainResponse, error) {
+	out := new(MsgVerifyDomainResponse)
+	err := c.cc.Invoke(ctx, "/svc.v1.Msg/VerifyDomain", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -331,8 +625,16 @@ type MsgServer interface {
 	//
 	// Since: cosmos-sdk 0.47
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
-	// RegisterService initializes a Service with a given permission scope and
-	// URI. The domain must have a valid TXT record containing the public key.
+	// InitiateDomainVerification starts the domain verification process
+	//
+	// {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+	// It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+	//
+	// {{import "svc_docs.md"}}
+	InitiateDomainVerification(context.Context, *MsgInitiateDomainVerification) (*MsgInitiateDomainVerificationResponse, error)
+	// VerifyDomain completes domain verification by checking DNS TXT records
+	VerifyDomain(context.Context, *MsgVerifyDomain) (*MsgVerifyDomainResponse, error)
+	// RegisterService registers a new service with verified domain binding
 	RegisterService(context.Context, *MsgRegisterService) (*MsgRegisterServiceResponse, error)
 }
 
@@ -342,6 +644,12 @@ type UnimplementedMsgServer struct {
 
 func (*UnimplementedMsgServer) UpdateParams(ctx context.Context, req *MsgUpdateParams) (*MsgUpdateParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateParams not implemented")
+}
+func (*UnimplementedMsgServer) InitiateDomainVerification(ctx context.Context, req *MsgInitiateDomainVerification) (*MsgInitiateDomainVerificationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InitiateDomainVerification not implemented")
+}
+func (*UnimplementedMsgServer) VerifyDomain(ctx context.Context, req *MsgVerifyDomain) (*MsgVerifyDomainResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VerifyDomain not implemented")
 }
 func (*UnimplementedMsgServer) RegisterService(ctx context.Context, req *MsgRegisterService) (*MsgRegisterServiceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterService not implemented")
@@ -369,6 +677,42 @@ func _Msg_UpdateParams_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_InitiateDomainVerification_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgInitiateDomainVerification)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).InitiateDomainVerification(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/svc.v1.Msg/InitiateDomainVerification",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).InitiateDomainVerification(ctx, req.(*MsgInitiateDomainVerification))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_VerifyDomain_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgVerifyDomain)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).VerifyDomain(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/svc.v1.Msg/VerifyDomain",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).VerifyDomain(ctx, req.(*MsgVerifyDomain))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Msg_RegisterService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MsgRegisterService)
 	if err := dec(in); err != nil {
@@ -387,7 +731,6 @@ func _Msg_RegisterService_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-var Msg_serviceDesc = _Msg_serviceDesc
 var _Msg_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "svc.v1.Msg",
 	HandlerType: (*MsgServer)(nil),
@@ -395,6 +738,14 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateParams",
 			Handler:    _Msg_UpdateParams_Handler,
+		},
+		{
+			MethodName: "InitiateDomainVerification",
+			Handler:    _Msg_InitiateDomainVerification_Handler,
+		},
+		{
+			MethodName: "VerifyDomain",
+			Handler:    _Msg_VerifyDomain_Handler,
 		},
 		{
 			MethodName: "RegisterService",
@@ -468,6 +819,157 @@ func (m *MsgUpdateParamsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error)
 	return len(dAtA) - i, nil
 }
 
+func (m *MsgInitiateDomainVerification) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgInitiateDomainVerification) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgInitiateDomainVerification) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Domain) > 0 {
+		i -= len(m.Domain)
+		copy(dAtA[i:], m.Domain)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Domain)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Creator) > 0 {
+		i -= len(m.Creator)
+		copy(dAtA[i:], m.Creator)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Creator)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgInitiateDomainVerificationResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgInitiateDomainVerificationResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgInitiateDomainVerificationResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.DnsInstruction) > 0 {
+		i -= len(m.DnsInstruction)
+		copy(dAtA[i:], m.DnsInstruction)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.DnsInstruction)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.VerificationToken) > 0 {
+		i -= len(m.VerificationToken)
+		copy(dAtA[i:], m.VerificationToken)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.VerificationToken)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgVerifyDomain) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgVerifyDomain) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgVerifyDomain) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Domain) > 0 {
+		i -= len(m.Domain)
+		copy(dAtA[i:], m.Domain)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Domain)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Creator) > 0 {
+		i -= len(m.Creator)
+		copy(dAtA[i:], m.Creator)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Creator)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgVerifyDomainResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgVerifyDomainResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgVerifyDomainResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Message) > 0 {
+		i -= len(m.Message)
+		copy(dAtA[i:], m.Message)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Message)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Verified {
+		i--
+		if m.Verified {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
 func (m *MsgRegisterService) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -488,22 +990,40 @@ func (m *MsgRegisterService) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Service != nil {
-		{
-			size, err := m.Service.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintTx(dAtA, i, uint64(size))
+	if len(m.UcanDelegationChain) > 0 {
+		i -= len(m.UcanDelegationChain)
+		copy(dAtA[i:], m.UcanDelegationChain)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.UcanDelegationChain)))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.RequestedPermissions) > 0 {
+		for iNdEx := len(m.RequestedPermissions) - 1; iNdEx >= 0; iNdEx-- {
+			i -= len(m.RequestedPermissions[iNdEx])
+			copy(dAtA[i:], m.RequestedPermissions[iNdEx])
+			i = encodeVarintTx(dAtA, i, uint64(len(m.RequestedPermissions[iNdEx])))
+			i--
+			dAtA[i] = 0x22
 		}
+	}
+	if len(m.Domain) > 0 {
+		i -= len(m.Domain)
+		copy(dAtA[i:], m.Domain)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Domain)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.ServiceId) > 0 {
+		i -= len(m.ServiceId)
+		copy(dAtA[i:], m.ServiceId)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.ServiceId)))
 		i--
 		dAtA[i] = 0x12
 	}
-	if len(m.Controller) > 0 {
-		i -= len(m.Controller)
-		copy(dAtA[i:], m.Controller)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.Controller)))
+	if len(m.Creator) > 0 {
+		i -= len(m.Creator)
+		copy(dAtA[i:], m.Creator)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Creator)))
 		i--
 		dAtA[i] = 0xa
 	}
@@ -530,22 +1050,19 @@ func (m *MsgRegisterServiceResponse) MarshalToSizedBuffer(dAtA []byte) (int, err
 	_ = i
 	var l int
 	_ = l
-	if len(m.Did) > 0 {
-		i -= len(m.Did)
-		copy(dAtA[i:], m.Did)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.Did)))
+	if len(m.ServiceId) > 0 {
+		i -= len(m.ServiceId)
+		copy(dAtA[i:], m.ServiceId)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.ServiceId)))
 		i--
 		dAtA[i] = 0x12
 	}
-	if m.Success {
+	if len(m.RootCapabilityCid) > 0 {
+		i -= len(m.RootCapabilityCid)
+		copy(dAtA[i:], m.RootCapabilityCid)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.RootCapabilityCid)))
 		i--
-		if m.Success {
-			dAtA[i] = 1
-		} else {
-			dAtA[i] = 0
-		}
-		i--
-		dAtA[i] = 0x8
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -585,18 +1102,99 @@ func (m *MsgUpdateParamsResponse) Size() (n int) {
 	return n
 }
 
+func (m *MsgInitiateDomainVerification) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Creator)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Domain)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgInitiateDomainVerificationResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.VerificationToken)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.DnsInstruction)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgVerifyDomain) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Creator)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Domain)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgVerifyDomainResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Verified {
+		n += 2
+	}
+	l = len(m.Message)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
 func (m *MsgRegisterService) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = len(m.Controller)
+	l = len(m.Creator)
 	if l > 0 {
 		n += 1 + l + sovTx(uint64(l))
 	}
-	if m.Service != nil {
-		l = m.Service.Size()
+	l = len(m.ServiceId)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.Domain)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	if len(m.RequestedPermissions) > 0 {
+		for _, s := range m.RequestedPermissions {
+			l = len(s)
+			n += 1 + l + sovTx(uint64(l))
+		}
+	}
+	l = len(m.UcanDelegationChain)
+	if l > 0 {
 		n += 1 + l + sovTx(uint64(l))
 	}
 	return n
@@ -608,10 +1206,11 @@ func (m *MsgRegisterServiceResponse) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Success {
-		n += 2
+	l = len(m.RootCapabilityCid)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
 	}
-	l = len(m.Did)
+	l = len(m.ServiceId)
 	if l > 0 {
 		n += 1 + l + sovTx(uint64(l))
 	}
@@ -789,6 +1388,450 @@ func (m *MsgUpdateParamsResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+func (m *MsgInitiateDomainVerification) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgInitiateDomainVerification: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgInitiateDomainVerification: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Creator = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Domain", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Domain = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgInitiateDomainVerificationResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgInitiateDomainVerificationResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgInitiateDomainVerificationResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field VerificationToken", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.VerificationToken = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DnsInstruction", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.DnsInstruction = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgVerifyDomain) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgVerifyDomain: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgVerifyDomain: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Creator = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Domain", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Domain = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgVerifyDomainResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgVerifyDomainResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgVerifyDomainResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Verified", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.Verified = bool(v != 0)
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Message", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Message = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
 func (m *MsgRegisterService) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -820,7 +1863,7 @@ func (m *MsgRegisterService) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Controller", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -848,13 +1891,13 @@ func (m *MsgRegisterService) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Controller = string(dAtA[iNdEx:postIndex])
+			m.Creator = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Service", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field ServiceId", wireType)
 			}
-			var msglen int
+			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowTx
@@ -864,27 +1907,119 @@ func (m *MsgRegisterService) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				msglen |= int(b&0x7F) << shift
+				stringLen |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			if msglen < 0 {
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
 				return ErrInvalidLengthTx
 			}
-			postIndex := iNdEx + msglen
+			postIndex := iNdEx + intStringLen
 			if postIndex < 0 {
 				return ErrInvalidLengthTx
 			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Service == nil {
-				m.Service = &Service{}
+			m.ServiceId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Domain", wireType)
 			}
-			if err := m.Service.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
 			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Domain = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field RequestedPermissions", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.RequestedPermissions = append(m.RequestedPermissions, string(dAtA[iNdEx:postIndex]))
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field UcanDelegationChain", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.UcanDelegationChain = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -937,28 +2072,8 @@ func (m *MsgRegisterServiceResponse) Unmarshal(dAtA []byte) error {
 		}
 		switch fieldNum {
 		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Success", wireType)
-			}
-			var v int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTx
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				v |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.Success = bool(v != 0)
-		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Did", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field RootCapabilityCid", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -986,7 +2101,39 @@ func (m *MsgRegisterServiceResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Did = string(dAtA[iNdEx:postIndex])
+			m.RootCapabilityCid = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ServiceId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ServiceId = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex

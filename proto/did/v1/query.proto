@@ -1,36 +1,86 @@
 syntax = "proto3";
 package did.v1;
 
+import "cosmos/base/query/v1beta1/pagination.proto";
 import "did/v1/genesis.proto";
-import "google/api/annotations.proto";
+import "did/v1/state.proto";
+import "did/v1/types.proto";
 
-option go_package = "github.com/sonr-io/snrd/x/did/types";
+import "google/api/annotations.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/sonr-io/sonr/x/did/types";
 
 // Query provides defines the gRPC querier service.
 service Query {
   // Params queries all parameters of the module.
-  rpc Params(QueryRequest) returns (QueryParamsResponse) {
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/did/v1/params";
   }
 
-  // Resolve queries the DID document by its id.
-  rpc Resolve(QueryRequest) returns (QueryResolveResponse) {
-    option (google.api.http).get = "/did/v1/{did}";
+  // ResolveDID resolves a DID to its DID document
+  //
+  // {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+  // It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+  //
+  // {{import "did_query_docs.md"}}
+  rpc ResolveDID(QueryResolveDIDRequest) returns (QueryResolveDIDResponse) {
+    option (google.api.http).get = "/did/v1/resolve/{did}";
   }
 
-  // Verify verifies a message with the DID document
-  rpc Verify(QueryVerifyRequest) returns (QueryVerifyResponse) {
-    option (google.api.http).post = "/did/v1/{did}/verify";
+  // GetDIDDocument retrieves a DID document by its ID
+  rpc GetDIDDocument(QueryGetDIDDocumentRequest) returns (QueryGetDIDDocumentResponse) {
+    option (google.api.http).get = "/did/v1/document/{did}";
+  }
+
+  // ListDIDDocuments lists all DID documents with pagination
+  rpc ListDIDDocuments(QueryListDIDDocumentsRequest) returns (QueryListDIDDocumentsResponse) {
+    option (google.api.http).get = "/did/v1/documents";
+  }
+
+  // GetDIDDocumentsByController retrieves DID documents by controller
+  rpc GetDIDDocumentsByController(QueryGetDIDDocumentsByControllerRequest) returns (QueryGetDIDDocumentsByControllerResponse) {
+    option (google.api.http).get = "/did/v1/documents/controller/{controller}";
+  }
+
+  // GetVerificationMethod retrieves a specific verification method
+  rpc GetVerificationMethod(QueryGetVerificationMethodRequest) returns (QueryGetVerificationMethodResponse) {
+    option (google.api.http).get = "/did/v1/verification-method/{did}/{method_id}";
+  }
+
+  // GetService retrieves a specific service endpoint
+  rpc GetService(QueryGetServiceRequest) returns (QueryGetServiceResponse) {
+    option (google.api.http).get = "/did/v1/service/{did}/{service_id}";
+  }
+
+  // GetVerifiableCredential retrieves a verifiable credential by ID
+  rpc GetVerifiableCredential(QueryGetVerifiableCredentialRequest) returns (QueryGetVerifiableCredentialResponse) {
+    option (google.api.http).get = "/did/v1/credential/{credential_id}";
+  }
+
+  // ListVerifiableCredentials lists all verifiable credentials with filtering options
+  rpc ListVerifiableCredentials(QueryListVerifiableCredentialsRequest) returns (QueryListVerifiableCredentialsResponse) {
+    option (google.api.http).get = "/did/v1/credentials";
+  }
+
+  // GetCredentialsByDID retrieves all credentials (verifiable and WebAuthn) associated with a DID
+  rpc GetCredentialsByDID(QueryGetCredentialsByDIDRequest) returns (QueryGetCredentialsByDIDResponse) {
+    option (google.api.http).get = "/did/v1/credentials/did/{did}";
+  }
+
+  // RegisterStart represents the start of the registration process
+  rpc RegisterStart(QueryRegisterStartRequest) returns (QueryRegisterStartResponse) {
+    option (google.api.http).post = "/did/v1/register/start";
+  }
+
+  // LoginStart represents the start of the login process
+  rpc LoginStart(QueryLoginStartRequest) returns (QueryLoginStartResponse) {
+    option (google.api.http).post = "/did/v1/login/start";
   }
 }
 
-// Queryequest is the request type for the Query/Params RPC method.
-message QueryRequest {
-  string did = 1;
-  string origin = 2;
-  string key = 3;
-  string asset = 4;
-}
+// QueryParamsRequest is the request type for the Query/Params RPC method.
+message QueryParamsRequest {}
 
 // QueryParamsResponse is the response type for the Query/Params RPC method.
 message QueryParamsResponse {
@@ -38,39 +88,232 @@ message QueryParamsResponse {
   Params params = 1;
 }
 
-// QueryResolveResponse is the response type for the Query/Resolve RPC method.
-message QueryResolveResponse {
-  // document is the DID document
-  Document document = 1;
-}
-
-// QuerySignRequest is the request type for the Query/Sign RPC method.
-message QuerySignRequest {
+// QueryResolveDIDRequest is the request type for the Query/ResolveDID RPC
+// method.
+message QueryResolveDIDRequest {
+  // did is the DID to resolve
   string did = 1;
-  string origin = 2;
-  string key = 3;
-  string asset = 4;
-  string message = 5;
 }
 
-// QuerySignResponse is the response type for the Query/Sign RPC method.
-message QuerySignResponse {
-  // signature is the signature of the message
-  string signature = 1;
+// QueryResolveDIDResponse is the response type for the Query/ResolveDID RPC
+// method.
+message QueryResolveDIDResponse {
+  // did_document is the resolved DID document
+  DIDDocument did_document = 1;
+
+  // did_document_metadata contains metadata about the DID document
+  DIDDocumentMetadata did_document_metadata = 2;
 }
 
-// QueryVerifyRequest is the request type for the Query/Verify RPC method.
-message QueryVerifyRequest {
+// QueryGetDIDDocumentRequest is the request type for the
+// Query/GetDIDDocument RPC method.
+message QueryGetDIDDocumentRequest {
+  // did is the DID to retrieve
   string did = 1;
-  string origin = 2;
-  string key = 3;
-  string asset = 4;
-  string message = 5;
-  string signature = 6;
 }
 
-// QueryVerifyResponse is the response type for the Query/Verify RPC method.
-message QueryVerifyResponse {
-  // valid is the validity of the signature
-  bool valid = 1;
+// QueryGetDIDDocumentResponse is the response type for the
+// Query/GetDIDDocument RPC method.
+message QueryGetDIDDocumentResponse {
+  // did_document is the retrieved DID document
+  DIDDocument did_document = 1;
+
+  // did_document_metadata contains metadata about the DID document
+  DIDDocumentMetadata did_document_metadata = 2;
 }
+
+// QueryListDIDDocumentsRequest is the request type for the
+// Query/ListDIDDocuments RPC method.
+message QueryListDIDDocumentsRequest {
+  // pagination defines an optional pagination for the request
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+// QueryListDIDDocumentsResponse is the response type for the
+// Query/ListDIDDocuments RPC method.
+message QueryListDIDDocumentsResponse {
+  // did_documents is the list of DID documents
+  repeated DIDDocument did_documents = 1;
+
+  // pagination defines the pagination in the response
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// QueryGetDIDDocumentsByControllerRequest is the request type for the
+// Query/GetDIDDocumentsByController RPC method.
+message QueryGetDIDDocumentsByControllerRequest {
+  // controller is the controller to search for
+  string controller = 1;
+
+  // pagination defines an optional pagination for the request
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
+}
+
+// QueryGetDIDDocumentsByControllerResponse is the response type for the
+// Query/GetDIDDocumentsByController RPC method.
+message QueryGetDIDDocumentsByControllerResponse {
+  // did_documents is the list of DID documents controlled by the controller
+  repeated DIDDocument did_documents = 1;
+
+  // pagination defines the pagination in the response
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// QueryGetVerificationMethodRequest is the request type for the
+// Query/GetVerificationMethod RPC method.
+message QueryGetVerificationMethodRequest {
+  // did is the DID that contains the verification method
+  string did = 1;
+
+  // method_id is the ID of the verification method
+  string method_id = 2;
+}
+
+// QueryGetVerificationMethodResponse is the response type for the
+// Query/GetVerificationMethod RPC method.
+message QueryGetVerificationMethodResponse {
+  // verification_method is the retrieved verification method
+  VerificationMethod verification_method = 1;
+}
+
+// QueryGetServiceRequest is the request type for the Query/GetService RPC
+// method.
+message QueryGetServiceRequest {
+  // did is the DID that contains the service
+  string did = 1;
+
+  // service_id is the ID of the service
+  string service_id = 2;
+}
+
+// QueryGetServiceResponse is the response type for the Query/GetService
+// RPC method.
+message QueryGetServiceResponse {
+  // service is the retrieved service
+  Service service = 1;
+}
+
+// QueryGetVerifiableCredentialRequest is the request type for the
+// Query/GetVerifiableCredential RPC method.
+message QueryGetVerifiableCredentialRequest {
+  // credential_id is the ID of the credential to retrieve
+  string credential_id = 1;
+}
+
+// QueryGetVerifiableCredentialResponse is the response type for the
+// Query/GetVerifiableCredential RPC method.
+message QueryGetVerifiableCredentialResponse {
+  // credential is the retrieved verifiable credential
+  VerifiableCredential credential = 1;
+}
+
+// QueryListVerifiableCredentialsRequest is the request type for the
+// Query/ListVerifiableCredentials RPC method.
+message QueryListVerifiableCredentialsRequest {
+  // pagination defines an optional pagination for the request
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+  
+  // issuer filters by issuer DID (optional)
+  string issuer = 2;
+  
+  // holder filters by holder DID (optional)
+  string holder = 3;
+  
+  // include_revoked includes revoked credentials (default: false)
+  bool include_revoked = 4;
+}
+
+// QueryListVerifiableCredentialsResponse is the response type for the
+// Query/ListVerifiableCredentials RPC method.
+message QueryListVerifiableCredentialsResponse {
+  // credentials is the list of verifiable credentials
+  repeated VerifiableCredential credentials = 1;
+
+  // pagination defines the pagination in the response
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// CredentialInfo wraps credential data with vault status
+message CredentialInfo {
+  // credential can be either verifiable or WebAuthn
+  oneof credential {
+    VerifiableCredential verifiable_credential = 1;
+    WebAuthnCredential webauthn_credential = 2;
+  }
+  
+  // vault_id indicates if stored in vault (empty if not)
+  string vault_id = 3;
+  
+  // is_encrypted indicates if encrypted in vault
+  bool is_encrypted = 4;
+}
+
+// QueryGetCredentialsByDIDRequest is the request type for the
+// Query/GetCredentialsByDID RPC method.
+message QueryGetCredentialsByDIDRequest {
+  // did is the DID to retrieve all credentials for
+  string did = 1;
+  
+  // include_verifiable includes verifiable credentials (default: true)
+  bool include_verifiable = 2;
+  
+  // include_webauthn includes WebAuthn credentials (default: true)
+  bool include_webauthn = 3;
+  
+  // include_revoked includes revoked credentials (default: false)
+  bool include_revoked = 4;
+  
+  // pagination defines an optional pagination for the request
+  cosmos.base.query.v1beta1.PageRequest pagination = 5;
+}
+
+// QueryGetCredentialsByDIDResponse is the response type for the
+// Query/GetCredentialsByDID RPC method.
+message QueryGetCredentialsByDIDResponse {
+  // credentials is the list of all credentials associated with the DID
+  repeated CredentialInfo credentials = 1;
+  
+  // pagination defines the pagination in the response
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// QueryRegisterStartRequest is the request type for the
+// Query/RegisterStart RPC method.
+message QueryRegisterStartRequest {
+  // assertion_did is the DID to register (did:sonr:email:<blake3> or did:sonr:phone:<blake3>)
+  string assertion_did = 1;
+}
+
+// QueryRegisterStartResponse is the response type for the
+// Query/RegisterStart RPC method.
+message QueryRegisterStartResponse {
+  // challenge for the attestation ceremony (32 bytes)
+  bytes challenge = 1;
+
+  // relying_party_id identifier
+  string relying_party_id = 2;
+
+  // user information (id, name, displayName)
+  map<string, string> user = 3;
+}
+
+// QueryLoginStartRequest is the request type for the
+// Query/LoginStart RPC method.
+message QueryLoginStartRequest {
+  // assertion_did is the assertion DID (did:sonr:email:<blake3> or did:sonr:phone:<blake3>)
+  string assertion_did = 1;
+}
+
+// QueryLoginStartResponse is the response type for the
+// Query/LoginStart RPC method.
+message QueryLoginStartResponse {
+  // credential_ids associated with this assertion
+  repeated string credential_ids = 1;
+
+  // challenge for the assertion ceremony (32 bytes)
+  bytes challenge = 2;
+
+  // relying_party_id identifier
+  string relying_party_id = 3;
+}
+

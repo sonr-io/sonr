@@ -1,3 +1,4 @@
+// Package upgrades provides types and interfaces for chain upgrade handling.
 package upgrades
 
 import (
@@ -14,12 +15,13 @@ import (
 	authkeeper "github.com/cosmos/cosmos-sdk/x/auth/keeper"
 	consensusparamkeeper "github.com/cosmos/cosmos-sdk/x/consensus/keeper"
 	paramskeeper "github.com/cosmos/cosmos-sdk/x/params/keeper"
-	didkeeper "github.com/sonr-io/snrd/x/did/keeper"
 )
 
+// AppKeepers holds references to all the keepers needed during chain upgrades.
+// This struct is passed to upgrade handlers to provide access to various
+// module keepers and core functionality.
 type AppKeepers struct {
 	AccountKeeper         *authkeeper.AccountKeeper
-	DidKeeper             *didkeeper.Keeper
 	ParamsKeeper          *paramskeeper.Keeper
 	ConsensusParamsKeeper *consensusparamkeeper.Keeper
 	Codec                 codec.Codec
@@ -27,8 +29,15 @@ type AppKeepers struct {
 	CapabilityKeeper      *capabilitykeeper.Keeper
 	IBCKeeper             *ibckeeper.Keeper
 }
+
+// ModuleManager defines the interface for running module migrations during upgrades.
+// It provides methods to execute migrations and retrieve the current version map.
 type ModuleManager interface {
-	RunMigrations(ctx context.Context, cfg module.Configurator, fromVM module.VersionMap) (module.VersionMap, error)
+	RunMigrations(
+		ctx context.Context,
+		cfg module.Configurator,
+		fromVM module.VersionMap,
+	) (module.VersionMap, error)
 	GetVersionMap() module.VersionMap
 }
 
@@ -37,10 +46,14 @@ type ModuleManager interface {
 // An upgrade must implement this struct, and then set it in the app.go.
 // The app.go will then define the handler.
 type Upgrade struct {
-	// Upgrade version name, for the upgrade handler, e.g. `v7`
+	// UpgradeName is the version name for the upgrade handler, e.g. `v7`.
+	// This must match the upgrade name in the governance proposal.
 	UpgradeName string
 
-	// CreateUpgradeHandler defines the function that creates an upgrade handler
+	// CreateUpgradeHandler defines the function that creates an upgrade handler.
+	// The handler performs the actual upgrade logic when the chain reaches the upgrade height.
 	CreateUpgradeHandler func(ModuleManager, module.Configurator, *AppKeepers) upgradetypes.UpgradeHandler
-	StoreUpgrades        storetypes.StoreUpgrades
+	// StoreUpgrades defines any store migrations needed for this upgrade,
+	// including adding, renaming, or deleting stores.
+	StoreUpgrades storetypes.StoreUpgrades
 }

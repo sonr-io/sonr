@@ -1,0 +1,57 @@
+---
+openapi: get /dwn/v1/records/{target}/{recordId}
+title: Query Specific Record
+description: Retrieve a single record by its unique identifier
+og:title: DWN Record Retrieval
+---
+
+<Info>
+  Direct record access provides the most efficient way to retrieve known records.
+</Info>
+
+## Record Components
+
+### Core Fields
+- **recordId**: Unique identifier (usually a CID)
+- **data**: Actual payload (base64 encoded)
+- **descriptor**: DWN message metadata
+- **authorization**: Access proof
+
+### Metadata Fields
+- **protocol**: Conforming protocol URI
+- **schema**: Data validation schema
+- **parentId**: Hierarchical relationship
+- **published**: Visibility status
+
+### Encryption Details
+- **isEncrypted**: Encryption status
+- **encryptionMetadata**: Consensus encryption info
+- **keyVersion**: Key rotation tracking
+
+## Access Patterns
+
+<Tip>
+  Cache frequently accessed record IDs to avoid repeated queries.
+</Tip>
+
+### Public Records
+```bash
+# No authorization needed
+snrd query dwn record did:sonr:alice record_public_123
+```
+
+### Private Records
+```bash
+# Requires permission or ownership
+snrd query dwn record did:sonr:alice record_private_456
+```
+
+### Encrypted Records
+```bash
+# Auto-decrypts if authorized
+snrd query dwn encrypted-record did:sonr:alice record_encrypted_789
+```
+
+<Warning>
+  404 errors may indicate either non-existence or lack of permissions.
+</Warning>

@@ -4,270 +4,1182 @@ package dwnv1
 
 import (
 	context "context"
+
 	ormlist "cosmossdk.io/orm/model/ormlist"
 	ormtable "cosmossdk.io/orm/model/ormtable"
 	ormerrors "cosmossdk.io/orm/types/ormerrors"
 )
 
-type CredentialTable interface {
-	Insert(ctx context.Context, credential *Credential) error
-	Update(ctx context.Context, credential *Credential) error
-	Save(ctx context.Context, credential *Credential) error
-	Delete(ctx context.Context, credential *Credential) error
-	Has(ctx context.Context, id []byte) (found bool, err error)
+type EncryptionKeyStateTable interface {
+	Insert(ctx context.Context, encryptionKeyState *EncryptionKeyState) error
+	Update(ctx context.Context, encryptionKeyState *EncryptionKeyState) error
+	Save(ctx context.Context, encryptionKeyState *EncryptionKeyState) error
+	Delete(ctx context.Context, encryptionKeyState *EncryptionKeyState) error
+	Has(ctx context.Context, key_version uint64) (found bool, err error)
 	// Get returns nil and an error which responds true to ormerrors.IsNotFound() if the record was not found.
-	Get(ctx context.Context, id []byte) (*Credential, error)
-	List(ctx context.Context, prefixKey CredentialIndexKey, opts ...ormlist.Option) (CredentialIterator, error)
-	ListRange(ctx context.Context, from, to CredentialIndexKey, opts ...ormlist.Option) (CredentialIterator, error)
-	DeleteBy(ctx context.Context, prefixKey CredentialIndexKey) error
-	DeleteRange(ctx context.Context, from, to CredentialIndexKey) error
+	Get(ctx context.Context, key_version uint64) (*EncryptionKeyState, error)
+	List(ctx context.Context, prefixKey EncryptionKeyStateIndexKey, opts ...ormlist.Option) (EncryptionKeyStateIterator, error)
+	ListRange(ctx context.Context, from, to EncryptionKeyStateIndexKey, opts ...ormlist.Option) (EncryptionKeyStateIterator, error)
+	DeleteBy(ctx context.Context, prefixKey EncryptionKeyStateIndexKey) error
+	DeleteRange(ctx context.Context, from, to EncryptionKeyStateIndexKey) error
 
 	doNotImplement()
 }
 
-type CredentialIterator struct {
+type EncryptionKeyStateIterator struct {
 	ormtable.Iterator
 }
 
-func (i CredentialIterator) Value() (*Credential, error) {
-	var credential Credential
-	err := i.UnmarshalMessage(&credential)
-	return &credential, err
+func (i EncryptionKeyStateIterator) Value() (*EncryptionKeyState, error) {
+	var encryptionKeyState EncryptionKeyState
+	err := i.UnmarshalMessage(&encryptionKeyState)
+	return &encryptionKeyState, err
 }
 
-type CredentialIndexKey interface {
+type EncryptionKeyStateIndexKey interface {
 	id() uint32
 	values() []interface{}
-	credentialIndexKey()
+	encryptionKeyStateIndexKey()
 }
 
 // primary key starting index..
-type CredentialPrimaryKey = CredentialIdIndexKey
+type EncryptionKeyStatePrimaryKey = EncryptionKeyStateKeyVersionIndexKey
 
-type CredentialIdIndexKey struct {
+type EncryptionKeyStateKeyVersionIndexKey struct {
 	vs []interface{}
 }
 
-func (x CredentialIdIndexKey) id() uint32            { return 0 }
-func (x CredentialIdIndexKey) values() []interface{} { return x.vs }
-func (x CredentialIdIndexKey) credentialIndexKey()   {}
+func (x EncryptionKeyStateKeyVersionIndexKey) id() uint32                  { return 0 }
+func (x EncryptionKeyStateKeyVersionIndexKey) values() []interface{}       { return x.vs }
+func (x EncryptionKeyStateKeyVersionIndexKey) encryptionKeyStateIndexKey() {}
 
-func (this CredentialIdIndexKey) WithId(id []byte) CredentialIdIndexKey {
-	this.vs = []interface{}{id}
+func (this EncryptionKeyStateKeyVersionIndexKey) WithKeyVersion(key_version uint64) EncryptionKeyStateKeyVersionIndexKey {
+	this.vs = []interface{}{key_version}
 	return this
 }
 
-type credentialTable struct {
+type EncryptionKeyStateLastRotationIndexKey struct {
+	vs []interface{}
+}
+
+func (x EncryptionKeyStateLastRotationIndexKey) id() uint32                  { return 1 }
+func (x EncryptionKeyStateLastRotationIndexKey) values() []interface{}       { return x.vs }
+func (x EncryptionKeyStateLastRotationIndexKey) encryptionKeyStateIndexKey() {}
+
+func (this EncryptionKeyStateLastRotationIndexKey) WithLastRotation(last_rotation int64) EncryptionKeyStateLastRotationIndexKey {
+	this.vs = []interface{}{last_rotation}
+	return this
+}
+
+type EncryptionKeyStateNextRotationIndexKey struct {
+	vs []interface{}
+}
+
+func (x EncryptionKeyStateNextRotationIndexKey) id() uint32                  { return 2 }
+func (x EncryptionKeyStateNextRotationIndexKey) values() []interface{}       { return x.vs }
+func (x EncryptionKeyStateNextRotationIndexKey) encryptionKeyStateIndexKey() {}
+
+func (this EncryptionKeyStateNextRotationIndexKey) WithNextRotation(next_rotation int64) EncryptionKeyStateNextRotationIndexKey {
+	this.vs = []interface{}{next_rotation}
+	return this
+}
+
+type encryptionKeyStateTable struct {
 	table ormtable.Table
 }
 
-func (this credentialTable) Insert(ctx context.Context, credential *Credential) error {
-	return this.table.Insert(ctx, credential)
+func (this encryptionKeyStateTable) Insert(ctx context.Context, encryptionKeyState *EncryptionKeyState) error {
+	return this.table.Insert(ctx, encryptionKeyState)
 }
 
-func (this credentialTable) Update(ctx context.Context, credential *Credential) error {
-	return this.table.Update(ctx, credential)
+func (this encryptionKeyStateTable) Update(ctx context.Context, encryptionKeyState *EncryptionKeyState) error {
+	return this.table.Update(ctx, encryptionKeyState)
 }
 
-func (this credentialTable) Save(ctx context.Context, credential *Credential) error {
-	return this.table.Save(ctx, credential)
+func (this encryptionKeyStateTable) Save(ctx context.Context, encryptionKeyState *EncryptionKeyState) error {
+	return this.table.Save(ctx, encryptionKeyState)
 }
 
-func (this credentialTable) Delete(ctx context.Context, credential *Credential) error {
-	return this.table.Delete(ctx, credential)
+func (this encryptionKeyStateTable) Delete(ctx context.Context, encryptionKeyState *EncryptionKeyState) error {
+	return this.table.Delete(ctx, encryptionKeyState)
 }
 
-func (this credentialTable) Has(ctx context.Context, id []byte) (found bool, err error) {
-	return this.table.PrimaryKey().Has(ctx, id)
+func (this encryptionKeyStateTable) Has(ctx context.Context, key_version uint64) (found bool, err error) {
+	return this.table.PrimaryKey().Has(ctx, key_version)
 }
 
-func (this credentialTable) Get(ctx context.Context, id []byte) (*Credential, error) {
-	var credential Credential
-	found, err := this.table.PrimaryKey().Get(ctx, &credential, id)
+func (this encryptionKeyStateTable) Get(ctx context.Context, key_version uint64) (*EncryptionKeyState, error) {
+	var encryptionKeyState EncryptionKeyState
+	found, err := this.table.PrimaryKey().Get(ctx, &encryptionKeyState, key_version)
 	if err != nil {
 		return nil, err
 	}
 	if !found {
 		return nil, ormerrors.NotFound
 	}
-	return &credential, nil
+	return &encryptionKeyState, nil
 }
 
-func (this credentialTable) List(ctx context.Context, prefixKey CredentialIndexKey, opts ...ormlist.Option) (CredentialIterator, error) {
+func (this encryptionKeyStateTable) List(ctx context.Context, prefixKey EncryptionKeyStateIndexKey, opts ...ormlist.Option) (EncryptionKeyStateIterator, error) {
 	it, err := this.table.GetIndexByID(prefixKey.id()).List(ctx, prefixKey.values(), opts...)
-	return CredentialIterator{it}, err
+	return EncryptionKeyStateIterator{it}, err
 }
 
-func (this credentialTable) ListRange(ctx context.Context, from, to CredentialIndexKey, opts ...ormlist.Option) (CredentialIterator, error) {
+func (this encryptionKeyStateTable) ListRange(ctx context.Context, from, to EncryptionKeyStateIndexKey, opts ...ormlist.Option) (EncryptionKeyStateIterator, error) {
 	it, err := this.table.GetIndexByID(from.id()).ListRange(ctx, from.values(), to.values(), opts...)
-	return CredentialIterator{it}, err
+	return EncryptionKeyStateIterator{it}, err
 }
 
-func (this credentialTable) DeleteBy(ctx context.Context, prefixKey CredentialIndexKey) error {
+func (this encryptionKeyStateTable) DeleteBy(ctx context.Context, prefixKey EncryptionKeyStateIndexKey) error {
 	return this.table.GetIndexByID(prefixKey.id()).DeleteBy(ctx, prefixKey.values()...)
 }
 
-func (this credentialTable) DeleteRange(ctx context.Context, from, to CredentialIndexKey) error {
+func (this encryptionKeyStateTable) DeleteRange(ctx context.Context, from, to EncryptionKeyStateIndexKey) error {
 	return this.table.GetIndexByID(from.id()).DeleteRange(ctx, from.values(), to.values())
 }
 
-func (this credentialTable) doNotImplement() {}
+func (this encryptionKeyStateTable) doNotImplement() {}
 
-var _ CredentialTable = credentialTable{}
+var _ EncryptionKeyStateTable = encryptionKeyStateTable{}
 
-func NewCredentialTable(db ormtable.Schema) (CredentialTable, error) {
-	table := db.GetTable(&Credential{})
+func NewEncryptionKeyStateTable(db ormtable.Schema) (EncryptionKeyStateTable, error) {
+	table := db.GetTable(&EncryptionKeyState{})
 	if table == nil {
-		return nil, ormerrors.TableNotFound.Wrap(string((&Credential{}).ProtoReflect().Descriptor().FullName()))
+		return nil, ormerrors.TableNotFound.Wrap(string((&EncryptionKeyState{}).ProtoReflect().Descriptor().FullName()))
 	}
-	return credentialTable{table}, nil
+	return encryptionKeyStateTable{table}, nil
 }
 
-type ProfileTable interface {
-	Insert(ctx context.Context, profile *Profile) error
-	Update(ctx context.Context, profile *Profile) error
-	Save(ctx context.Context, profile *Profile) error
-	Delete(ctx context.Context, profile *Profile) error
-	Has(ctx context.Context, account []byte) (found bool, err error)
+type VRFConsensusRoundTable interface {
+	Insert(ctx context.Context, vRFConsensusRound *VRFConsensusRound) error
+	Update(ctx context.Context, vRFConsensusRound *VRFConsensusRound) error
+	Save(ctx context.Context, vRFConsensusRound *VRFConsensusRound) error
+	Delete(ctx context.Context, vRFConsensusRound *VRFConsensusRound) error
+	Has(ctx context.Context, round_number uint64) (found bool, err error)
 	// Get returns nil and an error which responds true to ormerrors.IsNotFound() if the record was not found.
-	Get(ctx context.Context, account []byte) (*Profile, error)
-	List(ctx context.Context, prefixKey ProfileIndexKey, opts ...ormlist.Option) (ProfileIterator, error)
-	ListRange(ctx context.Context, from, to ProfileIndexKey, opts ...ormlist.Option) (ProfileIterator, error)
-	DeleteBy(ctx context.Context, prefixKey ProfileIndexKey) error
-	DeleteRange(ctx context.Context, from, to ProfileIndexKey) error
+	Get(ctx context.Context, round_number uint64) (*VRFConsensusRound, error)
+	List(ctx context.Context, prefixKey VRFConsensusRoundIndexKey, opts ...ormlist.Option) (VRFConsensusRoundIterator, error)
+	ListRange(ctx context.Context, from, to VRFConsensusRoundIndexKey, opts ...ormlist.Option) (VRFConsensusRoundIterator, error)
+	DeleteBy(ctx context.Context, prefixKey VRFConsensusRoundIndexKey) error
+	DeleteRange(ctx context.Context, from, to VRFConsensusRoundIndexKey) error
 
 	doNotImplement()
 }
 
-type ProfileIterator struct {
+type VRFConsensusRoundIterator struct {
 	ormtable.Iterator
 }
 
-func (i ProfileIterator) Value() (*Profile, error) {
-	var profile Profile
-	err := i.UnmarshalMessage(&profile)
-	return &profile, err
+func (i VRFConsensusRoundIterator) Value() (*VRFConsensusRound, error) {
+	var vRFConsensusRound VRFConsensusRound
+	err := i.UnmarshalMessage(&vRFConsensusRound)
+	return &vRFConsensusRound, err
 }
 
-type ProfileIndexKey interface {
+type VRFConsensusRoundIndexKey interface {
 	id() uint32
 	values() []interface{}
-	profileIndexKey()
+	vRFConsensusRoundIndexKey()
 }
 
 // primary key starting index..
-type ProfilePrimaryKey = ProfileAccountIndexKey
+type VRFConsensusRoundPrimaryKey = VRFConsensusRoundRoundNumberIndexKey
 
-type ProfileAccountIndexKey struct {
+type VRFConsensusRoundRoundNumberIndexKey struct {
 	vs []interface{}
 }
 
-func (x ProfileAccountIndexKey) id() uint32            { return 0 }
-func (x ProfileAccountIndexKey) values() []interface{} { return x.vs }
-func (x ProfileAccountIndexKey) profileIndexKey()      {}
+func (x VRFConsensusRoundRoundNumberIndexKey) id() uint32                 { return 0 }
+func (x VRFConsensusRoundRoundNumberIndexKey) values() []interface{}      { return x.vs }
+func (x VRFConsensusRoundRoundNumberIndexKey) vRFConsensusRoundIndexKey() {}
 
-func (this ProfileAccountIndexKey) WithAccount(account []byte) ProfileAccountIndexKey {
-	this.vs = []interface{}{account}
+func (this VRFConsensusRoundRoundNumberIndexKey) WithRoundNumber(round_number uint64) VRFConsensusRoundRoundNumberIndexKey {
+	this.vs = []interface{}{round_number}
 	return this
 }
 
-type ProfileAmountIndexKey struct {
+type VRFConsensusRoundStatusIndexKey struct {
 	vs []interface{}
 }
 
-func (x ProfileAmountIndexKey) id() uint32            { return 1 }
-func (x ProfileAmountIndexKey) values() []interface{} { return x.vs }
-func (x ProfileAmountIndexKey) profileIndexKey()      {}
+func (x VRFConsensusRoundStatusIndexKey) id() uint32                 { return 1 }
+func (x VRFConsensusRoundStatusIndexKey) values() []interface{}      { return x.vs }
+func (x VRFConsensusRoundStatusIndexKey) vRFConsensusRoundIndexKey() {}
 
-func (this ProfileAmountIndexKey) WithAmount(amount uint64) ProfileAmountIndexKey {
-	this.vs = []interface{}{amount}
+func (this VRFConsensusRoundStatusIndexKey) WithStatus(status string) VRFConsensusRoundStatusIndexKey {
+	this.vs = []interface{}{status}
 	return this
 }
 
-type profileTable struct {
+type VRFConsensusRoundExpiryHeightIndexKey struct {
+	vs []interface{}
+}
+
+func (x VRFConsensusRoundExpiryHeightIndexKey) id() uint32                 { return 2 }
+func (x VRFConsensusRoundExpiryHeightIndexKey) values() []interface{}      { return x.vs }
+func (x VRFConsensusRoundExpiryHeightIndexKey) vRFConsensusRoundIndexKey() {}
+
+func (this VRFConsensusRoundExpiryHeightIndexKey) WithExpiryHeight(expiry_height int64) VRFConsensusRoundExpiryHeightIndexKey {
+	this.vs = []interface{}{expiry_height}
+	return this
+}
+
+type vRFConsensusRoundTable struct {
 	table ormtable.Table
 }
 
-func (this profileTable) Insert(ctx context.Context, profile *Profile) error {
-	return this.table.Insert(ctx, profile)
+func (this vRFConsensusRoundTable) Insert(ctx context.Context, vRFConsensusRound *VRFConsensusRound) error {
+	return this.table.Insert(ctx, vRFConsensusRound)
 }
 
-func (this profileTable) Update(ctx context.Context, profile *Profile) error {
-	return this.table.Update(ctx, profile)
+func (this vRFConsensusRoundTable) Update(ctx context.Context, vRFConsensusRound *VRFConsensusRound) error {
+	return this.table.Update(ctx, vRFConsensusRound)
 }
 
-func (this profileTable) Save(ctx context.Context, profile *Profile) error {
-	return this.table.Save(ctx, profile)
+func (this vRFConsensusRoundTable) Save(ctx context.Context, vRFConsensusRound *VRFConsensusRound) error {
+	return this.table.Save(ctx, vRFConsensusRound)
 }
 
-func (this profileTable) Delete(ctx context.Context, profile *Profile) error {
-	return this.table.Delete(ctx, profile)
+func (this vRFConsensusRoundTable) Delete(ctx context.Context, vRFConsensusRound *VRFConsensusRound) error {
+	return this.table.Delete(ctx, vRFConsensusRound)
 }
 
-func (this profileTable) Has(ctx context.Context, account []byte) (found bool, err error) {
-	return this.table.PrimaryKey().Has(ctx, account)
+func (this vRFConsensusRoundTable) Has(ctx context.Context, round_number uint64) (found bool, err error) {
+	return this.table.PrimaryKey().Has(ctx, round_number)
 }
 
-func (this profileTable) Get(ctx context.Context, account []byte) (*Profile, error) {
-	var profile Profile
-	found, err := this.table.PrimaryKey().Get(ctx, &profile, account)
+func (this vRFConsensusRoundTable) Get(ctx context.Context, round_number uint64) (*VRFConsensusRound, error) {
+	var vRFConsensusRound VRFConsensusRound
+	found, err := this.table.PrimaryKey().Get(ctx, &vRFConsensusRound, round_number)
 	if err != nil {
 		return nil, err
 	}
 	if !found {
 		return nil, ormerrors.NotFound
 	}
-	return &profile, nil
+	return &vRFConsensusRound, nil
 }
 
-func (this profileTable) List(ctx context.Context, prefixKey ProfileIndexKey, opts ...ormlist.Option) (ProfileIterator, error) {
+func (this vRFConsensusRoundTable) List(ctx context.Context, prefixKey VRFConsensusRoundIndexKey, opts ...ormlist.Option) (VRFConsensusRoundIterator, error) {
 	it, err := this.table.GetIndexByID(prefixKey.id()).List(ctx, prefixKey.values(), opts...)
-	return ProfileIterator{it}, err
+	return VRFConsensusRoundIterator{it}, err
 }
 
-func (this profileTable) ListRange(ctx context.Context, from, to ProfileIndexKey, opts ...ormlist.Option) (ProfileIterator, error) {
+func (this vRFConsensusRoundTable) ListRange(ctx context.Context, from, to VRFConsensusRoundIndexKey, opts ...ormlist.Option) (VRFConsensusRoundIterator, error) {
 	it, err := this.table.GetIndexByID(from.id()).ListRange(ctx, from.values(), to.values(), opts...)
-	return ProfileIterator{it}, err
+	return VRFConsensusRoundIterator{it}, err
 }
 
-func (this profileTable) DeleteBy(ctx context.Context, prefixKey ProfileIndexKey) error {
+func (this vRFConsensusRoundTable) DeleteBy(ctx context.Context, prefixKey VRFConsensusRoundIndexKey) error {
 	return this.table.GetIndexByID(prefixKey.id()).DeleteBy(ctx, prefixKey.values()...)
 }
 
-func (this profileTable) DeleteRange(ctx context.Context, from, to ProfileIndexKey) error {
+func (this vRFConsensusRoundTable) DeleteRange(ctx context.Context, from, to VRFConsensusRoundIndexKey) error {
 	return this.table.GetIndexByID(from.id()).DeleteRange(ctx, from.values(), to.values())
 }
 
-func (this profileTable) doNotImplement() {}
+func (this vRFConsensusRoundTable) doNotImplement() {}
 
-var _ ProfileTable = profileTable{}
+var _ VRFConsensusRoundTable = vRFConsensusRoundTable{}
 
-func NewProfileTable(db ormtable.Schema) (ProfileTable, error) {
-	table := db.GetTable(&Profile{})
+func NewVRFConsensusRoundTable(db ormtable.Schema) (VRFConsensusRoundTable, error) {
+	table := db.GetTable(&VRFConsensusRound{})
 	if table == nil {
-		return nil, ormerrors.TableNotFound.Wrap(string((&Profile{}).ProtoReflect().Descriptor().FullName()))
+		return nil, ormerrors.TableNotFound.Wrap(string((&VRFConsensusRound{}).ProtoReflect().Descriptor().FullName()))
 	}
-	return profileTable{table}, nil
+	return vRFConsensusRoundTable{table}, nil
+}
+
+type SaltStoreTable interface {
+	Insert(ctx context.Context, saltStore *SaltStore) error
+	Update(ctx context.Context, saltStore *SaltStore) error
+	Save(ctx context.Context, saltStore *SaltStore) error
+	Delete(ctx context.Context, saltStore *SaltStore) error
+	Has(ctx context.Context, record_id string) (found bool, err error)
+	// Get returns nil and an error which responds true to ormerrors.IsNotFound() if the record was not found.
+	Get(ctx context.Context, record_id string) (*SaltStore, error)
+	List(ctx context.Context, prefixKey SaltStoreIndexKey, opts ...ormlist.Option) (SaltStoreIterator, error)
+	ListRange(ctx context.Context, from, to SaltStoreIndexKey, opts ...ormlist.Option) (SaltStoreIterator, error)
+	DeleteBy(ctx context.Context, prefixKey SaltStoreIndexKey) error
+	DeleteRange(ctx context.Context, from, to SaltStoreIndexKey) error
+
+	doNotImplement()
+}
+
+type SaltStoreIterator struct {
+	ormtable.Iterator
+}
+
+func (i SaltStoreIterator) Value() (*SaltStore, error) {
+	var saltStore SaltStore
+	err := i.UnmarshalMessage(&saltStore)
+	return &saltStore, err
+}
+
+type SaltStoreIndexKey interface {
+	id() uint32
+	values() []interface{}
+	saltStoreIndexKey()
+}
+
+// primary key starting index..
+type SaltStorePrimaryKey = SaltStoreRecordIdIndexKey
+
+type SaltStoreRecordIdIndexKey struct {
+	vs []interface{}
+}
+
+func (x SaltStoreRecordIdIndexKey) id() uint32            { return 0 }
+func (x SaltStoreRecordIdIndexKey) values() []interface{} { return x.vs }
+func (x SaltStoreRecordIdIndexKey) saltStoreIndexKey()    {}
+
+func (this SaltStoreRecordIdIndexKey) WithRecordId(record_id string) SaltStoreRecordIdIndexKey {
+	this.vs = []interface{}{record_id}
+	return this
+}
+
+type SaltStoreCreatedAtIndexKey struct {
+	vs []interface{}
+}
+
+func (x SaltStoreCreatedAtIndexKey) id() uint32            { return 1 }
+func (x SaltStoreCreatedAtIndexKey) values() []interface{} { return x.vs }
+func (x SaltStoreCreatedAtIndexKey) saltStoreIndexKey()    {}
+
+func (this SaltStoreCreatedAtIndexKey) WithCreatedAt(created_at int64) SaltStoreCreatedAtIndexKey {
+	this.vs = []interface{}{created_at}
+	return this
+}
+
+type saltStoreTable struct {
+	table ormtable.Table
+}
+
+func (this saltStoreTable) Insert(ctx context.Context, saltStore *SaltStore) error {
+	return this.table.Insert(ctx, saltStore)
+}
+
+func (this saltStoreTable) Update(ctx context.Context, saltStore *SaltStore) error {
+	return this.table.Update(ctx, saltStore)
+}
+
+func (this saltStoreTable) Save(ctx context.Context, saltStore *SaltStore) error {
+	return this.table.Save(ctx, saltStore)
+}
+
+func (this saltStoreTable) Delete(ctx context.Context, saltStore *SaltStore) error {
+	return this.table.Delete(ctx, saltStore)
+}
+
+func (this saltStoreTable) Has(ctx context.Context, record_id string) (found bool, err error) {
+	return this.table.PrimaryKey().Has(ctx, record_id)
+}
+
+func (this saltStoreTable) Get(ctx context.Context, record_id string) (*SaltStore, error) {
+	var saltStore SaltStore
+	found, err := this.table.PrimaryKey().Get(ctx, &saltStore, record_id)
+	if err != nil {
+		return nil, err
+	}
+	if !found {
+		return nil, ormerrors.NotFound
+	}
+	return &saltStore, nil
+}
+
+func (this saltStoreTable) List(ctx context.Context, prefixKey SaltStoreIndexKey, opts ...ormlist.Option) (SaltStoreIterator, error) {
+	it, err := this.table.GetIndexByID(prefixKey.id()).List(ctx, prefixKey.values(), opts...)
+	return SaltStoreIterator{it}, err
+}
+
+func (this saltStoreTable) ListRange(ctx context.Context, from, to SaltStoreIndexKey, opts ...ormlist.Option) (SaltStoreIterator, error) {
+	it, err := this.table.GetIndexByID(from.id()).ListRange(ctx, from.values(), to.values(), opts...)
+	return SaltStoreIterator{it}, err
+}
+
+func (this saltStoreTable) DeleteBy(ctx context.Context, prefixKey SaltStoreIndexKey) error {
+	return this.table.GetIndexByID(prefixKey.id()).DeleteBy(ctx, prefixKey.values()...)
+}
+
+func (this saltStoreTable) DeleteRange(ctx context.Context, from, to SaltStoreIndexKey) error {
+	return this.table.GetIndexByID(from.id()).DeleteRange(ctx, from.values(), to.values())
+}
+
+func (this saltStoreTable) doNotImplement() {}
+
+var _ SaltStoreTable = saltStoreTable{}
+
+func NewSaltStoreTable(db ormtable.Schema) (SaltStoreTable, error) {
+	table := db.GetTable(&SaltStore{})
+	if table == nil {
+		return nil, ormerrors.TableNotFound.Wrap(string((&SaltStore{}).ProtoReflect().Descriptor().FullName()))
+	}
+	return saltStoreTable{table}, nil
+}
+
+type VRFContributionTable interface {
+	Insert(ctx context.Context, vRFContribution *VRFContribution) error
+	Update(ctx context.Context, vRFContribution *VRFContribution) error
+	Save(ctx context.Context, vRFContribution *VRFContribution) error
+	Delete(ctx context.Context, vRFContribution *VRFContribution) error
+	Has(ctx context.Context, validator_address string, block_height int64) (found bool, err error)
+	// Get returns nil and an error which responds true to ormerrors.IsNotFound() if the record was not found.
+	Get(ctx context.Context, validator_address string, block_height int64) (*VRFContribution, error)
+	List(ctx context.Context, prefixKey VRFContributionIndexKey, opts ...ormlist.Option) (VRFContributionIterator, error)
+	ListRange(ctx context.Context, from, to VRFContributionIndexKey, opts ...ormlist.Option) (VRFContributionIterator, error)
+	DeleteBy(ctx context.Context, prefixKey VRFContributionIndexKey) error
+	DeleteRange(ctx context.Context, from, to VRFContributionIndexKey) error
+
+	doNotImplement()
+}
+
+type VRFContributionIterator struct {
+	ormtable.Iterator
+}
+
+func (i VRFContributionIterator) Value() (*VRFContribution, error) {
+	var vRFContribution VRFContribution
+	err := i.UnmarshalMessage(&vRFContribution)
+	return &vRFContribution, err
+}
+
+type VRFContributionIndexKey interface {
+	id() uint32
+	values() []interface{}
+	vRFContributionIndexKey()
+}
+
+// primary key starting index..
+type VRFContributionPrimaryKey = VRFContributionValidatorAddressBlockHeightIndexKey
+
+type VRFContributionValidatorAddressBlockHeightIndexKey struct {
+	vs []interface{}
+}
+
+func (x VRFContributionValidatorAddressBlockHeightIndexKey) id() uint32               { return 0 }
+func (x VRFContributionValidatorAddressBlockHeightIndexKey) values() []interface{}    { return x.vs }
+func (x VRFContributionValidatorAddressBlockHeightIndexKey) vRFContributionIndexKey() {}
+
+func (this VRFContributionValidatorAddressBlockHeightIndexKey) WithValidatorAddress(validator_address string) VRFContributionValidatorAddressBlockHeightIndexKey {
+	this.vs = []interface{}{validator_address}
+	return this
+}
+
+func (this VRFContributionValidatorAddressBlockHeightIndexKey) WithValidatorAddressBlockHeight(validator_address string, block_height int64) VRFContributionValidatorAddressBlockHeightIndexKey {
+	this.vs = []interface{}{validator_address, block_height}
+	return this
+}
+
+type VRFContributionBlockHeightIndexKey struct {
+	vs []interface{}
+}
+
+func (x VRFContributionBlockHeightIndexKey) id() uint32               { return 1 }
+func (x VRFContributionBlockHeightIndexKey) values() []interface{}    { return x.vs }
+func (x VRFContributionBlockHeightIndexKey) vRFContributionIndexKey() {}
+
+func (this VRFContributionBlockHeightIndexKey) WithBlockHeight(block_height int64) VRFContributionBlockHeightIndexKey {
+	this.vs = []interface{}{block_height}
+	return this
+}
+
+type VRFContributionTimestampIndexKey struct {
+	vs []interface{}
+}
+
+func (x VRFContributionTimestampIndexKey) id() uint32               { return 2 }
+func (x VRFContributionTimestampIndexKey) values() []interface{}    { return x.vs }
+func (x VRFContributionTimestampIndexKey) vRFContributionIndexKey() {}
+
+func (this VRFContributionTimestampIndexKey) WithTimestamp(timestamp int64) VRFContributionTimestampIndexKey {
+	this.vs = []interface{}{timestamp}
+	return this
+}
+
+type vRFContributionTable struct {
+	table ormtable.Table
+}
+
+func (this vRFContributionTable) Insert(ctx context.Context, vRFContribution *VRFContribution) error {
+	return this.table.Insert(ctx, vRFContribution)
+}
+
+func (this vRFContributionTable) Update(ctx context.Context, vRFContribution *VRFContribution) error {
+	return this.table.Update(ctx, vRFContribution)
+}
+
+func (this vRFContributionTable) Save(ctx context.Context, vRFContribution *VRFContribution) error {
+	return this.table.Save(ctx, vRFContribution)
+}
+
+func (this vRFContributionTable) Delete(ctx context.Context, vRFContribution *VRFContribution) error {
+	return this.table.Delete(ctx, vRFContribution)
+}
+
+func (this vRFContributionTable) Has(ctx context.Context, validator_address string, block_height int64) (found bool, err error) {
+	return this.table.PrimaryKey().Has(ctx, validator_address, block_height)
+}
+
+func (this vRFContributionTable) Get(ctx context.Context, validator_address string, block_height int64) (*VRFContribution, error) {
+	var vRFContribution VRFContribution
+	found, err := this.table.PrimaryKey().Get(ctx, &vRFContribution, validator_address, block_height)
+	if err != nil {
+		return nil, err
+	}
+	if !found {
+		return nil, ormerrors.NotFound
+	}
+	return &vRFContribution, nil
+}
+
+func (this vRFContributionTable) List(ctx context.Context, prefixKey VRFContributionIndexKey, opts ...ormlist.Option) (VRFContributionIterator, error) {
+	it, err := this.table.GetIndexByID(prefixKey.id()).List(ctx, prefixKey.values(), opts...)
+	return VRFContributionIterator{it}, err
+}
+
+func (this vRFContributionTable) ListRange(ctx context.Context, from, to VRFContributionIndexKey, opts ...ormlist.Option) (VRFContributionIterator, error) {
+	it, err := this.table.GetIndexByID(from.id()).ListRange(ctx, from.values(), to.values(), opts...)
+	return VRFContributionIterator{it}, err
+}
+
+func (this vRFContributionTable) DeleteBy(ctx context.Context, prefixKey VRFContributionIndexKey) error {
+	return this.table.GetIndexByID(prefixKey.id()).DeleteBy(ctx, prefixKey.values()...)
+}
+
+func (this vRFContributionTable) DeleteRange(ctx context.Context, from, to VRFContributionIndexKey) error {
+	return this.table.GetIndexByID(from.id()).DeleteRange(ctx, from.values(), to.values())
+}
+
+func (this vRFContributionTable) doNotImplement() {}
+
+var _ VRFContributionTable = vRFContributionTable{}
+
+func NewVRFContributionTable(db ormtable.Schema) (VRFContributionTable, error) {
+	table := db.GetTable(&VRFContribution{})
+	if table == nil {
+		return nil, ormerrors.TableNotFound.Wrap(string((&VRFContribution{}).ProtoReflect().Descriptor().FullName()))
+	}
+	return vRFContributionTable{table}, nil
+}
+
+type DWNRecordTable interface {
+	Insert(ctx context.Context, dWNRecord *DWNRecord) error
+	Update(ctx context.Context, dWNRecord *DWNRecord) error
+	Save(ctx context.Context, dWNRecord *DWNRecord) error
+	Delete(ctx context.Context, dWNRecord *DWNRecord) error
+	Has(ctx context.Context, record_id string) (found bool, err error)
+	// Get returns nil and an error which responds true to ormerrors.IsNotFound() if the record was not found.
+	Get(ctx context.Context, record_id string) (*DWNRecord, error)
+	List(ctx context.Context, prefixKey DWNRecordIndexKey, opts ...ormlist.Option) (DWNRecordIterator, error)
+	ListRange(ctx context.Context, from, to DWNRecordIndexKey, opts ...ormlist.Option) (DWNRecordIterator, error)
+	DeleteBy(ctx context.Context, prefixKey DWNRecordIndexKey) error
+	DeleteRange(ctx context.Context, from, to DWNRecordIndexKey) error
+
+	doNotImplement()
+}
+
+type DWNRecordIterator struct {
+	ormtable.Iterator
+}
+
+func (i DWNRecordIterator) Value() (*DWNRecord, error) {
+	var dWNRecord DWNRecord
+	err := i.UnmarshalMessage(&dWNRecord)
+	return &dWNRecord, err
+}
+
+type DWNRecordIndexKey interface {
+	id() uint32
+	values() []interface{}
+	dWNRecordIndexKey()
+}
+
+// primary key starting index..
+type DWNRecordPrimaryKey = DWNRecordRecordIdIndexKey
+
+type DWNRecordRecordIdIndexKey struct {
+	vs []interface{}
+}
+
+func (x DWNRecordRecordIdIndexKey) id() uint32            { return 0 }
+func (x DWNRecordRecordIdIndexKey) values() []interface{} { return x.vs }
+func (x DWNRecordRecordIdIndexKey) dWNRecordIndexKey()    {}
+
+func (this DWNRecordRecordIdIndexKey) WithRecordId(record_id string) DWNRecordRecordIdIndexKey {
+	this.vs = []interface{}{record_id}
+	return this
+}
+
+type DWNRecordTargetProtocolIndexKey struct {
+	vs []interface{}
+}
+
+func (x DWNRecordTargetProtocolIndexKey) id() uint32            { return 1 }
+func (x DWNRecordTargetProtocolIndexKey) values() []interface{} { return x.vs }
+func (x DWNRecordTargetProtocolIndexKey) dWNRecordIndexKey()    {}
+
+func (this DWNRecordTargetProtocolIndexKey) WithTarget(target string) DWNRecordTargetProtocolIndexKey {
+	this.vs = []interface{}{target}
+	return this
+}
+
+func (this DWNRecordTargetProtocolIndexKey) WithTargetProtocol(target string, protocol string) DWNRecordTargetProtocolIndexKey {
+	this.vs = []interface{}{target, protocol}
+	return this
+}
+
+type DWNRecordTargetSchemaIndexKey struct {
+	vs []interface{}
+}
+
+func (x DWNRecordTargetSchemaIndexKey) id() uint32            { return 2 }
+func (x DWNRecordTargetSchemaIndexKey) values() []interface{} { return x.vs }
+func (x DWNRecordTargetSchemaIndexKey) dWNRecordIndexKey()    {}
+
+func (this DWNRecordTargetSchemaIndexKey) WithTarget(target string) DWNRecordTargetSchemaIndexKey {
+	this.vs = []interface{}{target}
+	return this
+}
+
+func (this DWNRecordTargetSchemaIndexKey) WithTargetSchema(target string, schema string) DWNRecordTargetSchemaIndexKey {
+	this.vs = []interface{}{target, schema}
+	return this
+}
+
+type DWNRecordParentIdIndexKey struct {
+	vs []interface{}
+}
+
+func (x DWNRecordParentIdIndexKey) id() uint32            { return 3 }
+func (x DWNRecordParentIdIndexKey) values() []interface{} { return x.vs }
+func (x DWNRecordParentIdIndexKey) dWNRecordIndexKey()    {}
+
+func (this DWNRecordParentIdIndexKey) WithParentId(parent_id string) DWNRecordParentIdIndexKey {
+	this.vs = []interface{}{parent_id}
+	return this
+}
+
+type dWNRecordTable struct {
+	table ormtable.Table
+}
+
+func (this dWNRecordTable) Insert(ctx context.Context, dWNRecord *DWNRecord) error {
+	return this.table.Insert(ctx, dWNRecord)
+}
+
+func (this dWNRecordTable) Update(ctx context.Context, dWNRecord *DWNRecord) error {
+	return this.table.Update(ctx, dWNRecord)
+}
+
+func (this dWNRecordTable) Save(ctx context.Context, dWNRecord *DWNRecord) error {
+	return this.table.Save(ctx, dWNRecord)
+}
+
+func (this dWNRecordTable) Delete(ctx context.Context, dWNRecord *DWNRecord) error {
+	return this.table.Delete(ctx, dWNRecord)
+}
+
+func (this dWNRecordTable) Has(ctx context.Context, record_id string) (found bool, err error) {
+	return this.table.PrimaryKey().Has(ctx, record_id)
+}
+
+func (this dWNRecordTable) Get(ctx context.Context, record_id string) (*DWNRecord, error) {
+	var dWNRecord DWNRecord
+	found, err := this.table.PrimaryKey().Get(ctx, &dWNRecord, record_id)
+	if err != nil {
+		return nil, err
+	}
+	if !found {
+		return nil, ormerrors.NotFound
+	}
+	return &dWNRecord, nil
+}
+
+func (this dWNRecordTable) List(ctx context.Context, prefixKey DWNRecordIndexKey, opts ...ormlist.Option) (DWNRecordIterator, error) {
+	it, err := this.table.GetIndexByID(prefixKey.id()).List(ctx, prefixKey.values(), opts...)
+	return DWNRecordIterator{it}, err
+}
+
+func (this dWNRecordTable) ListRange(ctx context.Context, from, to DWNRecordIndexKey, opts ...ormlist.Option) (DWNRecordIterator, error) {
+	it, err := this.table.GetIndexByID(from.id()).ListRange(ctx, from.values(), to.values(), opts...)
+	return DWNRecordIterator{it}, err
+}
+
+func (this dWNRecordTable) DeleteBy(ctx context.Context, prefixKey DWNRecordIndexKey) error {
+	return this.table.GetIndexByID(prefixKey.id()).DeleteBy(ctx, prefixKey.values()...)
+}
+
+func (this dWNRecordTable) DeleteRange(ctx context.Context, from, to DWNRecordIndexKey) error {
+	return this.table.GetIndexByID(from.id()).DeleteRange(ctx, from.values(), to.values())
+}
+
+func (this dWNRecordTable) doNotImplement() {}
+
+var _ DWNRecordTable = dWNRecordTable{}
+
+func NewDWNRecordTable(db ormtable.Schema) (DWNRecordTable, error) {
+	table := db.GetTable(&DWNRecord{})
+	if table == nil {
+		return nil, ormerrors.TableNotFound.Wrap(string((&DWNRecord{}).ProtoReflect().Descriptor().FullName()))
+	}
+	return dWNRecordTable{table}, nil
+}
+
+type DWNProtocolTable interface {
+	Insert(ctx context.Context, dWNProtocol *DWNProtocol) error
+	Update(ctx context.Context, dWNProtocol *DWNProtocol) error
+	Save(ctx context.Context, dWNProtocol *DWNProtocol) error
+	Delete(ctx context.Context, dWNProtocol *DWNProtocol) error
+	Has(ctx context.Context, target string, protocol_uri string) (found bool, err error)
+	// Get returns nil and an error which responds true to ormerrors.IsNotFound() if the record was not found.
+	Get(ctx context.Context, target string, protocol_uri string) (*DWNProtocol, error)
+	List(ctx context.Context, prefixKey DWNProtocolIndexKey, opts ...ormlist.Option) (DWNProtocolIterator, error)
+	ListRange(ctx context.Context, from, to DWNProtocolIndexKey, opts ...ormlist.Option) (DWNProtocolIterator, error)
+	DeleteBy(ctx context.Context, prefixKey DWNProtocolIndexKey) error
+	DeleteRange(ctx context.Context, from, to DWNProtocolIndexKey) error
+
+	doNotImplement()
+}
+
+type DWNProtocolIterator struct {
+	ormtable.Iterator
+}
+
+func (i DWNProtocolIterator) Value() (*DWNProtocol, error) {
+	var dWNProtocol DWNProtocol
+	err := i.UnmarshalMessage(&dWNProtocol)
+	return &dWNProtocol, err
+}
+
+type DWNProtocolIndexKey interface {
+	id() uint32
+	values() []interface{}
+	dWNProtocolIndexKey()
+}
+
+// primary key starting index..
+type DWNProtocolPrimaryKey = DWNProtocolTargetProtocolUriIndexKey
+
+type DWNProtocolTargetProtocolUriIndexKey struct {
+	vs []interface{}
+}
+
+func (x DWNProtocolTargetProtocolUriIndexKey) id() uint32            { return 0 }
+func (x DWNProtocolTargetProtocolUriIndexKey) values() []interface{} { return x.vs }
+func (x DWNProtocolTargetProtocolUriIndexKey) dWNProtocolIndexKey()  {}
+
+func (this DWNProtocolTargetProtocolUriIndexKey) WithTarget(target string) DWNProtocolTargetProtocolUriIndexKey {
+	this.vs = []interface{}{target}
+	return this
+}
+
+func (this DWNProtocolTargetProtocolUriIndexKey) WithTargetProtocolUri(target string, protocol_uri string) DWNProtocolTargetProtocolUriIndexKey {
+	this.vs = []interface{}{target, protocol_uri}
+	return this
+}
+
+type dWNProtocolTable struct {
+	table ormtable.Table
+}
+
+func (this dWNProtocolTable) Insert(ctx context.Context, dWNProtocol *DWNProtocol) error {
+	return this.table.Insert(ctx, dWNProtocol)
+}
+
+func (this dWNProtocolTable) Update(ctx context.Context, dWNProtocol *DWNProtocol) error {
+	return this.table.Update(ctx, dWNProtocol)
+}
+
+func (this dWNProtocolTable) Save(ctx context.Context, dWNProtocol *DWNProtocol) error {
+	return this.table.Save(ctx, dWNProtocol)
+}
+
+func (this dWNProtocolTable) Delete(ctx context.Context, dWNProtocol *DWNProtocol) error {
+	return this.table.Delete(ctx, dWNProtocol)
+}
+
+func (this dWNProtocolTable) Has(ctx context.Context, target string, protocol_uri string) (found bool, err error) {
+	return this.table.PrimaryKey().Has(ctx, target, protocol_uri)
+}
+
+func (this dWNProtocolTable) Get(ctx context.Context, target string, protocol_uri string) (*DWNProtocol, error) {
+	var dWNProtocol DWNProtocol
+	found, err := this.table.PrimaryKey().Get(ctx, &dWNProtocol, target, protocol_uri)
+	if err != nil {
+		return nil, err
+	}
+	if !found {
+		return nil, ormerrors.NotFound
+	}
+	return &dWNProtocol, nil
+}
+
+func (this dWNProtocolTable) List(ctx context.Context, prefixKey DWNProtocolIndexKey, opts ...ormlist.Option) (DWNProtocolIterator, error) {
+	it, err := this.table.GetIndexByID(prefixKey.id()).List(ctx, prefixKey.values(), opts...)
+	return DWNProtocolIterator{it}, err
+}
+
+func (this dWNProtocolTable) ListRange(ctx context.Context, from, to DWNProtocolIndexKey, opts ...ormlist.Option) (DWNProtocolIterator, error) {
+	it, err := this.table.GetIndexByID(from.id()).ListRange(ctx, from.values(), to.values(), opts...)
+	return DWNProtocolIterator{it}, err
+}
+
+func (this dWNProtocolTable) DeleteBy(ctx context.Context, prefixKey DWNProtocolIndexKey) error {
+	return this.table.GetIndexByID(prefixKey.id()).DeleteBy(ctx, prefixKey.values()...)
+}
+
+func (this dWNProtocolTable) DeleteRange(ctx context.Context, from, to DWNProtocolIndexKey) error {
+	return this.table.GetIndexByID(from.id()).DeleteRange(ctx, from.values(), to.values())
+}
+
+func (this dWNProtocolTable) doNotImplement() {}
+
+var _ DWNProtocolTable = dWNProtocolTable{}
+
+func NewDWNProtocolTable(db ormtable.Schema) (DWNProtocolTable, error) {
+	table := db.GetTable(&DWNProtocol{})
+	if table == nil {
+		return nil, ormerrors.TableNotFound.Wrap(string((&DWNProtocol{}).ProtoReflect().Descriptor().FullName()))
+	}
+	return dWNProtocolTable{table}, nil
+}
+
+type DWNPermissionTable interface {
+	Insert(ctx context.Context, dWNPermission *DWNPermission) error
+	Update(ctx context.Context, dWNPermission *DWNPermission) error
+	Save(ctx context.Context, dWNPermission *DWNPermission) error
+	Delete(ctx context.Context, dWNPermission *DWNPermission) error
+	Has(ctx context.Context, permission_id string) (found bool, err error)
+	// Get returns nil and an error which responds true to ormerrors.IsNotFound() if the record was not found.
+	Get(ctx context.Context, permission_id string) (*DWNPermission, error)
+	List(ctx context.Context, prefixKey DWNPermissionIndexKey, opts ...ormlist.Option) (DWNPermissionIterator, error)
+	ListRange(ctx context.Context, from, to DWNPermissionIndexKey, opts ...ormlist.Option) (DWNPermissionIterator, error)
+	DeleteBy(ctx context.Context, prefixKey DWNPermissionIndexKey) error
+	DeleteRange(ctx context.Context, from, to DWNPermissionIndexKey) error
+
+	doNotImplement()
+}
+
+type DWNPermissionIterator struct {
+	ormtable.Iterator
+}
+
+func (i DWNPermissionIterator) Value() (*DWNPermission, error) {
+	var dWNPermission DWNPermission
+	err := i.UnmarshalMessage(&dWNPermission)
+	return &dWNPermission, err
+}
+
+type DWNPermissionIndexKey interface {
+	id() uint32
+	values() []interface{}
+	dWNPermissionIndexKey()
+}
+
+// primary key starting index..
+type DWNPermissionPrimaryKey = DWNPermissionPermissionIdIndexKey
+
+type DWNPermissionPermissionIdIndexKey struct {
+	vs []interface{}
+}
+
+func (x DWNPermissionPermissionIdIndexKey) id() uint32             { return 0 }
+func (x DWNPermissionPermissionIdIndexKey) values() []interface{}  { return x.vs }
+func (x DWNPermissionPermissionIdIndexKey) dWNPermissionIndexKey() {}
+
+func (this DWNPermissionPermissionIdIndexKey) WithPermissionId(permission_id string) DWNPermissionPermissionIdIndexKey {
+	this.vs = []interface{}{permission_id}
+	return this
+}
+
+type DWNPermissionGrantorGranteeIndexKey struct {
+	vs []interface{}
+}
+
+func (x DWNPermissionGrantorGranteeIndexKey) id() uint32             { return 1 }
+func (x DWNPermissionGrantorGranteeIndexKey) values() []interface{}  { return x.vs }
+func (x DWNPermissionGrantorGranteeIndexKey) dWNPermissionIndexKey() {}
+
+func (this DWNPermissionGrantorGranteeIndexKey) WithGrantor(grantor string) DWNPermissionGrantorGranteeIndexKey {
+	this.vs = []interface{}{grantor}
+	return this
+}
+
+func (this DWNPermissionGrantorGranteeIndexKey) WithGrantorGrantee(grantor string, grantee string) DWNPermissionGrantorGranteeIndexKey {
+	this.vs = []interface{}{grantor, grantee}
+	return this
+}
+
+type DWNPermissionTargetInterfaceNameMethodIndexKey struct {
+	vs []interface{}
+}
+
+func (x DWNPermissionTargetInterfaceNameMethodIndexKey) id() uint32             { return 2 }
+func (x DWNPermissionTargetInterfaceNameMethodIndexKey) values() []interface{}  { return x.vs }
+func (x DWNPermissionTargetInterfaceNameMethodIndexKey) dWNPermissionIndexKey() {}
+
+func (this DWNPermissionTargetInterfaceNameMethodIndexKey) WithTarget(target string) DWNPermissionTargetInterfaceNameMethodIndexKey {
+	this.vs = []interface{}{target}
+	return this
+}
+
+func (this DWNPermissionTargetInterfaceNameMethodIndexKey) WithTargetInterfaceName(target string, interface_name string) DWNPermissionTargetInterfaceNameMethodIndexKey {
+	this.vs = []interface{}{target, interface_name}
+	return this
+}
+
+func (this DWNPermissionTargetInterfaceNameMethodIndexKey) WithTargetInterfaceNameMethod(target string, interface_name string, method string) DWNPermissionTargetInterfaceNameMethodIndexKey {
+	this.vs = []interface{}{target, interface_name, method}
+	return this
+}
+
+type dWNPermissionTable struct {
+	table ormtable.Table
+}
+
+func (this dWNPermissionTable) Insert(ctx context.Context, dWNPermission *DWNPermission) error {
+	return this.table.Insert(ctx, dWNPermission)
+}
+
+func (this dWNPermissionTable) Update(ctx context.Context, dWNPermission *DWNPermission) error {
+	return this.table.Update(ctx, dWNPermission)
+}
+
+func (this dWNPermissionTable) Save(ctx context.Context, dWNPermission *DWNPermission) error {
+	return this.table.Save(ctx, dWNPermission)
+}
+
+func (this dWNPermissionTable) Delete(ctx context.Context, dWNPermission *DWNPermission) error {
+	return this.table.Delete(ctx, dWNPermission)
+}
+
+func (this dWNPermissionTable) Has(ctx context.Context, permission_id string) (found bool, err error) {
+	return this.table.PrimaryKey().Has(ctx, permission_id)
+}
+
+func (this dWNPermissionTable) Get(ctx context.Context, permission_id string) (*DWNPermission, error) {
+	var dWNPermission DWNPermission
+	found, err := this.table.PrimaryKey().Get(ctx, &dWNPermission, permission_id)
+	if err != nil {
+		return nil, err
+	}
+	if !found {
+		return nil, ormerrors.NotFound
+	}
+	return &dWNPermission, nil
+}
+
+func (this dWNPermissionTable) List(ctx context.Context, prefixKey DWNPermissionIndexKey, opts ...ormlist.Option) (DWNPermissionIterator, error) {
+	it, err := this.table.GetIndexByID(prefixKey.id()).List(ctx, prefixKey.values(), opts...)
+	return DWNPermissionIterator{it}, err
+}
+
+func (this dWNPermissionTable) ListRange(ctx context.Context, from, to DWNPermissionIndexKey, opts ...ormlist.Option) (DWNPermissionIterator, error) {
+	it, err := this.table.GetIndexByID(from.id()).ListRange(ctx, from.values(), to.values(), opts...)
+	return DWNPermissionIterator{it}, err
+}
+
+func (this dWNPermissionTable) DeleteBy(ctx context.Context, prefixKey DWNPermissionIndexKey) error {
+	return this.table.GetIndexByID(prefixKey.id()).DeleteBy(ctx, prefixKey.values()...)
+}
+
+func (this dWNPermissionTable) DeleteRange(ctx context.Context, from, to DWNPermissionIndexKey) error {
+	return this.table.GetIndexByID(from.id()).DeleteRange(ctx, from.values(), to.values())
+}
+
+func (this dWNPermissionTable) doNotImplement() {}
+
+var _ DWNPermissionTable = dWNPermissionTable{}
+
+func NewDWNPermissionTable(db ormtable.Schema) (DWNPermissionTable, error) {
+	table := db.GetTable(&DWNPermission{})
+	if table == nil {
+		return nil, ormerrors.TableNotFound.Wrap(string((&DWNPermission{}).ProtoReflect().Descriptor().FullName()))
+	}
+	return dWNPermissionTable{table}, nil
+}
+
+type VaultStateTable interface {
+	Insert(ctx context.Context, vaultState *VaultState) error
+	Update(ctx context.Context, vaultState *VaultState) error
+	Save(ctx context.Context, vaultState *VaultState) error
+	Delete(ctx context.Context, vaultState *VaultState) error
+	Has(ctx context.Context, vault_id string) (found bool, err error)
+	// Get returns nil and an error which responds true to ormerrors.IsNotFound() if the record was not found.
+	Get(ctx context.Context, vault_id string) (*VaultState, error)
+	List(ctx context.Context, prefixKey VaultStateIndexKey, opts ...ormlist.Option) (VaultStateIterator, error)
+	ListRange(ctx context.Context, from, to VaultStateIndexKey, opts ...ormlist.Option) (VaultStateIterator, error)
+	DeleteBy(ctx context.Context, prefixKey VaultStateIndexKey) error
+	DeleteRange(ctx context.Context, from, to VaultStateIndexKey) error
+
+	doNotImplement()
+}
+
+type VaultStateIterator struct {
+	ormtable.Iterator
+}
+
+func (i VaultStateIterator) Value() (*VaultState, error) {
+	var vaultState VaultState
+	err := i.UnmarshalMessage(&vaultState)
+	return &vaultState, err
+}
+
+type VaultStateIndexKey interface {
+	id() uint32
+	values() []interface{}
+	vaultStateIndexKey()
+}
+
+// primary key starting index..
+type VaultStatePrimaryKey = VaultStateVaultIdIndexKey
+
+type VaultStateVaultIdIndexKey struct {
+	vs []interface{}
+}
+
+func (x VaultStateVaultIdIndexKey) id() uint32            { return 0 }
+func (x VaultStateVaultIdIndexKey) values() []interface{} { return x.vs }
+func (x VaultStateVaultIdIndexKey) vaultStateIndexKey()   {}
+
+func (this VaultStateVaultIdIndexKey) WithVaultId(vault_id string) VaultStateVaultIdIndexKey {
+	this.vs = []interface{}{vault_id}
+	return this
+}
+
+type VaultStateOwnerIndexKey struct {
+	vs []interface{}
+}
+
+func (x VaultStateOwnerIndexKey) id() uint32            { return 1 }
+func (x VaultStateOwnerIndexKey) values() []interface{} { return x.vs }
+func (x VaultStateOwnerIndexKey) vaultStateIndexKey()   {}
+
+func (this VaultStateOwnerIndexKey) WithOwner(owner string) VaultStateOwnerIndexKey {
+	this.vs = []interface{}{owner}
+	return this
+}
+
+type vaultStateTable struct {
+	table ormtable.Table
+}
+
+func (this vaultStateTable) Insert(ctx context.Context, vaultState *VaultState) error {
+	return this.table.Insert(ctx, vaultState)
+}
+
+func (this vaultStateTable) Update(ctx context.Context, vaultState *VaultState) error {
+	return this.table.Update(ctx, vaultState)
+}
+
+func (this vaultStateTable) Save(ctx context.Context, vaultState *VaultState) error {
+	return this.table.Save(ctx, vaultState)
+}
+
+func (this vaultStateTable) Delete(ctx context.Context, vaultState *VaultState) error {
+	return this.table.Delete(ctx, vaultState)
+}
+
+func (this vaultStateTable) Has(ctx context.Context, vault_id string) (found bool, err error) {
+	return this.table.PrimaryKey().Has(ctx, vault_id)
+}
+
+func (this vaultStateTable) Get(ctx context.Context, vault_id string) (*VaultState, error) {
+	var vaultState VaultState
+	found, err := this.table.PrimaryKey().Get(ctx, &vaultState, vault_id)
+	if err != nil {
+		return nil, err
+	}
+	if !found {
+		return nil, ormerrors.NotFound
+	}
+	return &vaultState, nil
+}
+
+func (this vaultStateTable) List(ctx context.Context, prefixKey VaultStateIndexKey, opts ...ormlist.Option) (VaultStateIterator, error) {
+	it, err := this.table.GetIndexByID(prefixKey.id()).List(ctx, prefixKey.values(), opts...)
+	return VaultStateIterator{it}, err
+}
+
+func (this vaultStateTable) ListRange(ctx context.Context, from, to VaultStateIndexKey, opts ...ormlist.Option) (VaultStateIterator, error) {
+	it, err := this.table.GetIndexByID(from.id()).ListRange(ctx, from.values(), to.values(), opts...)
+	return VaultStateIterator{it}, err
+}
+
+func (this vaultStateTable) DeleteBy(ctx context.Context, prefixKey VaultStateIndexKey) error {
+	return this.table.GetIndexByID(prefixKey.id()).DeleteBy(ctx, prefixKey.values()...)
+}
+
+func (this vaultStateTable) DeleteRange(ctx context.Context, from, to VaultStateIndexKey) error {
+	return this.table.GetIndexByID(from.id()).DeleteRange(ctx, from.values(), to.values())
+}
+
+func (this vaultStateTable) doNotImplement() {}
+
+var _ VaultStateTable = vaultStateTable{}
+
+func NewVaultStateTable(db ormtable.Schema) (VaultStateTable, error) {
+	table := db.GetTable(&VaultState{})
+	if table == nil {
+		return nil, ormerrors.TableNotFound.Wrap(string((&VaultState{}).ProtoReflect().Descriptor().FullName()))
+	}
+	return vaultStateTable{table}, nil
 }
 
 type StateStore interface {
-	CredentialTable() CredentialTable
-	ProfileTable() ProfileTable
+	EncryptionKeyStateTable() EncryptionKeyStateTable
+	VRFConsensusRoundTable() VRFConsensusRoundTable
+	SaltStoreTable() SaltStoreTable
+	VRFContributionTable() VRFContributionTable
+	DWNRecordTable() DWNRecordTable
+	DWNProtocolTable() DWNProtocolTable
+	DWNPermissionTable() DWNPermissionTable
+	VaultStateTable() VaultStateTable
 
 	doNotImplement()
 }
 
 type stateStore struct {
-	credential CredentialTable
-	profile    ProfileTable
+	encryptionKeyState EncryptionKeyStateTable
+	vRFConsensusRound  VRFConsensusRoundTable
+	saltStore          SaltStoreTable
+	vRFContribution    VRFContributionTable
+	dWNRecord          DWNRecordTable
+	dWNProtocol        DWNProtocolTable
+	dWNPermission      DWNPermissionTable
+	vaultState         VaultStateTable
 }
 
-func (x stateStore) CredentialTable() CredentialTable {
-	return x.credential
+func (x stateStore) EncryptionKeyStateTable() EncryptionKeyStateTable {
+	return x.encryptionKeyState
 }
 
-func (x stateStore) ProfileTable() ProfileTable {
-	return x.profile
+func (x stateStore) VRFConsensusRoundTable() VRFConsensusRoundTable {
+	return x.vRFConsensusRound
+}
+
+func (x stateStore) SaltStoreTable() SaltStoreTable {
+	return x.saltStore
+}
+
+func (x stateStore) VRFContributionTable() VRFContributionTable {
+	return x.vRFContribution
+}
+
+func (x stateStore) DWNRecordTable() DWNRecordTable {
+	return x.dWNRecord
+}
+
+func (x stateStore) DWNProtocolTable() DWNProtocolTable {
+	return x.dWNProtocol
+}
+
+func (x stateStore) DWNPermissionTable() DWNPermissionTable {
+	return x.dWNPermission
+}
+
+func (x stateStore) VaultStateTable() VaultStateTable {
+	return x.vaultState
 }
 
 func (stateStore) doNotImplement() {}
@@ -275,18 +1187,54 @@ func (stateStore) doNotImplement() {}
 var _ StateStore = stateStore{}
 
 func NewStateStore(db ormtable.Schema) (StateStore, error) {
-	credentialTable, err := NewCredentialTable(db)
+	encryptionKeyStateTable, err := NewEncryptionKeyStateTable(db)
 	if err != nil {
 		return nil, err
 	}
 
-	profileTable, err := NewProfileTable(db)
+	vRFConsensusRoundTable, err := NewVRFConsensusRoundTable(db)
+	if err != nil {
+		return nil, err
+	}
+
+	saltStoreTable, err := NewSaltStoreTable(db)
+	if err != nil {
+		return nil, err
+	}
+
+	vRFContributionTable, err := NewVRFContributionTable(db)
+	if err != nil {
+		return nil, err
+	}
+
+	dWNRecordTable, err := NewDWNRecordTable(db)
+	if err != nil {
+		return nil, err
+	}
+
+	dWNProtocolTable, err := NewDWNProtocolTable(db)
+	if err != nil {
+		return nil, err
+	}
+
+	dWNPermissionTable, err := NewDWNPermissionTable(db)
+	if err != nil {
+		return nil, err
+	}
+
+	vaultStateTable, err := NewVaultStateTable(db)
 	if err != nil {
 		return nil, err
 	}
 
 	return stateStore{
-		credentialTable,
-		profileTable,
+		encryptionKeyStateTable,
+		vRFConsensusRoundTable,
+		saltStoreTable,
+		vRFContributionTable,
+		dWNRecordTable,
+		dWNProtocolTable,
+		dWNPermissionTable,
+		vaultStateTable,
 	}, nil
 }

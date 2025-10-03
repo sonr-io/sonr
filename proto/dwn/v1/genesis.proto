@@ -1,44 +1,73 @@
 syntax = "proto3";
 package dwn.v1;
 
-import "gogoproto/gogo.proto";
 import "amino/amino.proto";
+import "dwn/v1/state.proto";
+import "gogoproto/gogo.proto";
 
-option go_package = "github.com/sonr-io/snrd/x/dwn/types";
+option go_package = "github.com/sonr-io/sonr/x/dwn/types";
 
 // GenesisState defines the module genesis state
 message GenesisState {
   // Params defines all the parameters of the module.
   Params params = 1 [(gogoproto.nullable) = false];
+
+  // DWN Records
+  repeated DWNRecord records = 2 [(gogoproto.nullable) = false];
+
+  // DWN Protocols
+  repeated DWNProtocol protocols = 3 [(gogoproto.nullable) = false];
+
+  // DWN Permissions
+  repeated DWNPermission permissions = 4 [(gogoproto.nullable) = false];
+
+  // Vaults
+  repeated VaultState vaults = 5 [(gogoproto.nullable) = false];
 }
 
 // Params defines the set of module parameters.
 message Params {
-  option (amino.name) = "vault/params";
+  option (amino.name) = "dwn/params";
   option (gogoproto.equal) = true;
   option (gogoproto.goproto_stringer) = false;
 
-  // Attenuation defines the available attenuations
-  repeated Attenuation attenuations = 1;
-  repeated string allowed_operators = 2;
+  // Maximum size for DWN record data in bytes
+  uint64 max_record_size = 1;
+
+  // Maximum number of protocols per DWN
+  uint32 max_protocols_per_dwn = 2;
+
+  // Maximum number of permissions per DWN
+  uint32 max_permissions_per_dwn = 3;
+
+  // Enable vault creation
+  bool vault_creation_enabled = 4;
+
+  // Minimum vault refresh interval in blocks
+  uint64 min_vault_refresh_interval = 5;
+
+  // Encryption configuration
+  bool encryption_enabled = 6;
+  
+  // Key rotation interval in days
+  uint32 key_rotation_days = 7;
+  
+  // Minimum validators required for key generation (percentage of active set)
+  uint32 min_validators_for_key_gen = 8;
+  
+  // Protocols that require encryption
+  repeated string encrypted_protocols = 9;
+  
+  // Schemas that require encryption
+  repeated string encrypted_schemas = 10;
+  
+  // Enable single-node fallback for development
+  bool single_node_fallback = 11;
 }
 
-// Attenuation defines the attenuation of a resource
-message Attenuation {
-  Resource resource = 1;
-  repeated Capability capabilities = 2;
-}
-
-// Capability reprensents the available capabilities of a decentralized web node
-message Capability {
-  string name = 1;
-  string parent = 2;
-  string description = 3;
-  repeated string resources = 4;
-}
-
-// Resource reprensents the available resources of a decentralized web node
-message Resource {
-  string kind = 1;
-  string template = 2;
+message IPFSStatus {
+  string peer_id = 1;
+  string peer_name = 2;
+  string peer_type = 3;
+  string version = 4;
 }

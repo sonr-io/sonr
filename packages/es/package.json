@@ -1,0 +1,151 @@
+{
+  "name": "@sonr.io/es",
+  "version": "0.0.12",
+  "private": false,
+  "sideEffects": false,
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "jsdelivr": "./dist/index.js",
+  "unpkg": "./dist/index.js",
+  "browser": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./autoloader": {
+      "import": "./dist/autoloader.js",
+      "default": "./dist/autoloader.js"
+    },
+    "./client": {
+      "import": "./dist/client/index.js",
+      "default": "./dist/client/index.js"
+    },
+    "./client/auth": {
+      "import": "./dist/client/auth/index.js",
+      "default": "./dist/client/auth/index.js"
+    },
+    "./plugins": {
+      "import": "./dist/plugins/index.js",
+      "default": "./dist/plugins/index.js"
+    },
+    "./plugins/motor": {
+      "import": "./dist/plugins/motor/index.js",
+      "default": "./dist/plugins/motor/index.js"
+    },
+    "./plugins/vault": {
+      "import": "./dist/plugins/vault/index.js",
+      "default": "./dist/plugins/vault/index.js"
+    },
+    "./codec": {
+      "import": "./dist/codec/index.js",
+      "default": "./dist/codec/index.js"
+    },
+    "./protobufs": {
+      "import": "./dist/protobufs/index.js",
+      "default": "./dist/protobufs/index.js"
+    },
+    "./registry": {
+      "import": "./dist/registry/index.js",
+      "default": "./dist/registry/index.js"
+    },
+    "./wallet": {
+      "import": "./dist/wallet/index.js",
+      "default": "./dist/wallet/index.js"
+    }
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "generate": "pnpm gen:protobufs && pnpm gen:registry",
+    "build": "pnpm clean && tsc && tsc-alias && pnpm copy:assets",
+    "copy:assets": "npm run copy:wasm && npm run copy:autoloader",
+    "copy:wasm": "npm run copy:vault-wasm && npm run copy:motor-wasm",
+    "copy:vault-wasm": "cp src/plugin/plugin.wasm dist/plugin/ 2>/dev/null || true",
+    "copy:motor-wasm": "cp src/worker/app.wasm dist/worker/ 2>/dev/null || true && cp src/worker/wasm_exec.js dist/worker/ 2>/dev/null || true",
+    "copy:autoloader": "cp src/autoloader.js dist/autoloader.js 2>/dev/null || true",
+    "dev": "concurrently \"tsc -w\" \"tsc-alias -w\"",
+    "gen:protobufs": "node scripts/gen-protobufs.mjs",
+    "gen:registry": "node scripts/gen-registry.mjs",
+    "lint": "biome lint .",
+    "format": "biome format . --write",
+    "check": "biome check .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest --run",
+    "test:suite": "pnpm check && pnpm typecheck && pnpm test",
+    "prepublishOnly": "pnpm build",
+    "release": "cz --no-raise 6,21 bump --yes --increment PATCH"
+  },
+  "peerDependencies": {
+    "@bufbuild/protobuf": "1.2.0",
+    "@noble/hashes": "^1.3.2",
+    "@noble/secp256k1": "^2.0.0",
+    "@scure/base": "^1.1.3",
+    "@scure/bip32": "^1.3.2",
+    "@scure/bip39": "^1.2.1",
+    "@walletconnect/legacy-client": "^2.0.0",
+    "@walletconnect/sign-client": "2.8.6",
+    "lodash-es": "^4.17.21"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.1.2",
+    "@bufbuild/buf": "1.18.0-1",
+    "@bufbuild/protobuf": "1.2.0",
+    "@bufbuild/protoc-gen-es": "1.2.0",
+    "@bufbuild/protoplugin": "1.2.0",
+    "@keplr-wallet/types": "^0.11.62",
+    "@metamask/providers": "^14.0.2",
+    "@noble/hashes": "^1.3.2",
+    "@noble/secp256k1": "^2.0.0",
+    "@scure/base": "^1.1.3",
+    "@scure/bip32": "^1.3.2",
+    "@scure/bip39": "^1.2.1",
+    "@simplewebauthn/types": "^12.0.0",
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
+    "@types/degit": "^2.8.3",
+    "@types/lodash-es": "^4.17.7",
+    "@vitest/ui": "^3.2.4",
+    "@walletconnect/legacy-client": "^2.0.0",
+    "@walletconnect/legacy-types": "^2.0.0",
+    "@walletconnect/sign-client": "2.8.6",
+    "@walletconnect/types": "2.8.6",
+    "autoprefixer": "^10.4.14",
+    "concurrently": "^8.0.1",
+    "degit": "^2.8.4",
+    "glob": "^10.2.3",
+    "jsdom": "^26.1.0",
+    "json-schema-to-typescript": "^13.1.1",
+    "lodash-es": "^4.17.21",
+    "postcss": "^8.4.23",
+    "rimraf": "^5.0.0",
+    "tsc-alias": "^1.8.6",
+    "tsx": "^3.12.7",
+    "typescript": "^5.0.4",
+    "vitest": "^3.2.4",
+    "fake-indexeddb": "^6.0.0"
+  },
+  "dependencies": {
+    "@extism/extism": "2.0.0-rc13",
+    "@simplewebauthn/browser": "^9.0.1",
+    "dexie": "^4.0.1",
+    "helia": "^4.0.0",
+    "@helia/unixfs": "^3.0.0",
+    "@helia/verified-fetch": "^1.0.0",
+    "@helia/strings": "^3.0.0",
+    "@libp2p/webrtc": "^4.0.0",
+    "@libp2p/websockets": "^8.0.0",
+    "@chainsafe/libp2p-noise": "^15.0.0",
+    "@chainsafe/libp2p-yamux": "^6.0.0",
+    "multiformats": "^13.0.0",
+    "uint8arrays": "^5.0.0",
+    "@tanstack/query-core": "^5.0.0"
+  }
+}

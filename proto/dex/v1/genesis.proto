@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package dex.v1;
+
+option go_package = "github.com/sonr-io/sonr/x/dex/types";
+
+import "gogoproto/gogo.proto";
+import "dex/v1/ica.proto";
+
+// GenesisState defines the DEX module's genesis state
+message GenesisState {
+  // Module parameters
+  Params params = 1 [(gogoproto.nullable) = false];
+  
+  // IBC port ID for the module
+  string port_id = 2;
+  
+  // Registered DEX accounts
+  repeated InterchainDEXAccount accounts = 3;
+  
+  // Account sequence counter
+  uint64 account_sequence = 4;
+}
+
+// Params defines the parameters for the DEX module
+message Params {
+  option (gogoproto.goproto_getters) = false;
+  
+  // Enable/disable the module
+  bool enabled = 1;
+  
+  // Maximum accounts per DID
+  uint32 max_accounts_per_did = 2;
+  
+  // Default timeout for ICA operations (in seconds)
+  uint64 default_timeout_seconds = 3;
+  
+  // Allowed DEX connections
+  repeated string allowed_connections = 4;
+  
+  // Minimum swap amount (in base denom)
+  string min_swap_amount = 5;
+  
+  // Maximum daily volume per DID (in USD equivalent)
+  string max_daily_volume = 6;
+  
+  // Rate limit parameters
+  RateLimitParams rate_limits = 7 [(gogoproto.nullable) = false];
+  
+  // Fee parameters
+  FeeParams fees = 8 [(gogoproto.nullable) = false];
+}
+
+// RateLimitParams defines rate limiting parameters
+message RateLimitParams {
+  // Maximum operations per block
+  uint32 max_ops_per_block = 1;
+  
+  // Maximum operations per DID per day
+  uint32 max_ops_per_did_per_day = 2;
+  
+  // Cooldown period between operations (in blocks)
+  uint32 cooldown_blocks = 3;
+}
+
+// FeeParams defines fee parameters for DEX operations
+message FeeParams {
+  // Platform fee for swaps (basis points, e.g., 30 = 0.3%)
+  uint32 swap_fee_bps = 1;
+  
+  // Platform fee for liquidity operations
+  uint32 liquidity_fee_bps = 2;
+  
+  // Platform fee for orders
+  uint32 order_fee_bps = 3;
+  
+  // Fee collector address
+  string fee_collector = 4;
+}

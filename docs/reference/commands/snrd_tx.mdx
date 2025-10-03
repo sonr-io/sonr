@@ -1,0 +1,135 @@
+---
+title: snrd tx
+description: Transactions subcommands
+---
+
+# snrd tx
+
+Transactions subcommands
+
+## Usage
+
+```shell
+snrd tx [flags]
+```
+
+```shell
+snrd tx [command]
+```
+
+## Available Commands
+
+| Command | Description |
+|---------|-------------|
+| `auth` | Transactions commands for the auth module |
+| `authz` | Authorization transactions subcommands |
+| `bank` | Bank transaction subcommands |
+| `broadcast` | Broadcast transactions generated offline |
+| `circuit` | Transactions commands for the circuit module |
+| `consensus` | Transactions commands for the consensus module |
+| `crisis` | Transactions commands for the crisis module |
+| `decode` | Decode a binary encoded transaction string |
+| `dex` | dex transactions subcommands |
+| `did` | Transactions commands for the did module |
+| `distribution` | Distribution transactions subcommands |
+| `dwn` | Transactions commands for the dwn module |
+| `encode` | Encode transactions generated offline |
+| `erc20` | erc20 subcommands |
+| `evidence` | Evidence transaction subcommands |
+| `evm` | evm subcommands |
+| `feegrant` | Feegrant transactions sub-commands |
+| `feemarket` | Transactions commands for the feemarket module |
+| `gov` | Governance transactions subcommands |
+| `group` | Group transaction subcommands |
+| `ibc` | IBC transaction subcommands |
+| `ibc-fee` | IBC relayer incentivization transaction subcommands |
+| `ibc-transfer` | IBC fungible token transfer transaction subcommands |
+| `ibc-wasm` | IBC wasm manager module transaction subcommands |
+| `interchain-accounts` | IBC interchain accounts transaction subcommands |
+| `mint` | Transactions commands for the mint module |
+| `multi-sign` | Generate multisig signatures for transactions generated offline |
+| `multisign-batch` | Assemble multisig transactions in batch from batch signatures |
+| `nft` | Transactions commands for the nft module |
+| `ratelimit` | Transactions commands for the ratelimit module |
+| `sign` | Sign a transaction generated offline |
+| `sign-batch` | Sign transaction batch files |
+| `simulate` | Simulate the gas usage of a transaction |
+| `slashing` | Transactions commands for the slashing module |
+| `staking` | Staking transaction subcommands |
+| `svc` | Transactions commands for the svc module |
+| `tokenfactory` | tokenfactory transactions subcommands |
+| `upgrade` | Upgrade transaction subcommands |
+| `validate-signatures` | validate transactions signatures |
+| `vesting` | Vesting transaction subcommands |
+
+## Flags
+
+<ParamField path="chain-id" type="string">
+  The network chain ID
+</ParamField>
+
+<ParamField path="help" type="string">
+  for tx
+</ParamField>
+
+## Global Flags
+
+<ParamField path="broadcast-mode" type="string" default="sync">
+  Transaction broadcasting mode (sync|async)
+</ParamField>
+
+<ParamField path="fees" type="string">
+  Fees to pay along with transaction; eg: 10aatom
+</ParamField>
+
+<ParamField path="from" type="string">
+  Name or address of private key with which to sign
+</ParamField>
+
+<ParamField path="gas-adjustment" type="float" default="1">
+  adjustment factor to be multiplied against the estimate returned by the tx simulation; if the gas limit is set manually this flag is ignored
+</ParamField>
+
+<ParamField path="gas-prices" type="string">
+  Gas prices to determine the transaction fee (e.g. 10aatom)
+</ParamField>
+
+<ParamField path="home" type="string" default="/Users/prad/.sonr">
+  directory for config and data
+</ParamField>
+
+<ParamField path="keyring-backend" type="string" default="os">
+  Select keyring's backend
+</ParamField>
+
+<ParamField path="log_format" type="string" default="plain">
+  The logging format (json|plain)
+</ParamField>
+
+<ParamField path="log_level" type="string" default="info">
+  The logging level (trace|debug|info|warn|error|fatal|panic|disabled or '*:&lt;level&gt;,&lt;key&gt;:&lt;level&gt;')
+</ParamField>
+
+<ParamField path="log_no_color" type="string">
+  colored logs
+</ParamField>
+
+<ParamField path="node" type="string" default="tcp://localhost:26657">
+  &lt;host&gt;:&lt;port&gt; to tendermint rpc interface for this chain
+</ParamField>
+
+<ParamField path="trace" type="string">
+  out full stack trace on errors
+</ParamField>
+
+## Examples
+
+### Submit transaction
+
+```shell
+snrd tx --from alice --chain-id sonrtest_1-1
+```
+
+## See Also
+
+- [snrd](./snrd.mdx) - Parent command

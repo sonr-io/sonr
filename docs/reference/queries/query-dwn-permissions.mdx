@@ -1,0 +1,98 @@
+---
+openapi: get /dwn/v1/permissions/{target}
+title: Query DWN Permissions
+description: Audit and manage access control for your data
+og:title: DWN Permission Management
+---
+
+<Info>
+  Regular permission audits are essential for maintaining data security and compliance.
+</Info>
+
+## Permission Queries
+
+### Filter Options
+- **grantor**: Who gave the permission
+- **grantee**: Who received the permission
+- **interfaceName**: Scope to interface (Records, Protocols)
+- **method**: Specific operation (Write, Query, Delete)
+- **includeRevoked**: Show revoked permissions
+
+### Common Queries
+
+```bash
+# All active permissions I've granted
+?grantor=did:sonr:alice&includeRevoked=false
+
+# Permissions given to specific user
+?grantee=did:sonr:bob
+
+# All write permissions
+?method=Write
+
+# Protocol-specific permissions
+?interfaceName=Records&method=Write
+```
+
+## Permission Auditing
+
+<Tip>
+  Schedule regular audits to review and revoke unnecessary permissions.
+</Tip>
+
+### Audit Checklist
+1. **Review Active Permissions**
+   ```bash
+   ?includeRevoked=false&pagination.limit=100
+   ```
+
+2. **Check Expired Permissions**
+   - Filter by `expiresAt` < current time
+   - Revoke if still active
+
+3. **Verify Grantee Activity**
+   - Check last access times
+   - Revoke inactive permissions
+
+4. **Protocol Compliance**
+   - Ensure permissions align with protocols
+   - Update for protocol changes
+
+## Permission States
+
+### Active Permission
+- Not revoked
+- Not expired
+- Valid conditions met
+
+### Inactive Permission
+- Revoked by grantor
+- Past expiration time
+- Conditions not met
+
+<Warning>
+  Permissions with no expiration should be reviewed more frequently.
+</Warning>
+
+## Security Best Practices
+
+### Principle of Least Privilege
+- Grant minimum necessary access
+- Use specific scopes
+- Set expiration times
+
+### Regular Reviews
+```bash
+# Weekly: Check high-privilege permissions
+?interfaceName=Permissions
+
+# Monthly: Full audit
+?includeRevoked=true&pagination.countTotal=true
+
+# Quarterly: Protocol permission alignment
+?interfaceName=Protocols
+```
+
+<Note>
+  Use `pagination.countTotal=true` to track total permission growth over time.
+</Note>

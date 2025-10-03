@@ -1,0 +1,30 @@
+[package]
+name = "identity-dao-pre-propose"
+version = { workspace = true }
+edition = { workspace = true }
+authors = { workspace = true }
+license = { workspace = true }
+repository = { workspace = true }
+homepage = { workspace = true }
+documentation = { workspace = true }
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+library = []
+
+[dependencies]
+cosmwasm-std = { workspace = true }
+cosmwasm-schema = { workspace = true }
+cw2 = { workspace = true }
+cw-storage-plus = { workspace = true }
+cw-utils = { workspace = true }
+serde = { workspace = true }
+schemars = { workspace = true }
+thiserror = { workspace = true }
+identity-dao-shared = { workspace = true }
+
+[dev-dependencies]
+cw-multi-test = { workspace = true }
+anyhow = { workspace = true }

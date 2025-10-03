@@ -1,0 +1,99 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [master]
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  GO_VERSION: 1.24.4
+  NODE_VERSION: 20
+  PNPM_VERSION: 10
+permissions:
+  contents: read
+  pull-requests: read
+  packages: write
+jobs:
+  detect-changes:
+    name: Analyze
+    uses: ./.github/workflows/changes.yml
+
+  client:
+    name: Client
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.client == 'true' }}
+    uses: ./.github/workflows/devbox.yml
+    with:
+      install: go
+      test: client
+      build: client
+
+  core:
+    name: Core
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.go-changes == 'true' }}
+    uses: ./.github/workflows/devbox.yml
+    with:
+      install: go
+      test: app
+      build: snrd
+
+  crypto:
+    name: Crypto
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.crypto == 'true' }}
+    uses: ./.github/workflows/devbox.yml
+    with:
+      install: go
+      test: crypto
+
+  docker:
+    name: Docker
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.docker-changes == 'true' }}
+    uses: ./.github/workflows/devbox.yml
+    with:
+      install: go
+      build: docker
+
+  hway:
+    name: Highway
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.hway == 'true' }}
+    uses: ./.github/workflows/devbox.yml
+    with:
+      install: go
+      build: hway
+
+  packages:
+    name: Packages
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.packages-changes == 'true' }}
+    uses: ./.github/workflows/devbox.yml
+    with:
+      install: pnpm
+      test: packages
+
+  web:
+    name: Web
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.web-changes == 'true' }}
+    uses: ./.github/workflows/devbox.yml
+    with:
+      install: pnpm
+      test: web
+
+  x-modules:
+    name: X
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.modules != '[]' && needs.detect-changes.outputs.modules != '' }}
+    strategy:
+      matrix:
+        module: ${{ fromJSON(needs.detect-changes.outputs.modules) }}
+      fail-fast: false
+    uses: ./.github/workflows/devbox.yml
+    with:
+      install: go
+      test: ${{ matrix.module }}

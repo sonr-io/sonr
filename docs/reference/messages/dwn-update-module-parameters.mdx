@@ -1,0 +1,32 @@
+---
+openapi: post /dwn.v1.Msg/UpdateParams
+title: Update DWN Module Parameters
+description: Configure module-wide settings for data storage, protocols, and security policies
+og:title: DWN Module Governance
+---
+
+<Warning>
+  This operation requires **governance approval** and is typically executed through on-chain proposals.
+</Warning>
+
+## Parameter Categories
+
+### Storage Limits
+- **maxRecordSize**: Maximum size for individual records (default: 10MB)
+- **maxProtocolsPerDwn**: Protocol configuration limit per DWN
+- **maxPermissionsPerDwn**: Active permission limit per DWN
+
+### Vault Security
+- **vaultCreationEnabled**: Enable/disable new vault creation
+- **minVaultRefreshInterval**: Minimum blocks between key refreshes
+- **keyRotationDays**: Automatic rotation interval (default: 90 days)
+- **minValidatorsForKeyGen**: Validator threshold for distributed key generation
+
+### Encryption Policies
+- **encryptionEnabled**: Enforce data encryption
+- **encryptedProtocols**: Protocol URIs requiring mandatory encryption
+- **encryptedSchemas**: Schema URIs requiring mandatory encryption
+
+<Note>
+  Changes to these parameters affect all DWN operations network-wide.
+</Note>

@@ -1,0 +1,65 @@
+---
+openapi: get /dwn/v1/protocols/{target}
+title: Query DWN Protocols
+description: Discover configured protocols and their data models
+og:title: DWN Protocol Discovery
+---
+
+<Info>
+  Protocols enable interoperable data structures across applications and users.
+</Info>
+
+## Protocol Discovery
+
+### Finding Protocols
+- **User Protocols**: Query specific user's DWN
+- **Published Protocols**: Filter by `publishedOnly=true`
+- **Private Protocols**: Require permissions to view
+
+### Protocol Registry
+Common protocol namespaces:
+- `https://protocols.sonr.io/social/*` - Social media
+- `https://protocols.sonr.io/health/*` - Healthcare
+- `https://protocols.sonr.io/iot/*` - IoT devices
+- `https://protocols.sonr.io/finance/*` - Financial
+
+## Protocol Adoption
+
+<Tip>
+  Browse published protocols to find existing standards before creating custom ones.
+</Tip>
+
+### Adopting a Protocol
+1. Query published protocols
+2. Review protocol definition
+3. Configure in your DWN
+4. Start creating compliant records
+
+```bash
+# Find social protocols
+snrd query dwn protocols did:sonr:community --published-only
+
+# Adopt a protocol
+snrd tx dwn protocols-configure --from <discovered_protocol>
+```
+
+## Protocol Versioning
+
+### Version Strategies
+- **URL Versioning**: `/v1`, `/v2` in URI
+- **Semantic Versioning**: `1.0.0`, `2.0.0`
+- **Date Versioning**: `/2024`, `/2025`
+
+<Warning>
+  Breaking protocol changes should use new URIs to maintain backward compatibility.
+</Warning>
+
+## Pagination
+
+<Note>
+  Large DWNs may have many protocols. Use pagination for efficient retrieval.
+</Note>
+
+```bash
+?pagination.limit=10&pagination.offset=0
+```

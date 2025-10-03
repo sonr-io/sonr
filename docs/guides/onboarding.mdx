@@ -1,0 +1,279 @@
+---
+title: Validator Node Onboarding
+description: Complete guide for becoming a Sonr blockchain validator from setup to operations
+icon: "boxes"
+sidebarTitle: Become a Validator
+---
+
+## Overview
+
+Sonr is a Cosmos SDK-based blockchain focused on decentralized identity and asset management. This guide provides comprehensive information for validators interested in securing the Sonr network and participating in its specialized identity infrastructure ecosystem.
+
+<Note>
+  Sonr is currently in testnet/development phase. While there's no confirmed
+  mainnet launch date, early participation in testnet operations is highly
+  recommended for prospective validators.
+</Note>
+
+## Network Positioning
+
+Sonr differentiates itself within the Cosmos ecosystem through:
+
+- **Decentralized Identity Focus**: Implementing W3C DID standards and WebAuthn integration
+- **Highway Architecture**: Specialized node infrastructure for identity services
+- **Fast Wallet Generation**: 600ms wallet creation with IPFS storage capabilities
+- **Developer Tools**: React SDKs and identity-focused APIs
+
+## Hardware Requirements
+
+Professional validator operations require substantial infrastructure investment to ensure network security and reliability.
+
+### Essential Specifications
+
+  <Card title="CPU">
+    **Minimum**: 4 cores x86 processor **Recommended**: 8+ cores for production
+  </Card>
+  <Card title="RAM">
+    **Minimum**: 16GB with NVMe swap **Recommended**: 32GB+ for optimal
+    performance
+  </Card>
+  <Card title="Storage">
+    **Required**: 1TB+ NVMe SSD **Note**: Regular SSDs often insufficient for
+    I/O demands
+  </Card>
+  <Card title="Network">
+    **Minimum**: 100Mbps dedicated bandwidth **Usage**: Multi-gigabyte daily
+    traffic expected
+  </Card>
+
+### Infrastructure Investment
+
+- **Initial Setup**: Professional-grade hardware required for reliable operations
+- **Monthly Operating**: Tier 3+ datacenter colocation recommended for optimal performance
+- **Redundancy**: Full backup server with identical specifications required
+
+## Quick Setup with NPX
+
+Sonr provides an NPX-based tool to streamline validator deployment:
+
+```bash
+npx @sonr/validator-setup my-validator --chain=sonr-testnet-1
+```
+
+The interactive wizard guides you through:
+
+<Steps>
+  <Step>
+    ### Network Configuration Select testnet or mainnet and configure chain
+    parameters
+  </Step>
+  <Step>
+    ### Hardware Verification Automated check of system requirements and
+    recommendations
+  </Step>
+  <Step>### Key Generation Secure key creation with HSM support options</Step>
+  <Step>
+    ### Sentry Architecture Deploy protective sentry node infrastructure
+  </Step>
+  <Step>
+    ### Monitoring Setup Install Prometheus + Grafana monitoring stack
+  </Step>
+  <Step>
+    ### Security Hardening Configure firewalls and security best practices
+  </Step>
+</Steps>
+
+## Network Parameters
+
+### Validator Network Structure
+
+For a 50-validator network with 1 billion token supply:
+
+#### Early Network Phase (30% staking ratio)
+
+- **Inflation**: 15% (bootstrap incentives)
+- **Validator Participation**: Commission-based earnings structure
+- **Delegator Rewards**: High early participation incentives
+
+#### Bootstrap Phase (50% staking ratio)
+
+- **Inflation**: 12% (balanced growth)
+- **Validator Participation**: Balanced commission structure
+- **Delegator Rewards**: Sustainable growth incentives
+
+#### Mature Network (67% staking ratio)
+
+- **Inflation**: 7% (long-term stability)
+- **Validator Participation**: Stable commission structure
+- **Delegator Rewards**: Long-term participation incentives
+
+### Recommended Parameters
+
+- **Minimum validator stake**: 1,000,000 SNR (0.1% of supply)
+- **Optimal self-bond**: 2,000,000 SNR (0.2% of supply)
+- **Commission range**: 5-15% (5% mandatory minimum)
+- **Inflation range**: 5-18% with 8% target at 65% staking
+- **Unbonding period**: 21 days standard
+
+## Operational Considerations
+
+### Infrastructure Requirements
+
+Validators should ensure adequate infrastructure to support reliable network participation.
+
+### Reward Sources
+
+- **Block Rewards**: Inflation-based token issuance for network security
+- **Transaction Fees**: Gas fees and proposer bonuses from network activity
+- **Additional Rewards**: ICS rewards, cross-chain fees, and ecosystem participation
+
+## Security Architecture
+
+### Sentry Node Design
+
+Implement a multi-layered security approach:
+
+```
+Internet → Sentry Nodes (3-5) → Private Network → Validator Node
+```
+
+### Critical Security Implementations
+
+  <Card title="Key Management">
+    - Hardware Security Modules (HSM) - Tendermint Key Management System (TMKMS)
+    - Remote signing capabilities
+  </Card>
+  <Card title="Network Security">
+    - Geographic distribution across datacenters - Automated double-sign
+    prevention - Comprehensive monitoring and alerting
+  </Card>
+  <Card title="Operational Security">
+    - 99.9%+ uptime requirements - Encrypted backups across locations - Strict
+    access controls and audits
+  </Card>
+
+### Key Types
+
+1. **Consensus Key**: Hot key for block signing (ed25519)
+2. **Operator Key**: Cold storage for validator transactions (secp256k1)
+3. **Node Key**: P2P network identification
+
+## Implementation Roadmap
+
+### Phase 1: Testnet Participation (Months 1-3)
+
+<Note type="warning">
+  Begin with testnet operations to gain experience without operational risk.
+</Note>
+
+- Hardware procurement and datacenter setup
+- Team training on Cosmos SDK operations
+- Security procedure development
+- Community engagement and reputation building
+
+### Phase 2: Infrastructure Preparation (Month 4)
+
+- Deploy production hardware in Tier 3+ datacenters
+- Implement sentry node architecture across regions
+- Configure monitoring and alerting systems
+- Establish 24/7 operational procedures
+
+### Phase 3: Mainnet Genesis (Month 5+)
+
+- Participate in genesis ceremony
+- Self-bond required SNR tokens (1-2M recommended)
+- Configure optimal commission rates (start at 5-7%)
+- Launch validator with foundation delegation support
+
+### Phase 4: Operational Excellence (Ongoing)
+
+- Maintain 99.9%+ uptime through redundant systems
+- Actively participate in governance proposals
+- Provide regular updates to delegators
+- Contribute to ecosystem development
+
+## Foundation Support Programs
+
+### Delegation Program
+
+Sonr implements a foundation delegation program allocating 10-15% of total supply:
+
+- **Coverage**: 30-35 validators (60-70% of active set)
+- **Requirements**: 3-month testnet participation
+- **Terms**: 6-12 month delegation periods
+- **Renewal**: Performance-based criteria
+- **Focus**: Geographic distribution and community contributions
+
+### Testnet Incentives
+
+- **Monthly Rewards**: Testnet participation incentives for active validators
+- **Mainnet Slots**: Top performers receive guaranteed mainnet positions
+- **Foundation Delegations**: 6-month delegations of 2M tokens for top testnet validators
+
+## Monitoring and Operations
+
+### Prometheus Metrics
+
+- System metrics (CPU, RAM, disk, network)
+- Tendermint consensus metrics (height, voting power, peer count)
+- Custom application metrics (missed blocks, proposal statistics)
+
+### Critical Alerts
+
+- Low peer count (less than 5 peers)
+- High block time intervals
+- Resource utilization warnings
+- Disk space projections
+
+### Grafana Dashboards
+
+- Real-time performance monitoring
+- Historical trend analysis
+- Multi-validator comparison views
+
+## Risk Management
+
+### Technical Risks
+
+- **Double-signing prevention**: Proper key management and TMKMS
+- **State corruption recovery**: Automated backup systems
+- **Network partitions**: Geographic distribution strategies
+- **Upgrade failures**: Staging environment testing
+
+### Operational Risks
+
+- **Network participation**: Maintain consistent validator performance
+- **Delegation concentration**: Limits on single delegator exposure
+- **Commission optimization**: Community-competitive rates
+- **Infrastructure management**: Efficient operational procedures
+
+## Future Opportunities
+
+As Sonr matures, validators can explore additional network services:
+
+- **Relayer Operations**: IBC connection services
+- **RPC Endpoints**: Developer infrastructure services
+- **Archive Nodes**: Historical data provision
+- **Identity Services**: Custom solutions leveraging Sonr infrastructure
+- **Interchain Security**: Consumer chain participation
+
+## Getting Started
+
+  <Card title="Join Testnet" href="/guides/validators/testnet">
+    Start with testnet participation to gain operational experience
+  </Card>
+  <Card title="Hardware Setup" href="/guides/validators/setup">
+    Detailed hardware and infrastructure deployment guide
+  </Card>
+  <Card title="Security Guide" href="/guides/validators/security">
+    Comprehensive security implementation and best practices
+  </Card>
+  <Card title="Monitoring" href="/guides/validators/monitoring">
+    Setup monitoring and alerting systems for your validator
+  </Card>
+
+<Note type="success">
+  Sonr presents a compelling opportunity for validators seeking exposure to the
+  decentralized identity market within the Cosmos ecosystem. Early preparation
+  and professional operations are key to success.
+</Note>

@@ -4,10 +4,12 @@ package did.v1;
 
 import "cosmos/orm/v1/orm.proto";
 import "did/v1/genesis.proto";
+import "did/v1/types.proto";
 
-option go_package = "github.com/sonr-io/snrd/x/did/types";
+option go_package = "github.com/sonr-io/sonr/x/did/types";
 
-message Account {
+// Authentication is the authentication method to be used by the DID.
+message Authentication {
   option (cosmos.orm.v1.table) = {
     id: 1
     primary_key: {fields: "did"}
@@ -28,122 +30,342 @@ message Account {
   string subject = 3;
 
   // string is the verification method
-  string public_key_hex = 4;
+  string public_key_base64 = 4;
 
-  // AssertionType is the assertion type
-  string assertion_type = 5;
-
-  // Metadata of the authentication
-  map<string, bytes> accumulator = 6;
+  // AssertionKind is the assertion type
+  string did_kind = 5;
 
   // CreationBlock is the block number of the creation of the authentication
-  int64 creation_block = 7;
+  int64 creation_block = 6;
 }
 
-// PublicKey represents a public key
-message PublicKey {
+// Assertion is the assertion method to be used by the DID.
+message Assertion {
   option (cosmos.orm.v1.table) = {
     id: 2
-    primary_key: {
-      fields: "number"
-      auto_increment: true
-    }
+    primary_key: {fields: "did"}
     index: {
       id: 1
-      fields: "sonr_address"
-      unique: true
-    }
-    index: {
-      id: 2
-      fields: "eth_address"
-      unique: true
-    }
-    index: {
-      id: 3
-      fields: "btc_address"
-      unique: true
-    }
-    index: {
-      id: 4
-      fields: "did"
+      fields: "controller,subject"
       unique: true
     }
   };
 
-  // The unique identifier of the controller
-  uint64 number = 1;
+  // The unique identifier of the assertion
+  string did = 1;
 
-  // The unique identifier of the controller
-  string did = 2;
+  // The authentication of the DID
+  string controller = 2;
 
-  // The DID of the controller
-  string sonr_address = 3;
-
-  // The DID of the controller
-  string eth_address = 4;
-
-  // The DID of the controller
-  string btc_address = 5;
+  // Origin of the authentication
+  string subject = 3;
 
   // string is the verification method
-  string public_key_hex = 6;
+  string public_key_base64 = 4;
 
-  // Pointer to the Keyshares
-  string ks_val = 7;
+  // DIDKind is the DID type
+  string did_kind = 5;
 
-  // The block number of when a user claimed the controller
-  int64 claimed_block = 8;
-
-  // CreationBlock is the block number of the creation of the controller
-  int64 creation_block = 9;
+  // CreationBlock is the block number of the creation of the authentication
+  int64 creation_block = 6;
 }
 
-// Verification represents a verification method
-message Verification {
+// Controller is the controller method to be used by the DID.
+message Controller {
   option (cosmos.orm.v1.table) = {
     id: 3
     primary_key: {fields: "did"}
     index: {
       id: 1
-      fields: "issuer,subject"
+      fields: "address"
       unique: true
     }
     index: {
       id: 2
-      fields: "controller,did_method,issuer"
+      fields: "subject"
       unique: true
     }
     index: {
       id: 3
-      fields: "verification_type,subject,issuer"
+      fields: "public_key_base64"
       unique: true
     }
   };
 
-  // The unique identifier of the verification
+  // The unique identifier of the assertion
   string did = 1;
 
-  // The controller of the verification
+  // The authentication of the DID
+  string address = 2;
+
+  // Origin of the authentication
+  string subject = 3;
+
+  // string is the verification method
+  string public_key_base64 = 4;
+
+  // DIDKind is the DID type
+  string did_kind = 5;
+
+  // CreationBlock is the block number of the creation of the authentication
+  int64 creation_block = 6;
+}
+
+// Delegation is usually an external blockchain account that is used to sign
+// transactions on behalf of the DID
+message Delegation {
+  option (cosmos.orm.v1.table) = {
+    id: 4
+    primary_key: {fields: "did"}
+    index: {
+      id: 1
+      fields: "controller,subject"
+      unique: true
+    }
+  };
+
+  // The unique identifier of the assertion
+  string did = 1;
+
+  // The authentication of the DID
   string controller = 2;
 
-  // The DIDNamespace of the verification
-  string did_method = 3;
+  // Origin of the authentication
+  string subject = 3;
 
-  // The value of the linked identifier
+  // string is the verification method
+  string public_key_base64 = 4;
+
+  // DIDKind is the DID type
+  string did_kind = 5;
+
+  // CreationBlock is the block number of the creation of the authentication
+  int64 creation_block = 6;
+}
+
+// Invocation is usually a smart contract that is used to sign transactions on
+// behalf of the DID
+message Invocation {
+  option (cosmos.orm.v1.table) = {
+    id: 5
+    primary_key: {fields: "did"}
+    index: {
+      id: 1
+      fields: "controller,subject"
+      unique: true
+    }
+  };
+
+  // The unique identifier of the assertion
+  string did = 1;
+
+  // The authentication of the DID
+  string controller = 2;
+
+  // Origin of the authentication
+  string subject = 3;
+
+  // string is the verification method
+  string public_key_base64 = 4;
+
+  // DIDKind is the DID type
+  string did_kind = 5;
+
+  // CreationBlock is the block number of the creation of the authentication
+  int64 creation_block = 6;
+}
+
+// DIDDocument represents a W3C compliant DID Document
+message DIDDocument {
+  option (cosmos.orm.v1.table) = {
+    id: 6
+    primary_key: {fields: "id"}
+    index: {
+      id: 1
+      fields: "primary_controller"
+      unique: false
+    }
+  };
+
+  // id is the DID that is the subject of this DID Document (REQUIRED)
+  string id = 1;
+
+  // primary_controller identifies the primary entity that controls the DID
+  // document (OPTIONAL)
+  string primary_controller = 2;
+
+  // alsoKnownAs expresses other identifiers for the DID subject (OPTIONAL)
+  repeated string also_known_as = 3;
+
+  // verificationMethod expresses verification methods (OPTIONAL)
+  repeated VerificationMethod verification_method = 4;
+
+  // authentication expresses authentication verification relationships
+  // (OPTIONAL)
+  repeated VerificationMethodReference authentication = 5;
+
+  // assertionMethod expresses assertion verification relationships (OPTIONAL)
+  repeated VerificationMethodReference assertion_method = 6;
+
+  // keyAgreement expresses key agreement verification relationships (OPTIONAL)
+  repeated VerificationMethodReference key_agreement = 7;
+
+  // capabilityInvocation expresses capability invocation verification
+  // relationships (OPTIONAL)
+  repeated VerificationMethodReference capability_invocation = 8;
+
+  // capabilityDelegation expresses capability delegation verification
+  // relationships (OPTIONAL)
+  repeated VerificationMethodReference capability_delegation = 9;
+
+  // service expresses service endpoints (OPTIONAL)
+  repeated Service service = 10;
+
+  // Block height when the DID document was created
+  int64 created_at = 11;
+
+  // Block height when the DID document was last updated
+  int64 updated_at = 12;
+
+  // Whether the DID document is deactivated
+  bool deactivated = 13;
+
+  // Version number for the DID document
+  uint64 version = 14;
+}
+
+// DIDDocumentMetadata contains metadata about the DID document
+message DIDDocumentMetadata {
+  option (cosmos.orm.v1.table) = {
+    id: 7
+    primary_key: {fields: "did"}
+  };
+
+  // did is the DID this metadata belongs to
+  string did = 1;
+
+  // created is when the DID was created
+  int64 created = 2;
+
+  // updated is when the DID was last updated
+  int64 updated = 3;
+
+  // deactivated is when the DID was deactivated (if applicable)
+  int64 deactivated = 4;
+
+  // version_id is the version identifier
+  string version_id = 5;
+
+  // next_update is when the next update is scheduled (if applicable)
+  int64 next_update = 6;
+
+  // next_version_id is the next version identifier (if applicable)
+  string next_version_id = 7;
+
+  // equivalentId lists equivalent DIDs
+  repeated string equivalent_id = 8;
+
+  // canonicalId is the canonical DID
+  string canonical_id = 9;
+}
+
+// VerifiableCredential represents a W3C Verifiable Credential
+message VerifiableCredential {
+  option (cosmos.orm.v1.table) = {
+    id: 8
+    primary_key: {fields: "id"}
+    index: {
+      id: 1
+      fields: "issuer"
+      unique: false
+    }
+    index: {
+      id: 2
+      fields: "subject"
+      unique: false
+    }
+    index: {
+      id: 3
+      fields: "issuer,subject"
+      unique: true
+    }
+  };
+
+  // id is the credential identifier
+  string id = 1;
+
+  // context is the JSON-LD contexts
+  repeated string context = 2;
+
+  // credential_kinds is the credential types
+  repeated string credential_kinds = 3;
+
+  // issuer is the DID of the credential issuer
   string issuer = 4;
 
-  // The subject of the verification
-  string subject = 5;
+  // issuanceDate is when the credential was issued
+  string issuance_date = 5;
 
-  // The public key of the verification
-  string public_key_hex = 6;
+  // expirationDate is when the credential expires (optional)
+  string expiration_date = 6;
 
-  // The verification method type
-  string verification_type = 7;
+  // credentialSubject contains the claims about the subject as JSON
+  bytes credential_subject = 7;
 
-  // Metadata of the verification
-  map<string, string> metadata = 8;
+  // proof contains the cryptographic proof
+  repeated CredentialProof proof = 8;
 
-  // CreationBlock is the block number of the creation of the controller
-  int64 creation_block = 9;
+  // credentialStatus contains information about credential revocation
+  // (optional)
+  CredentialStatus credential_status = 9;
+
+  // subject is the DID of the credential subject (for indexing)
+  string subject = 10;
+
+  // Block height when issued
+  int64 issued_at = 11;
+
+  // Block height when expires (0 if no expiration)
+  int64 expires_at = 12;
+
+  // Whether the credential is revoked
+  bool revoked = 13;
+}
+
+// DIDController represents additional controllers for a DID document
+message DIDController {
+  option (cosmos.orm.v1.table) = {
+    id: 9
+    primary_key: {
+      fields: "id"
+      auto_increment: true
+    }
+    index: {
+      id: 1
+      fields: "did"
+      unique: true
+    }
+    index: {
+      id: 2
+      fields: "controller_did"
+      unique: true
+    }
+    index: {
+      id: 3
+      fields: "did,controller_did"
+      unique: true
+    }
+  };
+
+  // id is the auto-incrementing primary key
+  uint64 id = 1;
+
+  // did is the DID this controller belongs to
+  string did = 2;
+
+  // controller_did is the controller DID
+  string controller_did = 3;
+
+  // added_at is when this controller was added
+  int64 added_at = 4;
 }

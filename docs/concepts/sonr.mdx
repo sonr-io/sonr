@@ -1,0 +1,36 @@
+---
+title: The Blockchain for Self-Sovereign Identity
+sidebarTitle: Sonr Overview
+description: A deep dive into Sonr's novel approach to personal data ownership and control.
+icon: play
+---
+
+In a world rapidly approaching the era of quantum computing, traditional cryptographic methods face unprecedented challenges. The burden of securing digital identity can no longer rest solely on the user. Sonr is designed to simplify the user experience while providing far greater security over personal data. We achieve this by incorporating the following concepts into our identity primitive.
+
+## Core Concepts
+
+<CardGroup>
+  <Card title="Multi-Party Computation (MPC)">
+    We eliminate the need for users to manage private keys directly. Instead, we
+    use rotating key shares with the DKLS algorithm to construct digital
+    signatures, distributing trust and removing single points of failure.
+  </Card>
+  <Card title="Identifier Accumulators">
+    Accounts on Sonr are anonymous and private by default. We employ
+    zero-knowledge accumulators to achieve this, allowing for verifiable claims
+    without revealing underlying identities.
+  </Card>
+  <Card title="On-Chain Wallet Interface">
+    The public key of a Sonr Account is encoded with bech32 and persisted
+    on-chain. This makes accounts highly resilient and resolvable across all
+    validator nodes, creating a robust digital profile.
+  </Card>
+</CardGroup>
+
+By combining these concepts, we achieve a portable, interoperable, and secure identifier that we define as a **Sonr Account**.
+
+## The Sonr Approach to Identity
+
+The Sonr platform approaches user authentication with the understanding that a user's identity is multi-dimensional and must be safeguarded with the utmost integrity. This is achieved through the implementation of **Decentralized Identifiers (DIDs)** and **Multi-Party Computation (MPC)**, creating a robust framework for identity management.
+
+DIDs are a cornerstone of the Sonr identity system, providing a verifiable and self-sovereign identity that users control entirely. This decentralized identity is not just a static entity but a dynamic one, capable of interfacing securely with various facets of the Sonr ecosystem. The MPC component further enhances security by ensuring that the private keys, the quintessential element of user authentication, are never fully exposed, even during the authentication process.

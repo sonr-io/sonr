@@ -1,0 +1,326 @@
+syntax = "proto3";
+
+package dex.v1;
+
+option go_package = "github.com/sonr-io/sonr/x/dex/types";
+
+import "gogoproto/gogo.proto";
+import "cosmos/msg/v1/msg.proto";
+import "cosmos/base/v1beta1/coin.proto";
+import "cosmos_proto/cosmos.proto";
+import "google/protobuf/timestamp.proto";
+
+// Msg defines the DEX Msg service
+service Msg {
+  option (cosmos.msg.v1.service) = true;
+
+  // RegisterDEXAccount creates a new ICA account for DEX operations
+  //
+  // {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+  // It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+  //
+  // {{import "dex_tx_docs.md"}}
+  rpc RegisterDEXAccount(MsgRegisterDEXAccount) returns (MsgRegisterDEXAccountResponse);
+  
+  // ExecuteSwap performs a token swap on a remote chain
+  //
+  // {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+  // It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+  //
+  // {{import "dex_tx_docs.md"}}
+  rpc ExecuteSwap(MsgExecuteSwap) returns (MsgExecuteSwapResponse);
+  
+  // ProvideLiquidity adds liquidity to a pool
+  //
+  // {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+  // It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+  //
+  // {{import "dex_tx_docs.md"}}
+  rpc ProvideLiquidity(MsgProvideLiquidity) returns (MsgProvideLiquidityResponse);
+  
+  // RemoveLiquidity removes liquidity from a pool
+  //
+  // {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+  // It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+  //
+  // {{import "dex_tx_docs.md"}}
+  rpc RemoveLiquidity(MsgRemoveLiquidity) returns (MsgRemoveLiquidityResponse);
+  
+  // CreateLimitOrder creates a limit order
+  //
+  // {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+  // It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+  //
+  // {{import "dex_tx_docs.md"}}
+  rpc CreateLimitOrder(MsgCreateLimitOrder) returns (MsgCreateLimitOrderResponse);
+  
+  // CancelOrder cancels an existing order
+  //
+  // {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+  // It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+  //
+  // {{import "dex_tx_docs.md"}}
+  rpc CancelOrder(MsgCancelOrder) returns (MsgCancelOrderResponse);
+}
+
+// MsgRegisterDEXAccount registers a new ICA account for DEX operations
+message MsgRegisterDEXAccount {
+  option (cosmos.msg.v1.signer) = "did";
+  option (gogoproto.goproto_getters) = false;
+
+  // DID controller requesting the account
+  string did = 1;
+  
+  // IBC connection to target chain
+  string connection_id = 2;
+  
+  // Requested features for this account
+  repeated string features = 3;
+  
+  // Optional metadata
+  string metadata = 4;
+}
+
+// MsgRegisterDEXAccountResponse defines the response
+message MsgRegisterDEXAccountResponse {
+  option (gogoproto.goproto_getters) = false;
+  
+  // Generated port ID for the account
+  string port_id = 1;
+  
+  // Account address on remote chain (once available)
+  string account_address = 2;
+}
+
+// MsgExecuteSwap executes a token swap on a remote chain
+message MsgExecuteSwap {
+  option (cosmos.msg.v1.signer) = "did";
+  option (gogoproto.goproto_getters) = false;
+
+  // DID initiating the swap
+  string did = 1;
+  
+  // IBC connection to DEX chain
+  string connection_id = 2;
+  
+  // Token to swap from
+  string source_denom = 3;
+  
+  // Token to swap to
+  string target_denom = 4;
+  
+  // Amount to swap
+  string amount = 5 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false
+  ];
+  
+  // Minimum amount out (slippage protection)
+  string min_amount_out = 6 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false
+  ];
+  
+  // Optional specific route
+  string route = 7;
+  
+  // UCAN authorization token
+  string ucan_token = 8;
+  
+  // Timeout for the swap
+  google.protobuf.Timestamp timeout = 9
+      [(gogoproto.nullable) = false, (gogoproto.stdtime) = true];
+}
+
+// MsgExecuteSwapResponse defines the response
+message MsgExecuteSwapResponse {
+  option (gogoproto.goproto_getters) = false;
+  
+  // Transaction ID on remote chain
+  string tx_hash = 1;
+  
+  // Actual amount received
+  string amount_received = 2;
+  
+  // IBC packet sequence
+  uint64 sequence = 3;
+}
+
+// MsgProvideLiquidity adds liquidity to a pool
+message MsgProvideLiquidity {
+  option (cosmos.msg.v1.signer) = "did";
+  option (gogoproto.goproto_getters) = false;
+
+  // DID providing liquidity
+  string did = 1;
+  
+  // IBC connection to DEX chain
+  string connection_id = 2;
+  
+  // Pool ID to add liquidity to
+  string pool_id = 3;
+  
+  // Assets to provide
+  repeated cosmos.base.v1beta1.Coin assets = 4
+      [(gogoproto.nullable) = false, (gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];
+  
+  // Minimum shares to receive (slippage protection)
+  string min_shares = 5 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false
+  ];
+  
+  // UCAN authorization token
+  string ucan_token = 6;
+  
+  // Timeout for the operation
+  google.protobuf.Timestamp timeout = 7
+      [(gogoproto.nullable) = false, (gogoproto.stdtime) = true];
+}
+
+// MsgProvideLiquidityResponse defines the response
+message MsgProvideLiquidityResponse {
+  option (gogoproto.goproto_getters) = false;
+  
+  // Transaction ID on remote chain
+  string tx_hash = 1;
+  
+  // LP tokens received
+  string shares_received = 2;
+  
+  // IBC packet sequence
+  uint64 sequence = 3;
+}
+
+// MsgRemoveLiquidity removes liquidity from a pool
+message MsgRemoveLiquidity {
+  option (cosmos.msg.v1.signer) = "did";
+  option (gogoproto.goproto_getters) = false;
+
+  // DID removing liquidity
+  string did = 1;
+  
+  // IBC connection to DEX chain
+  string connection_id = 2;
+  
+  // Pool ID to remove liquidity from
+  string pool_id = 3;
+  
+  // Amount of shares to remove
+  string shares = 4 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false
+  ];
+  
+  // Minimum assets to receive
+  repeated cosmos.base.v1beta1.Coin min_amounts = 5
+      [(gogoproto.nullable) = false, (gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];
+  
+  // UCAN authorization token
+  string ucan_token = 6;
+  
+  // Timeout for the operation
+  google.protobuf.Timestamp timeout = 7
+      [(gogoproto.nullable) = false, (gogoproto.stdtime) = true];
+}
+
+// MsgRemoveLiquidityResponse defines the response
+message MsgRemoveLiquidityResponse {
+  option (gogoproto.goproto_getters) = false;
+  
+  // Transaction ID on remote chain
+  string tx_hash = 1;
+  
+  // Assets received
+  repeated cosmos.base.v1beta1.Coin assets_received = 2
+      [(gogoproto.nullable) = false, (gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"];
+  
+  // IBC packet sequence
+  uint64 sequence = 3;
+}
+
+// MsgCreateLimitOrder creates a limit order
+message MsgCreateLimitOrder {
+  option (cosmos.msg.v1.signer) = "did";
+  option (gogoproto.goproto_getters) = false;
+
+  // DID creating the order
+  string did = 1;
+  
+  // IBC connection to DEX chain
+  string connection_id = 2;
+  
+  // Token to sell
+  string sell_denom = 3;
+  
+  // Token to buy
+  string buy_denom = 4;
+  
+  // Amount to sell
+  string amount = 5 [
+    (cosmos_proto.scalar) = "cosmos.Int",
+    (gogoproto.customtype) = "cosmossdk.io/math.Int",
+    (gogoproto.nullable) = false
+  ];
+  
+  // Price per unit
+  string price = 6 [
+    (cosmos_proto.scalar) = "cosmos.Dec",
+    (gogoproto.customtype) = "cosmossdk.io/math.LegacyDec",
+    (gogoproto.nullable) = false
+  ];
+  
+  // Order expiration
+  google.protobuf.Timestamp expiration = 7
+      [(gogoproto.nullable) = false, (gogoproto.stdtime) = true];
+  
+  // UCAN authorization token
+  string ucan_token = 8;
+}
+
+// MsgCreateLimitOrderResponse defines the response
+message MsgCreateLimitOrderResponse {
+  option (gogoproto.goproto_getters) = false;
+  
+  // Order ID on remote chain
+  string order_id = 1;
+  
+  // Transaction ID
+  string tx_hash = 2;
+  
+  // IBC packet sequence
+  uint64 sequence = 3;
+}
+
+// MsgCancelOrder cancels an existing order
+message MsgCancelOrder {
+  option (cosmos.msg.v1.signer) = "did";
+  option (gogoproto.goproto_getters) = false;
+
+  // DID canceling the order
+  string did = 1;
+  
+  // IBC connection to DEX chain
+  string connection_id = 2;
+  
+  // Order ID to cancel
+  string order_id = 3;
+  
+  // UCAN authorization token
+  string ucan_token = 4;
+}
+
+// MsgCancelOrderResponse defines the response
+message MsgCancelOrderResponse {
+  option (gogoproto.goproto_getters) = false;
+  
+  // Transaction ID
+  string tx_hash = 1;
+  
+  // IBC packet sequence
+  uint64 sequence = 2;
+}

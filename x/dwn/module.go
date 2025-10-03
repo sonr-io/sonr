@@ -1,3 +1,4 @@
+// Package module provides the DWN module implementation.
 package module
 
 import (
@@ -18,8 +19,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 
-	"github.com/sonr-io/snrd/x/dwn/keeper"
-	"github.com/sonr-io/snrd/x/dwn/types"
+	"github.com/sonr-io/sonr/x/dwn/keeper"
+	"github.com/sonr-io/sonr/x/dwn/types"
 )
 
 const (
@@ -31,6 +32,7 @@ var (
 	_ module.AppModuleBasic   = AppModuleBasic{}
 	_ module.AppModuleGenesis = AppModule{}
 	_ module.AppModule        = AppModule{}
+	_ module.HasABCIEndBlock  = AppModule{}
 
 	_ autocli.HasAutoCLIConfig = AppModule{}
 )
@@ -67,7 +69,11 @@ func (a AppModuleBasic) DefaultGenesis(cdc codec.JSONCodec) json.RawMessage {
 	})
 }
 
-func (a AppModuleBasic) ValidateGenesis(marshaler codec.JSONCodec, _ client.TxEncodingConfig, message json.RawMessage) error {
+func (a AppModuleBasic) ValidateGenesis(
+	marshaler codec.JSONCodec,
+	_ client.TxEncodingConfig,
+	message json.RawMessage,
+) error {
 	var data types.GenesisState
 	err := marshaler.UnmarshalJSON(message, &data)
 	if err != nil {
@@ -83,7 +89,11 @@ func (a AppModuleBasic) RegisterRESTRoutes(_ client.Context, _ *mux.Router) {
 }
 
 func (a AppModuleBasic) RegisterGRPCGatewayRoutes(clientCtx client.Context, mux *runtime.ServeMux) {
-	err := types.RegisterQueryHandlerClient(context.Background(), mux, types.NewQueryClient(clientCtx))
+	err := types.RegisterQueryHandlerClient(
+		context.Background(),
+		mux,
+		types.NewQueryClient(clientCtx),
+	)
 	if err != nil {
 		// same behavior as in cosmos-sdk
 		panic(err)
@@ -109,11 +119,19 @@ func (a AppModuleBasic) RegisterInterfaces(r codectypes.InterfaceRegistry) {
 	types.RegisterInterfaces(r)
 }
 
-func (a AppModule) InitGenesis(ctx sdk.Context, marshaler codec.JSONCodec, message json.RawMessage) []abci.ValidatorUpdate {
+func (a AppModule) InitGenesis(
+	ctx sdk.Context,
+	marshaler codec.JSONCodec,
+	message json.RawMessage,
+) []abci.ValidatorUpdate {
 	var genesisState types.GenesisState
 	marshaler.MustUnmarshalJSON(message, &genesisState)
 
 	if err := a.keeper.Params.Set(ctx, genesisState.Params); err != nil {
+		panic(err)
+	}
+
+	if err := a.keeper.InitGenesis(ctx, &genesisState); err != nil {
 		panic(err)
 	}
 
@@ -143,4 +161,23 @@ func (a AppModule) RegisterServices(cfg module.Configurator) {
 // should be set to 1.
 func (a AppModule) ConsensusVersion() uint64 {
 	return ConsensusVersion
+}
+
+// EndBlock executes all ABCI EndBlock logic respective to the DWN module.
+// It performs automatic key rotation checks and returns an empty validator update set.
+func (a AppModule) EndBlock(ctx context.Context) ([]abci.ValidatorUpdate, error) {
+	// Check if key rotation is due and perform it if needed
+	err := a.keeper.CheckAndPerformKeyRotation(ctx)
+	if err != nil {
+		// Log error but don't fail the block - key rotation is not critical for consensus
+		sdkCtx := sdk.UnwrapSDKContext(ctx)
+		logger := a.keeper.Logger()
+		logger.Error("Failed to check and perform key rotation in EndBlock",
+			"error", err,
+			"block_height", sdkCtx.BlockHeight(),
+		)
+	}
+
+	// DWN module does not modify validator set
+	return []abci.ValidatorUpdate{}, nil
 }

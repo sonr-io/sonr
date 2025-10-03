@@ -4,288 +4,148 @@ package svcv1
 
 import (
 	context "context"
+
 	ormlist "cosmossdk.io/orm/model/ormlist"
 	ormtable "cosmossdk.io/orm/model/ormtable"
 	ormerrors "cosmossdk.io/orm/types/ormerrors"
 )
 
-type DomainTable interface {
-	Insert(ctx context.Context, domain *Domain) error
-	InsertReturningId(ctx context.Context, domain *Domain) (uint64, error)
-	LastInsertedSequence(ctx context.Context) (uint64, error)
-	Update(ctx context.Context, domain *Domain) error
-	Save(ctx context.Context, domain *Domain) error
-	Delete(ctx context.Context, domain *Domain) error
-	Has(ctx context.Context, id uint64) (found bool, err error)
-	// Get returns nil and an error which responds true to ormerrors.IsNotFound() if the record was not found.
-	Get(ctx context.Context, id uint64) (*Domain, error)
-	HasByOrigin(ctx context.Context, origin string) (found bool, err error)
-	// GetByOrigin returns nil and an error which responds true to ormerrors.IsNotFound() if the record was not found.
-	GetByOrigin(ctx context.Context, origin string) (*Domain, error)
-	List(ctx context.Context, prefixKey DomainIndexKey, opts ...ormlist.Option) (DomainIterator, error)
-	ListRange(ctx context.Context, from, to DomainIndexKey, opts ...ormlist.Option) (DomainIterator, error)
-	DeleteBy(ctx context.Context, prefixKey DomainIndexKey) error
-	DeleteRange(ctx context.Context, from, to DomainIndexKey) error
-
-	doNotImplement()
-}
-
-type DomainIterator struct {
-	ormtable.Iterator
-}
-
-func (i DomainIterator) Value() (*Domain, error) {
-	var domain Domain
-	err := i.UnmarshalMessage(&domain)
-	return &domain, err
-}
-
-type DomainIndexKey interface {
-	id() uint32
-	values() []interface{}
-	domainIndexKey()
-}
-
-// primary key starting index..
-type DomainPrimaryKey = DomainIdIndexKey
-
-type DomainIdIndexKey struct {
-	vs []interface{}
-}
-
-func (x DomainIdIndexKey) id() uint32            { return 0 }
-func (x DomainIdIndexKey) values() []interface{} { return x.vs }
-func (x DomainIdIndexKey) domainIndexKey()       {}
-
-func (this DomainIdIndexKey) WithId(id uint64) DomainIdIndexKey {
-	this.vs = []interface{}{id}
-	return this
-}
-
-type DomainOriginIndexKey struct {
-	vs []interface{}
-}
-
-func (x DomainOriginIndexKey) id() uint32            { return 1 }
-func (x DomainOriginIndexKey) values() []interface{} { return x.vs }
-func (x DomainOriginIndexKey) domainIndexKey()       {}
-
-func (this DomainOriginIndexKey) WithOrigin(origin string) DomainOriginIndexKey {
-	this.vs = []interface{}{origin}
-	return this
-}
-
-type domainTable struct {
-	table ormtable.AutoIncrementTable
-}
-
-func (this domainTable) Insert(ctx context.Context, domain *Domain) error {
-	return this.table.Insert(ctx, domain)
-}
-
-func (this domainTable) Update(ctx context.Context, domain *Domain) error {
-	return this.table.Update(ctx, domain)
-}
-
-func (this domainTable) Save(ctx context.Context, domain *Domain) error {
-	return this.table.Save(ctx, domain)
-}
-
-func (this domainTable) Delete(ctx context.Context, domain *Domain) error {
-	return this.table.Delete(ctx, domain)
-}
-
-func (this domainTable) InsertReturningId(ctx context.Context, domain *Domain) (uint64, error) {
-	return this.table.InsertReturningPKey(ctx, domain)
-}
-
-func (this domainTable) LastInsertedSequence(ctx context.Context) (uint64, error) {
-	return this.table.LastInsertedSequence(ctx)
-}
-
-func (this domainTable) Has(ctx context.Context, id uint64) (found bool, err error) {
-	return this.table.PrimaryKey().Has(ctx, id)
-}
-
-func (this domainTable) Get(ctx context.Context, id uint64) (*Domain, error) {
-	var domain Domain
-	found, err := this.table.PrimaryKey().Get(ctx, &domain, id)
-	if err != nil {
-		return nil, err
-	}
-	if !found {
-		return nil, ormerrors.NotFound
-	}
-	return &domain, nil
-}
-
-func (this domainTable) HasByOrigin(ctx context.Context, origin string) (found bool, err error) {
-	return this.table.GetIndexByID(1).(ormtable.UniqueIndex).Has(ctx,
-		origin,
-	)
-}
-
-func (this domainTable) GetByOrigin(ctx context.Context, origin string) (*Domain, error) {
-	var domain Domain
-	found, err := this.table.GetIndexByID(1).(ormtable.UniqueIndex).Get(ctx, &domain,
-		origin,
-	)
-	if err != nil {
-		return nil, err
-	}
-	if !found {
-		return nil, ormerrors.NotFound
-	}
-	return &domain, nil
-}
-
-func (this domainTable) List(ctx context.Context, prefixKey DomainIndexKey, opts ...ormlist.Option) (DomainIterator, error) {
-	it, err := this.table.GetIndexByID(prefixKey.id()).List(ctx, prefixKey.values(), opts...)
-	return DomainIterator{it}, err
-}
-
-func (this domainTable) ListRange(ctx context.Context, from, to DomainIndexKey, opts ...ormlist.Option) (DomainIterator, error) {
-	it, err := this.table.GetIndexByID(from.id()).ListRange(ctx, from.values(), to.values(), opts...)
-	return DomainIterator{it}, err
-}
-
-func (this domainTable) DeleteBy(ctx context.Context, prefixKey DomainIndexKey) error {
-	return this.table.GetIndexByID(prefixKey.id()).DeleteBy(ctx, prefixKey.values()...)
-}
-
-func (this domainTable) DeleteRange(ctx context.Context, from, to DomainIndexKey) error {
-	return this.table.GetIndexByID(from.id()).DeleteRange(ctx, from.values(), to.values())
-}
-
-func (this domainTable) doNotImplement() {}
-
-var _ DomainTable = domainTable{}
-
-func NewDomainTable(db ormtable.Schema) (DomainTable, error) {
-	table := db.GetTable(&Domain{})
-	if table == nil {
-		return nil, ormerrors.TableNotFound.Wrap(string((&Domain{}).ProtoReflect().Descriptor().FullName()))
-	}
-	return domainTable{table.(ormtable.AutoIncrementTable)}, nil
-}
-
-type MetadataTable interface {
-	Insert(ctx context.Context, metadata *Metadata) error
-	Update(ctx context.Context, metadata *Metadata) error
-	Save(ctx context.Context, metadata *Metadata) error
-	Delete(ctx context.Context, metadata *Metadata) error
+type ServiceTable interface {
+	Insert(ctx context.Context, service *Service) error
+	Update(ctx context.Context, service *Service) error
+	Save(ctx context.Context, service *Service) error
+	Delete(ctx context.Context, service *Service) error
 	Has(ctx context.Context, id string) (found bool, err error)
 	// Get returns nil and an error which responds true to ormerrors.IsNotFound() if the record was not found.
-	Get(ctx context.Context, id string) (*Metadata, error)
-	HasBySubjectOrigin(ctx context.Context, subject string, origin string) (found bool, err error)
-	// GetBySubjectOrigin returns nil and an error which responds true to ormerrors.IsNotFound() if the record was not found.
-	GetBySubjectOrigin(ctx context.Context, subject string, origin string) (*Metadata, error)
-	List(ctx context.Context, prefixKey MetadataIndexKey, opts ...ormlist.Option) (MetadataIterator, error)
-	ListRange(ctx context.Context, from, to MetadataIndexKey, opts ...ormlist.Option) (MetadataIterator, error)
-	DeleteBy(ctx context.Context, prefixKey MetadataIndexKey) error
-	DeleteRange(ctx context.Context, from, to MetadataIndexKey) error
+	Get(ctx context.Context, id string) (*Service, error)
+	HasByDomain(ctx context.Context, domain string) (found bool, err error)
+	// GetByDomain returns nil and an error which responds true to ormerrors.IsNotFound() if the record was not found.
+	GetByDomain(ctx context.Context, domain string) (*Service, error)
+	List(ctx context.Context, prefixKey ServiceIndexKey, opts ...ormlist.Option) (ServiceIterator, error)
+	ListRange(ctx context.Context, from, to ServiceIndexKey, opts ...ormlist.Option) (ServiceIterator, error)
+	DeleteBy(ctx context.Context, prefixKey ServiceIndexKey) error
+	DeleteRange(ctx context.Context, from, to ServiceIndexKey) error
 
 	doNotImplement()
 }
 
-type MetadataIterator struct {
+type ServiceIterator struct {
 	ormtable.Iterator
 }
 
-func (i MetadataIterator) Value() (*Metadata, error) {
-	var metadata Metadata
-	err := i.UnmarshalMessage(&metadata)
-	return &metadata, err
+func (i ServiceIterator) Value() (*Service, error) {
+	var service Service
+	err := i.UnmarshalMessage(&service)
+	return &service, err
 }
 
-type MetadataIndexKey interface {
+type ServiceIndexKey interface {
 	id() uint32
 	values() []interface{}
-	metadataIndexKey()
+	serviceIndexKey()
 }
 
 // primary key starting index..
-type MetadataPrimaryKey = MetadataIdIndexKey
+type ServicePrimaryKey = ServiceIdIndexKey
 
-type MetadataIdIndexKey struct {
+type ServiceIdIndexKey struct {
 	vs []interface{}
 }
 
-func (x MetadataIdIndexKey) id() uint32            { return 0 }
-func (x MetadataIdIndexKey) values() []interface{} { return x.vs }
-func (x MetadataIdIndexKey) metadataIndexKey()     {}
+func (x ServiceIdIndexKey) id() uint32            { return 0 }
+func (x ServiceIdIndexKey) values() []interface{} { return x.vs }
+func (x ServiceIdIndexKey) serviceIndexKey()      {}
 
-func (this MetadataIdIndexKey) WithId(id string) MetadataIdIndexKey {
+func (this ServiceIdIndexKey) WithId(id string) ServiceIdIndexKey {
 	this.vs = []interface{}{id}
 	return this
 }
 
-type MetadataSubjectOriginIndexKey struct {
+type ServiceDomainIndexKey struct {
 	vs []interface{}
 }
 
-func (x MetadataSubjectOriginIndexKey) id() uint32            { return 1 }
-func (x MetadataSubjectOriginIndexKey) values() []interface{} { return x.vs }
-func (x MetadataSubjectOriginIndexKey) metadataIndexKey()     {}
+func (x ServiceDomainIndexKey) id() uint32            { return 1 }
+func (x ServiceDomainIndexKey) values() []interface{} { return x.vs }
+func (x ServiceDomainIndexKey) serviceIndexKey()      {}
 
-func (this MetadataSubjectOriginIndexKey) WithSubject(subject string) MetadataSubjectOriginIndexKey {
-	this.vs = []interface{}{subject}
+func (this ServiceDomainIndexKey) WithDomain(domain string) ServiceDomainIndexKey {
+	this.vs = []interface{}{domain}
 	return this
 }
 
-func (this MetadataSubjectOriginIndexKey) WithSubjectOrigin(subject string, origin string) MetadataSubjectOriginIndexKey {
-	this.vs = []interface{}{subject, origin}
+type ServiceOwnerIndexKey struct {
+	vs []interface{}
+}
+
+func (x ServiceOwnerIndexKey) id() uint32            { return 2 }
+func (x ServiceOwnerIndexKey) values() []interface{} { return x.vs }
+func (x ServiceOwnerIndexKey) serviceIndexKey()      {}
+
+func (this ServiceOwnerIndexKey) WithOwner(owner string) ServiceOwnerIndexKey {
+	this.vs = []interface{}{owner}
 	return this
 }
 
-type metadataTable struct {
+type ServiceStatusIndexKey struct {
+	vs []interface{}
+}
+
+func (x ServiceStatusIndexKey) id() uint32            { return 3 }
+func (x ServiceStatusIndexKey) values() []interface{} { return x.vs }
+func (x ServiceStatusIndexKey) serviceIndexKey()      {}
+
+func (this ServiceStatusIndexKey) WithStatus(status ServiceStatus) ServiceStatusIndexKey {
+	this.vs = []interface{}{status}
+	return this
+}
+
+type serviceTable struct {
 	table ormtable.Table
 }
 
-func (this metadataTable) Insert(ctx context.Context, metadata *Metadata) error {
-	return this.table.Insert(ctx, metadata)
+func (this serviceTable) Insert(ctx context.Context, service *Service) error {
+	return this.table.Insert(ctx, service)
 }
 
-func (this metadataTable) Update(ctx context.Context, metadata *Metadata) error {
-	return this.table.Update(ctx, metadata)
+func (this serviceTable) Update(ctx context.Context, service *Service) error {
+	return this.table.Update(ctx, service)
 }
 
-func (this metadataTable) Save(ctx context.Context, metadata *Metadata) error {
-	return this.table.Save(ctx, metadata)
+func (this serviceTable) Save(ctx context.Context, service *Service) error {
+	return this.table.Save(ctx, service)
 }
 
-func (this metadataTable) Delete(ctx context.Context, metadata *Metadata) error {
-	return this.table.Delete(ctx, metadata)
+func (this serviceTable) Delete(ctx context.Context, service *Service) error {
+	return this.table.Delete(ctx, service)
 }
 
-func (this metadataTable) Has(ctx context.Context, id string) (found bool, err error) {
+func (this serviceTable) Has(ctx context.Context, id string) (found bool, err error) {
 	return this.table.PrimaryKey().Has(ctx, id)
 }
 
-func (this metadataTable) Get(ctx context.Context, id string) (*Metadata, error) {
-	var metadata Metadata
-	found, err := this.table.PrimaryKey().Get(ctx, &metadata, id)
+func (this serviceTable) Get(ctx context.Context, id string) (*Service, error) {
+	var service Service
+	found, err := this.table.PrimaryKey().Get(ctx, &service, id)
 	if err != nil {
 		return nil, err
 	}
 	if !found {
 		return nil, ormerrors.NotFound
 	}
-	return &metadata, nil
+	return &service, nil
 }
 
-func (this metadataTable) HasBySubjectOrigin(ctx context.Context, subject string, origin string) (found bool, err error) {
+func (this serviceTable) HasByDomain(ctx context.Context, domain string) (found bool, err error) {
 	return this.table.GetIndexByID(1).(ormtable.UniqueIndex).Has(ctx,
-		subject,
-		origin,
+		domain,
 	)
 }
 
-func (this metadataTable) GetBySubjectOrigin(ctx context.Context, subject string, origin string) (*Metadata, error) {
-	var metadata Metadata
-	found, err := this.table.GetIndexByID(1).(ormtable.UniqueIndex).Get(ctx, &metadata,
-		subject,
-		origin,
+func (this serviceTable) GetByDomain(ctx context.Context, domain string) (*Service, error) {
+	var service Service
+	found, err := this.table.GetIndexByID(1).(ormtable.UniqueIndex).Get(ctx, &service,
+		domain,
 	)
 	if err != nil {
 		return nil, err
@@ -293,57 +153,778 @@ func (this metadataTable) GetBySubjectOrigin(ctx context.Context, subject string
 	if !found {
 		return nil, ormerrors.NotFound
 	}
-	return &metadata, nil
+	return &service, nil
 }
 
-func (this metadataTable) List(ctx context.Context, prefixKey MetadataIndexKey, opts ...ormlist.Option) (MetadataIterator, error) {
+func (this serviceTable) List(ctx context.Context, prefixKey ServiceIndexKey, opts ...ormlist.Option) (ServiceIterator, error) {
 	it, err := this.table.GetIndexByID(prefixKey.id()).List(ctx, prefixKey.values(), opts...)
-	return MetadataIterator{it}, err
+	return ServiceIterator{it}, err
 }
 
-func (this metadataTable) ListRange(ctx context.Context, from, to MetadataIndexKey, opts ...ormlist.Option) (MetadataIterator, error) {
+func (this serviceTable) ListRange(ctx context.Context, from, to ServiceIndexKey, opts ...ormlist.Option) (ServiceIterator, error) {
 	it, err := this.table.GetIndexByID(from.id()).ListRange(ctx, from.values(), to.values(), opts...)
-	return MetadataIterator{it}, err
+	return ServiceIterator{it}, err
 }
 
-func (this metadataTable) DeleteBy(ctx context.Context, prefixKey MetadataIndexKey) error {
+func (this serviceTable) DeleteBy(ctx context.Context, prefixKey ServiceIndexKey) error {
 	return this.table.GetIndexByID(prefixKey.id()).DeleteBy(ctx, prefixKey.values()...)
 }
 
-func (this metadataTable) DeleteRange(ctx context.Context, from, to MetadataIndexKey) error {
+func (this serviceTable) DeleteRange(ctx context.Context, from, to ServiceIndexKey) error {
 	return this.table.GetIndexByID(from.id()).DeleteRange(ctx, from.values(), to.values())
 }
 
-func (this metadataTable) doNotImplement() {}
+func (this serviceTable) doNotImplement() {}
 
-var _ MetadataTable = metadataTable{}
+var _ ServiceTable = serviceTable{}
 
-func NewMetadataTable(db ormtable.Schema) (MetadataTable, error) {
-	table := db.GetTable(&Metadata{})
+func NewServiceTable(db ormtable.Schema) (ServiceTable, error) {
+	table := db.GetTable(&Service{})
 	if table == nil {
-		return nil, ormerrors.TableNotFound.Wrap(string((&Metadata{}).ProtoReflect().Descriptor().FullName()))
+		return nil, ormerrors.TableNotFound.Wrap(string((&Service{}).ProtoReflect().Descriptor().FullName()))
 	}
-	return metadataTable{table}, nil
+	return serviceTable{table}, nil
+}
+
+type DomainVerificationTable interface {
+	Insert(ctx context.Context, domainVerification *DomainVerification) error
+	Update(ctx context.Context, domainVerification *DomainVerification) error
+	Save(ctx context.Context, domainVerification *DomainVerification) error
+	Delete(ctx context.Context, domainVerification *DomainVerification) error
+	Has(ctx context.Context, domain string) (found bool, err error)
+	// Get returns nil and an error which responds true to ormerrors.IsNotFound() if the record was not found.
+	Get(ctx context.Context, domain string) (*DomainVerification, error)
+	List(ctx context.Context, prefixKey DomainVerificationIndexKey, opts ...ormlist.Option) (DomainVerificationIterator, error)
+	ListRange(ctx context.Context, from, to DomainVerificationIndexKey, opts ...ormlist.Option) (DomainVerificationIterator, error)
+	DeleteBy(ctx context.Context, prefixKey DomainVerificationIndexKey) error
+	DeleteRange(ctx context.Context, from, to DomainVerificationIndexKey) error
+
+	doNotImplement()
+}
+
+type DomainVerificationIterator struct {
+	ormtable.Iterator
+}
+
+func (i DomainVerificationIterator) Value() (*DomainVerification, error) {
+	var domainVerification DomainVerification
+	err := i.UnmarshalMessage(&domainVerification)
+	return &domainVerification, err
+}
+
+type DomainVerificationIndexKey interface {
+	id() uint32
+	values() []interface{}
+	domainVerificationIndexKey()
+}
+
+// primary key starting index..
+type DomainVerificationPrimaryKey = DomainVerificationDomainIndexKey
+
+type DomainVerificationDomainIndexKey struct {
+	vs []interface{}
+}
+
+func (x DomainVerificationDomainIndexKey) id() uint32                  { return 0 }
+func (x DomainVerificationDomainIndexKey) values() []interface{}       { return x.vs }
+func (x DomainVerificationDomainIndexKey) domainVerificationIndexKey() {}
+
+func (this DomainVerificationDomainIndexKey) WithDomain(domain string) DomainVerificationDomainIndexKey {
+	this.vs = []interface{}{domain}
+	return this
+}
+
+type DomainVerificationOwnerIndexKey struct {
+	vs []interface{}
+}
+
+func (x DomainVerificationOwnerIndexKey) id() uint32                  { return 1 }
+func (x DomainVerificationOwnerIndexKey) values() []interface{}       { return x.vs }
+func (x DomainVerificationOwnerIndexKey) domainVerificationIndexKey() {}
+
+func (this DomainVerificationOwnerIndexKey) WithOwner(owner string) DomainVerificationOwnerIndexKey {
+	this.vs = []interface{}{owner}
+	return this
+}
+
+type DomainVerificationStatusIndexKey struct {
+	vs []interface{}
+}
+
+func (x DomainVerificationStatusIndexKey) id() uint32                  { return 2 }
+func (x DomainVerificationStatusIndexKey) values() []interface{}       { return x.vs }
+func (x DomainVerificationStatusIndexKey) domainVerificationIndexKey() {}
+
+func (this DomainVerificationStatusIndexKey) WithStatus(status DomainVerificationStatus) DomainVerificationStatusIndexKey {
+	this.vs = []interface{}{status}
+	return this
+}
+
+type domainVerificationTable struct {
+	table ormtable.Table
+}
+
+func (this domainVerificationTable) Insert(ctx context.Context, domainVerification *DomainVerification) error {
+	return this.table.Insert(ctx, domainVerification)
+}
+
+func (this domainVerificationTable) Update(ctx context.Context, domainVerification *DomainVerification) error {
+	return this.table.Update(ctx, domainVerification)
+}
+
+func (this domainVerificationTable) Save(ctx context.Context, domainVerification *DomainVerification) error {
+	return this.table.Save(ctx, domainVerification)
+}
+
+func (this domainVerificationTable) Delete(ctx context.Context, domainVerification *DomainVerification) error {
+	return this.table.Delete(ctx, domainVerification)
+}
+
+func (this domainVerificationTable) Has(ctx context.Context, domain string) (found bool, err error) {
+	return this.table.PrimaryKey().Has(ctx, domain)
+}
+
+func (this domainVerificationTable) Get(ctx context.Context, domain string) (*DomainVerification, error) {
+	var domainVerification DomainVerification
+	found, err := this.table.PrimaryKey().Get(ctx, &domainVerification, domain)
+	if err != nil {
+		return nil, err
+	}
+	if !found {
+		return nil, ormerrors.NotFound
+	}
+	return &domainVerification, nil
+}
+
+func (this domainVerificationTable) List(ctx context.Context, prefixKey DomainVerificationIndexKey, opts ...ormlist.Option) (DomainVerificationIterator, error) {
+	it, err := this.table.GetIndexByID(prefixKey.id()).List(ctx, prefixKey.values(), opts...)
+	return DomainVerificationIterator{it}, err
+}
+
+func (this domainVerificationTable) ListRange(ctx context.Context, from, to DomainVerificationIndexKey, opts ...ormlist.Option) (DomainVerificationIterator, error) {
+	it, err := this.table.GetIndexByID(from.id()).ListRange(ctx, from.values(), to.values(), opts...)
+	return DomainVerificationIterator{it}, err
+}
+
+func (this domainVerificationTable) DeleteBy(ctx context.Context, prefixKey DomainVerificationIndexKey) error {
+	return this.table.GetIndexByID(prefixKey.id()).DeleteBy(ctx, prefixKey.values()...)
+}
+
+func (this domainVerificationTable) DeleteRange(ctx context.Context, from, to DomainVerificationIndexKey) error {
+	return this.table.GetIndexByID(from.id()).DeleteRange(ctx, from.values(), to.values())
+}
+
+func (this domainVerificationTable) doNotImplement() {}
+
+var _ DomainVerificationTable = domainVerificationTable{}
+
+func NewDomainVerificationTable(db ormtable.Schema) (DomainVerificationTable, error) {
+	table := db.GetTable(&DomainVerification{})
+	if table == nil {
+		return nil, ormerrors.TableNotFound.Wrap(string((&DomainVerification{}).ProtoReflect().Descriptor().FullName()))
+	}
+	return domainVerificationTable{table}, nil
+}
+
+type ServiceCapabilityTable interface {
+	Insert(ctx context.Context, serviceCapability *ServiceCapability) error
+	Update(ctx context.Context, serviceCapability *ServiceCapability) error
+	Save(ctx context.Context, serviceCapability *ServiceCapability) error
+	Delete(ctx context.Context, serviceCapability *ServiceCapability) error
+	Has(ctx context.Context, capability_id string) (found bool, err error)
+	// Get returns nil and an error which responds true to ormerrors.IsNotFound() if the record was not found.
+	Get(ctx context.Context, capability_id string) (*ServiceCapability, error)
+	List(ctx context.Context, prefixKey ServiceCapabilityIndexKey, opts ...ormlist.Option) (ServiceCapabilityIterator, error)
+	ListRange(ctx context.Context, from, to ServiceCapabilityIndexKey, opts ...ormlist.Option) (ServiceCapabilityIterator, error)
+	DeleteBy(ctx context.Context, prefixKey ServiceCapabilityIndexKey) error
+	DeleteRange(ctx context.Context, from, to ServiceCapabilityIndexKey) error
+
+	doNotImplement()
+}
+
+type ServiceCapabilityIterator struct {
+	ormtable.Iterator
+}
+
+func (i ServiceCapabilityIterator) Value() (*ServiceCapability, error) {
+	var serviceCapability ServiceCapability
+	err := i.UnmarshalMessage(&serviceCapability)
+	return &serviceCapability, err
+}
+
+type ServiceCapabilityIndexKey interface {
+	id() uint32
+	values() []interface{}
+	serviceCapabilityIndexKey()
+}
+
+// primary key starting index..
+type ServiceCapabilityPrimaryKey = ServiceCapabilityCapabilityIdIndexKey
+
+type ServiceCapabilityCapabilityIdIndexKey struct {
+	vs []interface{}
+}
+
+func (x ServiceCapabilityCapabilityIdIndexKey) id() uint32                 { return 0 }
+func (x ServiceCapabilityCapabilityIdIndexKey) values() []interface{}      { return x.vs }
+func (x ServiceCapabilityCapabilityIdIndexKey) serviceCapabilityIndexKey() {}
+
+func (this ServiceCapabilityCapabilityIdIndexKey) WithCapabilityId(capability_id string) ServiceCapabilityCapabilityIdIndexKey {
+	this.vs = []interface{}{capability_id}
+	return this
+}
+
+type ServiceCapabilityServiceIdIndexKey struct {
+	vs []interface{}
+}
+
+func (x ServiceCapabilityServiceIdIndexKey) id() uint32                 { return 1 }
+func (x ServiceCapabilityServiceIdIndexKey) values() []interface{}      { return x.vs }
+func (x ServiceCapabilityServiceIdIndexKey) serviceCapabilityIndexKey() {}
+
+func (this ServiceCapabilityServiceIdIndexKey) WithServiceId(service_id string) ServiceCapabilityServiceIdIndexKey {
+	this.vs = []interface{}{service_id}
+	return this
+}
+
+type ServiceCapabilityOwnerIndexKey struct {
+	vs []interface{}
+}
+
+func (x ServiceCapabilityOwnerIndexKey) id() uint32                 { return 2 }
+func (x ServiceCapabilityOwnerIndexKey) values() []interface{}      { return x.vs }
+func (x ServiceCapabilityOwnerIndexKey) serviceCapabilityIndexKey() {}
+
+func (this ServiceCapabilityOwnerIndexKey) WithOwner(owner string) ServiceCapabilityOwnerIndexKey {
+	this.vs = []interface{}{owner}
+	return this
+}
+
+type ServiceCapabilityRevokedIndexKey struct {
+	vs []interface{}
+}
+
+func (x ServiceCapabilityRevokedIndexKey) id() uint32                 { return 3 }
+func (x ServiceCapabilityRevokedIndexKey) values() []interface{}      { return x.vs }
+func (x ServiceCapabilityRevokedIndexKey) serviceCapabilityIndexKey() {}
+
+func (this ServiceCapabilityRevokedIndexKey) WithRevoked(revoked bool) ServiceCapabilityRevokedIndexKey {
+	this.vs = []interface{}{revoked}
+	return this
+}
+
+type serviceCapabilityTable struct {
+	table ormtable.Table
+}
+
+func (this serviceCapabilityTable) Insert(ctx context.Context, serviceCapability *ServiceCapability) error {
+	return this.table.Insert(ctx, serviceCapability)
+}
+
+func (this serviceCapabilityTable) Update(ctx context.Context, serviceCapability *ServiceCapability) error {
+	return this.table.Update(ctx, serviceCapability)
+}
+
+func (this serviceCapabilityTable) Save(ctx context.Context, serviceCapability *ServiceCapability) error {
+	return this.table.Save(ctx, serviceCapability)
+}
+
+func (this serviceCapabilityTable) Delete(ctx context.Context, serviceCapability *ServiceCapability) error {
+	return this.table.Delete(ctx, serviceCapability)
+}
+
+func (this serviceCapabilityTable) Has(ctx context.Context, capability_id string) (found bool, err error) {
+	return this.table.PrimaryKey().Has(ctx, capability_id)
+}
+
+func (this serviceCapabilityTable) Get(ctx context.Context, capability_id string) (*ServiceCapability, error) {
+	var serviceCapability ServiceCapability
+	found, err := this.table.PrimaryKey().Get(ctx, &serviceCapability, capability_id)
+	if err != nil {
+		return nil, err
+	}
+	if !found {
+		return nil, ormerrors.NotFound
+	}
+	return &serviceCapability, nil
+}
+
+func (this serviceCapabilityTable) List(ctx context.Context, prefixKey ServiceCapabilityIndexKey, opts ...ormlist.Option) (ServiceCapabilityIterator, error) {
+	it, err := this.table.GetIndexByID(prefixKey.id()).List(ctx, prefixKey.values(), opts...)
+	return ServiceCapabilityIterator{it}, err
+}
+
+func (this serviceCapabilityTable) ListRange(ctx context.Context, from, to ServiceCapabilityIndexKey, opts ...ormlist.Option) (ServiceCapabilityIterator, error) {
+	it, err := this.table.GetIndexByID(from.id()).ListRange(ctx, from.values(), to.values(), opts...)
+	return ServiceCapabilityIterator{it}, err
+}
+
+func (this serviceCapabilityTable) DeleteBy(ctx context.Context, prefixKey ServiceCapabilityIndexKey) error {
+	return this.table.GetIndexByID(prefixKey.id()).DeleteBy(ctx, prefixKey.values()...)
+}
+
+func (this serviceCapabilityTable) DeleteRange(ctx context.Context, from, to ServiceCapabilityIndexKey) error {
+	return this.table.GetIndexByID(from.id()).DeleteRange(ctx, from.values(), to.values())
+}
+
+func (this serviceCapabilityTable) doNotImplement() {}
+
+var _ ServiceCapabilityTable = serviceCapabilityTable{}
+
+func NewServiceCapabilityTable(db ormtable.Schema) (ServiceCapabilityTable, error) {
+	table := db.GetTable(&ServiceCapability{})
+	if table == nil {
+		return nil, ormerrors.TableNotFound.Wrap(string((&ServiceCapability{}).ProtoReflect().Descriptor().FullName()))
+	}
+	return serviceCapabilityTable{table}, nil
+}
+
+type ServiceResourceTable interface {
+	Insert(ctx context.Context, serviceResource *ServiceResource) error
+	Update(ctx context.Context, serviceResource *ServiceResource) error
+	Save(ctx context.Context, serviceResource *ServiceResource) error
+	Delete(ctx context.Context, serviceResource *ServiceResource) error
+	Has(ctx context.Context, resource_id string) (found bool, err error)
+	// Get returns nil and an error which responds true to ormerrors.IsNotFound() if the record was not found.
+	Get(ctx context.Context, resource_id string) (*ServiceResource, error)
+	List(ctx context.Context, prefixKey ServiceResourceIndexKey, opts ...ormlist.Option) (ServiceResourceIterator, error)
+	ListRange(ctx context.Context, from, to ServiceResourceIndexKey, opts ...ormlist.Option) (ServiceResourceIterator, error)
+	DeleteBy(ctx context.Context, prefixKey ServiceResourceIndexKey) error
+	DeleteRange(ctx context.Context, from, to ServiceResourceIndexKey) error
+
+	doNotImplement()
+}
+
+type ServiceResourceIterator struct {
+	ormtable.Iterator
+}
+
+func (i ServiceResourceIterator) Value() (*ServiceResource, error) {
+	var serviceResource ServiceResource
+	err := i.UnmarshalMessage(&serviceResource)
+	return &serviceResource, err
+}
+
+type ServiceResourceIndexKey interface {
+	id() uint32
+	values() []interface{}
+	serviceResourceIndexKey()
+}
+
+// primary key starting index..
+type ServiceResourcePrimaryKey = ServiceResourceResourceIdIndexKey
+
+type ServiceResourceResourceIdIndexKey struct {
+	vs []interface{}
+}
+
+func (x ServiceResourceResourceIdIndexKey) id() uint32               { return 0 }
+func (x ServiceResourceResourceIdIndexKey) values() []interface{}    { return x.vs }
+func (x ServiceResourceResourceIdIndexKey) serviceResourceIndexKey() {}
+
+func (this ServiceResourceResourceIdIndexKey) WithResourceId(resource_id string) ServiceResourceResourceIdIndexKey {
+	this.vs = []interface{}{resource_id}
+	return this
+}
+
+type ServiceResourceServiceIdIndexKey struct {
+	vs []interface{}
+}
+
+func (x ServiceResourceServiceIdIndexKey) id() uint32               { return 1 }
+func (x ServiceResourceServiceIdIndexKey) values() []interface{}    { return x.vs }
+func (x ServiceResourceServiceIdIndexKey) serviceResourceIndexKey() {}
+
+func (this ServiceResourceServiceIdIndexKey) WithServiceId(service_id string) ServiceResourceServiceIdIndexKey {
+	this.vs = []interface{}{service_id}
+	return this
+}
+
+type ServiceResourceResourceTypeIndexKey struct {
+	vs []interface{}
+}
+
+func (x ServiceResourceResourceTypeIndexKey) id() uint32               { return 2 }
+func (x ServiceResourceResourceTypeIndexKey) values() []interface{}    { return x.vs }
+func (x ServiceResourceResourceTypeIndexKey) serviceResourceIndexKey() {}
+
+func (this ServiceResourceResourceTypeIndexKey) WithResourceType(resource_type string) ServiceResourceResourceTypeIndexKey {
+	this.vs = []interface{}{resource_type}
+	return this
+}
+
+type serviceResourceTable struct {
+	table ormtable.Table
+}
+
+func (this serviceResourceTable) Insert(ctx context.Context, serviceResource *ServiceResource) error {
+	return this.table.Insert(ctx, serviceResource)
+}
+
+func (this serviceResourceTable) Update(ctx context.Context, serviceResource *ServiceResource) error {
+	return this.table.Update(ctx, serviceResource)
+}
+
+func (this serviceResourceTable) Save(ctx context.Context, serviceResource *ServiceResource) error {
+	return this.table.Save(ctx, serviceResource)
+}
+
+func (this serviceResourceTable) Delete(ctx context.Context, serviceResource *ServiceResource) error {
+	return this.table.Delete(ctx, serviceResource)
+}
+
+func (this serviceResourceTable) Has(ctx context.Context, resource_id string) (found bool, err error) {
+	return this.table.PrimaryKey().Has(ctx, resource_id)
+}
+
+func (this serviceResourceTable) Get(ctx context.Context, resource_id string) (*ServiceResource, error) {
+	var serviceResource ServiceResource
+	found, err := this.table.PrimaryKey().Get(ctx, &serviceResource, resource_id)
+	if err != nil {
+		return nil, err
+	}
+	if !found {
+		return nil, ormerrors.NotFound
+	}
+	return &serviceResource, nil
+}
+
+func (this serviceResourceTable) List(ctx context.Context, prefixKey ServiceResourceIndexKey, opts ...ormlist.Option) (ServiceResourceIterator, error) {
+	it, err := this.table.GetIndexByID(prefixKey.id()).List(ctx, prefixKey.values(), opts...)
+	return ServiceResourceIterator{it}, err
+}
+
+func (this serviceResourceTable) ListRange(ctx context.Context, from, to ServiceResourceIndexKey, opts ...ormlist.Option) (ServiceResourceIterator, error) {
+	it, err := this.table.GetIndexByID(from.id()).ListRange(ctx, from.values(), to.values(), opts...)
+	return ServiceResourceIterator{it}, err
+}
+
+func (this serviceResourceTable) DeleteBy(ctx context.Context, prefixKey ServiceResourceIndexKey) error {
+	return this.table.GetIndexByID(prefixKey.id()).DeleteBy(ctx, prefixKey.values()...)
+}
+
+func (this serviceResourceTable) DeleteRange(ctx context.Context, from, to ServiceResourceIndexKey) error {
+	return this.table.GetIndexByID(from.id()).DeleteRange(ctx, from.values(), to.values())
+}
+
+func (this serviceResourceTable) doNotImplement() {}
+
+var _ ServiceResourceTable = serviceResourceTable{}
+
+func NewServiceResourceTable(db ormtable.Schema) (ServiceResourceTable, error) {
+	table := db.GetTable(&ServiceResource{})
+	if table == nil {
+		return nil, ormerrors.TableNotFound.Wrap(string((&ServiceResource{}).ProtoReflect().Descriptor().FullName()))
+	}
+	return serviceResourceTable{table}, nil
+}
+
+type ServiceOIDCConfigTable interface {
+	Insert(ctx context.Context, serviceOIDCConfig *ServiceOIDCConfig) error
+	Update(ctx context.Context, serviceOIDCConfig *ServiceOIDCConfig) error
+	Save(ctx context.Context, serviceOIDCConfig *ServiceOIDCConfig) error
+	Delete(ctx context.Context, serviceOIDCConfig *ServiceOIDCConfig) error
+	Has(ctx context.Context, service_id string) (found bool, err error)
+	// Get returns nil and an error which responds true to ormerrors.IsNotFound() if the record was not found.
+	Get(ctx context.Context, service_id string) (*ServiceOIDCConfig, error)
+	HasByIssuer(ctx context.Context, issuer string) (found bool, err error)
+	// GetByIssuer returns nil and an error which responds true to ormerrors.IsNotFound() if the record was not found.
+	GetByIssuer(ctx context.Context, issuer string) (*ServiceOIDCConfig, error)
+	List(ctx context.Context, prefixKey ServiceOIDCConfigIndexKey, opts ...ormlist.Option) (ServiceOIDCConfigIterator, error)
+	ListRange(ctx context.Context, from, to ServiceOIDCConfigIndexKey, opts ...ormlist.Option) (ServiceOIDCConfigIterator, error)
+	DeleteBy(ctx context.Context, prefixKey ServiceOIDCConfigIndexKey) error
+	DeleteRange(ctx context.Context, from, to ServiceOIDCConfigIndexKey) error
+
+	doNotImplement()
+}
+
+type ServiceOIDCConfigIterator struct {
+	ormtable.Iterator
+}
+
+func (i ServiceOIDCConfigIterator) Value() (*ServiceOIDCConfig, error) {
+	var serviceOIDCConfig ServiceOIDCConfig
+	err := i.UnmarshalMessage(&serviceOIDCConfig)
+	return &serviceOIDCConfig, err
+}
+
+type ServiceOIDCConfigIndexKey interface {
+	id() uint32
+	values() []interface{}
+	serviceOIDCConfigIndexKey()
+}
+
+// primary key starting index..
+type ServiceOIDCConfigPrimaryKey = ServiceOIDCConfigServiceIdIndexKey
+
+type ServiceOIDCConfigServiceIdIndexKey struct {
+	vs []interface{}
+}
+
+func (x ServiceOIDCConfigServiceIdIndexKey) id() uint32                 { return 0 }
+func (x ServiceOIDCConfigServiceIdIndexKey) values() []interface{}      { return x.vs }
+func (x ServiceOIDCConfigServiceIdIndexKey) serviceOIDCConfigIndexKey() {}
+
+func (this ServiceOIDCConfigServiceIdIndexKey) WithServiceId(service_id string) ServiceOIDCConfigServiceIdIndexKey {
+	this.vs = []interface{}{service_id}
+	return this
+}
+
+type ServiceOIDCConfigIssuerIndexKey struct {
+	vs []interface{}
+}
+
+func (x ServiceOIDCConfigIssuerIndexKey) id() uint32                 { return 1 }
+func (x ServiceOIDCConfigIssuerIndexKey) values() []interface{}      { return x.vs }
+func (x ServiceOIDCConfigIssuerIndexKey) serviceOIDCConfigIndexKey() {}
+
+func (this ServiceOIDCConfigIssuerIndexKey) WithIssuer(issuer string) ServiceOIDCConfigIssuerIndexKey {
+	this.vs = []interface{}{issuer}
+	return this
+}
+
+type serviceOIDCConfigTable struct {
+	table ormtable.Table
+}
+
+func (this serviceOIDCConfigTable) Insert(ctx context.Context, serviceOIDCConfig *ServiceOIDCConfig) error {
+	return this.table.Insert(ctx, serviceOIDCConfig)
+}
+
+func (this serviceOIDCConfigTable) Update(ctx context.Context, serviceOIDCConfig *ServiceOIDCConfig) error {
+	return this.table.Update(ctx, serviceOIDCConfig)
+}
+
+func (this serviceOIDCConfigTable) Save(ctx context.Context, serviceOIDCConfig *ServiceOIDCConfig) error {
+	return this.table.Save(ctx, serviceOIDCConfig)
+}
+
+func (this serviceOIDCConfigTable) Delete(ctx context.Context, serviceOIDCConfig *ServiceOIDCConfig) error {
+	return this.table.Delete(ctx, serviceOIDCConfig)
+}
+
+func (this serviceOIDCConfigTable) Has(ctx context.Context, service_id string) (found bool, err error) {
+	return this.table.PrimaryKey().Has(ctx, service_id)
+}
+
+func (this serviceOIDCConfigTable) Get(ctx context.Context, service_id string) (*ServiceOIDCConfig, error) {
+	var serviceOIDCConfig ServiceOIDCConfig
+	found, err := this.table.PrimaryKey().Get(ctx, &serviceOIDCConfig, service_id)
+	if err != nil {
+		return nil, err
+	}
+	if !found {
+		return nil, ormerrors.NotFound
+	}
+	return &serviceOIDCConfig, nil
+}
+
+func (this serviceOIDCConfigTable) HasByIssuer(ctx context.Context, issuer string) (found bool, err error) {
+	return this.table.GetIndexByID(1).(ormtable.UniqueIndex).Has(ctx,
+		issuer,
+	)
+}
+
+func (this serviceOIDCConfigTable) GetByIssuer(ctx context.Context, issuer string) (*ServiceOIDCConfig, error) {
+	var serviceOIDCConfig ServiceOIDCConfig
+	found, err := this.table.GetIndexByID(1).(ormtable.UniqueIndex).Get(ctx, &serviceOIDCConfig,
+		issuer,
+	)
+	if err != nil {
+		return nil, err
+	}
+	if !found {
+		return nil, ormerrors.NotFound
+	}
+	return &serviceOIDCConfig, nil
+}
+
+func (this serviceOIDCConfigTable) List(ctx context.Context, prefixKey ServiceOIDCConfigIndexKey, opts ...ormlist.Option) (ServiceOIDCConfigIterator, error) {
+	it, err := this.table.GetIndexByID(prefixKey.id()).List(ctx, prefixKey.values(), opts...)
+	return ServiceOIDCConfigIterator{it}, err
+}
+
+func (this serviceOIDCConfigTable) ListRange(ctx context.Context, from, to ServiceOIDCConfigIndexKey, opts ...ormlist.Option) (ServiceOIDCConfigIterator, error) {
+	it, err := this.table.GetIndexByID(from.id()).ListRange(ctx, from.values(), to.values(), opts...)
+	return ServiceOIDCConfigIterator{it}, err
+}
+
+func (this serviceOIDCConfigTable) DeleteBy(ctx context.Context, prefixKey ServiceOIDCConfigIndexKey) error {
+	return this.table.GetIndexByID(prefixKey.id()).DeleteBy(ctx, prefixKey.values()...)
+}
+
+func (this serviceOIDCConfigTable) DeleteRange(ctx context.Context, from, to ServiceOIDCConfigIndexKey) error {
+	return this.table.GetIndexByID(from.id()).DeleteRange(ctx, from.values(), to.values())
+}
+
+func (this serviceOIDCConfigTable) doNotImplement() {}
+
+var _ ServiceOIDCConfigTable = serviceOIDCConfigTable{}
+
+func NewServiceOIDCConfigTable(db ormtable.Schema) (ServiceOIDCConfigTable, error) {
+	table := db.GetTable(&ServiceOIDCConfig{})
+	if table == nil {
+		return nil, ormerrors.TableNotFound.Wrap(string((&ServiceOIDCConfig{}).ProtoReflect().Descriptor().FullName()))
+	}
+	return serviceOIDCConfigTable{table}, nil
+}
+
+type ServiceJWKSTable interface {
+	Insert(ctx context.Context, serviceJWKS *ServiceJWKS) error
+	Update(ctx context.Context, serviceJWKS *ServiceJWKS) error
+	Save(ctx context.Context, serviceJWKS *ServiceJWKS) error
+	Delete(ctx context.Context, serviceJWKS *ServiceJWKS) error
+	Has(ctx context.Context, service_id string) (found bool, err error)
+	// Get returns nil and an error which responds true to ormerrors.IsNotFound() if the record was not found.
+	Get(ctx context.Context, service_id string) (*ServiceJWKS, error)
+	List(ctx context.Context, prefixKey ServiceJWKSIndexKey, opts ...ormlist.Option) (ServiceJWKSIterator, error)
+	ListRange(ctx context.Context, from, to ServiceJWKSIndexKey, opts ...ormlist.Option) (ServiceJWKSIterator, error)
+	DeleteBy(ctx context.Context, prefixKey ServiceJWKSIndexKey) error
+	DeleteRange(ctx context.Context, from, to ServiceJWKSIndexKey) error
+
+	doNotImplement()
+}
+
+type ServiceJWKSIterator struct {
+	ormtable.Iterator
+}
+
+func (i ServiceJWKSIterator) Value() (*ServiceJWKS, error) {
+	var serviceJWKS ServiceJWKS
+	err := i.UnmarshalMessage(&serviceJWKS)
+	return &serviceJWKS, err
+}
+
+type ServiceJWKSIndexKey interface {
+	id() uint32
+	values() []interface{}
+	serviceJWKSIndexKey()
+}
+
+// primary key starting index..
+type ServiceJWKSPrimaryKey = ServiceJWKSServiceIdIndexKey
+
+type ServiceJWKSServiceIdIndexKey struct {
+	vs []interface{}
+}
+
+func (x ServiceJWKSServiceIdIndexKey) id() uint32            { return 0 }
+func (x ServiceJWKSServiceIdIndexKey) values() []interface{} { return x.vs }
+func (x ServiceJWKSServiceIdIndexKey) serviceJWKSIndexKey()  {}
+
+func (this ServiceJWKSServiceIdIndexKey) WithServiceId(service_id string) ServiceJWKSServiceIdIndexKey {
+	this.vs = []interface{}{service_id}
+	return this
+}
+
+type serviceJWKSTable struct {
+	table ormtable.Table
+}
+
+func (this serviceJWKSTable) Insert(ctx context.Context, serviceJWKS *ServiceJWKS) error {
+	return this.table.Insert(ctx, serviceJWKS)
+}
+
+func (this serviceJWKSTable) Update(ctx context.Context, serviceJWKS *ServiceJWKS) error {
+	return this.table.Update(ctx, serviceJWKS)
+}
+
+func (this serviceJWKSTable) Save(ctx context.Context, serviceJWKS *ServiceJWKS) error {
+	return this.table.Save(ctx, serviceJWKS)
+}
+
+func (this serviceJWKSTable) Delete(ctx context.Context, serviceJWKS *ServiceJWKS) error {
+	return this.table.Delete(ctx, serviceJWKS)
+}
+
+func (this serviceJWKSTable) Has(ctx context.Context, service_id string) (found bool, err error) {
+	return this.table.PrimaryKey().Has(ctx, service_id)
+}
+
+func (this serviceJWKSTable) Get(ctx context.Context, service_id string) (*ServiceJWKS, error) {
+	var serviceJWKS ServiceJWKS
+	found, err := this.table.PrimaryKey().Get(ctx, &serviceJWKS, service_id)
+	if err != nil {
+		return nil, err
+	}
+	if !found {
+		return nil, ormerrors.NotFound
+	}
+	return &serviceJWKS, nil
+}
+
+func (this serviceJWKSTable) List(ctx context.Context, prefixKey ServiceJWKSIndexKey, opts ...ormlist.Option) (ServiceJWKSIterator, error) {
+	it, err := this.table.GetIndexByID(prefixKey.id()).List(ctx, prefixKey.values(), opts...)
+	return ServiceJWKSIterator{it}, err
+}
+
+func (this serviceJWKSTable) ListRange(ctx context.Context, from, to ServiceJWKSIndexKey, opts ...ormlist.Option) (ServiceJWKSIterator, error) {
+	it, err := this.table.GetIndexByID(from.id()).ListRange(ctx, from.values(), to.values(), opts...)
+	return ServiceJWKSIterator{it}, err
+}
+
+func (this serviceJWKSTable) DeleteBy(ctx context.Context, prefixKey ServiceJWKSIndexKey) error {
+	return this.table.GetIndexByID(prefixKey.id()).DeleteBy(ctx, prefixKey.values()...)
+}
+
+func (this serviceJWKSTable) DeleteRange(ctx context.Context, from, to ServiceJWKSIndexKey) error {
+	return this.table.GetIndexByID(from.id()).DeleteRange(ctx, from.values(), to.values())
+}
+
+func (this serviceJWKSTable) doNotImplement() {}
+
+var _ ServiceJWKSTable = serviceJWKSTable{}
+
+func NewServiceJWKSTable(db ormtable.Schema) (ServiceJWKSTable, error) {
+	table := db.GetTable(&ServiceJWKS{})
+	if table == nil {
+		return nil, ormerrors.TableNotFound.Wrap(string((&ServiceJWKS{}).ProtoReflect().Descriptor().FullName()))
+	}
+	return serviceJWKSTable{table}, nil
 }
 
 type StateStore interface {
-	DomainTable() DomainTable
-	MetadataTable() MetadataTable
+	ServiceTable() ServiceTable
+	DomainVerificationTable() DomainVerificationTable
+	ServiceCapabilityTable() ServiceCapabilityTable
+	ServiceResourceTable() ServiceResourceTable
+	ServiceOIDCConfigTable() ServiceOIDCConfigTable
+	ServiceJWKSTable() ServiceJWKSTable
 
 	doNotImplement()
 }
 
 type stateStore struct {
-	domain   DomainTable
-	metadata MetadataTable
+	service            ServiceTable
+	domainVerification DomainVerificationTable
+	serviceCapability  ServiceCapabilityTable
+	serviceResource    ServiceResourceTable
+	serviceOIDCConfig  ServiceOIDCConfigTable
+	serviceJWKS        ServiceJWKSTable
 }
 
-func (x stateStore) DomainTable() DomainTable {
-	return x.domain
+func (x stateStore) ServiceTable() ServiceTable {
+	return x.service
 }
 
-func (x stateStore) MetadataTable() MetadataTable {
-	return x.metadata
+func (x stateStore) DomainVerificationTable() DomainVerificationTable {
+	return x.domainVerification
+}
+
+func (x stateStore) ServiceCapabilityTable() ServiceCapabilityTable {
+	return x.serviceCapability
+}
+
+func (x stateStore) ServiceResourceTable() ServiceResourceTable {
+	return x.serviceResource
+}
+
+func (x stateStore) ServiceOIDCConfigTable() ServiceOIDCConfigTable {
+	return x.serviceOIDCConfig
+}
+
+func (x stateStore) ServiceJWKSTable() ServiceJWKSTable {
+	return x.serviceJWKS
 }
 
 func (stateStore) doNotImplement() {}
@@ -351,18 +932,42 @@ func (stateStore) doNotImplement() {}
 var _ StateStore = stateStore{}
 
 func NewStateStore(db ormtable.Schema) (StateStore, error) {
-	domainTable, err := NewDomainTable(db)
+	serviceTable, err := NewServiceTable(db)
 	if err != nil {
 		return nil, err
 	}
 
-	metadataTable, err := NewMetadataTable(db)
+	domainVerificationTable, err := NewDomainVerificationTable(db)
+	if err != nil {
+		return nil, err
+	}
+
+	serviceCapabilityTable, err := NewServiceCapabilityTable(db)
+	if err != nil {
+		return nil, err
+	}
+
+	serviceResourceTable, err := NewServiceResourceTable(db)
+	if err != nil {
+		return nil, err
+	}
+
+	serviceOIDCConfigTable, err := NewServiceOIDCConfigTable(db)
+	if err != nil {
+		return nil, err
+	}
+
+	serviceJWKSTable, err := NewServiceJWKSTable(db)
 	if err != nil {
 		return nil, err
 	}
 
 	return stateStore{
-		domainTable,
-		metadataTable,
+		serviceTable,
+		domainVerificationTable,
+		serviceCapabilityTable,
+		serviceResourceTable,
+		serviceOIDCConfigTable,
+		serviceJWKSTable,
 	}, nil
 }

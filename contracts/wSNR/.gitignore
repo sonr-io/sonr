@@ -1,0 +1,19 @@
+# Foundry files
+cache/
+out/
+broadcast/
+
+# Environment
+.env
+.env.local
+
+# Dependencies
+lib/
+
+# Coverage
+lcov.info
+coverage/
+
+# OS
+.DS_Store
+.claude*

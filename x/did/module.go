@@ -1,16 +1,17 @@
+// Package module provides the Cosmos SDK implementation for the DID module.
 package module
 
 import (
 	"context"
 	"encoding/json"
 
+	"github.com/gorilla/mux"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 
 	abci "github.com/cometbft/cometbft/abci/types"
 
 	"cosmossdk.io/client/v2/autocli"
 	errorsmod "cosmossdk.io/errors"
-	nftkeeper "cosmossdk.io/x/nft/keeper"
 
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/codec"
@@ -18,21 +19,20 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 
-	"github.com/sonr-io/snrd/x/did/keeper"
-	"github.com/sonr-io/snrd/x/did/types"
-	// this line is used by starport scaffolding # 1
+	"github.com/sonr-io/sonr/x/did/keeper"
+	"github.com/sonr-io/sonr/x/did/types"
 )
 
 const (
+	// ConsensusVersion defines the current x/did module consensus version.
 	ConsensusVersion = 1
-
-// this line is used by starport scaffolding # simapp/module/const
 )
 
 var (
-	_ module.AppModuleBasic    = AppModuleBasic{}
-	_ module.AppModuleGenesis  = AppModule{}
-	_ module.AppModule         = AppModule{}
+	_ module.AppModuleBasic   = AppModuleBasic{}
+	_ module.AppModuleGenesis = AppModule{}
+	_ module.AppModule        = AppModule{}
+
 	_ autocli.HasAutoCLIConfig = AppModule{}
 )
 
@@ -44,20 +44,17 @@ type AppModuleBasic struct {
 type AppModule struct {
 	AppModuleBasic
 
-	keeper    keeper.Keeper
-	nftKeeper nftkeeper.Keeper
+	keeper keeper.Keeper
 }
 
 // NewAppModule constructor
 func NewAppModule(
 	cdc codec.Codec,
 	keeper keeper.Keeper,
-	nftKeeper nftkeeper.Keeper,
 ) *AppModule {
 	return &AppModule{
 		AppModuleBasic: AppModuleBasic{cdc: cdc},
 		keeper:         keeper,
-		nftKeeper:      nftKeeper,
 	}
 }
 
@@ -71,7 +68,11 @@ func (a AppModuleBasic) DefaultGenesis(cdc codec.JSONCodec) json.RawMessage {
 	})
 }
 
-func (a AppModuleBasic) ValidateGenesis(marshaler codec.JSONCodec, _ client.TxEncodingConfig, message json.RawMessage) error {
+func (a AppModuleBasic) ValidateGenesis(
+	marshaler codec.JSONCodec,
+	_ client.TxEncodingConfig,
+	message json.RawMessage,
+) error {
 	var data types.GenesisState
 	err := marshaler.UnmarshalJSON(message, &data)
 	if err != nil {
@@ -83,12 +84,31 @@ func (a AppModuleBasic) ValidateGenesis(marshaler codec.JSONCodec, _ client.TxEn
 	return nil
 }
 
+func (a AppModuleBasic) RegisterRESTRoutes(_ client.Context, _ *mux.Router) {
+}
+
 func (a AppModuleBasic) RegisterGRPCGatewayRoutes(clientCtx client.Context, mux *runtime.ServeMux) {
-	err := types.RegisterQueryHandlerClient(context.Background(), mux, types.NewQueryClient(clientCtx))
+	err := types.RegisterQueryHandlerClient(
+		context.Background(),
+		mux,
+		types.NewQueryClient(clientCtx),
+	)
 	if err != nil {
+		// same behavior as in cosmos-sdk
 		panic(err)
 	}
 }
+
+// Disable in favor of autocli.go. If you wish to use these, it will override AutoCLI methods.
+/*
+func (a AppModuleBasic) GetTxCmd() *cobra.Command {
+	return cli.NewTxCmd()
+}
+
+func (a AppModuleBasic) GetQueryCmd() *cobra.Command {
+	return cli.GetQueryCmd()
+}
+*/
 
 func (AppModuleBasic) RegisterLegacyAminoCodec(cdc *codec.LegacyAmino) {
 	types.RegisterLegacyAminoCodec(cdc)
@@ -98,16 +118,22 @@ func (a AppModuleBasic) RegisterInterfaces(r codectypes.InterfaceRegistry) {
 	types.RegisterInterfaces(r)
 }
 
-func (a AppModule) InitGenesis(ctx sdk.Context, marshaler codec.JSONCodec, message json.RawMessage) []abci.ValidatorUpdate {
-	didGenesisState := types.DefaultGenesis()
-	if err := a.keeper.Params.Set(ctx, didGenesisState.Params); err != nil {
+func (a AppModule) InitGenesis(
+	ctx sdk.Context,
+	marshaler codec.JSONCodec,
+	message json.RawMessage,
+) []abci.ValidatorUpdate {
+	var genesisState types.GenesisState
+	marshaler.MustUnmarshalJSON(message, &genesisState)
+
+	if err := a.keeper.Params.Set(ctx, genesisState.Params); err != nil {
 		panic(err)
 	}
-	// nftGenesisState := nft.DefaultGenesisState()
-	// if err := types.DefaultNFTClasses(nftGenesisState); err != nil {
-	// 	panic(err)
-	// }
-	// a.nftKeeper.InitGenesis(ctx, nftGenesisState)
+
+	if err := a.keeper.InitGenesis(ctx, &genesisState); err != nil {
+		panic(err)
+	}
+
 	return nil
 }
 

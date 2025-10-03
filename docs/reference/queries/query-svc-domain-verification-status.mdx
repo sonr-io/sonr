@@ -1,0 +1,103 @@
+---
+openapi: get /svc/v1/domain/{domain}
+title: Check Domain Verification Status
+description: Monitor domain ownership verification progress and status
+og:title: Domain Verification Status
+---
+
+<Info>
+  Use this endpoint to track your domain verification progress and troubleshoot issues.
+</Info>
+
+## Verification States
+
+### PENDING
+- Verification initiated
+- Token generated
+- Waiting for DNS TXT record
+- Has expiration deadline
+
+### VERIFIED
+- DNS record confirmed
+- Domain permanently bound
+- Ready for service registration
+- No expiration
+
+### EXPIRED
+- 7-day window exceeded
+- Must initiate new verification
+- Previous token invalid
+
+### FAILED
+- DNS lookup error
+- Token mismatch
+- Technical failure
+
+## Response Fields
+
+### For Pending Verifications
+```json
+{
+  "domain": "example.com",
+  "owner": "sonr1xyz...",
+  "verificationToken": "abc123xyz",
+  "status": "PENDING",
+  "expiresAt": "1704672000"
+}
+```
+
+### For Verified Domains
+```json
+{
+  "domain": "example.com",
+  "owner": "sonr1xyz...",
+  "status": "VERIFIED",
+  "verifiedAt": "1704067200"
+}
+```
+
+## Usage Examples
+
+### Check Verification Progress
+```bash
+# Query status
+snrd query svc domain example.com
+
+# Check if DNS is visible
+dig TXT example.com +short | grep sonr-verification
+```
+
+### Monitoring Script
+```bash
+# Poll until verified
+while true; do
+  STATUS=$(snrd query svc domain example.com -o json | jq -r '.status')
+  if [ "$STATUS" = "VERIFIED" ]; then
+    echo "Domain verified!"
+    break
+  fi
+  echo "Status: $STATUS, waiting..."
+  sleep 30
+done
+```
+
+<Tip>
+  If status remains PENDING after adding DNS record, wait for propagation (5-30 minutes typical).
+</Tip>
+
+## Troubleshooting
+
+### Still Pending After DNS Add
+1. Verify record is live: `dig TXT example.com`
+2. Check exact format: `sonr-verification=token`
+3. Ensure no typos in token
+4. Wait for global propagation
+
+### Expired Status
+- Initiate new verification
+- Add new token to DNS
+- Complete within 7 days
+
+<Warning>
+  Verification tokens are single-use. Each verification attempt requires a new token.
+</Warning>

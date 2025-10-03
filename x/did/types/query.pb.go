@@ -6,15 +6,18 @@ package types
 import (
 	context "context"
 	fmt "fmt"
+	io "io"
+	math "math"
+	math_bits "math/bits"
+
+	query "github.com/cosmos/cosmos-sdk/types/query"
+	_ "github.com/cosmos/gogoproto/gogoproto"
 	grpc1 "github.com/cosmos/gogoproto/grpc"
 	proto "github.com/cosmos/gogoproto/proto"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	io "io"
-	math "math"
-	math_bits "math/bits"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -28,26 +31,22 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
-// Queryequest is the request type for the Query/Params RPC method.
-type QueryRequest struct {
-	Did    string `protobuf:"bytes,1,opt,name=did,proto3" json:"did,omitempty"`
-	Origin string `protobuf:"bytes,2,opt,name=origin,proto3" json:"origin,omitempty"`
-	Key    string `protobuf:"bytes,3,opt,name=key,proto3" json:"key,omitempty"`
-	Asset  string `protobuf:"bytes,4,opt,name=asset,proto3" json:"asset,omitempty"`
+// QueryParamsRequest is the request type for the Query/Params RPC method.
+type QueryParamsRequest struct {
 }
 
-func (m *QueryRequest) Reset()         { *m = QueryRequest{} }
-func (m *QueryRequest) String() string { return proto.CompactTextString(m) }
-func (*QueryRequest) ProtoMessage()    {}
-func (*QueryRequest) Descriptor() ([]byte, []int) {
+func (m *QueryParamsRequest) Reset()         { *m = QueryParamsRequest{} }
+func (m *QueryParamsRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryParamsRequest) ProtoMessage()    {}
+func (*QueryParamsRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ae1fa9bb626e2869, []int{0}
 }
-func (m *QueryRequest) XXX_Unmarshal(b []byte) error {
+func (m *QueryParamsRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryParamsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryParamsRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -57,45 +56,17 @@ func (m *QueryRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)
 		return b[:n], nil
 	}
 }
-func (m *QueryRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryRequest.Merge(m, src)
+func (m *QueryParamsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryParamsRequest.Merge(m, src)
 }
-func (m *QueryRequest) XXX_Size() int {
+func (m *QueryParamsRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryRequest.DiscardUnknown(m)
+func (m *QueryParamsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryParamsRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryRequest proto.InternalMessageInfo
-
-func (m *QueryRequest) GetDid() string {
-	if m != nil {
-		return m.Did
-	}
-	return ""
-}
-
-func (m *QueryRequest) GetOrigin() string {
-	if m != nil {
-		return m.Origin
-	}
-	return ""
-}
-
-func (m *QueryRequest) GetKey() string {
-	if m != nil {
-		return m.Key
-	}
-	return ""
-}
-
-func (m *QueryRequest) GetAsset() string {
-	if m != nil {
-		return m.Asset
-	}
-	return ""
-}
+var xxx_messageInfo_QueryParamsRequest proto.InternalMessageInfo
 
 // QueryParamsResponse is the response type for the Query/Params RPC method.
 type QueryParamsResponse struct {
@@ -143,24 +114,25 @@ func (m *QueryParamsResponse) GetParams() *Params {
 	return nil
 }
 
-// QueryResolveResponse is the response type for the Query/Resolve RPC method.
-type QueryResolveResponse struct {
-	// document is the DID document
-	Document *Document `protobuf:"bytes,1,opt,name=document,proto3" json:"document,omitempty"`
+// QueryResolveDIDRequest is the request type for the Query/ResolveDID RPC
+// method.
+type QueryResolveDIDRequest struct {
+	// did is the DID to resolve
+	Did string `protobuf:"bytes,1,opt,name=did,proto3" json:"did,omitempty"`
 }
 
-func (m *QueryResolveResponse) Reset()         { *m = QueryResolveResponse{} }
-func (m *QueryResolveResponse) String() string { return proto.CompactTextString(m) }
-func (*QueryResolveResponse) ProtoMessage()    {}
-func (*QueryResolveResponse) Descriptor() ([]byte, []int) {
+func (m *QueryResolveDIDRequest) Reset()         { *m = QueryResolveDIDRequest{} }
+func (m *QueryResolveDIDRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryResolveDIDRequest) ProtoMessage()    {}
+func (*QueryResolveDIDRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ae1fa9bb626e2869, []int{2}
 }
-func (m *QueryResolveResponse) XXX_Unmarshal(b []byte) error {
+func (m *QueryResolveDIDRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryResolveResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryResolveDIDRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryResolveResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryResolveDIDRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -170,120 +142,100 @@ func (m *QueryResolveResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte
 		return b[:n], nil
 	}
 }
-func (m *QueryResolveResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryResolveResponse.Merge(m, src)
+func (m *QueryResolveDIDRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryResolveDIDRequest.Merge(m, src)
 }
-func (m *QueryResolveResponse) XXX_Size() int {
+func (m *QueryResolveDIDRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryResolveResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryResolveResponse.DiscardUnknown(m)
+func (m *QueryResolveDIDRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryResolveDIDRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryResolveResponse proto.InternalMessageInfo
+var xxx_messageInfo_QueryResolveDIDRequest proto.InternalMessageInfo
 
-func (m *QueryResolveResponse) GetDocument() *Document {
+func (m *QueryResolveDIDRequest) GetDid() string {
 	if m != nil {
-		return m.Document
+		return m.Did
+	}
+	return ""
+}
+
+// QueryResolveDIDResponse is the response type for the Query/ResolveDID RPC
+// method.
+type QueryResolveDIDResponse struct {
+	// did_document is the resolved DID document
+	DidDocument *DIDDocument `protobuf:"bytes,1,opt,name=did_document,json=didDocument,proto3" json:"did_document,omitempty"`
+	// did_document_metadata contains metadata about the DID document
+	DidDocumentMetadata *DIDDocumentMetadata `protobuf:"bytes,2,opt,name=did_document_metadata,json=didDocumentMetadata,proto3" json:"did_document_metadata,omitempty"`
+}
+
+func (m *QueryResolveDIDResponse) Reset()         { *m = QueryResolveDIDResponse{} }
+func (m *QueryResolveDIDResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryResolveDIDResponse) ProtoMessage()    {}
+func (*QueryResolveDIDResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae1fa9bb626e2869, []int{3}
+}
+func (m *QueryResolveDIDResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryResolveDIDResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryResolveDIDResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryResolveDIDResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryResolveDIDResponse.Merge(m, src)
+}
+func (m *QueryResolveDIDResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryResolveDIDResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryResolveDIDResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryResolveDIDResponse proto.InternalMessageInfo
+
+func (m *QueryResolveDIDResponse) GetDidDocument() *DIDDocument {
+	if m != nil {
+		return m.DidDocument
 	}
 	return nil
 }
 
-// QuerySignRequest is the request type for the Query/Sign RPC method.
-type QuerySignRequest struct {
-	Did     string `protobuf:"bytes,1,opt,name=did,proto3" json:"did,omitempty"`
-	Origin  string `protobuf:"bytes,2,opt,name=origin,proto3" json:"origin,omitempty"`
-	Key     string `protobuf:"bytes,3,opt,name=key,proto3" json:"key,omitempty"`
-	Asset   string `protobuf:"bytes,4,opt,name=asset,proto3" json:"asset,omitempty"`
-	Message string `protobuf:"bytes,5,opt,name=message,proto3" json:"message,omitempty"`
-}
-
-func (m *QuerySignRequest) Reset()         { *m = QuerySignRequest{} }
-func (m *QuerySignRequest) String() string { return proto.CompactTextString(m) }
-func (*QuerySignRequest) ProtoMessage()    {}
-func (*QuerySignRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ae1fa9bb626e2869, []int{3}
-}
-func (m *QuerySignRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *QuerySignRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_QuerySignRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *QuerySignRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QuerySignRequest.Merge(m, src)
-}
-func (m *QuerySignRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *QuerySignRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QuerySignRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_QuerySignRequest proto.InternalMessageInfo
-
-func (m *QuerySignRequest) GetDid() string {
+func (m *QueryResolveDIDResponse) GetDidDocumentMetadata() *DIDDocumentMetadata {
 	if m != nil {
-		return m.Did
+		return m.DidDocumentMetadata
 	}
-	return ""
+	return nil
 }
 
-func (m *QuerySignRequest) GetOrigin() string {
-	if m != nil {
-		return m.Origin
-	}
-	return ""
+// QueryGetDIDDocumentRequest is the request type for the
+// Query/GetDIDDocument RPC method.
+type QueryGetDIDDocumentRequest struct {
+	// did is the DID to retrieve
+	Did string `protobuf:"bytes,1,opt,name=did,proto3" json:"did,omitempty"`
 }
 
-func (m *QuerySignRequest) GetKey() string {
-	if m != nil {
-		return m.Key
-	}
-	return ""
-}
-
-func (m *QuerySignRequest) GetAsset() string {
-	if m != nil {
-		return m.Asset
-	}
-	return ""
-}
-
-func (m *QuerySignRequest) GetMessage() string {
-	if m != nil {
-		return m.Message
-	}
-	return ""
-}
-
-// QuerySignResponse is the response type for the Query/Sign RPC method.
-type QuerySignResponse struct {
-	// signature is the signature of the message
-	Signature string `protobuf:"bytes,1,opt,name=signature,proto3" json:"signature,omitempty"`
-}
-
-func (m *QuerySignResponse) Reset()         { *m = QuerySignResponse{} }
-func (m *QuerySignResponse) String() string { return proto.CompactTextString(m) }
-func (*QuerySignResponse) ProtoMessage()    {}
-func (*QuerySignResponse) Descriptor() ([]byte, []int) {
+func (m *QueryGetDIDDocumentRequest) Reset()         { *m = QueryGetDIDDocumentRequest{} }
+func (m *QueryGetDIDDocumentRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetDIDDocumentRequest) ProtoMessage()    {}
+func (*QueryGetDIDDocumentRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ae1fa9bb626e2869, []int{4}
 }
-func (m *QuerySignResponse) XXX_Unmarshal(b []byte) error {
+func (m *QueryGetDIDDocumentRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QuerySignResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryGetDIDDocumentRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QuerySignResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryGetDIDDocumentRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -293,128 +245,46 @@ func (m *QuerySignResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, e
 		return b[:n], nil
 	}
 }
-func (m *QuerySignResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QuerySignResponse.Merge(m, src)
+func (m *QueryGetDIDDocumentRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetDIDDocumentRequest.Merge(m, src)
 }
-func (m *QuerySignResponse) XXX_Size() int {
+func (m *QueryGetDIDDocumentRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *QuerySignResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QuerySignResponse.DiscardUnknown(m)
+func (m *QueryGetDIDDocumentRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetDIDDocumentRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QuerySignResponse proto.InternalMessageInfo
+var xxx_messageInfo_QueryGetDIDDocumentRequest proto.InternalMessageInfo
 
-func (m *QuerySignResponse) GetSignature() string {
-	if m != nil {
-		return m.Signature
-	}
-	return ""
-}
-
-// QueryVerifyRequest is the request type for the Query/Verify RPC method.
-type QueryVerifyRequest struct {
-	Did       string `protobuf:"bytes,1,opt,name=did,proto3" json:"did,omitempty"`
-	Origin    string `protobuf:"bytes,2,opt,name=origin,proto3" json:"origin,omitempty"`
-	Key       string `protobuf:"bytes,3,opt,name=key,proto3" json:"key,omitempty"`
-	Asset     string `protobuf:"bytes,4,opt,name=asset,proto3" json:"asset,omitempty"`
-	Message   string `protobuf:"bytes,5,opt,name=message,proto3" json:"message,omitempty"`
-	Signature string `protobuf:"bytes,6,opt,name=signature,proto3" json:"signature,omitempty"`
-}
-
-func (m *QueryVerifyRequest) Reset()         { *m = QueryVerifyRequest{} }
-func (m *QueryVerifyRequest) String() string { return proto.CompactTextString(m) }
-func (*QueryVerifyRequest) ProtoMessage()    {}
-func (*QueryVerifyRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ae1fa9bb626e2869, []int{5}
-}
-func (m *QueryVerifyRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *QueryVerifyRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_QueryVerifyRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *QueryVerifyRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryVerifyRequest.Merge(m, src)
-}
-func (m *QueryVerifyRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *QueryVerifyRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryVerifyRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_QueryVerifyRequest proto.InternalMessageInfo
-
-func (m *QueryVerifyRequest) GetDid() string {
+func (m *QueryGetDIDDocumentRequest) GetDid() string {
 	if m != nil {
 		return m.Did
 	}
 	return ""
 }
 
-func (m *QueryVerifyRequest) GetOrigin() string {
-	if m != nil {
-		return m.Origin
-	}
-	return ""
+// QueryGetDIDDocumentResponse is the response type for the
+// Query/GetDIDDocument RPC method.
+type QueryGetDIDDocumentResponse struct {
+	// did_document is the retrieved DID document
+	DidDocument *DIDDocument `protobuf:"bytes,1,opt,name=did_document,json=didDocument,proto3" json:"did_document,omitempty"`
+	// did_document_metadata contains metadata about the DID document
+	DidDocumentMetadata *DIDDocumentMetadata `protobuf:"bytes,2,opt,name=did_document_metadata,json=didDocumentMetadata,proto3" json:"did_document_metadata,omitempty"`
 }
 
-func (m *QueryVerifyRequest) GetKey() string {
-	if m != nil {
-		return m.Key
-	}
-	return ""
+func (m *QueryGetDIDDocumentResponse) Reset()         { *m = QueryGetDIDDocumentResponse{} }
+func (m *QueryGetDIDDocumentResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetDIDDocumentResponse) ProtoMessage()    {}
+func (*QueryGetDIDDocumentResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae1fa9bb626e2869, []int{5}
 }
-
-func (m *QueryVerifyRequest) GetAsset() string {
-	if m != nil {
-		return m.Asset
-	}
-	return ""
-}
-
-func (m *QueryVerifyRequest) GetMessage() string {
-	if m != nil {
-		return m.Message
-	}
-	return ""
-}
-
-func (m *QueryVerifyRequest) GetSignature() string {
-	if m != nil {
-		return m.Signature
-	}
-	return ""
-}
-
-// QueryVerifyResponse is the response type for the Query/Verify RPC method.
-type QueryVerifyResponse struct {
-	// valid is the validity of the signature
-	Valid bool `protobuf:"varint,1,opt,name=valid,proto3" json:"valid,omitempty"`
-}
-
-func (m *QueryVerifyResponse) Reset()         { *m = QueryVerifyResponse{} }
-func (m *QueryVerifyResponse) String() string { return proto.CompactTextString(m) }
-func (*QueryVerifyResponse) ProtoMessage()    {}
-func (*QueryVerifyResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ae1fa9bb626e2869, []int{6}
-}
-func (m *QueryVerifyResponse) XXX_Unmarshal(b []byte) error {
+func (m *QueryGetDIDDocumentResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *QueryVerifyResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *QueryGetDIDDocumentResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_QueryVerifyResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_QueryGetDIDDocumentResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -424,69 +294,1278 @@ func (m *QueryVerifyResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte,
 		return b[:n], nil
 	}
 }
-func (m *QueryVerifyResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_QueryVerifyResponse.Merge(m, src)
+func (m *QueryGetDIDDocumentResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetDIDDocumentResponse.Merge(m, src)
 }
-func (m *QueryVerifyResponse) XXX_Size() int {
+func (m *QueryGetDIDDocumentResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *QueryVerifyResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_QueryVerifyResponse.DiscardUnknown(m)
+func (m *QueryGetDIDDocumentResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetDIDDocumentResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_QueryVerifyResponse proto.InternalMessageInfo
+var xxx_messageInfo_QueryGetDIDDocumentResponse proto.InternalMessageInfo
 
-func (m *QueryVerifyResponse) GetValid() bool {
+func (m *QueryGetDIDDocumentResponse) GetDidDocument() *DIDDocument {
 	if m != nil {
-		return m.Valid
+		return m.DidDocument
+	}
+	return nil
+}
+
+func (m *QueryGetDIDDocumentResponse) GetDidDocumentMetadata() *DIDDocumentMetadata {
+	if m != nil {
+		return m.DidDocumentMetadata
+	}
+	return nil
+}
+
+// QueryListDIDDocumentsRequest is the request type for the
+// Query/ListDIDDocuments RPC method.
+type QueryListDIDDocumentsRequest struct {
+	// pagination defines an optional pagination for the request
+	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryListDIDDocumentsRequest) Reset()         { *m = QueryListDIDDocumentsRequest{} }
+func (m *QueryListDIDDocumentsRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryListDIDDocumentsRequest) ProtoMessage()    {}
+func (*QueryListDIDDocumentsRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae1fa9bb626e2869, []int{6}
+}
+func (m *QueryListDIDDocumentsRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryListDIDDocumentsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryListDIDDocumentsRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryListDIDDocumentsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryListDIDDocumentsRequest.Merge(m, src)
+}
+func (m *QueryListDIDDocumentsRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryListDIDDocumentsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryListDIDDocumentsRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryListDIDDocumentsRequest proto.InternalMessageInfo
+
+func (m *QueryListDIDDocumentsRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+// QueryListDIDDocumentsResponse is the response type for the
+// Query/ListDIDDocuments RPC method.
+type QueryListDIDDocumentsResponse struct {
+	// did_documents is the list of DID documents
+	DidDocuments []*DIDDocument `protobuf:"bytes,1,rep,name=did_documents,json=didDocuments,proto3" json:"did_documents,omitempty"`
+	// pagination defines the pagination in the response
+	Pagination *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryListDIDDocumentsResponse) Reset()         { *m = QueryListDIDDocumentsResponse{} }
+func (m *QueryListDIDDocumentsResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryListDIDDocumentsResponse) ProtoMessage()    {}
+func (*QueryListDIDDocumentsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae1fa9bb626e2869, []int{7}
+}
+func (m *QueryListDIDDocumentsResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryListDIDDocumentsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryListDIDDocumentsResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryListDIDDocumentsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryListDIDDocumentsResponse.Merge(m, src)
+}
+func (m *QueryListDIDDocumentsResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryListDIDDocumentsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryListDIDDocumentsResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryListDIDDocumentsResponse proto.InternalMessageInfo
+
+func (m *QueryListDIDDocumentsResponse) GetDidDocuments() []*DIDDocument {
+	if m != nil {
+		return m.DidDocuments
+	}
+	return nil
+}
+
+func (m *QueryListDIDDocumentsResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+// QueryGetDIDDocumentsByControllerRequest is the request type for the
+// Query/GetDIDDocumentsByController RPC method.
+type QueryGetDIDDocumentsByControllerRequest struct {
+	// controller is the controller to search for
+	Controller string `protobuf:"bytes,1,opt,name=controller,proto3" json:"controller,omitempty"`
+	// pagination defines an optional pagination for the request
+	Pagination *query.PageRequest `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryGetDIDDocumentsByControllerRequest) Reset() {
+	*m = QueryGetDIDDocumentsByControllerRequest{}
+}
+func (m *QueryGetDIDDocumentsByControllerRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetDIDDocumentsByControllerRequest) ProtoMessage()    {}
+func (*QueryGetDIDDocumentsByControllerRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae1fa9bb626e2869, []int{8}
+}
+func (m *QueryGetDIDDocumentsByControllerRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetDIDDocumentsByControllerRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetDIDDocumentsByControllerRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetDIDDocumentsByControllerRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetDIDDocumentsByControllerRequest.Merge(m, src)
+}
+func (m *QueryGetDIDDocumentsByControllerRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetDIDDocumentsByControllerRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetDIDDocumentsByControllerRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetDIDDocumentsByControllerRequest proto.InternalMessageInfo
+
+func (m *QueryGetDIDDocumentsByControllerRequest) GetController() string {
+	if m != nil {
+		return m.Controller
+	}
+	return ""
+}
+
+func (m *QueryGetDIDDocumentsByControllerRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+// QueryGetDIDDocumentsByControllerResponse is the response type for the
+// Query/GetDIDDocumentsByController RPC method.
+type QueryGetDIDDocumentsByControllerResponse struct {
+	// did_documents is the list of DID documents controlled by the controller
+	DidDocuments []*DIDDocument `protobuf:"bytes,1,rep,name=did_documents,json=didDocuments,proto3" json:"did_documents,omitempty"`
+	// pagination defines the pagination in the response
+	Pagination *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryGetDIDDocumentsByControllerResponse) Reset() {
+	*m = QueryGetDIDDocumentsByControllerResponse{}
+}
+func (m *QueryGetDIDDocumentsByControllerResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetDIDDocumentsByControllerResponse) ProtoMessage()    {}
+func (*QueryGetDIDDocumentsByControllerResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae1fa9bb626e2869, []int{9}
+}
+func (m *QueryGetDIDDocumentsByControllerResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetDIDDocumentsByControllerResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetDIDDocumentsByControllerResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetDIDDocumentsByControllerResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetDIDDocumentsByControllerResponse.Merge(m, src)
+}
+func (m *QueryGetDIDDocumentsByControllerResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetDIDDocumentsByControllerResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetDIDDocumentsByControllerResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetDIDDocumentsByControllerResponse proto.InternalMessageInfo
+
+func (m *QueryGetDIDDocumentsByControllerResponse) GetDidDocuments() []*DIDDocument {
+	if m != nil {
+		return m.DidDocuments
+	}
+	return nil
+}
+
+func (m *QueryGetDIDDocumentsByControllerResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+// QueryGetVerificationMethodRequest is the request type for the
+// Query/GetVerificationMethod RPC method.
+type QueryGetVerificationMethodRequest struct {
+	// did is the DID that contains the verification method
+	Did string `protobuf:"bytes,1,opt,name=did,proto3" json:"did,omitempty"`
+	// method_id is the ID of the verification method
+	MethodId string `protobuf:"bytes,2,opt,name=method_id,json=methodId,proto3" json:"method_id,omitempty"`
+}
+
+func (m *QueryGetVerificationMethodRequest) Reset()         { *m = QueryGetVerificationMethodRequest{} }
+func (m *QueryGetVerificationMethodRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetVerificationMethodRequest) ProtoMessage()    {}
+func (*QueryGetVerificationMethodRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae1fa9bb626e2869, []int{10}
+}
+func (m *QueryGetVerificationMethodRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetVerificationMethodRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetVerificationMethodRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetVerificationMethodRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetVerificationMethodRequest.Merge(m, src)
+}
+func (m *QueryGetVerificationMethodRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetVerificationMethodRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetVerificationMethodRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetVerificationMethodRequest proto.InternalMessageInfo
+
+func (m *QueryGetVerificationMethodRequest) GetDid() string {
+	if m != nil {
+		return m.Did
+	}
+	return ""
+}
+
+func (m *QueryGetVerificationMethodRequest) GetMethodId() string {
+	if m != nil {
+		return m.MethodId
+	}
+	return ""
+}
+
+// QueryGetVerificationMethodResponse is the response type for the
+// Query/GetVerificationMethod RPC method.
+type QueryGetVerificationMethodResponse struct {
+	// verification_method is the retrieved verification method
+	VerificationMethod *VerificationMethod `protobuf:"bytes,1,opt,name=verification_method,json=verificationMethod,proto3" json:"verification_method,omitempty"`
+}
+
+func (m *QueryGetVerificationMethodResponse) Reset()         { *m = QueryGetVerificationMethodResponse{} }
+func (m *QueryGetVerificationMethodResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetVerificationMethodResponse) ProtoMessage()    {}
+func (*QueryGetVerificationMethodResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae1fa9bb626e2869, []int{11}
+}
+func (m *QueryGetVerificationMethodResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetVerificationMethodResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetVerificationMethodResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetVerificationMethodResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetVerificationMethodResponse.Merge(m, src)
+}
+func (m *QueryGetVerificationMethodResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetVerificationMethodResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetVerificationMethodResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetVerificationMethodResponse proto.InternalMessageInfo
+
+func (m *QueryGetVerificationMethodResponse) GetVerificationMethod() *VerificationMethod {
+	if m != nil {
+		return m.VerificationMethod
+	}
+	return nil
+}
+
+// QueryGetServiceRequest is the request type for the Query/GetService RPC
+// method.
+type QueryGetServiceRequest struct {
+	// did is the DID that contains the service
+	Did string `protobuf:"bytes,1,opt,name=did,proto3" json:"did,omitempty"`
+	// service_id is the ID of the service
+	ServiceId string `protobuf:"bytes,2,opt,name=service_id,json=serviceId,proto3" json:"service_id,omitempty"`
+}
+
+func (m *QueryGetServiceRequest) Reset()         { *m = QueryGetServiceRequest{} }
+func (m *QueryGetServiceRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetServiceRequest) ProtoMessage()    {}
+func (*QueryGetServiceRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae1fa9bb626e2869, []int{12}
+}
+func (m *QueryGetServiceRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetServiceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetServiceRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetServiceRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetServiceRequest.Merge(m, src)
+}
+func (m *QueryGetServiceRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetServiceRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetServiceRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetServiceRequest proto.InternalMessageInfo
+
+func (m *QueryGetServiceRequest) GetDid() string {
+	if m != nil {
+		return m.Did
+	}
+	return ""
+}
+
+func (m *QueryGetServiceRequest) GetServiceId() string {
+	if m != nil {
+		return m.ServiceId
+	}
+	return ""
+}
+
+// QueryGetServiceResponse is the response type for the Query/GetService
+// RPC method.
+type QueryGetServiceResponse struct {
+	// service is the retrieved service
+	Service *Service `protobuf:"bytes,1,opt,name=service,proto3" json:"service,omitempty"`
+}
+
+func (m *QueryGetServiceResponse) Reset()         { *m = QueryGetServiceResponse{} }
+func (m *QueryGetServiceResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetServiceResponse) ProtoMessage()    {}
+func (*QueryGetServiceResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae1fa9bb626e2869, []int{13}
+}
+func (m *QueryGetServiceResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetServiceResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetServiceResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetServiceResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetServiceResponse.Merge(m, src)
+}
+func (m *QueryGetServiceResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetServiceResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetServiceResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetServiceResponse proto.InternalMessageInfo
+
+func (m *QueryGetServiceResponse) GetService() *Service {
+	if m != nil {
+		return m.Service
+	}
+	return nil
+}
+
+// QueryGetVerifiableCredentialRequest is the request type for the
+// Query/GetVerifiableCredential RPC method.
+type QueryGetVerifiableCredentialRequest struct {
+	// credential_id is the ID of the credential to retrieve
+	CredentialId string `protobuf:"bytes,1,opt,name=credential_id,json=credentialId,proto3" json:"credential_id,omitempty"`
+}
+
+func (m *QueryGetVerifiableCredentialRequest) Reset()         { *m = QueryGetVerifiableCredentialRequest{} }
+func (m *QueryGetVerifiableCredentialRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetVerifiableCredentialRequest) ProtoMessage()    {}
+func (*QueryGetVerifiableCredentialRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae1fa9bb626e2869, []int{14}
+}
+func (m *QueryGetVerifiableCredentialRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetVerifiableCredentialRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetVerifiableCredentialRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetVerifiableCredentialRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetVerifiableCredentialRequest.Merge(m, src)
+}
+func (m *QueryGetVerifiableCredentialRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetVerifiableCredentialRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetVerifiableCredentialRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetVerifiableCredentialRequest proto.InternalMessageInfo
+
+func (m *QueryGetVerifiableCredentialRequest) GetCredentialId() string {
+	if m != nil {
+		return m.CredentialId
+	}
+	return ""
+}
+
+// QueryGetVerifiableCredentialResponse is the response type for the
+// Query/GetVerifiableCredential RPC method.
+type QueryGetVerifiableCredentialResponse struct {
+	// credential is the retrieved verifiable credential
+	Credential *VerifiableCredential `protobuf:"bytes,1,opt,name=credential,proto3" json:"credential,omitempty"`
+}
+
+func (m *QueryGetVerifiableCredentialResponse) Reset()         { *m = QueryGetVerifiableCredentialResponse{} }
+func (m *QueryGetVerifiableCredentialResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetVerifiableCredentialResponse) ProtoMessage()    {}
+func (*QueryGetVerifiableCredentialResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae1fa9bb626e2869, []int{15}
+}
+func (m *QueryGetVerifiableCredentialResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetVerifiableCredentialResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetVerifiableCredentialResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetVerifiableCredentialResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetVerifiableCredentialResponse.Merge(m, src)
+}
+func (m *QueryGetVerifiableCredentialResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetVerifiableCredentialResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetVerifiableCredentialResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetVerifiableCredentialResponse proto.InternalMessageInfo
+
+func (m *QueryGetVerifiableCredentialResponse) GetCredential() *VerifiableCredential {
+	if m != nil {
+		return m.Credential
+	}
+	return nil
+}
+
+// QueryListVerifiableCredentialsRequest is the request type for the
+// Query/ListVerifiableCredentials RPC method.
+type QueryListVerifiableCredentialsRequest struct {
+	// pagination defines an optional pagination for the request
+	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	// issuer filters by issuer DID (optional)
+	Issuer string `protobuf:"bytes,2,opt,name=issuer,proto3" json:"issuer,omitempty"`
+	// holder filters by holder DID (optional)
+	Holder string `protobuf:"bytes,3,opt,name=holder,proto3" json:"holder,omitempty"`
+	// include_revoked includes revoked credentials (default: false)
+	IncludeRevoked bool `protobuf:"varint,4,opt,name=include_revoked,json=includeRevoked,proto3" json:"include_revoked,omitempty"`
+}
+
+func (m *QueryListVerifiableCredentialsRequest) Reset()         { *m = QueryListVerifiableCredentialsRequest{} }
+func (m *QueryListVerifiableCredentialsRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryListVerifiableCredentialsRequest) ProtoMessage()    {}
+func (*QueryListVerifiableCredentialsRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae1fa9bb626e2869, []int{16}
+}
+func (m *QueryListVerifiableCredentialsRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryListVerifiableCredentialsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryListVerifiableCredentialsRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryListVerifiableCredentialsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryListVerifiableCredentialsRequest.Merge(m, src)
+}
+func (m *QueryListVerifiableCredentialsRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryListVerifiableCredentialsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryListVerifiableCredentialsRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryListVerifiableCredentialsRequest proto.InternalMessageInfo
+
+func (m *QueryListVerifiableCredentialsRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+func (m *QueryListVerifiableCredentialsRequest) GetIssuer() string {
+	if m != nil {
+		return m.Issuer
+	}
+	return ""
+}
+
+func (m *QueryListVerifiableCredentialsRequest) GetHolder() string {
+	if m != nil {
+		return m.Holder
+	}
+	return ""
+}
+
+func (m *QueryListVerifiableCredentialsRequest) GetIncludeRevoked() bool {
+	if m != nil {
+		return m.IncludeRevoked
 	}
 	return false
 }
 
+// QueryListVerifiableCredentialsResponse is the response type for the
+// Query/ListVerifiableCredentials RPC method.
+type QueryListVerifiableCredentialsResponse struct {
+	// credentials is the list of verifiable credentials
+	Credentials []*VerifiableCredential `protobuf:"bytes,1,rep,name=credentials,proto3" json:"credentials,omitempty"`
+	// pagination defines the pagination in the response
+	Pagination *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryListVerifiableCredentialsResponse) Reset() {
+	*m = QueryListVerifiableCredentialsResponse{}
+}
+func (m *QueryListVerifiableCredentialsResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryListVerifiableCredentialsResponse) ProtoMessage()    {}
+func (*QueryListVerifiableCredentialsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae1fa9bb626e2869, []int{17}
+}
+func (m *QueryListVerifiableCredentialsResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryListVerifiableCredentialsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryListVerifiableCredentialsResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryListVerifiableCredentialsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryListVerifiableCredentialsResponse.Merge(m, src)
+}
+func (m *QueryListVerifiableCredentialsResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryListVerifiableCredentialsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryListVerifiableCredentialsResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryListVerifiableCredentialsResponse proto.InternalMessageInfo
+
+func (m *QueryListVerifiableCredentialsResponse) GetCredentials() []*VerifiableCredential {
+	if m != nil {
+		return m.Credentials
+	}
+	return nil
+}
+
+func (m *QueryListVerifiableCredentialsResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+// CredentialInfo wraps credential data with vault status
+type CredentialInfo struct {
+	// credential can be either verifiable or WebAuthn
+	//
+	// Types that are valid to be assigned to Credential:
+	//	*CredentialInfo_VerifiableCredential
+	//	*CredentialInfo_WebauthnCredential
+	Credential isCredentialInfo_Credential `protobuf_oneof:"credential"`
+	// vault_id indicates if stored in vault (empty if not)
+	VaultId string `protobuf:"bytes,3,opt,name=vault_id,json=vaultId,proto3" json:"vault_id,omitempty"`
+	// is_encrypted indicates if encrypted in vault
+	IsEncrypted bool `protobuf:"varint,4,opt,name=is_encrypted,json=isEncrypted,proto3" json:"is_encrypted,omitempty"`
+}
+
+func (m *CredentialInfo) Reset()         { *m = CredentialInfo{} }
+func (m *CredentialInfo) String() string { return proto.CompactTextString(m) }
+func (*CredentialInfo) ProtoMessage()    {}
+func (*CredentialInfo) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae1fa9bb626e2869, []int{18}
+}
+func (m *CredentialInfo) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *CredentialInfo) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_CredentialInfo.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *CredentialInfo) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CredentialInfo.Merge(m, src)
+}
+func (m *CredentialInfo) XXX_Size() int {
+	return m.Size()
+}
+func (m *CredentialInfo) XXX_DiscardUnknown() {
+	xxx_messageInfo_CredentialInfo.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CredentialInfo proto.InternalMessageInfo
+
+type isCredentialInfo_Credential interface {
+	isCredentialInfo_Credential()
+	MarshalTo([]byte) (int, error)
+	Size() int
+}
+
+type CredentialInfo_VerifiableCredential struct {
+	VerifiableCredential *VerifiableCredential `protobuf:"bytes,1,opt,name=verifiable_credential,json=verifiableCredential,proto3,oneof" json:"verifiable_credential,omitempty"`
+}
+type CredentialInfo_WebauthnCredential struct {
+	WebauthnCredential *WebAuthnCredential `protobuf:"bytes,2,opt,name=webauthn_credential,json=webauthnCredential,proto3,oneof" json:"webauthn_credential,omitempty"`
+}
+
+func (*CredentialInfo_VerifiableCredential) isCredentialInfo_Credential() {}
+func (*CredentialInfo_WebauthnCredential) isCredentialInfo_Credential()   {}
+
+func (m *CredentialInfo) GetCredential() isCredentialInfo_Credential {
+	if m != nil {
+		return m.Credential
+	}
+	return nil
+}
+
+func (m *CredentialInfo) GetVerifiableCredential() *VerifiableCredential {
+	if x, ok := m.GetCredential().(*CredentialInfo_VerifiableCredential); ok {
+		return x.VerifiableCredential
+	}
+	return nil
+}
+
+func (m *CredentialInfo) GetWebauthnCredential() *WebAuthnCredential {
+	if x, ok := m.GetCredential().(*CredentialInfo_WebauthnCredential); ok {
+		return x.WebauthnCredential
+	}
+	return nil
+}
+
+func (m *CredentialInfo) GetVaultId() string {
+	if m != nil {
+		return m.VaultId
+	}
+	return ""
+}
+
+func (m *CredentialInfo) GetIsEncrypted() bool {
+	if m != nil {
+		return m.IsEncrypted
+	}
+	return false
+}
+
+// XXX_OneofWrappers is for the internal use of the proto package.
+func (*CredentialInfo) XXX_OneofWrappers() []interface{} {
+	return []interface{}{
+		(*CredentialInfo_VerifiableCredential)(nil),
+		(*CredentialInfo_WebauthnCredential)(nil),
+	}
+}
+
+// QueryGetCredentialsByDIDRequest is the request type for the
+// Query/GetCredentialsByDID RPC method.
+type QueryGetCredentialsByDIDRequest struct {
+	// did is the DID to retrieve all credentials for
+	Did string `protobuf:"bytes,1,opt,name=did,proto3" json:"did,omitempty"`
+	// include_verifiable includes verifiable credentials (default: true)
+	IncludeVerifiable bool `protobuf:"varint,2,opt,name=include_verifiable,json=includeVerifiable,proto3" json:"include_verifiable,omitempty"`
+	// include_webauthn includes WebAuthn credentials (default: true)
+	IncludeWebauthn bool `protobuf:"varint,3,opt,name=include_webauthn,json=includeWebauthn,proto3" json:"include_webauthn,omitempty"`
+	// include_revoked includes revoked credentials (default: false)
+	IncludeRevoked bool `protobuf:"varint,4,opt,name=include_revoked,json=includeRevoked,proto3" json:"include_revoked,omitempty"`
+	// pagination defines an optional pagination for the request
+	Pagination *query.PageRequest `protobuf:"bytes,5,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryGetCredentialsByDIDRequest) Reset()         { *m = QueryGetCredentialsByDIDRequest{} }
+func (m *QueryGetCredentialsByDIDRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetCredentialsByDIDRequest) ProtoMessage()    {}
+func (*QueryGetCredentialsByDIDRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae1fa9bb626e2869, []int{19}
+}
+func (m *QueryGetCredentialsByDIDRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetCredentialsByDIDRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetCredentialsByDIDRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetCredentialsByDIDRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetCredentialsByDIDRequest.Merge(m, src)
+}
+func (m *QueryGetCredentialsByDIDRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetCredentialsByDIDRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetCredentialsByDIDRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetCredentialsByDIDRequest proto.InternalMessageInfo
+
+func (m *QueryGetCredentialsByDIDRequest) GetDid() string {
+	if m != nil {
+		return m.Did
+	}
+	return ""
+}
+
+func (m *QueryGetCredentialsByDIDRequest) GetIncludeVerifiable() bool {
+	if m != nil {
+		return m.IncludeVerifiable
+	}
+	return false
+}
+
+func (m *QueryGetCredentialsByDIDRequest) GetIncludeWebauthn() bool {
+	if m != nil {
+		return m.IncludeWebauthn
+	}
+	return false
+}
+
+func (m *QueryGetCredentialsByDIDRequest) GetIncludeRevoked() bool {
+	if m != nil {
+		return m.IncludeRevoked
+	}
+	return false
+}
+
+func (m *QueryGetCredentialsByDIDRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+// QueryGetCredentialsByDIDResponse is the response type for the
+// Query/GetCredentialsByDID RPC method.
+type QueryGetCredentialsByDIDResponse struct {
+	// credentials is the list of all credentials associated with the DID
+	Credentials []*CredentialInfo `protobuf:"bytes,1,rep,name=credentials,proto3" json:"credentials,omitempty"`
+	// pagination defines the pagination in the response
+	Pagination *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryGetCredentialsByDIDResponse) Reset()         { *m = QueryGetCredentialsByDIDResponse{} }
+func (m *QueryGetCredentialsByDIDResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetCredentialsByDIDResponse) ProtoMessage()    {}
+func (*QueryGetCredentialsByDIDResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae1fa9bb626e2869, []int{20}
+}
+func (m *QueryGetCredentialsByDIDResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetCredentialsByDIDResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetCredentialsByDIDResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetCredentialsByDIDResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetCredentialsByDIDResponse.Merge(m, src)
+}
+func (m *QueryGetCredentialsByDIDResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetCredentialsByDIDResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetCredentialsByDIDResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetCredentialsByDIDResponse proto.InternalMessageInfo
+
+func (m *QueryGetCredentialsByDIDResponse) GetCredentials() []*CredentialInfo {
+	if m != nil {
+		return m.Credentials
+	}
+	return nil
+}
+
+func (m *QueryGetCredentialsByDIDResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+// QueryRegisterStartRequest is the request type for the
+// Query/RegisterStart RPC method.
+type QueryRegisterStartRequest struct {
+	// assertion_did is the DID to register (did:sonr:email:<blake3> or did:sonr:phone:<blake3>)
+	AssertionDid string `protobuf:"bytes,1,opt,name=assertion_did,json=assertionDid,proto3" json:"assertion_did,omitempty"`
+}
+
+func (m *QueryRegisterStartRequest) Reset()         { *m = QueryRegisterStartRequest{} }
+func (m *QueryRegisterStartRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryRegisterStartRequest) ProtoMessage()    {}
+func (*QueryRegisterStartRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae1fa9bb626e2869, []int{21}
+}
+func (m *QueryRegisterStartRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryRegisterStartRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryRegisterStartRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryRegisterStartRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryRegisterStartRequest.Merge(m, src)
+}
+func (m *QueryRegisterStartRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryRegisterStartRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryRegisterStartRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryRegisterStartRequest proto.InternalMessageInfo
+
+func (m *QueryRegisterStartRequest) GetAssertionDid() string {
+	if m != nil {
+		return m.AssertionDid
+	}
+	return ""
+}
+
+// QueryRegisterStartResponse is the response type for the
+// Query/RegisterStart RPC method.
+type QueryRegisterStartResponse struct {
+	// challenge for the attestation ceremony (32 bytes)
+	Challenge []byte `protobuf:"bytes,1,opt,name=challenge,proto3" json:"challenge,omitempty"`
+	// relying_party_id identifier
+	RelyingPartyId string `protobuf:"bytes,2,opt,name=relying_party_id,json=relyingPartyId,proto3" json:"relying_party_id,omitempty"`
+	// user information (id, name, displayName)
+	User map[string]string `protobuf:"bytes,3,rep,name=user,proto3" json:"user,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+}
+
+func (m *QueryRegisterStartResponse) Reset()         { *m = QueryRegisterStartResponse{} }
+func (m *QueryRegisterStartResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryRegisterStartResponse) ProtoMessage()    {}
+func (*QueryRegisterStartResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae1fa9bb626e2869, []int{22}
+}
+func (m *QueryRegisterStartResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryRegisterStartResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryRegisterStartResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryRegisterStartResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryRegisterStartResponse.Merge(m, src)
+}
+func (m *QueryRegisterStartResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryRegisterStartResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryRegisterStartResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryRegisterStartResponse proto.InternalMessageInfo
+
+func (m *QueryRegisterStartResponse) GetChallenge() []byte {
+	if m != nil {
+		return m.Challenge
+	}
+	return nil
+}
+
+func (m *QueryRegisterStartResponse) GetRelyingPartyId() string {
+	if m != nil {
+		return m.RelyingPartyId
+	}
+	return ""
+}
+
+func (m *QueryRegisterStartResponse) GetUser() map[string]string {
+	if m != nil {
+		return m.User
+	}
+	return nil
+}
+
+// QueryLoginStartRequest is the request type for the
+// Query/LoginStart RPC method.
+type QueryLoginStartRequest struct {
+	// assertion_did is the assertion DID (did:sonr:email:<blake3> or did:sonr:phone:<blake3>)
+	AssertionDid string `protobuf:"bytes,1,opt,name=assertion_did,json=assertionDid,proto3" json:"assertion_did,omitempty"`
+}
+
+func (m *QueryLoginStartRequest) Reset()         { *m = QueryLoginStartRequest{} }
+func (m *QueryLoginStartRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryLoginStartRequest) ProtoMessage()    {}
+func (*QueryLoginStartRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae1fa9bb626e2869, []int{23}
+}
+func (m *QueryLoginStartRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryLoginStartRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryLoginStartRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryLoginStartRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryLoginStartRequest.Merge(m, src)
+}
+func (m *QueryLoginStartRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryLoginStartRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryLoginStartRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryLoginStartRequest proto.InternalMessageInfo
+
+func (m *QueryLoginStartRequest) GetAssertionDid() string {
+	if m != nil {
+		return m.AssertionDid
+	}
+	return ""
+}
+
+// QueryLoginStartResponse is the response type for the
+// Query/LoginStart RPC method.
+type QueryLoginStartResponse struct {
+	// credential_ids associated with this assertion
+	CredentialIds []string `protobuf:"bytes,1,rep,name=credential_ids,json=credentialIds,proto3" json:"credential_ids,omitempty"`
+	// challenge for the assertion ceremony (32 bytes)
+	Challenge []byte `protobuf:"bytes,2,opt,name=challenge,proto3" json:"challenge,omitempty"`
+	// relying_party_id identifier
+	RelyingPartyId string `protobuf:"bytes,3,opt,name=relying_party_id,json=relyingPartyId,proto3" json:"relying_party_id,omitempty"`
+}
+
+func (m *QueryLoginStartResponse) Reset()         { *m = QueryLoginStartResponse{} }
+func (m *QueryLoginStartResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryLoginStartResponse) ProtoMessage()    {}
+func (*QueryLoginStartResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_ae1fa9bb626e2869, []int{24}
+}
+func (m *QueryLoginStartResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryLoginStartResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryLoginStartResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryLoginStartResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryLoginStartResponse.Merge(m, src)
+}
+func (m *QueryLoginStartResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryLoginStartResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryLoginStartResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryLoginStartResponse proto.InternalMessageInfo
+
+func (m *QueryLoginStartResponse) GetCredentialIds() []string {
+	if m != nil {
+		return m.CredentialIds
+	}
+	return nil
+}
+
+func (m *QueryLoginStartResponse) GetChallenge() []byte {
+	if m != nil {
+		return m.Challenge
+	}
+	return nil
+}
+
+func (m *QueryLoginStartResponse) GetRelyingPartyId() string {
+	if m != nil {
+		return m.RelyingPartyId
+	}
+	return ""
+}
+
 func init() {
-	proto.RegisterType((*QueryRequest)(nil), "did.v1.QueryRequest")
+	proto.RegisterType((*QueryParamsRequest)(nil), "did.v1.QueryParamsRequest")
 	proto.RegisterType((*QueryParamsResponse)(nil), "did.v1.QueryParamsResponse")
-	proto.RegisterType((*QueryResolveResponse)(nil), "did.v1.QueryResolveResponse")
-	proto.RegisterType((*QuerySignRequest)(nil), "did.v1.QuerySignRequest")
-	proto.RegisterType((*QuerySignResponse)(nil), "did.v1.QuerySignResponse")
-	proto.RegisterType((*QueryVerifyRequest)(nil), "did.v1.QueryVerifyRequest")
-	proto.RegisterType((*QueryVerifyResponse)(nil), "did.v1.QueryVerifyResponse")
+	proto.RegisterType((*QueryResolveDIDRequest)(nil), "did.v1.QueryResolveDIDRequest")
+	proto.RegisterType((*QueryResolveDIDResponse)(nil), "did.v1.QueryResolveDIDResponse")
+	proto.RegisterType((*QueryGetDIDDocumentRequest)(nil), "did.v1.QueryGetDIDDocumentRequest")
+	proto.RegisterType((*QueryGetDIDDocumentResponse)(nil), "did.v1.QueryGetDIDDocumentResponse")
+	proto.RegisterType((*QueryListDIDDocumentsRequest)(nil), "did.v1.QueryListDIDDocumentsRequest")
+	proto.RegisterType((*QueryListDIDDocumentsResponse)(nil), "did.v1.QueryListDIDDocumentsResponse")
+	proto.RegisterType((*QueryGetDIDDocumentsByControllerRequest)(nil), "did.v1.QueryGetDIDDocumentsByControllerRequest")
+	proto.RegisterType((*QueryGetDIDDocumentsByControllerResponse)(nil), "did.v1.QueryGetDIDDocumentsByControllerResponse")
+	proto.RegisterType((*QueryGetVerificationMethodRequest)(nil), "did.v1.QueryGetVerificationMethodRequest")
+	proto.RegisterType((*QueryGetVerificationMethodResponse)(nil), "did.v1.QueryGetVerificationMethodResponse")
+	proto.RegisterType((*QueryGetServiceRequest)(nil), "did.v1.QueryGetServiceRequest")
+	proto.RegisterType((*QueryGetServiceResponse)(nil), "did.v1.QueryGetServiceResponse")
+	proto.RegisterType((*QueryGetVerifiableCredentialRequest)(nil), "did.v1.QueryGetVerifiableCredentialRequest")
+	proto.RegisterType((*QueryGetVerifiableCredentialResponse)(nil), "did.v1.QueryGetVerifiableCredentialResponse")
+	proto.RegisterType((*QueryListVerifiableCredentialsRequest)(nil), "did.v1.QueryListVerifiableCredentialsRequest")
+	proto.RegisterType((*QueryListVerifiableCredentialsResponse)(nil), "did.v1.QueryListVerifiableCredentialsResponse")
+	proto.RegisterType((*CredentialInfo)(nil), "did.v1.CredentialInfo")
+	proto.RegisterType((*QueryGetCredentialsByDIDRequest)(nil), "did.v1.QueryGetCredentialsByDIDRequest")
+	proto.RegisterType((*QueryGetCredentialsByDIDResponse)(nil), "did.v1.QueryGetCredentialsByDIDResponse")
+	proto.RegisterType((*QueryRegisterStartRequest)(nil), "did.v1.QueryRegisterStartRequest")
+	proto.RegisterType((*QueryRegisterStartResponse)(nil), "did.v1.QueryRegisterStartResponse")
+	proto.RegisterMapType((map[string]string)(nil), "did.v1.QueryRegisterStartResponse.UserEntry")
+	proto.RegisterType((*QueryLoginStartRequest)(nil), "did.v1.QueryLoginStartRequest")
+	proto.RegisterType((*QueryLoginStartResponse)(nil), "did.v1.QueryLoginStartResponse")
 }
 
 func init() { proto.RegisterFile("did/v1/query.proto", fileDescriptor_ae1fa9bb626e2869) }
 
 var fileDescriptor_ae1fa9bb626e2869 = []byte{
-	// 477 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x53, 0xc1, 0x6e, 0xd3, 0x40,
-	0x10, 0x8d, 0x53, 0xe2, 0xb6, 0x03, 0x94, 0xb0, 0x98, 0xc8, 0x0a, 0x91, 0x85, 0x16, 0x09, 0x21,
-	0x01, 0xb6, 0x52, 0xce, 0xbd, 0xa0, 0x7e, 0x00, 0xb8, 0x88, 0x03, 0x17, 0xd8, 0x76, 0x07, 0xb3,
-	0x6a, 0xb2, 0xeb, 0x7a, 0xd7, 0x16, 0x16, 0x82, 0x03, 0x5f, 0x80, 0xd4, 0x3b, 0xdf, 0xc3, 0xb1,
-	0x12, 0x17, 0x8e, 0x28, 0xe1, 0x43, 0x50, 0xd6, 0xeb, 0x12, 0x47, 0xe2, 0x88, 0xb8, 0x65, 0xde,
-	0xbc, 0x7d, 0xf3, 0x26, 0xf3, 0x0c, 0x84, 0x0b, 0x9e, 0x54, 0xd3, 0xe4, 0xac, 0xc4, 0xa2, 0x8e,
-	0xf3, 0x42, 0x19, 0x45, 0x7c, 0x2e, 0x78, 0x5c, 0x4d, 0xc7, 0x81, 0xeb, 0x65, 0x28, 0x51, 0x0b,
-	0xdd, 0x74, 0xc7, 0x93, 0x4c, 0xa9, 0x6c, 0x86, 0x09, 0xcb, 0x45, 0xc2, 0xa4, 0x54, 0x86, 0x19,
-	0xa1, 0xa4, 0xeb, 0xd2, 0x37, 0x70, 0xed, 0xf9, 0x4a, 0x2a, 0xc5, 0xb3, 0x12, 0xb5, 0x21, 0x43,
-	0xd8, 0xe2, 0x82, 0x87, 0xde, 0x5d, 0xef, 0xc1, 0x6e, 0xba, 0xfa, 0x49, 0x46, 0xe0, 0xab, 0x42,
-	0x64, 0x42, 0x86, 0x7d, 0x0b, 0xba, 0x6a, 0xc5, 0x3c, 0xc5, 0x3a, 0xdc, 0x6a, 0x98, 0xa7, 0x58,
-	0x93, 0x00, 0x06, 0x4c, 0x6b, 0x34, 0xe1, 0x15, 0x8b, 0x35, 0x05, 0x3d, 0x80, 0x5b, 0x76, 0xc2,
-	0x33, 0x56, 0xb0, 0xb9, 0x4e, 0x51, 0xe7, 0x4a, 0x6a, 0x24, 0xf7, 0xc1, 0xcf, 0x2d, 0x62, 0x67,
-	0x5d, 0xdd, 0xdf, 0x8b, 0x9b, 0x2d, 0x62, 0xc7, 0x73, 0x5d, 0x7a, 0x08, 0x81, 0x33, 0xa8, 0xd5,
-	0xac, 0xc2, 0xcb, 0xf7, 0x8f, 0x60, 0x87, 0xab, 0x93, 0x72, 0x8e, 0xd2, 0x38, 0x85, 0x61, 0xab,
-	0x70, 0xe8, 0xf0, 0xf4, 0x92, 0x41, 0x3f, 0xc1, 0xd0, 0xaa, 0x1c, 0x89, 0x4c, 0xfe, 0xb3, 0x55,
-	0x49, 0x08, 0xdb, 0x73, 0xd4, 0x9a, 0x65, 0x18, 0x0e, 0x2c, 0xde, 0x96, 0x74, 0x0a, 0x37, 0xd7,
-	0xe6, 0xbb, 0x15, 0x26, 0xb0, 0xab, 0x45, 0x26, 0x99, 0x29, 0x0b, 0x74, 0x36, 0xfe, 0x00, 0xf4,
-	0xab, 0x07, 0xc4, 0xbe, 0x79, 0x89, 0x85, 0x78, 0x5b, 0xff, 0x07, 0xd7, 0x5d, 0x83, 0xfe, 0xa6,
-	0xc1, 0x87, 0xee, 0xb0, 0xad, 0x3f, 0xb7, 0x55, 0x00, 0x83, 0x8a, 0xcd, 0x9c, 0xc5, 0x9d, 0xb4,
-	0x29, 0xf6, 0xcf, 0xfb, 0x30, 0xb0, 0x6c, 0x72, 0x04, 0x7e, 0x73, 0x62, 0x12, 0xb4, 0x07, 0x5b,
-	0x4f, 0xe0, 0xf8, 0x4e, 0x07, 0xed, 0xa6, 0x86, 0x8e, 0x3e, 0x7f, 0xff, 0x75, 0xde, 0x1f, 0x92,
-	0xbd, 0xc4, 0x65, 0xbd, 0x49, 0x09, 0x79, 0x01, 0xdb, 0x2e, 0x20, 0x7f, 0x51, 0x9d, 0x6c, 0xa0,
-	0x9d, 0x30, 0xd1, 0xdb, 0x56, 0xf6, 0x06, 0xb9, 0xde, 0xca, 0x7e, 0xe0, 0x82, 0x7f, 0x24, 0xaf,
-	0xc1, 0x6f, 0x96, 0x23, 0xe3, 0xce, 0xf3, 0xce, 0x45, 0x36, 0x0c, 0x77, 0xff, 0x0d, 0x3a, 0xb1,
-	0xca, 0x23, 0x1a, 0x74, 0x94, 0x93, 0xca, 0xb2, 0x9e, 0x1e, 0x7c, 0x5b, 0x44, 0xde, 0xc5, 0x22,
-	0xf2, 0x7e, 0x2e, 0x22, 0xef, 0xcb, 0x32, 0xea, 0x5d, 0x2c, 0xa3, 0xde, 0x8f, 0x65, 0xd4, 0x7b,
-	0x75, 0x2f, 0x13, 0xe6, 0x5d, 0x79, 0x1c, 0x9f, 0xa8, 0x79, 0xa2, 0x95, 0x2c, 0x1e, 0x0b, 0x95,
-	0x68, 0x59, 0xf0, 0xe4, 0xbd, 0x15, 0x32, 0x75, 0x8e, 0xfa, 0xd8, 0xb7, 0xdf, 0xf0, 0x93, 0xdf,
-	0x01, 0x00, 0x00, 0xff, 0xff, 0xe8, 0xc6, 0x49, 0x75, 0x15, 0x04, 0x00, 0x00,
+	// 1479 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x58, 0x4d, 0x6f, 0x1b, 0x45,
+	0x18, 0xce, 0x3a, 0x6d, 0x1a, 0xbf, 0x71, 0xdc, 0x74, 0x9c, 0xa4, 0xc9, 0x26, 0x71, 0xdb, 0x4d,
+	0xd3, 0x7c, 0xb4, 0xf1, 0x92, 0x22, 0xa0, 0x42, 0x14, 0x95, 0xd4, 0xa5, 0x18, 0x5a, 0x51, 0xb6,
+	0x82, 0x0a, 0x2e, 0xd6, 0xda, 0x33, 0x75, 0x96, 0x6e, 0x76, 0xdd, 0x9d, 0xb5, 0xc1, 0x44, 0x91,
+	0x10, 0x27, 0x6e, 0x80, 0x38, 0x70, 0x45, 0x48, 0xe5, 0xc6, 0x01, 0xf1, 0x27, 0x7a, 0xac, 0xd4,
+	0x0b, 0x37, 0x50, 0xcb, 0xef, 0x40, 0x68, 0xe7, 0xc3, 0xfb, 0xe1, 0x5d, 0x27, 0xad, 0x8a, 0xd4,
+	0x93, 0x77, 0x9f, 0x79, 0x3f, 0x9e, 0x79, 0xe7, 0xdd, 0x99, 0x67, 0x0c, 0x08, 0x5b, 0x58, 0xef,
+	0x6e, 0xe9, 0xf7, 0x3b, 0xc4, 0xeb, 0x55, 0xda, 0x9e, 0xeb, 0xbb, 0x68, 0x0c, 0x5b, 0xb8, 0xd2,
+	0xdd, 0x52, 0x37, 0x9a, 0x2e, 0xdd, 0x75, 0xa9, 0xde, 0x30, 0x29, 0xe1, 0x06, 0x7a, 0x77, 0xab,
+	0x41, 0x7c, 0x73, 0x4b, 0x6f, 0x9b, 0x2d, 0xcb, 0x31, 0x7d, 0xcb, 0x75, 0xb8, 0x8f, 0x3a, 0x2d,
+	0xe2, 0xb4, 0x88, 0x43, 0xa8, 0x45, 0x05, 0x2a, 0xa3, 0x53, 0xdf, 0xf4, 0x49, 0x02, 0xf3, 0x7b,
+	0x6d, 0x22, 0xed, 0x16, 0x5b, 0xae, 0xdb, 0xb2, 0x89, 0x6e, 0xb6, 0x2d, 0xdd, 0x74, 0x1c, 0xd7,
+	0x67, 0xa1, 0xe5, 0xe8, 0x74, 0xcb, 0x6d, 0xb9, 0xec, 0x51, 0x0f, 0x9e, 0x38, 0xaa, 0x4d, 0x03,
+	0xfa, 0x28, 0xe0, 0x74, 0xcb, 0xf4, 0xcc, 0x5d, 0x6a, 0x90, 0xfb, 0x1d, 0x42, 0x7d, 0xed, 0x32,
+	0x94, 0x62, 0x28, 0x6d, 0xbb, 0x0e, 0x25, 0xe8, 0x1c, 0x8c, 0xb5, 0x19, 0x32, 0xa7, 0x9c, 0x56,
+	0xd6, 0x26, 0x2e, 0x16, 0x2b, 0x7c, 0x8e, 0x15, 0x61, 0x27, 0x46, 0xb5, 0x0d, 0x98, 0x65, 0xee,
+	0x06, 0xa1, 0xae, 0xdd, 0x25, 0xd5, 0x5a, 0x55, 0x04, 0x46, 0x53, 0x30, 0x8a, 0x2d, 0xcc, 0xdc,
+	0xf3, 0x46, 0xf0, 0xa8, 0xfd, 0xa2, 0xc0, 0xc9, 0x01, 0x63, 0x91, 0xef, 0x75, 0x28, 0x60, 0x0b,
+	0xd7, 0xb1, 0xdb, 0xec, 0xec, 0x12, 0xc7, 0x17, 0x59, 0x4b, 0x32, 0x6b, 0xb5, 0x56, 0xad, 0x8a,
+	0x21, 0x63, 0x02, 0x5b, 0x58, 0xbe, 0xa0, 0x0f, 0x61, 0x26, 0xea, 0x57, 0xdf, 0x25, 0xbe, 0x89,
+	0x4d, 0xdf, 0x9c, 0xcb, 0xb1, 0x00, 0x0b, 0x29, 0x01, 0x6e, 0x0a, 0x13, 0xa3, 0x14, 0x09, 0x24,
+	0x41, 0xad, 0x02, 0x2a, 0xe3, 0x78, 0x9d, 0xf8, 0xd1, 0xa4, 0x99, 0x93, 0xfa, 0x55, 0x81, 0x85,
+	0x54, 0x87, 0x97, 0x6d, 0x62, 0x77, 0x61, 0x91, 0xf1, 0xbc, 0x61, 0xd1, 0x28, 0x51, 0xd9, 0x08,
+	0xe8, 0x5d, 0x80, 0xb0, 0x49, 0x05, 0xcd, 0x73, 0x15, 0xde, 0xd1, 0x95, 0xa0, 0xa3, 0x2b, 0xbc,
+	0xe5, 0x45, 0x47, 0x57, 0x6e, 0x99, 0x2d, 0x22, 0x7c, 0x8d, 0x88, 0x67, 0xb0, 0xca, 0x4b, 0x19,
+	0x89, 0x44, 0x49, 0x2e, 0xc1, 0x64, 0x74, 0x6a, 0x41, 0x8b, 0x8d, 0x66, 0xd5, 0xa4, 0x10, 0x99,
+	0x0a, 0x45, 0xd7, 0x63, 0x1c, 0x79, 0x25, 0x56, 0x0f, 0xe4, 0xc8, 0xd3, 0xc6, 0x48, 0xfe, 0xa0,
+	0xc0, 0x6a, 0xca, 0xaa, 0xd1, 0xed, 0xde, 0x55, 0xd7, 0xf1, 0x3d, 0xd7, 0xb6, 0x89, 0x27, 0x0b,
+	0x53, 0x06, 0x68, 0xf6, 0x41, 0xb1, 0xf4, 0x11, 0x24, 0x51, 0xb8, 0xdc, 0x73, 0x17, 0xee, 0x37,
+	0x05, 0xd6, 0x0e, 0xe6, 0xf4, 0xf2, 0xd4, 0xd0, 0x80, 0x33, 0x92, 0xee, 0x27, 0xc4, 0xb3, 0xee,
+	0x5a, 0x4d, 0x86, 0xdf, 0x24, 0xfe, 0x8e, 0x8b, 0x33, 0x3f, 0x18, 0xb4, 0x00, 0xf9, 0x5d, 0x66,
+	0x52, 0xb7, 0x30, 0x4b, 0x9f, 0x37, 0xc6, 0x39, 0x50, 0xc3, 0xda, 0x7d, 0xd0, 0x86, 0xc5, 0x14,
+	0x93, 0xff, 0x00, 0x4a, 0xdd, 0xc8, 0x68, 0x9d, 0xbb, 0x8b, 0x9e, 0x55, 0x65, 0x09, 0x52, 0x02,
+	0xa0, 0xee, 0x00, 0xa6, 0xd5, 0xc4, 0x0e, 0x76, 0x9d, 0xf8, 0xb7, 0x89, 0xd7, 0xb5, 0x9a, 0x24,
+	0x9b, 0xfb, 0x12, 0x00, 0xe5, 0x36, 0x21, 0xf9, 0xbc, 0x40, 0x6a, 0x58, 0xab, 0x8a, 0xfd, 0x2d,
+	0x1a, 0x4a, 0x50, 0x5e, 0x87, 0x63, 0xc2, 0x4e, 0xd0, 0x3c, 0x2e, 0x69, 0x4a, 0x4b, 0x39, 0xae,
+	0xbd, 0x0f, 0xcb, 0xf1, 0x1a, 0x98, 0x0d, 0x9b, 0x5c, 0xf5, 0x08, 0x26, 0x8e, 0x6f, 0x99, 0xb6,
+	0x64, 0xb7, 0x0c, 0x93, 0xcd, 0x3e, 0x58, 0xef, 0xf3, 0x2c, 0x84, 0x60, 0x0d, 0x6b, 0x18, 0xce,
+	0x0e, 0x8f, 0x25, 0xe8, 0xbd, 0x05, 0x10, 0xfa, 0x09, 0x86, 0x8b, 0xf1, 0x42, 0x26, 0x3c, 0x23,
+	0xf6, 0xda, 0x43, 0x05, 0x56, 0xfa, 0x9f, 0x7c, 0x9a, 0xf5, 0x8b, 0xde, 0x64, 0xd0, 0x2c, 0x8c,
+	0x59, 0x94, 0x76, 0x88, 0x27, 0x16, 0x41, 0xbc, 0x05, 0xf8, 0x8e, 0x6b, 0x63, 0xe2, 0xcd, 0x8d,
+	0x72, 0x9c, 0xbf, 0xa1, 0x55, 0x38, 0x6e, 0x39, 0x4d, 0xbb, 0x83, 0x49, 0xdd, 0x23, 0x5d, 0xf7,
+	0x1e, 0xc1, 0x73, 0x47, 0x4e, 0x2b, 0x6b, 0xe3, 0x46, 0x51, 0xc0, 0x06, 0x47, 0xb5, 0xdf, 0x15,
+	0x38, 0x77, 0xd0, 0x54, 0x44, 0xcd, 0xde, 0x86, 0x89, 0xb0, 0x06, 0xf2, 0x03, 0x1c, 0x5e, 0xb4,
+	0xa8, 0xc3, 0x8b, 0xfb, 0x10, 0xbf, 0xce, 0x41, 0x31, 0x4c, 0x52, 0x73, 0xee, 0xba, 0xe8, 0x36,
+	0xcc, 0x74, 0xfb, 0x04, 0xea, 0xcf, 0xb6, 0xb4, 0xef, 0x8d, 0x18, 0xd3, 0xdd, 0x14, 0x1c, 0xdd,
+	0x84, 0xd2, 0x17, 0xa4, 0x61, 0x76, 0xfc, 0x1d, 0x27, 0x1a, 0x32, 0x17, 0xff, 0xec, 0xee, 0x90,
+	0xc6, 0x3b, 0x81, 0x49, 0x2c, 0x20, 0x92, 0x8e, 0x91, 0x70, 0xf3, 0x30, 0xde, 0x35, 0x3b, 0xb6,
+	0x1f, 0xf4, 0x2e, 0x5f, 0xad, 0x63, 0xec, 0xbd, 0x86, 0xd1, 0x19, 0x28, 0x58, 0xb4, 0x4e, 0x9c,
+	0xa6, 0xd7, 0x6b, 0xfb, 0xfd, 0xb5, 0x9a, 0xb0, 0xe8, 0x35, 0x09, 0x6d, 0x17, 0xa2, 0x1d, 0xab,
+	0xfd, 0xab, 0xc0, 0x29, 0xd9, 0xe8, 0x91, 0xb5, 0xda, 0xee, 0x0d, 0x13, 0x24, 0x68, 0x13, 0x90,
+	0xec, 0x8a, 0x70, 0xc2, 0x6c, 0x3e, 0xe3, 0xc6, 0x09, 0x31, 0x12, 0x56, 0x08, 0xad, 0xc3, 0x94,
+	0x34, 0x97, 0xd3, 0x61, 0xc4, 0xc7, 0x0d, 0xd9, 0x5c, 0x77, 0x04, 0x7c, 0xe8, 0x7e, 0x4b, 0x7c,
+	0x10, 0x47, 0x9f, 0xfb, 0xf0, 0x78, 0xa0, 0xc0, 0xe9, 0xec, 0x02, 0xf4, 0x0f, 0x8d, 0x94, 0x8e,
+	0x9d, 0x95, 0x0b, 0x17, 0x6f, 0xa1, 0xff, 0xa9, 0x57, 0xaf, 0xc0, 0xbc, 0x90, 0x80, 0x2d, 0x8b,
+	0xfa, 0xc4, 0xbb, 0xed, 0x9b, 0x9e, 0x1f, 0xd9, 0xd2, 0x4c, 0x4a, 0x89, 0xc7, 0x36, 0xf5, 0x70,
+	0xad, 0x0a, 0x7d, 0xb0, 0x6a, 0x61, 0xed, 0x2f, 0x45, 0x28, 0xb4, 0x44, 0x08, 0x31, 0xc7, 0x45,
+	0xc8, 0x37, 0x77, 0x4c, 0xdb, 0x26, 0x4e, 0x8b, 0x6f, 0xb5, 0x05, 0x23, 0x04, 0xd0, 0x1a, 0x4c,
+	0x79, 0xc4, 0xee, 0x59, 0x4e, 0xab, 0xde, 0x36, 0x3d, 0xbf, 0x17, 0x6e, 0xe3, 0x45, 0x81, 0xdf,
+	0x0a, 0xe0, 0x1a, 0x46, 0x57, 0xe0, 0x48, 0x87, 0xb2, 0x7d, 0x24, 0x28, 0xd2, 0x05, 0x59, 0xa4,
+	0xec, 0xcc, 0x95, 0x8f, 0x29, 0xf1, 0xae, 0x39, 0xbe, 0xd7, 0x33, 0x98, 0xa7, 0xfa, 0x06, 0xe4,
+	0xfb, 0x50, 0xd0, 0x7c, 0xf7, 0x48, 0x4f, 0x36, 0xdf, 0x3d, 0xd2, 0x43, 0xd3, 0x70, 0xb4, 0x6b,
+	0xda, 0x1d, 0x22, 0xf2, 0xf3, 0x97, 0x37, 0x73, 0x97, 0x14, 0xed, 0xb2, 0x38, 0x91, 0x6e, 0xb8,
+	0x2d, 0xcb, 0x79, 0xf6, 0x02, 0x7d, 0x2b, 0x65, 0x76, 0xd4, 0x5f, 0x54, 0x67, 0x05, 0x8a, 0xb1,
+	0x43, 0x83, 0x37, 0x41, 0xde, 0x98, 0x8c, 0x9e, 0x1a, 0x34, 0x5e, 0xc4, 0xdc, 0x61, 0x8a, 0x38,
+	0x9a, 0x56, 0xc4, 0x8b, 0x8f, 0x0b, 0x70, 0x94, 0x51, 0x41, 0x9f, 0xc2, 0x18, 0xbf, 0x39, 0x20,
+	0x35, 0x56, 0xca, 0xd8, 0x65, 0x44, 0x5d, 0x48, 0x1d, 0xe3, 0xdc, 0xb5, 0xd9, 0x6f, 0x1e, 0xff,
+	0xf3, 0x63, 0x6e, 0x0a, 0x15, 0x75, 0x71, 0x21, 0xe2, 0x57, 0x10, 0x64, 0x03, 0x84, 0x17, 0x0a,
+	0x54, 0x4e, 0xac, 0x54, 0xe2, 0x5a, 0xa2, 0x9e, 0xca, 0x1c, 0x17, 0x69, 0x96, 0x58, 0x9a, 0x93,
+	0x68, 0x46, 0xa6, 0xf1, 0xb8, 0x8d, 0xbe, 0x87, 0x2d, 0xbc, 0x8f, 0x7a, 0x50, 0x8c, 0xeb, 0x33,
+	0xa4, 0xc5, 0x22, 0xa6, 0xde, 0x1b, 0xd4, 0xe5, 0xa1, 0x36, 0x22, 0x73, 0x99, 0x65, 0x9e, 0x43,
+	0xb3, 0x32, 0xb3, 0x54, 0x77, 0x22, 0xf5, 0x57, 0x30, 0x95, 0xd4, 0xd4, 0xe8, 0x6c, 0x2c, 0x70,
+	0x86, 0xb6, 0x57, 0x57, 0x0e, 0xb0, 0x12, 0x04, 0xe6, 0x19, 0x81, 0x12, 0x3a, 0x91, 0x24, 0x40,
+	0xd1, 0x1f, 0x0a, 0x2c, 0x0c, 0xd1, 0xa5, 0x48, 0x1f, 0x32, 0xc1, 0x34, 0x55, 0xad, 0xbe, 0x72,
+	0x78, 0x07, 0xc1, 0x6e, 0x8b, 0xb1, 0x3b, 0x8f, 0xd6, 0x07, 0xd8, 0xe9, 0xa1, 0x1a, 0xd7, 0xf7,
+	0xc2, 0xe7, 0x7d, 0xf4, 0x40, 0x81, 0x99, 0x54, 0x29, 0x89, 0xd6, 0x93, 0xe9, 0x33, 0x25, 0xac,
+	0xba, 0x71, 0x18, 0x53, 0xc1, 0xf1, 0x35, 0xc6, 0x51, 0x47, 0x9b, 0x92, 0x63, 0x54, 0x70, 0x6e,
+	0x72, 0x9d, 0xca, 0x57, 0x53, 0xdf, 0xeb, 0xab, 0xe0, 0xa0, 0xa9, 0x20, 0xd4, 0x8c, 0x89, 0x16,
+	0x1e, 0xd0, 0xa5, 0x89, 0x16, 0x1e, 0x14, 0x9b, 0xda, 0x06, 0x63, 0x71, 0x16, 0x69, 0x92, 0x85,
+	0x90, 0x96, 0x32, 0x73, 0xa8, 0x61, 0xf7, 0xd1, 0xcf, 0x0a, 0x9c, 0xcc, 0x50, 0x87, 0xe8, 0x7c,
+	0xfa, 0xcc, 0x53, 0xf5, 0xa8, 0x7a, 0xe1, 0x70, 0xc6, 0x59, 0x14, 0xc3, 0x0d, 0x48, 0xdf, 0x8b,
+	0x6d, 0x51, 0xfb, 0xe8, 0x27, 0x05, 0xe6, 0x33, 0xe5, 0x18, 0xda, 0x1c, 0xe8, 0xed, 0x61, 0x0a,
+	0x54, 0xad, 0x1c, 0xd6, 0x5c, 0x10, 0x5d, 0x60, 0x44, 0x67, 0x50, 0x69, 0x90, 0x28, 0x45, 0xdf,
+	0x29, 0x50, 0x4a, 0x39, 0x70, 0xd1, 0x6a, 0xb2, 0x16, 0x19, 0x9a, 0x44, 0x5d, 0x3b, 0xd8, 0x50,
+	0xf0, 0x58, 0x61, 0x3c, 0x4e, 0xa1, 0xa5, 0x14, 0x1e, 0x0c, 0xe2, 0x7b, 0x44, 0x17, 0x26, 0x63,
+	0xa7, 0x13, 0x3a, 0x33, 0xec, 0xe4, 0xe2, 0x24, 0xb4, 0x83, 0x0f, 0x37, 0xb9, 0x37, 0x69, 0xb3,
+	0xe1, 0xae, 0xc8, 0xcd, 0x74, 0xca, 0xd2, 0x7c, 0x0e, 0x10, 0x1e, 0x37, 0x89, 0x0e, 0x1e, 0x38,
+	0xc7, 0x12, 0x1d, 0x3c, 0x78, 0x4e, 0xc9, 0xaa, 0x6b, 0xfd, 0xaa, 0xdb, 0x81, 0x0d, 0xcf, 0xb5,
+	0x7d, 0xf9, 0xe1, 0x93, 0xb2, 0xf2, 0xe8, 0x49, 0x59, 0xf9, 0xfb, 0x49, 0x59, 0xf9, 0xfe, 0x69,
+	0x79, 0xe4, 0xd1, 0xd3, 0xf2, 0xc8, 0x9f, 0x4f, 0xcb, 0x23, 0x9f, 0x2d, 0xb7, 0x2c, 0x7f, 0xa7,
+	0xd3, 0xa8, 0x34, 0xdd, 0x5d, 0x9d, 0xba, 0x8e, 0xb7, 0x69, 0xb9, 0xec, 0x57, 0xff, 0x92, 0xc5,
+	0x61, 0xff, 0xa0, 0x35, 0xc6, 0xd8, 0xdf, 0x61, 0xaf, 0xfe, 0x17, 0x00, 0x00, 0xff, 0xff, 0xa9,
+	0x88, 0xe5, 0x3e, 0xca, 0x13, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -502,11 +1581,34 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type QueryClient interface {
 	// Params queries all parameters of the module.
-	Params(ctx context.Context, in *QueryRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
-	// Resolve queries the DID document by its id.
-	Resolve(ctx context.Context, in *QueryRequest, opts ...grpc.CallOption) (*QueryResolveResponse, error)
-	// Verify verifies a message with the DID document
-	Verify(ctx context.Context, in *QueryVerifyRequest, opts ...grpc.CallOption) (*QueryVerifyResponse, error)
+	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
+	// ResolveDID resolves a DID to its DID document
+	//
+	// {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+	// It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+	//
+	// {{import "did_query_docs.md"}}
+	ResolveDID(ctx context.Context, in *QueryResolveDIDRequest, opts ...grpc.CallOption) (*QueryResolveDIDResponse, error)
+	// GetDIDDocument retrieves a DID document by its ID
+	GetDIDDocument(ctx context.Context, in *QueryGetDIDDocumentRequest, opts ...grpc.CallOption) (*QueryGetDIDDocumentResponse, error)
+	// ListDIDDocuments lists all DID documents with pagination
+	ListDIDDocuments(ctx context.Context, in *QueryListDIDDocumentsRequest, opts ...grpc.CallOption) (*QueryListDIDDocumentsResponse, error)
+	// GetDIDDocumentsByController retrieves DID documents by controller
+	GetDIDDocumentsByController(ctx context.Context, in *QueryGetDIDDocumentsByControllerRequest, opts ...grpc.CallOption) (*QueryGetDIDDocumentsByControllerResponse, error)
+	// GetVerificationMethod retrieves a specific verification method
+	GetVerificationMethod(ctx context.Context, in *QueryGetVerificationMethodRequest, opts ...grpc.CallOption) (*QueryGetVerificationMethodResponse, error)
+	// GetService retrieves a specific service endpoint
+	GetService(ctx context.Context, in *QueryGetServiceRequest, opts ...grpc.CallOption) (*QueryGetServiceResponse, error)
+	// GetVerifiableCredential retrieves a verifiable credential by ID
+	GetVerifiableCredential(ctx context.Context, in *QueryGetVerifiableCredentialRequest, opts ...grpc.CallOption) (*QueryGetVerifiableCredentialResponse, error)
+	// ListVerifiableCredentials lists all verifiable credentials with filtering options
+	ListVerifiableCredentials(ctx context.Context, in *QueryListVerifiableCredentialsRequest, opts ...grpc.CallOption) (*QueryListVerifiableCredentialsResponse, error)
+	// GetCredentialsByDID retrieves all credentials (verifiable and WebAuthn) associated with a DID
+	GetCredentialsByDID(ctx context.Context, in *QueryGetCredentialsByDIDRequest, opts ...grpc.CallOption) (*QueryGetCredentialsByDIDResponse, error)
+	// RegisterStart represents the start of the registration process
+	RegisterStart(ctx context.Context, in *QueryRegisterStartRequest, opts ...grpc.CallOption) (*QueryRegisterStartResponse, error)
+	// LoginStart represents the start of the login process
+	LoginStart(ctx context.Context, in *QueryLoginStartRequest, opts ...grpc.CallOption) (*QueryLoginStartResponse, error)
 }
 
 type queryClient struct {
@@ -517,7 +1619,7 @@ func NewQueryClient(cc grpc1.ClientConn) QueryClient {
 	return &queryClient{cc}
 }
 
-func (c *queryClient) Params(ctx context.Context, in *QueryRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error) {
+func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error) {
 	out := new(QueryParamsResponse)
 	err := c.cc.Invoke(ctx, "/did.v1.Query/Params", in, out, opts...)
 	if err != nil {
@@ -526,18 +1628,99 @@ func (c *queryClient) Params(ctx context.Context, in *QueryRequest, opts ...grpc
 	return out, nil
 }
 
-func (c *queryClient) Resolve(ctx context.Context, in *QueryRequest, opts ...grpc.CallOption) (*QueryResolveResponse, error) {
-	out := new(QueryResolveResponse)
-	err := c.cc.Invoke(ctx, "/did.v1.Query/Resolve", in, out, opts...)
+func (c *queryClient) ResolveDID(ctx context.Context, in *QueryResolveDIDRequest, opts ...grpc.CallOption) (*QueryResolveDIDResponse, error) {
+	out := new(QueryResolveDIDResponse)
+	err := c.cc.Invoke(ctx, "/did.v1.Query/ResolveDID", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *queryClient) Verify(ctx context.Context, in *QueryVerifyRequest, opts ...grpc.CallOption) (*QueryVerifyResponse, error) {
-	out := new(QueryVerifyResponse)
-	err := c.cc.Invoke(ctx, "/did.v1.Query/Verify", in, out, opts...)
+func (c *queryClient) GetDIDDocument(ctx context.Context, in *QueryGetDIDDocumentRequest, opts ...grpc.CallOption) (*QueryGetDIDDocumentResponse, error) {
+	out := new(QueryGetDIDDocumentResponse)
+	err := c.cc.Invoke(ctx, "/did.v1.Query/GetDIDDocument", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) ListDIDDocuments(ctx context.Context, in *QueryListDIDDocumentsRequest, opts ...grpc.CallOption) (*QueryListDIDDocumentsResponse, error) {
+	out := new(QueryListDIDDocumentsResponse)
+	err := c.cc.Invoke(ctx, "/did.v1.Query/ListDIDDocuments", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) GetDIDDocumentsByController(ctx context.Context, in *QueryGetDIDDocumentsByControllerRequest, opts ...grpc.CallOption) (*QueryGetDIDDocumentsByControllerResponse, error) {
+	out := new(QueryGetDIDDocumentsByControllerResponse)
+	err := c.cc.Invoke(ctx, "/did.v1.Query/GetDIDDocumentsByController", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) GetVerificationMethod(ctx context.Context, in *QueryGetVerificationMethodRequest, opts ...grpc.CallOption) (*QueryGetVerificationMethodResponse, error) {
+	out := new(QueryGetVerificationMethodResponse)
+	err := c.cc.Invoke(ctx, "/did.v1.Query/GetVerificationMethod", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) GetService(ctx context.Context, in *QueryGetServiceRequest, opts ...grpc.CallOption) (*QueryGetServiceResponse, error) {
+	out := new(QueryGetServiceResponse)
+	err := c.cc.Invoke(ctx, "/did.v1.Query/GetService", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) GetVerifiableCredential(ctx context.Context, in *QueryGetVerifiableCredentialRequest, opts ...grpc.CallOption) (*QueryGetVerifiableCredentialResponse, error) {
+	out := new(QueryGetVerifiableCredentialResponse)
+	err := c.cc.Invoke(ctx, "/did.v1.Query/GetVerifiableCredential", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) ListVerifiableCredentials(ctx context.Context, in *QueryListVerifiableCredentialsRequest, opts ...grpc.CallOption) (*QueryListVerifiableCredentialsResponse, error) {
+	out := new(QueryListVerifiableCredentialsResponse)
+	err := c.cc.Invoke(ctx, "/did.v1.Query/ListVerifiableCredentials", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) GetCredentialsByDID(ctx context.Context, in *QueryGetCredentialsByDIDRequest, opts ...grpc.CallOption) (*QueryGetCredentialsByDIDResponse, error) {
+	out := new(QueryGetCredentialsByDIDResponse)
+	err := c.cc.Invoke(ctx, "/did.v1.Query/GetCredentialsByDID", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) RegisterStart(ctx context.Context, in *QueryRegisterStartRequest, opts ...grpc.CallOption) (*QueryRegisterStartResponse, error) {
+	out := new(QueryRegisterStartResponse)
+	err := c.cc.Invoke(ctx, "/did.v1.Query/RegisterStart", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) LoginStart(ctx context.Context, in *QueryLoginStartRequest, opts ...grpc.CallOption) (*QueryLoginStartResponse, error) {
+	out := new(QueryLoginStartResponse)
+	err := c.cc.Invoke(ctx, "/did.v1.Query/LoginStart", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -547,25 +1730,75 @@ func (c *queryClient) Verify(ctx context.Context, in *QueryVerifyRequest, opts .
 // QueryServer is the server API for Query service.
 type QueryServer interface {
 	// Params queries all parameters of the module.
-	Params(context.Context, *QueryRequest) (*QueryParamsResponse, error)
-	// Resolve queries the DID document by its id.
-	Resolve(context.Context, *QueryRequest) (*QueryResolveResponse, error)
-	// Verify verifies a message with the DID document
-	Verify(context.Context, *QueryVerifyRequest) (*QueryVerifyResponse, error)
+	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
+	// ResolveDID resolves a DID to its DID document
+	//
+	// {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+	// It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+	//
+	// {{import "did_query_docs.md"}}
+	ResolveDID(context.Context, *QueryResolveDIDRequest) (*QueryResolveDIDResponse, error)
+	// GetDIDDocument retrieves a DID document by its ID
+	GetDIDDocument(context.Context, *QueryGetDIDDocumentRequest) (*QueryGetDIDDocumentResponse, error)
+	// ListDIDDocuments lists all DID documents with pagination
+	ListDIDDocuments(context.Context, *QueryListDIDDocumentsRequest) (*QueryListDIDDocumentsResponse, error)
+	// GetDIDDocumentsByController retrieves DID documents by controller
+	GetDIDDocumentsByController(context.Context, *QueryGetDIDDocumentsByControllerRequest) (*QueryGetDIDDocumentsByControllerResponse, error)
+	// GetVerificationMethod retrieves a specific verification method
+	GetVerificationMethod(context.Context, *QueryGetVerificationMethodRequest) (*QueryGetVerificationMethodResponse, error)
+	// GetService retrieves a specific service endpoint
+	GetService(context.Context, *QueryGetServiceRequest) (*QueryGetServiceResponse, error)
+	// GetVerifiableCredential retrieves a verifiable credential by ID
+	GetVerifiableCredential(context.Context, *QueryGetVerifiableCredentialRequest) (*QueryGetVerifiableCredentialResponse, error)
+	// ListVerifiableCredentials lists all verifiable credentials with filtering options
+	ListVerifiableCredentials(context.Context, *QueryListVerifiableCredentialsRequest) (*QueryListVerifiableCredentialsResponse, error)
+	// GetCredentialsByDID retrieves all credentials (verifiable and WebAuthn) associated with a DID
+	GetCredentialsByDID(context.Context, *QueryGetCredentialsByDIDRequest) (*QueryGetCredentialsByDIDResponse, error)
+	// RegisterStart represents the start of the registration process
+	RegisterStart(context.Context, *QueryRegisterStartRequest) (*QueryRegisterStartResponse, error)
+	// LoginStart represents the start of the login process
+	LoginStart(context.Context, *QueryLoginStartRequest) (*QueryLoginStartResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
 type UnimplementedQueryServer struct {
 }
 
-func (*UnimplementedQueryServer) Params(ctx context.Context, req *QueryRequest) (*QueryParamsResponse, error) {
+func (*UnimplementedQueryServer) Params(ctx context.Context, req *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Params not implemented")
 }
-func (*UnimplementedQueryServer) Resolve(ctx context.Context, req *QueryRequest) (*QueryResolveResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Resolve not implemented")
+func (*UnimplementedQueryServer) ResolveDID(ctx context.Context, req *QueryResolveDIDRequest) (*QueryResolveDIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResolveDID not implemented")
 }
-func (*UnimplementedQueryServer) Verify(ctx context.Context, req *QueryVerifyRequest) (*QueryVerifyResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Verify not implemented")
+func (*UnimplementedQueryServer) GetDIDDocument(ctx context.Context, req *QueryGetDIDDocumentRequest) (*QueryGetDIDDocumentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDIDDocument not implemented")
+}
+func (*UnimplementedQueryServer) ListDIDDocuments(ctx context.Context, req *QueryListDIDDocumentsRequest) (*QueryListDIDDocumentsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDIDDocuments not implemented")
+}
+func (*UnimplementedQueryServer) GetDIDDocumentsByController(ctx context.Context, req *QueryGetDIDDocumentsByControllerRequest) (*QueryGetDIDDocumentsByControllerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDIDDocumentsByController not implemented")
+}
+func (*UnimplementedQueryServer) GetVerificationMethod(ctx context.Context, req *QueryGetVerificationMethodRequest) (*QueryGetVerificationMethodResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetVerificationMethod not implemented")
+}
+func (*UnimplementedQueryServer) GetService(ctx context.Context, req *QueryGetServiceRequest) (*QueryGetServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetService not implemented")
+}
+func (*UnimplementedQueryServer) GetVerifiableCredential(ctx context.Context, req *QueryGetVerifiableCredentialRequest) (*QueryGetVerifiableCredentialResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetVerifiableCredential not implemented")
+}
+func (*UnimplementedQueryServer) ListVerifiableCredentials(ctx context.Context, req *QueryListVerifiableCredentialsRequest) (*QueryListVerifiableCredentialsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListVerifiableCredentials not implemented")
+}
+func (*UnimplementedQueryServer) GetCredentialsByDID(ctx context.Context, req *QueryGetCredentialsByDIDRequest) (*QueryGetCredentialsByDIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCredentialsByDID not implemented")
+}
+func (*UnimplementedQueryServer) RegisterStart(ctx context.Context, req *QueryRegisterStartRequest) (*QueryRegisterStartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterStart not implemented")
+}
+func (*UnimplementedQueryServer) LoginStart(ctx context.Context, req *QueryLoginStartRequest) (*QueryLoginStartResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LoginStart not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -573,7 +1806,7 @@ func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
 }
 
 func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryRequest)
+	in := new(QueryParamsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -585,48 +1818,209 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 		FullMethod: "/did.v1.Query/Params",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).Params(ctx, req.(*QueryRequest))
+		return srv.(QueryServer).Params(ctx, req.(*QueryParamsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_Resolve_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryRequest)
+func _Query_ResolveDID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryResolveDIDRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).Resolve(ctx, in)
+		return srv.(QueryServer).ResolveDID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/did.v1.Query/Resolve",
+		FullMethod: "/did.v1.Query/ResolveDID",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).Resolve(ctx, req.(*QueryRequest))
+		return srv.(QueryServer).ResolveDID(ctx, req.(*QueryResolveDIDRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_Verify_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryVerifyRequest)
+func _Query_GetDIDDocument_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetDIDDocumentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).Verify(ctx, in)
+		return srv.(QueryServer).GetDIDDocument(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/did.v1.Query/Verify",
+		FullMethod: "/did.v1.Query/GetDIDDocument",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).Verify(ctx, req.(*QueryVerifyRequest))
+		return srv.(QueryServer).GetDIDDocument(ctx, req.(*QueryGetDIDDocumentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var Query_serviceDesc = _Query_serviceDesc
+func _Query_ListDIDDocuments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryListDIDDocumentsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ListDIDDocuments(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/did.v1.Query/ListDIDDocuments",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ListDIDDocuments(ctx, req.(*QueryListDIDDocumentsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_GetDIDDocumentsByController_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetDIDDocumentsByControllerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).GetDIDDocumentsByController(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/did.v1.Query/GetDIDDocumentsByController",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).GetDIDDocumentsByController(ctx, req.(*QueryGetDIDDocumentsByControllerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_GetVerificationMethod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetVerificationMethodRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).GetVerificationMethod(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/did.v1.Query/GetVerificationMethod",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).GetVerificationMethod(ctx, req.(*QueryGetVerificationMethodRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_GetService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).GetService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/did.v1.Query/GetService",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).GetService(ctx, req.(*QueryGetServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_GetVerifiableCredential_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetVerifiableCredentialRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).GetVerifiableCredential(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/did.v1.Query/GetVerifiableCredential",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).GetVerifiableCredential(ctx, req.(*QueryGetVerifiableCredentialRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_ListVerifiableCredentials_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryListVerifiableCredentialsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).ListVerifiableCredentials(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/did.v1.Query/ListVerifiableCredentials",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).ListVerifiableCredentials(ctx, req.(*QueryListVerifiableCredentialsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_GetCredentialsByDID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetCredentialsByDIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).GetCredentialsByDID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/did.v1.Query/GetCredentialsByDID",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).GetCredentialsByDID(ctx, req.(*QueryGetCredentialsByDIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_RegisterStart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryRegisterStartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).RegisterStart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/did.v1.Query/RegisterStart",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).RegisterStart(ctx, req.(*QueryRegisterStartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_LoginStart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryLoginStartRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).LoginStart(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/did.v1.Query/LoginStart",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).LoginStart(ctx, req.(*QueryLoginStartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Query_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "did.v1.Query",
 	HandlerType: (*QueryServer)(nil),
@@ -636,19 +2030,55 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Query_Params_Handler,
 		},
 		{
-			MethodName: "Resolve",
-			Handler:    _Query_Resolve_Handler,
+			MethodName: "ResolveDID",
+			Handler:    _Query_ResolveDID_Handler,
 		},
 		{
-			MethodName: "Verify",
-			Handler:    _Query_Verify_Handler,
+			MethodName: "GetDIDDocument",
+			Handler:    _Query_GetDIDDocument_Handler,
+		},
+		{
+			MethodName: "ListDIDDocuments",
+			Handler:    _Query_ListDIDDocuments_Handler,
+		},
+		{
+			MethodName: "GetDIDDocumentsByController",
+			Handler:    _Query_GetDIDDocumentsByController_Handler,
+		},
+		{
+			MethodName: "GetVerificationMethod",
+			Handler:    _Query_GetVerificationMethod_Handler,
+		},
+		{
+			MethodName: "GetService",
+			Handler:    _Query_GetService_Handler,
+		},
+		{
+			MethodName: "GetVerifiableCredential",
+			Handler:    _Query_GetVerifiableCredential_Handler,
+		},
+		{
+			MethodName: "ListVerifiableCredentials",
+			Handler:    _Query_ListVerifiableCredentials_Handler,
+		},
+		{
+			MethodName: "GetCredentialsByDID",
+			Handler:    _Query_GetCredentialsByDID_Handler,
+		},
+		{
+			MethodName: "RegisterStart",
+			Handler:    _Query_RegisterStart_Handler,
+		},
+		{
+			MethodName: "LoginStart",
+			Handler:    _Query_LoginStart_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "did/v1/query.proto",
 }
 
-func (m *QueryRequest) Marshal() (dAtA []byte, err error) {
+func (m *QueryParamsRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -658,44 +2088,16 @@ func (m *QueryRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryParamsRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryParamsRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.Asset) > 0 {
-		i -= len(m.Asset)
-		copy(dAtA[i:], m.Asset)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Asset)))
-		i--
-		dAtA[i] = 0x22
-	}
-	if len(m.Key) > 0 {
-		i -= len(m.Key)
-		copy(dAtA[i:], m.Key)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Key)))
-		i--
-		dAtA[i] = 0x1a
-	}
-	if len(m.Origin) > 0 {
-		i -= len(m.Origin)
-		copy(dAtA[i:], m.Origin)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Origin)))
-		i--
-		dAtA[i] = 0x12
-	}
-	if len(m.Did) > 0 {
-		i -= len(m.Did)
-		copy(dAtA[i:], m.Did)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Did)))
-		i--
-		dAtA[i] = 0xa
-	}
 	return len(dAtA) - i, nil
 }
 
@@ -734,7 +2136,7 @@ func (m *QueryParamsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryResolveResponse) Marshal() (dAtA []byte, err error) {
+func (m *QueryResolveDIDRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -744,19 +2146,61 @@ func (m *QueryResolveResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryResolveResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryResolveDIDRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryResolveResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryResolveDIDRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if m.Document != nil {
+	if len(m.Did) > 0 {
+		i -= len(m.Did)
+		copy(dAtA[i:], m.Did)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Did)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryResolveDIDResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryResolveDIDResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryResolveDIDResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.DidDocumentMetadata != nil {
 		{
-			size, err := m.Document.MarshalToSizedBuffer(dAtA[:i])
+			size, err := m.DidDocumentMetadata.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.DidDocument != nil {
+		{
+			size, err := m.DidDocument.MarshalToSizedBuffer(dAtA[:i])
 			if err != nil {
 				return 0, err
 			}
@@ -769,7 +2213,7 @@ func (m *QueryResolveResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *QuerySignRequest) Marshal() (dAtA []byte, err error) {
+func (m *QueryGetDIDDocumentRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -779,41 +2223,272 @@ func (m *QuerySignRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QuerySignRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryGetDIDDocumentRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QuerySignRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryGetDIDDocumentRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.Message) > 0 {
-		i -= len(m.Message)
-		copy(dAtA[i:], m.Message)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Message)))
+	if len(m.Did) > 0 {
+		i -= len(m.Did)
+		copy(dAtA[i:], m.Did)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Did)))
 		i--
-		dAtA[i] = 0x2a
+		dAtA[i] = 0xa
 	}
-	if len(m.Asset) > 0 {
-		i -= len(m.Asset)
-		copy(dAtA[i:], m.Asset)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Asset)))
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetDIDDocumentResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetDIDDocumentResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetDIDDocumentResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.DidDocumentMetadata != nil {
+		{
+			size, err := m.DidDocumentMetadata.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
 		i--
-		dAtA[i] = 0x22
+		dAtA[i] = 0x12
 	}
-	if len(m.Key) > 0 {
-		i -= len(m.Key)
-		copy(dAtA[i:], m.Key)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Key)))
+	if m.DidDocument != nil {
+		{
+			size, err := m.DidDocument.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
 		i--
-		dAtA[i] = 0x1a
+		dAtA[i] = 0xa
 	}
-	if len(m.Origin) > 0 {
-		i -= len(m.Origin)
-		copy(dAtA[i:], m.Origin)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Origin)))
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryListDIDDocumentsRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryListDIDDocumentsRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryListDIDDocumentsRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryListDIDDocumentsResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryListDIDDocumentsResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryListDIDDocumentsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.DidDocuments) > 0 {
+		for iNdEx := len(m.DidDocuments) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.DidDocuments[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetDIDDocumentsByControllerRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetDIDDocumentsByControllerRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetDIDDocumentsByControllerRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Controller) > 0 {
+		i -= len(m.Controller)
+		copy(dAtA[i:], m.Controller)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Controller)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetDIDDocumentsByControllerResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetDIDDocumentsByControllerResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetDIDDocumentsByControllerResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.DidDocuments) > 0 {
+		for iNdEx := len(m.DidDocuments) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.DidDocuments[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetVerificationMethodRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetVerificationMethodRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetVerificationMethodRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.MethodId) > 0 {
+		i -= len(m.MethodId)
+		copy(dAtA[i:], m.MethodId)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.MethodId)))
 		i--
 		dAtA[i] = 0x12
 	}
@@ -827,7 +2502,7 @@ func (m *QuerySignRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *QuerySignResponse) Marshal() (dAtA []byte, err error) {
+func (m *QueryGetVerificationMethodResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -837,27 +2512,32 @@ func (m *QuerySignResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QuerySignResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryGetVerificationMethodResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QuerySignResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryGetVerificationMethodResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.Signature) > 0 {
-		i -= len(m.Signature)
-		copy(dAtA[i:], m.Signature)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Signature)))
+	if m.VerificationMethod != nil {
+		{
+			size, err := m.VerificationMethod.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
 		i--
 		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryVerifyRequest) Marshal() (dAtA []byte, err error) {
+func (m *QueryGetServiceRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -867,48 +2547,20 @@ func (m *QueryVerifyRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryVerifyRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryGetServiceRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryVerifyRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryGetServiceRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.Signature) > 0 {
-		i -= len(m.Signature)
-		copy(dAtA[i:], m.Signature)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Signature)))
-		i--
-		dAtA[i] = 0x32
-	}
-	if len(m.Message) > 0 {
-		i -= len(m.Message)
-		copy(dAtA[i:], m.Message)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Message)))
-		i--
-		dAtA[i] = 0x2a
-	}
-	if len(m.Asset) > 0 {
-		i -= len(m.Asset)
-		copy(dAtA[i:], m.Asset)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Asset)))
-		i--
-		dAtA[i] = 0x22
-	}
-	if len(m.Key) > 0 {
-		i -= len(m.Key)
-		copy(dAtA[i:], m.Key)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Key)))
-		i--
-		dAtA[i] = 0x1a
-	}
-	if len(m.Origin) > 0 {
-		i -= len(m.Origin)
-		copy(dAtA[i:], m.Origin)
-		i = encodeVarintQuery(dAtA, i, uint64(len(m.Origin)))
+	if len(m.ServiceId) > 0 {
+		i -= len(m.ServiceId)
+		copy(dAtA[i:], m.ServiceId)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.ServiceId)))
 		i--
 		dAtA[i] = 0x12
 	}
@@ -922,7 +2574,7 @@ func (m *QueryVerifyRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *QueryVerifyResponse) Marshal() (dAtA []byte, err error) {
+func (m *QueryGetServiceResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -932,25 +2584,574 @@ func (m *QueryVerifyResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *QueryVerifyResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *QueryGetServiceResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *QueryVerifyResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *QueryGetServiceResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if m.Valid {
+	if m.Service != nil {
+		{
+			size, err := m.Service.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
 		i--
-		if m.Valid {
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetVerifiableCredentialRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetVerifiableCredentialRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetVerifiableCredentialRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.CredentialId) > 0 {
+		i -= len(m.CredentialId)
+		copy(dAtA[i:], m.CredentialId)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.CredentialId)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetVerifiableCredentialResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetVerifiableCredentialResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetVerifiableCredentialResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Credential != nil {
+		{
+			size, err := m.Credential.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryListVerifiableCredentialsRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryListVerifiableCredentialsRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryListVerifiableCredentialsRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.IncludeRevoked {
+		i--
+		if m.IncludeRevoked {
 			dAtA[i] = 1
 		} else {
 			dAtA[i] = 0
 		}
 		i--
-		dAtA[i] = 0x8
+		dAtA[i] = 0x20
+	}
+	if len(m.Holder) > 0 {
+		i -= len(m.Holder)
+		copy(dAtA[i:], m.Holder)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Holder)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.Issuer) > 0 {
+		i -= len(m.Issuer)
+		copy(dAtA[i:], m.Issuer)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Issuer)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryListVerifiableCredentialsResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryListVerifiableCredentialsResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryListVerifiableCredentialsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Credentials) > 0 {
+		for iNdEx := len(m.Credentials) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Credentials[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *CredentialInfo) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *CredentialInfo) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *CredentialInfo) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.IsEncrypted {
+		i--
+		if m.IsEncrypted {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x20
+	}
+	if len(m.VaultId) > 0 {
+		i -= len(m.VaultId)
+		copy(dAtA[i:], m.VaultId)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.VaultId)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if m.Credential != nil {
+		{
+			size := m.Credential.Size()
+			i -= size
+			if _, err := m.Credential.MarshalTo(dAtA[i:]); err != nil {
+				return 0, err
+			}
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *CredentialInfo_VerifiableCredential) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *CredentialInfo_VerifiableCredential) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	if m.VerifiableCredential != nil {
+		{
+			size, err := m.VerifiableCredential.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+func (m *CredentialInfo_WebauthnCredential) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *CredentialInfo_WebauthnCredential) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	if m.WebauthnCredential != nil {
+		{
+			size, err := m.WebauthnCredential.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	return len(dAtA) - i, nil
+}
+func (m *QueryGetCredentialsByDIDRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetCredentialsByDIDRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetCredentialsByDIDRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x2a
+	}
+	if m.IncludeRevoked {
+		i--
+		if m.IncludeRevoked {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x20
+	}
+	if m.IncludeWebauthn {
+		i--
+		if m.IncludeWebauthn {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x18
+	}
+	if m.IncludeVerifiable {
+		i--
+		if m.IncludeVerifiable {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x10
+	}
+	if len(m.Did) > 0 {
+		i -= len(m.Did)
+		copy(dAtA[i:], m.Did)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Did)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetCredentialsByDIDResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetCredentialsByDIDResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetCredentialsByDIDResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Credentials) > 0 {
+		for iNdEx := len(m.Credentials) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Credentials[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryRegisterStartRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryRegisterStartRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryRegisterStartRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.AssertionDid) > 0 {
+		i -= len(m.AssertionDid)
+		copy(dAtA[i:], m.AssertionDid)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.AssertionDid)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryRegisterStartResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryRegisterStartResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryRegisterStartResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.User) > 0 {
+		for k := range m.User {
+			v := m.User[k]
+			baseI := i
+			i -= len(v)
+			copy(dAtA[i:], v)
+			i = encodeVarintQuery(dAtA, i, uint64(len(v)))
+			i--
+			dAtA[i] = 0x12
+			i -= len(k)
+			copy(dAtA[i:], k)
+			i = encodeVarintQuery(dAtA, i, uint64(len(k)))
+			i--
+			dAtA[i] = 0xa
+			i = encodeVarintQuery(dAtA, i, uint64(baseI-i))
+			i--
+			dAtA[i] = 0x1a
+		}
+	}
+	if len(m.RelyingPartyId) > 0 {
+		i -= len(m.RelyingPartyId)
+		copy(dAtA[i:], m.RelyingPartyId)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.RelyingPartyId)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Challenge) > 0 {
+		i -= len(m.Challenge)
+		copy(dAtA[i:], m.Challenge)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Challenge)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryLoginStartRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryLoginStartRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryLoginStartRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.AssertionDid) > 0 {
+		i -= len(m.AssertionDid)
+		copy(dAtA[i:], m.AssertionDid)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.AssertionDid)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryLoginStartResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryLoginStartResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryLoginStartResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.RelyingPartyId) > 0 {
+		i -= len(m.RelyingPartyId)
+		copy(dAtA[i:], m.RelyingPartyId)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.RelyingPartyId)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.Challenge) > 0 {
+		i -= len(m.Challenge)
+		copy(dAtA[i:], m.Challenge)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Challenge)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.CredentialIds) > 0 {
+		for iNdEx := len(m.CredentialIds) - 1; iNdEx >= 0; iNdEx-- {
+			i -= len(m.CredentialIds[iNdEx])
+			copy(dAtA[i:], m.CredentialIds[iNdEx])
+			i = encodeVarintQuery(dAtA, i, uint64(len(m.CredentialIds[iNdEx])))
+			i--
+			dAtA[i] = 0xa
+		}
 	}
 	return len(dAtA) - i, nil
 }
@@ -966,28 +3167,12 @@ func encodeVarintQuery(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
-func (m *QueryRequest) Size() (n int) {
+func (m *QueryParamsRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = len(m.Did)
-	if l > 0 {
-		n += 1 + l + sovQuery(uint64(l))
-	}
-	l = len(m.Origin)
-	if l > 0 {
-		n += 1 + l + sovQuery(uint64(l))
-	}
-	l = len(m.Key)
-	if l > 0 {
-		n += 1 + l + sovQuery(uint64(l))
-	}
-	l = len(m.Asset)
-	if l > 0 {
-		n += 1 + l + sovQuery(uint64(l))
-	}
 	return n
 }
 
@@ -1004,20 +3189,7 @@ func (m *QueryParamsResponse) Size() (n int) {
 	return n
 }
 
-func (m *QueryResolveResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Document != nil {
-		l = m.Document.Size()
-		n += 1 + l + sovQuery(uint64(l))
-	}
-	return n
-}
-
-func (m *QuerySignRequest) Size() (n int) {
+func (m *QueryResolveDIDRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1027,39 +3199,27 @@ func (m *QuerySignRequest) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovQuery(uint64(l))
 	}
-	l = len(m.Origin)
-	if l > 0 {
-		n += 1 + l + sovQuery(uint64(l))
-	}
-	l = len(m.Key)
-	if l > 0 {
-		n += 1 + l + sovQuery(uint64(l))
-	}
-	l = len(m.Asset)
-	if l > 0 {
-		n += 1 + l + sovQuery(uint64(l))
-	}
-	l = len(m.Message)
-	if l > 0 {
-		n += 1 + l + sovQuery(uint64(l))
-	}
 	return n
 }
 
-func (m *QuerySignResponse) Size() (n int) {
+func (m *QueryResolveDIDResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = len(m.Signature)
-	if l > 0 {
+	if m.DidDocument != nil {
+		l = m.DidDocument.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	if m.DidDocumentMetadata != nil {
+		l = m.DidDocumentMetadata.Size()
 		n += 1 + l + sovQuery(uint64(l))
 	}
 	return n
 }
 
-func (m *QueryVerifyRequest) Size() (n int) {
+func (m *QueryGetDIDDocumentRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1069,37 +3229,381 @@ func (m *QueryVerifyRequest) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovQuery(uint64(l))
 	}
-	l = len(m.Origin)
+	return n
+}
+
+func (m *QueryGetDIDDocumentResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.DidDocument != nil {
+		l = m.DidDocument.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	if m.DidDocumentMetadata != nil {
+		l = m.DidDocumentMetadata.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryListDIDDocumentsRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryListDIDDocumentsResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.DidDocuments) > 0 {
+		for _, e := range m.DidDocuments {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetDIDDocumentsByControllerRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Controller)
 	if l > 0 {
 		n += 1 + l + sovQuery(uint64(l))
 	}
-	l = len(m.Key)
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetDIDDocumentsByControllerResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.DidDocuments) > 0 {
+		for _, e := range m.DidDocuments {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetVerificationMethodRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Did)
 	if l > 0 {
 		n += 1 + l + sovQuery(uint64(l))
 	}
-	l = len(m.Asset)
-	if l > 0 {
-		n += 1 + l + sovQuery(uint64(l))
-	}
-	l = len(m.Message)
-	if l > 0 {
-		n += 1 + l + sovQuery(uint64(l))
-	}
-	l = len(m.Signature)
+	l = len(m.MethodId)
 	if l > 0 {
 		n += 1 + l + sovQuery(uint64(l))
 	}
 	return n
 }
 
-func (m *QueryVerifyResponse) Size() (n int) {
+func (m *QueryGetVerificationMethodResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if m.Valid {
+	if m.VerificationMethod != nil {
+		l = m.VerificationMethod.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetServiceRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Did)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	l = len(m.ServiceId)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetServiceResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Service != nil {
+		l = m.Service.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetVerifiableCredentialRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.CredentialId)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetVerifiableCredentialResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Credential != nil {
+		l = m.Credential.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryListVerifiableCredentialsRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	l = len(m.Issuer)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	l = len(m.Holder)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	if m.IncludeRevoked {
 		n += 2
+	}
+	return n
+}
+
+func (m *QueryListVerifiableCredentialsResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Credentials) > 0 {
+		for _, e := range m.Credentials {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *CredentialInfo) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Credential != nil {
+		n += m.Credential.Size()
+	}
+	l = len(m.VaultId)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	if m.IsEncrypted {
+		n += 2
+	}
+	return n
+}
+
+func (m *CredentialInfo_VerifiableCredential) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.VerifiableCredential != nil {
+		l = m.VerifiableCredential.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+func (m *CredentialInfo_WebauthnCredential) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.WebauthnCredential != nil {
+		l = m.WebauthnCredential.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+func (m *QueryGetCredentialsByDIDRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Did)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	if m.IncludeVerifiable {
+		n += 2
+	}
+	if m.IncludeWebauthn {
+		n += 2
+	}
+	if m.IncludeRevoked {
+		n += 2
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetCredentialsByDIDResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Credentials) > 0 {
+		for _, e := range m.Credentials {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryRegisterStartRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.AssertionDid)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryRegisterStartResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Challenge)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	l = len(m.RelyingPartyId)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	if len(m.User) > 0 {
+		for k, v := range m.User {
+			_ = k
+			_ = v
+			mapEntrySize := 1 + len(k) + sovQuery(uint64(len(k))) + 1 + len(v) + sovQuery(uint64(len(v)))
+			n += mapEntrySize + 1 + sovQuery(uint64(mapEntrySize))
+		}
+	}
+	return n
+}
+
+func (m *QueryLoginStartRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.AssertionDid)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryLoginStartResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.CredentialIds) > 0 {
+		for _, s := range m.CredentialIds {
+			l = len(s)
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	l = len(m.Challenge)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	l = len(m.RelyingPartyId)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
 	}
 	return n
 }
@@ -1110,7 +3614,7 @@ func sovQuery(x uint64) (n int) {
 func sozQuery(x uint64) (n int) {
 	return sovQuery(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
-func (m *QueryRequest) Unmarshal(dAtA []byte) error {
+func (m *QueryParamsRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1133,140 +3637,12 @@ func (m *QueryRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryParamsRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryParamsRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Did", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Did = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Origin", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Origin = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Key", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Key = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Asset", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Asset = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipQuery(dAtA[iNdEx:])
@@ -1374,7 +3750,7 @@ func (m *QueryParamsResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryResolveResponse) Unmarshal(dAtA []byte) error {
+func (m *QueryResolveDIDRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1397,15 +3773,97 @@ func (m *QueryResolveResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryResolveResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryResolveDIDRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryResolveResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryResolveDIDRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Document", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Did", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Did = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryResolveDIDResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryResolveDIDResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryResolveDIDResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DidDocument", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -1432,10 +3890,46 @@ func (m *QueryResolveResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Document == nil {
-				m.Document = &Document{}
+			if m.DidDocument == nil {
+				m.DidDocument = &DIDDocument{}
 			}
-			if err := m.Document.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := m.DidDocument.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DidDocumentMetadata", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.DidDocumentMetadata == nil {
+				m.DidDocumentMetadata = &DIDDocumentMetadata{}
+			}
+			if err := m.DidDocumentMetadata.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -1460,7 +3954,7 @@ func (m *QueryResolveResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QuerySignRequest) Unmarshal(dAtA []byte) error {
+func (m *QueryGetDIDDocumentRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1483,10 +3977,658 @@ func (m *QuerySignRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QuerySignRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryGetDIDDocumentRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QuerySignRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryGetDIDDocumentRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Did", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Did = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetDIDDocumentResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetDIDDocumentResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetDIDDocumentResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DidDocument", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.DidDocument == nil {
+				m.DidDocument = &DIDDocument{}
+			}
+			if err := m.DidDocument.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DidDocumentMetadata", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.DidDocumentMetadata == nil {
+				m.DidDocumentMetadata = &DIDDocumentMetadata{}
+			}
+			if err := m.DidDocumentMetadata.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryListDIDDocumentsRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryListDIDDocumentsRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryListDIDDocumentsRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryListDIDDocumentsResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryListDIDDocumentsResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryListDIDDocumentsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DidDocuments", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.DidDocuments = append(m.DidDocuments, &DIDDocument{})
+			if err := m.DidDocuments[len(m.DidDocuments)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetDIDDocumentsByControllerRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetDIDDocumentsByControllerRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetDIDDocumentsByControllerRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Controller", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Controller = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetDIDDocumentsByControllerResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetDIDDocumentsByControllerResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetDIDDocumentsByControllerResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DidDocuments", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.DidDocuments = append(m.DidDocuments, &DIDDocument{})
+			if err := m.DidDocuments[len(m.DidDocuments)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetVerificationMethodRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetVerificationMethodRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetVerificationMethodRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1523,7 +4665,7 @@ func (m *QuerySignRequest) Unmarshal(dAtA []byte) error {
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Origin", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field MethodId", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -1551,103 +4693,7 @@ func (m *QuerySignRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Origin = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Key", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Key = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Asset", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Asset = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 5:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Message", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Message = string(dAtA[iNdEx:postIndex])
+			m.MethodId = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -1670,7 +4716,7 @@ func (m *QuerySignRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QuerySignResponse) Unmarshal(dAtA []byte) error {
+func (m *QueryGetVerificationMethodResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1693,17 +4739,17 @@ func (m *QuerySignResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QuerySignResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryGetVerificationMethodResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QuerySignResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryGetVerificationMethodResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Signature", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field VerificationMethod", wireType)
 			}
-			var stringLen uint64
+			var msglen int
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowQuery
@@ -1713,23 +4759,27 @@ func (m *QuerySignResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
+				msglen |= int(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
+			if msglen < 0 {
 				return ErrInvalidLengthQuery
 			}
-			postIndex := iNdEx + intStringLen
+			postIndex := iNdEx + msglen
 			if postIndex < 0 {
 				return ErrInvalidLengthQuery
 			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Signature = string(dAtA[iNdEx:postIndex])
+			if m.VerificationMethod == nil {
+				m.VerificationMethod = &VerificationMethod{}
+			}
+			if err := m.VerificationMethod.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -1752,7 +4802,7 @@ func (m *QuerySignResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryVerifyRequest) Unmarshal(dAtA []byte) error {
+func (m *QueryGetServiceRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1775,10 +4825,10 @@ func (m *QueryVerifyRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryVerifyRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryGetServiceRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryVerifyRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryGetServiceRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1815,7 +4865,7 @@ func (m *QueryVerifyRequest) Unmarshal(dAtA []byte) error {
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Origin", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field ServiceId", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -1843,135 +4893,7 @@ func (m *QueryVerifyRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Origin = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Key", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Key = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Asset", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Asset = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 5:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Message", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Message = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 6:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Signature", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowQuery
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthQuery
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthQuery
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Signature = string(dAtA[iNdEx:postIndex])
+			m.ServiceId = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -1994,7 +4916,7 @@ func (m *QueryVerifyRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *QueryVerifyResponse) Unmarshal(dAtA []byte) error {
+func (m *QueryGetServiceResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -2017,15 +4939,369 @@ func (m *QueryVerifyResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: QueryVerifyResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: QueryGetServiceResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: QueryVerifyResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: QueryGetServiceResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Service", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Service == nil {
+				m.Service = &Service{}
+			}
+			if err := m.Service.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetVerifiableCredentialRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetVerifiableCredentialRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetVerifiableCredentialRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CredentialId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.CredentialId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetVerifiableCredentialResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetVerifiableCredentialResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetVerifiableCredentialResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Credential", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Credential == nil {
+				m.Credential = &VerifiableCredential{}
+			}
+			if err := m.Credential.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryListVerifiableCredentialsRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryListVerifiableCredentialsRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryListVerifiableCredentialsRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Issuer", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Issuer = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Holder", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Holder = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Valid", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field IncludeRevoked", wireType)
 			}
 			var v int
 			for shift := uint(0); ; shift += 7 {
@@ -2042,7 +5318,1152 @@ func (m *QueryVerifyResponse) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-			m.Valid = bool(v != 0)
+			m.IncludeRevoked = bool(v != 0)
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryListVerifiableCredentialsResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryListVerifiableCredentialsResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryListVerifiableCredentialsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Credentials", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Credentials = append(m.Credentials, &VerifiableCredential{})
+			if err := m.Credentials[len(m.Credentials)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *CredentialInfo) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: CredentialInfo: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: CredentialInfo: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field VerifiableCredential", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			v := &VerifiableCredential{}
+			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			m.Credential = &CredentialInfo_VerifiableCredential{v}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field WebauthnCredential", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			v := &WebAuthnCredential{}
+			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			m.Credential = &CredentialInfo_WebauthnCredential{v}
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field VaultId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.VaultId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 4:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field IsEncrypted", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.IsEncrypted = bool(v != 0)
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetCredentialsByDIDRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetCredentialsByDIDRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetCredentialsByDIDRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Did", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Did = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field IncludeVerifiable", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.IncludeVerifiable = bool(v != 0)
+		case 3:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field IncludeWebauthn", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.IncludeWebauthn = bool(v != 0)
+		case 4:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field IncludeRevoked", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.IncludeRevoked = bool(v != 0)
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetCredentialsByDIDResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetCredentialsByDIDResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetCredentialsByDIDResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Credentials", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Credentials = append(m.Credentials, &CredentialInfo{})
+			if err := m.Credentials[len(m.Credentials)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryRegisterStartRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryRegisterStartRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryRegisterStartRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field AssertionDid", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.AssertionDid = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryRegisterStartResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryRegisterStartResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryRegisterStartResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Challenge", wireType)
+			}
+			var byteLen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				byteLen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if byteLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + byteLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Challenge = append(m.Challenge[:0], dAtA[iNdEx:postIndex]...)
+			if m.Challenge == nil {
+				m.Challenge = []byte{}
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field RelyingPartyId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.RelyingPartyId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field User", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.User == nil {
+				m.User = make(map[string]string)
+			}
+			var mapkey string
+			var mapvalue string
+			for iNdEx < postIndex {
+				entryPreIndex := iNdEx
+				var wire uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return ErrIntOverflowQuery
+					}
+					if iNdEx >= l {
+						return io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					wire |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				fieldNum := int32(wire >> 3)
+				if fieldNum == 1 {
+					var stringLenmapkey uint64
+					for shift := uint(0); ; shift += 7 {
+						if shift >= 64 {
+							return ErrIntOverflowQuery
+						}
+						if iNdEx >= l {
+							return io.ErrUnexpectedEOF
+						}
+						b := dAtA[iNdEx]
+						iNdEx++
+						stringLenmapkey |= uint64(b&0x7F) << shift
+						if b < 0x80 {
+							break
+						}
+					}
+					intStringLenmapkey := int(stringLenmapkey)
+					if intStringLenmapkey < 0 {
+						return ErrInvalidLengthQuery
+					}
+					postStringIndexmapkey := iNdEx + intStringLenmapkey
+					if postStringIndexmapkey < 0 {
+						return ErrInvalidLengthQuery
+					}
+					if postStringIndexmapkey > l {
+						return io.ErrUnexpectedEOF
+					}
+					mapkey = string(dAtA[iNdEx:postStringIndexmapkey])
+					iNdEx = postStringIndexmapkey
+				} else if fieldNum == 2 {
+					var stringLenmapvalue uint64
+					for shift := uint(0); ; shift += 7 {
+						if shift >= 64 {
+							return ErrIntOverflowQuery
+						}
+						if iNdEx >= l {
+							return io.ErrUnexpectedEOF
+						}
+						b := dAtA[iNdEx]
+						iNdEx++
+						stringLenmapvalue |= uint64(b&0x7F) << shift
+						if b < 0x80 {
+							break
+						}
+					}
+					intStringLenmapvalue := int(stringLenmapvalue)
+					if intStringLenmapvalue < 0 {
+						return ErrInvalidLengthQuery
+					}
+					postStringIndexmapvalue := iNdEx + intStringLenmapvalue
+					if postStringIndexmapvalue < 0 {
+						return ErrInvalidLengthQuery
+					}
+					if postStringIndexmapvalue > l {
+						return io.ErrUnexpectedEOF
+					}
+					mapvalue = string(dAtA[iNdEx:postStringIndexmapvalue])
+					iNdEx = postStringIndexmapvalue
+				} else {
+					iNdEx = entryPreIndex
+					skippy, err := skipQuery(dAtA[iNdEx:])
+					if err != nil {
+						return err
+					}
+					if (skippy < 0) || (iNdEx+skippy) < 0 {
+						return ErrInvalidLengthQuery
+					}
+					if (iNdEx + skippy) > postIndex {
+						return io.ErrUnexpectedEOF
+					}
+					iNdEx += skippy
+				}
+			}
+			m.User[mapkey] = mapvalue
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryLoginStartRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryLoginStartRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryLoginStartRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field AssertionDid", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.AssertionDid = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryLoginStartResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryLoginStartResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryLoginStartResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CredentialIds", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.CredentialIds = append(m.CredentialIds, string(dAtA[iNdEx:postIndex]))
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Challenge", wireType)
+			}
+			var byteLen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				byteLen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if byteLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + byteLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Challenge = append(m.Challenge[:0], dAtA[iNdEx:postIndex]...)
+			if m.Challenge == nil {
+				m.Challenge = []byte{}
+			}
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field RelyingPartyId", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.RelyingPartyId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipQuery(dAtA[iNdEx:])

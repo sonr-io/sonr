@@ -7,7 +7,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/tx"
 
-	"github.com/sonr-io/snrd/x/svc/types"
+	"github.com/sonr-io/sonr/x/svc/types"
 )
 
 // !NOTE: Must enable in module.go (disabled in favor of autocli.go)
@@ -33,9 +33,9 @@ func NewTxCmd() *cobra.Command {
 // contract for the module.
 func MsgUpdateParams() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "update-params [some-value]",
+		Use:   "update-params",
 		Short: "Update the params (must be submitted from the authority)",
-		Args:  cobra.ExactArgs(1),
+		Args:  cobra.NoArgs,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			cliCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {
@@ -44,9 +44,13 @@ func MsgUpdateParams() *cobra.Command {
 
 			senderAddress := cliCtx.GetFromAddress()
 
+			// For now, use default params
+			// In production, this would read from a JSON file or flags
+			params := types.DefaultParams()
+
 			msg := &types.MsgUpdateParams{
 				Authority: senderAddress.String(),
-				Params:    types.Params{},
+				Params:    params,
 			}
 
 			if err := msg.Validate(); err != nil {

@@ -1,165 +1,71 @@
 syntax = "proto3";
-
 package did.v1;
 
 import "cosmos/msg/v1/msg.proto";
 import "cosmos_proto/cosmos.proto";
 import "did/v1/genesis.proto";
+import "did/v1/state.proto";
+import "did/v1/types.proto";
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/sonr-io/snrd/x/did/types";
+option go_package = "github.com/sonr-io/sonr/x/did/types";
 
 // Msg defines the Msg service.
 service Msg {
   option (cosmos.msg.v1.service) = true;
 
-  // ExecuteTx executes a transaction on the Sonr Blockchain. It leverages
-  // Macaroon for verification.
-  rpc ExecuteTx(MsgExecuteTx) returns (MsgExecuteTxResponse);
-
-  // LinkAssertion links an assertion to a controller.
-  rpc LinkAssertion(MsgLinkAssertion) returns (MsgLinkAssertionResponse);
-
-  // LinkAuthentication links an authentication to a controller.
-  rpc LinkAuthentication(MsgLinkAuthentication) returns (MsgLinkAuthenticationResponse);
-
-  // UnlinkAssertion unlinks an assertion from a controller.
-  rpc UnlinkAssertion(MsgUnlinkAssertion) returns (MsgUnlinkAssertionResponse);
-
-  // UnlinkAuthentication unlinks an authentication from a controller.
-  rpc UnlinkAuthentication(MsgUnlinkAuthentication) returns (MsgUnlinkAuthenticationResponse);
-
   // UpdateParams defines a governance operation for updating the parameters.
+  //
+  // Since: cosmos-sdk 0.47
   rpc UpdateParams(MsgUpdateParams) returns (MsgUpdateParamsResponse);
-}
 
-// MsgLinkAuthentication is the message type for the LinkAuthentication RPC.
-message MsgLinkAuthentication {
-  option (cosmos.msg.v1.signer) = "controller";
+  // CreateDID creates a new DID document
+  //
+  // {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+  // It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+  //
+  // {{import "did_tx_docs.md"}}
+  rpc CreateDID(MsgCreateDID) returns (MsgCreateDIDResponse);
 
-  // Controller is the address of the controller to authenticate.
-  string controller = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // UpdateDID updates an existing DID document
+  //
+  // {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+  // It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+  //
+  // {{import "did_tx_docs.md"}}
+  rpc UpdateDID(MsgUpdateDID) returns (MsgUpdateDIDResponse);
 
-  // Subject is the subject of the authentication.
-  string subject = 2;
+  // DeactivateDID deactivates a DID document
+  rpc DeactivateDID(MsgDeactivateDID) returns (MsgDeactivateDIDResponse);
 
-  // Assertion is the assertion of the authentication.
-  string assertion = 3;
+  // AddVerificationMethod adds a new verification method to a DID document
+  rpc AddVerificationMethod(MsgAddVerificationMethod) returns (MsgAddVerificationMethodResponse);
 
-  // Authentication is the authentication of the authentication.
-  bytes credential_id = 4;
+  // RemoveVerificationMethod removes a verification method from a DID document
+  rpc RemoveVerificationMethod(MsgRemoveVerificationMethod) returns (MsgRemoveVerificationMethodResponse);
 
-  // token is the macron token to authenticate the operation.
-  string macaroon_token = 5;
-}
+  // AddService adds a new service endpoint to a DID document
+  rpc AddService(MsgAddService) returns (MsgAddServiceResponse);
 
-// MsgLinkAuthenticationResponse is the response type for the
-// LinkAuthentication RPC.
-message MsgLinkAuthenticationResponse {
-  // Success returns true if the specified cid is valid and not already
-  // encrypted.
-  bool success = 1;
+  // RemoveService removes a service endpoint from a DID document
+  rpc RemoveService(MsgRemoveService) returns (MsgRemoveServiceResponse);
 
-  // Controller is the address of the initialized controller.
-  string did = 2;
-}
+  // IssueVerifiableCredential issues a new verifiable credential
+  rpc IssueVerifiableCredential(MsgIssueVerifiableCredential) returns (MsgIssueVerifiableCredentialResponse);
 
-// MsgLinkAssertion is the message type for the LinkAssertion RPC.
-message MsgLinkAssertion {
-  option (cosmos.msg.v1.signer) = "controller";
+  // RevokeVerifiableCredential revokes a verifiable credential
+  rpc RevokeVerifiableCredential(MsgRevokeVerifiableCredential) returns (MsgRevokeVerifiableCredentialResponse);
 
-  // Controller is the address of the controller to authenticate.
-  string controller = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // LinkExternalWallet links an external wallet as an assertion method
+  rpc LinkExternalWallet(MsgLinkExternalWallet) returns (MsgLinkExternalWalletResponse);
 
-  // Subject is the subject of the authentication.
-  string subject = 2;
-
-  // Assertion is the assertion of the authentication.
-  string assertion = 3;
-
-  // token is the macron token to authenticate the operation.
-  string macaroon_token = 4;
-}
-
-// MsgLinkAssertionResponse is the response type for the
-// LinkAssertion RPC.
-message MsgLinkAssertionResponse {
-  // Success returns true if the specified cid is valid and not already
-  // encrypted.
-  bool success = 1;
-
-  // Controller is the address of the initialized controller.
-  string did = 2;
-}
-
-// MsgExecuteTx is the message type for the ExecuteTx RPC.
-message MsgExecuteTx {
-  option (cosmos.msg.v1.signer) = "controller";
-
-  // Controller is the address of the controller to authenticate.
-  string controller = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-
-  // Messages is the list of messages to execute.
-  map<string, bytes> messages = 2;
-
-  // MacaroonToken is the macaroon token to authenticate the operation.
-  string macaroon_token = 3;
-}
-
-// MsgExecuteTxResponse is the response type for the ExecuteTx RPC.
-message MsgExecuteTxResponse {
-  bool success = 1;
-  string tx_hash = 2;
-}
-
-// MsgUnlinkAssertion is the message type for the UnlinkAssertion RPC.
-message MsgUnlinkAssertion {
-  option (cosmos.msg.v1.signer) = "controller";
-
-  // Controller is the address of the controller to authenticate.
-  string controller = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-
-  // Assertion is the assertion of the authentication.
-  string assertion_did = 2;
-
-  // token is the macron token to authenticate the operation.
-  string macaroon_token = 3;
-}
-
-// MsgUnlinkAssertionResponse is the response type for the
-// UnlinkAssertion RPC.
-message MsgUnlinkAssertionResponse {
-  // Success returns true if the specified cid is valid and not already
-  // encrypted.
-  bool success = 1;
-
-  // Controller is the address of the initialized controller.
-  string did = 2;
-}
-
-// MsgUnlinkAuthentication is the message type for the UnlinkAuthentication RPC.
-message MsgUnlinkAuthentication {
-  option (cosmos.msg.v1.signer) = "controller";
-
-  // Controller is the address of the controller to authenticate.
-  string controller = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-
-  // Subject is the subject of the authentication.
-  string authentication_did = 2;
-
-  // token is the macron token to authenticate the operation.
-  string macaroon_token = 3;
-}
-
-// MsgUnlinkAuthenticationResponse is the response type for the
-// UnlinkAuthentication RPC.
-message MsgUnlinkAuthenticationResponse {
-  // Success returns true if the specified cid is valid and not already
-  // encrypted.
-  bool success = 1;
-
-  // Controller is the address of the initialized controller.
-  string did = 2;
+  // RegisterWebAuthnCredential registers a new WebAuthn credential and creates a DID
+  //
+  // {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+  // It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+  //
+  // {{import "did_tx_docs.md"}}
+  rpc RegisterWebAuthnCredential(MsgRegisterWebAuthnCredential) returns (MsgRegisterWebAuthnCredentialResponse);
 }
 
 // MsgUpdateParams is the Msg/UpdateParams request type.
@@ -172,10 +78,9 @@ message MsgUpdateParams {
   string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 
   // params defines the parameters to update.
+  //
+  // NOTE: All parameters must be supplied.
   Params params = 2 [(gogoproto.nullable) = false];
-
-  // token is the macron token to authenticate the operation.
-  string token = 3;
 }
 
 // MsgUpdateParamsResponse defines the response structure for executing a
@@ -183,3 +88,242 @@ message MsgUpdateParams {
 //
 // Since: cosmos-sdk 0.47
 message MsgUpdateParamsResponse {}
+
+// MsgCreateDID creates a new DID document
+message MsgCreateDID {
+  option (cosmos.msg.v1.signer) = "controller";
+
+  // controller is the address creating the DID
+  string controller = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // did_document is the DID document to create
+  DIDDocument did_document = 2 [(gogoproto.nullable) = false];
+}
+
+// MsgCreateDIDResponse defines the response for MsgCreateDID
+message MsgCreateDIDResponse {
+  // did is the created DID identifier
+  string did = 1;
+  
+  // vault_id is the ID of the auto-created vault (optional)
+  string vault_id = 2;
+  
+  // vault_public_key is the public key of the auto-created vault (optional)
+  bytes vault_public_key = 3;
+  
+  // enclave_id is the enclave ID of the auto-created vault (optional)
+  string enclave_id = 4;
+}
+
+// MsgUpdateDID updates an existing DID document
+message MsgUpdateDID {
+  option (cosmos.msg.v1.signer) = "controller";
+
+  // controller is the address updating the DID
+  string controller = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // did is the DID to update
+  string did = 2;
+
+  // did_document is the updated DID document
+  DIDDocument did_document = 3 [(gogoproto.nullable) = false];
+}
+
+// MsgUpdateDIDResponse defines the response for MsgUpdateDID
+message MsgUpdateDIDResponse {}
+
+// MsgDeactivateDID deactivates a DID document
+message MsgDeactivateDID {
+  option (cosmos.msg.v1.signer) = "controller";
+
+  // controller is the address deactivating the DID
+  string controller = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // did is the DID to deactivate
+  string did = 2;
+}
+
+// MsgDeactivateDIDResponse defines the response for MsgDeactivateDID
+message MsgDeactivateDIDResponse {}
+
+// MsgAddVerificationMethod adds a verification method to a DID document
+message MsgAddVerificationMethod {
+  option (cosmos.msg.v1.signer) = "controller";
+
+  // controller is the address adding the verification method
+  string controller = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // did is the DID to add the verification method to
+  string did = 2;
+
+  // verification_method is the verification method to add
+  VerificationMethod verification_method = 3 [(gogoproto.nullable) = false];
+
+  // relationships specifies which verification relationships to add
+  repeated string relationships = 4;
+}
+
+// MsgAddVerificationMethodResponse defines the response for
+// MsgAddVerificationMethod
+message MsgAddVerificationMethodResponse {}
+
+// MsgRemoveVerificationMethod removes a verification method from a DID document
+message MsgRemoveVerificationMethod {
+  option (cosmos.msg.v1.signer) = "controller";
+
+  // controller is the address removing the verification method
+  string controller = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // did is the DID to remove the verification method from
+  string did = 2;
+
+  // verification_method_id is the ID of the verification method to remove
+  string verification_method_id = 3;
+}
+
+// MsgRemoveVerificationMethodResponse defines the response for
+// MsgRemoveVerificationMethod
+message MsgRemoveVerificationMethodResponse {}
+
+// MsgAddService adds a service endpoint to a DID document
+message MsgAddService {
+  option (cosmos.msg.v1.signer) = "controller";
+
+  // controller is the address adding the service
+  string controller = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // did is the DID to add the service to
+  string did = 2;
+
+  // service is the service to add
+  Service service = 3 [(gogoproto.nullable) = false];
+}
+
+// MsgAddServiceResponse defines the response for MsgAddService
+message MsgAddServiceResponse {}
+
+// MsgRemoveService removes a service endpoint from a DID document
+message MsgRemoveService {
+  option (cosmos.msg.v1.signer) = "controller";
+
+  // controller is the address removing the service
+  string controller = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // did is the DID to remove the service from
+  string did = 2;
+
+  // service_id is the ID of the service to remove
+  string service_id = 3;
+}
+
+// MsgRemoveServiceResponse defines the response for MsgRemoveService
+message MsgRemoveServiceResponse {}
+
+// MsgIssueVerifiableCredential issues a new verifiable credential
+message MsgIssueVerifiableCredential {
+  option (cosmos.msg.v1.signer) = "issuer";
+
+  // issuer is the address issuing the credential
+  string issuer = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // credential is the verifiable credential to issue
+  VerifiableCredential credential = 2 [(gogoproto.nullable) = false];
+}
+
+// MsgIssueVerifiableCredentialResponse defines the response for
+// MsgIssueVerifiableCredential
+message MsgIssueVerifiableCredentialResponse {
+  // credential_id is the ID of the issued credential
+  string credential_id = 1;
+}
+
+// MsgRevokeVerifiableCredential revokes a verifiable credential
+message MsgRevokeVerifiableCredential {
+  option (cosmos.msg.v1.signer) = "issuer";
+
+  // issuer is the address revoking the credential
+  string issuer = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // credential_id is the ID of the credential to revoke
+  string credential_id = 2;
+
+  // revocation_reason is the reason for revocation
+  string revocation_reason = 3;
+}
+
+// MsgRevokeVerifiableCredentialResponse defines the response for
+// MsgRevokeVerifiableCredential
+message MsgRevokeVerifiableCredentialResponse {}
+
+// MsgLinkExternalWallet links an external wallet to a DID as an assertion method
+message MsgLinkExternalWallet {
+  option (cosmos.msg.v1.signer) = "controller";
+
+  // controller is the address that controls the DID
+  string controller = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // did is the DID to link the wallet to
+  string did = 2;
+
+  // wallet_address is the external wallet address
+  string wallet_address = 3;
+
+  // chain_id identifies the blockchain (e.g., "1" for Ethereum mainnet, "cosmoshub-4")
+  string wallet_chain_id = 4;
+
+  // wallet_type specifies the wallet type ("ethereum", "cosmos")
+  string wallet_type = 5;
+
+  // ownership_proof is the signature proving ownership of the wallet
+  bytes ownership_proof = 6;
+
+  // challenge is the message that was signed to create the ownership_proof
+  bytes challenge = 7;
+
+  // verification_method_id is the ID for the new verification method
+  string verification_method_id = 8;
+}
+
+// MsgLinkExternalWalletResponse defines the response for MsgLinkExternalWallet
+message MsgLinkExternalWalletResponse {
+  // verification_method_id is the ID of the created verification method
+  string verification_method_id = 1;
+}
+
+// MsgRegisterWebAuthnCredential registers a new WebAuthn credential and creates a DID
+message MsgRegisterWebAuthnCredential {
+  option (cosmos.msg.v1.signer) = "controller";
+
+  // controller is the address that will control the created DID
+  string controller = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // username is the human-readable identifier for the DID
+  string username = 2;
+
+  // webauthn_credential contains the WebAuthn credential data
+  WebAuthnCredential webauthn_credential = 3 [(gogoproto.nullable) = false];
+
+  // verification_method_id is the ID for the WebAuthn verification method
+  string verification_method_id = 4;
+
+  // auto_create_vault indicates whether to automatically create a vault
+  bool auto_create_vault = 5;
+}
+
+// MsgRegisterWebAuthnCredentialResponse defines the response for MsgRegisterWebAuthnCredential
+message MsgRegisterWebAuthnCredentialResponse {
+  // did is the created DID identifier
+  string did = 1;
+
+  // verification_method_id is the ID of the created verification method
+  string verification_method_id = 2;
+
+  // vault_id is the ID of the auto-created vault (if requested)
+  string vault_id = 3;
+
+  // vault_public_key is the public key of the auto-created vault (if requested)
+  bytes vault_public_key = 4;
+
+  // enclave_id is the enclave ID of the auto-created vault (if requested)
+  string enclave_id = 5;
+}

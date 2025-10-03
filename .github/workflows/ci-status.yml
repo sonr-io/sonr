@@ -1,0 +1,18 @@
+name: CI Status
+on:
+  workflow_run:
+    workflows: ["PR CI", "Post-Merge Release", "Nightly Snapshot"]
+    types: [completed]
+
+jobs:
+  report:
+    name: Report CI Status
+    runs-on: builder
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - name: Report Failure
+        run: |
+          echo "❌ Workflow Failed: ${{ github.event.workflow_run.name }}"
+          echo "Branch: ${{ github.event.workflow_run.head_branch }}"
+          echo "Commit: ${{ github.event.workflow_run.head_sha }}"
+          echo "URL: ${{ github.event.workflow_run.html_url }}"

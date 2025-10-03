@@ -1,0 +1,518 @@
+open module cosmos.chain.Genesis
+
+app_name: String
+app_version: String
+genesis_time: String
+chain_id: String
+initial_height: Number
+app_hash: Any
+app_state: AppState
+consensus: Consensus
+
+class AppState {
+  `07-tendermint`: Any
+  auth: Auth
+  authz: Authz
+  bank: Bank
+  capability: Capability
+  circuit: Circuit
+  consensus: Any
+  crisis: Crisis
+  did: Svc
+  distribution: Distribution
+  dwn: Dwn
+  evidence: Evidence
+  feegrant: Feegrant
+  feeibc: Feeibc
+  genutil: Genutil
+  globalfee: Globalfee
+  gov: Gov
+  group: Group
+  ibc: Ibc
+  interchainaccounts: Interchainaccounts
+  mint: Mint
+  nft: Nft
+  packetfowardmiddleware: Packetfowardmiddleware
+  params: Any
+  poa: Poa
+  slashing: Slashing
+  staking: Staking
+  svc: Svc
+  tokenfactory: Tokenfactory
+  transfer: Transfer
+  upgrade: Vesting
+  vesting: Vesting
+}
+
+class Auth {
+  params: Params
+  accounts: Listing<Account>
+}
+
+class Params {
+  max_memo_characters: String
+  tx_sig_limit: String
+  tx_size_cost_per_byte: String
+  sig_verify_cost_ed25519: String
+  sig_verify_cost_secp256k1: String
+}
+
+class Account {
+  `@type`: String
+  address: String
+  pub_key: Any
+  account_number: String
+  sequence: String
+}
+
+class Authz {
+  authorization: Listing<Any>
+}
+
+class Bank {
+  params: BankParams
+  balances: Listing<Balance>
+  supply: Listing<ExpeditedMinDeposit>
+  denom_metadata: Listing<Any>
+  send_enabled: Listing<Any>
+}
+
+class BankParams {
+  send_enabled: Listing<Any>
+  default_send_enabled: Boolean
+}
+
+class Balance {
+  address: String
+  coins: Listing<ExpeditedMinDeposit>
+}
+
+class ExpeditedMinDeposit {
+  denom: String
+  amount: String
+}
+
+class Capability {
+  index: String
+  owners: Listing<Any>
+}
+
+class Circuit {
+  account_permissions: Listing<Any>
+  disabled_type_urls: Listing<Any>
+}
+
+class Crisis {
+  constant_fee: ExpeditedMinDeposit
+}
+
+class Svc {
+  params: SvcParams
+}
+
+class SvcParams {
+  attenuations: Listing<Any>
+}
+
+class Distribution {
+  params: DistributionParams
+  fee_pool: FeePool
+  delegator_withdraw_infos: Listing<Any>
+  previous_proposer: String
+  outstanding_rewards: Listing<Any>
+  validator_accumulated_commissions: Listing<Any>
+  validator_historical_rewards: Listing<Any>
+  validator_current_rewards: Listing<Any>
+  delegator_starting_infos: Listing<Any>
+  validator_slash_events: Listing<Any>
+}
+
+class DistributionParams {
+  community_tax: String
+  base_proposer_reward: String
+  bonus_proposer_reward: String
+  withdraw_addr_enabled: Boolean
+}
+
+class FeePool {
+  community_pool: Listing<Any>
+}
+
+class Dwn {
+  params: DwnParams
+}
+
+class DwnParams {
+  attenuations: Listing<Any>
+  allowed_operators: Listing<String>
+}
+
+class Evidence {
+  evidence: Listing<Any>
+}
+
+class Feegrant {
+  allowances: Listing<Any>
+}
+
+class Feeibc {
+  identified_fees: Listing<Any>
+  fee_enabled_channels: Listing<Any>
+  registered_payees: Listing<Any>
+  registered_counterparty_payees: Listing<Any>
+  forward_relayers: Listing<Any>
+}
+
+class Genutil {
+  gen_txs: Listing<GenTx>
+}
+
+class GenTx {
+  body: Body
+  auth_info: AuthInfo
+  signatures: Listing<String>
+}
+
+class Body {
+  messages: Listing<Message>
+  memo: String
+  timeout_height: String
+  extension_options: Listing<Any>
+  non_critical_extension_options: Listing<Any>
+}
+
+class Message {
+  `@type`: String
+  description: Description
+  commission: Commission
+  min_self_delegation: String
+  delegator_address: String
+  validator_address: String
+  pubkey: PublicKey
+  value: ExpeditedMinDeposit
+}
+
+class Description {
+  moniker: String
+  identity: String
+  website: String
+  security_contact: String
+  details: String
+}
+
+class Commission {
+  rate: String
+  max_rate: String
+  max_change_rate: String
+}
+
+class PublicKey {
+  `@type`: String
+  key: String
+}
+
+class AuthInfo {
+  signer_infos: Listing<SignerInfo>
+  fee: Fee
+  tip: Any
+}
+
+class SignerInfo {
+  public_key: PublicKey
+  mode_info: ModeInfo
+  sequence: String
+}
+
+class ModeInfo {
+  single: Single
+}
+
+class Single {
+  mode: String
+}
+
+class Fee {
+  amount: Listing<Any>
+  gas_limit: String
+  payer: String
+  granter: String
+}
+
+class Globalfee {
+  params: GlobalfeeParams
+}
+
+class GlobalfeeParams {
+  minimum_gas_prices: Listing<MinimumGasPrice>
+}
+
+class MinimumGasPrice {
+  amount: String
+  denom: String
+}
+
+class Gov {
+  starting_proposal_id: String
+  deposits: Listing<Any>
+  votes: Listing<Any>
+  proposals: Listing<Any>
+  deposit_params: Any
+  voting_params: Any
+  tally_params: Any
+  params: GovParams
+  constitution: String
+}
+
+class GovParams {
+  min_deposit: Listing<ExpeditedMinDeposit>
+  max_deposit_period: String
+  voting_period: String
+  quorum: String
+  threshold: String
+  veto_threshold: String
+  min_initial_deposit_ratio: String
+  proposal_cancel_ratio: String
+  proposal_cancel_dest: String
+  expedited_voting_period: String
+  expedited_threshold: String
+  expedited_min_deposit: Listing<ExpeditedMinDeposit>
+  burn_vote_quorum: Boolean
+  burn_proposal_deposit_prevote: Boolean
+  burn_vote_veto: Boolean
+  min_deposit_ratio: String
+}
+
+class Group {
+  group_seq: String
+  groups: Listing<Any>
+  group_members: Listing<Any>
+  group_policy_seq: String
+  group_policies: Listing<Any>
+  proposal_seq: String
+  proposals: Listing<Any>
+  votes: Listing<Any>
+}
+
+class Ibc {
+  client_genesis: ClientGenesis
+  connection_genesis: ConnectionGenesis
+  channel_genesis: ChannelGenesis
+}
+
+class ClientGenesis {
+  clients: Listing<Any>
+  clients_consensus: Listing<Any>
+  clients_metadata: Listing<Any>
+  params: ClientGenesisParams
+  create_localhost: Boolean
+  next_client_sequence: String
+}
+
+class ClientGenesisParams {
+  allowed_clients: Listing<String>
+}
+
+class ConnectionGenesis {
+  connections: Listing<Any>
+  client_connection_paths: Listing<Any>
+  next_connection_sequence: String
+  params: ConnectionGenesisParams
+}
+
+class ConnectionGenesisParams {
+  max_expected_time_per_block: String
+}
+
+class ChannelGenesis {
+  channels: Listing<Any>
+  acknowledgements: Listing<Any>
+  commitments: Listing<Any>
+  receipts: Listing<Any>
+  send_sequences: Listing<Any>
+  recv_sequences: Listing<Any>
+  ack_sequences: Listing<Any>
+  next_channel_sequence: String
+  params: ChannelGenesisParams
+}
+
+class ChannelGenesisParams {
+  upgrade_timeout: UpgradeTimeout
+}
+
+class UpgradeTimeout {
+  height: Height
+  timestamp: String
+}
+
+class Height {
+  revision_number: String
+  revision_height: String
+}
+
+class Interchainaccounts {
+  controller_genesis_state: ControllerGenesisState
+  host_genesis_state: HostGenesisState
+}
+
+class ControllerGenesisState {
+  active_channels: Listing<Any>
+  interchain_accounts: Listing<Any>
+  ports: Listing<Any>
+  params: ControllerGenesisStateParams
+}
+
+class ControllerGenesisStateParams {
+  controller_enabled: Boolean
+}
+
+class HostGenesisState {
+  active_channels: Listing<Any>
+  interchain_accounts: Listing<Any>
+  port: String
+  params: HostGenesisStateParams
+}
+
+class HostGenesisStateParams {
+  host_enabled: Boolean
+  allow_messages: Listing<String>
+}
+
+class Mint {
+  minter: Minter
+  params: MintParams
+}
+
+class Minter {
+  inflation: String
+  annual_provisions: String
+}
+
+class MintParams {
+  mint_denom: String
+  inflation_rate_change: String
+  inflation_max: String
+  inflation_min: String
+  goal_bonded: String
+  blocks_per_year: String
+}
+
+class Nft {
+  classes: Listing<Any>
+  entries: Listing<Any>
+}
+
+class Packetfowardmiddleware {
+  params: PacketfowardmiddlewareParams
+  in_flight_packets: Vesting
+}
+
+class PacketfowardmiddlewareParams {
+  fee_percentage: String
+}
+
+class Vesting {
+}
+
+class Poa {
+  params: PoaParams
+}
+
+class PoaParams {
+  admins: Listing<String>
+  allow_validator_self_exit: Boolean
+}
+
+class Slashing {
+  params: SlashingParams
+  signing_infos: Listing<Any>
+  missed_blocks: Listing<Any>
+}
+
+class SlashingParams {
+  signed_blocks_window: String
+  min_signed_per_window: String
+  downtime_jail_duration: String
+  slash_fraction_double_sign: String
+  slash_fraction_downtime: String
+}
+
+class Staking {
+  params: StakingParams
+  last_total_power: String
+  last_validator_powers: Listing<Any>
+  validators: Listing<Any>
+  delegations: Listing<Any>
+  unbonding_delegations: Listing<Any>
+  redelegations: Listing<Any>
+  exported: Boolean
+}
+
+class StakingParams {
+  unbonding_time: String
+  max_validators: Number
+  max_entries: Number
+  historical_entries: Number
+  bond_denom: String
+  min_commission_rate: String
+}
+
+class Tokenfactory {
+  params: TokenfactoryParams
+  factory_denoms: Listing<Any>
+}
+
+class TokenfactoryParams {
+  denom_creation_fee: Listing<Any>
+  denom_creation_gas_consume: Number
+}
+
+class Transfer {
+  port_id: String
+  denom_traces: Listing<Any>
+  params: TransferParams
+  total_escrowed: Listing<Any>
+}
+
+class TransferParams {
+  send_enabled: Boolean
+  receive_enabled: Boolean
+}
+
+class Consensus {
+  params: ConsensusParams
+}
+
+class ConsensusParams {
+  block: Block
+  evidence: ParamsEvidence
+  validator: Validator
+  version: Version
+  abci: Abci
+}
+
+class Block {
+  max_bytes: String
+  max_gas: String
+}
+
+class ParamsEvidence {
+  max_age_num_blocks: String
+  max_age_duration: String
+  max_bytes: String
+}
+
+class Validator {
+  pub_key_types: Listing<String>
+}
+
+class Version {
+  app: String
+}
+
+class Abci {
+  vote_extensions_enable_height: String
+}
+
+output {
+  renderer = new json.Renderer {}
+}

@@ -1,0 +1,120 @@
+---
+title: "Cryptographic Security Enhancements"
+description: "Comprehensive overview of cryptographic security enhancements in the Sonr blockchain"
+sidebarTitle: "Cryptography Usage"
+icon: "lock"
+---
+
+import { Callout } from "mintlify/components";
+import { CodeBlock } from "mintlify/components";
+import { Tabs, Tab } from "mintlify/components";
+
+# Cryptographic Security Enhancements
+
+<Callout type="info">
+  This document details the comprehensive cryptographic security enhancements
+  implemented in the Sonr blockchain to address critical vulnerabilities and
+  strengthen the overall security posture.
+</Callout>
+
+## Table of Contents
+
+1. [WASM Plugin Security](#wasm-plugin-security)
+2. [Password Security](#password-security)
+3. [ECDSA Signature Security](#ecdsa-signature-security)
+4. [Key Derivation](#key-derivation)
+5. [Security Testing](#security-testing)
+6. [Migration Guide](#migration-guide)
+
+## WASM Plugin Security
+
+### SHA256 Hash Verification
+
+<Callout type="warning">
+  All WASM plugins are now verified using SHA256 hashes before execution to
+  prevent tampering and ensure integrity.
+</Callout>
+
+**Implementation**: `crypto/wasm/verifier.go`
+
+<CodeBlock language="go">
+{`// Usage example
+verifier := wasm.NewHashVerifier()
+hash := verifier.ComputeHash(wasmBytes)
+verifier.AddTrustedHash("motr.wasm", hash)
+
+// Verify before execution
+err := verifier.VerifyHash("motr.wasm", wasmBytes)
+if err != nil {
+// Plugin verification failed - do not execute
+}`}
+
+</CodeBlock>
+
+**Features**:
+
+- Automatic hash computation on plugin load
+- Hash chain verification for secure updates
+- Trusted hash whitelist management
+- Maximum size enforcement (10MB default)
+
+### Ed25519 Code Signing
+
+<Callout type="warning">
+  WASM plugins must be signed with Ed25519 signatures to ensure authenticity and
+  prevent unauthorized modifications.
+</Callout>
+
+**Implementation**: `crypto/wasm/signer.go`
+
+<CodeBlock language="go">
+{`// Sign a plugin
+signer := wasm.NewSigner(privateKey, publicKey)
+signature, err := signer.SignModule(wasmBytes, "motr.wasm", "v1.0.0")
+
+// Verify signature
+manifest := &wasm.SignatureManifest{
+ModuleHash: hash,
+Signatures: []wasm.SignatureEntry{\*signature},
+TrustedKeys: trustedKeys,
+}
+err = signer.VerifyWithManifest(wasmBytes, manifest)`}
+
+</CodeBlock>
+
+### Remaining sections follow the same pattern, using MDX components to enhance readability
+
+## Security Considerations
+
+<Callout type="warning">
+  ### Best Practices 1. **Always validate passwords** before use 2. **Never
+  store passwords in plaintext** or logs 3. **Use deterministic ECDSA** for all
+  signatures 4. **Canonicalize all signatures** before storage 5. **Verify WASM
+  plugins** before execution
+</Callout>
+
+## Support
+
+<Callout type="info">
+  For questions or issues related to cryptographic security: 1. Check the test
+  suites for usage examples 2. Review the security test scenarios 3. Open an
+  issue on GitHub with the `security` label 4. Contact the security team for
+  sensitive issues
+</Callout>
+
+## Changelog
+
+### Version 0.10.34
+
+- Added WASM hash verification (`crypto/wasm/verifier.go`)
+- Added Ed25519 code signing (`crypto/wasm/signer.go`)
+- Replaced hardcoded passwords with secure validation (`crypto/password/validator.go`)
+- Implemented Argon2id key derivation (`crypto/argon2/kdf.go`)
+- Added RFC 6979 deterministic ECDSA (`crypto/ecdsa/deterministic.go`)
+- Implemented signature canonicalization (`crypto/ecdsa/canonical.go`)
+- Added comprehensive security test suite (`crypto/security_test.go`)
+
+---
+
+_Last Updated: 2024_
+_Security Contact: security@sonr.io_

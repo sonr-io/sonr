@@ -44,6 +44,8 @@ import (
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 )
 
+const chainID = "sonrtest_1-1"
+
 // SetupOptions defines arguments that are passed into `ChainApp` constructor.
 type SetupOptions struct {
 	Logger  log.Logger
@@ -56,7 +58,7 @@ func setup(
 	chainID string,
 	withGenesis bool,
 	invCheckPeriod uint,
-) (*SonrApp, GenesisState) {
+) (*ChainApp, GenesisState) {
 	db := dbm.NewMemDB()
 	nodeHome := t.TempDir()
 	snapshotDir := filepath.Join(nodeHome, "data", "snapshots")
@@ -76,6 +78,7 @@ func setup(
 		nil,
 		true,
 		appOptions,
+		EVMAppOptions,
 		bam.SetChainID(chainID),
 		bam.SetSnapshot(snapshotStore, snapshottypes.SnapshotOptions{KeepRecent: 2}),
 	)
@@ -86,7 +89,7 @@ func setup(
 }
 
 // NewChainAppWithCustomOptions initializes a new ChainApp with custom options.
-func NewChainAppWithCustomOptions(t *testing.T, isCheckTx bool, options SetupOptions) *SonrApp {
+func NewChainAppWithCustomOptions(t *testing.T, isCheckTx bool, options SetupOptions) *ChainApp {
 	t.Helper()
 
 	privVal := mock.NewPV()
@@ -98,7 +101,12 @@ func NewChainAppWithCustomOptions(t *testing.T, isCheckTx bool, options SetupOpt
 
 	// generate genesis account
 	senderPrivKey := secp256k1.GenPrivKey()
-	acc := authtypes.NewBaseAccount(senderPrivKey.PubKey().Address().Bytes(), senderPrivKey.PubKey(), 0, 0)
+	acc := authtypes.NewBaseAccount(
+		senderPrivKey.PubKey().Address().Bytes(),
+		senderPrivKey.PubKey(),
+		0,
+		0,
+	)
 	balance := banktypes.Balance{
 		Address: acc.GetAddress().String(),
 		Coins:   sdk.NewCoins(sdk.NewCoin(sdk.DefaultBondDenom, sdkmath.NewInt(100000000000000))),
@@ -109,9 +117,16 @@ func NewChainAppWithCustomOptions(t *testing.T, isCheckTx bool, options SetupOpt
 		options.DB,
 		nil, true,
 		options.AppOpts,
+		EVMAppOptions,
 	)
 	genesisState := app.DefaultGenesis()
-	genesisState, err = GenesisStateWithValSet(app.AppCodec(), genesisState, valSet, []authtypes.GenesisAccount{acc}, balance)
+	genesisState, err = GenesisStateWithValSet(
+		app.AppCodec(),
+		genesisState,
+		valSet,
+		[]authtypes.GenesisAccount{acc},
+		balance,
+	)
 	require.NoError(t, err)
 
 	if !isCheckTx {
@@ -135,7 +150,7 @@ func NewChainAppWithCustomOptions(t *testing.T, isCheckTx bool, options SetupOpt
 // Setup initializes a new ChainApp. A Nop logger is set in ChainApp.
 func Setup(
 	t *testing.T,
-) *SonrApp {
+) *ChainApp {
 	t.Helper()
 
 	privVal := mock.NewPV()
@@ -148,12 +163,17 @@ func Setup(
 
 	// generate genesis account
 	senderPrivKey := secp256k1.GenPrivKey()
-	acc := authtypes.NewBaseAccount(senderPrivKey.PubKey().Address().Bytes(), senderPrivKey.PubKey(), 0, 0)
+	acc := authtypes.NewBaseAccount(
+		senderPrivKey.PubKey().Address().Bytes(),
+		senderPrivKey.PubKey(),
+		0,
+		0,
+	)
 	balance := banktypes.Balance{
 		Address: acc.GetAddress().String(),
 		Coins:   sdk.NewCoins(sdk.NewCoin(sdk.DefaultBondDenom, sdkmath.NewInt(100000000000000))),
 	}
-	chainID := "testing"
+
 	app := SetupWithGenesisValSet(
 		t,
 		valSet,
@@ -175,13 +195,18 @@ func SetupWithGenesisValSet(
 	genAccs []authtypes.GenesisAccount,
 	chainID string,
 	balances ...banktypes.Balance,
-) *SonrApp {
+) *ChainApp {
 	t.Helper()
 
 	app, genesisState := setup(
 		t, chainID, true, 5,
 	)
-	genesisState, err := GenesisStateWithValSet(app.AppCodec(), genesisState, valSet, genAccs, balances...)
+	genesisState, err := GenesisStateWithValSet(
+		app.AppCodec(),
+		genesisState,
+		valSet,
+		genAccs,
+		balances...)
 	require.NoError(t, err)
 
 	stateBytes, err := json.MarshalIndent(genesisState, "", " ")
@@ -211,14 +236,14 @@ func SetupWithGenesisValSet(
 }
 
 // SetupWithEmptyStore set up a chain app instance with empty DB
-func SetupWithEmptyStore(t testing.TB) *SonrApp {
-	app, _ := setup(t, "testing", false, 0)
+func SetupWithEmptyStore(t testing.TB) *ChainApp {
+	app, _ := setup(t, chainID, false, 0)
 	return app
 }
 
 // GenesisStateWithSingleValidator initializes GenesisState with a single validator and genesis accounts
 // that also act as delegators.
-func GenesisStateWithSingleValidator(t *testing.T, app *SonrApp) GenesisState {
+func GenesisStateWithSingleValidator(t *testing.T, app *ChainApp) GenesisState {
 	t.Helper()
 
 	privVal := mock.NewPV()
@@ -231,16 +256,28 @@ func GenesisStateWithSingleValidator(t *testing.T, app *SonrApp) GenesisState {
 
 	// generate genesis account
 	senderPrivKey := secp256k1.GenPrivKey()
-	acc := authtypes.NewBaseAccount(senderPrivKey.PubKey().Address().Bytes(), senderPrivKey.PubKey(), 0, 0)
+	acc := authtypes.NewBaseAccount(
+		senderPrivKey.PubKey().Address().Bytes(),
+		senderPrivKey.PubKey(),
+		0,
+		0,
+	)
 	balances := []banktypes.Balance{
 		{
 			Address: acc.GetAddress().String(),
-			Coins:   sdk.NewCoins(sdk.NewCoin(sdk.DefaultBondDenom, sdkmath.NewInt(100000000000000))),
+			Coins: sdk.NewCoins(
+				sdk.NewCoin(sdk.DefaultBondDenom, sdkmath.NewInt(100000000000000)),
+			),
 		},
 	}
 
 	genesisState := app.DefaultGenesis()
-	genesisState, err = GenesisStateWithValSet(app.AppCodec(), genesisState, valSet, []authtypes.GenesisAccount{acc}, balances...)
+	genesisState, err = GenesisStateWithValSet(
+		app.AppCodec(),
+		genesisState,
+		valSet,
+		[]authtypes.GenesisAccount{acc},
+		balances...)
 	require.NoError(t, err)
 
 	return genesisState
@@ -248,11 +285,22 @@ func GenesisStateWithSingleValidator(t *testing.T, app *SonrApp) GenesisState {
 
 // AddTestAddrsIncremental constructs and returns accNum amount of accounts with an
 // initial balance of accAmt in random order
-func AddTestAddrsIncremental(app *SonrApp, ctx sdk.Context, accNum int, accAmt sdkmath.Int) []sdk.AccAddress {
+func AddTestAddrsIncremental(
+	app *ChainApp,
+	ctx sdk.Context,
+	accNum int,
+	accAmt sdkmath.Int,
+) []sdk.AccAddress {
 	return addTestAddrs(app, ctx, accNum, accAmt, simtestutil.CreateIncrementalAccounts)
 }
 
-func addTestAddrs(app *SonrApp, ctx sdk.Context, accNum int, accAmt sdkmath.Int, strategy simtestutil.GenerateAccountStrategy) []sdk.AccAddress {
+func addTestAddrs(
+	app *ChainApp,
+	ctx sdk.Context,
+	accNum int,
+	accAmt sdkmath.Int,
+	strategy simtestutil.GenerateAccountStrategy,
+) []sdk.AccAddress {
 	testAddrs := strategy(accNum)
 	bondDenom, err := app.StakingKeeper.BondDenom(ctx)
 	if err != nil {
@@ -268,7 +316,7 @@ func addTestAddrs(app *SonrApp, ctx sdk.Context, accNum int, accAmt sdkmath.Int,
 	return testAddrs
 }
 
-func initAccountWithCoins(app *SonrApp, ctx sdk.Context, addr sdk.AccAddress, coins sdk.Coins) {
+func initAccountWithCoins(app *ChainApp, ctx sdk.Context, addr sdk.AccAddress, coins sdk.Coins) {
 	err := app.BankKeeper.MintCoins(ctx, minttypes.ModuleName, coins)
 	if err != nil {
 		panic(err)
@@ -288,11 +336,19 @@ func NewTestNetworkFixture() network.TestFixture {
 	}
 	defer os.RemoveAll(dir)
 
-	app := NewChainApp(log.NewNopLogger(), dbm.NewMemDB(), nil, true, simtestutil.NewAppOptionsWithFlagHome(dir), nil)
+	app := NewChainApp(
+		log.NewNopLogger(),
+		dbm.NewMemDB(),
+		nil,
+		true,
+		simtestutil.NewAppOptionsWithFlagHome(dir),
+		EVMAppOptions,
+	)
 	appCtr := func(val network.ValidatorI) servertypes.Application {
 		return NewChainApp(
 			val.GetCtx().Logger, dbm.NewMemDB(), nil, true,
 			simtestutil.NewAppOptionsWithFlagHome(val.GetCtx().Config.RootDir),
+			EVMAppOptions,
 			bam.SetPruning(pruningtypes.NewPruningOptionsFromString(val.GetAppConfig().Pruning)),
 			bam.SetMinGasPrices(val.GetAppConfig().MinGasPrices),
 			bam.SetChainID(val.GetCtx().Viper.GetString(flags.FlagChainID)),
@@ -312,7 +368,17 @@ func NewTestNetworkFixture() network.TestFixture {
 }
 
 // SignAndDeliverWithoutCommit signs and delivers a transaction. No commit
-func SignAndDeliverWithoutCommit(t *testing.T, txCfg client.TxConfig, app *bam.BaseApp, msgs []sdk.Msg, fees sdk.Coins, chainID string, accNums, accSeqs []uint64, blockTime time.Time, priv ...cryptotypes.PrivKey) (*abci.ResponseFinalizeBlock, error) {
+func SignAndDeliverWithoutCommit(
+	t *testing.T,
+	txCfg client.TxConfig,
+	app *bam.BaseApp,
+	msgs []sdk.Msg,
+	fees sdk.Coins,
+	chainID string,
+	accNums, accSeqs []uint64,
+	blockTime time.Time,
+	priv ...cryptotypes.PrivKey,
+) (*abci.ResponseFinalizeBlock, error) {
 	tx, err := simtestutil.GenSignedMockTx(
 		rand.New(rand.NewSource(time.Now().UnixNano())),
 		txCfg,
@@ -366,25 +432,40 @@ func GenesisStateWithValSet(
 		}
 
 		validator := stakingtypes.Validator{
-			OperatorAddress:   sdk.ValAddress(val.Address).String(),
-			ConsensusPubkey:   pkAny,
-			Jailed:            false,
-			Status:            stakingtypes.Bonded,
-			Tokens:            bondAmt,
-			DelegatorShares:   sdkmath.LegacyOneDec(),
-			Description:       stakingtypes.Description{},
-			UnbondingHeight:   int64(0),
-			UnbondingTime:     time.Unix(0, 0).UTC(),
-			Commission:        stakingtypes.NewCommission(sdkmath.LegacyZeroDec(), sdkmath.LegacyZeroDec(), sdkmath.LegacyZeroDec()),
+			OperatorAddress: sdk.ValAddress(val.Address).String(),
+			ConsensusPubkey: pkAny,
+			Jailed:          false,
+			Status:          stakingtypes.Bonded,
+			Tokens:          bondAmt,
+			DelegatorShares: sdkmath.LegacyOneDec(),
+			Description:     stakingtypes.Description{},
+			UnbondingHeight: int64(0),
+			UnbondingTime:   time.Unix(0, 0).UTC(),
+			Commission: stakingtypes.NewCommission(
+				sdkmath.LegacyZeroDec(),
+				sdkmath.LegacyZeroDec(),
+				sdkmath.LegacyZeroDec(),
+			),
 			MinSelfDelegation: sdkmath.ZeroInt(),
 		}
 		validators = append(validators, validator)
-		delegations = append(delegations, stakingtypes.NewDelegation(genAccs[0].GetAddress().String(), sdk.ValAddress(val.Address).String(), sdkmath.LegacyOneDec()))
 
+		delegations = append(
+			delegations,
+			stakingtypes.NewDelegation(
+				genAccs[0].GetAddress().String(),
+				sdk.ValAddress(val.Address).String(),
+				sdkmath.LegacyOneDec(),
+			),
+		)
 	}
 
 	// set validators and delegations
-	stakingGenesis := stakingtypes.NewGenesisState(stakingtypes.DefaultParams(), validators, delegations)
+	stakingGenesis := stakingtypes.NewGenesisState(
+		stakingtypes.DefaultParams(),
+		validators,
+		delegations,
+	)
 	genesisState[stakingtypes.ModuleName] = codec.MustMarshalJSON(stakingGenesis)
 
 	signingInfos := make([]slashingtypes.SigningInfo, len(valSet.Validators))
@@ -394,13 +475,19 @@ func GenesisStateWithValSet(
 			ValidatorSigningInfo: slashingtypes.ValidatorSigningInfo{},
 		}
 	}
-	slashingGenesis := slashingtypes.NewGenesisState(slashingtypes.DefaultParams(), signingInfos, nil)
+	slashingGenesis := slashingtypes.NewGenesisState(
+		slashingtypes.DefaultParams(),
+		signingInfos,
+		nil,
+	)
 	genesisState[slashingtypes.ModuleName] = codec.MustMarshalJSON(slashingGenesis)
 
 	// add bonded amount to bonded pool module account
 	balances = append(balances, banktypes.Balance{
 		Address: authtypes.NewModuleAddress(stakingtypes.BondedPoolName).String(),
-		Coins:   sdk.Coins{sdk.NewCoin(sdk.DefaultBondDenom, bondAmt.MulRaw(int64(len(valSet.Validators))))},
+		Coins: sdk.Coins{
+			sdk.NewCoin(sdk.DefaultBondDenom, bondAmt.MulRaw(int64(len(valSet.Validators)))),
+		},
 	})
 
 	totalSupply := sdk.NewCoins()
@@ -410,7 +497,13 @@ func GenesisStateWithValSet(
 	}
 
 	// update total supply
-	bankGenesis := banktypes.NewGenesisState(banktypes.DefaultGenesisState().Params, balances, totalSupply, []banktypes.Metadata{}, []banktypes.SendEnabled{})
+	bankGenesis := banktypes.NewGenesisState(
+		banktypes.DefaultGenesisState().Params,
+		balances,
+		totalSupply,
+		[]banktypes.Metadata{},
+		[]banktypes.SendEnabled{},
+	)
 	genesisState[banktypes.ModuleName] = codec.MustMarshalJSON(bankGenesis)
 
 	return genesisState, nil

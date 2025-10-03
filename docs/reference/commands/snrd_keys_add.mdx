@@ -1,0 +1,158 @@
+---
+title: snrd keys add
+description: Derive a new private key and encrypt to disk.
+---
+
+# snrd keys add
+
+Derive a new private key and encrypt to disk.
+
+## Usage
+
+```shell
+snrd keys add <name> [flags]
+```
+
+## Flags
+
+<ParamField path="account" type="integer">
+  Account number for HD derivation (less than equal 2147483647)
+</ParamField>
+
+<ParamField path="coin-type" type="integer" default="60">
+  coin type number for HD derivation
+</ParamField>
+
+<ParamField path="dry-run" type="string">
+  action, but don't add key to local keystore
+</ParamField>
+
+<ParamField path="hd-path" type="string">
+  Manual HD Path derivation (overrides BIP44 config)
+</ParamField>
+
+<ParamField path="help" type="string">
+  for add
+</ParamField>
+
+<ParamField path="index" type="integer">
+  Address index number for HD derivation (less than equal 2147483647)
+</ParamField>
+
+<ParamField path="interactive" type="string">
+  prompt user for BIP39 passphrase and mnemonic
+</ParamField>
+
+<ParamField path="key-type" type="string" default="eth_secp256k1">
+  Key signing algorithm to generate keys for
+</ParamField>
+
+<ParamField path="ledger" type="string">
+  a local reference to a private key on a Ledger device
+</ParamField>
+
+<ParamField path="multisig" type="string">
+  List of key names stored in keyring to construct a public legacy multisig key
+</ParamField>
+
+<ParamField path="multisig-threshold" type="integer" default="1">
+  K out of N required signatures. For use in conjunction with --multisig
+</ParamField>
+
+<ParamField path="no-backup" type="string">
+  print out seed phrase (if others are watching the terminal)
+</ParamField>
+
+<ParamField path="nosort" type="string">
+  passed to --multisig are taken in the order they're supplied
+</ParamField>
+
+<ParamField path="pubkey" type="string">
+  Parse a public key in JSON format and saves key info to &lt;name&gt; file.
+</ParamField>
+
+<ParamField path="pubkey-base64" type="string">
+  Parse a public key in base64 format and saves key info.
+</ParamField>
+
+<ParamField path="recover" type="string">
+  seed phrase to recover existing key instead of creating
+</ParamField>
+
+<ParamField path="source" type="string">
+  Import mnemonic from a file (only usable when recover or interactive is passed)
+</ParamField>
+
+## Global Flags
+
+<ParamField path="broadcast-mode" type="string" default="sync">
+  Transaction broadcasting mode (sync|async)
+</ParamField>
+
+<ParamField path="chain-id" type="string">
+  Specify Chain ID for sending Tx
+</ParamField>
+
+<ParamField path="fees" type="string">
+  Fees to pay along with transaction; eg: 10aatom
+</ParamField>
+
+<ParamField path="from" type="string">
+  Name or address of private key with which to sign
+</ParamField>
+
+<ParamField path="gas-adjustment" type="float" default="1">
+  adjustment factor to be multiplied against the estimate returned by the tx simulation; if the gas limit is set manually this flag is ignored
+</ParamField>
+
+<ParamField path="gas-prices" type="string">
+  Gas prices to determine the transaction fee (e.g. 10aatom)
+</ParamField>
+
+<ParamField path="home" type="string" default="/Users/prad/.sonr">
+  The application home directory
+</ParamField>
+
+<ParamField path="keyring-backend" type="string" default="os">
+  Select keyring's backend (os|file|test)
+</ParamField>
+
+<ParamField path="keyring-dir" type="string">
+  The client Keyring directory; if omitted, the default 'home' directory will be used
+</ParamField>
+
+<ParamField path="log_format" type="string" default="plain">
+  The logging format (json|plain)
+</ParamField>
+
+<ParamField path="log_level" type="string" default="info">
+  The logging level (trace|debug|info|warn|error|fatal|panic|disabled or '*:&lt;level&gt;,&lt;key&gt;:&lt;level&gt;')
+</ParamField>
+
+<ParamField path="log_no_color" type="string">
+  colored logs
+</ParamField>
+
+<ParamField path="node" type="string" default="tcp://localhost:26657">
+  &lt;host&gt;:&lt;port&gt; to tendermint rpc interface for this chain
+</ParamField>
+
+<ParamField path="output" type="string" default="text">
+  Output format (text|json)
+</ParamField>
+
+<ParamField path="trace" type="string">
+  out full stack trace on errors
+</ParamField>
+
+## Examples
+
+### Add new key
+
+```shell
+snrd keys add alice
+```
+
+## See Also
+
+- [snrd keys](./snrd_keys.mdx) - Parent command

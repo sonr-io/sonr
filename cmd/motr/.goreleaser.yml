@@ -1,0 +1,75 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema-pro.json
+---
+version: 2
+dist: dist/motr
+monorepo:
+  tag_prefix: motr/
+  dir: cmd/motr
+
+project_name: motr
+
+before:
+  hooks:
+    - go mod download
+
+builds:
+  - id: motr-wasm
+    main: .
+    binary: motr
+    no_unique_dist_dir: true
+    mod_timestamp: "{{ .CommitTimestamp }}"
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - js
+    goarch:
+      - wasm
+    flags:
+      - -mod=readonly
+      - -trimpath
+    ldflags:
+      - -s -w
+      - -X main.version={{.Version}}
+      - -X main.commit={{.Commit}}
+      - -X main.date={{.Date}}
+    hooks:
+      post:
+        - cp dist/motr/motr.wasm packages/es/src/worker/app.wasm
+archives:
+  - id: motr-wasm-archive
+    name_template: "motr_wasm_{{ .Version }}"
+    formats: ["binary"]
+    wrap_in_directory: true
+
+blobs:
+  - provider: s3
+    endpoint: https://eb37925850388bca807b7fab964c12bb.r2.cloudflarestorage.com
+    bucket: releases
+    region: auto
+    directory: "motr/{{ .Tag }}"
+
+release:
+  disable: false
+  github:
+    owner: sonr-io
+    name: sonr
+  name_template: "{{.ProjectName}}/{{ .Tag }}"
+  draft: false
+  replace_existing_draft: false # Don't replace drafts
+  replace_existing_artifacts: false # Append, don't replace
+  mode: append # Explicitly set to append mode
+
+checksum:
+  name_template: "motr_checksums.txt"
+
+snapshot:
+  version_template: "{{ incpatch .Version }}-dev"
+
+# Changelog configuration
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^chore:"

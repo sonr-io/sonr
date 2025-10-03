@@ -1,0 +1,215 @@
+---
+title: "Decentralized Exchange (x/dex)"
+sidebarTitle: "Interchain Exchange"
+icon: "coins"
+tag: "x/dex"
+description: "Cross-chain trading through IBC Interchain Accounts with DID-based authorization"
+---
+
+import { Card, CardGrid } from '@/components/mdx'
+import { Tabs, Tab } from '@/components/mdx'
+import { Accordion, AccordionItem } from '@/components/mdx'
+import { CodeGroup } from '@/components/mdx'
+import { Info } from '@/components/mdx'
+
+# Sonr DEX Module
+
+The Sonr Decentralized Exchange (DEX) module provides a powerful cross-chain trading infrastructure that enables seamless, secure, and self-sovereign trading across the Cosmos ecosystem.
+
+## Overview
+
+<CardGrid>
+  <Card title="Cross-Chain Trading" icon="swap">
+    Execute swaps on remote DEX chains via Interchain Accounts (ICA)
+  </Card>
+  <Card title="Liquidity Management" icon="wallet">
+    Add and remove liquidity from pools across chains
+  </Card>
+  <Card title="DID-Controlled Accounts" icon="key">
+    All operations authorized through Sonr DIDs
+  </Card>
+  <Card title="Multi-DEX Support" icon="globe">
+    Connect to multiple DEX chains simultaneously
+  </Card>
+</CardGrid>
+
+## Core Concepts
+
+<Accordion>
+  <AccordionItem title="Interchain Accounts (ICA)">
+    The module leverages IBC's Interchain Accounts to create controlled accounts on remote DEX chains. Each account is linked to a Sonr DID and managed through ICA transactions.
+  </AccordionItem>
+  
+  <AccordionItem title="DID-Based Authorization">
+    All DEX operations require authorization from a valid Sonr DID, ensuring that only authenticated users can perform trading operations.
+  </AccordionItem>
+  
+  <AccordionItem title="UCAN Tokens">
+    User-Controlled Authorization Network (UCAN) tokens provide delegated authority for specific operations, enabling secure third-party integrations.
+  </AccordionItem>
+</Accordion>
+
+## Trading Operations
+
+<Tabs>
+  <Tab title="Swaps">
+    <CodeGroup>
+      ```bash
+      # Execute a swap on Osmosis
+      snrd tx dex swap \
+        --did did:sonr:alice \
+        --connection connection-0 \
+        --source-denom uosmo \
+        --target-denom uatom \
+        --amount 1000000 \
+        --min-amount-out 950000 \
+        --ucan-token "eyJ0eXAiOi..." \
+        --from alice
+      ```
+    </CodeGroup>
+    
+    <Info>
+      Swap operations are protected against slippage with `min-amount-out` parameter.
+    </Info>
+  </Tab>
+  
+  <Tab title="Liquidity">
+    <CodeGroup>
+      ```bash
+      # Provide liquidity to a pool
+      snrd tx dex provide-liquidity \
+        --did did:sonr:alice \
+        --connection connection-0 \
+        --pool-id 1 \
+        --assets 1000000uosmo,500000uatom \
+        --min-shares 100000 \
+        --ucan-token "eyJ0eXAiOi..." \
+        --from alice
+      ```
+    </CodeGroup>
+    
+    <Info>
+      Liquidity providers receive LP tokens proportional to their contribution.
+    </Info>
+  </Tab>
+  
+  <Tab title="Orders">
+    <CodeGroup>
+      ```bash
+      # Create a limit order
+      snrd tx dex create-order \
+        --did did:sonr:alice \
+        --connection connection-0 \
+        --sell-denom uosmo \
+        --buy-denom uatom \
+        --amount 1000000 \
+        --price 1.2 \
+        --expiration "2024-12-31T23:59:59Z" \
+        --ucan-token "eyJ0eXAiOi..." \
+        --from alice
+      ```
+    </CodeGroup>
+    
+    <Info>
+      Limit orders can be created with precise price and expiration settings.
+    </Info>
+  </Tab>
+</Tabs>
+
+## Security and Performance
+
+<CardGrid>
+  <Card title="DID Authentication" icon="shield">
+    All operations require valid DID signatures
+  </Card>
+  <Card title="Rate Limiting" icon="lock">
+    Protects against spam and DoS attacks
+  </Card>
+  <Card title="UCAN Authorization" icon="key">
+    Fine-grained permissions prevent unauthorized operations
+  </Card>
+  <Card title="Batch Operations" icon="rocket">
+    Multiple operations can be executed in a single transaction
+  </Card>
+</CardGrid>
+
+## Supported DEX Chains
+
+### Currently Supported
+- **Osmosis**: Full swap, liquidity, and order support
+- **Crescent**: Swap and liquidity operations
+- **Neutron**: Astroport DEX integration
+
+### Planned Support
+- **Kujira**: FIN orderbook integration
+- **Injective**: Derivatives and spot trading
+- **Sei**: High-frequency trading support
+
+## Future Enhancements
+
+<Accordion>
+  <AccordionItem title="Advanced Trading Features">
+    - Advanced Order Types (stop-loss, trailing stops)
+    - Cross-Chain Arbitrage
+    - Portfolio Management
+    - Yield Farming Integration
+  </AccordionItem>
+  
+  <AccordionItem title="DeFi Innovations">
+    - Derivatives Trading
+    - MEV Protection
+    - Analytics Dashboard
+    - Social Trading Features
+  </AccordionItem>
+</Accordion>
+
+## Technical Details
+
+<Tabs>
+  <Tab title="Protobuf Definitions">
+    ```protobuf
+    message MsgExecuteSwap {
+      string did = 1;                  // DID initiating the swap
+      string connection_id = 2;        // IBC connection to DEX chain
+      string source_denom = 3;         // Token to swap from
+      string target_denom = 4;         // Token to swap to
+      string amount = 5;                // Amount to swap
+      string min_amount_out = 6;       // Minimum amount out (slippage protection)
+    }
+    ```
+  </Tab>
+  
+  <Tab title="Rate Limiting">
+    ```go
+    // Per-block rate limiting
+    if opsThisBlock >= params.RateLimits.MaxOpsPerBlock {
+        return errorsmod.Wrap(ErrRateLimited, "max operations per block exceeded")
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Getting Started
+
+### Integration Guide
+
+1. **Account Setup**: Register ICA accounts for target DEX chains
+2. **Permission Management**: Issue UCAN tokens for specific operations
+3. **Execute Trades**: Use the module's messages to perform DEX operations
+4. **Monitor Activity**: Subscribe to events for real-time updates
+5. **Query State**: Use queries to display balances and history
+
+## Development
+
+<CodeGroup>
+  ```bash
+  # Run unit tests
+  make test-dex
+
+  # Run integration tests with IBC
+  make test-dex-ibc
+
+  # Start local chain with ICA enabled
+  make localnet-dex
+  ```
+</CodeGroup>

@@ -1,0 +1,101 @@
+name: CI
+on:
+  workflow_call:
+    inputs:
+      build:
+        required: false
+        type: string
+      snapshot:
+        required: false
+        type: string
+      test:
+        required: false
+        type: string
+      continue-on-error:
+        required: false
+        default: false
+        type: boolean
+      devbox-version:
+        required: false
+        default: 0.16.0
+        type: string
+      enable-cache:
+        required: false
+        default: false
+        type: boolean
+      fetch-depth:
+        required: false
+        default: 0
+        type: number
+      persist-credentials:
+        required: false
+        default: false
+        type: boolean
+      runs-on:
+        required: false
+        default: ubuntu-latest
+        type: string
+
+jobs:
+  test:
+    runs-on: ${{ inputs.runs-on }}
+    environment: staging - ci
+    if: ${{ inputs.test != '' }}
+    name: Test
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: ${{ inputs.persist-credentials }}
+          fetch-depth: ${{ inputs.fetch-depth }}
+      - name: Install devbox
+        uses: jetify-com/devbox-install-action@v0.13.0
+        with:
+          enable-cache: ${{ inputs.enable-cache }}
+          devbox-version: ${{ inputs.devbox-version }}
+      - name: "Test ${{ inputs.test }}"
+        run: devbox run test:${{ inputs.test }}
+        if: ${{ inputs.test != '' }}
+        continue-on-error: ${{ inputs.continue-on-error }}
+
+  build:
+    runs-on: ${{ inputs.runs-on }}
+    environment: staging - ci
+    if: ${{ inputs.build != '' }}
+    name: Build
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: ${{ inputs.persist-credentials }}
+          fetch-depth: ${{ inputs.fetch-depth }}
+      - name: Install devbox
+        uses: jetify-com/devbox-install-action@v0.13.0
+        with:
+          enable-cache: ${{ inputs.enable-cache }}
+          devbox-version: ${{ inputs.devbox-version }}
+      - name: "Build ${{ inputs.build }}"
+        run: devbox run build:${{ inputs.build }}
+        if: ${{ inputs.build != '' }}
+        continue-on-error: ${{ inputs.continue-on-error }}
+
+  snapshot:
+    runs-on: ${{ inputs.runs-on }}
+    environment: staging - ci
+    if: ${{ inputs.snapshot != '' }}
+    name: Deploy
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: ${{ inputs.persist-credentials }}
+          fetch-depth: ${{ inputs.fetch-depth }}
+      - name: Install devbox
+        uses: jetify-com/devbox-install-action@v0.13.0
+        with:
+          enable-cache: ${{ inputs.enable-cache }}
+          devbox-version: ${{ inputs.devbox-version }}
+      - name: "Snapshot ${{ inputs.snapshot }}"
+        run: devbox run snapshot:${{ inputs.snapshot }}
+        if: ${{ inputs.snapshot != '' }}
+        continue-on-error: ${{ inputs.continue-on-error }}

@@ -12,7 +12,9 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth/tx"
 )
 
-// MakeEncodingConfig creates an EncodingConfig for an amino based test configuration.
+// MakeEncodingConfig creates a default EncodingConfig with standard Cosmos SDK
+// encoding settings. It sets up the interface registry with proper address codecs,
+// creates the protobuf codec, and configures transaction handling with default sign modes.
 func MakeEncodingConfig() EncodingConfig {
 	amino := codec.NewLegacyAmino()
 	interfaceRegistry, err := types.NewInterfaceRegistryWithOptions(types.InterfaceRegistryOptions{

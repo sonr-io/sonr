@@ -3,8 +3,9 @@ package svc.v1;
 
 import "google/api/annotations.proto";
 import "svc/v1/genesis.proto";
+import "svc/v1/state.proto";
 
-option go_package = "github.com/sonr-io/snrd/x/svc/types";
+option go_package = "github.com/sonr-io/sonr/x/svc/types";
 
 // Query provides defines the gRPC querier service.
 service Query {
@@ -13,14 +14,44 @@ service Query {
     option (google.api.http).get = "/svc/v1/params";
   }
 
-  // OriginExists queries if a given origin exists.
-  rpc OriginExists(QueryOriginExistsRequest) returns (QueryOriginExistsResponse) {
-    option (google.api.http).get = "/svc/v1/origins/{origin}";
+  // DomainVerification queries domain verification status by domain name.
+  //
+  // {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+  // It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+  //
+  // {{import "svc_docs.md"}}
+  rpc DomainVerification(QueryDomainVerificationRequest) returns (QueryDomainVerificationResponse) {
+    option (google.api.http).get = "/svc/v1/domain/{domain}";
   }
 
-  // ResolveOrigin queries the domain of a given service and returns its record with capabilities.
-  rpc ResolveOrigin(QueryResolveOriginRequest) returns (QueryResolveOriginResponse) {
-    option (google.api.http).get = "/svc/v1/origins/{origin}/record";
+  // Service queries service information by service ID.
+  rpc Service(QueryServiceRequest) returns (QueryServiceResponse) {
+    option (google.api.http).get = "/svc/v1/service/{service_id}";
+  }
+
+  // ServicesByOwner queries all services owned by a specific address.
+  rpc ServicesByOwner(QueryServicesByOwnerRequest) returns (QueryServicesByOwnerResponse) {
+    option (google.api.http).get = "/svc/v1/services/owner/{owner}";
+  }
+
+  // ServicesByDomain queries services bound to a specific domain.
+  rpc ServicesByDomain(QueryServicesByDomainRequest) returns (QueryServicesByDomainResponse) {
+    option (google.api.http).get = "/svc/v1/services/domain/{domain}";
+  }
+
+  // ServiceOIDCDiscovery queries OIDC discovery configuration for a service
+  rpc ServiceOIDCDiscovery(QueryServiceOIDCDiscoveryRequest) returns (QueryServiceOIDCDiscoveryResponse) {
+    option (google.api.http).get = "/svc/v1/service/{service_id}/oidc/discovery";
+  }
+
+  // ServiceOIDCJWKS queries OIDC JWKS for a service
+  rpc ServiceOIDCJWKS(QueryServiceOIDCJWKSRequest) returns (QueryServiceOIDCJWKSResponse) {
+    option (google.api.http).get = "/svc/v1/service/{service_id}/oidc/jwks";
+  }
+
+  // ServiceOIDCMetadata queries OIDC metadata for a service
+  rpc ServiceOIDCMetadata(QueryServiceOIDCMetadataRequest) returns (QueryServiceOIDCMetadataResponse) {
+    option (google.api.http).get = "/svc/v1/service/{service_id}/oidc/metadata";
   }
 }
 
@@ -33,26 +64,161 @@ message QueryParamsResponse {
   Params params = 1;
 }
 
-// QueryOriginExistsRequest is the request type for the Query/OriginExists RPC method.
-message QueryOriginExistsRequest {
-  // origin is the origin to query.
-  string origin = 1;
+// QueryDomainVerificationRequest is the request type for the
+// Query/DomainVerification RPC method.
+message QueryDomainVerificationRequest {
+  string domain = 1;
 }
 
-// QueryOriginExistsResponse is the response type for the Query/OriginExists RPC method.
-message QueryOriginExistsResponse {
-  // exists is the boolean value representing whether the origin exists.
-  bool exists = 1;
+// QueryDomainVerificationResponse is the response type for the
+// Query/DomainVerification RPC method.
+message QueryDomainVerificationResponse {
+  DomainVerification domain_verification = 1;
 }
 
-// QueryResolveOriginRequest is the request type for the Query/ResolveOrigin RPC method.
-message QueryResolveOriginRequest {
-  // origin is the origin to query.
-  string origin = 1;
+// QueryServiceRequest is the request type for the Query/Service RPC method.
+message QueryServiceRequest {
+  string service_id = 1;
 }
 
-// QueryResolveOriginResponse is the response type for the Query/ResolveOrigin RPC method.
-message QueryResolveOriginResponse {
-  // record is the record of the origin.
-  Service record = 1;
+// QueryServiceResponse is the response type for the Query/Service RPC method.
+message QueryServiceResponse {
+  Service service = 1;
+}
+
+// QueryServicesByOwnerRequest is the request type for the Query/ServicesByOwner
+// RPC method.
+message QueryServicesByOwnerRequest {
+  string owner = 1;
+}
+
+// QueryServicesByOwnerResponse is the response type for the
+// Query/ServicesByOwner RPC method.
+message QueryServicesByOwnerResponse {
+  repeated Service services = 1;
+}
+
+// QueryServicesByDomainRequest is the request type for the
+// Query/ServicesByDomain RPC method.
+message QueryServicesByDomainRequest {
+  string domain = 1;
+}
+
+// QueryServicesByDomainResponse is the response type for the
+// Query/ServicesByDomain RPC method.
+message QueryServicesByDomainResponse {
+  repeated Service services = 1;
+}
+
+// QueryServiceOIDCDiscoveryRequest is the request type for the
+// Query/ServiceOIDCDiscovery RPC method.
+message QueryServiceOIDCDiscoveryRequest {
+  string service_id = 1;
+}
+
+// QueryServiceOIDCDiscoveryResponse is the response type for the
+// Query/ServiceOIDCDiscovery RPC method.
+// This response follows the OpenID Connect Discovery 1.0 specification
+message QueryServiceOIDCDiscoveryResponse {
+  // The issuer identifier
+  string issuer = 1;
+  
+  // URL of the authorization endpoint
+  string authorization_endpoint = 2;
+  
+  // URL of the token endpoint
+  string token_endpoint = 3;
+  
+  // URL of the JSON Web Key Set
+  string jwks_uri = 4;
+  
+  // URL of the UserInfo endpoint
+  string userinfo_endpoint = 5;
+  
+  // URL for the registration endpoint
+  string registration_endpoint = 6;
+  
+  // JSON array containing a list of the OAuth 2.0 scope values
+  repeated string scopes_supported = 7;
+  
+  // JSON array containing a list of the OAuth 2.0 response_type values
+  repeated string response_types_supported = 8;
+  
+  // JSON array containing a list of the OAuth 2.0 grant_type values
+  repeated string grant_types_supported = 9;
+  
+  // JSON array containing a list of the JWS signing algorithms
+  repeated string id_token_signing_alg_values_supported = 10;
+  
+  // JSON array containing a list of the Subject Identifier types
+  repeated string subject_types_supported = 11;
+  
+  // JSON array containing a list of client authentication methods
+  repeated string token_endpoint_auth_methods_supported = 12;
+  
+  // JSON array containing a list of the Claim Names
+  repeated string claims_supported = 13;
+  
+  // JSON array containing a list of the OAuth 2.0 response_mode values
+  repeated string response_modes_supported = 14;
+  
+  // Service URL for documentation
+  string service_documentation = 15;
+  
+  // Languages supported for the UI
+  repeated string ui_locales_supported = 16;
+  
+  // Languages supported for claims
+  repeated string claims_locales_supported = 17;
+  
+  // Boolean value specifying whether the OP supports use of the request parameter
+  bool request_parameter_supported = 18;
+  
+  // Boolean value specifying whether the OP supports use of the request_uri parameter
+  bool request_uri_parameter_supported = 19;
+  
+  // Boolean value specifying whether the OP requires any request_uri values
+  bool require_request_uri_registration = 20;
+  
+  // URL that the OP provides to the person registering the Client
+  string op_policy_uri = 21;
+  
+  // URL that the OP provides to the person registering the Client
+  string op_tos_uri = 22;
+}
+
+// QueryServiceOIDCJWKSRequest is the request type for the
+// Query/ServiceOIDCJWKS RPC method.
+message QueryServiceOIDCJWKSRequest {
+  string service_id = 1;
+}
+
+// QueryServiceOIDCJWKSResponse is the response type for the
+// Query/ServiceOIDCJWKS RPC method.
+// This response follows the JSON Web Key Set specification
+message QueryServiceOIDCJWKSResponse {
+  // Array of JWK values
+  repeated JWK keys = 1;
+}
+
+// QueryServiceOIDCMetadataRequest is the request type for the
+// Query/ServiceOIDCMetadata RPC method.
+message QueryServiceOIDCMetadataRequest {
+  string service_id = 1;
+}
+
+// QueryServiceOIDCMetadataResponse is the response type for the
+// Query/ServiceOIDCMetadata RPC method.
+message QueryServiceOIDCMetadataResponse {
+  // Service-specific OIDC metadata
+  ServiceOIDCConfig config = 1;
+  
+  // The verified domain of the service
+  string verified_domain = 2;
+  
+  // Service status
+  ServiceStatus service_status = 3;
+  
+  // Additional metadata as key-value pairs
+  map<string, string> metadata = 4;
 }

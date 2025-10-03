@@ -5,12 +5,13 @@ package types
 
 import (
 	fmt "fmt"
-	_ "github.com/cosmos/cosmos-sdk/types/tx/amino"
-	_ "github.com/cosmos/gogoproto/gogoproto"
-	proto "github.com/cosmos/gogoproto/proto"
 	io "io"
 	math "math"
 	math_bits "math/bits"
+
+	_ "github.com/cosmos/cosmos-sdk/types/tx/amino"
+	_ "github.com/cosmos/gogoproto/gogoproto"
+	proto "github.com/cosmos/gogoproto/proto"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -28,6 +29,8 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 type GenesisState struct {
 	// Params defines all the parameters of the module.
 	Params Params `protobuf:"bytes,1,opt,name=params,proto3" json:"params"`
+	// Export format version for future migrations
+	ExportVersion uint32 `protobuf:"varint,2,opt,name=export_version,json=exportVersion,proto3" json:"export_version,omitempty"`
 }
 
 func (m *GenesisState) Reset()         { *m = GenesisState{} }
@@ -70,9 +73,17 @@ func (m *GenesisState) GetParams() Params {
 	return Params{}
 }
 
+func (m *GenesisState) GetExportVersion() uint32 {
+	if m != nil {
+		return m.ExportVersion
+	}
+	return 0
+}
+
 // Params defines the set of module parameters.
 type Params struct {
-	Attenuations []*Attenuation `protobuf:"bytes,1,rep,name=attenuations,proto3" json:"attenuations,omitempty"`
+	Document *DocumentParams `protobuf:"bytes,1,opt,name=document,proto3" json:"document,omitempty"`
+	Webauthn *WebauthnParams `protobuf:"bytes,2,opt,name=webauthn,proto3" json:"webauthn,omitempty"`
 }
 
 func (m *Params) Reset()      { *m = Params{} }
@@ -107,31 +118,60 @@ func (m *Params) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Params proto.InternalMessageInfo
 
-func (m *Params) GetAttenuations() []*Attenuation {
+func (m *Params) GetDocument() *DocumentParams {
 	if m != nil {
-		return m.Attenuations
+		return m.Document
 	}
 	return nil
 }
 
-// Attenuation defines the attenuation of a resource
-type Attenuation struct {
-	Resource     *Resource     `protobuf:"bytes,1,opt,name=resource,proto3" json:"resource,omitempty"`
-	Capabilities []*Capability `protobuf:"bytes,2,rep,name=capabilities,proto3" json:"capabilities,omitempty"`
+func (m *Params) GetWebauthn() *WebauthnParams {
+	if m != nil {
+		return m.Webauthn
+	}
+	return nil
 }
 
-func (m *Attenuation) Reset()         { *m = Attenuation{} }
-func (m *Attenuation) String() string { return proto.CompactTextString(m) }
-func (*Attenuation) ProtoMessage()    {}
-func (*Attenuation) Descriptor() ([]byte, []int) {
+// DocumentParams defines the parameters for the DID module.
+type DocumentParams struct {
+	// AutoCreateVault enables automatic vault creation upon DID registration
+	AutoCreateVault bool `protobuf:"varint,1,opt,name=auto_create_vault,json=autoCreateVault,proto3" json:"auto_create_vault,omitempty"`
+	// MaxVerificationMethods limits the number of verification methods
+	MaxVerificationMethods int32 `protobuf:"varint,2,opt,name=max_verification_methods,json=maxVerificationMethods,proto3" json:"max_verification_methods,omitempty"`
+	// MaxServiceEndpoints limits the number of service endpoints
+	MaxServiceEndpoints int32 `protobuf:"varint,3,opt,name=max_service_endpoints,json=maxServiceEndpoints,proto3" json:"max_service_endpoints,omitempty"`
+	// MaxControllers limits the number of controllers per DID document
+	MaxControllers int32 `protobuf:"varint,4,opt,name=max_controllers,json=maxControllers,proto3" json:"max_controllers,omitempty"`
+	// DidDocumentMaxSize limits the maximum size of a DID document in bytes
+	DidDocumentMaxSize int64 `protobuf:"varint,5,opt,name=did_document_max_size,json=didDocumentMaxSize,proto3" json:"did_document_max_size,omitempty"`
+	// DidResolutionTimeout is the timeout for resolution operations in seconds
+	DidResolutionTimeout int64 `protobuf:"varint,6,opt,name=did_resolution_timeout,json=didResolutionTimeout,proto3" json:"did_resolution_timeout,omitempty"`
+	// KeyRotationInterval is the recommended interval for key rotation in seconds
+	KeyRotationInterval int64 `protobuf:"varint,7,opt,name=key_rotation_interval,json=keyRotationInterval,proto3" json:"key_rotation_interval,omitempty"`
+	// CredentialLifetime is the default lifetime in seconds
+	CredentialLifetime int64 `protobuf:"varint,8,opt,name=credential_lifetime,json=credentialLifetime,proto3" json:"credential_lifetime,omitempty"`
+	// Supported Assertion methods
+	SupportedAssertionMethods []string `protobuf:"bytes,9,rep,name=supported_assertion_methods,json=supportedAssertionMethods,proto3" json:"supported_assertion_methods,omitempty"`
+	// Supported Authentication methods
+	SupportedAuthenticationMethods []string `protobuf:"bytes,10,rep,name=supported_authentication_methods,json=supportedAuthenticationMethods,proto3" json:"supported_authentication_methods,omitempty"`
+	// Supported Invocation methods
+	SupportedInvocationMethods []string `protobuf:"bytes,11,rep,name=supported_invocation_methods,json=supportedInvocationMethods,proto3" json:"supported_invocation_methods,omitempty"`
+	// Supported Delegation methods
+	SupportedDelegationMethods []string `protobuf:"bytes,12,rep,name=supported_delegation_methods,json=supportedDelegationMethods,proto3" json:"supported_delegation_methods,omitempty"`
+}
+
+func (m *DocumentParams) Reset()         { *m = DocumentParams{} }
+func (m *DocumentParams) String() string { return proto.CompactTextString(m) }
+func (*DocumentParams) ProtoMessage()    {}
+func (*DocumentParams) Descriptor() ([]byte, []int) {
 	return fileDescriptor_fda181cae44f7c00, []int{2}
 }
-func (m *Attenuation) XXX_Unmarshal(b []byte) error {
+func (m *DocumentParams) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *Attenuation) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *DocumentParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_Attenuation.Marshal(b, m, deterministic)
+		return xxx_messageInfo_DocumentParams.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -141,52 +181,132 @@ func (m *Attenuation) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) 
 		return b[:n], nil
 	}
 }
-func (m *Attenuation) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Attenuation.Merge(m, src)
+func (m *DocumentParams) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DocumentParams.Merge(m, src)
 }
-func (m *Attenuation) XXX_Size() int {
+func (m *DocumentParams) XXX_Size() int {
 	return m.Size()
 }
-func (m *Attenuation) XXX_DiscardUnknown() {
-	xxx_messageInfo_Attenuation.DiscardUnknown(m)
+func (m *DocumentParams) XXX_DiscardUnknown() {
+	xxx_messageInfo_DocumentParams.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_Attenuation proto.InternalMessageInfo
+var xxx_messageInfo_DocumentParams proto.InternalMessageInfo
 
-func (m *Attenuation) GetResource() *Resource {
+func (m *DocumentParams) GetAutoCreateVault() bool {
 	if m != nil {
-		return m.Resource
+		return m.AutoCreateVault
+	}
+	return false
+}
+
+func (m *DocumentParams) GetMaxVerificationMethods() int32 {
+	if m != nil {
+		return m.MaxVerificationMethods
+	}
+	return 0
+}
+
+func (m *DocumentParams) GetMaxServiceEndpoints() int32 {
+	if m != nil {
+		return m.MaxServiceEndpoints
+	}
+	return 0
+}
+
+func (m *DocumentParams) GetMaxControllers() int32 {
+	if m != nil {
+		return m.MaxControllers
+	}
+	return 0
+}
+
+func (m *DocumentParams) GetDidDocumentMaxSize() int64 {
+	if m != nil {
+		return m.DidDocumentMaxSize
+	}
+	return 0
+}
+
+func (m *DocumentParams) GetDidResolutionTimeout() int64 {
+	if m != nil {
+		return m.DidResolutionTimeout
+	}
+	return 0
+}
+
+func (m *DocumentParams) GetKeyRotationInterval() int64 {
+	if m != nil {
+		return m.KeyRotationInterval
+	}
+	return 0
+}
+
+func (m *DocumentParams) GetCredentialLifetime() int64 {
+	if m != nil {
+		return m.CredentialLifetime
+	}
+	return 0
+}
+
+func (m *DocumentParams) GetSupportedAssertionMethods() []string {
+	if m != nil {
+		return m.SupportedAssertionMethods
 	}
 	return nil
 }
 
-func (m *Attenuation) GetCapabilities() []*Capability {
+func (m *DocumentParams) GetSupportedAuthenticationMethods() []string {
 	if m != nil {
-		return m.Capabilities
+		return m.SupportedAuthenticationMethods
 	}
 	return nil
 }
 
-// Capability reprensents the available capabilities of a decentralized web node
-type Capability struct {
-	Name        string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Parent      string   `protobuf:"bytes,2,opt,name=parent,proto3" json:"parent,omitempty"`
-	Description string   `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	Resources   []string `protobuf:"bytes,4,rep,name=resources,proto3" json:"resources,omitempty"`
+func (m *DocumentParams) GetSupportedInvocationMethods() []string {
+	if m != nil {
+		return m.SupportedInvocationMethods
+	}
+	return nil
 }
 
-func (m *Capability) Reset()         { *m = Capability{} }
-func (m *Capability) String() string { return proto.CompactTextString(m) }
-func (*Capability) ProtoMessage()    {}
-func (*Capability) Descriptor() ([]byte, []int) {
+func (m *DocumentParams) GetSupportedDelegationMethods() []string {
+	if m != nil {
+		return m.SupportedDelegationMethods
+	}
+	return nil
+}
+
+// WebauthnParams defines the parameters for the WebAuthn module.
+type WebauthnParams struct {
+	// ChallengeTimeout is the default timeout in seconds
+	ChallengeTimeout int64 `protobuf:"varint,1,opt,name=challenge_timeout,json=challengeTimeout,proto3" json:"challenge_timeout,omitempty"`
+	// AllowedOrigins are the allowed WebAuthn origins for credential creation
+	AllowedOrigins []string `protobuf:"bytes,2,rep,name=allowed_origins,json=allowedOrigins,proto3" json:"allowed_origins,omitempty"`
+	// SupportedAlgorithms are the supported signature for WebAuthn credentials
+	SupportedAlgorithms []string `protobuf:"bytes,3,rep,name=supported_algorithms,json=supportedAlgorithms,proto3" json:"supported_algorithms,omitempty"`
+	// RequireUserVerification enforces verification for WebAuthn credentials
+	RequireUserVerification bool `protobuf:"varint,4,opt,name=require_user_verification,json=requireUserVerification,proto3" json:"require_user_verification,omitempty"`
+	// MaxCredentialsPerDID limits the number of WebAuthn credentials per DID
+	MaxCredentialsPerDid int32 `protobuf:"varint,5,opt,name=max_credentials_per_did,json=maxCredentialsPerDid,proto3" json:"max_credentials_per_did,omitempty"`
+	// DefaultRPID is the default Relying Party ID for WebAuthn operations
+	DefaultRpId string `protobuf:"bytes,6,opt,name=default_rp_id,json=defaultRpId,proto3" json:"default_rp_id,omitempty"`
+	// DefaultRPName is the default Relying Party name for WebAuthn operations
+	DefaultRpName string `protobuf:"bytes,7,opt,name=default_rp_name,json=defaultRpName,proto3" json:"default_rp_name,omitempty"`
+}
+
+func (m *WebauthnParams) Reset()         { *m = WebauthnParams{} }
+func (m *WebauthnParams) String() string { return proto.CompactTextString(m) }
+func (*WebauthnParams) ProtoMessage()    {}
+func (*WebauthnParams) Descriptor() ([]byte, []int) {
 	return fileDescriptor_fda181cae44f7c00, []int{3}
 }
-func (m *Capability) XXX_Unmarshal(b []byte) error {
+func (m *WebauthnParams) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *Capability) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *WebauthnParams) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_Capability.Marshal(b, m, deterministic)
+		return xxx_messageInfo_WebauthnParams.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -196,238 +316,128 @@ func (m *Capability) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (m *Capability) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Capability.Merge(m, src)
+func (m *WebauthnParams) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_WebauthnParams.Merge(m, src)
 }
-func (m *Capability) XXX_Size() int {
+func (m *WebauthnParams) XXX_Size() int {
 	return m.Size()
 }
-func (m *Capability) XXX_DiscardUnknown() {
-	xxx_messageInfo_Capability.DiscardUnknown(m)
+func (m *WebauthnParams) XXX_DiscardUnknown() {
+	xxx_messageInfo_WebauthnParams.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_Capability proto.InternalMessageInfo
+var xxx_messageInfo_WebauthnParams proto.InternalMessageInfo
 
-func (m *Capability) GetName() string {
+func (m *WebauthnParams) GetChallengeTimeout() int64 {
 	if m != nil {
-		return m.Name
+		return m.ChallengeTimeout
 	}
-	return ""
+	return 0
 }
 
-func (m *Capability) GetParent() string {
+func (m *WebauthnParams) GetAllowedOrigins() []string {
 	if m != nil {
-		return m.Parent
-	}
-	return ""
-}
-
-func (m *Capability) GetDescription() string {
-	if m != nil {
-		return m.Description
-	}
-	return ""
-}
-
-func (m *Capability) GetResources() []string {
-	if m != nil {
-		return m.Resources
+		return m.AllowedOrigins
 	}
 	return nil
 }
 
-// Resource reprensents the available resources of a decentralized web node
-type Resource struct {
-	Kind     string `protobuf:"bytes,1,opt,name=kind,proto3" json:"kind,omitempty"`
-	Template string `protobuf:"bytes,2,opt,name=template,proto3" json:"template,omitempty"`
-}
-
-func (m *Resource) Reset()         { *m = Resource{} }
-func (m *Resource) String() string { return proto.CompactTextString(m) }
-func (*Resource) ProtoMessage()    {}
-func (*Resource) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fda181cae44f7c00, []int{4}
-}
-func (m *Resource) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *Resource) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_Resource.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *Resource) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Resource.Merge(m, src)
-}
-func (m *Resource) XXX_Size() int {
-	return m.Size()
-}
-func (m *Resource) XXX_DiscardUnknown() {
-	xxx_messageInfo_Resource.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Resource proto.InternalMessageInfo
-
-func (m *Resource) GetKind() string {
+func (m *WebauthnParams) GetSupportedAlgorithms() []string {
 	if m != nil {
-		return m.Kind
+		return m.SupportedAlgorithms
+	}
+	return nil
+}
+
+func (m *WebauthnParams) GetRequireUserVerification() bool {
+	if m != nil {
+		return m.RequireUserVerification
+	}
+	return false
+}
+
+func (m *WebauthnParams) GetMaxCredentialsPerDid() int32 {
+	if m != nil {
+		return m.MaxCredentialsPerDid
+	}
+	return 0
+}
+
+func (m *WebauthnParams) GetDefaultRpId() string {
+	if m != nil {
+		return m.DefaultRpId
 	}
 	return ""
 }
 
-func (m *Resource) GetTemplate() string {
+func (m *WebauthnParams) GetDefaultRpName() string {
 	if m != nil {
-		return m.Template
+		return m.DefaultRpName
 	}
 	return ""
-}
-
-// Document defines a DID document
-type Document struct {
-	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Controller           string   `protobuf:"bytes,2,opt,name=controller,proto3" json:"controller,omitempty"`
-	Authentication       []string `protobuf:"bytes,3,rep,name=authentication,proto3" json:"authentication,omitempty"`
-	AssertionMethod      []string `protobuf:"bytes,4,rep,name=assertion_method,json=assertionMethod,proto3" json:"assertion_method,omitempty"`
-	CapabilityDelegation []string `protobuf:"bytes,5,rep,name=capability_delegation,json=capabilityDelegation,proto3" json:"capability_delegation,omitempty"`
-	CapabilityInvocation []string `protobuf:"bytes,6,rep,name=capability_invocation,json=capabilityInvocation,proto3" json:"capability_invocation,omitempty"`
-	Service              []string `protobuf:"bytes,7,rep,name=service,proto3" json:"service,omitempty"`
-}
-
-func (m *Document) Reset()         { *m = Document{} }
-func (m *Document) String() string { return proto.CompactTextString(m) }
-func (*Document) ProtoMessage()    {}
-func (*Document) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fda181cae44f7c00, []int{5}
-}
-func (m *Document) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *Document) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_Document.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *Document) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Document.Merge(m, src)
-}
-func (m *Document) XXX_Size() int {
-	return m.Size()
-}
-func (m *Document) XXX_DiscardUnknown() {
-	xxx_messageInfo_Document.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Document proto.InternalMessageInfo
-
-func (m *Document) GetId() string {
-	if m != nil {
-		return m.Id
-	}
-	return ""
-}
-
-func (m *Document) GetController() string {
-	if m != nil {
-		return m.Controller
-	}
-	return ""
-}
-
-func (m *Document) GetAuthentication() []string {
-	if m != nil {
-		return m.Authentication
-	}
-	return nil
-}
-
-func (m *Document) GetAssertionMethod() []string {
-	if m != nil {
-		return m.AssertionMethod
-	}
-	return nil
-}
-
-func (m *Document) GetCapabilityDelegation() []string {
-	if m != nil {
-		return m.CapabilityDelegation
-	}
-	return nil
-}
-
-func (m *Document) GetCapabilityInvocation() []string {
-	if m != nil {
-		return m.CapabilityInvocation
-	}
-	return nil
-}
-
-func (m *Document) GetService() []string {
-	if m != nil {
-		return m.Service
-	}
-	return nil
 }
 
 func init() {
 	proto.RegisterType((*GenesisState)(nil), "did.v1.GenesisState")
 	proto.RegisterType((*Params)(nil), "did.v1.Params")
-	proto.RegisterType((*Attenuation)(nil), "did.v1.Attenuation")
-	proto.RegisterType((*Capability)(nil), "did.v1.Capability")
-	proto.RegisterType((*Resource)(nil), "did.v1.Resource")
-	proto.RegisterType((*Document)(nil), "did.v1.Document")
+	proto.RegisterType((*DocumentParams)(nil), "did.v1.DocumentParams")
+	proto.RegisterType((*WebauthnParams)(nil), "did.v1.WebauthnParams")
 }
 
 func init() { proto.RegisterFile("did/v1/genesis.proto", fileDescriptor_fda181cae44f7c00) }
 
 var fileDescriptor_fda181cae44f7c00 = []byte{
-	// 513 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x5c, 0x53, 0x4f, 0x6f, 0x12, 0x41,
-	0x14, 0x67, 0x01, 0x29, 0x3c, 0x08, 0xd6, 0x11, 0x75, 0x43, 0xcc, 0x42, 0x30, 0x31, 0x68, 0x2a,
-	0x9b, 0xb6, 0x89, 0x26, 0x8d, 0x1e, 0xac, 0x4d, 0x8c, 0x07, 0x13, 0xb3, 0xde, 0x7a, 0x69, 0x86,
-	0xdd, 0x17, 0x98, 0xc8, 0xce, 0x6c, 0x66, 0x06, 0x52, 0xbe, 0x82, 0x27, 0xbd, 0x79, 0xec, 0x47,
-	0xf0, 0x63, 0xf4, 0xd8, 0xa3, 0x27, 0x63, 0xe0, 0xa0, 0x1f, 0xc3, 0xec, 0xec, 0xec, 0x42, 0xb9,
-	0x90, 0xf7, 0x7e, 0x7f, 0xde, 0xfb, 0xbd, 0x09, 0x0b, 0x9d, 0x88, 0x45, 0xfe, 0xe2, 0xd0, 0x9f,
-	0x20, 0x47, 0xc5, 0xd4, 0x28, 0x91, 0x42, 0x0b, 0x52, 0x8b, 0x58, 0x34, 0x5a, 0x1c, 0x76, 0xef,
-	0xd1, 0x98, 0x71, 0xe1, 0x9b, 0xdf, 0x8c, 0xea, 0x76, 0x26, 0x62, 0x22, 0x4c, 0xe9, 0xa7, 0x55,
-	0x86, 0x0e, 0x5e, 0x43, 0xeb, 0x7d, 0x36, 0xe1, 0xb3, 0xa6, 0x1a, 0xc9, 0x01, 0xd4, 0x12, 0x2a,
-	0x69, 0xac, 0x5c, 0xa7, 0xef, 0x0c, 0x9b, 0x47, 0xed, 0x51, 0x36, 0x71, 0xf4, 0xc9, 0xa0, 0xa7,
-	0xd5, 0xeb, 0xdf, 0xbd, 0x52, 0x60, 0x35, 0x83, 0x73, 0xa8, 0x65, 0x38, 0x79, 0x05, 0x2d, 0xaa,
-	0x35, 0xf2, 0x39, 0xd5, 0x4c, 0xf0, 0xd4, 0x5d, 0x19, 0x36, 0x8f, 0xee, 0xe7, 0xee, 0xb7, 0x1b,
-	0x2e, 0xb8, 0x25, 0x3c, 0x79, 0xf4, 0xe3, 0xaa, 0x57, 0xfa, 0x77, 0xd5, 0x73, 0xbe, 0xfe, 0xfd,
-	0xf9, 0x1c, 0xd2, 0xa3, 0xec, 0x6c, 0x05, 0xcd, 0x2d, 0x17, 0x39, 0x80, 0xba, 0x44, 0x25, 0xe6,
-	0x32, 0x44, 0x1b, 0x6d, 0x3f, 0x1f, 0x1e, 0x58, 0x3c, 0x28, 0x14, 0xe4, 0x25, 0xb4, 0x42, 0x9a,
-	0xd0, 0x31, 0x9b, 0x31, 0xcd, 0x50, 0xb9, 0x65, 0x13, 0x87, 0xe4, 0x8e, 0x77, 0x39, 0xb7, 0x0c,
-	0x6e, 0xe9, 0x06, 0x97, 0x00, 0x1b, 0x8e, 0x10, 0xa8, 0x72, 0x1a, 0x67, 0xfb, 0x1a, 0x81, 0xa9,
-	0xc9, 0x43, 0xf3, 0x40, 0xc8, 0xb5, 0x5b, 0x36, 0xa8, 0xed, 0x48, 0x1f, 0x9a, 0x11, 0xaa, 0x50,
-	0xb2, 0x24, 0x8d, 0xeb, 0x56, 0x0c, 0xb9, 0x0d, 0x91, 0xc7, 0xd0, 0xc8, 0xf3, 0x29, 0xb7, 0xda,
-	0xaf, 0x0c, 0x1b, 0xc1, 0x06, 0x18, 0x9c, 0x40, 0x3d, 0xbf, 0x23, 0xdd, 0xfb, 0x85, 0xf1, 0x28,
-	0xdf, 0x9b, 0xd6, 0xa4, 0x0b, 0x75, 0x8d, 0x71, 0x32, 0xa3, 0x1a, 0xed, 0xe6, 0xa2, 0x1f, 0x7c,
-	0x2f, 0x43, 0xfd, 0x4c, 0x84, 0xf3, 0x38, 0x0d, 0xd2, 0x86, 0x32, 0xcb, 0xad, 0x65, 0x16, 0x11,
-	0x0f, 0x20, 0x14, 0x5c, 0x4b, 0x31, 0x9b, 0xa1, 0xb4, 0xd6, 0x2d, 0x84, 0x3c, 0x85, 0x36, 0x9d,
-	0xeb, 0x29, 0x72, 0xcd, 0x42, 0x6a, 0xb3, 0xa7, 0xd9, 0x76, 0x50, 0xf2, 0x0c, 0xf6, 0xa9, 0x52,
-	0x28, 0xd3, 0xe6, 0x22, 0x46, 0x3d, 0x15, 0x91, 0xbd, 0xe2, 0x6e, 0x81, 0x7f, 0x34, 0x30, 0x39,
-	0x86, 0x07, 0xc5, 0xab, 0x2e, 0x2f, 0x22, 0x9c, 0xe1, 0x24, 0x9b, 0x7c, 0xc7, 0xe8, 0x3b, 0x1b,
-	0xf2, 0xac, 0xe0, 0x76, 0x4c, 0x8c, 0x2f, 0x84, 0x8d, 0x53, 0xdb, 0x35, 0x7d, 0x28, 0x38, 0xe2,
-	0xc2, 0x9e, 0x42, 0xb9, 0x60, 0x21, 0xba, 0x7b, 0x46, 0x96, 0xb7, 0xa7, 0x6f, 0xae, 0x57, 0x9e,
-	0x73, 0xb3, 0xf2, 0x9c, 0x3f, 0x2b, 0xcf, 0xf9, 0xb6, 0xf6, 0x4a, 0x37, 0x6b, 0xaf, 0xf4, 0x6b,
-	0xed, 0x95, 0xce, 0x9f, 0x4c, 0x98, 0x9e, 0xce, 0xc7, 0xa3, 0x50, 0xc4, 0xbe, 0x12, 0x5c, 0xbe,
-	0x60, 0xc2, 0x57, 0x5c, 0x46, 0xfe, 0xa5, 0x9f, 0xfe, 0xfd, 0xf4, 0x32, 0x41, 0x35, 0xae, 0x99,
-	0xcf, 0xe3, 0xf8, 0x7f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x99, 0xf1, 0xce, 0xd8, 0x67, 0x03, 0x00,
-	0x00,
+	// 790 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x54, 0xcf, 0x6e, 0x1b, 0x45,
+	0x18, 0xf7, 0x36, 0x89, 0x49, 0x26, 0xb5, 0x4d, 0xc6, 0x6e, 0xb2, 0x0d, 0xc8, 0xb1, 0x8c, 0xa0,
+	0x56, 0x01, 0xaf, 0x1c, 0x40, 0x42, 0x91, 0x40, 0xd0, 0x06, 0x41, 0x24, 0x0a, 0xd5, 0x06, 0x82,
+	0xc4, 0x65, 0x34, 0xd9, 0xf9, 0xb2, 0x1e, 0x75, 0x77, 0x67, 0x99, 0x99, 0x75, 0x9d, 0xbe, 0x01,
+	0x9c, 0x38, 0x72, 0xec, 0x23, 0x70, 0xe1, 0x1d, 0x7a, 0xec, 0x91, 0x53, 0x85, 0x92, 0x03, 0x3c,
+	0x06, 0x9a, 0x99, 0xdd, 0xb5, 0x1d, 0xf5, 0x62, 0xaf, 0x7e, 0xff, 0x66, 0xe6, 0xdb, 0xdf, 0x2c,
+	0xea, 0x31, 0xce, 0x82, 0xd9, 0x24, 0x88, 0x21, 0x03, 0xc5, 0xd5, 0x38, 0x97, 0x42, 0x0b, 0xdc,
+	0x64, 0x9c, 0x8d, 0x67, 0x93, 0xfd, 0x1d, 0x9a, 0xf2, 0x4c, 0x04, 0xf6, 0xd7, 0x51, 0xfb, 0xbd,
+	0x58, 0xc4, 0xc2, 0x3e, 0x06, 0xe6, 0xc9, 0xa1, 0xc3, 0x08, 0xdd, 0xfe, 0xda, 0x25, 0x9c, 0x6a,
+	0xaa, 0x01, 0x7f, 0x80, 0x9a, 0x39, 0x95, 0x34, 0x55, 0xbe, 0x37, 0xf0, 0x46, 0xdb, 0x87, 0xed,
+	0xb1, 0x4b, 0x1c, 0x3f, 0xb6, 0xe8, 0x83, 0xf5, 0x17, 0xaf, 0x0e, 0x1a, 0x61, 0xa9, 0xc1, 0xef,
+	0xa2, 0x36, 0xcc, 0x73, 0x21, 0x35, 0x99, 0x81, 0x54, 0x5c, 0x64, 0xfe, 0xad, 0x81, 0x37, 0x6a,
+	0x85, 0x2d, 0x87, 0x9e, 0x39, 0x70, 0xf8, 0xab, 0x87, 0x9a, 0xce, 0x8f, 0x0f, 0xd1, 0x26, 0x13,
+	0x51, 0x91, 0x42, 0xa6, 0xcb, 0x15, 0x76, 0xab, 0x15, 0x8e, 0x4b, 0xdc, 0x29, 0xc3, 0x5a, 0x67,
+	0x3c, 0x4f, 0xe1, 0x9c, 0x16, 0x7a, 0xea, 0xf2, 0x97, 0x3c, 0x3f, 0x95, 0x78, 0xe5, 0xa9, 0x74,
+	0x47, 0x7b, 0x7f, 0x3c, 0x3f, 0x68, 0xfc, 0xf7, 0xfc, 0xc0, 0xfb, 0xed, 0xdf, 0x3f, 0xef, 0x23,
+	0x33, 0x2b, 0xb7, 0xe5, 0xe1, 0x5f, 0x1b, 0xa8, 0xbd, 0xba, 0x12, 0xbe, 0x8f, 0x76, 0x68, 0xa1,
+	0x05, 0x89, 0x24, 0x50, 0x0d, 0x64, 0x46, 0x8b, 0xc4, 0x6d, 0x6e, 0x33, 0xec, 0x18, 0xe2, 0xa1,
+	0xc5, 0xcf, 0x0c, 0x8c, 0x3f, 0x45, 0x7e, 0x4a, 0xe7, 0xe6, 0xb8, 0xfc, 0x82, 0x47, 0x54, 0x73,
+	0x91, 0x91, 0x14, 0xf4, 0x54, 0x30, 0x65, 0xf7, 0xb6, 0x11, 0xee, 0xa6, 0x74, 0x7e, 0xb6, 0x44,
+	0x3f, 0x72, 0x2c, 0x3e, 0x44, 0x77, 0x8c, 0x53, 0x81, 0x9c, 0xf1, 0x08, 0x08, 0x64, 0x2c, 0x17,
+	0x3c, 0xd3, 0xca, 0x5f, 0xb3, 0xb6, 0x6e, 0x4a, 0xe7, 0xa7, 0x8e, 0xfb, 0xaa, 0xa2, 0xf0, 0x3d,
+	0xd4, 0x31, 0x9e, 0x48, 0x64, 0x5a, 0x8a, 0x24, 0x01, 0xa9, 0xfc, 0x75, 0xab, 0x6e, 0xa7, 0x74,
+	0xfe, 0x70, 0x81, 0xe2, 0x09, 0xba, 0xc3, 0x38, 0x23, 0xd5, 0xc8, 0x88, 0x5d, 0x89, 0x3f, 0x03,
+	0x7f, 0x63, 0xe0, 0x8d, 0xd6, 0x42, 0xcc, 0x38, 0xab, 0x0e, 0xfd, 0x88, 0xce, 0x4f, 0xf9, 0x33,
+	0xc0, 0x1f, 0xa3, 0x5d, 0x63, 0x91, 0xa0, 0x44, 0x52, 0xd8, 0x73, 0x68, 0x9e, 0x82, 0x28, 0xb4,
+	0xdf, 0xb4, 0x1e, 0x53, 0xb0, 0xb0, 0x26, 0x7f, 0x70, 0x9c, 0x39, 0xc5, 0x13, 0xb8, 0x24, 0x52,
+	0x68, 0x77, 0x76, 0x9e, 0x69, 0x90, 0x33, 0x9a, 0xf8, 0x6f, 0x58, 0x53, 0xf7, 0x09, 0x5c, 0x86,
+	0x25, 0x77, 0x52, 0x52, 0x38, 0x40, 0xdd, 0x48, 0x02, 0x83, 0x4c, 0x73, 0x9a, 0x90, 0x84, 0x5f,
+	0x80, 0x59, 0xc9, 0xdf, 0x74, 0x5b, 0x5b, 0x50, 0xdf, 0x96, 0x0c, 0xfe, 0x1c, 0xbd, 0xa5, 0x8a,
+	0xdc, 0x34, 0x08, 0x18, 0xa1, 0x4a, 0x81, 0x5c, 0x99, 0xf3, 0xd6, 0x60, 0x6d, 0xb4, 0x15, 0xde,
+	0xad, 0x25, 0x5f, 0x56, 0x8a, 0x6a, 0xd4, 0xdf, 0xa0, 0xc1, 0x92, 0xbf, 0xd0, 0x53, 0x93, 0x7f,
+	0xe3, 0x65, 0x21, 0x1b, 0xd2, 0x5f, 0x84, 0xac, 0xc8, 0xaa, 0xa4, 0x2f, 0xd0, 0xdb, 0x8b, 0x24,
+	0x9e, 0xcd, 0xc4, 0x8d, 0x94, 0x6d, 0x9b, 0xb2, 0x5f, 0x6b, 0x4e, 0x6a, 0xc9, 0x6b, 0x13, 0x18,
+	0x24, 0x10, 0xaf, 0x26, 0xdc, 0xbe, 0x91, 0x70, 0x5c, 0x4b, 0xca, 0x84, 0xa3, 0x75, 0x53, 0xe3,
+	0xe1, 0xab, 0x5b, 0xa8, 0xbd, 0xda, 0x76, 0xfc, 0x3e, 0xda, 0x89, 0xa6, 0x34, 0x49, 0x20, 0x8b,
+	0xa1, 0x7e, 0x79, 0x9e, 0x9d, 0xea, 0x9b, 0x35, 0x51, 0xbd, 0xb8, 0x7b, 0xa8, 0x43, 0x93, 0x44,
+	0x3c, 0x05, 0x46, 0x84, 0xe4, 0x31, 0xcf, 0x4c, 0x5f, 0xcd, 0xd2, 0xed, 0x12, 0xfe, 0xde, 0xa1,
+	0x78, 0x82, 0x7a, 0x4b, 0xc3, 0x4b, 0x62, 0x21, 0xb9, 0x9e, 0xa6, 0xa6, 0xa6, 0x46, 0xdd, 0x5d,
+	0x0c, 0xac, 0xa6, 0xf0, 0x11, 0xba, 0x2b, 0xe1, 0x97, 0x82, 0x4b, 0x20, 0x85, 0x02, 0xb9, 0x72,
+	0x3b, 0x6c, 0x61, 0x37, 0xc3, 0xbd, 0x52, 0xf0, 0xa3, 0x02, 0xb9, 0x7c, 0x3b, 0xf0, 0x27, 0x68,
+	0xcf, 0x56, 0xbc, 0x6e, 0x81, 0x22, 0x39, 0x48, 0xc2, 0x38, 0xb3, 0xdd, 0xdd, 0x08, 0x7b, 0xa6,
+	0xea, 0x0b, 0xf6, 0x31, 0xc8, 0x63, 0xce, 0xf0, 0x10, 0xb5, 0x18, 0x5c, 0x98, 0x2b, 0x49, 0x64,
+	0x4e, 0x38, 0xb3, 0xa5, 0xdd, 0x0a, 0xb7, 0x4b, 0x30, 0xcc, 0x4f, 0x18, 0x7e, 0x0f, 0x75, 0x96,
+	0x34, 0x19, 0x4d, 0xc1, 0xb6, 0x74, 0x2b, 0x6c, 0xd5, 0xaa, 0xef, 0x68, 0x0a, 0x6e, 0xc0, 0x0f,
+	0x3e, 0x7b, 0x71, 0xd5, 0xf7, 0x5e, 0x5e, 0xf5, 0xbd, 0x7f, 0xae, 0xfa, 0xde, 0xef, 0xd7, 0xfd,
+	0xc6, 0xcb, 0xeb, 0x7e, 0xe3, 0xef, 0xeb, 0x7e, 0xe3, 0xe7, 0x77, 0x62, 0xae, 0xa7, 0xc5, 0xf9,
+	0x38, 0x12, 0x69, 0xa0, 0x44, 0x26, 0x3f, 0xe4, 0xc2, 0xfe, 0x07, 0xf3, 0xc0, 0x7c, 0x58, 0xf4,
+	0x65, 0x0e, 0xea, 0xbc, 0x69, 0xbf, 0xa7, 0x1f, 0xfd, 0x1f, 0x00, 0x00, 0xff, 0xff, 0x58, 0x4c,
+	0x95, 0x9a, 0x98, 0x05, 0x00, 0x00,
 }
 
 func (this *Params) Equal(that interface{}) bool {
@@ -449,13 +459,140 @@ func (this *Params) Equal(that interface{}) bool {
 	} else if this == nil {
 		return false
 	}
-	if len(this.Attenuations) != len(that1.Attenuations) {
+	if !this.Document.Equal(that1.Document) {
 		return false
 	}
-	for i := range this.Attenuations {
-		if !this.Attenuations[i].Equal(that1.Attenuations[i]) {
+	if !this.Webauthn.Equal(that1.Webauthn) {
+		return false
+	}
+	return true
+}
+func (this *DocumentParams) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*DocumentParams)
+	if !ok {
+		that2, ok := that.(DocumentParams)
+		if ok {
+			that1 = &that2
+		} else {
 			return false
 		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.AutoCreateVault != that1.AutoCreateVault {
+		return false
+	}
+	if this.MaxVerificationMethods != that1.MaxVerificationMethods {
+		return false
+	}
+	if this.MaxServiceEndpoints != that1.MaxServiceEndpoints {
+		return false
+	}
+	if this.MaxControllers != that1.MaxControllers {
+		return false
+	}
+	if this.DidDocumentMaxSize != that1.DidDocumentMaxSize {
+		return false
+	}
+	if this.DidResolutionTimeout != that1.DidResolutionTimeout {
+		return false
+	}
+	if this.KeyRotationInterval != that1.KeyRotationInterval {
+		return false
+	}
+	if this.CredentialLifetime != that1.CredentialLifetime {
+		return false
+	}
+	if len(this.SupportedAssertionMethods) != len(that1.SupportedAssertionMethods) {
+		return false
+	}
+	for i := range this.SupportedAssertionMethods {
+		if this.SupportedAssertionMethods[i] != that1.SupportedAssertionMethods[i] {
+			return false
+		}
+	}
+	if len(this.SupportedAuthenticationMethods) != len(that1.SupportedAuthenticationMethods) {
+		return false
+	}
+	for i := range this.SupportedAuthenticationMethods {
+		if this.SupportedAuthenticationMethods[i] != that1.SupportedAuthenticationMethods[i] {
+			return false
+		}
+	}
+	if len(this.SupportedInvocationMethods) != len(that1.SupportedInvocationMethods) {
+		return false
+	}
+	for i := range this.SupportedInvocationMethods {
+		if this.SupportedInvocationMethods[i] != that1.SupportedInvocationMethods[i] {
+			return false
+		}
+	}
+	if len(this.SupportedDelegationMethods) != len(that1.SupportedDelegationMethods) {
+		return false
+	}
+	for i := range this.SupportedDelegationMethods {
+		if this.SupportedDelegationMethods[i] != that1.SupportedDelegationMethods[i] {
+			return false
+		}
+	}
+	return true
+}
+func (this *WebauthnParams) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*WebauthnParams)
+	if !ok {
+		that2, ok := that.(WebauthnParams)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.ChallengeTimeout != that1.ChallengeTimeout {
+		return false
+	}
+	if len(this.AllowedOrigins) != len(that1.AllowedOrigins) {
+		return false
+	}
+	for i := range this.AllowedOrigins {
+		if this.AllowedOrigins[i] != that1.AllowedOrigins[i] {
+			return false
+		}
+	}
+	if len(this.SupportedAlgorithms) != len(that1.SupportedAlgorithms) {
+		return false
+	}
+	for i := range this.SupportedAlgorithms {
+		if this.SupportedAlgorithms[i] != that1.SupportedAlgorithms[i] {
+			return false
+		}
+	}
+	if this.RequireUserVerification != that1.RequireUserVerification {
+		return false
+	}
+	if this.MaxCredentialsPerDid != that1.MaxCredentialsPerDid {
+		return false
+	}
+	if this.DefaultRpId != that1.DefaultRpId {
+		return false
+	}
+	if this.DefaultRpName != that1.DefaultRpName {
+		return false
 	}
 	return true
 }
@@ -479,6 +616,11 @@ func (m *GenesisState) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.ExportVersion != 0 {
+		i = encodeVarintGenesis(dAtA, i, uint64(m.ExportVersion))
+		i--
+		dAtA[i] = 0x10
+	}
 	{
 		size, err := m.Params.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
@@ -512,60 +654,21 @@ func (m *Params) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.Attenuations) > 0 {
-		for iNdEx := len(m.Attenuations) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.Attenuations[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintGenesis(dAtA, i, uint64(size))
-			}
-			i--
-			dAtA[i] = 0xa
-		}
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *Attenuation) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *Attenuation) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *Attenuation) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.Capabilities) > 0 {
-		for iNdEx := len(m.Capabilities) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.Capabilities[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintGenesis(dAtA, i, uint64(size))
-			}
-			i--
-			dAtA[i] = 0x12
-		}
-	}
-	if m.Resource != nil {
+	if m.Webauthn != nil {
 		{
-			size, err := m.Resource.MarshalToSizedBuffer(dAtA[:i])
+			size, err := m.Webauthn.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintGenesis(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if m.Document != nil {
+		{
+			size, err := m.Document.MarshalToSizedBuffer(dAtA[:i])
 			if err != nil {
 				return 0, err
 			}
@@ -578,7 +681,7 @@ func (m *Attenuation) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *Capability) Marshal() (dAtA []byte, err error) {
+func (m *DocumentParams) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -588,50 +691,101 @@ func (m *Capability) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *Capability) MarshalTo(dAtA []byte) (int, error) {
+func (m *DocumentParams) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *Capability) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *DocumentParams) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.Resources) > 0 {
-		for iNdEx := len(m.Resources) - 1; iNdEx >= 0; iNdEx-- {
-			i -= len(m.Resources[iNdEx])
-			copy(dAtA[i:], m.Resources[iNdEx])
-			i = encodeVarintGenesis(dAtA, i, uint64(len(m.Resources[iNdEx])))
+	if len(m.SupportedDelegationMethods) > 0 {
+		for iNdEx := len(m.SupportedDelegationMethods) - 1; iNdEx >= 0; iNdEx-- {
+			i -= len(m.SupportedDelegationMethods[iNdEx])
+			copy(dAtA[i:], m.SupportedDelegationMethods[iNdEx])
+			i = encodeVarintGenesis(dAtA, i, uint64(len(m.SupportedDelegationMethods[iNdEx])))
 			i--
-			dAtA[i] = 0x22
+			dAtA[i] = 0x62
 		}
 	}
-	if len(m.Description) > 0 {
-		i -= len(m.Description)
-		copy(dAtA[i:], m.Description)
-		i = encodeVarintGenesis(dAtA, i, uint64(len(m.Description)))
-		i--
-		dAtA[i] = 0x1a
+	if len(m.SupportedInvocationMethods) > 0 {
+		for iNdEx := len(m.SupportedInvocationMethods) - 1; iNdEx >= 0; iNdEx-- {
+			i -= len(m.SupportedInvocationMethods[iNdEx])
+			copy(dAtA[i:], m.SupportedInvocationMethods[iNdEx])
+			i = encodeVarintGenesis(dAtA, i, uint64(len(m.SupportedInvocationMethods[iNdEx])))
+			i--
+			dAtA[i] = 0x5a
+		}
 	}
-	if len(m.Parent) > 0 {
-		i -= len(m.Parent)
-		copy(dAtA[i:], m.Parent)
-		i = encodeVarintGenesis(dAtA, i, uint64(len(m.Parent)))
-		i--
-		dAtA[i] = 0x12
+	if len(m.SupportedAuthenticationMethods) > 0 {
+		for iNdEx := len(m.SupportedAuthenticationMethods) - 1; iNdEx >= 0; iNdEx-- {
+			i -= len(m.SupportedAuthenticationMethods[iNdEx])
+			copy(dAtA[i:], m.SupportedAuthenticationMethods[iNdEx])
+			i = encodeVarintGenesis(dAtA, i, uint64(len(m.SupportedAuthenticationMethods[iNdEx])))
+			i--
+			dAtA[i] = 0x52
+		}
 	}
-	if len(m.Name) > 0 {
-		i -= len(m.Name)
-		copy(dAtA[i:], m.Name)
-		i = encodeVarintGenesis(dAtA, i, uint64(len(m.Name)))
+	if len(m.SupportedAssertionMethods) > 0 {
+		for iNdEx := len(m.SupportedAssertionMethods) - 1; iNdEx >= 0; iNdEx-- {
+			i -= len(m.SupportedAssertionMethods[iNdEx])
+			copy(dAtA[i:], m.SupportedAssertionMethods[iNdEx])
+			i = encodeVarintGenesis(dAtA, i, uint64(len(m.SupportedAssertionMethods[iNdEx])))
+			i--
+			dAtA[i] = 0x4a
+		}
+	}
+	if m.CredentialLifetime != 0 {
+		i = encodeVarintGenesis(dAtA, i, uint64(m.CredentialLifetime))
 		i--
-		dAtA[i] = 0xa
+		dAtA[i] = 0x40
+	}
+	if m.KeyRotationInterval != 0 {
+		i = encodeVarintGenesis(dAtA, i, uint64(m.KeyRotationInterval))
+		i--
+		dAtA[i] = 0x38
+	}
+	if m.DidResolutionTimeout != 0 {
+		i = encodeVarintGenesis(dAtA, i, uint64(m.DidResolutionTimeout))
+		i--
+		dAtA[i] = 0x30
+	}
+	if m.DidDocumentMaxSize != 0 {
+		i = encodeVarintGenesis(dAtA, i, uint64(m.DidDocumentMaxSize))
+		i--
+		dAtA[i] = 0x28
+	}
+	if m.MaxControllers != 0 {
+		i = encodeVarintGenesis(dAtA, i, uint64(m.MaxControllers))
+		i--
+		dAtA[i] = 0x20
+	}
+	if m.MaxServiceEndpoints != 0 {
+		i = encodeVarintGenesis(dAtA, i, uint64(m.MaxServiceEndpoints))
+		i--
+		dAtA[i] = 0x18
+	}
+	if m.MaxVerificationMethods != 0 {
+		i = encodeVarintGenesis(dAtA, i, uint64(m.MaxVerificationMethods))
+		i--
+		dAtA[i] = 0x10
+	}
+	if m.AutoCreateVault {
+		i--
+		if m.AutoCreateVault {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
+		i--
+		dAtA[i] = 0x8
 	}
 	return len(dAtA) - i, nil
 }
 
-func (m *Resource) Marshal() (dAtA []byte, err error) {
+func (m *WebauthnParams) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -641,111 +795,67 @@ func (m *Resource) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *Resource) MarshalTo(dAtA []byte) (int, error) {
+func (m *WebauthnParams) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *Resource) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *WebauthnParams) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.Template) > 0 {
-		i -= len(m.Template)
-		copy(dAtA[i:], m.Template)
-		i = encodeVarintGenesis(dAtA, i, uint64(len(m.Template)))
+	if len(m.DefaultRpName) > 0 {
+		i -= len(m.DefaultRpName)
+		copy(dAtA[i:], m.DefaultRpName)
+		i = encodeVarintGenesis(dAtA, i, uint64(len(m.DefaultRpName)))
 		i--
-		dAtA[i] = 0x12
+		dAtA[i] = 0x3a
 	}
-	if len(m.Kind) > 0 {
-		i -= len(m.Kind)
-		copy(dAtA[i:], m.Kind)
-		i = encodeVarintGenesis(dAtA, i, uint64(len(m.Kind)))
+	if len(m.DefaultRpId) > 0 {
+		i -= len(m.DefaultRpId)
+		copy(dAtA[i:], m.DefaultRpId)
+		i = encodeVarintGenesis(dAtA, i, uint64(len(m.DefaultRpId)))
 		i--
-		dAtA[i] = 0xa
+		dAtA[i] = 0x32
 	}
-	return len(dAtA) - i, nil
-}
-
-func (m *Document) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
+	if m.MaxCredentialsPerDid != 0 {
+		i = encodeVarintGenesis(dAtA, i, uint64(m.MaxCredentialsPerDid))
+		i--
+		dAtA[i] = 0x28
 	}
-	return dAtA[:n], nil
-}
-
-func (m *Document) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *Document) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.Service) > 0 {
-		for iNdEx := len(m.Service) - 1; iNdEx >= 0; iNdEx-- {
-			i -= len(m.Service[iNdEx])
-			copy(dAtA[i:], m.Service[iNdEx])
-			i = encodeVarintGenesis(dAtA, i, uint64(len(m.Service[iNdEx])))
-			i--
-			dAtA[i] = 0x3a
+	if m.RequireUserVerification {
+		i--
+		if m.RequireUserVerification {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
 		}
+		i--
+		dAtA[i] = 0x20
 	}
-	if len(m.CapabilityInvocation) > 0 {
-		for iNdEx := len(m.CapabilityInvocation) - 1; iNdEx >= 0; iNdEx-- {
-			i -= len(m.CapabilityInvocation[iNdEx])
-			copy(dAtA[i:], m.CapabilityInvocation[iNdEx])
-			i = encodeVarintGenesis(dAtA, i, uint64(len(m.CapabilityInvocation[iNdEx])))
-			i--
-			dAtA[i] = 0x32
-		}
-	}
-	if len(m.CapabilityDelegation) > 0 {
-		for iNdEx := len(m.CapabilityDelegation) - 1; iNdEx >= 0; iNdEx-- {
-			i -= len(m.CapabilityDelegation[iNdEx])
-			copy(dAtA[i:], m.CapabilityDelegation[iNdEx])
-			i = encodeVarintGenesis(dAtA, i, uint64(len(m.CapabilityDelegation[iNdEx])))
-			i--
-			dAtA[i] = 0x2a
-		}
-	}
-	if len(m.AssertionMethod) > 0 {
-		for iNdEx := len(m.AssertionMethod) - 1; iNdEx >= 0; iNdEx-- {
-			i -= len(m.AssertionMethod[iNdEx])
-			copy(dAtA[i:], m.AssertionMethod[iNdEx])
-			i = encodeVarintGenesis(dAtA, i, uint64(len(m.AssertionMethod[iNdEx])))
-			i--
-			dAtA[i] = 0x22
-		}
-	}
-	if len(m.Authentication) > 0 {
-		for iNdEx := len(m.Authentication) - 1; iNdEx >= 0; iNdEx-- {
-			i -= len(m.Authentication[iNdEx])
-			copy(dAtA[i:], m.Authentication[iNdEx])
-			i = encodeVarintGenesis(dAtA, i, uint64(len(m.Authentication[iNdEx])))
+	if len(m.SupportedAlgorithms) > 0 {
+		for iNdEx := len(m.SupportedAlgorithms) - 1; iNdEx >= 0; iNdEx-- {
+			i -= len(m.SupportedAlgorithms[iNdEx])
+			copy(dAtA[i:], m.SupportedAlgorithms[iNdEx])
+			i = encodeVarintGenesis(dAtA, i, uint64(len(m.SupportedAlgorithms[iNdEx])))
 			i--
 			dAtA[i] = 0x1a
 		}
 	}
-	if len(m.Controller) > 0 {
-		i -= len(m.Controller)
-		copy(dAtA[i:], m.Controller)
-		i = encodeVarintGenesis(dAtA, i, uint64(len(m.Controller)))
-		i--
-		dAtA[i] = 0x12
+	if len(m.AllowedOrigins) > 0 {
+		for iNdEx := len(m.AllowedOrigins) - 1; iNdEx >= 0; iNdEx-- {
+			i -= len(m.AllowedOrigins[iNdEx])
+			copy(dAtA[i:], m.AllowedOrigins[iNdEx])
+			i = encodeVarintGenesis(dAtA, i, uint64(len(m.AllowedOrigins[iNdEx])))
+			i--
+			dAtA[i] = 0x12
+		}
 	}
-	if len(m.Id) > 0 {
-		i -= len(m.Id)
-		copy(dAtA[i:], m.Id)
-		i = encodeVarintGenesis(dAtA, i, uint64(len(m.Id)))
+	if m.ChallengeTimeout != 0 {
+		i = encodeVarintGenesis(dAtA, i, uint64(m.ChallengeTimeout))
 		i--
-		dAtA[i] = 0xa
+		dAtA[i] = 0x8
 	}
 	return len(dAtA) - i, nil
 }
@@ -769,6 +879,9 @@ func (m *GenesisState) Size() (n int) {
 	_ = l
 	l = m.Params.Size()
 	n += 1 + l + sovGenesis(uint64(l))
+	if m.ExportVersion != 0 {
+		n += 1 + sovGenesis(uint64(m.ExportVersion))
+	}
 	return n
 }
 
@@ -778,121 +891,108 @@ func (m *Params) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if len(m.Attenuations) > 0 {
-		for _, e := range m.Attenuations {
-			l = e.Size()
+	if m.Document != nil {
+		l = m.Document.Size()
+		n += 1 + l + sovGenesis(uint64(l))
+	}
+	if m.Webauthn != nil {
+		l = m.Webauthn.Size()
+		n += 1 + l + sovGenesis(uint64(l))
+	}
+	return n
+}
+
+func (m *DocumentParams) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.AutoCreateVault {
+		n += 2
+	}
+	if m.MaxVerificationMethods != 0 {
+		n += 1 + sovGenesis(uint64(m.MaxVerificationMethods))
+	}
+	if m.MaxServiceEndpoints != 0 {
+		n += 1 + sovGenesis(uint64(m.MaxServiceEndpoints))
+	}
+	if m.MaxControllers != 0 {
+		n += 1 + sovGenesis(uint64(m.MaxControllers))
+	}
+	if m.DidDocumentMaxSize != 0 {
+		n += 1 + sovGenesis(uint64(m.DidDocumentMaxSize))
+	}
+	if m.DidResolutionTimeout != 0 {
+		n += 1 + sovGenesis(uint64(m.DidResolutionTimeout))
+	}
+	if m.KeyRotationInterval != 0 {
+		n += 1 + sovGenesis(uint64(m.KeyRotationInterval))
+	}
+	if m.CredentialLifetime != 0 {
+		n += 1 + sovGenesis(uint64(m.CredentialLifetime))
+	}
+	if len(m.SupportedAssertionMethods) > 0 {
+		for _, s := range m.SupportedAssertionMethods {
+			l = len(s)
+			n += 1 + l + sovGenesis(uint64(l))
+		}
+	}
+	if len(m.SupportedAuthenticationMethods) > 0 {
+		for _, s := range m.SupportedAuthenticationMethods {
+			l = len(s)
+			n += 1 + l + sovGenesis(uint64(l))
+		}
+	}
+	if len(m.SupportedInvocationMethods) > 0 {
+		for _, s := range m.SupportedInvocationMethods {
+			l = len(s)
+			n += 1 + l + sovGenesis(uint64(l))
+		}
+	}
+	if len(m.SupportedDelegationMethods) > 0 {
+		for _, s := range m.SupportedDelegationMethods {
+			l = len(s)
 			n += 1 + l + sovGenesis(uint64(l))
 		}
 	}
 	return n
 }
 
-func (m *Attenuation) Size() (n int) {
+func (m *WebauthnParams) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if m.Resource != nil {
-		l = m.Resource.Size()
-		n += 1 + l + sovGenesis(uint64(l))
+	if m.ChallengeTimeout != 0 {
+		n += 1 + sovGenesis(uint64(m.ChallengeTimeout))
 	}
-	if len(m.Capabilities) > 0 {
-		for _, e := range m.Capabilities {
-			l = e.Size()
-			n += 1 + l + sovGenesis(uint64(l))
-		}
-	}
-	return n
-}
-
-func (m *Capability) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Name)
-	if l > 0 {
-		n += 1 + l + sovGenesis(uint64(l))
-	}
-	l = len(m.Parent)
-	if l > 0 {
-		n += 1 + l + sovGenesis(uint64(l))
-	}
-	l = len(m.Description)
-	if l > 0 {
-		n += 1 + l + sovGenesis(uint64(l))
-	}
-	if len(m.Resources) > 0 {
-		for _, s := range m.Resources {
+	if len(m.AllowedOrigins) > 0 {
+		for _, s := range m.AllowedOrigins {
 			l = len(s)
 			n += 1 + l + sovGenesis(uint64(l))
 		}
 	}
-	return n
-}
-
-func (m *Resource) Size() (n int) {
-	if m == nil {
-		return 0
+	if len(m.SupportedAlgorithms) > 0 {
+		for _, s := range m.SupportedAlgorithms {
+			l = len(s)
+			n += 1 + l + sovGenesis(uint64(l))
+		}
 	}
-	var l int
-	_ = l
-	l = len(m.Kind)
+	if m.RequireUserVerification {
+		n += 2
+	}
+	if m.MaxCredentialsPerDid != 0 {
+		n += 1 + sovGenesis(uint64(m.MaxCredentialsPerDid))
+	}
+	l = len(m.DefaultRpId)
 	if l > 0 {
 		n += 1 + l + sovGenesis(uint64(l))
 	}
-	l = len(m.Template)
+	l = len(m.DefaultRpName)
 	if l > 0 {
 		n += 1 + l + sovGenesis(uint64(l))
-	}
-	return n
-}
-
-func (m *Document) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Id)
-	if l > 0 {
-		n += 1 + l + sovGenesis(uint64(l))
-	}
-	l = len(m.Controller)
-	if l > 0 {
-		n += 1 + l + sovGenesis(uint64(l))
-	}
-	if len(m.Authentication) > 0 {
-		for _, s := range m.Authentication {
-			l = len(s)
-			n += 1 + l + sovGenesis(uint64(l))
-		}
-	}
-	if len(m.AssertionMethod) > 0 {
-		for _, s := range m.AssertionMethod {
-			l = len(s)
-			n += 1 + l + sovGenesis(uint64(l))
-		}
-	}
-	if len(m.CapabilityDelegation) > 0 {
-		for _, s := range m.CapabilityDelegation {
-			l = len(s)
-			n += 1 + l + sovGenesis(uint64(l))
-		}
-	}
-	if len(m.CapabilityInvocation) > 0 {
-		for _, s := range m.CapabilityInvocation {
-			l = len(s)
-			n += 1 + l + sovGenesis(uint64(l))
-		}
-	}
-	if len(m.Service) > 0 {
-		for _, s := range m.Service {
-			l = len(s)
-			n += 1 + l + sovGenesis(uint64(l))
-		}
 	}
 	return n
 }
@@ -965,6 +1065,25 @@ func (m *GenesisState) Unmarshal(dAtA []byte) error {
 				return err
 			}
 			iNdEx = postIndex
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ExportVersion", wireType)
+			}
+			m.ExportVersion = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.ExportVersion |= uint32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipGenesis(dAtA[iNdEx:])
@@ -1017,7 +1136,7 @@ func (m *Params) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Attenuations", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Document", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -1044,8 +1163,46 @@ func (m *Params) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Attenuations = append(m.Attenuations, &Attenuation{})
-			if err := m.Attenuations[len(m.Attenuations)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if m.Document == nil {
+				m.Document = &DocumentParams{}
+			}
+			if err := m.Document.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Webauthn", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Webauthn == nil {
+				m.Webauthn = &WebauthnParams{}
+			}
+			if err := m.Webauthn.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -1070,7 +1227,7 @@ func (m *Params) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *Attenuation) Unmarshal(dAtA []byte) error {
+func (m *DocumentParams) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1093,17 +1250,17 @@ func (m *Attenuation) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: Attenuation: wiretype end group for non-group")
+			return fmt.Errorf("proto: DocumentParams: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: Attenuation: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: DocumentParams: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Resource", wireType)
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field AutoCreateVault", wireType)
 			}
-			var msglen int
+			var v int
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowGenesis
@@ -1113,33 +1270,17 @@ func (m *Attenuation) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				msglen |= int(b&0x7F) << shift
+				v |= int(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			if msglen < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Resource == nil {
-				m.Resource = &Resource{}
-			}
-			if err := m.Resource.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
+			m.AutoCreateVault = bool(v != 0)
 		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Capabilities", wireType)
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MaxVerificationMethods", wireType)
 			}
-			var msglen int
+			m.MaxVerificationMethods = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowGenesis
@@ -1149,145 +1290,16 @@ func (m *Attenuation) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				msglen |= int(b&0x7F) << shift
+				m.MaxVerificationMethods |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			if msglen < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Capabilities = append(m.Capabilities, &Capability{})
-			if err := m.Capabilities[len(m.Capabilities)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipGenesis(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *Capability) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowGenesis
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: Capability: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: Capability: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowGenesis
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Name = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Parent", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowGenesis
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Parent = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
 		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Description", wireType)
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MaxServiceEndpoints", wireType)
 			}
-			var stringLen uint64
+			m.MaxServiceEndpoints = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowGenesis
@@ -1297,29 +1309,16 @@ func (m *Capability) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
+				m.MaxServiceEndpoints |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Description = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
 		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Resources", wireType)
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MaxControllers", wireType)
 			}
-			var stringLen uint64
+			m.MaxControllers = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowGenesis
@@ -1329,319 +1328,90 @@ func (m *Capability) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
+				m.MaxControllers |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Resources = append(m.Resources, string(dAtA[iNdEx:postIndex]))
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipGenesis(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *Resource) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowGenesis
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: Resource: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: Resource: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Kind", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowGenesis
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Kind = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Template", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowGenesis
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Template = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipGenesis(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *Document) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowGenesis
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: Document: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: Document: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowGenesis
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Id = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Controller", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowGenesis
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Controller = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Authentication", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowGenesis
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Authentication = append(m.Authentication, string(dAtA[iNdEx:postIndex]))
-			iNdEx = postIndex
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field AssertionMethod", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowGenesis
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthGenesis
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.AssertionMethod = append(m.AssertionMethod, string(dAtA[iNdEx:postIndex]))
-			iNdEx = postIndex
 		case 5:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DidDocumentMaxSize", wireType)
+			}
+			m.DidDocumentMaxSize = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.DidDocumentMaxSize |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 6:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DidResolutionTimeout", wireType)
+			}
+			m.DidResolutionTimeout = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.DidResolutionTimeout |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 7:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field KeyRotationInterval", wireType)
+			}
+			m.KeyRotationInterval = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.KeyRotationInterval |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 8:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field CredentialLifetime", wireType)
+			}
+			m.CredentialLifetime = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.CredentialLifetime |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 9:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field CapabilityDelegation", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field SupportedAssertionMethods", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -1669,11 +1439,279 @@ func (m *Document) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.CapabilityDelegation = append(m.CapabilityDelegation, string(dAtA[iNdEx:postIndex]))
+			m.SupportedAssertionMethods = append(m.SupportedAssertionMethods, string(dAtA[iNdEx:postIndex]))
 			iNdEx = postIndex
+		case 10:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SupportedAuthenticationMethods", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.SupportedAuthenticationMethods = append(m.SupportedAuthenticationMethods, string(dAtA[iNdEx:postIndex]))
+			iNdEx = postIndex
+		case 11:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SupportedInvocationMethods", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.SupportedInvocationMethods = append(m.SupportedInvocationMethods, string(dAtA[iNdEx:postIndex]))
+			iNdEx = postIndex
+		case 12:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SupportedDelegationMethods", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.SupportedDelegationMethods = append(m.SupportedDelegationMethods, string(dAtA[iNdEx:postIndex]))
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipGenesis(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *WebauthnParams) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowGenesis
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: WebauthnParams: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: WebauthnParams: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ChallengeTimeout", wireType)
+			}
+			m.ChallengeTimeout = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.ChallengeTimeout |= int64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field AllowedOrigins", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.AllowedOrigins = append(m.AllowedOrigins, string(dAtA[iNdEx:postIndex]))
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SupportedAlgorithms", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthGenesis
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.SupportedAlgorithms = append(m.SupportedAlgorithms, string(dAtA[iNdEx:postIndex]))
+			iNdEx = postIndex
+		case 4:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field RequireUserVerification", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.RequireUserVerification = bool(v != 0)
+		case 5:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MaxCredentialsPerDid", wireType)
+			}
+			m.MaxCredentialsPerDid = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.MaxCredentialsPerDid |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
 		case 6:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field CapabilityInvocation", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field DefaultRpId", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -1701,11 +1739,11 @@ func (m *Document) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.CapabilityInvocation = append(m.CapabilityInvocation, string(dAtA[iNdEx:postIndex]))
+			m.DefaultRpId = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 7:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Service", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field DefaultRpName", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -1733,7 +1771,7 @@ func (m *Document) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Service = append(m.Service, string(dAtA[iNdEx:postIndex]))
+			m.DefaultRpName = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex

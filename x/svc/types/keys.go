@@ -6,10 +6,8 @@ import (
 	ormv1alpha1 "cosmossdk.io/api/cosmos/orm/v1alpha1"
 )
 
-var (
-	// ParamsKey saves the current module params.
-	ParamsKey = collections.NewPrefix(0)
-)
+// ParamsKey saves the current module params.
+var ParamsKey = collections.NewPrefix(0)
 
 const (
 	ModuleName = "svc"

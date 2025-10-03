@@ -1,115 +1,140 @@
-*.aiderscript
+# ======================================
+# Sonr Blockchain & Monorepo .gitignore
+# ======================================
 
-# Aider related generated files
-.aider-context
-bin
-.env
-
-# Binaries
-.task
-no
-.data
-schemas
-*.db
-tools-stamp
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
-*.app
+# ===== Operating System Files =====
 .DS_Store
-.session.vim
-aof*
-dist
-**/.haptic
-static
-pkg/webapp/dist
-.agent
+Thumbs.db
+*~
+*.swp
+*.swo
+.logs/
+.venv/
+services/
 
-# Test binary
+# ===== IDE & Editor Files =====
+.vscode/
+.idea/
+*.tmp
+.aider*
+.opencode
+
+# ===== Build Artifacts & Binaries =====
+*.wasm
+bin/
+dist/
+dist*/
+build/
+out/
 *.test
-.devon*
-**/.DS_Store
-.task
-.wrangler
+*.wasm
 
-# Output of the go coverage tool
-*.out
-tmp
-# Exclude embedded files
-!internal/files/dist
+# Go binaries (but allow docs references)
+snrd
+hway
+motr
+!cmd/motr/
+!cmd/hway/
+!cmd/snrd/
+!docs/**/motr
+!docs/**/hway
 
-# Dependency directories
+# Allow specific CLI binaries
+!cli/join-testnet/bin/
+!cli/install/bin/
+
+# ===== Node.js & Frontend =====
 node_modules/
+.pnpm-debug.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+*.tsbuildinfo
 
-# Go workspace file
+# Next.js
+.next/
+.vercel/
+**/.open-next
+
+# ===== Go Development =====
+pkg/mod/
 go.work
 go.work.sum
+go.work.mod
+coverage.out
+coverage.txt
+profile.out
+*.cover
 
-# Environment files
-.env
-**/*.env
-**/sonr.log
+# ===== Rust/CosmWasm Development =====
+target/
+Cargo.lock
+artifacts/
+**/target/
+**/Cargo.lock
 
+# Contract-specific
+contracts/DAO/deployment_ids.env
+contracts/DAO/deployment_report_*.md
+contracts/DAO/relayer.pid
+contracts/DAO/*.mnemonic
+contracts/DAO/tx_*.json
+contracts/DAO/signed_*.json
+contracts/DAO/init_*.json
+contracts/DAO/MAINNET_DEPLOYMENT_INSTRUCTIONS.md
+contracts/DAO/backups/
+contracts/wSNR/remappings.txt
 
-# Terraform
-**/.terraform/*
-.terraform
-*.tfstate
-*.tfstate.*
-crash.log
-crash.*.log
-*.tfvars
-*.tfvars.json
-override.tf
-override.tf.json
-*_override.tf
-*_override.tf.json
+# ===== Blockchain & Cosmos SDK =====
+.snrd/
+.hway/
+keyring-test/
+mytestnet/
+docker/testnet/testnet-data
 
-.terraformrc
-terraform.rc
-flake.lock
+# ===== Monorepo & Build Tools =====
+.turbo/
+.gitwork/
+.changeset/.cli-state
+.biome/
+.devbox/
+.task*
+Taskfile.yml
 
-# Misc
-.DS_Store
-.tmp/
-tmp/
-**/*tmp*/
-*.tmp
+# ===== Testing & Coverage =====
+testdata/
+coverage/
+
+# ===== Logs & Temporary Files =====
+logs/
 *.log
-*.dot
-*.pem
-dist/
-bin/
-build/
-.devbox
-.ignore
-.opencommitignore
-heighliner*
-sonr
-deploy/**/data
-x/.DS_Store
-.aider*
-buildenv*
-node_modules
-cmd/gateway/node_modules
-pkg/nebula/node_modules
 configs/logs.json
+tmp/
+tmp*
 
-mprocs.yaml
-build
-sonr.wiki
+# ===== Environment & Secrets =====
+.env
+.env.local
+.env.production
+.env.development
+*.key
+*.pem
 
-!devbox.lock
-!buf.lock
+# ===== Documentation & Planning =====
+PLAN.md
+ANALYSIS.md
+COMPLETION_SUMMARY.md
+**/CLAUDE.md
 
-.air.toml
-mprocs.yaml
-mprocs.log
-tools-stamp
-sonr.log
-deploy/conf
-
-interchaintest-downloader
-.haptic
+# ===== Miscellaneous =====
+.claude/
+**/.claude
+.gmap
+.aim
+.spawn
+.wrangler/
+.browser-echo-mcp.json
+data/
+compose/
+heighliner*
+**/*.swagger.yaml

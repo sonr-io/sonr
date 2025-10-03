@@ -1,0 +1,136 @@
+
+name: Changes
+on:
+  workflow_call:
+    outputs:
+      modules:
+        description: "JSON array of changed modules"
+        value: ${{ jobs.detect.outputs.modules }}
+      core:
+        description: "True if core files changed"
+        value: ${{ jobs.detect.outputs.core }}
+      app:
+        description: "True if app files changed"
+        value: ${{ jobs.detect.outputs.app }}
+      crypto:
+        description: "True if crypto files changed"
+        value: ${{ jobs.detect.outputs.crypto }}
+      hway:
+        description: "True if highway files changed"
+        value: ${{ jobs.detect.outputs.hway }}
+      client:
+        description: "True if client files changed"
+        value: ${{ jobs.detect.outputs.client }}
+      packages-changes:
+        description: "True if JS packages changed"
+        value: ${{ jobs.detect.outputs.packages-changes }}
+      web-changes:
+        description: "True if web app files changed"
+        value: ${{ jobs.detect.outputs.web-changes }}
+      go-changes:
+        description: "True if Go files changed"
+        value: ${{ jobs.detect.outputs.go-changes }}
+      wasm-changes:
+        description: "True if WASM files changed"
+        value: ${{ jobs.detect.outputs.wasm-changes }}
+      docker-changes:
+        description: "True if Docker files changed"
+        value: ${{ jobs.detect.outputs.docker-changes }}
+
+jobs:
+  detect:
+    name: Find Changes
+    runs-on: ubuntu-latest
+    outputs:
+      modules: ${{ steps.set-modules.outputs.modules }}
+      core: ${{ steps.filter.outputs.core }}
+      app: ${{ steps.filter.outputs.app }}
+      crypto: ${{ steps.filter.outputs.crypto }}
+      hway: ${{ steps.filter.outputs.hway }}
+      client: ${{ steps.filter.outputs.client }}
+      packages-changes: ${{ steps.filter.outputs.packages-changes == 'true' }}
+      web-changes: ${{ steps.filter.outputs.web-changes == 'true' }}
+      go-changes: ${{ steps.filter.outputs.go-changes == 'true' }}
+      wasm-changes: ${{ steps.filter.outputs.wasm-changes == 'true' }}
+      docker-changes: ${{ steps.filter.outputs.docker-changes == 'true' }}
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Detect changed files
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            dex:
+              - 'x/dex/**'
+              - 'proto/sonr/dex/**'
+            did:
+              - 'x/did/**'
+              - 'proto/sonr/did/**'
+            dwn:
+              - 'x/dwn/**'
+              - 'proto/sonr/dwn/**'
+            svc:
+              - 'x/svc/**'
+              - 'proto/sonr/svc/**'
+            hway:
+              - 'cmd/hway/**'
+              - 'internal/bridge/**'
+              - 'internal/**'
+            crypto:
+              - 'crypto/**'
+            client:
+              - 'client/**'
+              - 'client/go.mod'
+              - 'client/go.sum'
+            core:
+              - 'app/**'
+              - 'cmd/**'
+              - 'go.mod'
+              - 'go.sum'
+            packages-changes:
+              - 'packages/**'
+              - 'pnpm-lock.yaml'
+              - 'package.json'
+              - 'tsconfig.json'
+            web-changes:
+              - 'web/**'
+              - 'pnpm-lock.yaml'
+              - 'package.json'
+            go-changes:
+              - 'app/**'
+              - 'x/**'
+              - 'cmd/**'
+              - 'client/**'
+              - 'go.mod'
+              - 'go.sum'
+            wasm-changes:
+              - 'cmd/vault/**'
+              - 'x/dwn/client/wasm/main.go'
+              - 'x/dwn/Makefile'
+            docker-changes:
+              - 'Dockerfile'
+          list-files: json
+      - name: Set module outputs
+        id: set-modules
+        run: |
+          modules=()
+          if [[ "${{ steps.filter.outputs.dex }}" == "true" ]]; then
+            modules+=("dex")
+          fi
+          if [[ "${{ steps.filter.outputs.did }}" == "true" ]]; then
+            modules+=("did")
+          fi
+          if [[ "${{ steps.filter.outputs.dwn }}" == "true" ]]; then
+            modules+=("dwn")
+          fi
+          if [[ "${{ steps.filter.outputs.svc }}" == "true" ]]; then
+            modules+=("svc")
+          fi
+
+          if [[ ${#modules[@]} -eq 0 ]]; then
+            echo "modules=[]" >> $GITHUB_OUTPUT
+          else
+            printf -v joined '"%s",' "${modules[@]}"
+            echo "modules=[${joined%,}]" >> $GITHUB_OUTPUT
+          fi

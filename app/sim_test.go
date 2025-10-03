@@ -82,7 +82,10 @@ func TestFullAppSimulation(t *testing.T) {
 }
 
 func TestAppImportExport(t *testing.T) {
-	config, db, appOptions, app := setupSimulationApp(t, "skipping application import/export simulation")
+	config, db, appOptions, app := setupSimulationApp(
+		t,
+		"skipping application import/export simulation",
+	)
 
 	// Run randomized simulation
 	_, simParams, simErr := simulation.SimulateFromSeed(
@@ -113,7 +116,13 @@ func TestAppImportExport(t *testing.T) {
 
 	t.Log("importing genesis...\n")
 
-	newDB, newDir, _, _, err := simtestutil.SetupSimulation(config, "leveldb-app-sim-2", "Simulation-2", simcli.FlagVerboseValue, simcli.FlagEnabledValue)
+	newDB, newDir, _, _, err := simtestutil.SetupSimulation(
+		config,
+		"leveldb-app-sim-2",
+		"Simulation-2",
+		simcli.FlagVerboseValue,
+		simcli.FlagEnabledValue,
+	)
 	require.NoError(t, err, "simulation setup failed")
 
 	defer func() {
@@ -121,7 +130,9 @@ func TestAppImportExport(t *testing.T) {
 		require.NoError(t, os.RemoveAll(newDir))
 	}()
 
-	newApp := NewChainApp(log.NewNopLogger(), newDB, nil, true, appOptions, nil, fauxMerkleModeOpt, baseapp.SetChainID(SimAppChainID))
+	newApp := NewChainApp(log.NewNopLogger(), newDB, nil, true, appOptions,
+		EVMAppOptions,
+		fauxMerkleModeOpt, baseapp.SetChainID(SimAppChainID))
 
 	initReq := &abci.RequestInitChain{
 		AppStateBytes: exported.AppState,
@@ -130,7 +141,6 @@ func TestAppImportExport(t *testing.T) {
 	ctxA := app.NewContextLegacy(true, cmtproto.Header{Height: app.LastBlockHeight()})
 	ctxB := newApp.NewContextLegacy(true, cmtproto.Header{Height: app.LastBlockHeight()})
 	_, err = newApp.InitChainer(ctxB, initReq)
-
 	if err != nil {
 		if strings.Contains(err.Error(), "validator set is empty after InitGenesis") {
 			t.Log("Skipping simulation as all validators have been unbonded")
@@ -172,17 +182,38 @@ func TestAppImportExport(t *testing.T) {
 		storeB := ctxB.KVStore(appKeyB)
 
 		failedKVAs, failedKVBs := simtestutil.DiffKVStores(storeA, storeB, skipPrefixes[keyName])
-		if !assert.Equal(t, len(failedKVAs), len(failedKVBs), "unequal sets of key-values to compare in %q", keyName) {
+		if !assert.Equal(
+			t,
+			len(failedKVAs),
+			len(failedKVBs),
+			"unequal sets of key-values to compare in %q",
+			keyName,
+		) {
 			for _, v := range failedKVBs {
-				t.Logf("store missmatch: %q\n", v)
+				t.Logf("store mismatch: %q\n", v)
 			}
 			t.FailNow()
 		}
 
-		t.Logf("compared %d different key/value pairs between %s and %s\n", len(failedKVAs), appKeyA, appKeyB)
-		if !assert.Equal(t, 0, len(failedKVAs), simtestutil.GetSimulationLog(keyName, app.SimulationManager().StoreDecoders, failedKVAs, failedKVBs)) {
+		t.Logf(
+			"compared %d different key/value pairs between %s and %s\n",
+			len(failedKVAs),
+			appKeyA,
+			appKeyB,
+		)
+		if !assert.Equal(
+			t,
+			0,
+			len(failedKVAs),
+			simtestutil.GetSimulationLog(
+				keyName,
+				app.SimulationManager().StoreDecoders,
+				failedKVAs,
+				failedKVBs,
+			),
+		) {
 			for _, v := range failedKVAs {
-				t.Logf("store missmatch: %q\n", v)
+				t.Logf("store mismatch: %q\n", v)
 			}
 			t.FailNow()
 		}
@@ -190,7 +221,10 @@ func TestAppImportExport(t *testing.T) {
 }
 
 func TestAppSimulationAfterImport(t *testing.T) {
-	config, db, appOptions, app := setupSimulationApp(t, "skipping application simulation after import")
+	config, db, appOptions, app := setupSimulationApp(
+		t,
+		"skipping application simulation after import",
+	)
 
 	// Run randomized simulation
 	stopEarly, simParams, simErr := simulation.SimulateFromSeed(
@@ -226,7 +260,13 @@ func TestAppSimulationAfterImport(t *testing.T) {
 
 	fmt.Printf("importing genesis...\n")
 
-	newDB, newDir, _, _, err := simtestutil.SetupSimulation(config, "leveldb-app-sim-2", "Simulation-2", simcli.FlagVerboseValue, simcli.FlagEnabledValue)
+	newDB, newDir, _, _, err := simtestutil.SetupSimulation(
+		config,
+		"leveldb-app-sim-2",
+		"Simulation-2",
+		simcli.FlagVerboseValue,
+		simcli.FlagEnabledValue,
+	)
 	require.NoError(t, err, "simulation setup failed")
 
 	defer func() {
@@ -234,7 +274,9 @@ func TestAppSimulationAfterImport(t *testing.T) {
 		require.NoError(t, os.RemoveAll(newDir))
 	}()
 
-	newApp := NewChainApp(log.NewNopLogger(), newDB, nil, true, appOptions, nil, fauxMerkleModeOpt, baseapp.SetChainID(SimAppChainID))
+	newApp := NewChainApp(log.NewNopLogger(), newDB, nil, true, appOptions,
+		EVMAppOptions,
+		fauxMerkleModeOpt, baseapp.SetChainID(SimAppChainID))
 
 	_, err = newApp.InitChain(&abci.RequestInitChain{
 		ChainId:       SimAppChainID,
@@ -256,11 +298,20 @@ func TestAppSimulationAfterImport(t *testing.T) {
 	require.NoError(t, err)
 }
 
-func setupSimulationApp(t *testing.T, msg string) (simtypes.Config, dbm.DB, simtestutil.AppOptionsMap, *SonrApp) {
+func setupSimulationApp(
+	t *testing.T,
+	msg string,
+) (simtypes.Config, dbm.DB, simtestutil.AppOptionsMap, *ChainApp) {
 	config := simcli.NewConfigFromFlags()
 	config.ChainID = SimAppChainID
 
-	db, dir, logger, skip, err := simtestutil.SetupSimulation(config, "leveldb-app-sim", "Simulation", simcli.FlagVerboseValue, simcli.FlagEnabledValue)
+	db, dir, logger, skip, err := simtestutil.SetupSimulation(
+		config,
+		"leveldb-app-sim",
+		"Simulation",
+		simcli.FlagVerboseValue,
+		simcli.FlagEnabledValue,
+	)
 	if skip {
 		t.Skip(msg)
 	}
@@ -275,7 +326,9 @@ func setupSimulationApp(t *testing.T, msg string) (simtypes.Config, dbm.DB, simt
 	appOptions[flags.FlagHome] = dir // ensure a unique folder
 	appOptions[server.FlagInvCheckPeriod] = simcli.FlagPeriodValue
 
-	app := NewChainApp(logger, db, nil, true, appOptions, nil, fauxMerkleModeOpt, baseapp.SetChainID(SimAppChainID))
+	app := NewChainApp(logger, db, nil, true, appOptions,
+		EVMAppOptions,
+		fauxMerkleModeOpt, baseapp.SetChainID(SimAppChainID))
 	return config, db, appOptions, app
 }
 
@@ -304,7 +357,7 @@ func TestAppStateDeterminism(t *testing.T) {
 
 	appOptions := viper.New()
 	if FlagEnableStreamingValue {
-		m := make(map[string]interface{})
+		m := make(map[string]any)
 		m["streaming.abci.keys"] = []string{"*"}
 		m["streaming.abci.plugin"] = "abci_v1"
 		m["streaming.abci.stop-node-on-err"] = true
@@ -317,7 +370,7 @@ func TestAppStateDeterminism(t *testing.T) {
 
 	for i := 0; i < numSeeds; i++ {
 		config.Seed += int64(i)
-		for j := 0; j < numTimesToRunPerSeed; j++ {
+		for j := range numTimesToRunPerSeed {
 			var logger log.Logger
 			if simcli.FlagVerboseValue {
 				logger = log.NewTestLogger(t)
@@ -326,7 +379,9 @@ func TestAppStateDeterminism(t *testing.T) {
 			}
 
 			db := dbm.NewMemDB()
-			app := NewChainApp(logger, db, nil, true, appOptions, nil, interBlockCacheOpt(), baseapp.SetChainID(SimAppChainID))
+			app := NewChainApp(logger, db, nil, true, appOptions,
+				EVMAppOptions,
+				interBlockCacheOpt(), baseapp.SetChainID(SimAppChainID))
 
 			fmt.Printf(
 				"running non-determinism simulation; seed %d: %d/%d, attempt: %d/%d\n",
@@ -337,7 +392,11 @@ func TestAppStateDeterminism(t *testing.T) {
 				t,
 				os.Stdout,
 				app.BaseApp,
-				simtestutil.AppStateFn(app.AppCodec(), app.SimulationManager(), app.DefaultGenesis()),
+				simtestutil.AppStateFn(
+					app.AppCodec(),
+					app.SimulationManager(),
+					app.DefaultGenesis(),
+				),
 				simtypes.RandomAccounts, // Replace with own random account function if using keys other than secp256k1
 				simtestutil.SimulationOperations(app, app.AppCodec(), config),
 				BlockedAddresses(),
@@ -355,8 +414,15 @@ func TestAppStateDeterminism(t *testing.T) {
 
 			if j != 0 {
 				require.Equal(
-					t, string(appHashList[0]), string(appHashList[j]),
-					"non-determinism in seed %d: %d/%d, attempt: %d/%d\n", config.Seed, i+1, numSeeds, j+1, numTimesToRunPerSeed,
+					t,
+					string(appHashList[0]),
+					string(appHashList[j]),
+					"non-determinism in seed %d: %d/%d, attempt: %d/%d\n",
+					config.Seed,
+					i+1,
+					numSeeds,
+					j+1,
+					numTimesToRunPerSeed,
 				)
 			}
 		}

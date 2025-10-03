@@ -2,28 +2,41 @@ syntax = "proto3";
 package dwn.v1;
 
 import "cosmos/msg/v1/msg.proto";
-import "dwn/v1/genesis.proto";
-import "gogoproto/gogo.proto";
 import "cosmos_proto/cosmos.proto";
+import "dwn/v1/genesis.proto";
+import "dwn/v1/state.proto";
+import "gogoproto/gogo.proto";
 
-option go_package = "github.com/sonr-io/snrd/x/dwn/types";
+option go_package = "github.com/sonr-io/sonr/x/dwn/types";
 
 // Msg defines the Msg service.
 service Msg {
   option (cosmos.msg.v1.service) = true;
+
   // UpdateParams defines a governance operation for updating the parameters.
-  //
-  // Since: cosmos-sdk 0.47
   rpc UpdateParams(MsgUpdateParams) returns (MsgUpdateParamsResponse);
 
+  // DWN Records Operations
+  //
+  // {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+  // It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+  //
+  // {{import "dwn_docs.md"}}
+  rpc RecordsWrite(MsgRecordsWrite) returns (MsgRecordsWriteResponse);
+  rpc RecordsDelete(MsgRecordsDelete) returns (MsgRecordsDeleteResponse);
 
-// Spawn spawns a new Vault
-  rpc Initialize(MsgInitialize) returns (MsgInitializeResponse);
+  // DWN Protocols Operations
+  rpc ProtocolsConfigure(MsgProtocolsConfigure) returns (MsgProtocolsConfigureResponse);
+
+  // DWN Permissions Operations
+  rpc PermissionsGrant(MsgPermissionsGrant) returns (MsgPermissionsGrantResponse);
+  rpc PermissionsRevoke(MsgPermissionsRevoke) returns (MsgPermissionsRevokeResponse);
+
+  // DWN Vault Operations
+  rpc RotateVaultKeys(MsgRotateVaultKeys) returns (MsgRotateVaultKeysResponse);
 }
 
 // MsgUpdateParams is the Msg/UpdateParams request type.
-//
-// Since: cosmos-sdk 0.47
 message MsgUpdateParams {
   option (cosmos.msg.v1.signer) = "authority";
 
@@ -31,35 +44,179 @@ message MsgUpdateParams {
   string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 
   // params defines the parameters to update.
-  //
-  // NOTE: All parameters must be supplied.
   Params params = 2 [(gogoproto.nullable) = false];
 }
 
 // MsgUpdateParamsResponse defines the response structure for executing a
 // MsgUpdateParams message.
-//
-// Since: cosmos-sdk 0.47
 message MsgUpdateParamsResponse {}
 
-// MsgSpawn spawns a New Vault with Unclaimed State. This is a one-time
-// operation that must be performed interacting with the Vault.
-//
-// Since: cosmos-sdk 0.47
-message MsgInitialize {
-  option (cosmos.msg.v1.signer) = "authority";
+// MsgRecordsWrite creates or updates a record in the DWN
+message MsgRecordsWrite {
+  option (cosmos.msg.v1.signer) = "author";
 
-  // authority is the address of the governance account.
-  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-
-  // params defines the parameters to update.
-  //
-  // NOTE: All parameters must be supplied.
-  Params params = 2 [(gogoproto.nullable) = false];
+  // Author of the record (DID or cosmos address)
+  string author = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // Target DWN (DID)
+  string target = 2;
+  // Message descriptor
+  DWNMessageDescriptor descriptor = 3;
+  // Authorization JWT/signature
+  string authorization = 4;
+  // Record data
+  bytes data = 5;
+  // Optional protocol URI
+  string protocol = 6;
+  // Optional protocol path
+  string protocol_path = 7;
+  // Optional schema URI
+  string schema = 8;
+  // Optional parent record ID
+  string parent_id = 9;
+  // Published flag
+  bool published = 10;
+  // Optional encryption details
+  string encryption = 11;
+  // Optional attestation
+  string attestation = 12;
 }
 
-// MsgSpawnResponse defines the response structure for executing a
-// MsgSpawn message.
-//
-// Since: cosmos-sdk 0.47
-message MsgInitializeResponse {}
+// MsgRecordsWriteResponse defines the response for RecordsWrite
+message MsgRecordsWriteResponse {
+  // Record ID of the created/updated record
+  string record_id = 1;
+  // CID of the data
+  string data_cid = 2;
+}
+
+// MsgRecordsDelete deletes a record from the DWN
+message MsgRecordsDelete {
+  option (cosmos.msg.v1.signer) = "author";
+
+  // Author requesting deletion (DID or cosmos address)
+  string author = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // Target DWN (DID)
+  string target = 2;
+  // Record ID to delete
+  string record_id = 3;
+  // Message descriptor
+  DWNMessageDescriptor descriptor = 4;
+  // Authorization JWT/signature
+  string authorization = 5;
+  // Prune descendants flag
+  bool prune = 6;
+}
+
+// MsgRecordsDeleteResponse defines the response for RecordsDelete
+message MsgRecordsDeleteResponse {
+  // Success flag
+  bool success = 1;
+  // Number of records deleted (including pruned)
+  int32 deleted_count = 2;
+}
+
+// MsgProtocolsConfigure configures a protocol in the DWN
+message MsgProtocolsConfigure {
+  option (cosmos.msg.v1.signer) = "author";
+
+  // Author configuring the protocol (DID or cosmos address)
+  string author = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // Target DWN (DID)
+  string target = 2;
+  // Message descriptor
+  DWNMessageDescriptor descriptor = 3;
+  // Authorization JWT/signature
+  string authorization = 4;
+  // Protocol URI
+  string protocol_uri = 5;
+  // Protocol definition JSON
+  bytes definition = 6;
+  // Published flag
+  bool published = 7;
+}
+
+// MsgProtocolsConfigureResponse defines the response for ProtocolsConfigure
+message MsgProtocolsConfigureResponse {
+  // Protocol URI that was configured
+  string protocol_uri = 1;
+  // Success flag
+  bool success = 2;
+}
+
+// MsgPermissionsGrant grants permissions in the DWN
+message MsgPermissionsGrant {
+  option (cosmos.msg.v1.signer) = "grantor";
+
+  // Grantor of the permission (DID or cosmos address)
+  string grantor = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // Grantee receiving the permission (DID)
+  string grantee = 2;
+  // Target DWN (DID)
+  string target = 3;
+  // Message descriptor
+  DWNMessageDescriptor descriptor = 4;
+  // Authorization JWT/signature
+  string authorization = 5;
+  // Interface scope
+  string interface_name = 6;
+  // Method scope
+  string method = 7;
+  // Optional protocol scope
+  string protocol = 8;
+  // Optional record scope
+  string record_id = 9;
+  // Permission conditions JSON
+  bytes conditions = 10;
+  // Expiration timestamp (Unix timestamp)
+  int64 expires_at = 11;
+}
+
+// MsgPermissionsGrantResponse defines the response for PermissionsGrant
+message MsgPermissionsGrantResponse {
+  // Permission ID of the created grant
+  string permission_id = 1;
+}
+
+// MsgPermissionsRevoke revokes permissions in the DWN
+message MsgPermissionsRevoke {
+  option (cosmos.msg.v1.signer) = "grantor";
+
+  // Grantor revoking the permission (DID or cosmos address)
+  string grantor = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // Permission ID to revoke
+  string permission_id = 2;
+  // Message descriptor
+  DWNMessageDescriptor descriptor = 3;
+  // Authorization JWT/signature
+  string authorization = 4;
+}
+
+// MsgPermissionsRevokeResponse defines the response for PermissionsRevoke
+message MsgPermissionsRevokeResponse {
+  // Success flag
+  bool success = 1;
+}
+
+// MsgRotateVaultKeys rotates encryption keys for existing vaults
+message MsgRotateVaultKeys {
+  option (cosmos.msg.v1.signer) = "authority";
+
+  // Authority performing the rotation (governance or validator)
+  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // Vault ID to rotate keys for (empty means all vaults)
+  string vault_id = 2;
+  // Reason for rotation
+  string reason = 3;
+  // Force rotation even if not due
+  bool force = 4;
+}
+
+// MsgRotateVaultKeysResponse defines the response for RotateVaultKeys
+message MsgRotateVaultKeysResponse {
+  // Number of vaults affected
+  uint32 vaults_rotated = 1;
+  // New key version after rotation
+  uint64 new_key_version = 2;
+  // Success flag
+  bool success = 3;
+}

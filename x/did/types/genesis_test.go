@@ -3,7 +3,7 @@ package types_test
 import (
 	"testing"
 
-	"github.com/sonr-io/snrd/x/did/types"
+	"github.com/sonr-io/sonr/x/did/types"
 
 	"github.com/stretchr/testify/require"
 )
@@ -19,7 +19,11 @@ func TestGenesisState_Validate(t *testing.T) {
 			genState: types.DefaultGenesis(),
 			valid:    true,
 		},
-		// this line is used by starport scaffolding # types/genesis/testcase
+		{
+			desc:     "valid genesis state",
+			genState: types.DefaultGenesis(),
+			valid:    true,
+		},
 	}
 	for _, tc := range tests {
 		t.Run(tc.desc, func(t *testing.T) {

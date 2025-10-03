@@ -1,24 +1,33 @@
 #!/usr/bin/make -f
 
+# Default target - show help when no target specified
+.DEFAULT_GOAL := help
+
+PACKAGE_NAME          := github.com/sonr-io/sonr
+GORELEASER_VERSION    ?= latest
 PACKAGES_SIMTEST=$(shell go list ./... | grep '/simulation')
 VERSION := $(shell echo $(shell git describe --tags) | sed 's/^v//')
 COMMIT := $(shell git log -1 --format='%H')
+GOLANGCI_VERSION := v1.62.2
 LEDGER_ENABLED ?= true
 SDK_PACK := $(shell go list -m github.com/cosmos/cosmos-sdk | sed  's/ /\@/g')
 BINDIR ?= $(GOPATH)/bin
 SIMAPP = ./app
+GIT_ROOT := $(shell git rev-parse --show-toplevel)
 
-# Fetch from env
-VERSION ?= $(shell echo $(shell git describe --tags) | sed 's/^v//')
-COMMIT ?= $(shell git log -1 --format='%H')
-OS ?= $(shell uname -s)
-ROOT ?= $(shell git rev-parse --show-toplevel)
-
-# for dockerized protobuf tools
-DOCKER := $(shell which docker)
-HTTPS_GIT := github.com/sonr-io/snrd.git
+# Git configuration
+HTTPS_GIT := github.com/sonr-io/sonr.git
 
 export GO111MODULE = on
+
+# don't override user values
+ifeq (,$(VERSION))
+  VERSION := $(shell git describe --tags --always)
+  # if VERSION is empty, then populate it with branch's name and raw commit hash
+  ifeq (,$(VERSION))
+    VERSION := $(BRANCH)-$(COMMIT)
+  endif
+endif
 
 # process build tags
 
@@ -58,11 +67,16 @@ comma := ,
 build_tags_comma_sep := $(subst $(empty),$(comma),$(build_tags))
 
 # process linker flags
+
+# flags '-s -w' resolves an issue with xcode 16 and signing of go binaries
+# ref: https://github.com/golang/go/issues/63997
 ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=sonr \
 		  -X github.com/cosmos/cosmos-sdk/version.AppName=snrd \
 		  -X github.com/cosmos/cosmos-sdk/version.Version=$(VERSION) \
 		  -X github.com/cosmos/cosmos-sdk/version.Commit=$(COMMIT) \
-		  -X "github.com/cosmos/cosmos-sdk/version.BuildTags=$(build_tags_comma_sep)"
+		  -X "github.com/cosmos/cosmos-sdk/version.BuildTags=$(build_tags_comma_sep)" \
+		  -checklinkname=0 \
+		  -s -w
 
 ifeq ($(WITH_CLEVELDB),yes)
   ldflags += -X github.com/cosmos/cosmos-sdk/types.DBBackend=cleveldb
@@ -75,278 +89,404 @@ ldflags := $(strip $(ldflags))
 
 BUILD_FLAGS := -tags "$(build_tags_comma_sep)" -ldflags '$(ldflags)' -trimpath
 
-# The below include contains the tools and runsim targets.
-all: install lint test
 
-build: go.sum
-ifeq ($(OS),Windows_NT)
-	$(error wasmd server not supported. Use "make build-windows-client" for client)
-	exit 1
-else
-	go build -mod=readonly $(BUILD_FLAGS) -o bin/snrd .
-endif
+all: help
 
-build-windows-client: go.sum
-	GOOS=windows GOARCH=amd64 go build -mod=readonly $(BUILD_FLAGS) -o bin/snrd.exe .
+start: docker
+	@gum log --level info "Starting all services..."
+	@devbox services up
 
-build-contract-tests-hooks:
-ifeq ($(OS),Windows_NT)
-	go build -mod=readonly $(BUILD_FLAGS) -o bin/contract_tests.exe ./cmd/contract_tests
-else
-	go build -mod=readonly $(BUILD_FLAGS) -o bin/contract_tests ./cmd/contract_tests
-endif
-
-install: go.sum
-	go install -mod=readonly $(BUILD_FLAGS) .
+stop:
+	@gum log --level info "Stopping all services..."
+	@devbox services stop
+	@$(MAKE) clean-docker
 
 ########################################
 ### Tools & dependencies
 ########################################
+format: go-format ts-format
+go-format:
+	@gum log --level info "Formatting Go code with gofumpt and goimports..."
+	@if command -v gofumpt > /dev/null; then \
+		gofumpt -w .; \
+	else \
+		go run -mod=readonly mvdan.cc/gofumpt@latest -w .; \
+	fi
+	@if command -v goimports > /dev/null; then \
+		goimports -w .; \
+	else \
+		go run -mod=readonly golang.org/x/tools/cmd/goimports@latest -w .; \
+	fi
+	@gum log --level info "✅ Code formatted"
+
+ts-format:
+	@gum log --level info "Formatting all web applications..."
+	@pnpm biome format --config-path=$(PWD)/biome.json .
+
+
+lint: go-lint ts-lint
+
+go-lint:
+	@gum log --level info "Running golangci-lint..."
+	@if command -v golangci-lint > /dev/null; then \
+		golangci-lint run --timeout=10m; \
+	else \
+		docker run --rm -v $$(pwd):/app -w /app \
+			-v ~/.cache/golangci-lint:/root/.cache/golangci-lint \
+			golangci/golangci-lint:$(GOLANGCI_VERSION) \
+			golangci-lint run --timeout=10m; \
+	fi
+
+ts-lint:
+	@gum log --level info "Running Biome linter with auto-fix for TypeScript projects..."
+	@pnpm biome lint --config-path=./biome.json --write .
+
+.PHONY: lint go-lint ts-lint format
 
 go-mod-cache: go.sum
-	@echo "--> Download go modules to local cache"
+	@gum log --level info "Download go modules to local cache"
 	@go mod download
 
 go.sum: go.mod
-	@echo "--> Ensure dependencies have not been modified"
+	@gum log --level info "Ensure dependencies have not been modified"
+	@go mod tidy
 	@go mod verify
+
+pnpm-install:
+	@gum log --level info "Installing pnpm dependencies"
+	@pnpm install
 
 draw-deps:
 	@# requires brew install graphviz or apt-get install graphviz
 	go install github.com/RobotsAndPencils/goviz@latest
-	@goviz -i . -d 2 | dot -Tpng -o dependency-graph.png
+	@goviz -i ./cmd/snrd -d 2 | dot -Tpng -o .github/assets/dependency-graph.png
 
-clean:
-	rm -rf .aider*
-	rm -rf static
-	rm -rf .out
-	rm -rf hway.db
-	rm -rf snapcraft-local.yaml bin/
-	rm -rf build
 
-distclean: clean
-	rm -rf vendor/
+tidy:
+	@go mod tidy
+	@make -C client tidy
+	@make -C crypto tidy
+	@make -C cmd/hway tidy
+	@make -C cmd/motr tidy
+	@make -C cmd/vault tidy
+
+clean: tidy
+	@gum log --level info "Cleaning build artifacts..."
+	rm -rf snapcraft-local.yaml build/ dist/
+	@$(MAKE) -C cmd/snrd clean
+	@$(MAKE) -C cmd/hway clean
+	@$(MAKE) -C cmd/vault clean
+	@$(MAKE) -C cmd/motr clean
+
+clean-docker:
+	@gum log --level info "Removing all Docker volumes and networks..."
+	@rm -rf .logs
+	@docker compose down -v
+	@docker network prune -f
+	@docker volume prune -f
+
+###############################################################################
+###                              Build Targets                              ###
+###############################################################################
+
+install: go.sum
+	@$(MAKE) -C cmd/snrd install LEDGER_ENABLED=$(LEDGER_ENABLED) WITH_CLEVELDB=$(WITH_CLEVELDB) LINK_STATICALLY=$(LINK_STATICALLY) BUILD_TAGS="$(BUILD_TAGS)"
+
+build: go.sum
+	@$(MAKE) -C cmd/snrd build LEDGER_ENABLED=$(LEDGER_ENABLED) WITH_CLEVELDB=$(WITH_CLEVELDB) LINK_STATICALLY=$(LINK_STATICALLY) BUILD_TAGS="$(BUILD_TAGS)"
+
+build-snrd: build
+
+build-client: go.sum build-vault build-motr
+	@$(MAKE) -C client build
+	@cd /tmp && go mod init test || true
+	@cd /tmp && go get github.com/sonr-io/sonr/client@main || true
+	@cd /tmp && gum log --level info "Client SDK import successful"
+
+build-hway: go.sum build-vault build-motr
+	@$(MAKE) -C cmd/hway build
+
+build-vault:
+	@$(MAKE) -C cmd/vault build
+
+build-motr: ## Build Motor WASM service worker
+	@$(MAKE) -C cmd/motr build
+
+# Build all components in parallel
+build-all: go.sum
+	@gum log --level info "Building all components in parallel..."
+	@$(MAKE) -j5 build build-hway build-client build-motr build-vault
+	@gum log --level info "✅ All components built successfully"
+
+.PHONY: install build build-client build-hway build-snrd build-vault build-motr build-all
 
 ########################################
-### Testing
+### Docker & Services
 ########################################
 
+docker:
+	@gum log --level info "Building Docker images..."
+	@bash scripts/containers.sh build-all
+
+localnet: ## Cross-platform localnet (auto-detects best method for your system)
+	@bash scripts/cross_platform_localnet.sh
+
+dockernet:
+	@gum log --level info "Starting network with Docker in detached mode..."
+	@docker stop sonr-testnode 2>/dev/null || true
+	@docker rm sonr-testnode 2>/dev/null || true
+	@sleep 3
+	@CHAIN_ID="sonrtest_1-1" BLOCK_TIME="1000ms" CLEAN=true FORCE_DOCKER=true DOCKER_DETACHED=true bash scripts/test_node.sh
+
+.PHONY: docker localnet dockernet
+
+########################################
+### Prepare Scripts - AI & Release Automation
+########################################
+# Smart component release detection and automation
+release:
+	@$(MAKE) -C cmd/hway release
+	@$(MAKE) -C cmd/motr release
+	@$(MAKE) -C cmd/snrd release
+	@$(MAKE) -C cmd/vault release
+
+# Snapshot builds for development
+snapshot:
+	@gum log --level info "📦 Preparing component snapshot..."
+	@$(MAKE) -C cmd/vault snapshot
+	@$(MAKE) -C cmd/motr snapshot
+	@$(MAKE) -C cmd/snrd snapshot
+	@$(MAKE) -C cmd/hway snapshot
+
+.PHONY: release snapshot
+
+########################################
+### Testing - Simplified
+########################################
+
+# Main test targets
 test: test-unit
-test-all: test-race test-cover test-system
+test-all: test-race test-cover
 
 test-unit:
-	@VERSION=$(VERSION) go test -mod=readonly -tags='ledger test_ledger_mock' ./...
+	@VERSION=$(VERSION) go test -mod=readonly -tags='ledger test_ledger_mock test' ./...
 
 test-race:
-	@VERSION=$(VERSION) go test -mod=readonly -race -tags='ledger test_ledger_mock' ./...
+	@VERSION=$(VERSION) go test -mod=readonly -race -tags='ledger test_ledger_mock test' ./...
 
 test-cover:
-	@go test -mod=readonly -timeout 30m -race -coverprofile=coverage.txt -covermode=atomic -tags='ledger test_ledger_mock' ./...
+	@go test -mod=readonly -timeout 30m -race -coverprofile=coverage.txt -covermode=atomic -tags='ledger test_ledger_mock test' ./...
 
-benchmark:
+test-e2e:
+	@gum log --level info "Running basic e2e tests"
+	@cd test/e2e && go test -race -v -run TestBasic ./tests/basic
+
+test-e2e-all:
+	@gum log --level info "Running all e2e tests"
+	@cd test/e2e && go test -race -v ./tests/...
+
+test-build-snrd: build
+	@ls -la build/snrd
+	@chmod +x build/snrd
+	@./build/snrd version
+
+test-build-hway: build-hway
+	@ls -la build/hway
+
+test-tdd:
+	go test -json ./... 2>&1 | tdd-guard-go -project-root ${GIT_ROOT}
+
+test-app:
+	@VERSION=$(VERSION) go test -C . -mod=readonly -tags='ledger test_ledger_mock test' github.com/sonr-io/sonr/app/... github.com/sonr-io/sonr/x/... github.com/sonr-io/sonr/types/... github.com/sonr-io/sonr/internal/...
+
+test-devops:
+	@echo "No devops tests"
+
+test-client:
+	@$(MAKE) -C cmd/vault build
+	@$(MAKE) -C client test
+
+test-crypto:
+	@$(MAKE) -C crypto test
+
+test-dwn-ci:
+	@$(MAKE) -C cmd/vault build
+	@go test -mod=readonly -tags='ledger test_ledger_mock test' -run='!IPFS' ./x/dwn/...
+
+test-internal:
+	@$(MAKE) -C cmd/vault build
+	@VERSION=$(VERSION) go test -mod=readonly -tags='ledger test_ledger_mock test' ./internal/...
+
+# Module testing - Simplified
+# MODULE=did|dwn|svc VARIANT=unit|race|cover|bench
+test-module:
+	@if [ -z "$(MODULE)" ]; then \
+		gum log --level info "Testing all modules..."; \
+		$(MAKE) test-module MODULE=did; \
+		$(MAKE) test-module MODULE=dwn; \
+		$(MAKE) test-module MODULE=svc; \
+	else \
+		if [ "$(VARIANT)" = "cover" ]; then \
+			gum log --level info "Testing x/$(MODULE) with coverage..."; \
+			go test -mod=readonly -timeout 30m -race -coverprofile=x/$(MODULE)/coverage.txt -covermode=atomic -tags='ledger test_ledger_mock test' ./x/$(MODULE)/...; \
+		elif [ "$(VARIANT)" = "race" ]; then \
+			gum log --level info "Testing x/$(MODULE) with race detector..."; \
+			VERSION=$(VERSION) go test -mod=readonly -race -tags='ledger test_ledger_mock test' ./x/$(MODULE)/...; \
+		elif [ "$(VARIANT)" = "bench" ]; then \
+			gum log --level info "Running x/$(MODULE) benchmarks..."; \
+			go test -mod=readonly -bench=. ./x/$(MODULE)/...; \
+		else \
+			gum log --level info "Testing x/$(MODULE) module..."; \
+			VERSION=$(VERSION) go test -mod=readonly -tags='ledger test_ledger_mock test' ./x/$(MODULE)/...; \
+		fi \
+	fi
+
+# Specialized tests
+test-hway:
+	@gum log --level info "Testing Highway service..."
+	@VERSION=$(VERSION) go test -C . -mod=readonly -v github.com/sonr-io/sonr/bridge/...
+
+test-proto:
+	@$(MAKE) -C proto lint
+	@$(MAKE) -C proto check-breaking
+
+test-motr:
+	@gum log --level info "Testing Motor WASM service worker..."
+	@$(MAKE) -C cmd/motr test
+
+test-vault:
+	@gum log --level info "Testing Vault WASM plugin..."
+	@$(MAKE) -C cmd/vault test
+
+test-benchmark:
 	@go test -mod=readonly -bench=. ./...
 
-test-sim-import-export: runsim
-	@echo "Running application import/export simulation. This may take several minutes..."
-	@$(BINDIR)/runsim -Jobs=4 -SimAppPkg=$(SIMAPP) -ExitOnFail 50 5 TestAppImportExport
-
-test-sim-multi-seed-short: runsim
-	@echo "Running short multi-seed application simulation. This may take awhile!"
-	@$(BINDIR)/runsim -Jobs=4 -SimAppPkg=$(SIMAPP) -ExitOnFail 50 5 TestFullAppSimulation
-
-test-sim-deterministic: runsim
-	@echo "Running application deterministic simulation. This may take awhile!"
-	@$(BINDIR)/runsim -Jobs=4 -SimAppPkg=$(SIMAPP) -ExitOnFail 1 1 TestAppStateDeterminism
-
-test-system: install
-	$(MAKE) -C tests/system/ test
-
-###############################################################################
-###                                Linting                                  ###
-###############################################################################
-
-format-tools:
-	go install mvdan.cc/gofumpt@v0.4.0
-	go install github.com/client9/misspell/cmd/misspell@v0.3.4
-	go install github.com/daixiang0/gci@v0.11.2
-
-lint: format-tools
-	golangci-lint run --tests=false
-	find . -name '*.go' -type f -not -path "./vendor*" -not -path "./tests/system/vendor*" -not -path "*.git*" -not -path "*_test.go" | xargs gofumpt -d
-
-format: format-tools
-	find . -name '*.go' -type f -not -path "./vendor*" -not -path "./tests/system/vendor*" -not -path "*.git*" -not -path "./client/lcd/statik/statik.go" | xargs gofumpt -w
-	find . -name '*.go' -type f -not -path "./vendor*" -not -path "./tests/system/vendor*" -not -path "*.git*" -not -path "./client/lcd/statik/statik.go" | xargs misspell -w
-	find . -name '*.go' -type f -not -path "./vendor*" -not -path "./tests/system/vendor*" -not -path "*.git*" -not -path "./client/lcd/statik/statik.go" | xargs gci write --skip-generated -s standard -s default -s "prefix(cosmossdk.io)" -s "prefix(github.com/cosmos/cosmos-sdk)" -s "prefix(github.com/CosmWasm/wasmd)" --custom-order
-
-mod-tidy:
-	go mod tidy
-
-.PHONY: format-tools lint format mod-tidy
-
+.PHONY: test test-all test-unit test-race test-cover test-tdd test-module test-hway test-motr test-vault test-benchmark
 
 ###############################################################################
 ###                                Protobuf                                 ###
 ###############################################################################
-protoVer=0.15.1
-protoImageName=ghcr.io/cosmos/proto-builder:$(protoVer)
-protoImage=$(DOCKER) run --rm -v $(CURDIR):/workspace --workdir /workspace $(protoImageName)
+climd-gen:
+	@gum log --level info "Generating MD Docs from snrd CLI..."
+	@sh ./scripts/cli-docgen.sh
 
 proto-gen:
-	@echo "Generating Protobuf files"
-	@go install cosmossdk.io/orm/cmd/protoc-gen-go-cosmos-orm@latest
-	@$(protoImage) sh ./scripts/protocgen.sh
-	spawn stub-gen
+	@gum log --level info "Generating Go protobuf files..."
+	@$(MAKE) -C proto gen
+	@gum log --level info "Generating TypeScript protobuf files..."
+	@if [ -d "packages/es" ]; then \
+		cd packages/es && pnpm gen:protobufs || { gum log --level error "TypeScript protobuf generation failed"; exit 1; }; \
+	else \
+		gum log --level warn "Skipping TypeScript generation: packages/es not found"; \
+	fi
+	@gum log --level info "Auto-formatting generated protobuf files..."
+	@$(MAKE) format
 
-proto-format:
-	@echo "Formatting Protobuf files"
-	@$(protoImage) find ./ -name "*.proto" -exec clang-format -i {} \;
+swagger-gen:
+	@$(MAKE) -C proto swagger-gen
+	@gum log --level info "Moving and renaming generated files..."
+	@find docs/static/openapi -type f \( -name "query.swagger.yaml" -o -name "tx.swagger.yaml" \) | while read -r filepath; do \
+		\
+		parent_dir=$$(dirname "$$filepath"); \
+		grandparent_dir=$$(dirname "$$parent_dir"); \
+		module=$$(basename "$$grandparent_dir"); \
+		filename=$$(basename "$$filepath"); \
+		\
+		new_filename="$$module.$$filename"; \
+		destination="docs/static/openapi/$$new_filename"; \
+		\
+		gum log --level debug "Moving $$filepath to $$destination"; \
+		mv "$$filepath" "$$destination"; \
+	done
+	@gum log --level info "Cleaning up empty source directories..."
+	@find docs/static/openapi -mindepth 1 -maxdepth 1 -type d -exec rm -rf {} +
+	@gum log --level info "Converting Swagger 2.0 to OpenAPI 3.0..."
+	@pnpm run convert-swagger
+	@gum log --level info "✅ API documentation processing complete."
 
-proto-lint:
-	@$(protoImage) buf lint --error-format=json
+templ-gen:
+	@docker run --rm -v `pwd`:/code -w=/code --user $(shell id -u):$(shell id -g) ghcr.io/a-h/templ:latest generate
 
-proto-check-breaking:
-	@$(protoImage) buf breaking --against $(HTTPS_GIT)#branch=master
-
-.PHONY: all install install-debug \
-	go-mod-cache draw-deps clean build format \
-	test test-all test-build test-cover test-unit test-race \
-	test-sim-import-export build-windows-client \
-	test-system
-
-## --- Testnet Utilities ---
-get-localic:
-	@echo "Installing local-interchain"
-	git clone --branch v8.7.0 https://github.com/strangelove-ventures/interchaintest.git interchaintest-downloader
-	cd interchaintest-downloader/local-interchain && make install
-	@echo ✅ local-interchain installed $(shell which local-ic)
-
-is-localic-installed:
-ifeq (,$(shell which local-ic))
-	make get-localic
-endif
-
-get-heighliner:
-	git clone https://github.com/strangelove-ventures/heighliner.git
-	cd heighliner && go install
-
-local-image:
-ifeq (,$(shell which heighliner))
-	echo 'heighliner' binary not found. Consider running `make get-heighliner`
-else
-	heighliner build -c snrd --local -f chains.yaml
-endif
-
-.PHONY: get-heighliner local-image is-localic-installed
+.PHONY: proto-gen proto-swagger-gen swagger-gen proto-lint proto-check-breaking proto-publish
 
 ###############################################################################
-###                                     e2e                                 ###
+###                           Network Operations                            ###
 ###############################################################################
 
-ictest-basic:
-	@echo "Running basic interchain tests"
-	@cd interchaintest && go test -race -v -run TestBasicChain .
+# Starship network management
+testnet: testnet-restart
 
-ictest-ibc:
-	@echo "Running IBC interchain tests"
-	@cd interchaintest && go test -race -v -run TestIBC .
+testnet-restart: testnet-stop testnet-start
+	@gum log --level info "✅ Starship network restarted"
 
-ictest-wasm:
-	@echo "Running cosmwasm interchain tests"
-	@cd interchaintest && go test -race -v -run TestCosmWasmIntegration .
+testnet-start:
+	@gum log --level info "Starting Starship network..."
+	@if [ -z "$(NETWORK)" ]; then \
+		NETWORK=devnet; \
+	fi; \
+	bash scripts/run.sh $$NETWORK
 
-ictest-packetforward:
-	@echo "Running packet forward middleware interchain tests"
-	@cd interchaintest && go test -race -v -run TestPacketForwardMiddleware .
+testnet-stop:
+	@gum log --level info "Stopping Starship network..."
+	@helm delete -n ci sonr-testnet 2>/dev/null || true
+	@kubectl delete namespace ci --ignore-not-found=true 2>/dev/null || true
+	@sleep 2
 
-ictest-poa:
-	@echo "Running proof of authority interchain tests"
-	@cd interchaintest && go test -race -v -run TestPOA .
-
-ictest-tokenfactory:
-	@echo "Running token factory interchain tests"
-	@cd interchaintest && go test -race -v -run TestTokenFactory .
+.PHONY: testnet testnet-restart testnet-start testnet-stop
 
 ###############################################################################
-###                                    testnet                              ###
-###############################################################################
-
-setup-ipfs:
-	./scripts/ipfs_config.sh
-
-setup-testnet: mod-tidy is-localic-installed install local-image set-testnet-configs setup-testnet-keys
-
-# Run this before testnet keys are added
-# chainid-1 is used in the testnet.json
-set-testnet-configs:
-	snrd config set client chain-id sonr-testnet-1
-	snrd config set client keyring-backend test
-	snrd config set client output text
-
-# import keys from testnet.json into test keyring
-setup-testnet-keys:
-	-`echo "decorate bright ozone fork gallery riot bus exhaust worth way bone indoor calm squirrel merry zero scheme cotton until shop any excess stage laundry" | snrd keys add acc0 --recover`
-	-`echo "wealth flavor believe regret funny network recall kiss grape useless pepper cram hint member few certain unveil rather brick bargain curious require crowd raise" | snrd keys add acc1 --recover`
-
-# default testnet is with IBC
-testnet: setup-testnet
-	spawn local-ic start ibc-testnet
-
-testnet-basic: setup-testnet
-	spawn local-ic start testnet
-
-sh-testnet: mod-tidy
-	CHAIN_ID="sonr-testnet-1" BLOCK_TIME="1000ms" CLEAN=true sh scripts/test_node.sh
-
-.PHONY: setup-testnet set-testnet-configs testnet testnet-basic sh-testnet dop-testnet
-
-###############################################################################
-###                                    extra utils                          ###
-###############################################################################
-status:
-	@gh run ls -L 3
-	@gum format -- "# Sonr ($OS-$VERSION)" "- ($(COMMIT)) $ROOT" "- $(RELEASE_DATE)"
-	@sleep 3
-
-push-docker:
-	@docker build -t ghcr.io/onsonr/sonr:$(VERSION) .
-	@docker tag ghcr.io/onsonr/sonr:$(VERSION) ghcr.io/onsonr/sonr:latest
-	@docker push ghcr.io/onsonr/sonr:$(VERSION)
-	@docker push ghcr.io/onsonr/sonr:latest
-
-release:
-	@devbox run cz:bump
-
-release-dry:
-	@devbox run release:dry
-
-deploy-deps:
-	@echo "Installing deploy dependencies"
-	npm install -g @starship-ci/cli
-	starship install
-
-up:
-	@echo "Starting deployment"
-	starship start --config .github/deploy/config.yml
-
-down:
-	@echo "Stopping deployment"
-	starship stop --config .github/deploy/config.yml
-
-###############################################################################
-###                                     help                                ###
+###                                   Help                                  ###
 ###############################################################################
 
 help:
-	@echo "Usage: make <target>"
-	@echo ""
-	@echo "Available targets:"
-	@echo "  install             : Install the binary"
-	@echo "  local-image         : Install the docker image"
-	@echo "  proto-gen           : Generate code from proto files"
-	@echo "  testnet             : Local devnet with IBC"
-	@echo "  sh-testnet          : Shell local devnet"
-	@echo "  ictest-basic        : Basic end-to-end test"
-	@echo "  ictest-ibc          : IBC end-to-end test"
+	@gum log --level info "Sonr Blockchain Makefile"
+	@gum log --level info "========================"
+	@gum log --level info ""
+	@gum log --level info "🛠️  Build & Install:"
+	@gum log --level info "  install             Install snrd binary"
+	@gum log --level info "  build               Build snrd binary with vault WASM"
+	@gum log --level info "  build-all           Build all components in parallel"
+	@gum log --level info "  build-hway          Build Highway service"
+	@gum log --level info "  build-vault         Build vault WASM module"
+	@gum log --level info "  build-motr          Build Motor WASM service worker"
+	@gum log --level info "  build-client        Build client SDK"
+	@gum log --level info "  docker              Build Docker images"
+	@gum log --level info ""
+	@gum log --level info "🚀 Local Development:"
+	@gum log --level info "  localnet            Start single-node testnet"
+	@gum log --level info "  start               Start backend services"
+	@gum log --level info "  stop                Stop backend services"
+	@gum log --level info "  status              Check service health"
+	@gum log --level info "  testnet             Manage Starship network (start/stop/restart)"
+	@gum log --level info ""
+	@gum log --level info "📦 Code Generation:"
+	@gum log --level info "  proto-gen           Generate protobuf code"
+	@gum log --level info "  swagger-gen         Generate OpenAPI docs"
+	@gum log --level info ""
+	@gum log --level info "🔧 Development Tools:"
+	@gum log --level info "  format              Format code (Go + TypeScript)"
+	@gum log --level info "  lint                Run all linters"
+	@gum log --level info "  clean               Remove build artifacts"
+	@gum log --level info ""
+	@gum log --level info "🧪 Testing:"
+	@gum log --level info "  benchmark           Run benchmarks"
+	@gum log --level info "  test                Run unit tests"
+	@gum log --level info "  test-all            Run all test variants"
+	@gum log --level info "  test-cover          Generate coverage report"
+	@gum log --level info "  test-e2e            Run e2e tests"
+	@gum log --level info "  test-e2e-all        Run all e2e tests"
+	@gum log --level info "  test-module         Test specific module (MODULE=did|dwn|svc)"
+	@gum log --level info "  test-packages       Test all packages (lint + build)"
+	@gum log --level info "  test-ipfs           Test vault with IPFS export/import"
+	@gum log --level info "  test-vault          Test vault operations"
+	@gum log --level info "  test-web            Test all web apps (lint + build)"
+	@gum log --level info ""
+	@gum log --level info "📚 Module Testing Examples:"
+	@gum log --level info "  make test-module MODULE=did           # Test DID module"
+	@gum log --level info "  make test-module MODULE=dwn VARIANT=cover  # DWN with coverage"
+	@gum log --level info "  make test-module MODULE=svc VARIANT=race   # SVC with race detector"
+	@gum log --level info "  make test-module MODULE=did VARIANT=bench  # DID benchmarks"
+	@gum log --level info ""
+	@gum log --level info "For more detailed options, see the Makefile source."
 
-.PHONY: help
+.PHONY: help release release-platform snapshot snapshot-platform

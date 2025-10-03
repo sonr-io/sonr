@@ -1,0 +1,33 @@
+version: "0.5"
+processes:
+  postgres-sonr:
+    command: |
+      # Generate pgsodium key if not set
+      if [ -z "${PGSODIUM_ROOT_KEY}" ]; then
+        echo "Generating pgsodium root key..."
+        export PGSODIUM_ROOT_KEY=$(openssl rand -hex 32)
+        echo "Generated key: ${PGSODIUM_ROOT_KEY:0:10}..."
+      fi
+
+      # Run the container using the pre-built image
+      docker run --rm \
+        --name ${POSTGRES_CONTAINER_NAME} \
+        -e POSTGRES_USER="${POSTGRES_USER:-postgres}" \
+        -e POSTGRES_DB="${POSTGRES_DB:-sonr}" \
+        -e PGSODIUM_ROOT_KEY="${PGSODIUM_ROOT_KEY}" \
+        -v ${POSTGRES_DATA_DIR}:/var/lib/postgresql/data \
+        -p ${POSTGRES_PORT:-5432}:5432 \
+        ${POSTGRES_DOCKER_IMAGE}
+    availability:
+      restart: "on_failure"
+      backoff_seconds: 5
+      max_restarts: 5
+    readiness_probe:
+      exec:
+        command: "docker exec ${POSTGRES_CONTAINER_NAME} pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-hway}"
+      initial_delay_seconds: 15
+      period_seconds: 10
+    shutdown:
+      command: "docker stop ${POSTGRES_CONTAINER_NAME} || true"
+      timeout_seconds: 30
+    log_location: "{{ .Virtenv }}/logs/postgres-sonr.log"

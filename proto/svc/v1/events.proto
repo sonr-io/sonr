@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package svc.v1;
+
+option go_package = "github.com/sonr-io/sonr/x/svc/types";
+
+import "gogoproto/gogo.proto";
+import "google/protobuf/timestamp.proto";
+
+// EventDomainVerificationInitiated is emitted when domain verification is initiated
+message EventDomainVerificationInitiated {
+  // Domain being verified
+  string domain = 1;
+  
+  // Verification ID
+  string verification_id = 2;
+  
+  // Verification challenge
+  string challenge = 3;
+  
+  // Initiator address
+  string initiator = 4;
+  
+  // Block height
+  uint64 block_height = 5;
+}
+
+// EventDomainVerified is emitted when a domain is successfully verified
+message EventDomainVerified {
+  // Domain that was verified
+  string domain = 1;
+  
+  // Verification ID
+  string verification_id = 2;
+  
+  // Verifier address
+  string verifier = 3;
+  
+  // Verification timestamp
+  google.protobuf.Timestamp verified_at = 4 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+  
+  // Block height
+  uint64 block_height = 5;
+}
+
+// EventServiceRegistered is emitted when a service is registered
+message EventServiceRegistered {
+  // Service ID
+  string service_id = 1;
+  
+  // Associated domain
+  string domain = 2;
+  
+  // Owner DID
+  string owner = 3;
+  
+  // Service endpoints
+  repeated string endpoints = 4;
+  
+  // Service metadata (JSON string)
+  string metadata = 5;
+  
+  // Block height
+  uint64 block_height = 6;
+}

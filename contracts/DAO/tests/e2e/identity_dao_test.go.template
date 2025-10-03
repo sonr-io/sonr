@@ -1,0 +1,515 @@
+package e2e
+
+import (
+	"encoding/json"
+	"testing"
+	"time"
+
+	"github.com/stretchr/testify/suite"
+
+	sdk "github.com/cosmos/cosmos-sdk/types"
+	// Note: These would be imported from actual test helpers
+	// For now, we'll define mock functions inline
+)
+
+// IdentityDAOTestSuite tests end-to-end Identity DAO functionality
+type IdentityDAOTestSuite struct {
+	suite.Suite
+
+	// app      *app.App  // Would be initialized with actual app
+	ctx      sdk.Context
+	deployer sdk.AccAddress
+	voter1   sdk.AccAddress
+	voter2   sdk.AccAddress
+	voter3   sdk.AccAddress
+
+	// Contract addresses
+	coreAddr       sdk.AccAddress
+	votingAddr     sdk.AccAddress
+	proposalsAddr  sdk.AccAddress
+	preProposeAddr sdk.AccAddress
+
+	// Code IDs
+	coreCodeID       uint64
+	votingCodeID     uint64
+	proposalsCodeID  uint64
+	preProposeCodeID uint64
+}
+
+// SetupSuite runs once before all tests
+func (suite *IdentityDAOTestSuite) SetupSuite() {
+	// Note: In production, these would initialize actual test app
+	// For now, we provide the structure for the tests
+
+	// Initialize test app
+	// suite.app = helpers.SetupTestApp()
+	// suite.ctx = suite.app.NewContext(false, sdk.BlockHeader{
+	// 	Height: 1,
+	// 	Time:   time.Now(),
+	// })
+
+	// Create test accounts
+	// suite.deployer = helpers.CreateTestAccount(suite.app, suite.ctx, "deployer", sdk.NewCoins(sdk.NewCoin("usnr", sdk.NewInt(1000000000))))
+	// suite.voter1 = helpers.CreateTestAccount(suite.app, suite.ctx, "voter1", sdk.NewCoins(sdk.NewCoin("usnr", sdk.NewInt(10000000))))
+	// suite.voter2 = helpers.CreateTestAccount(suite.app, suite.ctx, "voter2", sdk.NewCoins(sdk.NewCoin("usnr", sdk.NewInt(10000000))))
+	// suite.voter3 = helpers.CreateTestAccount(suite.app, suite.ctx, "voter3", sdk.NewCoins(sdk.NewCoin("usnr", sdk.NewInt(10000000))))
+
+	// Store contract codes
+	// suite.storeContracts()
+
+	// Deploy contracts
+	// suite.deployContracts()
+}
+
+// storeContracts stores all contract codes
+func (suite *IdentityDAOTestSuite) storeContracts() {
+	// wasmKeeper := suite.app.WasmKeeper
+
+	// Load contract bytecode (would be from compiled .wasm files)
+	// coreWasm := helpers.LoadContractCode("../../artifacts/identity_dao_core.wasm")
+	// votingWasm := helpers.LoadContractCode("../../artifacts/identity_dao_voting.wasm")
+	// proposalsWasm := helpers.LoadContractCode("../../artifacts/identity_dao_proposals.wasm")
+	// preProposeWasm := helpers.LoadContractCode("../../artifacts/identity_dao_pre_propose.wasm")
+
+	// Store codes
+	// var err error
+	// suite.coreCodeID, err = wasmKeeper.StoreCode(suite.ctx, suite.deployer, coreWasm)
+	// suite.Require().NoError(err)
+
+	// suite.votingCodeID, err = wasmKeeper.StoreCode(suite.ctx, suite.deployer, votingWasm)
+	// suite.Require().NoError(err)
+
+	// suite.proposalsCodeID, err = wasmKeeper.StoreCode(suite.ctx, suite.deployer, proposalsWasm)
+	// suite.Require().NoError(err)
+
+	// suite.preProposeCodeID, err = wasmKeeper.StoreCode(suite.ctx, suite.deployer, preProposeWasm)
+	// suite.Require().NoError(err)
+}
+
+// deployContracts instantiates all contracts
+func (suite *IdentityDAOTestSuite) deployContracts() {
+	wasmKeeper := suite.app.WasmKeeper
+
+	// Deploy Core Module
+	coreInitMsg := map[string]any{
+		"admin":            suite.deployer.String(),
+		"dao_name":         "Test Identity DAO",
+		"dao_uri":          "https://test.dao",
+		"voting_module":    nil,
+		"proposal_modules": []string{},
+	}
+
+	coreInitBytes, err := json.Marshal(coreInitMsg)
+	suite.Require().NoError(err)
+
+	suite.coreAddr, _, err = wasmKeeper.InstantiateContract(
+		suite.ctx,
+		suite.coreCodeID,
+		suite.deployer,
+		suite.deployer,
+		coreInitBytes,
+		"identity-dao-core",
+		sdk.NewCoins(),
+	)
+	suite.Require().NoError(err)
+
+	// Deploy Voting Module
+	votingInitMsg := map[string]any{
+		"dao_address":            suite.coreAddr.String(),
+		"min_verification_level": 1,
+		"voting_period":          604800,
+		"quorum_percentage":      20,
+		"threshold_percentage":   51,
+	}
+
+	votingInitBytes, err := json.Marshal(votingInitMsg)
+	suite.Require().NoError(err)
+
+	suite.votingAddr, _, err = wasmKeeper.InstantiateContract(
+		suite.ctx,
+		suite.votingCodeID,
+		suite.deployer,
+		suite.coreAddr,
+		votingInitBytes,
+		"did-voting",
+		sdk.NewCoins(),
+	)
+	suite.Require().NoError(err)
+
+	// Deploy Pre-Propose Module
+	preProposeInitMsg := map[string]any{
+		"proposal_module":         nil,
+		"min_verification_status": "Basic",
+		"deposit_amount":          "1000000",
+		"deposit_denom":           "usnr",
+	}
+
+	preProposeInitBytes, err := json.Marshal(preProposeInitMsg)
+	suite.Require().NoError(err)
+
+	suite.preProposeAddr, _, err = wasmKeeper.InstantiateContract(
+		suite.ctx,
+		suite.preProposeCodeID,
+		suite.deployer,
+		suite.coreAddr,
+		preProposeInitBytes,
+		"pre-propose-identity",
+		sdk.NewCoins(),
+	)
+	suite.Require().NoError(err)
+
+	// Deploy Proposals Module
+	proposalsInitMsg := map[string]any{
+		"dao_address":            suite.coreAddr.String(),
+		"voting_module":          suite.votingAddr.String(),
+		"pre_propose_module":     suite.preProposeAddr.String(),
+		"proposal_duration":      604800,
+		"min_verification_level": 1,
+	}
+
+	proposalsInitBytes, err := json.Marshal(proposalsInitMsg)
+	suite.Require().NoError(err)
+
+	suite.proposalsAddr, _, err = wasmKeeper.InstantiateContract(
+		suite.ctx,
+		suite.proposalsCodeID,
+		suite.deployer,
+		suite.coreAddr,
+		proposalsInitBytes,
+		"identity-proposals",
+		sdk.NewCoins(),
+	)
+	suite.Require().NoError(err)
+
+	// Update Core Module with voting and proposal modules
+	updateMsg := map[string]any{
+		"update_config": map[string]any{
+			"voting_module":    suite.votingAddr.String(),
+			"proposal_modules": []string{suite.proposalsAddr.String()},
+		},
+	}
+
+	updateBytes, err := json.Marshal(updateMsg)
+	suite.Require().NoError(err)
+
+	_, err = wasmKeeper.ExecuteContract(
+		suite.ctx,
+		suite.coreAddr,
+		suite.deployer,
+		updateBytes,
+		sdk.NewCoins(),
+	)
+	suite.Require().NoError(err)
+}
+
+// TestProposalLifecycle tests the complete proposal workflow
+func (suite *IdentityDAOTestSuite) TestProposalLifecycle() {
+	wasmKeeper := suite.app.WasmKeeper
+
+	// 1. Submit proposal through pre-propose module
+	submitMsg := map[string]any{
+		"submit_proposal": map[string]any{
+			"title":       "Test Proposal",
+			"description": "This is a test proposal",
+			"msgs": []map[string]any{
+				{
+					"bank": map[string]any{
+						"send": map[string]any{
+							"to_address": suite.voter1.String(),
+							"amount": []map[string]any{
+								{
+									"denom":  "usnr",
+									"amount": "100000",
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+	}
+
+	submitBytes, err := json.Marshal(submitMsg)
+	suite.Require().NoError(err)
+
+	// Submit with deposit
+	deposit := sdk.NewCoins(sdk.NewCoin("usnr", sdk.NewInt(1000000)))
+	_, err = wasmKeeper.ExecuteContract(
+		suite.ctx,
+		suite.preProposeAddr,
+		suite.voter1,
+		submitBytes,
+		deposit,
+	)
+	suite.Require().NoError(err)
+
+	// 2. Query pending proposals
+	queryMsg := map[string]any{
+		"pending_proposals": map[string]any{},
+	}
+
+	queryBytes, err := json.Marshal(queryMsg)
+	suite.Require().NoError(err)
+
+	result, err := wasmKeeper.QuerySmart(suite.ctx, suite.preProposeAddr, queryBytes)
+	suite.Require().NoError(err)
+
+	var pendingResp map[string]any
+	err = json.Unmarshal(result, &pendingResp)
+	suite.Require().NoError(err)
+
+	proposals := pendingResp["proposals"].([]any)
+	suite.Require().Len(proposals, 1, "Should have one pending proposal")
+
+	// 3. Approve proposal (move to voting)
+	approveMsg := map[string]any{
+		"approve_proposal": map[string]any{
+			"proposal_id": 1,
+		},
+	}
+
+	approveBytes, err := json.Marshal(approveMsg)
+	suite.Require().NoError(err)
+
+	_, err = wasmKeeper.ExecuteContract(
+		suite.ctx,
+		suite.preProposeAddr,
+		suite.deployer, // Admin approves
+		approveBytes,
+		sdk.NewCoins(),
+	)
+	suite.Require().NoError(err)
+
+	// 4. Vote on proposal
+	voteMsg := map[string]any{
+		"vote": map[string]any{
+			"proposal_id": 1,
+			"vote":        "yes",
+		},
+	}
+
+	voteBytes, err := json.Marshal(voteMsg)
+	suite.Require().NoError(err)
+
+	// Multiple voters vote
+	_, err = wasmKeeper.ExecuteContract(
+		suite.ctx,
+		suite.votingAddr,
+		suite.voter1,
+		voteBytes,
+		sdk.NewCoins(),
+	)
+	suite.Require().NoError(err)
+
+	_, err = wasmKeeper.ExecuteContract(
+		suite.ctx,
+		suite.votingAddr,
+		suite.voter2,
+		voteBytes,
+		sdk.NewCoins(),
+	)
+	suite.Require().NoError(err)
+
+	// 5. Query proposal status
+	statusQuery := map[string]any{
+		"proposal": map[string]any{
+			"proposal_id": 1,
+		},
+	}
+
+	statusBytes, err := json.Marshal(statusQuery)
+	suite.Require().NoError(err)
+
+	statusResult, err := wasmKeeper.QuerySmart(suite.ctx, suite.proposalsAddr, statusBytes)
+	suite.Require().NoError(err)
+
+	var statusResp map[string]any
+	err = json.Unmarshal(statusResult, &statusResp)
+	suite.Require().NoError(err)
+
+	// Verify proposal status
+	suite.Equal("open", statusResp["status"], "Proposal should be open for voting")
+
+	// 6. Execute proposal after voting period
+	// Fast-forward time
+	suite.ctx = suite.ctx.WithBlockTime(suite.ctx.BlockTime().Add(7 * 24 * time.Hour))
+
+	executeMsg := map[string]any{
+		"execute": map[string]any{
+			"proposal_id": 1,
+		},
+	}
+
+	executeBytes, err := json.Marshal(executeMsg)
+	suite.Require().NoError(err)
+
+	_, err = wasmKeeper.ExecuteContract(
+		suite.ctx,
+		suite.proposalsAddr,
+		suite.deployer,
+		executeBytes,
+		sdk.NewCoins(),
+	)
+	suite.Require().NoError(err)
+
+	// Verify execution
+	statusResult, err = wasmKeeper.QuerySmart(suite.ctx, suite.proposalsAddr, statusBytes)
+	suite.Require().NoError(err)
+
+	err = json.Unmarshal(statusResult, &statusResp)
+	suite.Require().NoError(err)
+
+	suite.Equal("executed", statusResp["status"], "Proposal should be executed")
+}
+
+// TestDIDVerification tests DID-based voting power
+func (suite *IdentityDAOTestSuite) TestDIDVerification() {
+	wasmKeeper := suite.app.WasmKeeper
+
+	// Query voting power for voter with DID
+	queryMsg := map[string]any{
+		"voting_power": map[string]any{
+			"address": suite.voter1.String(),
+		},
+	}
+
+	queryBytes, err := json.Marshal(queryMsg)
+	suite.Require().NoError(err)
+
+	result, err := wasmKeeper.QuerySmart(suite.ctx, suite.votingAddr, queryBytes)
+	suite.Require().NoError(err)
+
+	var powerResp map[string]any
+	err = json.Unmarshal(result, &powerResp)
+	suite.Require().NoError(err)
+
+	// Verify voting power based on verification level
+	power := powerResp["power"].(string)
+	suite.NotEqual("0", power, "Verified DID should have voting power")
+}
+
+// TestTreasuryManagement tests DAO treasury operations
+func (suite *IdentityDAOTestSuite) TestTreasuryManagement() {
+	wasmKeeper := suite.app.WasmKeeper
+	bankKeeper := suite.app.BankKeeper
+
+	// Send funds to DAO treasury
+	treasuryFunds := sdk.NewCoins(sdk.NewCoin("usnr", sdk.NewInt(50000000)))
+	err := bankKeeper.SendCoins(suite.ctx, suite.deployer, suite.coreAddr, treasuryFunds)
+	suite.Require().NoError(err)
+
+	// Query treasury balance
+	balance := bankKeeper.GetBalance(suite.ctx, suite.coreAddr, "usnr")
+	suite.Equal(treasuryFunds[0], balance, "Treasury should have the sent funds")
+
+	// Create treasury spend proposal
+	spendMsg := map[string]any{
+		"submit_proposal": map[string]any{
+			"title":       "Treasury Spend",
+			"description": "Spend from treasury",
+			"msgs": []map[string]any{
+				{
+					"bank": map[string]any{
+						"send": map[string]any{
+							"from_address": suite.coreAddr.String(),
+							"to_address":   suite.voter2.String(),
+							"amount": []map[string]any{
+								{
+									"denom":  "usnr",
+									"amount": "1000000",
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+	}
+
+	spendBytes, err := json.Marshal(spendMsg)
+	suite.Require().NoError(err)
+
+	deposit := sdk.NewCoins(sdk.NewCoin("usnr", sdk.NewInt(1000000)))
+	_, err = wasmKeeper.ExecuteContract(
+		suite.ctx,
+		suite.preProposeAddr,
+		suite.voter1,
+		spendBytes,
+		deposit,
+	)
+	suite.Require().NoError(err)
+
+	// Verify treasury spend requires proper authorization
+	// This would go through the full proposal workflow
+}
+
+// TestAttestationGovernance tests identity attestation proposals
+func (suite *IdentityDAOTestSuite) TestAttestationGovernance() {
+	wasmKeeper := suite.app.WasmKeeper
+
+	// Create attestation policy change proposal
+	attestMsg := map[string]any{
+		"submit_proposal": map[string]any{
+			"title":       "Update Attestation Policy",
+			"description": "Change attestation requirements",
+			"msgs": []map[string]any{
+				{
+					"custom": map[string]any{
+						"update_attestation_policy": map[string]any{
+							"min_attestations": 2,
+							"valid_types":      []string{"identity", "reputation"},
+						},
+					},
+				},
+			},
+		},
+	}
+
+	attestBytes, err := json.Marshal(attestMsg)
+	suite.Require().NoError(err)
+
+	deposit := sdk.NewCoins(sdk.NewCoin("usnr", sdk.NewInt(1000000)))
+	_, err = wasmKeeper.ExecuteContract(
+		suite.ctx,
+		suite.preProposeAddr,
+		suite.voter3, // Must have high verification level
+		attestBytes,
+		deposit,
+	)
+	// This might fail if voter3 doesn't have sufficient verification
+	// suite.Require().Error(err, "Should require higher verification for attestation proposals")
+}
+
+// TestWyomingDAOCompliance tests Wyoming DAO legal compliance
+func (suite *IdentityDAOTestSuite) TestWyomingDAOCompliance() {
+	wasmKeeper := suite.app.WasmKeeper
+
+	// Query DAO configuration
+	configQuery := map[string]any{
+		"config": map[string]any{},
+	}
+
+	configBytes, err := json.Marshal(configQuery)
+	suite.Require().NoError(err)
+
+	result, err := wasmKeeper.QuerySmart(suite.ctx, suite.coreAddr, configBytes)
+	suite.Require().NoError(err)
+
+	var config map[string]any
+	err = json.Unmarshal(result, &config)
+	suite.Require().NoError(err)
+
+	// Verify Wyoming DAO requirements
+	suite.NotEmpty(config["dao_name"], "DAO must have a name")
+	suite.NotEmpty(config["dao_uri"], "DAO must have a URI")
+	suite.NotEmpty(config["admin"], "DAO must have an admin")
+
+	// Verify voting mechanism exists
+	suite.NotEmpty(config["voting_module"], "DAO must have voting module")
+	suite.NotEmpty(config["proposal_modules"], "DAO must have proposal modules")
+}
+
+// TestSuite runs the test suite
+func TestIdentityDAO(t *testing.T) {
+	suite.Run(t, new(IdentityDAOTestSuite))
+}

@@ -2,7 +2,7 @@ version: v1
 managed:
   enabled: true
   go_package_prefix:
-    default: github.com/sonr-io/snrd/api
+    default: github.com/sonr-io/sonr/api
     except:
       - buf.build/googleapis/googleapis
       - buf.build/cosmos/gogo-proto
@@ -16,6 +16,7 @@ plugins:
   - name: go-grpc
     out: ..
     opt: paths=source_relative
+    # go install cosmossdk.io/orm/cmd/protoc-gen-go-cosmos-orm@latest
   - name: go-cosmos-orm
     out: ..
     opt: paths=source_relative

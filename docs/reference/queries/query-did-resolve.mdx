@@ -1,0 +1,21 @@
+---
+openapi: get /did/v1/resolve/{did}
+title: Resolve W3C DID Document
+description: Retrieve complete DID document with verification methods and services
+og:title: DID Resolution
+---
+
+<Info>
+  DID resolution is the primary way to discover how to interact with
+  a decentralized identity, including available keys and services.
+</Info>
+
+<Warning>
+  Deactivated DIDs cannot be resolved. The query will return an error
+  indicating the DID has been permanently disabled.
+</Warning>
+
+<Tip>
+  Cache resolved DID documents client-side with appropriate TTL based
+  on your security requirements and update frequency needs.
+</Tip>

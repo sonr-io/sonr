@@ -1,0 +1,191 @@
+syntax = "proto3";
+
+package did.v1;
+
+option go_package = "github.com/sonr-io/sonr/x/did/types";
+
+import "gogoproto/gogo.proto";
+import "google/protobuf/timestamp.proto";
+
+// EventDIDCreated is emitted when a new DID is created
+message EventDIDCreated {
+  // DID identifier
+  string did = 1;
+  
+  // Creator address
+  string creator = 2;
+  
+  // Public keys added
+  repeated string public_keys = 3;
+  
+  // Services added
+  repeated string services = 4;
+  
+  // Creation timestamp
+  google.protobuf.Timestamp created_at = 5 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+  
+  // Block height
+  uint64 block_height = 6;
+}
+
+// EventDIDUpdated is emitted when a DID is updated
+message EventDIDUpdated {
+  // DID identifier
+  string did = 1;
+  
+  // Updater address
+  string updater = 2;
+  
+  // Fields that were updated
+  repeated string fields_updated = 3;
+  
+  // Update timestamp
+  google.protobuf.Timestamp updated_at = 4 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+  
+  // Block height
+  uint64 block_height = 5;
+}
+
+// EventDIDDeactivated is emitted when a DID is deactivated
+message EventDIDDeactivated {
+  // DID identifier
+  string did = 1;
+  
+  // Deactivator address
+  string deactivator = 2;
+  
+  // Deactivation timestamp
+  google.protobuf.Timestamp deactivated_at = 3 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+  
+  // Block height
+  uint64 block_height = 4;
+}
+
+// EventVerificationMethodAdded is emitted when a verification method is added
+message EventVerificationMethodAdded {
+  // DID identifier
+  string did = 1;
+  
+  // Method ID
+  string method_id = 2;
+  
+  // Key type
+  string key_type = 3;
+  
+  // Public key (encoded)
+  string public_key = 4;
+  
+  // Block height
+  uint64 block_height = 5;
+}
+
+// EventVerificationMethodRemoved is emitted when a verification method is removed
+message EventVerificationMethodRemoved {
+  // DID identifier
+  string did = 1;
+  
+  // Method ID
+  string method_id = 2;
+  
+  // Block height
+  uint64 block_height = 3;
+}
+
+// EventServiceAdded is emitted when a service is added to a DID
+message EventServiceAdded {
+  // DID identifier
+  string did = 1;
+  
+  // Service ID
+  string service_id = 2;
+  
+  // Service type
+  string type = 3;
+  
+  // Service endpoint
+  string endpoint = 4;
+  
+  // Block height
+  uint64 block_height = 5;
+}
+
+// EventServiceRemoved is emitted when a service is removed from a DID
+message EventServiceRemoved {
+  // DID identifier
+  string did = 1;
+  
+  // Service ID
+  string service_id = 2;
+  
+  // Block height
+  uint64 block_height = 3;
+}
+
+// EventCredentialIssued is emitted when a verifiable credential is issued
+message EventCredentialIssued {
+  // Credential ID
+  string credential_id = 1;
+  
+  // Issuer DID
+  string issuer = 2;
+  
+  // Subject DID
+  string subject = 3;
+  
+  // Credential type
+  string type = 4;
+  
+  // Issuance timestamp
+  google.protobuf.Timestamp issued_at = 5 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+  
+  // Block height
+  uint64 block_height = 6;
+}
+
+// EventCredentialRevoked is emitted when a credential is revoked
+message EventCredentialRevoked {
+  // Credential ID
+  string credential_id = 1;
+  
+  // Revoker DID
+  string revoker = 2;
+  
+  // Revocation reason
+  string reason = 3;
+  
+  // Revocation timestamp
+  google.protobuf.Timestamp revoked_at = 4 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+  
+  // Block height
+  uint64 block_height = 5;
+}
+
+// EventWebAuthnRegistered is emitted when a WebAuthn credential is registered
+message EventWebAuthnRegistered {
+  // DID identifier
+  string did = 1;
+  
+  // WebAuthn credential ID
+  string credential_id = 2;
+  
+  // Attestation type
+  string attestation_type = 3;
+  
+  // Block height
+  uint64 block_height = 4;
+}
+
+// EventExternalWalletLinked is emitted when an external wallet is linked
+message EventExternalWalletLinked {
+  // DID identifier
+  string did = 1;
+  
+  // Wallet type (ethereum, bitcoin, etc.)
+  string wallet_type = 2;
+  
+  // Wallet address
+  string wallet_address = 3;
+  
+  // Block height
+  uint64 block_height = 4;
+}

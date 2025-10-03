@@ -1,0 +1,71 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema-pro.json
+---
+version: 2
+dist: dist/vault
+monorepo:
+  tag_prefix: vault/
+  dir: cmd/vault
+
+project_name: vault
+before:
+  hooks:
+    - go mod download
+
+builds:
+  - id: vault
+    main: main.go
+    binary: vault
+    no_unique_dist_dir: true
+    hooks:
+      post:
+        - cp dist/vault/vault.wasm x/dwn/client/plugin/vault.wasm
+        - cp dist/vault/vault.wasm packages/es/src/plugin/plugin.wasm
+    mod_timestamp: "{{ .CommitTimestamp }}"
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - wasip1
+    goarch:
+      - wasm
+    flags:
+      - -mod=readonly
+      - -trimpath
+    ldflags:
+      - -s -w
+      - -X main.version={{.Version}}
+      - -X main.commit={{.Commit}}
+      - -X main.date={{.Date}}
+
+archives:
+  - id: vault-wasm-archive
+    name_template: "vault_wasm_{{ .Version }}"
+    formats: ["binary"]
+    wrap_in_directory: true
+
+blobs:
+  - provider: s3
+    endpoint: https://eb37925850388bca807b7fab964c12bb.r2.cloudflarestorage.com
+    bucket: releases
+    region: auto
+    directory: "vault/{{ .Tag }}"
+
+release:
+  disable: false
+  github:
+    owner: sonr-io
+    name: sonr
+  name_template: "{{.ProjectName}}/{{ .Tag }}"
+  draft: false
+  replace_existing_draft: false # Don't replace drafts
+  replace_existing_artifacts: false # Append, don't replace
+  mode: append # Explicitly set to append mode
+
+checksum:
+  name_template: "vault_checksums.txt"
+
+snapshot:
+  version_template: "{{ incpatch .Version }}-dev"
+
+# Changelog configuration
+changelog:
+  sort: asc

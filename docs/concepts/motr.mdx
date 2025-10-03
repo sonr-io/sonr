@@ -1,0 +1,114 @@
+---
+title: "Motr WASM Light-Node"
+sidebarTitle: "Motr Overview"
+description: "Learn how to use the Motor WASM plugin as an MPC-based UCAN source for decentralized token operations"
+icon: "play"
+---
+
+# Motor WASM Plugin: UCAN Source
+
+The Motor WASM plugin is a WebAssembly-based plugin that provides Multi-Party Computation (MPC) powered UCAN (User-Controlled Authorization Networks) token generation and management.
+
+## Overview
+
+The Motor plugin enables secure, decentralized token creation and management through an MPC-based architecture. It provides the following key capabilities:
+
+- Secure token generation
+- MPC-based signing
+- Flexible UCAN token creation
+- Integrated enclave management
+
+## Environment Configuration
+
+To use the Motor plugin, you need to set the following PDK environment variables:
+
+```json
+{
+  "chain_id": "sonr-testnet-1",  // Blockchain network
+  "enclave": { ... },            // MPC enclave configuration
+  "vault_config": { ... }        // Optional vault configuration
+}
+```
+
+## UCAN Token Creation
+
+### Creating Origin Tokens
+
+```go
+type NewOriginTokenRequest struct {
+    AudienceDID  string                   // Target DID
+    Attenuations []map[string]any // Optional restrictions
+    Facts        []string                 // Additional claims
+    NotBefore    int64                    // Token activation time
+    ExpiresAt    int64                    // Token expiration time
+}
+```
+
+Example usage:
+
+```go
+request := NewOriginTokenRequest{
+    AudienceDID: "did:example:target-did",
+    Attenuations: []{
+        {"capability": "read", "resource": "/data"}
+    },
+    Facts: ["authenticated_user"],
+    NotBefore: time.Now().Unix(),
+    ExpiresAt: time.Now().Add(24 * time.Hour).Unix()
+}
+```
+
+### Creating Attenuated Tokens
+
+```go
+type NewAttenuatedTokenRequest struct {
+    ParentToken  string                   // Previous token to derive from
+    AudienceDID  string                   // Target DID
+    Attenuations []map[string]any // Token restrictions
+    Facts        []string                 // Additional claims
+    NotBefore    int64                    // Token activation time
+    ExpiresAt    int64                    // Token expiration time
+}
+```
+
+## Signing and Verification
+
+The Motor plugin provides methods for data signing and verification:
+
+```go
+// Sign data using MPC enclave
+func SignData(data []byte) (signature []byte, err error)
+
+// Verify signed data
+func VerifyData(data, signature []byte) (valid bool, err error)
+```
+
+## Error Handling
+
+The plugin returns structured error responses with detailed error messages:
+
+```go
+type UCANTokenResponse struct {
+    Token   string  // Generated token
+    Issuer  string  // Token issuer DID
+    Address string  // Blockchain address
+    Error   string  // Error message (if any)
+}
+```
+
+## Best Practices
+
+1. Always validate the enclave before generating tokens
+2. Use the shortest possible token lifetime
+3. Implement granular attenuations
+4. Validate tokens before using them
+
+## Security Considerations
+
+- MPC ensures no single party controls the entire signing process
+- Tokens are cryptographically signed using distributed key shares
+- Supports multiple key types: Ed25519, Secp256k1, RSA
+
+## Advanced Configuration
+
+For advanced MPC enclave configurations, refer to the DWN configuration documentation.

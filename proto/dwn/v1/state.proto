@@ -3,31 +3,371 @@ package dwn.v1;
 
 import "cosmos/orm/v1/orm.proto";
 
-option go_package = "github.com/sonr-io/snrd/x/dwn/types";
+option go_package = "github.com/sonr-io/sonr/x/dwn/types";
 
-// https://github.com/cosmos/cosmos-sdk/blob/main/orm/README.md
-
-message Credential {
-    option (cosmos.orm.v1.table) = {
-      id: 1;
-      primary_key: { fields: "id" }
-    };
-
-    bytes id = 1;                    // The credential ID as a byte array
-    string kind = 2;                 // The credential type (e.g. "public-key")
-    repeated string transports = 3;   // Optional transport hints (usb, nfc, ble, internal)
-    bytes public_key = 4;            // The credential's public key
-    string attestation_type = 5;     // The attestation type used (e.g. "none", "indirect", etc)
-    uint64 created_at = 6;           // Timestamp of when the credential was created
+// EncryptionMetadata contains metadata for consensus-based encryption
+message EncryptionMetadata {
+  // Encryption algorithm used (e.g., "AES-256-GCM")
+  string algorithm = 1;
+  // Input used for VRF consensus key derivation
+  bytes consensus_input = 2;
+  // Nonce used for encryption
+  bytes nonce = 3;
+  // Authentication tag from AES-GCM
+  bytes auth_tag = 4;
+  // Block height when encryption was performed
+  int64 encryption_height = 5;
+  // Validator set participating in consensus
+  repeated string validator_set = 6;
+  // Key rotation version
+  uint64 key_version = 7;
+  // Single node development mode flag
+  bool single_node_mode = 8;
+  // HMAC-SHA256 authentication tag for data integrity
+  bytes data_hmac = 9;
+  // Salt used for key derivation
+  bytes key_derivation_salt = 10;
+  // Additional authenticated data (AAD) for AES-GCM
+  bytes additional_data = 11;
 }
 
-message Profile {
-    option (cosmos.orm.v1.table) = {
-      id: 2;
-      primary_key: { fields: "account" }
-      index: { id: 1 fields: "amount" }
-    };
+// EncryptionKeyState contains the current key and contributions for a given key version
+message EncryptionKeyState {
+  option (cosmos.orm.v1.table) = {
+    id: 6
+    primary_key: {fields: "key_version"}
+    index: {
+      id: 1
+      fields: "last_rotation"
+      unique: false
+    }
+    index: {
+      id: 2
+      fields: "next_rotation"
+      unique: false
+    }
+  };
 
-    bytes account = 1;
-    uint64 amount  = 2;
+  // Current encryption key (stored encrypted or as reference)
+  bytes current_key = 1;
+  // Key version/epoch identifier
+  uint64 key_version = 2;
+  // Validator set participating in consensus
+  repeated string validator_set = 3;
+  // VRF contributions for this key generation round
+  repeated VRFContribution contributions = 4;
+  // Last rotation timestamp (Unix timestamp)
+  int64 last_rotation = 5;
+  // Next scheduled rotation timestamp (Unix timestamp)
+  int64 next_rotation = 6;
+  // Single node development mode flag
+  bool single_node_mode = 7;
+  // Usage count for this key (for usage-based rotation)
+  uint64 usage_count = 8;
+  // Maximum usage count before rotation
+  uint64 max_usage_count = 9;
+  // Rotation interval in seconds (for time-based rotation)
+  int64 rotation_interval = 10;
+  // Key creation timestamp (Unix timestamp)
+  int64 created_at = 11;
+  // Previous key version for migration support
+  uint64 previous_key_version = 12;
+}
+
+// VRFConsensusRound tracks a specific consensus round for key generation
+message VRFConsensusRound {
+  option (cosmos.orm.v1.table) = {
+    id: 7
+    primary_key: {fields: "round_number"}
+    index: {
+      id: 1
+      fields: "status"
+      unique: false
+    }
+    index: {
+      id: 2
+      fields: "expiry_height"
+      unique: false
+    }
+  };
+
+  // Round number for this consensus round
+  uint64 round_number = 1;
+  // Key version this round is generating
+  uint64 key_version = 2;
+  // Number of contributions required for consensus
+  uint32 required_contributions = 3;
+  // Number of contributions received so far
+  uint32 received_contributions = 4;
+  // Current status: "waiting_for_contributions", "complete", "expired", "single_node_mode"
+  string status = 5;
+  // Block height when this round expires
+  int64 expiry_height = 6;
+  // Block height when round was initiated
+  int64 initiated_height = 7;
+  // Consensus input used for this round
+  bytes consensus_input = 8;
+  // Whether this round completed successfully
+  bool completed = 9;
+}
+
+// EncryptionStats contains encryption statistics for monitoring
+message EncryptionStats {
+  // Total number of encrypted records
+  int64 total_encrypted_records = 1;
+  // Total number of decryption errors
+  int64 total_decryption_errors = 2;
+  // Last encryption height
+  int64 last_encryption_height = 3;
+}
+
+// SaltStore contains salt management for encryption operations
+message SaltStore {
+  option (cosmos.orm.v1.table) = {
+    id: 8
+    primary_key: {fields: "record_id"}
+    index: {
+      id: 1
+      fields: "created_at"
+      unique: false
+    }
+  };
+
+  // Unique identifier for the encrypted record
+  string record_id = 1;
+  // Salt value used for key derivation
+  bytes salt_value = 2;
+  // Creation timestamp (Unix timestamp)
+  int64 created_at = 3;
+  // Key version associated with this salt
+  uint64 key_version = 4;
+  // Algorithm used with this salt (e.g., "PBKDF2-SHA256")
+  string algorithm = 5;
+}
+
+// VRFContribution contains a VRF contribution for a given validator
+message VRFContribution {
+  option (cosmos.orm.v1.table) = {
+    id: 5
+    primary_key: {fields: "validator_address,block_height"}
+    index: {
+      id: 1
+      fields: "block_height"
+      unique: false
+    }
+    index: {
+      id: 2
+      fields: "timestamp"
+      unique: false
+    }
+  };
+
+  // Validator address
+  string validator_address = 1;
+  // VRF randomness output
+  bytes randomness = 2;
+  // VRF proof for verification
+  bytes proof = 3;
+  // Block height when contribution was made
+  int64 block_height = 4;
+  // Unix timestamp when contribution was submitted
+  int64 timestamp = 5;
+}
+
+// EncryptedDWNRecord contains an encrypted DWN record
+message EncryptedDWNRecord {
+  // Unique identifier for the record
+  string record_id = 1;
+  // Encrypted data
+  bytes encrypted_data = 2;
+  // Nonce used for encryption
+  bytes nonce = 3;
+  // Key version
+  uint64 key_version = 4;
+  // IPFS hash of the record data
+  string ipfs_hash = 5;
+}
+
+// EnclaveData represents encrypted private key material within a secure enclave
+message EnclaveData {
+  // Encrypted private key material from the WASM enclave
+  bytes private_data = 1;
+  // Public key corresponding to the private key
+  bytes public_key = 2;
+  // Unique identifier for the enclave instance
+  string enclave_id = 3;
+  // Version number for refresh tracking
+  int64 version = 4;
+}
+
+// DWNMessageDescriptor contains metadata about a DWN message
+message DWNMessageDescriptor {
+  // Interface type (e.g., "Records", "Protocols", "Permissions")
+  string interface_name = 1;
+  // Method name (e.g., "Write", "Query", "Configure")
+  string method = 2;
+  // ISO 8601 timestamp of when the message was created
+  string message_timestamp = 3;
+  // CID of the message data
+  string data_cid = 4;
+  // Size of the data in bytes
+  int64 data_size = 5;
+  // MIME type of the data
+  string data_format = 6;
+}
+
+// DWNRecord represents a record stored in a Decentralized Web Node
+message DWNRecord {
+  option (cosmos.orm.v1.table) = {
+    id: 1
+    primary_key: {fields: "record_id"}
+    index: {
+      id: 1
+      fields: "target,protocol"
+      unique: false
+    }
+    index: {
+      id: 2
+      fields: "target,schema"
+      unique: false
+    }
+    index: {
+      id: 3
+      fields: "parent_id"
+      unique: false
+    }
+  };
+
+  // Unique identifier for the record
+  string record_id = 1;
+  // DID of the DWN target
+  string target = 2;
+  // Message descriptor
+  DWNMessageDescriptor descriptor = 3;
+  // Authorization JWT or signature
+  string authorization = 4;
+  // Record data payload
+  bytes data = 5;
+  // Optional protocol URI this record conforms to
+  string protocol = 6;
+  // Optional protocol path
+  string protocol_path = 7;
+  // Optional schema URI for data validation
+  string schema = 8;
+  // Optional parent record ID for threading
+  string parent_id = 9;
+  // Published flag for public visibility
+  bool published = 10;
+  // Attestation signature
+  string attestation = 11;
+  // Encryption details (legacy field)
+  string encryption = 12;
+  // Key derivation scheme (legacy field)
+  string key_derivation_scheme = 13;
+  // Creation timestamp (Unix timestamp)
+  int64 created_at = 14;
+  // Last update timestamp (Unix timestamp)
+  int64 updated_at = 15;
+  // Block height when created
+  int64 created_height = 16;
+  // Encryption metadata for consensus-based encryption
+  EncryptionMetadata encryption_metadata = 17;
+  // Flag indicating if the record is encrypted
+  bool is_encrypted = 18;
+}
+
+// DWNProtocol represents a configured protocol in a DWN
+message DWNProtocol {
+  option (cosmos.orm.v1.table) = {
+    id: 2
+    primary_key: {fields: "target,protocol_uri"}
+  };
+
+  // DID of the DWN target
+  string target = 1;
+  // Protocol URI identifier
+  string protocol_uri = 2;
+  // Protocol definition JSON
+  bytes definition = 3;
+  // Published flag for discoverability
+  bool published = 4;
+  // Creation timestamp (Unix timestamp)
+  int64 created_at = 5;
+  // Block height when created
+  int64 created_height = 6;
+}
+
+// DWNPermission represents a permission grant in a DWN
+message DWNPermission {
+  option (cosmos.orm.v1.table) = {
+    id: 3
+    primary_key: {fields: "permission_id"}
+    index: {
+      id: 1
+      fields: "grantor,grantee"
+      unique: false
+    }
+    index: {
+      id: 2
+      fields: "target,interface_name,method"
+      unique: false
+    }
+  };
+
+  // Unique identifier for the permission
+  string permission_id = 1;
+  // DID of the permission grantor
+  string grantor = 2;
+  // DID of the permission grantee
+  string grantee = 3;
+  // DID of the DWN target
+  string target = 4;
+  // Interface scope (e.g., "Records", "Protocols")
+  string interface_name = 5;
+  // Method scope (e.g., "Write", "Query")
+  string method = 6;
+  // Optional protocol scope
+  string protocol = 7;
+  // Optional record scope
+  string record_id = 8;
+  // Permission conditions JSON
+  bytes conditions = 9;
+  // Expiration timestamp (Unix timestamp)
+  int64 expires_at = 10;
+  // Creation timestamp (Unix timestamp)
+  int64 created_at = 11;
+  // Revoked flag
+  bool revoked = 12;
+  // Block height when created
+  int64 created_height = 13;
+}
+
+// VaultState represents a vault instance for enclave-based operations
+message VaultState {
+  option (cosmos.orm.v1.table) = {
+    id: 4
+    primary_key: {fields: "vault_id"}
+    index: {
+      id: 1
+      fields: "owner"
+      unique: false
+    }
+  };
+
+  // Unique identifier for the vault
+  string vault_id = 1;
+  // Owner DID or address
+  string owner = 2;
+  // Enclave data containing encrypted keys
+  EnclaveData enclave_data = 3;
+  // Public key for verification
+  bytes public_key = 4;
+  // Creation timestamp (Unix timestamp)
+  int64 created_at = 5;
+  // Last refresh timestamp (Unix timestamp)
+  int64 last_refreshed = 6;
+  // Block height when created
+  int64 created_height = 7;
+  // Encryption metadata for consensus-based encryption
+  EncryptionMetadata encryption_metadata = 8;
 }

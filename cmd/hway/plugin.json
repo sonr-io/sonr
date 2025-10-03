@@ -1,0 +1,22 @@
+{
+  "name": "hway",
+  "version": "0.0.3",
+  "description": "Plugin for Sonr Hway Gateway",
+  "packages": [],
+  "env": {},
+  "create_files": {
+    "{{ .Virtenv }}/data": "",
+    "{{ .Virtenv }}/logs": "",
+    "{{ .Virtenv }}/process-compose.yaml": "etc/process-compose.yaml",
+    "{{ .DevboxDir }}/init.sh": "etc/init.sh"
+  },
+  "shell": {
+    "init_hook": ["chmod +x {{ .DevboxDir }}/init.sh", "{{ .DevboxDir }}/init.sh"],
+    "scripts": {
+      "start": "devbox services start postgres-sonr",
+      "stop": "devbox services stop postgres-sonr",
+      "restart": "devbox services restart postgres-sonr",
+      "logs": "docker logs -f ${POSTGRES_CONTAINER_NAME}"
+    }
+  }
+}

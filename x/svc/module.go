@@ -1,3 +1,4 @@
+// Package module provides the Cosmos SDK implementation for the SVC module.
 package module
 
 import (
@@ -18,8 +19,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 
-	"github.com/sonr-io/snrd/x/svc/keeper"
-	"github.com/sonr-io/snrd/x/svc/types"
+	"github.com/sonr-io/sonr/x/svc/keeper"
+	"github.com/sonr-io/sonr/x/svc/types"
 )
 
 const (
@@ -67,7 +68,11 @@ func (a AppModuleBasic) DefaultGenesis(cdc codec.JSONCodec) json.RawMessage {
 	})
 }
 
-func (a AppModuleBasic) ValidateGenesis(marshaler codec.JSONCodec, _ client.TxEncodingConfig, message json.RawMessage) error {
+func (a AppModuleBasic) ValidateGenesis(
+	marshaler codec.JSONCodec,
+	_ client.TxEncodingConfig,
+	message json.RawMessage,
+) error {
 	var data types.GenesisState
 	err := marshaler.UnmarshalJSON(message, &data)
 	if err != nil {
@@ -83,7 +88,11 @@ func (a AppModuleBasic) RegisterRESTRoutes(_ client.Context, _ *mux.Router) {
 }
 
 func (a AppModuleBasic) RegisterGRPCGatewayRoutes(clientCtx client.Context, mux *runtime.ServeMux) {
-	err := types.RegisterQueryHandlerClient(context.Background(), mux, types.NewQueryClient(clientCtx))
+	err := types.RegisterQueryHandlerClient(
+		context.Background(),
+		mux,
+		types.NewQueryClient(clientCtx),
+	)
 	if err != nil {
 		// same behavior as in cosmos-sdk
 		panic(err)
@@ -109,11 +118,19 @@ func (a AppModuleBasic) RegisterInterfaces(r codectypes.InterfaceRegistry) {
 	types.RegisterInterfaces(r)
 }
 
-func (a AppModule) InitGenesis(ctx sdk.Context, marshaler codec.JSONCodec, message json.RawMessage) []abci.ValidatorUpdate {
+func (a AppModule) InitGenesis(
+	ctx sdk.Context,
+	marshaler codec.JSONCodec,
+	message json.RawMessage,
+) []abci.ValidatorUpdate {
 	var genesisState types.GenesisState
 	marshaler.MustUnmarshalJSON(message, &genesisState)
 
 	if err := a.keeper.Params.Set(ctx, genesisState.Params); err != nil {
+		panic(err)
+	}
+
+	if err := a.keeper.InitGenesis(ctx, &genesisState); err != nil {
 		panic(err)
 	}
 

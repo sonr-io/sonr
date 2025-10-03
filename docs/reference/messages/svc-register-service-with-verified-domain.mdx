@@ -1,0 +1,139 @@
+---
+openapi: post /svc.v1.Msg/RegisterService
+title: Register Decentralized Service
+description: Create a new service with domain binding and UCAN permissions
+og:title: Service Registration
+---
+
+<Info>
+  Services are the foundation of decentralized applications in Sonr, providing trusted interaction points through verified domains.
+</Info>
+
+## Prerequisites
+
+Before registering a service:
+1. **Domain Verified**: Complete domain verification process
+2. **Service ID Ready**: Choose unique identifier (lowercase, alphanumeric, hyphens)
+3. **Permissions Defined**: Plan required UCAN capabilities
+4. **Registration Fee**: Have sufficient funds for fee
+
+## Service Architecture
+
+### Service Identity
+```
+Service ID: my-app
+Domain: example.com
+Full Identity: my-app@example.com
+```
+
+### Permission Model
+Services request permissions users must grant:
+- **dwn:read**: Read user's DWN data
+- **dwn:write**: Write to user's DWN
+- **identity:read**: Access identity information
+- **vault:access**: Interact with user's vault
+- **credentials:verify**: Verify user credentials
+
+## Common Permission Patterns
+
+### Social Application
+```json
+{
+  "requestedPermissions": [
+    "dwn:read",
+    "dwn:write",
+    "identity:read"
+  ]
+}
+```
+
+### Financial Service
+```json
+{
+  "requestedPermissions": [
+    "vault:access",
+    "credentials:verify",
+    "identity:read"
+  ]
+}
+```
+
+### Data Analytics
+```json
+{
+  "requestedPermissions": [
+    "dwn:read",
+    "identity:read"
+  ]
+}
+```
+
+<Tip>
+  Request only necessary permissions. Users are more likely to grant minimal permission sets.
+</Tip>
+
+## UCAN Integration
+
+### Root Capability
+Upon registration, service receives:
+- **Root Capability CID**: IPFS identifier for UCAN root
+- **Authorization Chain**: Build delegations from root
+- **Permission Scope**: Act within granted permissions
+
+### Optional Pre-authorization
+```json
+{
+  "ucanDelegationChain": "eyJhbGciOiJFZERTQSI..."
+}
+```
+Provide existing UCAN chain for pre-authorized capabilities.
+
+## Service Lifecycle
+
+### Registration
+1. Submit registration with domain and permissions
+2. System validates domain ownership
+3. Service ID uniqueness checked
+4. Root capability generated
+5. Service activated and discoverable
+
+### User Interaction Flow
+1. User discovers service by domain/ID
+2. Service requests permissions
+3. User reviews and grants via wallet
+4. Service receives UCAN capability
+5. Service acts on user's behalf
+
+## Best Practices
+
+### Service ID Selection
+- **Descriptive**: `chat-app`, `vault-manager`
+- **Consistent**: Match your brand/product
+- **Permanent**: Cannot be changed after registration
+
+### Permission Planning
+- **Minimal Scope**: Only what's needed
+- **Clear Purpose**: Document why each permission
+- **Future Growth**: Design for expansion
+
+<Warning>
+  Service registration is permanent. Choose your service ID carefully as it cannot be changed.
+</Warning>
+
+## Post-Registration
+
+After successful registration:
+```bash
+# Query your service
+snrd query svc service my-app
+
+# View services by domain
+snrd query svc services-by-domain example.com
+
+# Check root capability
+ipfs cat <root_capability_cid>
+```
+
+<Note>
+  Services become immediately discoverable after registration. Ensure your application is ready to handle user interactions.
+</Note>

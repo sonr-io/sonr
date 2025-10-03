@@ -6,10 +6,8 @@ import (
 	ormv1alpha1 "cosmossdk.io/api/cosmos/orm/v1alpha1"
 )
 
-var (
-	// ParamsKey saves the current module params.
-	ParamsKey = collections.NewPrefix(0)
-)
+// ParamsKey saves the current module params.
+var ParamsKey = collections.NewPrefix(0)
 
 const (
 	ModuleName = "dwn"
@@ -17,6 +15,8 @@ const (
 	StoreKey = ModuleName
 
 	QuerierRoute = ModuleName
+
+	RouterKey = ModuleName
 )
 
 var ORMModuleSchema = ormv1alpha1.ModuleSchemaDescriptor{

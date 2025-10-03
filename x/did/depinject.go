@@ -3,21 +3,22 @@ package module
 import (
 	"os"
 
+	"github.com/cosmos/cosmos-sdk/codec"
+	authkeeper "github.com/cosmos/cosmos-sdk/x/auth/keeper"
+	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
+	slashingkeeper "github.com/cosmos/cosmos-sdk/x/slashing/keeper"
+
+	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
+	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
+
 	"cosmossdk.io/core/address"
 	"cosmossdk.io/core/appmodule"
 	"cosmossdk.io/core/store"
 	"cosmossdk.io/depinject"
 	"cosmossdk.io/log"
-	nftkeeper "cosmossdk.io/x/nft/keeper"
-	"github.com/cosmos/cosmos-sdk/codec"
-	authkeeper "github.com/cosmos/cosmos-sdk/x/auth/keeper"
-	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
-	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
-	slashingkeeper "github.com/cosmos/cosmos-sdk/x/slashing/keeper"
-	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 
-	modulev1 "github.com/sonr-io/snrd/api/did/module/v1"
-	"github.com/sonr-io/snrd/x/did/keeper"
+	modulev1 "github.com/sonr-io/sonr/api/did/module/v1"
+	"github.com/sonr-io/sonr/x/did/keeper"
 )
 
 var _ appmodule.AppModule = AppModule{}
@@ -43,7 +44,6 @@ type ModuleInputs struct {
 	AddressCodec address.Codec
 
 	AccountKeeper  authkeeper.AccountKeeper
-	NFTKeeper      nftkeeper.Keeper
 	StakingKeeper  stakingkeeper.Keeper
 	SlashingKeeper slashingkeeper.Keeper
 }
@@ -58,8 +58,14 @@ type ModuleOutputs struct {
 func ProvideModule(in ModuleInputs) ModuleOutputs {
 	govAddr := authtypes.NewModuleAddress(govtypes.ModuleName).String()
 
-	k := keeper.NewKeeper(in.Cdc, in.StoreService, log.NewLogger(os.Stderr), govAddr, in.AccountKeeper, in.NFTKeeper, &in.StakingKeeper)
-	m := NewAppModule(in.Cdc, k, in.NFTKeeper)
+	k := keeper.NewKeeper(
+		in.Cdc,
+		in.StoreService,
+		log.NewLogger(os.Stderr),
+		govAddr,
+		in.AccountKeeper,
+	)
+	m := NewAppModule(in.Cdc, k)
 
 	return ModuleOutputs{Module: m, Keeper: k, Out: depinject.Out{}}
 }

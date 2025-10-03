@@ -1,0 +1,131 @@
+---
+title: snrd query delegation
+description: Querying subcommands
+---
+
+# snrd query delegation
+
+Querying subcommands
+
+## Usage
+
+```shell
+snrd query [flags]
+```
+
+```shell
+snrd query [command]
+```
+
+## Available Commands
+
+| Command | Description |
+|---------|-------------|
+| `auth` | Querying commands for the auth module |
+| `authz` | Querying commands for the authz module |
+| `bank` | Querying commands for the bank module |
+| `block-results` | Query for a committed block's results by height |
+| `blocks` | Query for paginated blocks that match a set of events |
+| `circuit` | Querying commands for the circuit module |
+| `comet-validator-set` | Get the full CometBFT validator set at given height |
+| `consensus` | Querying commands for the consensus module |
+| `dex` | Querying commands for the dex module |
+| `did` | Querying commands for the did module |
+| `distribution` | Querying commands for the distribution module |
+| `dwn` | Querying commands for the dwn module |
+| `erc20` | Querying commands for the erc20 module |
+| `evidence` | Querying commands for the evidence module |
+| `evm` | Querying commands for the evm module |
+| `feegrant` | Querying commands for the feegrant module |
+| `feemarket` | Querying commands for the fee market module |
+| `gov` | Querying commands for the gov module |
+| `group` | Querying commands for the group module |
+| `ibc` | Querying commands for the IBC module |
+| `ibc-fee` | IBC relayer incentivization query subcommands |
+| `ibc-transfer` | IBC fungible token transfer query subcommands |
+| `ibc-wasm` | IBC wasm manager module query subcommands |
+| `interchain-accounts` | IBC interchain accounts query subcommands |
+| `mint` | Querying commands for the mint module |
+| `nft` | Querying commands for the nft module |
+| `params` | Querying commands for the params module |
+| `ratelimit` | Querying commands for the ratelimit module |
+| `slashing` | Querying commands for the slashing module |
+| `staking` | Querying commands for the staking module |
+| `svc` | Querying commands for the svc module |
+| `tokenfactory` | Querying commands for the tokenfactory module |
+| `tx` | Query for a transaction by hash, "addr/seq" combination or comma-separated signatures in a committed block |
+| `txs` | Query for paginated transactions that match a set of events |
+| `upgrade` | Querying commands for the upgrade module |
+| `wait-tx` | Wait for a transaction to be included in a block |
+
+## Flags
+
+<ParamField path="chain-id" type="string">
+  The network chain ID
+</ParamField>
+
+<ParamField path="help" type="string">
+  for query
+</ParamField>
+
+## Global Flags
+
+<ParamField path="broadcast-mode" type="string" default="sync">
+  Transaction broadcasting mode (sync|async)
+</ParamField>
+
+<ParamField path="fees" type="string">
+  Fees to pay along with transaction; eg: 10aatom
+</ParamField>
+
+<ParamField path="from" type="string">
+  Name or address of private key with which to sign
+</ParamField>
+
+<ParamField path="gas-adjustment" type="float" default="1">
+  adjustment factor to be multiplied against the estimate returned by the tx simulation; if the gas limit is set manually this flag is ignored
+</ParamField>
+
+<ParamField path="gas-prices" type="string">
+  Gas prices to determine the transaction fee (e.g. 10aatom)
+</ParamField>
+
+<ParamField path="home" type="string" default="/Users/prad/.sonr">
+  directory for config and data
+</ParamField>
+
+<ParamField path="keyring-backend" type="string" default="os">
+  Select keyring's backend
+</ParamField>
+
+<ParamField path="log_format" type="string" default="plain">
+  The logging format (json|plain)
+</ParamField>
+
+<ParamField path="log_level" type="string" default="info">
+  The logging level (trace|debug|info|warn|error|fatal|panic|disabled or '*:&lt;level&gt;,&lt;key&gt;:&lt;level&gt;')
+</ParamField>
+
+<ParamField path="log_no_color" type="string">
+  colored logs
+</ParamField>
+
+<ParamField path="node" type="string" default="tcp://localhost:26657">
+  &lt;host&gt;:&lt;port&gt; to tendermint rpc interface for this chain
+</ParamField>
+
+<ParamField path="trace" type="string">
+  out full stack trace on errors
+</ParamField>
+
+## Examples
+
+### Basic query
+
+```shell
+snrd query delegation
+```
+
+## See Also
+
+- [snrd query](./snrd_query.mdx) - Parent command

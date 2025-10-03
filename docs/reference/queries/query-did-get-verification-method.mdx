@@ -1,0 +1,16 @@
+---
+openapi: get /did/v1/verification-method/{did}/{methodId}
+title: Get Verification Method
+description: Retrieve specific cryptographic keys or authentication methods
+og:title: Query DID Verification Method
+---
+
+<Note>
+  Verification methods contain public keys only. Private keys are
+  never stored on-chain and must be managed securely off-chain.
+</Note>
+
+<Tip>
+  Use this endpoint to retrieve specific keys for signature verification
+  or encryption operations.
+</Tip>

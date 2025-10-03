@@ -2,11 +2,11 @@ syntax = "proto3";
 package svc.v1;
 
 import "cosmos/msg/v1/msg.proto";
-import "svc/v1/genesis.proto";
-import "gogoproto/gogo.proto";
 import "cosmos_proto/cosmos.proto";
+import "gogoproto/gogo.proto";
+import "svc/v1/genesis.proto";
 
-option go_package = "github.com/sonr-io/snrd/x/svc/types";
+option go_package = "github.com/sonr-io/sonr/x/svc/types";
 
 // Msg defines the Msg service.
 service Msg {
@@ -17,8 +17,18 @@ service Msg {
   // Since: cosmos-sdk 0.47
   rpc UpdateParams(MsgUpdateParams) returns (MsgUpdateParamsResponse);
 
-  // RegisterService initializes a Service with a given permission scope and
-  // URI. The domain must have a valid TXT record containing the public key.
+  // InitiateDomainVerification starts the domain verification process
+  //
+  // {{.MethodDescriptorProto.Name}} is a call with the method(s) {{$first := true}}{{range .Bindings}}{{if $first}}{{$first = false}}{{else}}, {{end}}{{.HTTPMethod}}{{end}} within the "{{.Service.Name}}" service.
+  // It takes in "{{.RequestType.Name}}" and returns a "{{.ResponseType.Name}}".
+  //
+  // {{import "svc_docs.md"}}
+  rpc InitiateDomainVerification(MsgInitiateDomainVerification) returns (MsgInitiateDomainVerificationResponse);
+
+  // VerifyDomain completes domain verification by checking DNS TXT records
+  rpc VerifyDomain(MsgVerifyDomain) returns (MsgVerifyDomainResponse);
+
+  // RegisterService registers a new service with verified domain binding
   rpc RegisterService(MsgRegisterService) returns (MsgRegisterServiceResponse);
 }
 
@@ -43,20 +53,72 @@ message MsgUpdateParams {
 // Since: cosmos-sdk 0.47
 message MsgUpdateParamsResponse {}
 
-// MsgRegisterService is the message type for the RegisterService RPC.
-message MsgRegisterService {
-  option (cosmos.msg.v1.signer) = "controller";
+// MsgInitiateDomainVerification initiates domain ownership verification
+message MsgInitiateDomainVerification {
+  option (cosmos.msg.v1.signer) = "creator";
 
-  // authority is the address of the governance account.
-  string controller = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // Address of the user initiating domain verification
+  string creator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 
-  // origin is the origin of the request in wildcard form. Requires valid TXT
-  // record in DNS.
-  Service service = 2;
+  // Domain to be verified (e.g., "example.com")
+  string domain = 2;
 }
 
-// MsgRegisterServiceResponse is the response type for the RegisterService RPC.
+// MsgInitiateDomainVerificationResponse defines the response for domain
+// verification initiation
+message MsgInitiateDomainVerificationResponse {
+  // Verification token to be placed in DNS TXT record
+  string verification_token = 1;
+
+  // Instructions for DNS TXT record setup
+  string dns_instruction = 2;
+}
+
+// MsgVerifyDomain verifies domain ownership by checking DNS TXT records
+message MsgVerifyDomain {
+  option (cosmos.msg.v1.signer) = "creator";
+
+  // Address of the user verifying domain ownership
+  string creator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // Domain to be verified
+  string domain = 2;
+}
+
+// MsgVerifyDomainResponse defines the response for domain verification
+message MsgVerifyDomainResponse {
+  // Whether verification was successful
+  bool verified = 1;
+
+  // Message describing verification result
+  string message = 2;
+}
+
+// MsgRegisterService registers a new service with verified domain binding
+message MsgRegisterService {
+  option (cosmos.msg.v1.signer) = "creator";
+
+  // Address of the service owner
+  string creator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // Unique identifier for the service
+  string service_id = 2;
+
+  // Verified domain to bind to this service
+  string domain = 3;
+
+  // List of permissions requested for this service
+  repeated string requested_permissions = 4;
+
+  // UCAN delegation chain for authorization (JWT-encoded)
+  string ucan_delegation_chain = 5;
+}
+
+// MsgRegisterServiceResponse defines the response for service registration
 message MsgRegisterServiceResponse {
-  bool success = 1;
-  string did = 2;
+  // IPFS CID of the generated root capability
+  string root_capability_cid = 1;
+
+  // Service registration details
+  string service_id = 2;
 }

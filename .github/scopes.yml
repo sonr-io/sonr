@@ -1,0 +1,73 @@
+- name: client
+  include:
+    - client/**
+- name: snrd
+  include:
+    - cmd/snrd/**
+    - app/**
+    - go.mod
+    - go.sum
+- name: crypto
+  include:
+    - crypto/**
+- name: devops
+  include:
+    - .github/**
+    - .devcontainer/**
+    - scripts/**
+    - etc/**
+    - Dockerfile
+    - "*-compose.yml"
+    - README.md
+- name: docs
+  include:
+    - docs/**
+- name: hway
+  include:
+    - cmd/hway/**
+    - bridge/**
+    - types/**
+- name: dex
+  include:
+    - proto/dex/**
+    - x/dex/**
+- name: did
+  include:
+    - proto/dex/**
+    - x/did/**
+- name: dwn
+  include:
+    - proto/dex/**
+    - x/dwn/**
+- name: svc
+  include:
+    - proto/dex/**
+    - x/svc/**
+- name: motr
+  include:
+    - cmd/motr/**
+- name: vault
+  include:
+    - cmd/vault/**
+- name: com
+  include:
+    - packages/com/**
+- name: es
+  include:
+    - packages/es/**
+- name: pkl
+  include:
+    - packages/pkl/**
+- name: sdk
+  include:
+    - packages/sdk/**
+- name: ui
+  include:
+    - packages/ui/**
+- name: auth
+  include:
+    - web/auth/**
+- name: dash
+  include:
+    - web/dash/**
+

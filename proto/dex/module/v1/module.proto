@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package dex.module.v1;
+
+import "cosmos/app/v1alpha1/module.proto";
+
+// Module is the app config object of the module.
+// Learn more: https://docs.cosmos.network/main/building-modules/depinject
+message Module {
+  option (cosmos.app.v1alpha1.module) = {
+    go_import : "github.com/sonr-io/sonr"
+  };
+}

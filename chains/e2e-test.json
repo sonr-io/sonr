@@ -1,0 +1,481 @@
+{
+  "name": "sonr-e2e-test",
+  "type": "starship",
+  "chains": [
+    {
+      "name": "sonr-1",
+      "chain_id": "sonrtest_1-1",
+      "docker_image": {
+        "repository": "sonr",
+        "version": "local",
+        "uid-gid": ""
+      },
+      "gas_prices": "0.0usnr",
+      "gas_adjustment": 2,
+      "genesis": {
+        "modify": [
+          {
+            "key": "app_state.gov.deposit_params.min_deposit.0.denom",
+            "value": "usnr"
+          },
+          {
+            "key": "app_state.gov.deposit_params.min_deposit.0.amount",
+            "value": "10000000"
+          },
+          {
+            "key": "app_state.gov.deposit_params.max_deposit_period",
+            "value": "300s"
+          },
+          {
+            "key": "app_state.gov.voting_params.voting_period",
+            "value": "300s"
+          },
+          {
+            "key": "app_state.gov.tally_params.quorum",
+            "value": "0.334"
+          },
+          {
+            "key": "app_state.gov.tally_params.threshold",
+            "value": "0.5"
+          },
+          {
+            "key": "app_state.gov.tally_params.veto_threshold",
+            "value": "0.334"
+          },
+          {
+            "key": "app_state.mint.minter.inflation",
+            "value": "0.130000000000000000"
+          },
+          {
+            "key": "app_state.mint.minter.annual_provisions",
+            "value": "0.000000000000000000"
+          },
+          {
+            "key": "app_state.mint.params.inflation_rate_change",
+            "value": "0.130000000000000000"
+          },
+          {
+            "key": "app_state.mint.params.inflation_max",
+            "value": "0.200000000000000000"
+          },
+          {
+            "key": "app_state.mint.params.inflation_min",
+            "value": "0.070000000000000000"
+          },
+          {
+            "key": "app_state.mint.params.goal_bonded",
+            "value": "0.670000000000000000"
+          },
+          {
+            "key": "app_state.mint.params.blocks_per_year",
+            "value": "6311520"
+          },
+          {
+            "key": "app_state.staking.params.unbonding_time",
+            "value": "1814400s"
+          },
+          {
+            "key": "app_state.slashing.params.downtime_jail_duration",
+            "value": "600s"
+          },
+          {
+            "key": "app_state.slashing.params.signed_blocks_window",
+            "value": "100"
+          },
+          {
+            "key": "app_state.slashing.params.min_signed_per_window",
+            "value": "0.500000000000000000"
+          },
+          {
+            "key": "app_state.bank.denom_metadata",
+            "value": [
+              {
+                "name": "SNR",
+                "symbol": "SNR",
+                "base": "usnr",
+                "display": "snr",
+                "description": "The native staking token of the Sonr network",
+                "denom_units": [
+                  {
+                    "denom": "usnr",
+                    "exponent": 0,
+                    "aliases": ["microsnr"]
+                  },
+                  {
+                    "denom": "msnr",
+                    "exponent": 3,
+                    "aliases": ["millisnr"]
+                  },
+                  {
+                    "denom": "snr",
+                    "exponent": 6,
+                    "aliases": []
+                  }
+                ]
+              },
+              {
+                "name": "TEST",
+                "symbol": "TEST",
+                "base": "test",
+                "display": "test",
+                "description": "Test token for E2E testing",
+                "denom_units": [
+                  {
+                    "denom": "test",
+                    "exponent": 0,
+                    "aliases": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "accounts": [
+          {
+            "name": "validator",
+            "amount": "100000000000usnr,1000000000test",
+            "address": "idx1fcqk3crpnyvyhtd4jepsnx5eat5ehc920epq29",
+            "mnemonic": "notice oak worry limit wrap speak medal online prefer cluster roof addict wrist behave treat actual wasp year salad speed social layer crew genius"
+          },
+          {
+            "name": "acc0",
+            "amount": "10000000000usnr,100000000test",
+            "address": "idx13a6zjh96w9z9y2defkktdc6vn4r5h3s7jwxuam",
+            "mnemonic": "decorate bright ozone fork gallery riot bus exhaust worth way bone indoor calm squirrel merry zero scheme cotton until shop any excess stage laundry"
+          },
+          {
+            "name": "acc1",
+            "amount": "10000000000usnr,100000000test",
+            "address": "idx1xehj0xc24k2c740jslfyd4d6mt8c4dczgntqhg",
+            "mnemonic": "wealth flavor believe regret funny network recall kiss grape useless pepper cram hint member few certain unveil rather brick bargain curious require crowd raise"
+          },
+          {
+            "name": "faucet",
+            "amount": "50000000000usnr,500000000test",
+            "address": "idx1qw78v0s5p3h9ypqz2z9q5z38q3q5q3q5q3q5",
+            "mnemonic": "poverty insane bread margin sample eager anchor cloth goddess piano require exclude ignore gate tornado puzzle bronze strike promote truly wild belt sadness"
+          },
+          {
+            "name": "user0",
+            "amount": "1000000usnr,100000test",
+            "address": "idx1jyq30438zx0g4urancle25r6tk5td6pgeytpfu",
+            "mnemonic": "love group axis climb enlist evoke cactus sentence mule virtual dose river pepper path chapter ridge merry glow parent swear famous milk two raw"
+          },
+          {
+            "name": "user1",
+            "amount": "1000000usnr,100000test",
+            "address": "idx1wz5qn36kdakkqunkvwuuvpr2l4amd7y0m3qdq6",
+            "mnemonic": "sight buffalo monitor immune awake proof keen help connect steak attack trophy try day know wheel soon gesture switch poverty imitate weird bargain resist"
+          }
+        ]
+      },
+      "config_file_overrides": [
+        {
+          "file": "config/app.toml",
+          "paths": {
+            "api.enable": true,
+            "api.enabled-unsafe-cors": true,
+            "api.address": "tcp://0.0.0.0:1317",
+            "grpc.enable": true,
+            "grpc.address": "0.0.0.0:9090"
+          }
+        },
+        {
+          "file": "config/config.toml",
+          "paths": {
+            "rpc.laddr": "tcp://0.0.0.0:26657",
+            "rpc.cors_allowed_origins": ["*"],
+            "p2p.laddr": "tcp://0.0.0.0:26656",
+            "consensus.timeout_propose": "1s",
+            "consensus.timeout_propose_delta": "500ms",
+            "consensus.timeout_prevote": "1s",
+            "consensus.timeout_prevote_delta": "500ms",
+            "consensus.timeout_precommit": "1s",
+            "consensus.timeout_precommit_delta": "500ms",
+            "consensus.timeout_commit": "1s"
+          }
+        }
+      ],
+      "number_vals": 2,
+      "number_node": 1,
+      "chain_type": "cosmos",
+      "coin_type": 60,
+      "binary": "snrd",
+      "bech32_prefix": "idx",
+      "denom": "usnr",
+      "trusting_period": "336h",
+      "debugging": false,
+      "block_time": "1000ms",
+      "host_port_override": {
+        "1317": "1317",
+        "9090": "9090",
+        "26656": "26656",
+        "26657": "26657"
+      },
+      "ics_version_override": {}
+    },
+    {
+      "name": "sonr-2",
+      "chain_id": "sonrtest_2-1",
+      "docker_image": {
+        "repository": "sonr",
+        "version": "local",
+        "uid-gid": ""
+      },
+      "gas_prices": "0.0usnr",
+      "gas_adjustment": 2,
+      "genesis": {
+        "modify": [
+          {
+            "key": "app_state.gov.deposit_params.min_deposit.0.denom",
+            "value": "usnr"
+          },
+          {
+            "key": "app_state.gov.deposit_params.min_deposit.0.amount",
+            "value": "10000000"
+          },
+          {
+            "key": "app_state.gov.deposit_params.max_deposit_period",
+            "value": "300s"
+          },
+          {
+            "key": "app_state.gov.voting_params.voting_period",
+            "value": "300s"
+          },
+          {
+            "key": "app_state.slashing.params.downtime_jail_duration",
+            "value": "600s"
+          },
+          {
+            "key": "app_state.bank.denom_metadata",
+            "value": [
+              {
+                "name": "SNR",
+                "symbol": "SNR",
+                "base": "usnr",
+                "display": "snr",
+                "description": "The native staking token of the Sonr network",
+                "denom_units": [
+                  {
+                    "denom": "usnr",
+                    "exponent": 0,
+                    "aliases": ["microsnr"]
+                  },
+                  {
+                    "denom": "msnr",
+                    "exponent": 3,
+                    "aliases": ["millisnr"]
+                  },
+                  {
+                    "denom": "snr",
+                    "exponent": 6,
+                    "aliases": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "accounts": [
+          {
+            "name": "validator",
+            "amount": "100000000000usnr",
+            "address": "idx1qtqrz96sjxzqx3czeyc8jz3fhxpk9h3t5gzz26",
+            "mnemonic": "figure web rescue rice quantum sustain alert citizen woman cable wasp eyebrow monster teach hockey giant monitor hero oblige picnic ball never lamp"
+          },
+          {
+            "name": "acc0",
+            "amount": "10000000000usnr",
+            "address": "idx1gsl7qnwxpxsqeax4p2zeqruqshgd4jccwzstks",
+            "mnemonic": "pig pistol model float oven opinion pledge hammer spike knock resemble finger casual canoe earth pink school hope seed put steel memory view welcome"
+          },
+          {
+            "name": "acc1",
+            "amount": "10000000000usnr",
+            "address": "idx185g8yc7k0g4frv4q5mhqrcujgswnch0uu7dkgk",
+            "mnemonic": "random sustain abstract wisdom quiz must awkward waste throw found either raven fruit where mansion universe smooth slush clip skill drum filter mountain rug"
+          },
+          {
+            "name": "faucet",
+            "amount": "50000000000usnr",
+            "address": "idx1jtq4ndm9zxqpx5vxyh4zfhq5xdxh5xh5xh5",
+            "mnemonic": "cannon forest slice lazy hungry trial antenna purchase debate foster raccoon wing custom tone beach purchase rookie captain dutch clutch grid salute dune"
+          }
+        ]
+      },
+      "config_file_overrides": [
+        {
+          "file": "config/app.toml",
+          "paths": {
+            "api.enable": true,
+            "api.enabled-unsafe-cors": true,
+            "api.address": "tcp://0.0.0.0:1318",
+            "grpc.enable": true,
+            "grpc.address": "0.0.0.0:9091"
+          }
+        },
+        {
+          "file": "config/config.toml",
+          "paths": {
+            "rpc.laddr": "tcp://0.0.0.0:26658",
+            "rpc.cors_allowed_origins": ["*"],
+            "p2p.laddr": "tcp://0.0.0.0:26659",
+            "consensus.timeout_propose": "1s",
+            "consensus.timeout_prevote": "1s",
+            "consensus.timeout_precommit": "1s",
+            "consensus.timeout_commit": "1s"
+          }
+        }
+      ],
+      "number_vals": 2,
+      "number_node": 1,
+      "chain_type": "cosmos",
+      "coin_type": 60,
+      "binary": "snrd",
+      "bech32_prefix": "idx",
+      "denom": "usnr",
+      "trusting_period": "336h",
+      "debugging": false,
+      "block_time": "1000ms",
+      "host_port_override": {
+        "1318": "1318",
+        "9091": "9091",
+        "26658": "26658",
+        "26659": "26659"
+      },
+      "ics_version_override": {}
+    }
+  ],
+  "relayers": [
+    {
+      "name": "hermes",
+      "type": "hermes",
+      "replicas": 1,
+      "docker_image": {
+        "repository": "ghcr.io/cosmology-tech/starship/hermes",
+        "version": "v1.8.0"
+      },
+      "chains": ["sonrtest_1-1", "sonrtest_2-1"],
+      "config": {
+        "global": {
+          "log_level": "info"
+        },
+        "mode": {
+          "clients": {
+            "enabled": true,
+            "refresh": true,
+            "misbehaviour": true
+          },
+          "connections": {
+            "enabled": true
+          },
+          "channels": {
+            "enabled": true
+          },
+          "packets": {
+            "enabled": true,
+            "clear_interval": 100,
+            "clear_on_start": true,
+            "tx_confirmation": true
+          }
+        },
+        "telemetry": {
+          "enabled": false
+        }
+      }
+    }
+  ],
+  "services": [
+    {
+      "name": "faucet",
+      "type": "faucet",
+      "replicas": 1,
+      "docker_image": {
+        "repository": "ghcr.io/cosmology-tech/starship/faucet",
+        "version": "latest"
+      },
+      "ports": {
+        "rest": 8000
+      },
+      "config": {
+        "chains": [
+          {
+            "chain_id": "sonrtest_1-1",
+            "denom": "usnr",
+            "rpc_endpoint": "http://sonr-1-validator-0:26657",
+            "grpc_endpoint": "sonr-1-validator-0:9090",
+            "faucet_address": "idx1qw78v0s5p3h9ypqz2z9q5z38q3q5q3q5q3q5",
+            "faucet_mnemonic": "poverty insane bread margin sample eager anchor cloth goddess piano require exclude ignore gate tornado puzzle bronze strike promote truly wild belt sadness",
+            "credit_amount": "10000000",
+            "max_credit": "100000000"
+          },
+          {
+            "chain_id": "sonrtest_2-1",
+            "denom": "usnr",
+            "rpc_endpoint": "http://sonr-2-validator-0:26658",
+            "grpc_endpoint": "sonr-2-validator-0:9091",
+            "faucet_address": "idx1jtq4ndm9zxqpx5vxyh4zfhq5xdxh5xh5xh5",
+            "faucet_mnemonic": "cannon forest slice lazy hungry trial antenna purchase debate foster raccoon wing custom tone beach purchase rookie captain dutch clutch grid salute dune",
+            "credit_amount": "10000000",
+            "max_credit": "100000000"
+          }
+        ]
+      }
+    },
+    {
+      "name": "registry",
+      "type": "registry",
+      "replicas": 1,
+      "docker_image": {
+        "repository": "ghcr.io/cosmology-tech/starship/registry",
+        "version": "latest"
+      },
+      "ports": {
+        "rest": 8081
+      },
+      "config": {
+        "chains": [
+          {
+            "chain_id": "sonrtest_1-1",
+            "resources": {
+              "rest": "http://sonr-1-validator-0:1317",
+              "rpc": "http://sonr-1-validator-0:26657",
+              "grpc": "sonr-1-validator-0:9090"
+            }
+          },
+          {
+            "chain_id": "sonrtest_2-1",
+            "resources": {
+              "rest": "http://sonr-2-validator-0:1318",
+              "rpc": "http://sonr-2-validator-0:26658",
+              "grpc": "sonr-2-validator-0:9091"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "explorer",
+      "type": "explorer",
+      "replicas": 1,
+      "docker_image": {
+        "repository": "ghcr.io/cosmology-tech/starship/explorer",
+        "version": "latest"
+      },
+      "ports": {
+        "rest": 8080
+      },
+      "config": {
+        "chains": ["sonrtest_1-1", "sonrtest_2-1"]
+      }
+    }
+  ],
+  "ibc_paths": ["sonrtest_1-1_sonrtest_2-1"],
+  "port_ranges": {
+    "exposer": [30000, 31000],
+    "rest": [1317, 1320],
+    "grpc": [9090, 9100],
+    "rpc": [26657, 26670],
+    "p2p": [26656, 26670]
+  }
+}

@@ -1,13 +1,11 @@
 version: v1
-name: buf.build/onsonr/sonr
+name: buf.build/sonr-io/sonr
 deps:
   - buf.build/cosmos/cosmos-sdk
   - buf.build/cosmos/cosmos-proto
   - buf.build/cosmos/gogo-proto
   - buf.build/googleapis/googleapis
-breaking:
-  use:
-    - FILE
+  - buf.build/grpc-ecosystem/grpc-gateway
 lint:
   use:
     - DEFAULT
@@ -16,22 +14,6 @@ lint:
   except:
     - UNARY_RPC
     - COMMENT_FIELD
-    - COMMENT_MESSAGE
-    - COMMENT_SERVICE
-    - COMMENT_RPC
     - SERVICE_SUFFIX
     - PACKAGE_VERSION_SUFFIX
     - RPC_REQUEST_STANDARD_NAME
-    - PACKAGE_SAME_GO_PACKAGE
-    - PACKAGE_SAME_DIRECTORY
-    - PACKAGE_DIRECTORY_MATCH
-    - RPC_RESPONSE_STANDARD_NAME
-    - COMMENT_ENUM_VALUE
-    - COMMENT_ENUM
-    - ENUM_ZERO_VALUE_SUFFIX
-  ignore:
-    - PACKAGE_NO_IMPORT_CYCLE
-    - IMPORT_USED
-    - tendermint
-    - amino
-    - cosmos

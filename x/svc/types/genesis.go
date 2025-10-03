@@ -1,78 +1,52 @@
 package types
 
+import "fmt"
+
 // DefaultIndex is the default global index
 const DefaultIndex uint64 = 1
 
 // DefaultGenesis returns the default genesis state
 func DefaultGenesis() *GenesisState {
 	return &GenesisState{
-		Params: DefaultParams(),
+		Params:       DefaultParams(),
+		Capabilities: []ServiceCapability{},
 	}
 }
 
 // Validate performs basic genesis state validation returning an error upon any
 // failure.
 func (gs GenesisState) Validate() error {
-	return gs.Params.Validate()
-}
+	// Validate parameters
+	if err := gs.Params.Validate(); err != nil {
+		return err
+	}
 
-// Equal checks if two Attenuation are equal
-func (a *Attenuation) Equal(that *Attenuation) bool {
-	if that == nil {
-		return false
-	}
-	if a.Resource != nil {
-		if that.Resource == nil {
-			return false
+	// Validate capabilities
+	capabilityIDs := make(map[string]bool)
+	for i, cap := range gs.Capabilities {
+		// Check for duplicate capability IDs
+		if capabilityIDs[cap.CapabilityId] {
+			return fmt.Errorf("duplicate capability ID at index %d: %s", i, cap.CapabilityId)
 		}
-		if !a.Resource.Equal(that.Resource) {
-			return false
-		}
-	}
-	if len(a.Capabilities) != len(that.Capabilities) {
-		return false
-	}
-	for i := range a.Capabilities {
-		if !a.Capabilities[i].Equal(that.Capabilities[i]) {
-			return false
-		}
-	}
-	return true
-}
+		capabilityIDs[cap.CapabilityId] = true
 
-// Equal checks if two Capability are equal
-func (c *Capability) Equal(that *Capability) bool {
-	if that == nil {
-		return false
-	}
-	if c.Name != that.Name {
-		return false
-	}
-	if c.Parent != that.Parent {
-		return false
-	}
-	// TODO: check description
-	if len(c.Resources) != len(that.Resources) {
-		return false
-	}
-	for i := range c.Resources {
-		if c.Resources[i] != that.Resources[i] {
-			return false
+		// Validate individual capability fields
+		if cap.CapabilityId == "" {
+			return fmt.Errorf("capability at index %d has empty ID", i)
+		}
+		if cap.ServiceId == "" {
+			return fmt.Errorf("capability %s has empty service ID", cap.CapabilityId)
+		}
+		if cap.Domain == "" {
+			return fmt.Errorf("capability %s has empty domain", cap.CapabilityId)
+		}
+		if cap.Owner == "" {
+			return fmt.Errorf("capability %s has empty owner", cap.CapabilityId)
+		}
+		if len(cap.Abilities) == 0 {
+			return fmt.Errorf("capability %s has no abilities", cap.CapabilityId)
 		}
 	}
-	return true
-}
 
-// Equal checks if two Resource are equal
-func (r *Resource) Equal(that *Resource) bool {
-	if that == nil {
-		return false
-	}
-	if r.Kind != that.Kind {
-		return false
-	}
-	if r.Template != that.Template {
-		return false
-	}
-	return true
+	return nil
 }

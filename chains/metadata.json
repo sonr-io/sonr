@@ -1,0 +1,16 @@
+{
+  "display": {
+    "name": "Sonr",
+    "description": "Sonr is a peer-to-peer identity and asset management system powered by the Cosmos SDK, combining DID documents, WebAuthn, and IPFS for secure, portable decentralized identity.",
+    "links": {
+      "logo": "https://raw.githubusercontent.com/sonr-io/sonr/main/logo.png",
+      "discord": "https://discord.gg/sonr",
+      "email": "hello@sonr.io",
+      "github": "https://github.com/sonr-io/sonr",
+      "telegram": "https://t.me/sonr",
+      "twitter": "https://twitter.com/sonr_io",
+      "website": "https://sonr.io",
+      "whitepaper": "https://whitepaper.sonr.io"
+    }
+  }
+}

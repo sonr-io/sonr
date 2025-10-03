@@ -3,9 +3,8 @@ package keeper_test
 import (
 	"testing"
 
+	"github.com/sonr-io/sonr/x/did/types"
 	"github.com/stretchr/testify/require"
-
-	"github.com/sonr-io/snrd/x/did/types"
 )
 
 func TestGenesis(t *testing.T) {
@@ -13,15 +12,10 @@ func TestGenesis(t *testing.T) {
 
 	genesisState := &types.GenesisState{
 		Params: types.DefaultParams(),
-
-		// this line is used by starport scaffolding # genesis/test/state
 	}
 
-	err := f.k.InitGenesis(f.ctx, genesisState)
-	require.NoError(t, err)
+	f.k.InitGenesis(f.ctx, genesisState)
 
 	got := f.k.ExportGenesis(f.ctx)
 	require.NotNil(t, got)
-
-	// this line is used by starport scaffolding # genesis/test/assert
 }

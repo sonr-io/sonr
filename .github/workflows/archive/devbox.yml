@@ -1,0 +1,137 @@
+name: Devbox Run
+on:
+  workflow_call:
+    inputs:
+      install:
+        required: true
+        default: go
+        type: string
+      build:
+        required: false
+        type: string
+      deploy:
+        required: false
+        type: string
+      publish:
+        required: false
+        type: string
+      test:
+        required: false
+        type: string
+      continue-on-error:
+        required: false
+        default: false
+        type: boolean
+      devbox-version:
+        required: false
+        default: 0.16.0
+        type: string
+      enable-cache:
+        required: false
+        default: false
+        type: boolean
+      fetch-depth:
+        required: false
+        default: 0
+        type: number
+      persist-credentials:
+        required: false
+        default: false
+        type: boolean
+      runs-on:
+        required: false
+        default: ubuntu-latest
+        type: string
+
+jobs:
+  test:
+    runs-on: ${{ inputs.runs-on }}
+    environment: staging - test
+    if: ${{ inputs.test != '' }}
+    name: Test
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: ${{ inputs.persist-credentials }}
+          fetch-depth: ${{ inputs.fetch-depth }}
+      - name: Install devbox
+        uses: jetify-com/devbox-install-action@v0.13.0
+        with:
+          enable-cache: ${{ inputs.enable-cache }}
+          devbox-version: ${{ inputs.devbox-version }}
+      - name: "Install ${{ inputs.install }}"
+        run: devbox run install:${{ inputs.install }}
+      - name: "Test ${{ inputs.test }}"
+        run: devbox run test:${{ inputs.test }}
+        if: ${{ inputs.test != '' }}
+        continue-on-error: ${{ inputs.continue-on-error }}
+
+  build:
+    runs-on: ${{ inputs.runs-on }}
+    environment: staging - build
+    if: ${{ inputs.build != '' }}
+    name: Build
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: ${{ inputs.persist-credentials }}
+          fetch-depth: ${{ inputs.fetch-depth }}
+      - name: Install devbox
+        uses: jetify-com/devbox-install-action@v0.13.0
+        with:
+          enable-cache: ${{ inputs.enable-cache }}
+          devbox-version: ${{ inputs.devbox-version }}
+      - name: "Install ${{ inputs.install }}"
+        run: devbox run install:${{ inputs.install }}
+      - name: "Build ${{ inputs.build }}"
+        run: devbox run build:${{ inputs.build }}
+        if: ${{ inputs.build != '' }}
+        continue-on-error: ${{ inputs.continue-on-error }}
+
+  publish:
+    runs-on: ${{ inputs.runs-on }}
+    environment: staging - publish
+    if: ${{ inputs.publish != '' }}
+    name: Publish
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: ${{ inputs.persist-credentials }}
+          fetch-depth: ${{ inputs.fetch-depth }}
+      - name: Install devbox
+        uses: jetify-com/devbox-install-action@v0.13.0
+        with:
+          enable-cache: ${{ inputs.enable-cache }}
+          devbox-version: ${{ inputs.devbox-version }}
+      - name: "Install ${{ inputs.install }}"
+        run: devbox run install:${{ inputs.install }}
+      - name: "Publish ${{ inputs.publish }}"
+        run: devbox run publish:${{ inputs.publish }}
+        if: ${{ inputs.publish != '' }}
+        continue-on-error: ${{ inputs.continue-on-error }}
+
+  deploy:
+    runs-on: ${{ inputs.runs-on }}
+    environment: staging - deploy
+    if: ${{ inputs.deploy != '' }}
+    name: Deploy
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: ${{ inputs.persist-credentials }}
+          fetch-depth: ${{ inputs.fetch-depth }}
+      - name: Install devbox
+        uses: jetify-com/devbox-install-action@v0.13.0
+        with:
+          enable-cache: ${{ inputs.enable-cache }}
+          devbox-version: ${{ inputs.devbox-version }}
+      - name: "Install ${{ inputs.install }}"
+        run: devbox run install:${{ inputs.install }}
+      - name: "Deploy ${{ inputs.deploy }}"
+        run: devbox run deploy:${{ inputs.deploy }}
+        if: ${{ inputs.deploy != '' }}
+        continue-on-error: ${{ inputs.continue-on-error }}

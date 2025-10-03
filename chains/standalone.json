@@ -1,0 +1,104 @@
+{
+  "chains": [
+    {
+      "name": "sonr",
+      "chain_id": "sonr-testnet-1",
+      "docker_image": {
+        "repository": "sonr",
+        "version": "local",
+        "uid-gid": ""
+      },
+      "gas_prices": "0.0snr",
+      "gas_adjustment": 2,
+      "genesis": {
+        "modify": [
+          {
+            "key": "app_state.gov.deposit_params.min_deposit.0.denom",
+            "value": "usnr"
+          },
+          {
+            "key": "app_state.gov.deposit_params.min_deposit.0.amount",
+            "value": "10000000000"
+          },
+          {
+            "key": "app_state.gov.deposit_params.max_deposit_period",
+            "value": "604800s"
+          },
+          {
+            "key": "app_state.gov.voting_params.voting_period",
+            "value": "1209600s"
+          },
+          {
+            "key": "app_state.gov.tally_params.quorum",
+            "value": "0.40"
+          },
+          {
+            "key": "app_state.gov.tally_params.threshold",
+            "value": "0.51"
+          },
+          {
+            "key": "app_state.gov.tally_params.veto_threshold",
+            "value": "0.334"
+          }
+        ],
+        "accounts": [
+          {
+            "name": "acc0",
+            "amount": "25000000000%DENOM%",
+            "address": "idx13a6zjh96w9z9y2defkktdc6vn4r5h3s7jwxuam",
+            "mnemonic": "decorate bright ozone fork gallery riot bus exhaust worth way bone indoor calm squirrel merry zero scheme cotton until shop any excess stage laundry"
+          },
+          {
+            "name": "acc1",
+            "amount": "24000000000%DENOM%",
+            "address": "idx1xehj0xc24k2c740jslfyd4d6mt8c4dczgntqhg",
+            "mnemonic": "wealth flavor believe regret funny network recall kiss grape useless pepper cram hint member few certain unveil rather brick bargain curious require crowd raise"
+          },
+          {
+            "name": "user0",
+            "amount": "100000%DENOM%",
+            "address": "idx1jyq30438zx0g4urancle25r6tk5td6pgeytpfu",
+            "mnemonic": "love group axis climb enlist evoke cactus sentence mule virtual dose river pepper path chapter ridge merry glow parent swear famous milk two raw"
+          },
+          {
+            "name": "user1",
+            "amount": "100000%DENOM%",
+            "address": "idx1wz5qn36kdakkqunkvwuuvpr2l4amd7y0m3qdq6",
+            "mnemonic": "sight buffalo monitor immune awake proof keen help connect steak attack trophy try day know wheel soon gesture switch poverty imitate weird bargain resist"
+          }
+        ]
+      },
+      "config_file_overrides": [
+        {
+          "file": "config/app.toml",
+          "paths": {
+            "api.enabled-unsafe-cors": true
+          }
+        },
+        {
+          "file": "config/config.toml",
+          "paths": {
+            "rpc.cors_allowed_origins": ["*"]
+          }
+        }
+      ],
+      "number_vals": 1,
+      "number_node": 0,
+      "chain_type": "cosmos",
+      "coin_type": 60,
+      "binary": "snrd",
+      "bech32_prefix": "idx",
+      "denom": "snr",
+      "trusting_period": "336h",
+      "debugging": false,
+      "block_time": "2000ms",
+      "host_port_override": {
+        "1317": "1317",
+        "9090": "9090",
+        "26656": "26656",
+        "26657": "26657"
+      },
+      "ics_version_override": {}
+    }
+  ]
+}

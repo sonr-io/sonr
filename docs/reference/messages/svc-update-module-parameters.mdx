@@ -1,0 +1,36 @@
+---
+openapi: post /svc.v1.Msg/UpdateParams
+title: Update SVC Module Parameters
+description: Configure service registration limits, domain verification, and UCAN settings
+og:title: SVC Module Governance
+---
+
+<Warning>
+  This operation requires **governance approval** and is typically executed through on-chain proposals.
+</Warning>
+
+## Parameter Categories
+
+### Service Limits
+- **maxServicesPerAccount**: Services per account limit (default: 100)
+- **maxDomainsPerService**: Domains per service limit (default: 5)
+- **maxEndpointsPerService**: Endpoints per service limit (default: 10)
+
+### Domain Verification
+- **domainVerificationTimeout**: Time allowed for DNS verification (default: 7 days)
+- **requireDomainOwnershipProof**: Cryptographic proof requirement
+- **allowLocalhost**: Development mode with localhost support
+
+### UCAN Configuration
+- **maxDelegationChainDepth**: Maximum delegation depth (default: 10)
+- **ucanMaxLifetime**: Maximum token lifetime (30 days)
+- **supportedSignatureAlgorithms**: EdDSA, ES256, RS256
+
+### Fee Structure
+- **serviceRegistrationFee**: Fee for new service registration
+- **domainVerificationFee**: Fee for domain verification
+- **minServiceStake**: Minimum stake to maintain service
+
+<Note>
+  Changes affect all service operations network-wide. Plan parameter updates carefully.
+</Note>

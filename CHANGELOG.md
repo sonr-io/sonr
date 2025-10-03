@@ -1,761 +1,891 @@
-## v0.6.4 (2025-03-27)
+## Unreleased
 
 ### Feat
 
-- enable GitHub Actions to trigger releases
-- enhance development environment with ripgrep and gh-milestone (#1252)
-- enhance release process with Doppler integration (#1251)
-
-## v0.6.4 (2025-03-27)
-
-### Feat
-
-- enhance release process with dynamic version display and streamlined automation
-- enhance release process with real-time version feedback
-- improve release process with interactive feedback
-- enhance Docker image publishing with piped credentials
-- streamline release process with Taskfile and conventional commits
-- streamline development and release workflow
-- streamline release process with improved automation
-- consolidate release notes
-- enhance goreleaser output with title for better UX
-- streamline development and release processes
-- streamline development and release processes
-- streamline release process and update project metadata
-- upgrade to go 1.24 and align binary name
-- streamline build process by removing release target
-- streamline build process and configuration
-- streamline release process and update project metadata
-- enable commit-less version bumping
-- streamline release process with Devbox
-- integrate Doppler for secrets management
-- introduce devbox for consistent development environment
-- automate release process with conventional commits
-- streamline app initialization and dependency management
-- enable task management with Taskfile
-- introduce Taskfile automation for build and deployment
-- **deploy**: add hdPath and coinType to sonr-1 chain config
-- add go dependency and enhance devbox environment variables
-- implement HTMX for dynamic updates
-- add CI/CD infrastructure for development and deployment
+- integrate Dexie.js with vault plugin for account-based database persistence (#272)
+- Motor WASM Service Worker - Payment Gateway & OIDC Authorization (#263)
+- enable secure data storage with vault plugin
+- enhance build process with gum logging for better visibility
 
 ### Fix
 
-- Refactor crypto
-- Deploy config
-- resolve minor formatting inconsistencies in Dockerfile and accumulator.go
-- correct typo in workflow name
+- **devops**: Merge flow
+- **devops**: bump package version sync
+- cz prehook
+- CI and Docker Configuration Across Monorepo (#266)
+- update go dependencies for compatibility and security
 
-### Refactor
-
-- streamline release process and simplify dev environment
-- streamline release process by removing redundant version display
-- streamline release process with Taskfile
-- rename project from onsonr/sonr to sonr-io/snrd (#1249)
-- remove evmos chain from deployment configuration
-- simplify deployment infrastructure using starship
-- remove unnecessary Caddyfile
-- remove process-compose and individual start scripts
-- remove devnet and testnet network configurations
-
-## v0.6.3 (2025-01-06)
+## v0.13.16 (2025-09-11)
 
 ### Feat
 
-- Add release date to workflow environment
-- automate release creation and deployment on tag push
+- implement end-to-end WebAuthn account registration with DID creation (#261)
+
+## v0.13.15 (2025-09-10)
+
+### Feat
+
+- introduce vault WASM plugin for enhanced data security
+
+## v0.13.14 (2025-09-09)
+
+### Feat
+
+- enable fine-grained, delegable authorization using UCAN
+
+## v0.13.13 (2025-09-09)
+
+## v0.13.12 (2025-09-09)
+
+### Feat
+
+- implement holistic UCAN authorization with OIDC integration (#258)
+
+## v0.13.11 (2025-09-08)
+
+## v0.13.10 (2025-09-08)
+
+### Feat
+
+- integrate PostgreSQL for enhanced data management
+
+## v0.13.9 (2025-09-08)
+
+### Feat
+
+- implement decentralized identity DAO as CosmWasm smart contracts (#254)
+
+## v0.13.8 (2025-09-07)
+
+## v0.13.7 (2025-09-06)
+
+### Feat
+
+- enhance documentation navigation and API exploration
+
+## v0.13.6 (2025-09-06)
+
+## v0.13.5 (2025-09-06)
+
+### Feat
+
+- implement 'Sign in with Sonr' OAuth provider for crypto apps (#250)
+- implement comprehensive developer dashboard for Sonr Services (#249)
+
+## v0.13.4 (2025-09-04)
+
+## v0.13.3 (2025-09-04)
+
+### Feat
+
+- consolidate deployment infrastructure with Docker Compose and enhance build targets (#248)
+
+## v0.13.2 (2025-09-04)
+
+### Feat
+
+- implement OpenID Connect provider with WebAuthn in bridge handlers (#244)
+
+## v0.13.1 (2025-09-04)
+
+## v0.13.0 (2025-09-03)
 
 ### Fix
 
-- revert version number to 0.6.2
-- checkout main branch before updating version
-- Specify main branch and fetch tags in merge workflow
+- Fix cryptographic implementations and enable disabled tests (#243)
 
-### Refactor
-
-- Rename workflow file for clarity
-
-## v0.6.2 (2025-01-06)
-
-### Refactor
-
-- simplify release process and remove unnecessary tasks
-- remove devcontainer configuration
-
-## v0.6.1 (2024-12-30)
-
-### Feat
-
-- convert highway sink schema to SQLite
-- **scopes**: add Web Authentication API documentation
-- add install script for Sonr binaries
+## v0.12.11 (2025-09-03)
 
 ### Fix
 
-- Handle only 500 errors in ErrorHandler
-- Return only on 500 errors in error handler
-- update sqlc queries to match schema and use SQLite conventions
-- Rename DecodeWasmContext to decodeWasmContext
-- resolve lint errors in WASMMiddleware function
-- prevent automatic version bumps from dependabot
-- correct merge workflow to increment patch version
+- WebAuthn attestation and verification implementations (#242)
 
-### Refactor
-
-- remove outdated scopes
-- remove unnecessary seed message
-- Update sqlc queries to match schema and sqlite conventions
-- move gateway and vault components to new locations
-- **scopes**: simplify scopes.json structure
-- **scopes**: rename and reorganize scopes
-- **api**: remove unused Allocate RPC from Query service
-- remove postgresql tasks
-- remove unused AI PR body generator step
-- simplify Taskfile and remove unused chain configurations
-
-## v0.6.0 (2024-12-24)
+## v0.12.10 (2025-09-03)
 
 ### Feat
 
-- Add option to create draft issues from the new-issue script
+- Implement Service module capability system and parameters (#241)
+
+## v0.12.9 (2025-09-03)
+
+### Feat
+
+- Complete DID module WebAuthn and parameter implementation (#240)
+
+## v0.12.8 (2025-09-03)
+
+### Feat
+
+- introduce key rotation events and IPFS status endpoint (#238)
+
+## v0.12.7 (2025-09-02)
+
+### Feat
+
+- implement module parameter validation and defaults (#237)
+
+## v0.12.6 (2025-08-30)
+
+### Feat
+
+- complete remaining event emissions for DID and DWN modules (#235)
+
+## v0.12.5 (2025-08-27)
+
+### Feat
+
+- implement typed Protobuf events for x/did, x/dwn, and x/svc modules (#233)
+
+## v0.12.4 (2025-08-24)
+
+### Feat
+
+- Integrate Interchain Accounts for cross-chain DEX functionality
+
+## v0.12.3 (2025-08-24)
+
+### Feat
+
+- implement ICA Controller system in x/dex module for cross-chain DEX operations (#221)
+
+## v0.12.2 (2025-08-21)
+
+## v0.12.1 (2025-08-20)
+
+### Feat
+
+- replace InterchainTest with Starship-based E2E testing framework (#217)
+
+## v0.12.0 (2025-08-18)
+
+### Feat
+
+- add support for additional elliptic curves and JWK verification (#216)
+
+## v0.11.4 (2025-08-18)
+
+### Feat
+
+- Complete WebAuthn/FIDO2 implementation for passwordless authentication (#215)
+
+## v0.11.3 (2025-08-17)
+
+### Feat
+
+- complete DID keeper implementation with W3C compliance and WebAuthn authentication (#214)
+
+## v0.11.2 (2025-08-16)
+
+### Feat
+
+- transform UI package to shadcn monorepo architecture for uniform styling (#213)
+
+## v0.11.1 (2025-08-15)
 
 ### Refactor
 
-- rename DID, DWN, and SVC modules to core-dids, core-dwns, and core-svcs respectively
-- rename MsgInitialize to MsgSpawn for clarity
-- rename scopes in .github/scopes.json for better clarity
+- improve secure memory handling for enhanced security (#201)
 
-## v0.5.28 (2024-12-22)
+## v0.11.0 (2025-08-15)
+
+### Feat
+
+- implement comprehensive cryptographic security enhancements (#200)
+
+## v0.10.35 (2025-08-15)
+
+### Feat
+
+- implement comprehensive cryptographic security enhancements (#199)
+
+## v0.10.34 (2025-08-15)
+
+### Feat
+
+- implement CLI commands for wallet module (#198)
+
+## v0.10.33 (2025-08-14)
+
+### Feat
+
+- implement UCAN permission validation for wallet transactions (#197)
+
+## v0.10.32 (2025-08-14)
+
+### Feat
+
+- implement Go client SDK with transaction signing and broadcasting (#196)
+
+## v0.10.31 (2025-08-13)
+
+### Feat
+
+- enable Docker-based testnet execution
+
+## v0.10.30 (2025-08-13)
+
+### Feat
+
+- streamline CI/CD pipeline by removing changeset dependency
+
+## v0.10.29 (2025-08-13)
+
+## v0.10.28 (2025-08-13)
+
+### Feat
+
+- implement monorepo structure with pnpm workspaces and changesets (#189)
+
+## v0.10.27 (2025-08-12)
+
+### Feat
+
+- implement WebAuthn gasless transactions with comprehensive protocol integration (#186)
 
 ### Fix
 
-- Sink
+- resolve chain ID validation and encryption key rotation issues (#188)
 
-### Refactor
+## v0.10.26 (2025-08-11)
 
-- update testnet configuration
-- optimize GitHub Actions workflow triggers (#1204)
-- Move embed
-
-## v0.1.6 (2024-12-16)
-
-## v0.5.26 (2024-12-13)
-
-## v0.5.25 (2024-12-11)
+## v0.10.25 (2025-08-11)
 
 ### Feat
 
-- enable GoReleaser releases on tags and snapshots
-- automate release on tag and workflow dispatch
+- implement gasless WebAuthn registration with comprehensive security audit (#182)
+
+## v0.10.24 (2025-08-09)
+
+### Feat
+
+- implement consensus-based encryption for DWN module (#181)
+
+## v0.10.23 (2025-08-09)
+
+### Feat
+
+- enhance init command with VRF keypair generation and SonrContext system (#180)
+
+## v0.10.22 (2025-08-09)
+
+### Refactor
+
+- move interchain tests to (#178)
+
+## v0.10.21 (2025-08-09)
+
+## v0.10.20 (2025-08-08)
+
+### Feat
+
+- refactor Motor WASM plugin as MPC-based UCAN source (#177)
+
+### Refactor
+
+- restructure documentation and navigation for clarity
+
+## v0.10.19 (2025-08-08)
+
+### Feat
+
+- migrate documentation to Mintlify structure (#172)
+
+### Refactor
+
+- migrate x/ucan module to lightweight internal/ucan library (#174)
+
+## v0.10.18 (2025-08-07)
+
+## v0.10.17 (2025-08-06)
+
+### Feat
+
+- implement WebAuthn CLI registration with gasless transactions (#168)
+
+## v0.10.16 (2025-08-06)
+
+### Feat
+
+- implement auto-create DWN vault with comprehensive security improvements (Fixes #153) (#161)
+
+## v0.10.15 (2025-08-05)
+
+### Feat
+
+- migrate Highway service to Echo framework with WebSocket/SSE and JWT auth (#159)
+
+## v0.10.14 (2025-08-05)
+
+### Feat
+
+- complete Highway proxy server implementation with asynq and proto.Actor (#157)
+
+## v0.10.13 (2025-08-05)
+
+### Feat
+
+- refactor x/dwn vaults and introduce gasless transactions (#154)
+
+## v0.10.12 (2025-08-03)
+
+### Feat
+
+- monorepo restructure with internal packages and enhanced CI/CD (#151)
+
+## v0.10.11 (2025-08-03)
+
+### Feat
+
+- streamline testnet configuration
+
+## v0.10.10 (2025-08-03)
+
+### Feat
+
+- enable faucet and explorer for improved testnet accessibility
+- streamline deployment workflow and configuration
+- streamline testnet configuration for faster iteration
+- streamline testnet configuration
 
 ### Fix
 
-- Correct regular expression for version tags in release workflow
+- K8s deployment config simplified to single node
 
-## v0.5.24 (2024-12-11)
-
-### Feat
-
-- prevent duplicate releases
-
-## v0.5.23 (2024-12-11)
-
-### Refactor
-
-- rename scheduled release workflow to versioned release
-- remove changelog from release artifacts
-
-## v0.5.22 (2024-12-11)
+## v0.10.9 (2025-08-02)
 
 ### Feat
 
-- Implement passkey-based authentication and registration flow
-- allow manual triggering of deployment workflow
-- add start-tui command for interactive mode
-- add coin selection and update passkey input in registration form
-- add hway command for Sonr DID gateway
-- Conditionally install process-compose only if binary not found
-- Add process-compose support with custom start and down commands
-- implement passkey registration flow
-- Improve createProfile form layout with wider max-width and enhanced spacing
-- improve index page UI with new navigation buttons and remove redundant settings buttons
-- Make input rows responsive with grid layout for mobile and desktop
-- enhance index page with additional settings buttons and style adjustments
-- implement passkey-based authentication
-- add support for Cloudsmith releases
-- add go dependency and enhance devbox environment variables
-- update create profile form placeholders and handle
-- add DID-based authentication middleware
-- Add validation for human verification slider sum in CreateProfile form
-- implement passkey registration flow
-- Update WebAuthn credential handling with modern browser standards
-- Streamline passkey registration with automatic form submission
-- Add credential parsing and logging in register finish handler
-- Add credential details row with icon after passkey creation
-- Add form validation for passkey credential input
-- implement passkey registration flow
-- Add hidden input to store passkey credential data for form submission
-- add CI workflow for deploying network
-- add hway binary support and Homebrew formula
-- remove username from passkey creation
-- implement passkey registration flow
-- add passkey creation functionality
-- add CNAME for onsonr.dev domain
+- streamline changelog management
+- enhance testnet configuration with faucet and explorer settings (#145)
 
 ### Fix
 
-- use Unix domain sockets for devnet processes
-- correct workflow name and improve devnet deployment process
-- correct title of profile creation page
-- rename devbox start script to up and remove stop script
-- Consolidate archive configuration and add LICENSE file
-- Improve cross-browser passkey credential handling and encoding
-- Remove commented-out code in passkey registration script
-- remove line-clamp from tailwind config
-- remove unnecessary background and restart settings from process-compose.yaml
-- suppress process-compose server output and log to file
+- correct dependency for milestone closure (#149)
+- ensure Docker containers are always pushed with latest tag
+- deploy workflow (#142)
 
 ### Refactor
 
-- remove unnecessary git fetch step in deploy workflow
-- remove obsolete interchain test dependencies
-- update index views to use new nebula components
-- move Wasm related code to pkg/common/wasm
-- migrate config package to pkg directory
-- migrate to new configuration system and model definitions
-- move session package to pkg directory
-- Refactor registration forms to use UI components
-- move gateway config to vault package
-- improve command line flag descriptions and variable names
-- refactor hway command to use echo framework for server
-- Update root command to load EnvImpl from cobra flags
-- Modify command flags and environment loading logic in cmds.go
-- improve build process and move process-compose.yaml
-- remove unused devbox.json and related configurations
-- Improve mobile layout responsiveness for Rows and Columns components
-- Remove max-w-fit from Rows component
-- replace session package with context package
-- rename database initialization function
-- move session management to dedicated database module
-- remove unused UI components related to wallet and index pages
-- consolidate handlers into single files
-- move gateway and vault packages to internal directory
-- Move registration form components to dedicated directory
-- remove unused devbox package
-- remove devbox configuration
-- move vault package to app directory
-- improve code structure within gateway package
-- move gateway package to app directory
-- move vault package internal components to root
-- migrate layout imports to common styles package
-- Move form templates and styles to common directory
-- consolidate authentication and DID handling logic
-- Improve WebAuthn credential handling and validation in register finish route
-- remove profile card component
-- Simplify passkey registration UI and move profile component inline
-- Update credential logging with transport and ID type
-- Update register handler to use protocol.CredentialDescriptor struct
-- Update credential handling to use protocol.CredentialDescriptor
-- improve profile card styling and functionality
-- Simplify session management and browser information extraction
-- Update PeerInfo to extract and store comprehensive device information
-- improve address display in property details
-- remove unused documentation generation script
-- replace sonr/pkg/styles/layout with nebula/ui/layout
-- migrate UI components to nebula module
-- improve scopes.json structure and update scripts for better usability
+- streamline GitHub Actions workflows for efficiency (#148)
 
-## v0.5.20 (2024-12-07)
-
-### Refactor
-
-- simplify CI workflow by removing redundant asset publishing steps
-
-## v0.5.19 (2024-12-06)
+## v0.10.8 (2025-08-01)
 
 ### Feat
 
-- add support for parent field and resources list in Capability message
-- add fast reflection methods for Capability and Resource
-- add gum package and update devbox configuration
-- add new button components and layout improvements
+- optimize deployment workflows and update infrastructure configuration (#141)
+
+## v0.10.7 (2025-08-01)
+
+## v0.10.6 (2025-08-01)
+
+### Feat
+
+- introduce Starship network configurations for devnet and testnet (#139)
+
+## v0.10.5 (2025-07-31)
+
+### Feat
+
+- enhance chain security with pod security context
+
+## v0.10.4 (2025-07-31)
+
+## v0.10.3 (2025-07-31)
+
+### Refactor
+
+- streamline Docker build for enhanced efficiency (#136)
+
+## v0.10.2 (2025-07-31)
+
+### Feat
+
+- streamline starship configuration and local development (#135)
+
+## v0.10.1 (2025-07-31)
+
+### Feat
+
+- optimize CI/CD workflows with smart testing and K8s deployment (#134)
+- implement fee grant integration with BasicAllowance (#131)
+- implement EVM transaction support in wallet module (#93) (#128)
+- implement external wallet linking as DID assertion methods (#127)
 
 ### Fix
 
-- adjust fullscreen modal close button margin
-- update devbox lockfile
-- resolve rendering issue in login modal
+- update protobuf definitions to reflect wallet chain ID naming (#132)
 
-### Refactor
-
-- rename accaddr package to address
-- Update Credential table to match WebAuthn Credential Descriptor
-- Deployment setup
-- migrate build system from Taskfile to Makefile
-- rename Assertion to Account and update related code
-- remove unused TUI components
-- Move IPFS interaction functions to common package
-- remove dependency on DWN.pkl
-- remove unused dependencies and simplify module imports
-- Rename x/vault -> x/dwn and x/service -> x/svc
-- move resolver formatter to services package
-- remove web documentation
-- update devbox configuration and scripts
-- rename layout component to root
-- refactor authentication pages into their own modules
-- update templ version to v0.2.778 and remove unused air config
-- move signer implementation to mpc package
-
-## v0.5.18 (2024-11-06)
-
-## v0.5.17 (2024-11-05)
+## v0.10.0 (2025-07-21)
 
 ### Feat
 
-- add remote client constructor
-- add avatar image components
-- add SVG CDN Illustrations to marketing architecture
-- **marketing**: refactor marketing page components
-- Refactor intro video component to use a proper script template
-- Move Alpine.js script initialization to separate component
-- Add intro video modal component
-- add homepage architecture section
-- add Hero section component with stats and buttons
-- **css**: add new utility classes for group hover
-- implement authentication register finish endpoint
-- add controller creation step to allocate
-- Update service module README based on protobuf files
-- Update x/macaroon/README.md with details from protobuf files
-- update Vault README with details from proto files
+- implement secure key management with WASM enclaves (#126)
+
+## v0.9.22 (2025-07-21)
+
+### Feat
+
+- implement vault export/import with IPFS encryption (#125)
+
+## v0.9.21 (2025-07-20)
+
+### Feat
+
+- enhance release automation with dedicated token (#124)
+
+## v0.9.20 (2025-07-20)
+
+### Feat
+
+- Add transaction building framework and streamline release process (#123)
+
+## v0.9.19 (2025-07-20)
+
+### Feat
+
+- Add cross-module keeper integration tests and optimize CI performance (#122)
+
+## v0.9.18 (2025-07-20)
+
+### Refactor
+
+- improve service validation and UCAN integration (#121)
+
+## v0.9.17 (2025-07-20)
+
+### Feat
+
+- Implement ServiceKeeper interface for x/dwn module (#120)
+
+## v0.9.16 (2025-07-20)
+
+### Feat
+
+- Implement UCANKeeper interface for x/dwn module (#119)
+
+## v0.9.15 (2025-07-18)
+
+### Feat
+
+- Implement UCANKeeper interface for x/svc module (#117)
+
+## v0.9.14 (2025-07-18)
+
+### Feat
+
+- Implement DIDKeeper interface for x/svc module (#116)
+
+## v0.9.13 (2025-07-18)
+
+## v0.9.12 (2025-07-18)
+
+## v0.9.11 (2025-07-18)
+
+### Feat
+
+- Implement ServiceKeeper interface methods in x/svc keeper (#113)
+
+## v0.9.10 (2025-07-18)
+
+### Feat
+
+- Implement UCANKeeper interface methods and centralize error handling (#112)
+
+## v0.9.9 (2025-07-18)
+
+### Feat
+
+- **x/did**: Implement VerifyDIDDocumentSignature method with multi-algorithm support (#111)
+
+## v0.9.8 (2025-07-18)
+
+### Feat
+
+- Implement wallet derivation and keeper interface architecture (#110)
+
+## v0.9.7 (2025-07-18)
+
+## v0.9.6 (2025-07-16)
+
+### Feat
+
+- introduce VaultKeeper interface for enhanced modularity (#99)
+
+## v0.9.5 (2025-07-15)
+
+### Feat
+
+- enable DWN vault spawning via query API and add comprehensive tests (#98)
+
+## v0.9.4 (2025-07-14)
+
+### Feat
+
+- Update testnet configuration for DAO governance (#84)
+
+## v0.9.3 (2025-07-09)
+
+### Refactor
+
+- Centralize vault actor system and optimize plugin management (#83)
+
+## v0.9.2 (2025-07-07)
+
+## v0.9.1 (2025-07-07)
+
+### Feat
+
+- automate issue triage with project board integration
 
 ### Fix
 
-- update file paths in error messages
-- update intro video modal script
+- use personal access token for project automation
+
+## v0.9.0 (2025-07-06)
+
+### Feat
+
+- Refactor x/dwn module structure and integrate WebAssembly motor client (#81)
+- enhance documentation accessibility for LLMs
+- enhance site navigation and branding
 
 ### Refactor
 
-- update marketing section architecture
-- change verification table id
-- **proto**: remove macaroon proto
-- rename ValidateBasic to Validate
-- rename session cookie key
-- remove unused sync-initial endpoint
-- remove formatter.go from service module
+- restructure app layout and navigation
 
-## v0.5.16 (2024-10-21)
+## v0.8.12 (2025-07-05)
+
+### Feat
+
+- Implement Rybbit analytics and update documentation site styling (#80)
+
+## v0.8.11 (2025-07-04)
+
+### Feat
+
+- Complete shadcn/TemplUI migration from NebulaUI (#79)
+
+## v0.8.10 (2025-07-03)
+
+### Feat
+
+- rename  to
+
+## v0.8.9 (2025-07-03)
+
+## v0.8.8 (2025-07-03)
+
+## v0.8.7 (2025-07-03)
+
+### Feat
+
+- remove TUI dashboard integration from main binary
+
+## v0.8.6 (2025-07-03)
+
+### Feat
+
+- remove TUI dashboard feature
+
+## v0.8.5 (2025-07-03)
+
+## v0.8.4 (2025-07-02)
+
+### Feat
+
+- automate minor version bumps based on milestone completion
+
+## v0.8.3 (2025-07-02)
+
+## v0.8.2 (2025-07-02)
+
+### Feat
+
+- Enhanced documentation landing page with custom branding (#69)
+
+## v0.8.1 (2025-07-02)
+
+## v0.8.0 (2025-07-02)
+
+### Feat
+
+- integrate Trunk.io for code quality and linting (#65)
+
+## v0.7.0 (2025-07-01)
+
+### Feat
+
+- Implement DWN module with enclave signing and DIF specification (#64)
+
+## v0.6.1 (2025-07-01)
+
+### Feat
+
+- es-client protobuf generation (#63)
+
+## v0.6.0 (2025-07-01)
+
+### Feat
+
+- Automated API Reference Generation for Cosmos Modules and Highway REST Service (#62)
 
 ### Fix
 
-- include assets generation in wasm build
+- Revert NTCharts integration and restore original TUI components (#60)
 
-## v0.5.15 (2024-10-21)
-
-## v0.5.14 (2024-10-21)
-
-### Refactor
-
-- remove StakingKeeper dependency from GlobalFeeDecorator
-
-## v0.5.13 (2024-10-21)
+## v0.5.1 (2025-06-30)
 
 ### Feat
 
-- add custom secp256k1 pubkey
+- Enhance TUI Dashboard with real-time data visualization and testnet support (#59)
 
-### Refactor
-
-- update gRPC client to use new request types
-- use RawPublicKey instead of PublicKey in macaroon issuer
-- improve error handling in DID module
-
-## v0.5.12 (2024-10-18)
+## v0.5.0 (2025-06-30)
 
 ### Feat
 
-- add User-Agent and Platform to session
-- introduce AuthState enum for authentication state
+- Implement x/ucan msgServer handlers with capability templates (#55)
+
+## v0.4.1 (2025-06-30)
+
+### Feat
+
+- Integrate Nebula UI Component Library (#54)
+
+## v0.4.0 (2025-06-29)
+
+### Feat
+
+- W3C DID Controller with WebAuthn support and comprehensive testing improvements (#52)
+
+## v0.3.0 (2025-06-29)
+
+### Feat
+
+- Migrate UCAN capability definitions to x/ucan module (#49)
+
+## v0.2.0 (2025-06-28)
+
+### Feat
+
+- Implement DNS record verification with UCAN delegation for x/svc (#41)
+
+## v0.1.0 (2025-06-28)
+
+### Feat
+
+- Implement Highway Service API Handlers (#39)
+
+## v0.0.23 (2025-06-26)
+
+### Feat
+
+- implement IPFS private network support and enhance CI/CD workflows (#38)
+- introduce comprehensive tokenomics documentation (#37)
+- enhance documentation with client integration guide (#36)
+- introduce research section with whitepapers
+
+## v0.0.22 (2025-06-25)
+
+### Feat
+
+- remove ajv dependency and related code
+
+## v0.0.21 (2025-06-25)
+
+## v0.0.20 (2025-06-25)
+
+### Refactor
+
+- streamline Docker release workflow for improved maintainability
+
+## v0.0.19 (2025-06-25)
+
+### Feat
+
+- improve documentation and build process
+
+## v0.0.18 (2025-06-25)
+
+## v0.0.17 (2025-06-24)
+
+### Feat
+
+- remove auto-generated cosmos API reference pages
+
+## v0.0.16 (2025-06-24)
+
+### Feat
+
+- enhance documentation generation with OpenAPI support
+- migrate documentation to Fumadocs
+- implement automated build and release process
+- remove testnet workflows and data
+- implement optimized Docker build workflow
+- migrate to docker compose and Makefile
 
 ### Fix
 
-- **version**: revert version bump to 0.5.11
-- **version**: update version to 0.5.12
+- docs
+- correct Dockerfile paths to match actual project structure
 
-### Refactor
-
-- remove dependency on proto change detection
-- update asset publishing configuration
-
-## v0.5.11 (2024-10-10)
+## v0.0.15 (2025-06-23)
 
 ### Feat
 
-- nebula assets served from CDN
-- use CDN for nebula frontend assets
-- add static hero section content to homepage
-- add wrangler scripts for development, build, and deployment
-- remove build configuration
-- move gateway web code to dedicated directory
-- add PubKey fast reflection
-- **macaroon**: add transaction allowlist/denylist caveats
-- add PR labeler
-- **devbox**: remove hway start command
-- add GitHub Actions workflow for running tests
-- add workflow for deploying Hway to Cloudflare Workers
-- Publish configs to R2
-- integrate nebula UI with worker-assets-gen
-- extract reusable layout components
-- Implement service worker for IPFS vault
-- implement CDN support for assets
-- add payment method support
-- add support for public key management
-- add ModalForm component
-- add LoginStart and RegisterStart routes
-- implement authentication views
-- add json tags to config structs
-- implement templ forms for consent privacy, credential assert, credential register, and profile details
-- **vault**: introduce assembly of the initial vault
-- add client logos to homepage
-- add tailwind utility classes
-- implement new profile card component
+- enhance testnet data handling by excluding specific files
+- introduce testnet and caddy docker release workflows
+- introduce Caddy reverse proxy for enhanced network management
+
+### Refactor
+
+- streamline Docker configurations and builds
+
+## v0.0.14 (2025-06-23)
+
+### Feat
+
+- introduce standalone hway and IPFS services with Docker Compose
+
+## v0.0.13 (2025-06-23)
+
+## v0.0.12 (2025-06-23)
+
+## v0.0.11 (2025-06-23)
+
+## v0.0.10 (2025-06-23)
+
+### Feat
+
+- introduce postgres docker image with extensions
+
+## v0.0.9 (2025-06-23)
+
+### Feat
+
+- authenticate with GitHub Container Registry for image publishing
+
+## v0.0.8 (2025-06-23)
+
+## v0.0.7 (2025-06-23)
+
+### Feat
+
+- introduce multi-image build and push workflow
+- enhance Sonr documentation with architecture and component details
+- integrate task runner with fzf for improved command execution
+
+### Refactor
+
+- consolidate build tags for improved clarity
+- streamline app initialization and service registration
+- restructure project and update dependencies
+- move server and middleware logic to pkg/server
+
+## v0.0.6 (2025-06-22)
+
+### Feat
+
+- streamline deployment by removing hway proxy
+
+## v0.0.5 (2025-06-22)
+
+### Feat
+
+- optimize build configurations for broader CPU compatibility
+
+## v0.0.4 (2025-06-22)
+
+## v0.0.3 (2025-06-22)
 
 ### Fix
 
-- Correct source directory for asset publishing
-- install dependencies before nebula build
-- update Schema service to use new API endpoint
-- fix broken logo image path
+- disable CGO for hway builds to improve portability
 
-### Refactor
+## v0.0.2 (2025-06-22)
 
-- remove unnecessary branch configuration from scheduled release workflow
-- update dwn configuration generation import path
-- use nebula/routes instead of nebula/global
-- move index template to routes package
-- remove cdn package and move assets to global styles
-- move nebula assets to hway build directory
-- remove docker build and deployment
-- rename internal/session package to internal/ctx
-- remove unused fields from
-- rename PR_TEMPLATE to PULL_REQUEST_TEMPLATE
-- remove devbox.json init hook
-- rename sonrd dockerfile to Dockerfile
-- remove unused dependency
-- rename 'global/cdn' to 'assets'
-- move CDN assets to separate folder
-- move Pkl module definitions to dedicated package
-- move CDN assets to js/ folder
-- remove unused component templates
-- move ui components to global
-- move view handlers to router package
-
-## v0.5.10 (2024-10-07)
+## v0.0.1 (2025-06-22)
 
 ### Feat
 
-- **blocks**: remove button component
-
-## v0.5.9 (2024-10-06)
-
-### Feat
-
-- add Motr support
-- update UIUX PKL to utilize optional fields
+- automate version bumping and changelog generation
+- update go version to 1.24.2 across workflows
+- enforce GITHUB_TOKEN and GITHUB_PAT_TOKEN for release
+- integrate external APIs for market data retrieval and chain registry updates
+- automate release process with goreleaser
+- integrate secure enclave and decentralized web node runtime
+- Streamline user experience with interactive TUI dashboard
+- remove unused enclave
+- introduce functional options for configurable vault spawning
+- introduce vault options for flexible spawning
+- integrate vault management with database
+- enhance asset data with verification and market details
+- add asset symbol linking to initial data refresh
+- add asset symbol linking for improved data association
+- enhance request logging with latency and status details
+- integrate Claude Opus for enhanced blockchain development
+- Update market data retrieval to use external API
+- introduce highway service for enhanced user authentication
+- add CoinPaprika global market data integration using http_get
+- remove direct database access from application
+- enable SQLC schema deployment to cloud
+- enhance chain and asset data ingestion from Cosmos directory
+- initialize market data upon deployment
+- schedule and monitor cron jobs
+- schedule market and cosmos data updates with pg_cron
+- introduce commitizen for standardized commits and releases
+- remove enclave wasm
+- enable pg_net extension for enhanced network capabilities
+- improve postgresql configuration for local development
+- implement database migration using goose
+- introduce database layer and session management
+- introduce taskfile-based build and release processes
+- introduce hway service for webauthn
+- introduce authorize view
+- Integrate CosmWasm VM for enhanced smart contract capabilities
+- implement vault refresh functionality
+- expose ActorSystem for external access
+- remove in-memory cache implementation
+- implement enclave actor with Extism plugin for secure key management
+- implement enclave actor with Extism runtime for secure operations
+- implement enclave actor for secure key management
+- enhance .gitignore to exclude build outputs and temporary files
+- streamline dev environment setup by removing default init hook
+- add support for generating and unlocking enclaves
+- introduce enclave build target for WASM
+- Introduce enclave WASM runtime for secure operations
+- integrate IPFS Kubo v0.35.0 and Boxo v0.31.0
+- initialize database schema for core entities
+- implement decentralized web node runtime with WASM enclave
+- update chain registry for Sonr testnet
 
 ### Fix
 
-- Update source directory for asset publishing
-
-## v0.5.8 (2024-10-04)
-
-### Refactor
-
-- Remove unused logs configuration
-
-## v0.5.7 (2024-10-04)
-
-### Feat
-
-- **devbox**: use process-compose for testnet services
-- remove motr.mjs dependency
-- add markdown rendering to issue templates
-- update issue templates for better clarity
-- add issue templates for tracking and task issues
-- add issue templates for bug report and tracking
+- database migration issues for initial setup
+- improve error message clarity during vault refresh
 
 ### Refactor
 
-- update issue template headings
-- rename bug-report issue template to bug
-
-## v0.5.6 (2024-10-03)
-
-### Feat
-
-- introduce docker-compose based setup
-- add hway and sonr processes to dev environment
-
-## v0.5.5 (2024-10-03)
-
-### Feat
-
-- add rudimentary DidController table
-- update home section with new features
-- introduce Home model and refactor views
-- **nebula**: create Home model for home page
-
-### Refactor
-
-- reorganize pkl files for better separation of concerns
-- rename msg_server_test.go to rpc_test.go
-
-## v0.5.4 (2024-10-02)
-
-## v0.5.3 (2024-10-02)
-
-### Fix
-
-- remove unnecessary telegram message template
-
-## v0.5.2 (2024-10-02)
-
-### Feat
-
-- **service**: integrate group module (#1104)
-
-### Refactor
-
-- revert version bump to 0.5.1
-
-## v0.5.1 (2024-10-02)
-
-### Refactor
-
-- move Motr API to state package
-
-## v0.5.0 (2024-10-02)
-
-### Feat
-
-- allow multiple macaroons with the same id
-
-## v0.4.5 (2024-10-02)
-
-### Feat
-
-- **release**: add docker images for sonrd and motr
-- update homepage with new visual design
-- add DID to vault genesis schema
-- add video component
-- add video component
-- add hx-get attribute to primary button in hero section
-
-### Fix
-
-- use correct secret for docker login
-- **layout**: add missing favicon
-- **hero**: Use hx-swap for primary button to prevent flicker
-
-### Refactor
-
-- use single GITHUB_TOKEN for release workflow
-- update workflow variables
-
-## v0.4.2 (2024-10-01)
-
-### Refactor
-
-- use single GITHUB_TOKEN for release workflow
-
-## v0.4.1 (2024-10-01)
-
-### Feat
-
-- Implement session management
-- allow manual release triggers
-- add Input and RegistrationForm models
-- add new utility classes
-- add login and registration pages
-- add tailwindcss utilities
-- add support for ARM64 architecture
-- add DWN resolver field
-- add stats section to homepage
-- implement hero section using Pkl
-
-### Fix
-
-- **version**: update version number to 0.4.0
-- update release workflow to use latest tag
-- **versioning**: revert version to 0.9.0
-- **cta**: Fix typo in CTA title
-- change bento section title to reflect security focus
-- adjust hero image dimensions
-- **Input**: Change type from to
-- update hero image height in config.pkl
-
-### Refactor
-
-- move home page sections to home package
-- rename motrd to motr
-- update hero image dimensions
-- move nebula configuration to static file
-
-## v0.4.0 (2024-09-30)
-
-### Feat
-
-- add PKL schema for message formats
-- add Homebrew tap for sonr
-- update release workflow to use latest tag
-- **dwn**: add wasm build for dwn
-- add macaroon and oracle genesis states
-- add scheduled binary release workflow
-- introduce process-compose for process management
-- add counter animation to hero section
-- add registration page
-
-### Fix
-
-- Enable scheduled release workflow
-
-### Refactor
-
-- remove old changelog entries
-- rename buf-publish.yml to publish-assets.yml
-- remove unused field from
-- remove unnecessary checkout in scheduled-release workflow
-- rename build ID to sonr
-- remove unnecessary release existence check
-- move dwn wasm build to pkg directory
-
-## v0.3.1 (2024-09-29)
-
-### Refactor
-
-- move nebula/pages to pkg/nebula/pages
-
-## v0.3.0 (2024-09-29)
-
-### Feat
-
-- add buf.lock for proto definitions
-
-### Fix
-
-- remove unused linting rules
-- update proto breaking check target to master branch
-
-### Refactor
-
-- remove unused lock files and configurations
-
-## v0.2.0 (2024-09-29)
-
-### Feat
-
-- disable goreleaser workflow
-- update workflows to include master branch
-- remove global style declaration
-- **oracle**: add oracle module
-- optimize IPFS configuration for better performance
-- add local IPFS bootstrap script and refactor devbox config
-- add AllocateVault HTTP endpoint
-- add WebAuthn credential management functionality
-- remove unused coins interface
-- remove global integrity proof from genesis state
-- add vault module
-- enable buf.build publishing on master and develop branches
-- add Gitflow workflow for syncing branches
-- add automated production release workflow
-- **ui**: implement profile page
-- add automated production release workflow
-- **did**: remove unused proto files
-- add enums.pulsar.go file for PermissionScope enum (#4)
-- add initial DID implementation
-- remove builder interface
-- add basic UI for block explorer
-- add Usage: pkl [OPTIONS] COMMAND [ARGS]...
-- use SQLite embedded driver
-- add DID method for each coin
-- Expand KeyType enum and update KeyInfo message in genesis.proto
-- Add whitelisted key types to genesis params
-- Add DID grants protobuf definition
-- Add fields to KeyInfo struct to distinguish CBOR and standard blockchain key types
-- Add new message types for AssetInfo, ChainInfo, Endpoint, ExplorerInfo, FeeInfo, and KeyInfo
-- run sonr-node container in testnet network and make network external
-- Add docker-compose.yaml file to start a Sonr testnet node
-- configure Sonr testnet environment
-- Update Dockerfile to start and run a testnet
-- add Equal methods for AssetInfo and ChainInfo types
-- Add ProveWitness and SyncVault RPCs
-- Add MsgRegisterService to handle service registration
-- Add MsgRegisterService to handle service registration
-- add enums.pulsar.go file for PermissionScope enum
-
-### Fix
-
-- ensure go version is up-to-date
-- use GITHUB_TOKEN for version bump workflow
-- update account table interface to use address, chain and network
-- **ci**: update docker vm release workflow with new token
-- use mnemonic phrases for test account keys
-- reduce motr proxy shutdown timeout
-- **nebula**: use bunx for tailwindcss build
-- **proto**: update protobuf message index numbers
-- **ante**: reduce POA rate floor and ceiling
-- Update proc_list_width in mprocs.yaml
-- Add service to database when registering
-- pin added did documents to local ipfs node
-- remove extra spaces in typeUrl
-- **release**: remove unnecessary quotes in tag pattern
-- remove unused imports and simplify KeyInfo message
-- bind node ports to localhost
-- Update docker-compose network name to dokploy-network
-- Update network name to dokploy
-- remove unused port mapping
-- Update docker-compose.yaml to use correct volume path
-- update docker-compose volume name
-- Update docker-compose.yaml to use shell directly for sonrd command
-- replace "sh" with "/bin/sh" in docker-compose.yaml command
-- Update runner image dependencies for debian-11
-- **deps**: update golang image to 1.21
-- **chains**: update nomic chain build target
-- Remove unused `Meta` message from `genesis.proto`
-- Add ProveWitness and SyncVault RPCs
-
-### Refactor
-
-- adjust source directory for config files (#1102)
-- Use actions/checkout@v4
-- remove unused master branch from CI workflow
-- rename github token secret
-- remove unnecessary x-cloak styles
-- optimize oracle genesis proto
-- remove unused code related to whitelisted assets
-- update buf publish source directory
-- adjust devbox configuration to reflect nebula changes
-- rename msg_server.go to rpc.go
-- remove devbox integration
-- move dwn package to app/config
-- move configuration files to app directory
-- extract root command creation to separate file
-- move ipfs setup to function
-- remove unnecessary proxy config
-- rename script to
-- move DWN proxy server logic to separate file
-- use htmx instead of dwn for vault client
-- remove unused environment variables
-- simplify verification method structure
-- use staking keeper in DID keeper
-- remove unused dependencies
-- remove unused image building workflow
-- add field to
-- Update KeyKind Enum to have proper naming conventions
-- Update `DIDNamespace` to have proper naming convention
-- expose ports directly in docker-compose
-- remove unused port mappings
-- streamline script execution
-- use CMD instead of ENTRYPOINT in Dockerfile
-- **deps**: Upgrade Debian base image to 11
-- Simplify the types and properties to keep a consistent structure for the blockchain
-- remove PERMISSION_SCOPE_IDENTIFIERS_ENS enum value
+- centralize version bumping configuration
+- streamline project dependencies and configurations for maintainability
+- relocate vaults testing directory
+- migrate enclave to motr for improved architecture
+- improve readability of key string conversion
+- move WebAuthn function queries to dedicated file
+- Populate cosmos registry with http_get function
+- consolidate task configurations for improved maintainability
+- relocate deployment configuration to
+- streamline enclave build and deployment process
+- migrate configuration and metadata fields to  for improved flexibility
+- migrate database schema definitions to standard location
+- streamline dependencies by removing unused caching library
+- simplify vault actor initialization
+- enclave init
+- replace ExampleData with comprehensive DID state management
+- relocate devbox configuration for SQLite support
+- replace task-based commands with direct wrangler scripts in devbox.json
+- reorganize module imports for clarity
+- rename migrations directory for clarity
+- rename marketapi package for clarity
+- move migrations to sqlite specific directory
+- reorganize coins module for improved maintainability
+- move proto definitions to separate packages for better organization
