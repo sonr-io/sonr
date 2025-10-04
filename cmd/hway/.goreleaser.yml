@@ -173,6 +173,30 @@ archives:
       - src: README*
     wrap_in_directory: false
 
+homebrew_casks:
+  - name: hway
+    ids:
+      - hway-darwin-amd64
+      - hway-darwin-arm64
+    homepage: "https://sonr.io"
+    description: "Highway service - bridge between the Public Internet and Sonr blockchain"
+    commit_msg_template: "Brew cask update for {{ .ProjectName }} version {{ .Tag }}"
+    directory: Casks
+    repository:
+      owner: sonr-io
+      name: homebrew-tap
+      branch: main
+      token: "{{ .Env.GITHUB_TOKEN }}"
+    commit_author:
+      name: goreleaserbot
+      email: "prad@sonr.io"
+    hooks:
+      post:
+        install: |
+          if OS.mac?
+            system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/hway"]
+          end
+
 nfpms:
   - id: hway
     package_name: hway

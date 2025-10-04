@@ -205,6 +205,30 @@ archives:
       - src: README*
     wrap_in_directory: false
 
+homebrew_casks:
+  - name: snrd
+    ids:
+      - snrd-darwin-amd64
+      - snrd-darwin-arm64
+    homepage: "https://sonr.io"
+    description: "Sonr blockchain daemon - decentralized identity and data storage network"
+    commit_msg_template: "Brew cask update for {{ .ProjectName }} version {{ .Tag }}"
+    directory: Casks
+    repository:
+      owner: sonr-io
+      name: homebrew-tap
+      branch: main
+      token: "{{ .Env.GITHUB_TOKEN }}"
+    commit_author:
+      name: goreleaserbot
+      email: "prad@sonr.io"
+    hooks:
+      post:
+        install: |
+          if OS.mac?
+            system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/snrd"]
+          end
+
 nfpms:
   - id: snrd
     package_name: snrd
