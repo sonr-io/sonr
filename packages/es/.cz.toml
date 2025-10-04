@@ -1,6 +1,6 @@
 [tool.commitizen]
 name = "cz_customize"
-tag_format = "pkg-es/v$version"
+tag_format = "@sonr.io/es@v$version"
 ignored_tag_formats = ["*/v${version}", "v${version}"]
 version_scheme = "semver"
 version_provider = "npm"
