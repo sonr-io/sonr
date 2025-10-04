@@ -97,8 +97,8 @@ builds:
       - -X main.Commit={{.Commit}}
       - -s -w
 
-aurs:
-  - name: hway-bin
+aur_sources:
+  - name: hway
     disable: true
     homepage: "https://sonr.io"
     description: "Highway service - bridge between the Public Internet and Sonr blockchain"
@@ -106,37 +106,55 @@ aurs:
       - "Sonr <support@sonr.io>"
     license: "Apache-2.0"
     private_key: "{{ .Env.AUR_KEY }}"
-    git_url: "ssh://[email protected]/hway-bin.git"
+    git_url: "ssh://[email protected]/hway.git"
     skip_upload: auto
     provides:
       - hway
     conflicts:
-      - hway
+      - hway-bin
     depends:
+      - glibc
       - redis
     optdepends:
       - "docker: for container-based vault operations"
+    makedepends:
+      - go
+      - git
+      - make
     commit_msg_template: "Update to {{ .Tag }}"
     commit_author:
       name: goreleaserbot
       email: "prad@sonr.io"
+    prepare: |-
+      cd "${pkgname}_${pkgver}"
+      go mod download
+    build: |-
+      cd "${pkgname}_${pkgver}"
+      export CGO_ENABLED=1
+      export CGO_CPPFLAGS="${CPPFLAGS}"
+      export CGO_CFLAGS="${CFLAGS}"
+      export CGO_CXXFLAGS="${CXXFLAGS}"
+      export CGO_LDFLAGS="${LDFLAGS}"
+      export GOFLAGS="-buildmode=pie -trimpath -mod=readonly -modcacherw"
+      go build \
+        -ldflags="-w -s -buildid='' -linkmode=external \
+          -X main.Version=${pkgver}" \
+        -o hway ./cmd/hway
+      chmod +x ./hway
     package: |-
+      cd "${pkgname}_${pkgver}"
+
       # bin
       install -Dm755 "./hway" "${pkgdir}/usr/bin/hway"
 
       # license
       if [ -f "./LICENSE" ]; then
-        install -Dm644 "./LICENSE" "${pkgdir}/usr/share/licenses/hway-bin/LICENSE"
+        install -Dm644 "./LICENSE" "${pkgdir}/usr/share/licenses/hway/LICENSE"
       fi
 
       # readme
       if [ -f "./README.md" ]; then
-        install -Dm644 "./README.md" "${pkgdir}/usr/share/doc/hway-bin/README.md"
-      fi
-
-      # systemd service (if exists)
-      if [ -f "./hway.service" ]; then
-        install -Dm644 "./hway.service" "${pkgdir}/usr/lib/systemd/system/hway.service"
+        install -Dm644 "./README.md" "${pkgdir}/usr/share/doc/hway/README.md"
       fi
 
 nix:
@@ -172,6 +190,29 @@ archives:
     files:
       - src: README*
     wrap_in_directory: false
+
+homebrew_casks:
+  - name: hway
+    ids:
+      - hway
+    homepage: "https://sonr.io"
+    description: "Highway service - bridge between the Public Internet and Sonr blockchain"
+    commit_msg_template: "Brew cask update for {{ .ProjectName }} version {{ .Tag }}"
+    directory: Casks
+    repository:
+      owner: sonr-io
+      name: homebrew-tap
+      branch: main
+      token: "{{ .Env.GITHUB_TOKEN }}"
+    commit_author:
+      name: goreleaserbot
+      email: "prad@sonr.io"
+    hooks:
+      post:
+        install: |
+          if OS.mac?
+            system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/hway"]
+          end
 
 nfpms:
   - id: hway
@@ -219,6 +260,25 @@ release:
 
 checksum:
   name_template: 'hway_checksums.txt'
+
+npms:
+  - name: "@sonr.io/hway"
+    ids:
+      - hway
+    description: "Highway service - bridge between the Public Internet and Sonr blockchain"
+    homepage: "https://sonr.io"
+    license: "Apache-2.0"
+    author: "Sonr <support@sonr.io>"
+    repository: "https://github.com/sonr-io/sonr"
+    bugs: "https://github.com/sonr-io/sonr/issues"
+    keywords:
+      - highway
+      - bridge
+      - blockchain
+      - sonr
+      - service
+    access: public
+    format: tar.gz
 
 snapshot:
   version_template: "{{ incpatch .Version }}-dev"
