@@ -133,7 +133,7 @@ aur_sources:
     description: "Sonr blockchain daemon - decentralized identity and data storage network"
     maintainers:
       - "Sonr <support@sonr.io>"
-    license: "Apache-2.0"
+    license: "GPL-3.0"
     private_key: "{{ .Env.AUR_KEY }}"
     git_url: "ssh://[email protected]/snrd.git"
     skip_upload: auto
@@ -200,7 +200,7 @@ nix:
       - snrd
     homepage: "https://sonr.io"
     description: "Sonr blockchain daemon - decentralized identity network"
-    license: "gpl3Plus"
+    license: "gpl3"
     path: pkgs/snrd/default.nix
     commit_msg_template: "snrd: {{ .Tag }}"
     dependencies:
@@ -262,7 +262,7 @@ nfpms:
     homepage: "https://sonr.io"
     maintainer: "Sonr <support@sonr.io>"
     description: "Sonr is a decentralized, permissionless, and censorship-resistant identity network."
-    license: "Apache 2.0"
+    license: "GPL-3.0"
     formats:
       - rpm
       - deb
@@ -304,7 +304,7 @@ npms:
       - snrd
     description: "Sonr blockchain daemon - decentralized identity and data storage network"
     homepage: "https://sonr.io"
-    license: "Apache-2.0"
+    license: "GPL-3.0"
     author: "Sonr <support@sonr.io>"
     repository: "https://github.com/sonr-io/sonr"
     bugs: "https://github.com/sonr-io/sonr/issues"

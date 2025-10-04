@@ -104,7 +104,7 @@ aur_sources:
     description: "Highway service - bridge between the Public Internet and Sonr blockchain"
     maintainers:
       - "Sonr <support@sonr.io>"
-    license: "Apache-2.0"
+    license: "GPL-3.0"
     private_key: "{{ .Env.AUR_KEY }}"
     git_url: "ssh://[email protected]/hway.git"
     skip_upload: auto
@@ -163,7 +163,7 @@ nix:
       - hway
     homepage: "https://sonr.io"
     description: "Highway network component for Sonr"
-    license: "gpl3Plus"
+    license: "gpl3"
     path: pkgs/hway/default.nix
     commit_msg_template: "hway: {{ .Tag }}"
     dependencies:
@@ -225,7 +225,7 @@ nfpms:
     homepage: "https://sonr.io"
     maintainer: "Sonr <support@sonr.io>"
     description: "Hway is the bridge between the Public Internet and the Sonr blockchain."
-    license: "Apache 2.0"
+    license: "GPL-3.0"
     formats:
       - rpm
       - deb
@@ -267,7 +267,7 @@ npms:
       - hway
     description: "Highway service - bridge between the Public Internet and Sonr blockchain"
     homepage: "https://sonr.io"
-    license: "Apache-2.0"
+    license: "GPL-3.0"
     author: "Sonr <support@sonr.io>"
     repository: "https://github.com/sonr-io/sonr"
     bugs: "https://github.com/sonr-io/sonr/issues"
