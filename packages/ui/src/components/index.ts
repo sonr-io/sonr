@@ -165,15 +165,16 @@ export {
 } from './ui/dropdown-menu';
 
 // Export dashboard service components
-export {
-  ServiceList,
-  ServiceCard,
-  ServiceForm,
-  ServiceDetails,
-  ServiceSearch,
-  ServiceMetrics,
-  type Service,
-} from './dashboard/services';
+// TODO: Uncomment when services components are implemented
+// export {
+//   ServiceList,
+//   ServiceCard,
+//   ServiceForm,
+//   ServiceDetails,
+//   ServiceSearch,
+//   ServiceMetrics,
+//   type Service,
+// } from './dashboard/services';
 
 // Export dashboard domain verification components
 export {
