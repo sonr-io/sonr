@@ -20,7 +20,7 @@
     "@sonr.io/es": "workspace:*",
     "@sonr.io/sdk": "workspace:*",
     "@sonr.io/ui": "workspace:*",
-    "next": "15.5.2",
+    "next": "15.5.4",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
