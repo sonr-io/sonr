@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
 
 /**
  * DenomTrace contains the base denomination for ICS20 fungible tokens and the
@@ -20,14 +27,14 @@ export class DenomTrace extends Message<DenomTrace> {
    *
    * @generated from field: string path = 1;
    */
-  path = "";
+  path = '';
 
   /**
    * base denomination of the relayed fungible token.
    *
    * @generated from field: string base_denom = 2;
    */
-  baseDenom = "";
+  baseDenom = '';
 
   constructor(data?: PartialMessage<DenomTrace>) {
     super();
@@ -35,10 +42,10 @@ export class DenomTrace extends Message<DenomTrace> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.transfer.v1.DenomTrace";
+  static readonly typeName = 'ibc.applications.transfer.v1.DenomTrace';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "base_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'path', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'base_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DenomTrace {
@@ -53,8 +60,10 @@ export class DenomTrace extends Message<DenomTrace> {
     return new DenomTrace().fromJsonString(jsonString, options);
   }
 
-  static equals(a: DenomTrace | PlainMessage<DenomTrace> | undefined, b: DenomTrace | PlainMessage<DenomTrace> | undefined): boolean {
+  static equals(
+    a: DenomTrace | PlainMessage<DenomTrace> | undefined,
+    b: DenomTrace | PlainMessage<DenomTrace> | undefined
+  ): boolean {
     return proto3.util.equals(DenomTrace, a, b);
   }
 }
-

@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { BaseAccount } from "../../../cosmos/auth/v1beta1/auth_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { BaseAccount } from '../../../cosmos/auth/v1beta1/auth_pb.js';
 
 /**
  * EthAccount implements the authtypes.AccountI interface and embeds an
@@ -26,7 +33,7 @@ export class EthAccount extends Message<EthAccount> {
    *
    * @generated from field: string code_hash = 2;
    */
-  codeHash = "";
+  codeHash = '';
 
   constructor(data?: PartialMessage<EthAccount>) {
     super();
@@ -34,10 +41,10 @@ export class EthAccount extends Message<EthAccount> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.types.v1.EthAccount";
+  static readonly typeName = 'ethermint.types.v1.EthAccount';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "base_account", kind: "message", T: BaseAccount },
-    { no: 2, name: "code_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'base_account', kind: 'message', T: BaseAccount },
+    { no: 2, name: 'code_hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EthAccount {
@@ -52,8 +59,10 @@ export class EthAccount extends Message<EthAccount> {
     return new EthAccount().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EthAccount | PlainMessage<EthAccount> | undefined, b: EthAccount | PlainMessage<EthAccount> | undefined): boolean {
+  static equals(
+    a: EthAccount | PlainMessage<EthAccount> | undefined,
+    b: EthAccount | PlainMessage<EthAccount> | undefined
+  ): boolean {
     return proto3.util.equals(EthAccount, a, b);
   }
 }
-

@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
 
 /**
  * SetProtoRevEnabledProposal is a gov Content type to update whether the
@@ -16,12 +23,12 @@ export class SetProtoRevEnabledProposal extends Message<SetProtoRevEnabledPropos
   /**
    * @generated from field: string title = 1;
    */
-  title = "";
+  title = '';
 
   /**
    * @generated from field: string description = 2;
    */
-  description = "";
+  description = '';
 
   /**
    * @generated from field: bool enabled = 3;
@@ -34,26 +41,38 @@ export class SetProtoRevEnabledProposal extends Message<SetProtoRevEnabledPropos
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.protorev.v1beta1.SetProtoRevEnabledProposal";
+  static readonly typeName = 'osmosis.protorev.v1beta1.SetProtoRevEnabledProposal';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "enabled", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'title', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'description', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'enabled', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SetProtoRevEnabledProposal {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): SetProtoRevEnabledProposal {
     return new SetProtoRevEnabledProposal().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SetProtoRevEnabledProposal {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): SetProtoRevEnabledProposal {
     return new SetProtoRevEnabledProposal().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SetProtoRevEnabledProposal {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): SetProtoRevEnabledProposal {
     return new SetProtoRevEnabledProposal().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SetProtoRevEnabledProposal | PlainMessage<SetProtoRevEnabledProposal> | undefined, b: SetProtoRevEnabledProposal | PlainMessage<SetProtoRevEnabledProposal> | undefined): boolean {
+  static equals(
+    a: SetProtoRevEnabledProposal | PlainMessage<SetProtoRevEnabledProposal> | undefined,
+    b: SetProtoRevEnabledProposal | PlainMessage<SetProtoRevEnabledProposal> | undefined
+  ): boolean {
     return proto3.util.equals(SetProtoRevEnabledProposal, a, b);
   }
 }
@@ -69,17 +88,17 @@ export class SetProtoRevAdminAccountProposal extends Message<SetProtoRevAdminAcc
   /**
    * @generated from field: string title = 1;
    */
-  title = "";
+  title = '';
 
   /**
    * @generated from field: string description = 2;
    */
-  description = "";
+  description = '';
 
   /**
    * @generated from field: string account = 3;
    */
-  account = "";
+  account = '';
 
   constructor(data?: PartialMessage<SetProtoRevAdminAccountProposal>) {
     super();
@@ -87,27 +106,38 @@ export class SetProtoRevAdminAccountProposal extends Message<SetProtoRevAdminAcc
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.protorev.v1beta1.SetProtoRevAdminAccountProposal";
+  static readonly typeName = 'osmosis.protorev.v1beta1.SetProtoRevAdminAccountProposal';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "account", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'title', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'description', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'account', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SetProtoRevAdminAccountProposal {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): SetProtoRevAdminAccountProposal {
     return new SetProtoRevAdminAccountProposal().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SetProtoRevAdminAccountProposal {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): SetProtoRevAdminAccountProposal {
     return new SetProtoRevAdminAccountProposal().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SetProtoRevAdminAccountProposal {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): SetProtoRevAdminAccountProposal {
     return new SetProtoRevAdminAccountProposal().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SetProtoRevAdminAccountProposal | PlainMessage<SetProtoRevAdminAccountProposal> | undefined, b: SetProtoRevAdminAccountProposal | PlainMessage<SetProtoRevAdminAccountProposal> | undefined): boolean {
+  static equals(
+    a: SetProtoRevAdminAccountProposal | PlainMessage<SetProtoRevAdminAccountProposal> | undefined,
+    b: SetProtoRevAdminAccountProposal | PlainMessage<SetProtoRevAdminAccountProposal> | undefined
+  ): boolean {
     return proto3.util.equals(SetProtoRevAdminAccountProposal, a, b);
   }
 }
-

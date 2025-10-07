@@ -3,16 +3,61 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AllPoolsRequest, AllPoolsResponse, AllRegisteredAlloyedPoolsRequest, AllRegisteredAlloyedPoolsResponse, AllTakerFeeShareAccumulatorsRequest, AllTakerFeeShareAccumulatorsResponse, AllTakerFeeShareAgreementsRequest, AllTakerFeeShareAgreementsResponse, EstimateSinglePoolSwapExactAmountInRequest, EstimateSinglePoolSwapExactAmountOutRequest, EstimateSwapExactAmountInRequest, EstimateSwapExactAmountInResponse, EstimateSwapExactAmountInWithPrimitiveTypesRequest, EstimateSwapExactAmountOutRequest, EstimateSwapExactAmountOutResponse, EstimateSwapExactAmountOutWithPrimitiveTypesRequest, EstimateTradeBasedOnPriceImpactRequest, EstimateTradeBasedOnPriceImpactResponse, ListPoolsByDenomRequest, ListPoolsByDenomResponse, NumPoolsRequest, NumPoolsResponse, ParamsRequest, ParamsResponse, PoolRequest, PoolResponse, RegisteredAlloyedPoolFromDenomRequest, RegisteredAlloyedPoolFromDenomResponse, RegisteredAlloyedPoolFromPoolIdRequest, RegisteredAlloyedPoolFromPoolIdResponse, SpotPriceRequest, SpotPriceResponse, TakerFeeShareAgreementFromDenomRequest, TakerFeeShareAgreementFromDenomResponse, TakerFeeShareDenomsToAccruedValueRequest, TakerFeeShareDenomsToAccruedValueResponse, TotalLiquidityRequest, TotalLiquidityResponse, TotalPoolLiquidityRequest, TotalPoolLiquidityResponse, TotalVolumeForPoolRequest, TotalVolumeForPoolResponse, TradingPairTakerFeeRequest, TradingPairTakerFeeResponse } from "./query_pb.js";
+import {
+  AllPoolsRequest,
+  AllPoolsResponse,
+  AllRegisteredAlloyedPoolsRequest,
+  AllRegisteredAlloyedPoolsResponse,
+  AllTakerFeeShareAccumulatorsRequest,
+  AllTakerFeeShareAccumulatorsResponse,
+  AllTakerFeeShareAgreementsRequest,
+  AllTakerFeeShareAgreementsResponse,
+  EstimateSinglePoolSwapExactAmountInRequest,
+  EstimateSinglePoolSwapExactAmountOutRequest,
+  EstimateSwapExactAmountInRequest,
+  EstimateSwapExactAmountInResponse,
+  EstimateSwapExactAmountInWithPrimitiveTypesRequest,
+  EstimateSwapExactAmountOutRequest,
+  EstimateSwapExactAmountOutResponse,
+  EstimateSwapExactAmountOutWithPrimitiveTypesRequest,
+  EstimateTradeBasedOnPriceImpactRequest,
+  EstimateTradeBasedOnPriceImpactResponse,
+  ListPoolsByDenomRequest,
+  ListPoolsByDenomResponse,
+  NumPoolsRequest,
+  NumPoolsResponse,
+  ParamsRequest,
+  ParamsResponse,
+  PoolRequest,
+  PoolResponse,
+  RegisteredAlloyedPoolFromDenomRequest,
+  RegisteredAlloyedPoolFromDenomResponse,
+  RegisteredAlloyedPoolFromPoolIdRequest,
+  RegisteredAlloyedPoolFromPoolIdResponse,
+  SpotPriceRequest,
+  SpotPriceResponse,
+  TakerFeeShareAgreementFromDenomRequest,
+  TakerFeeShareAgreementFromDenomResponse,
+  TakerFeeShareDenomsToAccruedValueRequest,
+  TakerFeeShareDenomsToAccruedValueResponse,
+  TotalLiquidityRequest,
+  TotalLiquidityResponse,
+  TotalPoolLiquidityRequest,
+  TotalPoolLiquidityResponse,
+  TotalVolumeForPoolRequest,
+  TotalVolumeForPoolResponse,
+  TradingPairTakerFeeRequest,
+  TradingPairTakerFeeResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "osmosis.poolmanager.v1beta1.Query";
+const TYPE_NAME = 'osmosis.poolmanager.v1beta1.Query';
 
 /**
  * @generated from rpc osmosis.poolmanager.v1beta1.Query.Params
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: ParamsRequest,
   Response: ParamsResponse,
 } as const;
@@ -24,7 +69,7 @@ export const QueryParamsService = {
  */
 export const QueryEstimateSwapExactAmountInService = {
   typeName: TYPE_NAME,
-  method: "EstimateSwapExactAmountIn",
+  method: 'EstimateSwapExactAmountIn',
   Request: EstimateSwapExactAmountInRequest,
   Response: EstimateSwapExactAmountInResponse,
 } as const;
@@ -45,7 +90,7 @@ export const QueryEstimateSwapExactAmountInService = {
  */
 export const QueryEstimateSwapExactAmountInWithPrimitiveTypesService = {
   typeName: TYPE_NAME,
-  method: "EstimateSwapExactAmountInWithPrimitiveTypes",
+  method: 'EstimateSwapExactAmountInWithPrimitiveTypes',
   Request: EstimateSwapExactAmountInWithPrimitiveTypesRequest,
   Response: EstimateSwapExactAmountInResponse,
 } as const;
@@ -55,7 +100,7 @@ export const QueryEstimateSwapExactAmountInWithPrimitiveTypesService = {
  */
 export const QueryEstimateSinglePoolSwapExactAmountInService = {
   typeName: TYPE_NAME,
-  method: "EstimateSinglePoolSwapExactAmountIn",
+  method: 'EstimateSinglePoolSwapExactAmountIn',
   Request: EstimateSinglePoolSwapExactAmountInRequest,
   Response: EstimateSwapExactAmountInResponse,
 } as const;
@@ -67,7 +112,7 @@ export const QueryEstimateSinglePoolSwapExactAmountInService = {
  */
 export const QueryEstimateSwapExactAmountOutService = {
   typeName: TYPE_NAME,
-  method: "EstimateSwapExactAmountOut",
+  method: 'EstimateSwapExactAmountOut',
   Request: EstimateSwapExactAmountOutRequest,
   Response: EstimateSwapExactAmountOutResponse,
 } as const;
@@ -79,7 +124,7 @@ export const QueryEstimateSwapExactAmountOutService = {
  */
 export const QueryEstimateSwapExactAmountOutWithPrimitiveTypesService = {
   typeName: TYPE_NAME,
-  method: "EstimateSwapExactAmountOutWithPrimitiveTypes",
+  method: 'EstimateSwapExactAmountOutWithPrimitiveTypes',
   Request: EstimateSwapExactAmountOutWithPrimitiveTypesRequest,
   Response: EstimateSwapExactAmountOutResponse,
 } as const;
@@ -89,7 +134,7 @@ export const QueryEstimateSwapExactAmountOutWithPrimitiveTypesService = {
  */
 export const QueryEstimateSinglePoolSwapExactAmountOutService = {
   typeName: TYPE_NAME,
-  method: "EstimateSinglePoolSwapExactAmountOut",
+  method: 'EstimateSinglePoolSwapExactAmountOut',
   Request: EstimateSinglePoolSwapExactAmountOutRequest,
   Response: EstimateSwapExactAmountOutResponse,
 } as const;
@@ -101,7 +146,7 @@ export const QueryEstimateSinglePoolSwapExactAmountOutService = {
  */
 export const QueryNumPoolsService = {
   typeName: TYPE_NAME,
-  method: "NumPools",
+  method: 'NumPools',
   Request: NumPoolsRequest,
   Response: NumPoolsResponse,
 } as const;
@@ -113,7 +158,7 @@ export const QueryNumPoolsService = {
  */
 export const QueryPoolService = {
   typeName: TYPE_NAME,
-  method: "Pool",
+  method: 'Pool',
   Request: PoolRequest,
   Response: PoolResponse,
 } as const;
@@ -125,7 +170,7 @@ export const QueryPoolService = {
  */
 export const QueryAllPoolsService = {
   typeName: TYPE_NAME,
-  method: "AllPools",
+  method: 'AllPools',
   Request: AllPoolsRequest,
   Response: AllPoolsResponse,
 } as const;
@@ -137,7 +182,7 @@ export const QueryAllPoolsService = {
  */
 export const QueryListPoolsByDenomService = {
   typeName: TYPE_NAME,
-  method: "ListPoolsByDenom",
+  method: 'ListPoolsByDenom',
   Request: ListPoolsByDenomRequest,
   Response: ListPoolsByDenomResponse,
 } as const;
@@ -150,7 +195,7 @@ export const QueryListPoolsByDenomService = {
  */
 export const QuerySpotPriceService = {
   typeName: TYPE_NAME,
-  method: "SpotPrice",
+  method: 'SpotPrice',
   Request: SpotPriceRequest,
   Response: SpotPriceResponse,
 } as const;
@@ -162,7 +207,7 @@ export const QuerySpotPriceService = {
  */
 export const QueryTotalPoolLiquidityService = {
   typeName: TYPE_NAME,
-  method: "TotalPoolLiquidity",
+  method: 'TotalPoolLiquidity',
   Request: TotalPoolLiquidityRequest,
   Response: TotalPoolLiquidityResponse,
 } as const;
@@ -174,7 +219,7 @@ export const QueryTotalPoolLiquidityService = {
  */
 export const QueryTotalLiquidityService = {
   typeName: TYPE_NAME,
-  method: "TotalLiquidity",
+  method: 'TotalLiquidity',
   Request: TotalLiquidityRequest,
   Response: TotalLiquidityResponse,
 } as const;
@@ -186,7 +231,7 @@ export const QueryTotalLiquidityService = {
  */
 export const QueryTotalVolumeForPoolService = {
   typeName: TYPE_NAME,
-  method: "TotalVolumeForPool",
+  method: 'TotalVolumeForPool',
   Request: TotalVolumeForPoolRequest,
   Response: TotalVolumeForPoolResponse,
 } as const;
@@ -198,7 +243,7 @@ export const QueryTotalVolumeForPoolService = {
  */
 export const QueryTradingPairTakerFeeService = {
   typeName: TYPE_NAME,
-  method: "TradingPairTakerFee",
+  method: 'TradingPairTakerFee',
   Request: TradingPairTakerFeeRequest,
   Response: TradingPairTakerFeeResponse,
 } as const;
@@ -212,7 +257,7 @@ export const QueryTradingPairTakerFeeService = {
  */
 export const QueryEstimateTradeBasedOnPriceImpactService = {
   typeName: TYPE_NAME,
-  method: "EstimateTradeBasedOnPriceImpact",
+  method: 'EstimateTradeBasedOnPriceImpact',
   Request: EstimateTradeBasedOnPriceImpactRequest,
   Response: EstimateTradeBasedOnPriceImpactResponse,
 } as const;
@@ -228,7 +273,7 @@ export const QueryEstimateTradeBasedOnPriceImpactService = {
  */
 export const QueryAllTakerFeeShareAgreementsService = {
   typeName: TYPE_NAME,
-  method: "AllTakerFeeShareAgreements",
+  method: 'AllTakerFeeShareAgreements',
   Request: AllTakerFeeShareAgreementsRequest,
   Response: AllTakerFeeShareAgreementsResponse,
 } as const;
@@ -244,7 +289,7 @@ export const QueryAllTakerFeeShareAgreementsService = {
  */
 export const QueryTakerFeeShareAgreementFromDenomService = {
   typeName: TYPE_NAME,
-  method: "TakerFeeShareAgreementFromDenom",
+  method: 'TakerFeeShareAgreementFromDenom',
   Request: TakerFeeShareAgreementFromDenomRequest,
   Response: TakerFeeShareAgreementFromDenomResponse,
 } as const;
@@ -258,7 +303,7 @@ export const QueryTakerFeeShareAgreementFromDenomService = {
  */
 export const QueryTakerFeeShareDenomsToAccruedValueService = {
   typeName: TYPE_NAME,
-  method: "TakerFeeShareDenomsToAccruedValue",
+  method: 'TakerFeeShareDenomsToAccruedValue',
   Request: TakerFeeShareDenomsToAccruedValueRequest,
   Response: TakerFeeShareDenomsToAccruedValueResponse,
 } as const;
@@ -273,7 +318,7 @@ export const QueryTakerFeeShareDenomsToAccruedValueService = {
  */
 export const QueryAllTakerFeeShareAccumulatorsService = {
   typeName: TYPE_NAME,
-  method: "AllTakerFeeShareAccumulators",
+  method: 'AllTakerFeeShareAccumulators',
   Request: AllTakerFeeShareAccumulatorsRequest,
   Response: AllTakerFeeShareAccumulatorsResponse,
 } as const;
@@ -288,7 +333,7 @@ export const QueryAllTakerFeeShareAccumulatorsService = {
  */
 export const QueryRegisteredAlloyedPoolFromDenomService = {
   typeName: TYPE_NAME,
-  method: "RegisteredAlloyedPoolFromDenom",
+  method: 'RegisteredAlloyedPoolFromDenom',
   Request: RegisteredAlloyedPoolFromDenomRequest,
   Response: RegisteredAlloyedPoolFromDenomResponse,
 } as const;
@@ -303,7 +348,7 @@ export const QueryRegisteredAlloyedPoolFromDenomService = {
  */
 export const QueryRegisteredAlloyedPoolFromPoolIdService = {
   typeName: TYPE_NAME,
-  method: "RegisteredAlloyedPoolFromPoolId",
+  method: 'RegisteredAlloyedPoolFromPoolId',
   Request: RegisteredAlloyedPoolFromPoolIdRequest,
   Response: RegisteredAlloyedPoolFromPoolIdResponse,
 } as const;
@@ -318,8 +363,7 @@ export const QueryRegisteredAlloyedPoolFromPoolIdService = {
  */
 export const QueryAllRegisteredAlloyedPoolsService = {
   typeName: TYPE_NAME,
-  method: "AllRegisteredAlloyedPools",
+  method: 'AllRegisteredAlloyedPools',
   Request: AllRegisteredAlloyedPoolsRequest,
   Response: AllRegisteredAlloyedPoolsResponse,
 } as const;
-

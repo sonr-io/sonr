@@ -3,9 +3,24 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgDelegateBondedTokens, MsgDelegateBondedTokensResponse, MsgDelegateToValidatorSet, MsgDelegateToValidatorSetResponse, MsgRedelegateValidatorSet, MsgRedelegateValidatorSetResponse, MsgSetValidatorSetPreference, MsgSetValidatorSetPreferenceResponse, MsgUndelegateFromRebalancedValidatorSet, MsgUndelegateFromRebalancedValidatorSetResponse, MsgUndelegateFromValidatorSet, MsgUndelegateFromValidatorSetResponse, MsgWithdrawDelegationRewards, MsgWithdrawDelegationRewardsResponse } from "./tx_pb.js";
+import {
+  MsgDelegateBondedTokens,
+  MsgDelegateBondedTokensResponse,
+  MsgDelegateToValidatorSet,
+  MsgDelegateToValidatorSetResponse,
+  MsgRedelegateValidatorSet,
+  MsgRedelegateValidatorSetResponse,
+  MsgSetValidatorSetPreference,
+  MsgSetValidatorSetPreferenceResponse,
+  MsgUndelegateFromRebalancedValidatorSet,
+  MsgUndelegateFromRebalancedValidatorSetResponse,
+  MsgUndelegateFromValidatorSet,
+  MsgUndelegateFromValidatorSetResponse,
+  MsgWithdrawDelegationRewards,
+  MsgWithdrawDelegationRewardsResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "osmosis.valsetpref.v1beta1.Msg";
+const TYPE_NAME = 'osmosis.valsetpref.v1beta1.Msg';
 
 /**
  * SetValidatorSetPreference creates a set of validator preference.
@@ -15,7 +30,7 @@ const TYPE_NAME = "osmosis.valsetpref.v1beta1.Msg";
  */
 export const MsgSetValidatorSetPreferenceService = {
   typeName: TYPE_NAME,
-  method: "SetValidatorSetPreference",
+  method: 'SetValidatorSetPreference',
   Request: MsgSetValidatorSetPreference,
   Response: MsgSetValidatorSetPreferenceResponse,
 } as const;
@@ -28,7 +43,7 @@ export const MsgSetValidatorSetPreferenceService = {
  */
 export const MsgDelegateToValidatorSetService = {
   typeName: TYPE_NAME,
-  method: "DelegateToValidatorSet",
+  method: 'DelegateToValidatorSet',
   Request: MsgDelegateToValidatorSet,
   Response: MsgDelegateToValidatorSetResponse,
 } as const;
@@ -42,7 +57,7 @@ export const MsgDelegateToValidatorSetService = {
  */
 export const MsgUndelegateFromValidatorSetService = {
   typeName: TYPE_NAME,
-  method: "UndelegateFromValidatorSet",
+  method: 'UndelegateFromValidatorSet',
   Request: MsgUndelegateFromValidatorSet,
   Response: MsgUndelegateFromValidatorSetResponse,
 } as const;
@@ -56,7 +71,7 @@ export const MsgUndelegateFromValidatorSetService = {
  */
 export const MsgUndelegateFromRebalancedValidatorSetService = {
   typeName: TYPE_NAME,
-  method: "UndelegateFromRebalancedValidatorSet",
+  method: 'UndelegateFromRebalancedValidatorSet',
   Request: MsgUndelegateFromRebalancedValidatorSet,
   Response: MsgUndelegateFromRebalancedValidatorSetResponse,
 } as const;
@@ -69,7 +84,7 @@ export const MsgUndelegateFromRebalancedValidatorSetService = {
  */
 export const MsgRedelegateValidatorSetService = {
   typeName: TYPE_NAME,
-  method: "RedelegateValidatorSet",
+  method: 'RedelegateValidatorSet',
   Request: MsgRedelegateValidatorSet,
   Response: MsgRedelegateValidatorSetResponse,
 } as const;
@@ -82,7 +97,7 @@ export const MsgRedelegateValidatorSetService = {
  */
 export const MsgWithdrawDelegationRewardsService = {
   typeName: TYPE_NAME,
-  method: "WithdrawDelegationRewards",
+  method: 'WithdrawDelegationRewards',
   Request: MsgWithdrawDelegationRewards,
   Response: MsgWithdrawDelegationRewardsResponse,
 } as const;
@@ -95,8 +110,7 @@ export const MsgWithdrawDelegationRewardsService = {
  */
 export const MsgDelegateBondedTokensService = {
   typeName: TYPE_NAME,
-  method: "DelegateBondedTokens",
+  method: 'DelegateBondedTokens',
   Request: MsgDelegateBondedTokens,
   Response: MsgDelegateBondedTokensResponse,
 } as const;
-

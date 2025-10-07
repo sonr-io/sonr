@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Coin } from "../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { Coin } from '../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * EventDEXAccountRegistered is emitted when a new DEX account is registered
@@ -18,28 +25,28 @@ export class EventDEXAccountRegistered extends Message<EventDEXAccountRegistered
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * IBC connection ID
    *
    * @generated from field: string connection_id = 2;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * Generated port ID
    *
    * @generated from field: string port_id = 3;
    */
-  portId = "";
+  portId = '';
 
   /**
    * Remote account address (when available)
    *
    * @generated from field: string account_address = 4;
    */
-  accountAddress = "";
+  accountAddress = '';
 
   constructor(data?: PartialMessage<EventDEXAccountRegistered>) {
     super();
@@ -47,27 +54,39 @@ export class EventDEXAccountRegistered extends Message<EventDEXAccountRegistered
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.EventDEXAccountRegistered";
+  static readonly typeName = 'dex.v1.EventDEXAccountRegistered';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "account_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'account_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventDEXAccountRegistered {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EventDEXAccountRegistered {
     return new EventDEXAccountRegistered().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EventDEXAccountRegistered {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EventDEXAccountRegistered {
     return new EventDEXAccountRegistered().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventDEXAccountRegistered {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventDEXAccountRegistered {
     return new EventDEXAccountRegistered().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventDEXAccountRegistered | PlainMessage<EventDEXAccountRegistered> | undefined, b: EventDEXAccountRegistered | PlainMessage<EventDEXAccountRegistered> | undefined): boolean {
+  static equals(
+    a: EventDEXAccountRegistered | PlainMessage<EventDEXAccountRegistered> | undefined,
+    b: EventDEXAccountRegistered | PlainMessage<EventDEXAccountRegistered> | undefined
+  ): boolean {
     return proto3.util.equals(EventDEXAccountRegistered, a, b);
   }
 }
@@ -83,14 +102,14 @@ export class EventSwapExecuted extends Message<EventSwapExecuted> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * IBC connection ID
    *
    * @generated from field: string connection_id = 2;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * Source token and amount
@@ -111,7 +130,7 @@ export class EventSwapExecuted extends Message<EventSwapExecuted> {
    *
    * @generated from field: string tx_hash = 5;
    */
-  txHash = "";
+  txHash = '';
 
   /**
    * IBC packet sequence
@@ -126,14 +145,14 @@ export class EventSwapExecuted extends Message<EventSwapExecuted> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.EventSwapExecuted";
+  static readonly typeName = 'dex.v1.EventSwapExecuted';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "source", kind: "message", T: Coin },
-    { no: 4, name: "target", kind: "message", T: Coin },
-    { no: 5, name: "tx_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'source', kind: 'message', T: Coin },
+    { no: 4, name: 'target', kind: 'message', T: Coin },
+    { no: 5, name: 'tx_hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'sequence', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventSwapExecuted {
@@ -148,7 +167,10 @@ export class EventSwapExecuted extends Message<EventSwapExecuted> {
     return new EventSwapExecuted().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventSwapExecuted | PlainMessage<EventSwapExecuted> | undefined, b: EventSwapExecuted | PlainMessage<EventSwapExecuted> | undefined): boolean {
+  static equals(
+    a: EventSwapExecuted | PlainMessage<EventSwapExecuted> | undefined,
+    b: EventSwapExecuted | PlainMessage<EventSwapExecuted> | undefined
+  ): boolean {
     return proto3.util.equals(EventSwapExecuted, a, b);
   }
 }
@@ -164,21 +186,21 @@ export class EventLiquidityProvided extends Message<EventLiquidityProvided> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * IBC connection ID
    *
    * @generated from field: string connection_id = 2;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * Pool ID
    *
    * @generated from field: string pool_id = 3;
    */
-  poolId = "";
+  poolId = '';
 
   /**
    * Assets provided
@@ -192,14 +214,14 @@ export class EventLiquidityProvided extends Message<EventLiquidityProvided> {
    *
    * @generated from field: string shares_received = 5;
    */
-  sharesReceived = "";
+  sharesReceived = '';
 
   /**
    * Transaction hash on remote chain
    *
    * @generated from field: string tx_hash = 6;
    */
-  txHash = "";
+  txHash = '';
 
   constructor(data?: PartialMessage<EventLiquidityProvided>) {
     super();
@@ -207,29 +229,41 @@ export class EventLiquidityProvided extends Message<EventLiquidityProvided> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.EventLiquidityProvided";
+  static readonly typeName = 'dex.v1.EventLiquidityProvided';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "pool_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "assets", kind: "message", T: Coin, repeated: true },
-    { no: 5, name: "shares_received", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "tx_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'pool_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'assets', kind: 'message', T: Coin, repeated: true },
+    { no: 5, name: 'shares_received', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'tx_hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventLiquidityProvided {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EventLiquidityProvided {
     return new EventLiquidityProvided().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EventLiquidityProvided {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EventLiquidityProvided {
     return new EventLiquidityProvided().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventLiquidityProvided {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventLiquidityProvided {
     return new EventLiquidityProvided().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventLiquidityProvided | PlainMessage<EventLiquidityProvided> | undefined, b: EventLiquidityProvided | PlainMessage<EventLiquidityProvided> | undefined): boolean {
+  static equals(
+    a: EventLiquidityProvided | PlainMessage<EventLiquidityProvided> | undefined,
+    b: EventLiquidityProvided | PlainMessage<EventLiquidityProvided> | undefined
+  ): boolean {
     return proto3.util.equals(EventLiquidityProvided, a, b);
   }
 }
@@ -245,28 +279,28 @@ export class EventLiquidityRemoved extends Message<EventLiquidityRemoved> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * IBC connection ID
    *
    * @generated from field: string connection_id = 2;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * Pool ID
    *
    * @generated from field: string pool_id = 3;
    */
-  poolId = "";
+  poolId = '';
 
   /**
    * Shares removed
    *
    * @generated from field: string shares_removed = 4;
    */
-  sharesRemoved = "";
+  sharesRemoved = '';
 
   /**
    * Assets received
@@ -280,7 +314,7 @@ export class EventLiquidityRemoved extends Message<EventLiquidityRemoved> {
    *
    * @generated from field: string tx_hash = 6;
    */
-  txHash = "";
+  txHash = '';
 
   constructor(data?: PartialMessage<EventLiquidityRemoved>) {
     super();
@@ -288,17 +322,20 @@ export class EventLiquidityRemoved extends Message<EventLiquidityRemoved> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.EventLiquidityRemoved";
+  static readonly typeName = 'dex.v1.EventLiquidityRemoved';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "pool_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "shares_removed", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "assets", kind: "message", T: Coin, repeated: true },
-    { no: 6, name: "tx_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'pool_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'shares_removed', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'assets', kind: 'message', T: Coin, repeated: true },
+    { no: 6, name: 'tx_hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventLiquidityRemoved {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EventLiquidityRemoved {
     return new EventLiquidityRemoved().fromBinary(bytes, options);
   }
 
@@ -306,11 +343,17 @@ export class EventLiquidityRemoved extends Message<EventLiquidityRemoved> {
     return new EventLiquidityRemoved().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventLiquidityRemoved {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventLiquidityRemoved {
     return new EventLiquidityRemoved().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventLiquidityRemoved | PlainMessage<EventLiquidityRemoved> | undefined, b: EventLiquidityRemoved | PlainMessage<EventLiquidityRemoved> | undefined): boolean {
+  static equals(
+    a: EventLiquidityRemoved | PlainMessage<EventLiquidityRemoved> | undefined,
+    b: EventLiquidityRemoved | PlainMessage<EventLiquidityRemoved> | undefined
+  ): boolean {
     return proto3.util.equals(EventLiquidityRemoved, a, b);
   }
 }
@@ -326,50 +369,50 @@ export class EventOrderCreated extends Message<EventOrderCreated> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * IBC connection ID
    *
    * @generated from field: string connection_id = 2;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * Order ID on remote chain
    *
    * @generated from field: string order_id = 3;
    */
-  orderId = "";
+  orderId = '';
 
   /**
    * Order details
    *
    * @generated from field: string sell_denom = 4;
    */
-  sellDenom = "";
+  sellDenom = '';
 
   /**
    * @generated from field: string buy_denom = 5;
    */
-  buyDenom = "";
+  buyDenom = '';
 
   /**
    * @generated from field: string amount = 6;
    */
-  amount = "";
+  amount = '';
 
   /**
    * @generated from field: string price = 7;
    */
-  price = "";
+  price = '';
 
   /**
    * Transaction hash on remote chain
    *
    * @generated from field: string tx_hash = 8;
    */
-  txHash = "";
+  txHash = '';
 
   constructor(data?: PartialMessage<EventOrderCreated>) {
     super();
@@ -377,16 +420,16 @@ export class EventOrderCreated extends Message<EventOrderCreated> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.EventOrderCreated";
+  static readonly typeName = 'dex.v1.EventOrderCreated';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "order_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "sell_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "buy_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "price", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 8, name: "tx_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'order_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'sell_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'buy_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: 'price', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: 'tx_hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventOrderCreated {
@@ -401,7 +444,10 @@ export class EventOrderCreated extends Message<EventOrderCreated> {
     return new EventOrderCreated().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventOrderCreated | PlainMessage<EventOrderCreated> | undefined, b: EventOrderCreated | PlainMessage<EventOrderCreated> | undefined): boolean {
+  static equals(
+    a: EventOrderCreated | PlainMessage<EventOrderCreated> | undefined,
+    b: EventOrderCreated | PlainMessage<EventOrderCreated> | undefined
+  ): boolean {
     return proto3.util.equals(EventOrderCreated, a, b);
   }
 }
@@ -417,28 +463,28 @@ export class EventOrderCancelled extends Message<EventOrderCancelled> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * IBC connection ID
    *
    * @generated from field: string connection_id = 2;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * Order ID that was cancelled
    *
    * @generated from field: string order_id = 3;
    */
-  orderId = "";
+  orderId = '';
 
   /**
    * Transaction hash on remote chain
    *
    * @generated from field: string tx_hash = 4;
    */
-  txHash = "";
+  txHash = '';
 
   constructor(data?: PartialMessage<EventOrderCancelled>) {
     super();
@@ -446,12 +492,12 @@ export class EventOrderCancelled extends Message<EventOrderCancelled> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.EventOrderCancelled";
+  static readonly typeName = 'dex.v1.EventOrderCancelled';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "order_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "tx_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'order_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'tx_hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventOrderCancelled {
@@ -462,11 +508,17 @@ export class EventOrderCancelled extends Message<EventOrderCancelled> {
     return new EventOrderCancelled().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventOrderCancelled {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventOrderCancelled {
     return new EventOrderCancelled().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventOrderCancelled | PlainMessage<EventOrderCancelled> | undefined, b: EventOrderCancelled | PlainMessage<EventOrderCancelled> | undefined): boolean {
+  static equals(
+    a: EventOrderCancelled | PlainMessage<EventOrderCancelled> | undefined,
+    b: EventOrderCancelled | PlainMessage<EventOrderCancelled> | undefined
+  ): boolean {
     return proto3.util.equals(EventOrderCancelled, a, b);
   }
 }
@@ -482,40 +534,40 @@ export class EventOrderFilled extends Message<EventOrderFilled> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * IBC connection ID
    *
    * @generated from field: string connection_id = 2;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * Order ID that was filled
    *
    * @generated from field: string order_id = 3;
    */
-  orderId = "";
+  orderId = '';
 
   /**
    * Fill details
    *
    * @generated from field: string fill_amount = 4;
    */
-  fillAmount = "";
+  fillAmount = '';
 
   /**
    * @generated from field: string fill_price = 5;
    */
-  fillPrice = "";
+  fillPrice = '';
 
   /**
    * Transaction hash on remote chain
    *
    * @generated from field: string tx_hash = 6;
    */
-  txHash = "";
+  txHash = '';
 
   constructor(data?: PartialMessage<EventOrderFilled>) {
     super();
@@ -523,14 +575,14 @@ export class EventOrderFilled extends Message<EventOrderFilled> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.EventOrderFilled";
+  static readonly typeName = 'dex.v1.EventOrderFilled';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "order_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "fill_amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "fill_price", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "tx_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'order_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'fill_amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'fill_price', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'tx_hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventOrderFilled {
@@ -545,7 +597,10 @@ export class EventOrderFilled extends Message<EventOrderFilled> {
     return new EventOrderFilled().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventOrderFilled | PlainMessage<EventOrderFilled> | undefined, b: EventOrderFilled | PlainMessage<EventOrderFilled> | undefined): boolean {
+  static equals(
+    a: EventOrderFilled | PlainMessage<EventOrderFilled> | undefined,
+    b: EventOrderFilled | PlainMessage<EventOrderFilled> | undefined
+  ): boolean {
     return proto3.util.equals(EventOrderFilled, a, b);
   }
 }
@@ -561,21 +616,21 @@ export class EventICAPacketSent extends Message<EventICAPacketSent> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * IBC connection ID
    *
    * @generated from field: string connection_id = 2;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * Packet type (swap, liquidity, order, etc.)
    *
    * @generated from field: string packet_type = 3;
    */
-  packetType = "";
+  packetType = '';
 
   /**
    * IBC packet sequence
@@ -590,12 +645,12 @@ export class EventICAPacketSent extends Message<EventICAPacketSent> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.EventICAPacketSent";
+  static readonly typeName = 'dex.v1.EventICAPacketSent';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "packet_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'packet_type', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'sequence', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventICAPacketSent {
@@ -606,11 +661,17 @@ export class EventICAPacketSent extends Message<EventICAPacketSent> {
     return new EventICAPacketSent().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventICAPacketSent {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventICAPacketSent {
     return new EventICAPacketSent().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventICAPacketSent | PlainMessage<EventICAPacketSent> | undefined, b: EventICAPacketSent | PlainMessage<EventICAPacketSent> | undefined): boolean {
+  static equals(
+    a: EventICAPacketSent | PlainMessage<EventICAPacketSent> | undefined,
+    b: EventICAPacketSent | PlainMessage<EventICAPacketSent> | undefined
+  ): boolean {
     return proto3.util.equals(EventICAPacketSent, a, b);
   }
 }
@@ -626,21 +687,21 @@ export class EventICAPacketAcknowledged extends Message<EventICAPacketAcknowledg
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * IBC connection ID
    *
    * @generated from field: string connection_id = 2;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * Packet type
    *
    * @generated from field: string packet_type = 3;
    */
-  packetType = "";
+  packetType = '';
 
   /**
    * IBC packet sequence
@@ -661,7 +722,7 @@ export class EventICAPacketAcknowledged extends Message<EventICAPacketAcknowledg
    *
    * @generated from field: string error = 6;
    */
-  error = "";
+  error = '';
 
   constructor(data?: PartialMessage<EventICAPacketAcknowledged>) {
     super();
@@ -669,30 +730,41 @@ export class EventICAPacketAcknowledged extends Message<EventICAPacketAcknowledg
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.EventICAPacketAcknowledged";
+  static readonly typeName = 'dex.v1.EventICAPacketAcknowledged';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "packet_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 5, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 6, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'packet_type', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'sequence', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 5, name: 'success', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: 'error', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventICAPacketAcknowledged {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EventICAPacketAcknowledged {
     return new EventICAPacketAcknowledged().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EventICAPacketAcknowledged {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EventICAPacketAcknowledged {
     return new EventICAPacketAcknowledged().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventICAPacketAcknowledged {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventICAPacketAcknowledged {
     return new EventICAPacketAcknowledged().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventICAPacketAcknowledged | PlainMessage<EventICAPacketAcknowledged> | undefined, b: EventICAPacketAcknowledged | PlainMessage<EventICAPacketAcknowledged> | undefined): boolean {
+  static equals(
+    a: EventICAPacketAcknowledged | PlainMessage<EventICAPacketAcknowledged> | undefined,
+    b: EventICAPacketAcknowledged | PlainMessage<EventICAPacketAcknowledged> | undefined
+  ): boolean {
     return proto3.util.equals(EventICAPacketAcknowledged, a, b);
   }
 }
-

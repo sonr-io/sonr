@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * TxResult is the value stored in eth tx indexer
@@ -70,15 +77,15 @@ export class TxResult extends Message<TxResult> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.types.v1.TxResult";
+  static readonly typeName = 'ethermint.types.v1.TxResult';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "height", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 2, name: "tx_index", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 3, name: "msg_index", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 4, name: "eth_tx_index", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 5, name: "failed", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 6, name: "gas_used", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 7, name: "cumulative_gas_used", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'height', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: 'tx_index', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
+    { no: 3, name: 'msg_index', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
+    { no: 4, name: 'eth_tx_index', kind: 'scalar', T: 5 /* ScalarType.INT32 */ },
+    { no: 5, name: 'failed', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: 'gas_used', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 7, name: 'cumulative_gas_used', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TxResult {
@@ -93,8 +100,10 @@ export class TxResult extends Message<TxResult> {
     return new TxResult().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TxResult | PlainMessage<TxResult> | undefined, b: TxResult | PlainMessage<TxResult> | undefined): boolean {
+  static equals(
+    a: TxResult | PlainMessage<TxResult> | undefined,
+    b: TxResult | PlainMessage<TxResult> | undefined
+  ): boolean {
     return proto3.util.equals(TxResult, a, b);
   }
 }
-

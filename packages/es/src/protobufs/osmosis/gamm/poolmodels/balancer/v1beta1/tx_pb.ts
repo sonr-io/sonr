@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { PoolAsset, PoolParams } from "../../../v1beta1/balancerPool_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { PoolAsset, PoolParams } from '../../../v1beta1/balancerPool_pb.js';
 
 /**
  * ===================== MsgCreatePool
@@ -16,7 +23,7 @@ export class MsgCreateBalancerPool extends Message<MsgCreateBalancerPool> {
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * @generated from field: osmosis.gamm.v1beta1.PoolParams pool_params = 2;
@@ -31,7 +38,7 @@ export class MsgCreateBalancerPool extends Message<MsgCreateBalancerPool> {
   /**
    * @generated from field: string future_pool_governor = 4;
    */
-  futurePoolGovernor = "";
+  futurePoolGovernor = '';
 
   constructor(data?: PartialMessage<MsgCreateBalancerPool>) {
     super();
@@ -39,15 +46,18 @@ export class MsgCreateBalancerPool extends Message<MsgCreateBalancerPool> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.gamm.poolmodels.balancer.v1beta1.MsgCreateBalancerPool";
+  static readonly typeName = 'osmosis.gamm.poolmodels.balancer.v1beta1.MsgCreateBalancerPool';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "pool_params", kind: "message", T: PoolParams },
-    { no: 3, name: "pool_assets", kind: "message", T: PoolAsset, repeated: true },
-    { no: 4, name: "future_pool_governor", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'pool_params', kind: 'message', T: PoolParams },
+    { no: 3, name: 'pool_assets', kind: 'message', T: PoolAsset, repeated: true },
+    { no: 4, name: 'future_pool_governor', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgCreateBalancerPool {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgCreateBalancerPool {
     return new MsgCreateBalancerPool().fromBinary(bytes, options);
   }
 
@@ -55,11 +65,17 @@ export class MsgCreateBalancerPool extends Message<MsgCreateBalancerPool> {
     return new MsgCreateBalancerPool().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgCreateBalancerPool {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgCreateBalancerPool {
     return new MsgCreateBalancerPool().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgCreateBalancerPool | PlainMessage<MsgCreateBalancerPool> | undefined, b: MsgCreateBalancerPool | PlainMessage<MsgCreateBalancerPool> | undefined): boolean {
+  static equals(
+    a: MsgCreateBalancerPool | PlainMessage<MsgCreateBalancerPool> | undefined,
+    b: MsgCreateBalancerPool | PlainMessage<MsgCreateBalancerPool> | undefined
+  ): boolean {
     return proto3.util.equals(MsgCreateBalancerPool, a, b);
   }
 }
@@ -81,25 +97,37 @@ export class MsgCreateBalancerPoolResponse extends Message<MsgCreateBalancerPool
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.gamm.poolmodels.balancer.v1beta1.MsgCreateBalancerPoolResponse";
+  static readonly typeName =
+    'osmosis.gamm.poolmodels.balancer.v1beta1.MsgCreateBalancerPoolResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgCreateBalancerPoolResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgCreateBalancerPoolResponse {
     return new MsgCreateBalancerPoolResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgCreateBalancerPoolResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgCreateBalancerPoolResponse {
     return new MsgCreateBalancerPoolResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgCreateBalancerPoolResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgCreateBalancerPoolResponse {
     return new MsgCreateBalancerPoolResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgCreateBalancerPoolResponse | PlainMessage<MsgCreateBalancerPoolResponse> | undefined, b: MsgCreateBalancerPoolResponse | PlainMessage<MsgCreateBalancerPoolResponse> | undefined): boolean {
+  static equals(
+    a: MsgCreateBalancerPoolResponse | PlainMessage<MsgCreateBalancerPoolResponse> | undefined,
+    b: MsgCreateBalancerPoolResponse | PlainMessage<MsgCreateBalancerPoolResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgCreateBalancerPoolResponse, a, b);
   }
 }
-

@@ -3,11 +3,18 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Coin } from "../../../cosmos/base/v1beta1/coin_pb.js";
-import { ModuleRoute } from "./module_route_pb.js";
-import { DenomPairTakerFee } from "./tx_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { Coin } from '../../../cosmos/base/v1beta1/coin_pb.js';
+import { ModuleRoute } from './module_route_pb.js';
+import { DenomPairTakerFee } from './tx_pb.js';
 
 /**
  * Params holds parameters for the poolmanager module
@@ -51,11 +58,17 @@ export class Params extends Message<Params> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.Params";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.Params';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_creation_fee", kind: "message", T: Coin, repeated: true },
-    { no: 2, name: "taker_fee_params", kind: "message", T: TakerFeeParams },
-    { no: 3, name: "authorized_quote_denoms", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 1, name: 'pool_creation_fee', kind: 'message', T: Coin, repeated: true },
+    { no: 2, name: 'taker_fee_params', kind: 'message', T: TakerFeeParams },
+    {
+      no: 3,
+      name: 'authorized_quote_denoms',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Params {
@@ -70,7 +83,10 @@ export class Params extends Message<Params> {
     return new Params().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Params | PlainMessage<Params> | undefined, b: Params | PlainMessage<Params> | undefined): boolean {
+  static equals(
+    a: Params | PlainMessage<Params> | undefined,
+    b: Params | PlainMessage<Params> | undefined
+  ): boolean {
     return proto3.util.equals(Params, a, b);
   }
 }
@@ -125,14 +141,20 @@ export class GenesisState extends Message<GenesisState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.GenesisState";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.GenesisState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "next_pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "params", kind: "message", T: Params },
-    { no: 3, name: "pool_routes", kind: "message", T: ModuleRoute, repeated: true },
-    { no: 4, name: "taker_fees_tracker", kind: "message", T: TakerFeesTracker },
-    { no: 5, name: "pool_volumes", kind: "message", T: PoolVolume, repeated: true },
-    { no: 6, name: "denom_pair_taker_fee_store", kind: "message", T: DenomPairTakerFee, repeated: true },
+    { no: 1, name: 'next_pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'params', kind: 'message', T: Params },
+    { no: 3, name: 'pool_routes', kind: 'message', T: ModuleRoute, repeated: true },
+    { no: 4, name: 'taker_fees_tracker', kind: 'message', T: TakerFeesTracker },
+    { no: 5, name: 'pool_volumes', kind: 'message', T: PoolVolume, repeated: true },
+    {
+      no: 6,
+      name: 'denom_pair_taker_fee_store',
+      kind: 'message',
+      T: DenomPairTakerFee,
+      repeated: true,
+    },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {
@@ -147,7 +169,10 @@ export class GenesisState extends Message<GenesisState> {
     return new GenesisState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisState | PlainMessage<GenesisState> | undefined, b: GenesisState | PlainMessage<GenesisState> | undefined): boolean {
+  static equals(
+    a: GenesisState | PlainMessage<GenesisState> | undefined,
+    b: GenesisState | PlainMessage<GenesisState> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisState, a, b);
   }
 }
@@ -164,7 +189,7 @@ export class TakerFeeParams extends Message<TakerFeeParams> {
    *
    * @generated from field: string default_taker_fee = 1;
    */
-  defaultTakerFee = "";
+  defaultTakerFee = '';
 
   /**
    * osmo_taker_fee_distribution defines the distribution of taker fees
@@ -210,7 +235,7 @@ export class TakerFeeParams extends Message<TakerFeeParams> {
    *
    * @generated from field: string community_pool_denom_to_swap_non_whitelisted_assets_to = 5;
    */
-  communityPoolDenomToSwapNonWhitelistedAssetsTo = "";
+  communityPoolDenomToSwapNonWhitelistedAssetsTo = '';
 
   /**
    * reduced_fee_whitelist is a list of addresses that are
@@ -240,15 +265,48 @@ export class TakerFeeParams extends Message<TakerFeeParams> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.TakerFeeParams";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.TakerFeeParams';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "default_taker_fee", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "osmo_taker_fee_distribution", kind: "message", T: TakerFeeDistributionPercentage },
-    { no: 3, name: "non_osmo_taker_fee_distribution", kind: "message", T: TakerFeeDistributionPercentage },
-    { no: 4, name: "admin_addresses", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 5, name: "community_pool_denom_to_swap_non_whitelisted_assets_to", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "reduced_fee_whitelist", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 7, name: "community_pool_denom_whitelist", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 1, name: 'default_taker_fee', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    {
+      no: 2,
+      name: 'osmo_taker_fee_distribution',
+      kind: 'message',
+      T: TakerFeeDistributionPercentage,
+    },
+    {
+      no: 3,
+      name: 'non_osmo_taker_fee_distribution',
+      kind: 'message',
+      T: TakerFeeDistributionPercentage,
+    },
+    {
+      no: 4,
+      name: 'admin_addresses',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 5,
+      name: 'community_pool_denom_to_swap_non_whitelisted_assets_to',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+    },
+    {
+      no: 6,
+      name: 'reduced_fee_whitelist',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 7,
+      name: 'community_pool_denom_whitelist',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TakerFeeParams {
@@ -263,7 +321,10 @@ export class TakerFeeParams extends Message<TakerFeeParams> {
     return new TakerFeeParams().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TakerFeeParams | PlainMessage<TakerFeeParams> | undefined, b: TakerFeeParams | PlainMessage<TakerFeeParams> | undefined): boolean {
+  static equals(
+    a: TakerFeeParams | PlainMessage<TakerFeeParams> | undefined,
+    b: TakerFeeParams | PlainMessage<TakerFeeParams> | undefined
+  ): boolean {
     return proto3.util.equals(TakerFeeParams, a, b);
   }
 }
@@ -278,17 +339,17 @@ export class TakerFeeDistributionPercentage extends Message<TakerFeeDistribution
   /**
    * @generated from field: string staking_rewards = 1;
    */
-  stakingRewards = "";
+  stakingRewards = '';
 
   /**
    * @generated from field: string community_pool = 2;
    */
-  communityPool = "";
+  communityPool = '';
 
   /**
    * @generated from field: string burn = 3;
    */
-  burn = "";
+  burn = '';
 
   constructor(data?: PartialMessage<TakerFeeDistributionPercentage>) {
     super();
@@ -296,26 +357,38 @@ export class TakerFeeDistributionPercentage extends Message<TakerFeeDistribution
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.TakerFeeDistributionPercentage";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.TakerFeeDistributionPercentage';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "staking_rewards", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "community_pool", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "burn", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'staking_rewards', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'community_pool', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'burn', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TakerFeeDistributionPercentage {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): TakerFeeDistributionPercentage {
     return new TakerFeeDistributionPercentage().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TakerFeeDistributionPercentage {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): TakerFeeDistributionPercentage {
     return new TakerFeeDistributionPercentage().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TakerFeeDistributionPercentage {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): TakerFeeDistributionPercentage {
     return new TakerFeeDistributionPercentage().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TakerFeeDistributionPercentage | PlainMessage<TakerFeeDistributionPercentage> | undefined, b: TakerFeeDistributionPercentage | PlainMessage<TakerFeeDistributionPercentage> | undefined): boolean {
+  static equals(
+    a: TakerFeeDistributionPercentage | PlainMessage<TakerFeeDistributionPercentage> | undefined,
+    b: TakerFeeDistributionPercentage | PlainMessage<TakerFeeDistributionPercentage> | undefined
+  ): boolean {
     return proto3.util.equals(TakerFeeDistributionPercentage, a, b);
   }
 }
@@ -350,12 +423,12 @@ export class TakerFeesTracker extends Message<TakerFeesTracker> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.TakerFeesTracker";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.TakerFeesTracker';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "taker_fees_to_stakers", kind: "message", T: Coin, repeated: true },
-    { no: 2, name: "taker_fees_to_community_pool", kind: "message", T: Coin, repeated: true },
-    { no: 3, name: "height_accounting_starts_from", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 4, name: "taker_fees_to_burn", kind: "message", T: Coin, repeated: true },
+    { no: 1, name: 'taker_fees_to_stakers', kind: 'message', T: Coin, repeated: true },
+    { no: 2, name: 'taker_fees_to_community_pool', kind: 'message', T: Coin, repeated: true },
+    { no: 3, name: 'height_accounting_starts_from', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 4, name: 'taker_fees_to_burn', kind: 'message', T: Coin, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TakerFeesTracker {
@@ -370,7 +443,10 @@ export class TakerFeesTracker extends Message<TakerFeesTracker> {
     return new TakerFeesTracker().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TakerFeesTracker | PlainMessage<TakerFeesTracker> | undefined, b: TakerFeesTracker | PlainMessage<TakerFeesTracker> | undefined): boolean {
+  static equals(
+    a: TakerFeesTracker | PlainMessage<TakerFeesTracker> | undefined,
+    b: TakerFeesTracker | PlainMessage<TakerFeesTracker> | undefined
+  ): boolean {
     return proto3.util.equals(TakerFeesTracker, a, b);
   }
 }
@@ -402,10 +478,10 @@ export class PoolVolume extends Message<PoolVolume> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.PoolVolume";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.PoolVolume';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "pool_volume", kind: "message", T: Coin, repeated: true },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'pool_volume', kind: 'message', T: Coin, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PoolVolume {
@@ -420,8 +496,10 @@ export class PoolVolume extends Message<PoolVolume> {
     return new PoolVolume().fromJsonString(jsonString, options);
   }
 
-  static equals(a: PoolVolume | PlainMessage<PoolVolume> | undefined, b: PoolVolume | PlainMessage<PoolVolume> | undefined): boolean {
+  static equals(
+    a: PoolVolume | PlainMessage<PoolVolume> | undefined,
+    b: PoolVolume | PlainMessage<PoolVolume> | undefined
+  ): boolean {
     return proto3.util.equals(PoolVolume, a, b);
   }
 }
-

@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64, Timestamp } from '@bufbuild/protobuf';
 
 /**
  * EventDIDCreated is emitted when a new DID is created
@@ -17,14 +24,14 @@ export class EventDIDCreated extends Message<EventDIDCreated> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * Creator address
    *
    * @generated from field: string creator = 2;
    */
-  creator = "";
+  creator = '';
 
   /**
    * Public keys added
@@ -60,14 +67,14 @@ export class EventDIDCreated extends Message<EventDIDCreated> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.EventDIDCreated";
+  static readonly typeName = 'did.v1.EventDIDCreated';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "creator", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "public_keys", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 4, name: "services", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 5, name: "created_at", kind: "message", T: Timestamp },
-    { no: 6, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'creator', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'public_keys', kind: 'scalar', T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 4, name: 'services', kind: 'scalar', T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 5, name: 'created_at', kind: 'message', T: Timestamp },
+    { no: 6, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventDIDCreated {
@@ -82,7 +89,10 @@ export class EventDIDCreated extends Message<EventDIDCreated> {
     return new EventDIDCreated().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventDIDCreated | PlainMessage<EventDIDCreated> | undefined, b: EventDIDCreated | PlainMessage<EventDIDCreated> | undefined): boolean {
+  static equals(
+    a: EventDIDCreated | PlainMessage<EventDIDCreated> | undefined,
+    b: EventDIDCreated | PlainMessage<EventDIDCreated> | undefined
+  ): boolean {
     return proto3.util.equals(EventDIDCreated, a, b);
   }
 }
@@ -98,14 +108,14 @@ export class EventDIDUpdated extends Message<EventDIDUpdated> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * Updater address
    *
    * @generated from field: string updater = 2;
    */
-  updater = "";
+  updater = '';
 
   /**
    * Fields that were updated
@@ -134,13 +144,13 @@ export class EventDIDUpdated extends Message<EventDIDUpdated> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.EventDIDUpdated";
+  static readonly typeName = 'did.v1.EventDIDUpdated';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "updater", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "fields_updated", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 4, name: "updated_at", kind: "message", T: Timestamp },
-    { no: 5, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'updater', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'fields_updated', kind: 'scalar', T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 4, name: 'updated_at', kind: 'message', T: Timestamp },
+    { no: 5, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventDIDUpdated {
@@ -155,7 +165,10 @@ export class EventDIDUpdated extends Message<EventDIDUpdated> {
     return new EventDIDUpdated().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventDIDUpdated | PlainMessage<EventDIDUpdated> | undefined, b: EventDIDUpdated | PlainMessage<EventDIDUpdated> | undefined): boolean {
+  static equals(
+    a: EventDIDUpdated | PlainMessage<EventDIDUpdated> | undefined,
+    b: EventDIDUpdated | PlainMessage<EventDIDUpdated> | undefined
+  ): boolean {
     return proto3.util.equals(EventDIDUpdated, a, b);
   }
 }
@@ -171,14 +184,14 @@ export class EventDIDDeactivated extends Message<EventDIDDeactivated> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * Deactivator address
    *
    * @generated from field: string deactivator = 2;
    */
-  deactivator = "";
+  deactivator = '';
 
   /**
    * Deactivation timestamp
@@ -200,12 +213,12 @@ export class EventDIDDeactivated extends Message<EventDIDDeactivated> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.EventDIDDeactivated";
+  static readonly typeName = 'did.v1.EventDIDDeactivated';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "deactivator", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "deactivated_at", kind: "message", T: Timestamp },
-    { no: 4, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'deactivator', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'deactivated_at', kind: 'message', T: Timestamp },
+    { no: 4, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventDIDDeactivated {
@@ -216,11 +229,17 @@ export class EventDIDDeactivated extends Message<EventDIDDeactivated> {
     return new EventDIDDeactivated().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventDIDDeactivated {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventDIDDeactivated {
     return new EventDIDDeactivated().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventDIDDeactivated | PlainMessage<EventDIDDeactivated> | undefined, b: EventDIDDeactivated | PlainMessage<EventDIDDeactivated> | undefined): boolean {
+  static equals(
+    a: EventDIDDeactivated | PlainMessage<EventDIDDeactivated> | undefined,
+    b: EventDIDDeactivated | PlainMessage<EventDIDDeactivated> | undefined
+  ): boolean {
     return proto3.util.equals(EventDIDDeactivated, a, b);
   }
 }
@@ -236,28 +255,28 @@ export class EventVerificationMethodAdded extends Message<EventVerificationMetho
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * Method ID
    *
    * @generated from field: string method_id = 2;
    */
-  methodId = "";
+  methodId = '';
 
   /**
    * Key type
    *
    * @generated from field: string key_type = 3;
    */
-  keyType = "";
+  keyType = '';
 
   /**
    * Public key (encoded)
    *
    * @generated from field: string public_key = 4;
    */
-  publicKey = "";
+  publicKey = '';
 
   /**
    * Block height
@@ -272,28 +291,40 @@ export class EventVerificationMethodAdded extends Message<EventVerificationMetho
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.EventVerificationMethodAdded";
+  static readonly typeName = 'did.v1.EventVerificationMethodAdded';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "method_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "key_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "public_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'method_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'key_type', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'public_key', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventVerificationMethodAdded {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EventVerificationMethodAdded {
     return new EventVerificationMethodAdded().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EventVerificationMethodAdded {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EventVerificationMethodAdded {
     return new EventVerificationMethodAdded().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventVerificationMethodAdded {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventVerificationMethodAdded {
     return new EventVerificationMethodAdded().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventVerificationMethodAdded | PlainMessage<EventVerificationMethodAdded> | undefined, b: EventVerificationMethodAdded | PlainMessage<EventVerificationMethodAdded> | undefined): boolean {
+  static equals(
+    a: EventVerificationMethodAdded | PlainMessage<EventVerificationMethodAdded> | undefined,
+    b: EventVerificationMethodAdded | PlainMessage<EventVerificationMethodAdded> | undefined
+  ): boolean {
     return proto3.util.equals(EventVerificationMethodAdded, a, b);
   }
 }
@@ -309,14 +340,14 @@ export class EventVerificationMethodRemoved extends Message<EventVerificationMet
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * Method ID
    *
    * @generated from field: string method_id = 2;
    */
-  methodId = "";
+  methodId = '';
 
   /**
    * Block height
@@ -331,26 +362,38 @@ export class EventVerificationMethodRemoved extends Message<EventVerificationMet
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.EventVerificationMethodRemoved";
+  static readonly typeName = 'did.v1.EventVerificationMethodRemoved';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "method_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'method_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventVerificationMethodRemoved {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EventVerificationMethodRemoved {
     return new EventVerificationMethodRemoved().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EventVerificationMethodRemoved {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EventVerificationMethodRemoved {
     return new EventVerificationMethodRemoved().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventVerificationMethodRemoved {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventVerificationMethodRemoved {
     return new EventVerificationMethodRemoved().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventVerificationMethodRemoved | PlainMessage<EventVerificationMethodRemoved> | undefined, b: EventVerificationMethodRemoved | PlainMessage<EventVerificationMethodRemoved> | undefined): boolean {
+  static equals(
+    a: EventVerificationMethodRemoved | PlainMessage<EventVerificationMethodRemoved> | undefined,
+    b: EventVerificationMethodRemoved | PlainMessage<EventVerificationMethodRemoved> | undefined
+  ): boolean {
     return proto3.util.equals(EventVerificationMethodRemoved, a, b);
   }
 }
@@ -366,28 +409,28 @@ export class EventServiceAdded extends Message<EventServiceAdded> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * Service ID
    *
    * @generated from field: string service_id = 2;
    */
-  serviceId = "";
+  serviceId = '';
 
   /**
    * Service type
    *
    * @generated from field: string type = 3;
    */
-  type = "";
+  type = '';
 
   /**
    * Service endpoint
    *
    * @generated from field: string endpoint = 4;
    */
-  endpoint = "";
+  endpoint = '';
 
   /**
    * Block height
@@ -402,13 +445,13 @@ export class EventServiceAdded extends Message<EventServiceAdded> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.EventServiceAdded";
+  static readonly typeName = 'did.v1.EventServiceAdded';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "service_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "endpoint", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'service_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'type', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'endpoint', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventServiceAdded {
@@ -423,7 +466,10 @@ export class EventServiceAdded extends Message<EventServiceAdded> {
     return new EventServiceAdded().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventServiceAdded | PlainMessage<EventServiceAdded> | undefined, b: EventServiceAdded | PlainMessage<EventServiceAdded> | undefined): boolean {
+  static equals(
+    a: EventServiceAdded | PlainMessage<EventServiceAdded> | undefined,
+    b: EventServiceAdded | PlainMessage<EventServiceAdded> | undefined
+  ): boolean {
     return proto3.util.equals(EventServiceAdded, a, b);
   }
 }
@@ -439,14 +485,14 @@ export class EventServiceRemoved extends Message<EventServiceRemoved> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * Service ID
    *
    * @generated from field: string service_id = 2;
    */
-  serviceId = "";
+  serviceId = '';
 
   /**
    * Block height
@@ -461,11 +507,11 @@ export class EventServiceRemoved extends Message<EventServiceRemoved> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.EventServiceRemoved";
+  static readonly typeName = 'did.v1.EventServiceRemoved';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "service_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'service_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventServiceRemoved {
@@ -476,11 +522,17 @@ export class EventServiceRemoved extends Message<EventServiceRemoved> {
     return new EventServiceRemoved().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventServiceRemoved {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventServiceRemoved {
     return new EventServiceRemoved().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventServiceRemoved | PlainMessage<EventServiceRemoved> | undefined, b: EventServiceRemoved | PlainMessage<EventServiceRemoved> | undefined): boolean {
+  static equals(
+    a: EventServiceRemoved | PlainMessage<EventServiceRemoved> | undefined,
+    b: EventServiceRemoved | PlainMessage<EventServiceRemoved> | undefined
+  ): boolean {
     return proto3.util.equals(EventServiceRemoved, a, b);
   }
 }
@@ -496,28 +548,28 @@ export class EventCredentialIssued extends Message<EventCredentialIssued> {
    *
    * @generated from field: string credential_id = 1;
    */
-  credentialId = "";
+  credentialId = '';
 
   /**
    * Issuer DID
    *
    * @generated from field: string issuer = 2;
    */
-  issuer = "";
+  issuer = '';
 
   /**
    * Subject DID
    *
    * @generated from field: string subject = 3;
    */
-  subject = "";
+  subject = '';
 
   /**
    * Credential type
    *
    * @generated from field: string type = 4;
    */
-  type = "";
+  type = '';
 
   /**
    * Issuance timestamp
@@ -539,17 +591,20 @@ export class EventCredentialIssued extends Message<EventCredentialIssued> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.EventCredentialIssued";
+  static readonly typeName = 'did.v1.EventCredentialIssued';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "credential_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "issuer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "subject", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "issued_at", kind: "message", T: Timestamp },
-    { no: 6, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'credential_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'issuer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'subject', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'type', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'issued_at', kind: 'message', T: Timestamp },
+    { no: 6, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventCredentialIssued {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EventCredentialIssued {
     return new EventCredentialIssued().fromBinary(bytes, options);
   }
 
@@ -557,11 +612,17 @@ export class EventCredentialIssued extends Message<EventCredentialIssued> {
     return new EventCredentialIssued().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventCredentialIssued {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventCredentialIssued {
     return new EventCredentialIssued().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventCredentialIssued | PlainMessage<EventCredentialIssued> | undefined, b: EventCredentialIssued | PlainMessage<EventCredentialIssued> | undefined): boolean {
+  static equals(
+    a: EventCredentialIssued | PlainMessage<EventCredentialIssued> | undefined,
+    b: EventCredentialIssued | PlainMessage<EventCredentialIssued> | undefined
+  ): boolean {
     return proto3.util.equals(EventCredentialIssued, a, b);
   }
 }
@@ -577,21 +638,21 @@ export class EventCredentialRevoked extends Message<EventCredentialRevoked> {
    *
    * @generated from field: string credential_id = 1;
    */
-  credentialId = "";
+  credentialId = '';
 
   /**
    * Revoker DID
    *
    * @generated from field: string revoker = 2;
    */
-  revoker = "";
+  revoker = '';
 
   /**
    * Revocation reason
    *
    * @generated from field: string reason = 3;
    */
-  reason = "";
+  reason = '';
 
   /**
    * Revocation timestamp
@@ -613,28 +674,40 @@ export class EventCredentialRevoked extends Message<EventCredentialRevoked> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.EventCredentialRevoked";
+  static readonly typeName = 'did.v1.EventCredentialRevoked';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "credential_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "revoker", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "reason", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "revoked_at", kind: "message", T: Timestamp },
-    { no: 5, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'credential_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'revoker', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'reason', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'revoked_at', kind: 'message', T: Timestamp },
+    { no: 5, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventCredentialRevoked {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EventCredentialRevoked {
     return new EventCredentialRevoked().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EventCredentialRevoked {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EventCredentialRevoked {
     return new EventCredentialRevoked().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventCredentialRevoked {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventCredentialRevoked {
     return new EventCredentialRevoked().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventCredentialRevoked | PlainMessage<EventCredentialRevoked> | undefined, b: EventCredentialRevoked | PlainMessage<EventCredentialRevoked> | undefined): boolean {
+  static equals(
+    a: EventCredentialRevoked | PlainMessage<EventCredentialRevoked> | undefined,
+    b: EventCredentialRevoked | PlainMessage<EventCredentialRevoked> | undefined
+  ): boolean {
     return proto3.util.equals(EventCredentialRevoked, a, b);
   }
 }
@@ -650,21 +723,21 @@ export class EventWebAuthnRegistered extends Message<EventWebAuthnRegistered> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * WebAuthn credential ID
    *
    * @generated from field: string credential_id = 2;
    */
-  credentialId = "";
+  credentialId = '';
 
   /**
    * Attestation type
    *
    * @generated from field: string attestation_type = 3;
    */
-  attestationType = "";
+  attestationType = '';
 
   /**
    * Block height
@@ -679,27 +752,39 @@ export class EventWebAuthnRegistered extends Message<EventWebAuthnRegistered> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.EventWebAuthnRegistered";
+  static readonly typeName = 'did.v1.EventWebAuthnRegistered';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "credential_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "attestation_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'credential_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'attestation_type', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventWebAuthnRegistered {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EventWebAuthnRegistered {
     return new EventWebAuthnRegistered().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EventWebAuthnRegistered {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EventWebAuthnRegistered {
     return new EventWebAuthnRegistered().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventWebAuthnRegistered {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventWebAuthnRegistered {
     return new EventWebAuthnRegistered().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventWebAuthnRegistered | PlainMessage<EventWebAuthnRegistered> | undefined, b: EventWebAuthnRegistered | PlainMessage<EventWebAuthnRegistered> | undefined): boolean {
+  static equals(
+    a: EventWebAuthnRegistered | PlainMessage<EventWebAuthnRegistered> | undefined,
+    b: EventWebAuthnRegistered | PlainMessage<EventWebAuthnRegistered> | undefined
+  ): boolean {
     return proto3.util.equals(EventWebAuthnRegistered, a, b);
   }
 }
@@ -715,21 +800,21 @@ export class EventExternalWalletLinked extends Message<EventExternalWalletLinked
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * Wallet type (ethereum, bitcoin, etc.)
    *
    * @generated from field: string wallet_type = 2;
    */
-  walletType = "";
+  walletType = '';
 
   /**
    * Wallet address
    *
    * @generated from field: string wallet_address = 3;
    */
-  walletAddress = "";
+  walletAddress = '';
 
   /**
    * Block height
@@ -744,28 +829,39 @@ export class EventExternalWalletLinked extends Message<EventExternalWalletLinked
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.EventExternalWalletLinked";
+  static readonly typeName = 'did.v1.EventExternalWalletLinked';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "wallet_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "wallet_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'wallet_type', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'wallet_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventExternalWalletLinked {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EventExternalWalletLinked {
     return new EventExternalWalletLinked().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EventExternalWalletLinked {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EventExternalWalletLinked {
     return new EventExternalWalletLinked().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventExternalWalletLinked {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventExternalWalletLinked {
     return new EventExternalWalletLinked().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventExternalWalletLinked | PlainMessage<EventExternalWalletLinked> | undefined, b: EventExternalWalletLinked | PlainMessage<EventExternalWalletLinked> | undefined): boolean {
+  static equals(
+    a: EventExternalWalletLinked | PlainMessage<EventExternalWalletLinked> | undefined,
+    b: EventExternalWalletLinked | PlainMessage<EventExternalWalletLinked> | undefined
+  ): boolean {
     return proto3.util.equals(EventExternalWalletLinked, a, b);
   }
 }
-

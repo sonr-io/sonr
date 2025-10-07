@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { DecCoin } from "../../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { DecCoin } from '../../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * AccumulatorContent is the state-entry for the global accumulator.
@@ -23,7 +30,7 @@ export class AccumulatorContent extends Message<AccumulatorContent> {
   /**
    * @generated from field: string total_shares = 2;
    */
-  totalShares = "";
+  totalShares = '';
 
   constructor(data?: PartialMessage<AccumulatorContent>) {
     super();
@@ -31,10 +38,10 @@ export class AccumulatorContent extends Message<AccumulatorContent> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.accum.v1beta1.AccumulatorContent";
+  static readonly typeName = 'osmosis.accum.v1beta1.AccumulatorContent';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "accum_value", kind: "message", T: DecCoin, repeated: true },
-    { no: 2, name: "total_shares", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'accum_value', kind: 'message', T: DecCoin, repeated: true },
+    { no: 2, name: 'total_shares', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccumulatorContent {
@@ -45,11 +52,17 @@ export class AccumulatorContent extends Message<AccumulatorContent> {
     return new AccumulatorContent().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccumulatorContent {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccumulatorContent {
     return new AccumulatorContent().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccumulatorContent | PlainMessage<AccumulatorContent> | undefined, b: AccumulatorContent | PlainMessage<AccumulatorContent> | undefined): boolean {
+  static equals(
+    a: AccumulatorContent | PlainMessage<AccumulatorContent> | undefined,
+    b: AccumulatorContent | PlainMessage<AccumulatorContent> | undefined
+  ): boolean {
     return proto3.util.equals(AccumulatorContent, a, b);
   }
 }
@@ -64,9 +77,8 @@ export class Options extends Message<Options> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.accum.v1beta1.Options";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.accum.v1beta1.Options';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Options {
     return new Options().fromBinary(bytes, options);
@@ -80,7 +92,10 @@ export class Options extends Message<Options> {
     return new Options().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Options | PlainMessage<Options> | undefined, b: Options | PlainMessage<Options> | undefined): boolean {
+  static equals(
+    a: Options | PlainMessage<Options> | undefined,
+    b: Options | PlainMessage<Options> | undefined
+  ): boolean {
     return proto3.util.equals(Options, a, b);
   }
 }
@@ -98,7 +113,7 @@ export class Record extends Message<Record> {
    *
    * @generated from field: string num_shares = 1;
    */
-  numShares = "";
+  numShares = '';
 
   /**
    * accum_value_per_share is the subset of coins per shar of the global
@@ -145,12 +160,12 @@ export class Record extends Message<Record> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.accum.v1beta1.Record";
+  static readonly typeName = 'osmosis.accum.v1beta1.Record';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "num_shares", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "accum_value_per_share", kind: "message", T: DecCoin, repeated: true },
-    { no: 3, name: "unclaimed_rewards_total", kind: "message", T: DecCoin, repeated: true },
-    { no: 4, name: "options", kind: "message", T: Options },
+    { no: 1, name: 'num_shares', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'accum_value_per_share', kind: 'message', T: DecCoin, repeated: true },
+    { no: 3, name: 'unclaimed_rewards_total', kind: 'message', T: DecCoin, repeated: true },
+    { no: 4, name: 'options', kind: 'message', T: Options },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Record {
@@ -165,8 +180,10 @@ export class Record extends Message<Record> {
     return new Record().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Record | PlainMessage<Record> | undefined, b: Record | PlainMessage<Record> | undefined): boolean {
+  static equals(
+    a: Record | PlainMessage<Record> | undefined,
+    b: Record | PlainMessage<Record> | undefined
+  ): boolean {
     return proto3.util.equals(Record, a, b);
   }
 }
-

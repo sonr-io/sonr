@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3 } from "@bufbuild/protobuf";
-import { Coin } from "../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Duration, Message, proto3 } from '@bufbuild/protobuf';
+import { Coin } from '../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * Params holds parameters for the incentives module
@@ -19,7 +26,7 @@ export class Params extends Message<Params> {
    *
    * @generated from field: string distr_epoch_identifier = 1;
    */
-  distrEpochIdentifier = "";
+  distrEpochIdentifier = '';
 
   /**
    * group_creation_fee is the fee required to create a new group
@@ -73,13 +80,19 @@ export class Params extends Message<Params> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.incentives.Params";
+  static readonly typeName = 'osmosis.incentives.Params';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "distr_epoch_identifier", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "group_creation_fee", kind: "message", T: Coin, repeated: true },
-    { no: 3, name: "unrestricted_creator_whitelist", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 4, name: "internal_uptime", kind: "message", T: Duration },
-    { no: 5, name: "min_value_for_distribution", kind: "message", T: Coin },
+    { no: 1, name: 'distr_epoch_identifier', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'group_creation_fee', kind: 'message', T: Coin, repeated: true },
+    {
+      no: 3,
+      name: 'unrestricted_creator_whitelist',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    { no: 4, name: 'internal_uptime', kind: 'message', T: Duration },
+    { no: 5, name: 'min_value_for_distribution', kind: 'message', T: Coin },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Params {
@@ -94,8 +107,10 @@ export class Params extends Message<Params> {
     return new Params().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Params | PlainMessage<Params> | undefined, b: Params | PlainMessage<Params> | undefined): boolean {
+  static equals(
+    a: Params | PlainMessage<Params> | undefined,
+    b: Params | PlainMessage<Params> | undefined
+  ): boolean {
     return proto3.util.equals(Params, a, b);
   }
 }
-

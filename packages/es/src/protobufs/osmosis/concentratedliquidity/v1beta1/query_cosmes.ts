@@ -3,9 +3,40 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CFMMPoolIdLinkFromConcentratedPoolIdRequest, CFMMPoolIdLinkFromConcentratedPoolIdResponse, ClaimableIncentivesRequest, ClaimableIncentivesResponse, ClaimableSpreadRewardsRequest, ClaimableSpreadRewardsResponse, GetTotalLiquidityRequest, GetTotalLiquidityResponse, IncentiveRecordsRequest, IncentiveRecordsResponse, LiquidityNetInDirectionRequest, LiquidityNetInDirectionResponse, LiquidityPerTickRangeRequest, LiquidityPerTickRangeResponse, NumNextInitializedTicksRequest, NumNextInitializedTicksResponse, ParamsRequest, ParamsResponse, PoolAccumulatorRewardsRequest, PoolAccumulatorRewardsResponse, PoolsRequest, PoolsResponse, PositionByIdRequest, PositionByIdResponse, TickAccumulatorTrackersRequest, TickAccumulatorTrackersResponse, UserPositionsRequest, UserPositionsResponse, UserUnbondingPositionsRequest, UserUnbondingPositionsResponse } from "./query_pb.js";
+import {
+  CFMMPoolIdLinkFromConcentratedPoolIdRequest,
+  CFMMPoolIdLinkFromConcentratedPoolIdResponse,
+  ClaimableIncentivesRequest,
+  ClaimableIncentivesResponse,
+  ClaimableSpreadRewardsRequest,
+  ClaimableSpreadRewardsResponse,
+  GetTotalLiquidityRequest,
+  GetTotalLiquidityResponse,
+  IncentiveRecordsRequest,
+  IncentiveRecordsResponse,
+  LiquidityNetInDirectionRequest,
+  LiquidityNetInDirectionResponse,
+  LiquidityPerTickRangeRequest,
+  LiquidityPerTickRangeResponse,
+  NumNextInitializedTicksRequest,
+  NumNextInitializedTicksResponse,
+  ParamsRequest,
+  ParamsResponse,
+  PoolAccumulatorRewardsRequest,
+  PoolAccumulatorRewardsResponse,
+  PoolsRequest,
+  PoolsResponse,
+  PositionByIdRequest,
+  PositionByIdResponse,
+  TickAccumulatorTrackersRequest,
+  TickAccumulatorTrackersResponse,
+  UserPositionsRequest,
+  UserPositionsResponse,
+  UserUnbondingPositionsRequest,
+  UserUnbondingPositionsResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "osmosis.concentratedliquidity.v1beta1.Query";
+const TYPE_NAME = 'osmosis.concentratedliquidity.v1beta1.Query';
 
 /**
  * Pools returns all concentrated liquidity pools
@@ -14,7 +45,7 @@ const TYPE_NAME = "osmosis.concentratedliquidity.v1beta1.Query";
  */
 export const QueryPoolsService = {
   typeName: TYPE_NAME,
-  method: "Pools",
+  method: 'Pools',
   Request: PoolsRequest,
   Response: PoolsResponse,
 } as const;
@@ -26,7 +57,7 @@ export const QueryPoolsService = {
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: ParamsRequest,
   Response: ParamsResponse,
 } as const;
@@ -38,7 +69,7 @@ export const QueryParamsService = {
  */
 export const QueryUserPositionsService = {
   typeName: TYPE_NAME,
-  method: "UserPositions",
+  method: 'UserPositions',
   Request: UserPositionsRequest,
   Response: UserPositionsResponse,
 } as const;
@@ -51,7 +82,7 @@ export const QueryUserPositionsService = {
  */
 export const QueryLiquidityPerTickRangeService = {
   typeName: TYPE_NAME,
-  method: "LiquidityPerTickRange",
+  method: 'LiquidityPerTickRange',
   Request: LiquidityPerTickRangeRequest,
   Response: LiquidityPerTickRangeResponse,
 } as const;
@@ -65,7 +96,7 @@ export const QueryLiquidityPerTickRangeService = {
  */
 export const QueryLiquidityNetInDirectionService = {
   typeName: TYPE_NAME,
-  method: "LiquidityNetInDirection",
+  method: 'LiquidityNetInDirection',
   Request: LiquidityNetInDirectionRequest,
   Response: LiquidityNetInDirectionResponse,
 } as const;
@@ -78,7 +109,7 @@ export const QueryLiquidityNetInDirectionService = {
  */
 export const QueryClaimableSpreadRewardsService = {
   typeName: TYPE_NAME,
-  method: "ClaimableSpreadRewards",
+  method: 'ClaimableSpreadRewards',
   Request: ClaimableSpreadRewardsRequest,
   Response: ClaimableSpreadRewardsResponse,
 } as const;
@@ -91,7 +122,7 @@ export const QueryClaimableSpreadRewardsService = {
  */
 export const QueryClaimableIncentivesService = {
   typeName: TYPE_NAME,
-  method: "ClaimableIncentives",
+  method: 'ClaimableIncentives',
   Request: ClaimableIncentivesRequest,
   Response: ClaimableIncentivesResponse,
 } as const;
@@ -103,7 +134,7 @@ export const QueryClaimableIncentivesService = {
  */
 export const QueryPositionByIdService = {
   typeName: TYPE_NAME,
-  method: "PositionById",
+  method: 'PositionById',
   Request: PositionByIdRequest,
   Response: PositionByIdResponse,
 } as const;
@@ -116,7 +147,7 @@ export const QueryPositionByIdService = {
  */
 export const QueryPoolAccumulatorRewardsService = {
   typeName: TYPE_NAME,
-  method: "PoolAccumulatorRewards",
+  method: 'PoolAccumulatorRewards',
   Request: PoolAccumulatorRewardsRequest,
   Response: PoolAccumulatorRewardsResponse,
 } as const;
@@ -128,7 +159,7 @@ export const QueryPoolAccumulatorRewardsService = {
  */
 export const QueryIncentiveRecordsService = {
   typeName: TYPE_NAME,
-  method: "IncentiveRecords",
+  method: 'IncentiveRecords',
   Request: IncentiveRecordsRequest,
   Response: IncentiveRecordsResponse,
 } as const;
@@ -141,7 +172,7 @@ export const QueryIncentiveRecordsService = {
  */
 export const QueryTickAccumulatorTrackersService = {
   typeName: TYPE_NAME,
-  method: "TickAccumulatorTrackers",
+  method: 'TickAccumulatorTrackers',
   Request: TickAccumulatorTrackersRequest,
   Response: TickAccumulatorTrackersResponse,
 } as const;
@@ -154,7 +185,7 @@ export const QueryTickAccumulatorTrackersService = {
  */
 export const QueryCFMMPoolIdLinkFromConcentratedPoolIdService = {
   typeName: TYPE_NAME,
-  method: "CFMMPoolIdLinkFromConcentratedPoolId",
+  method: 'CFMMPoolIdLinkFromConcentratedPoolId',
   Request: CFMMPoolIdLinkFromConcentratedPoolIdRequest,
   Response: CFMMPoolIdLinkFromConcentratedPoolIdResponse,
 } as const;
@@ -167,7 +198,7 @@ export const QueryCFMMPoolIdLinkFromConcentratedPoolIdService = {
  */
 export const QueryUserUnbondingPositionsService = {
   typeName: TYPE_NAME,
-  method: "UserUnbondingPositions",
+  method: 'UserUnbondingPositions',
   Request: UserUnbondingPositionsRequest,
   Response: UserUnbondingPositionsResponse,
 } as const;
@@ -179,7 +210,7 @@ export const QueryUserUnbondingPositionsService = {
  */
 export const QueryGetTotalLiquidityService = {
   typeName: TYPE_NAME,
-  method: "GetTotalLiquidity",
+  method: 'GetTotalLiquidity',
   Request: GetTotalLiquidityRequest,
   Response: GetTotalLiquidityResponse,
 } as const;
@@ -192,8 +223,7 @@ export const QueryGetTotalLiquidityService = {
  */
 export const QueryNumNextInitializedTicksService = {
   typeName: TYPE_NAME,
-  method: "NumNextInitializedTicks",
+  method: 'NumNextInitializedTicks',
   Request: NumNextInitializedTicksRequest,
   Response: NumNextInitializedTicksResponse,
 } as const;
-

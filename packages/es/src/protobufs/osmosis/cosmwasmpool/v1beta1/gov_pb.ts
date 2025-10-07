@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * UploadCosmWasmPoolCodeAndWhiteListProposal is a gov Content type for
@@ -17,12 +24,12 @@ export class UploadCosmWasmPoolCodeAndWhiteListProposal extends Message<UploadCo
   /**
    * @generated from field: string title = 1;
    */
-  title = "";
+  title = '';
 
   /**
    * @generated from field: string description = 2;
    */
-  description = "";
+  description = '';
 
   /**
    * WASMByteCode can be raw or gzip compressed
@@ -37,26 +44,45 @@ export class UploadCosmWasmPoolCodeAndWhiteListProposal extends Message<UploadCo
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.cosmwasmpool.v1beta1.UploadCosmWasmPoolCodeAndWhiteListProposal";
+  static readonly typeName =
+    'osmosis.cosmwasmpool.v1beta1.UploadCosmWasmPoolCodeAndWhiteListProposal';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "wasm_byte_code", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'title', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'description', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'wasm_byte_code', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UploadCosmWasmPoolCodeAndWhiteListProposal {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): UploadCosmWasmPoolCodeAndWhiteListProposal {
     return new UploadCosmWasmPoolCodeAndWhiteListProposal().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UploadCosmWasmPoolCodeAndWhiteListProposal {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): UploadCosmWasmPoolCodeAndWhiteListProposal {
     return new UploadCosmWasmPoolCodeAndWhiteListProposal().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UploadCosmWasmPoolCodeAndWhiteListProposal {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): UploadCosmWasmPoolCodeAndWhiteListProposal {
     return new UploadCosmWasmPoolCodeAndWhiteListProposal().fromJsonString(jsonString, options);
   }
 
-  static equals(a: UploadCosmWasmPoolCodeAndWhiteListProposal | PlainMessage<UploadCosmWasmPoolCodeAndWhiteListProposal> | undefined, b: UploadCosmWasmPoolCodeAndWhiteListProposal | PlainMessage<UploadCosmWasmPoolCodeAndWhiteListProposal> | undefined): boolean {
+  static equals(
+    a:
+      | UploadCosmWasmPoolCodeAndWhiteListProposal
+      | PlainMessage<UploadCosmWasmPoolCodeAndWhiteListProposal>
+      | undefined,
+    b:
+      | UploadCosmWasmPoolCodeAndWhiteListProposal
+      | PlainMessage<UploadCosmWasmPoolCodeAndWhiteListProposal>
+      | undefined
+  ): boolean {
     return proto3.util.equals(UploadCosmWasmPoolCodeAndWhiteListProposal, a, b);
   }
 }
@@ -95,12 +121,12 @@ export class MigratePoolContractsProposal extends Message<MigratePoolContractsPr
   /**
    * @generated from field: string title = 1;
    */
-  title = "";
+  title = '';
 
   /**
    * @generated from field: string description = 2;
    */
-  description = "";
+  description = '';
 
   /**
    * pool_ids are the pool ids of the contracts to be migrated
@@ -142,30 +168,41 @@ export class MigratePoolContractsProposal extends Message<MigratePoolContractsPr
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.cosmwasmpool.v1beta1.MigratePoolContractsProposal";
+  static readonly typeName = 'osmosis.cosmwasmpool.v1beta1.MigratePoolContractsProposal';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "pool_ids", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
-    { no: 4, name: "new_code_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 5, name: "wasm_byte_code", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 6, name: "migrate_msg", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'title', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'description', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'pool_ids', kind: 'scalar', T: 4 /* ScalarType.UINT64 */, repeated: true },
+    { no: 4, name: 'new_code_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 5, name: 'wasm_byte_code', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 6, name: 'migrate_msg', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MigratePoolContractsProposal {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MigratePoolContractsProposal {
     return new MigratePoolContractsProposal().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MigratePoolContractsProposal {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MigratePoolContractsProposal {
     return new MigratePoolContractsProposal().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MigratePoolContractsProposal {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MigratePoolContractsProposal {
     return new MigratePoolContractsProposal().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MigratePoolContractsProposal | PlainMessage<MigratePoolContractsProposal> | undefined, b: MigratePoolContractsProposal | PlainMessage<MigratePoolContractsProposal> | undefined): boolean {
+  static equals(
+    a: MigratePoolContractsProposal | PlainMessage<MigratePoolContractsProposal> | undefined,
+    b: MigratePoolContractsProposal | PlainMessage<MigratePoolContractsProposal> | undefined
+  ): boolean {
     return proto3.util.equals(MigratePoolContractsProposal, a, b);
   }
 }
-

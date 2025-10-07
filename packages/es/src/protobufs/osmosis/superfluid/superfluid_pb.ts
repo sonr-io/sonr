@@ -3,10 +3,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Coin } from "../../cosmos/base/v1beta1/coin_pb.js";
-import { SyntheticLock } from "../lockup/lock_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { Coin } from '../../cosmos/base/v1beta1/coin_pb.js';
+import { SyntheticLock } from '../lockup/lock_pb.js';
 
 /**
  * SuperfluidAssetType indicates whether the superfluid asset is
@@ -33,10 +40,10 @@ export enum SuperfluidAssetType {
   SuperfluidAssetTypeConcentratedShare = 2,
 }
 // Retrieve enum metadata with: proto3.getEnumType(SuperfluidAssetType)
-proto3.util.setEnumType(SuperfluidAssetType, "osmosis.superfluid.SuperfluidAssetType", [
-  { no: 0, name: "SuperfluidAssetTypeNative" },
-  { no: 1, name: "SuperfluidAssetTypeLPShare" },
-  { no: 2, name: "SuperfluidAssetTypeConcentratedShare" },
+proto3.util.setEnumType(SuperfluidAssetType, 'osmosis.superfluid.SuperfluidAssetType', [
+  { no: 0, name: 'SuperfluidAssetTypeNative' },
+  { no: 1, name: 'SuperfluidAssetTypeLPShare' },
+  { no: 2, name: 'SuperfluidAssetTypeConcentratedShare' },
 ]);
 
 /**
@@ -48,7 +55,7 @@ export class SuperfluidAsset extends Message<SuperfluidAsset> {
   /**
    * @generated from field: string denom = 1;
    */
-  denom = "";
+  denom = '';
 
   /**
    * AssetType indicates whether the superfluid asset is a native token or an lp
@@ -64,10 +71,10 @@ export class SuperfluidAsset extends Message<SuperfluidAsset> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.superfluid.SuperfluidAsset";
+  static readonly typeName = 'osmosis.superfluid.SuperfluidAsset';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "asset_type", kind: "enum", T: proto3.getEnumType(SuperfluidAssetType) },
+    { no: 1, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'asset_type', kind: 'enum', T: proto3.getEnumType(SuperfluidAssetType) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SuperfluidAsset {
@@ -82,7 +89,10 @@ export class SuperfluidAsset extends Message<SuperfluidAsset> {
     return new SuperfluidAsset().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SuperfluidAsset | PlainMessage<SuperfluidAsset> | undefined, b: SuperfluidAsset | PlainMessage<SuperfluidAsset> | undefined): boolean {
+  static equals(
+    a: SuperfluidAsset | PlainMessage<SuperfluidAsset> | undefined,
+    b: SuperfluidAsset | PlainMessage<SuperfluidAsset> | undefined
+  ): boolean {
     return proto3.util.equals(SuperfluidAsset, a, b);
   }
 }
@@ -100,12 +110,12 @@ export class SuperfluidIntermediaryAccount extends Message<SuperfluidIntermediar
    *
    * @generated from field: string denom = 1;
    */
-  denom = "";
+  denom = '';
 
   /**
    * @generated from field: string val_addr = 2;
    */
-  valAddr = "";
+  valAddr = '';
 
   /**
    * perpetual gauge for rewards distribution
@@ -120,26 +130,38 @@ export class SuperfluidIntermediaryAccount extends Message<SuperfluidIntermediar
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.superfluid.SuperfluidIntermediaryAccount";
+  static readonly typeName = 'osmosis.superfluid.SuperfluidIntermediaryAccount';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "val_addr", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "gauge_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'val_addr', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'gauge_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SuperfluidIntermediaryAccount {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): SuperfluidIntermediaryAccount {
     return new SuperfluidIntermediaryAccount().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SuperfluidIntermediaryAccount {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): SuperfluidIntermediaryAccount {
     return new SuperfluidIntermediaryAccount().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SuperfluidIntermediaryAccount {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): SuperfluidIntermediaryAccount {
     return new SuperfluidIntermediaryAccount().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SuperfluidIntermediaryAccount | PlainMessage<SuperfluidIntermediaryAccount> | undefined, b: SuperfluidIntermediaryAccount | PlainMessage<SuperfluidIntermediaryAccount> | undefined): boolean {
+  static equals(
+    a: SuperfluidIntermediaryAccount | PlainMessage<SuperfluidIntermediaryAccount> | undefined,
+    b: SuperfluidIntermediaryAccount | PlainMessage<SuperfluidIntermediaryAccount> | undefined
+  ): boolean {
     return proto3.util.equals(SuperfluidIntermediaryAccount, a, b);
   }
 }
@@ -166,12 +188,12 @@ export class OsmoEquivalentMultiplierRecord extends Message<OsmoEquivalentMultip
    *
    * @generated from field: string denom = 2;
    */
-  denom = "";
+  denom = '';
 
   /**
    * @generated from field: string multiplier = 3;
    */
-  multiplier = "";
+  multiplier = '';
 
   constructor(data?: PartialMessage<OsmoEquivalentMultiplierRecord>) {
     super();
@@ -179,26 +201,38 @@ export class OsmoEquivalentMultiplierRecord extends Message<OsmoEquivalentMultip
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.superfluid.OsmoEquivalentMultiplierRecord";
+  static readonly typeName = 'osmosis.superfluid.OsmoEquivalentMultiplierRecord';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "epoch_number", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 2, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "multiplier", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'epoch_number', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'multiplier', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): OsmoEquivalentMultiplierRecord {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): OsmoEquivalentMultiplierRecord {
     return new OsmoEquivalentMultiplierRecord().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): OsmoEquivalentMultiplierRecord {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): OsmoEquivalentMultiplierRecord {
     return new OsmoEquivalentMultiplierRecord().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): OsmoEquivalentMultiplierRecord {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): OsmoEquivalentMultiplierRecord {
     return new OsmoEquivalentMultiplierRecord().fromJsonString(jsonString, options);
   }
 
-  static equals(a: OsmoEquivalentMultiplierRecord | PlainMessage<OsmoEquivalentMultiplierRecord> | undefined, b: OsmoEquivalentMultiplierRecord | PlainMessage<OsmoEquivalentMultiplierRecord> | undefined): boolean {
+  static equals(
+    a: OsmoEquivalentMultiplierRecord | PlainMessage<OsmoEquivalentMultiplierRecord> | undefined,
+    b: OsmoEquivalentMultiplierRecord | PlainMessage<OsmoEquivalentMultiplierRecord> | undefined
+  ): boolean {
     return proto3.util.equals(OsmoEquivalentMultiplierRecord, a, b);
   }
 }
@@ -213,12 +247,12 @@ export class SuperfluidDelegationRecord extends Message<SuperfluidDelegationReco
   /**
    * @generated from field: string delegator_address = 1;
    */
-  delegatorAddress = "";
+  delegatorAddress = '';
 
   /**
    * @generated from field: string validator_address = 2;
    */
-  validatorAddress = "";
+  validatorAddress = '';
 
   /**
    * @generated from field: cosmos.base.v1beta1.Coin delegation_amount = 3;
@@ -236,27 +270,39 @@ export class SuperfluidDelegationRecord extends Message<SuperfluidDelegationReco
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.superfluid.SuperfluidDelegationRecord";
+  static readonly typeName = 'osmosis.superfluid.SuperfluidDelegationRecord';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "delegator_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "validator_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "delegation_amount", kind: "message", T: Coin },
-    { no: 4, name: "equivalent_staked_amount", kind: "message", T: Coin },
+    { no: 1, name: 'delegator_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'validator_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'delegation_amount', kind: 'message', T: Coin },
+    { no: 4, name: 'equivalent_staked_amount', kind: 'message', T: Coin },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SuperfluidDelegationRecord {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): SuperfluidDelegationRecord {
     return new SuperfluidDelegationRecord().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SuperfluidDelegationRecord {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): SuperfluidDelegationRecord {
     return new SuperfluidDelegationRecord().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SuperfluidDelegationRecord {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): SuperfluidDelegationRecord {
     return new SuperfluidDelegationRecord().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SuperfluidDelegationRecord | PlainMessage<SuperfluidDelegationRecord> | undefined, b: SuperfluidDelegationRecord | PlainMessage<SuperfluidDelegationRecord> | undefined): boolean {
+  static equals(
+    a: SuperfluidDelegationRecord | PlainMessage<SuperfluidDelegationRecord> | undefined,
+    b: SuperfluidDelegationRecord | PlainMessage<SuperfluidDelegationRecord> | undefined
+  ): boolean {
     return proto3.util.equals(SuperfluidDelegationRecord, a, b);
   }
 }
@@ -277,7 +323,7 @@ export class LockIdIntermediaryAccountConnection extends Message<LockIdIntermedi
   /**
    * @generated from field: string intermediary_account = 2;
    */
-  intermediaryAccount = "";
+  intermediaryAccount = '';
 
   constructor(data?: PartialMessage<LockIdIntermediaryAccountConnection>) {
     super();
@@ -285,25 +331,43 @@ export class LockIdIntermediaryAccountConnection extends Message<LockIdIntermedi
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.superfluid.LockIdIntermediaryAccountConnection";
+  static readonly typeName = 'osmosis.superfluid.LockIdIntermediaryAccountConnection';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "lock_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "intermediary_account", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'lock_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'intermediary_account', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LockIdIntermediaryAccountConnection {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): LockIdIntermediaryAccountConnection {
     return new LockIdIntermediaryAccountConnection().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): LockIdIntermediaryAccountConnection {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): LockIdIntermediaryAccountConnection {
     return new LockIdIntermediaryAccountConnection().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): LockIdIntermediaryAccountConnection {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): LockIdIntermediaryAccountConnection {
     return new LockIdIntermediaryAccountConnection().fromJsonString(jsonString, options);
   }
 
-  static equals(a: LockIdIntermediaryAccountConnection | PlainMessage<LockIdIntermediaryAccountConnection> | undefined, b: LockIdIntermediaryAccountConnection | PlainMessage<LockIdIntermediaryAccountConnection> | undefined): boolean {
+  static equals(
+    a:
+      | LockIdIntermediaryAccountConnection
+      | PlainMessage<LockIdIntermediaryAccountConnection>
+      | undefined,
+    b:
+      | LockIdIntermediaryAccountConnection
+      | PlainMessage<LockIdIntermediaryAccountConnection>
+      | undefined
+  ): boolean {
     return proto3.util.equals(LockIdIntermediaryAccountConnection, a, b);
   }
 }
@@ -323,24 +387,36 @@ export class UnpoolWhitelistedPools extends Message<UnpoolWhitelistedPools> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.superfluid.UnpoolWhitelistedPools";
+  static readonly typeName = 'osmosis.superfluid.UnpoolWhitelistedPools';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "ids", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
+    { no: 1, name: 'ids', kind: 'scalar', T: 4 /* ScalarType.UINT64 */, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UnpoolWhitelistedPools {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): UnpoolWhitelistedPools {
     return new UnpoolWhitelistedPools().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UnpoolWhitelistedPools {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): UnpoolWhitelistedPools {
     return new UnpoolWhitelistedPools().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UnpoolWhitelistedPools {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): UnpoolWhitelistedPools {
     return new UnpoolWhitelistedPools().fromJsonString(jsonString, options);
   }
 
-  static equals(a: UnpoolWhitelistedPools | PlainMessage<UnpoolWhitelistedPools> | undefined, b: UnpoolWhitelistedPools | PlainMessage<UnpoolWhitelistedPools> | undefined): boolean {
+  static equals(
+    a: UnpoolWhitelistedPools | PlainMessage<UnpoolWhitelistedPools> | undefined,
+    b: UnpoolWhitelistedPools | PlainMessage<UnpoolWhitelistedPools> | undefined
+  ): boolean {
     return proto3.util.equals(UnpoolWhitelistedPools, a, b);
   }
 }
@@ -352,7 +428,7 @@ export class ConcentratedPoolUserPositionRecord extends Message<ConcentratedPool
   /**
    * @generated from field: string validator_address = 1;
    */
-  validatorAddress = "";
+  validatorAddress = '';
 
   /**
    * @generated from field: uint64 position_id = 2;
@@ -385,30 +461,47 @@ export class ConcentratedPoolUserPositionRecord extends Message<ConcentratedPool
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.superfluid.ConcentratedPoolUserPositionRecord";
+  static readonly typeName = 'osmosis.superfluid.ConcentratedPoolUserPositionRecord';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "validator_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "position_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "lock_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 4, name: "synthetic_lock", kind: "message", T: SyntheticLock },
-    { no: 5, name: "delegation_amount", kind: "message", T: Coin },
-    { no: 6, name: "equivalent_staked_amount", kind: "message", T: Coin },
+    { no: 1, name: 'validator_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'position_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'lock_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 4, name: 'synthetic_lock', kind: 'message', T: SyntheticLock },
+    { no: 5, name: 'delegation_amount', kind: 'message', T: Coin },
+    { no: 6, name: 'equivalent_staked_amount', kind: 'message', T: Coin },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ConcentratedPoolUserPositionRecord {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): ConcentratedPoolUserPositionRecord {
     return new ConcentratedPoolUserPositionRecord().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ConcentratedPoolUserPositionRecord {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): ConcentratedPoolUserPositionRecord {
     return new ConcentratedPoolUserPositionRecord().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ConcentratedPoolUserPositionRecord {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ConcentratedPoolUserPositionRecord {
     return new ConcentratedPoolUserPositionRecord().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ConcentratedPoolUserPositionRecord | PlainMessage<ConcentratedPoolUserPositionRecord> | undefined, b: ConcentratedPoolUserPositionRecord | PlainMessage<ConcentratedPoolUserPositionRecord> | undefined): boolean {
+  static equals(
+    a:
+      | ConcentratedPoolUserPositionRecord
+      | PlainMessage<ConcentratedPoolUserPositionRecord>
+      | undefined,
+    b:
+      | ConcentratedPoolUserPositionRecord
+      | PlainMessage<ConcentratedPoolUserPositionRecord>
+      | undefined
+  ): boolean {
     return proto3.util.equals(ConcentratedPoolUserPositionRecord, a, b);
   }
 }
-

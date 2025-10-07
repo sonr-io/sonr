@@ -3,9 +3,36 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryCIDRequest, QueryCIDResponse, QueryEncryptedRecordRequest, QueryEncryptedRecordResponse, QueryEncryptionStatusRequest, QueryEncryptionStatusResponse, QueryIPFSRequest, QueryIPFSResponse, QueryParamsRequest, QueryParamsResponse, QueryPermissionsRequest, QueryPermissionsResponse, QueryProtocolRequest, QueryProtocolResponse, QueryProtocolsRequest, QueryProtocolsResponse, QueryRecordRequest, QueryRecordResponse, QueryRecordsRequest, QueryRecordsResponse, QueryVaultRequest, QueryVaultResponse, QueryVaultsRequest, QueryVaultsResponse, QueryVRFContributionsRequest, QueryVRFContributionsResponse } from "./query_pb.js";
+import {
+  QueryCIDRequest,
+  QueryCIDResponse,
+  QueryEncryptedRecordRequest,
+  QueryEncryptedRecordResponse,
+  QueryEncryptionStatusRequest,
+  QueryEncryptionStatusResponse,
+  QueryIPFSRequest,
+  QueryIPFSResponse,
+  QueryParamsRequest,
+  QueryParamsResponse,
+  QueryPermissionsRequest,
+  QueryPermissionsResponse,
+  QueryProtocolRequest,
+  QueryProtocolResponse,
+  QueryProtocolsRequest,
+  QueryProtocolsResponse,
+  QueryRecordRequest,
+  QueryRecordResponse,
+  QueryRecordsRequest,
+  QueryRecordsResponse,
+  QueryVaultRequest,
+  QueryVaultResponse,
+  QueryVaultsRequest,
+  QueryVaultsResponse,
+  QueryVRFContributionsRequest,
+  QueryVRFContributionsResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "dwn.v1.Query";
+const TYPE_NAME = 'dwn.v1.Query';
 
 /**
  * Params queries all parameters of the module.
@@ -14,7 +41,7 @@ const TYPE_NAME = "dwn.v1.Query";
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: QueryParamsRequest,
   Response: QueryParamsResponse,
 } as const;
@@ -26,7 +53,7 @@ export const QueryParamsService = {
  */
 export const QueryIPFSService = {
   typeName: TYPE_NAME,
-  method: "IPFS",
+  method: 'IPFS',
   Request: QueryIPFSRequest,
   Response: QueryIPFSResponse,
 } as const;
@@ -38,7 +65,7 @@ export const QueryIPFSService = {
  */
 export const QueryCIDService = {
   typeName: TYPE_NAME,
-  method: "CID",
+  method: 'CID',
   Request: QueryCIDRequest,
   Response: QueryCIDResponse,
 } as const;
@@ -55,7 +82,7 @@ export const QueryCIDService = {
  */
 export const QueryRecordsService = {
   typeName: TYPE_NAME,
-  method: "Records",
+  method: 'Records',
   Request: QueryRecordsRequest,
   Response: QueryRecordsResponse,
 } as const;
@@ -67,7 +94,7 @@ export const QueryRecordsService = {
  */
 export const QueryRecordService = {
   typeName: TYPE_NAME,
-  method: "Record",
+  method: 'Record',
   Request: QueryRecordRequest,
   Response: QueryRecordResponse,
 } as const;
@@ -79,7 +106,7 @@ export const QueryRecordService = {
  */
 export const QueryProtocolsService = {
   typeName: TYPE_NAME,
-  method: "Protocols",
+  method: 'Protocols',
   Request: QueryProtocolsRequest,
   Response: QueryProtocolsResponse,
 } as const;
@@ -91,7 +118,7 @@ export const QueryProtocolsService = {
  */
 export const QueryProtocolService = {
   typeName: TYPE_NAME,
-  method: "Protocol",
+  method: 'Protocol',
   Request: QueryProtocolRequest,
   Response: QueryProtocolResponse,
 } as const;
@@ -103,7 +130,7 @@ export const QueryProtocolService = {
  */
 export const QueryPermissionsService = {
   typeName: TYPE_NAME,
-  method: "Permissions",
+  method: 'Permissions',
   Request: QueryPermissionsRequest,
   Response: QueryPermissionsResponse,
 } as const;
@@ -115,7 +142,7 @@ export const QueryPermissionsService = {
  */
 export const QueryVaultService = {
   typeName: TYPE_NAME,
-  method: "Vault",
+  method: 'Vault',
   Request: QueryVaultRequest,
   Response: QueryVaultResponse,
 } as const;
@@ -127,7 +154,7 @@ export const QueryVaultService = {
  */
 export const QueryVaultsService = {
   typeName: TYPE_NAME,
-  method: "Vaults",
+  method: 'Vaults',
   Request: QueryVaultsRequest,
   Response: QueryVaultsResponse,
 } as const;
@@ -139,7 +166,7 @@ export const QueryVaultsService = {
  */
 export const QueryEncryptedRecordService = {
   typeName: TYPE_NAME,
-  method: "EncryptedRecord",
+  method: 'EncryptedRecord',
   Request: QueryEncryptedRecordRequest,
   Response: QueryEncryptedRecordResponse,
 } as const;
@@ -151,7 +178,7 @@ export const QueryEncryptedRecordService = {
  */
 export const QueryEncryptionStatusService = {
   typeName: TYPE_NAME,
-  method: "EncryptionStatus",
+  method: 'EncryptionStatus',
   Request: QueryEncryptionStatusRequest,
   Response: QueryEncryptionStatusResponse,
 } as const;
@@ -163,8 +190,7 @@ export const QueryEncryptionStatusService = {
  */
 export const QueryVRFContributionsService = {
   typeName: TYPE_NAME,
-  method: "VRFContributions",
+  method: 'VRFContributions',
   Request: QueryVRFContributionsRequest,
   Response: QueryVRFContributionsResponse,
 } as const;
-

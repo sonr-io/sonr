@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { Params, State } from "./evm_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { Params, State } from './evm_pb.js';
 
 /**
  * GenesisState defines the evm module's genesis state.
@@ -33,10 +40,10 @@ export class GenesisState extends Message<GenesisState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.GenesisState";
+  static readonly typeName = 'ethermint.evm.v1.GenesisState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "accounts", kind: "message", T: GenesisAccount, repeated: true },
-    { no: 2, name: "params", kind: "message", T: Params },
+    { no: 1, name: 'accounts', kind: 'message', T: GenesisAccount, repeated: true },
+    { no: 2, name: 'params', kind: 'message', T: Params },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {
@@ -51,7 +58,10 @@ export class GenesisState extends Message<GenesisState> {
     return new GenesisState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisState | PlainMessage<GenesisState> | undefined, b: GenesisState | PlainMessage<GenesisState> | undefined): boolean {
+  static equals(
+    a: GenesisState | PlainMessage<GenesisState> | undefined,
+    b: GenesisState | PlainMessage<GenesisState> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisState, a, b);
   }
 }
@@ -69,14 +79,14 @@ export class GenesisAccount extends Message<GenesisAccount> {
    *
    * @generated from field: string address = 1;
    */
-  address = "";
+  address = '';
 
   /**
    * code defines the hex bytes of the account code.
    *
    * @generated from field: string code = 2;
    */
-  code = "";
+  code = '';
 
   /**
    * storage defines the set of state key values for the account.
@@ -91,11 +101,11 @@ export class GenesisAccount extends Message<GenesisAccount> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.GenesisAccount";
+  static readonly typeName = 'ethermint.evm.v1.GenesisAccount';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "code", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "storage", kind: "message", T: State, repeated: true },
+    { no: 1, name: 'address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'code', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'storage', kind: 'message', T: State, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisAccount {
@@ -110,8 +120,10 @@ export class GenesisAccount extends Message<GenesisAccount> {
     return new GenesisAccount().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisAccount | PlainMessage<GenesisAccount> | undefined, b: GenesisAccount | PlainMessage<GenesisAccount> | undefined): boolean {
+  static equals(
+    a: GenesisAccount | PlainMessage<GenesisAccount> | undefined,
+    b: GenesisAccount | PlainMessage<GenesisAccount> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisAccount, a, b);
   }
 }
-

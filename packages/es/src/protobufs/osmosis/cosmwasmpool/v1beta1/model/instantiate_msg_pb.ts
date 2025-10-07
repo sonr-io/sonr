@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
 
 /**
  * ===================== InstantiateMsg
@@ -26,9 +33,15 @@ export class InstantiateMsg extends Message<InstantiateMsg> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.cosmwasmpool.v1beta1.InstantiateMsg";
+  static readonly typeName = 'osmosis.cosmwasmpool.v1beta1.InstantiateMsg';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_asset_denoms", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    {
+      no: 1,
+      name: 'pool_asset_denoms',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InstantiateMsg {
@@ -43,8 +56,10 @@ export class InstantiateMsg extends Message<InstantiateMsg> {
     return new InstantiateMsg().fromJsonString(jsonString, options);
   }
 
-  static equals(a: InstantiateMsg | PlainMessage<InstantiateMsg> | undefined, b: InstantiateMsg | PlainMessage<InstantiateMsg> | undefined): boolean {
+  static equals(
+    a: InstantiateMsg | PlainMessage<InstantiateMsg> | undefined,
+    b: InstantiateMsg | PlainMessage<InstantiateMsg> | undefined
+  ): boolean {
     return proto3.util.equals(InstantiateMsg, a, b);
   }
 }
-

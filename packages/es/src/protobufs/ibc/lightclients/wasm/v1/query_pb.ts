@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { PageRequest, PageResponse } from "../../../../cosmos/base/query/v1beta1/pagination_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { PageRequest, PageResponse } from '../../../../cosmos/base/query/v1beta1/pagination_pb.js';
 
 /**
  * QueryChecksumsRequest is the request type for the Query/Checksums RPC method.
@@ -26,12 +33,15 @@ export class QueryChecksumsRequest extends Message<QueryChecksumsRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.lightclients.wasm.v1.QueryChecksumsRequest";
+  static readonly typeName = 'ibc.lightclients.wasm.v1.QueryChecksumsRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pagination", kind: "message", T: PageRequest },
+    { no: 1, name: 'pagination', kind: 'message', T: PageRequest },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryChecksumsRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryChecksumsRequest {
     return new QueryChecksumsRequest().fromBinary(bytes, options);
   }
 
@@ -39,11 +49,17 @@ export class QueryChecksumsRequest extends Message<QueryChecksumsRequest> {
     return new QueryChecksumsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryChecksumsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryChecksumsRequest {
     return new QueryChecksumsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryChecksumsRequest | PlainMessage<QueryChecksumsRequest> | undefined, b: QueryChecksumsRequest | PlainMessage<QueryChecksumsRequest> | undefined): boolean {
+  static equals(
+    a: QueryChecksumsRequest | PlainMessage<QueryChecksumsRequest> | undefined,
+    b: QueryChecksumsRequest | PlainMessage<QueryChecksumsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryChecksumsRequest, a, b);
   }
 }
@@ -74,25 +90,37 @@ export class QueryChecksumsResponse extends Message<QueryChecksumsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.lightclients.wasm.v1.QueryChecksumsResponse";
+  static readonly typeName = 'ibc.lightclients.wasm.v1.QueryChecksumsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "checksums", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 2, name: "pagination", kind: "message", T: PageResponse },
+    { no: 1, name: 'checksums', kind: 'scalar', T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 2, name: 'pagination', kind: 'message', T: PageResponse },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryChecksumsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryChecksumsResponse {
     return new QueryChecksumsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryChecksumsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryChecksumsResponse {
     return new QueryChecksumsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryChecksumsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryChecksumsResponse {
     return new QueryChecksumsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryChecksumsResponse | PlainMessage<QueryChecksumsResponse> | undefined, b: QueryChecksumsResponse | PlainMessage<QueryChecksumsResponse> | undefined): boolean {
+  static equals(
+    a: QueryChecksumsResponse | PlainMessage<QueryChecksumsResponse> | undefined,
+    b: QueryChecksumsResponse | PlainMessage<QueryChecksumsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryChecksumsResponse, a, b);
   }
 }
@@ -108,7 +136,7 @@ export class QueryCodeRequest extends Message<QueryCodeRequest> {
    *
    * @generated from field: string checksum = 1;
    */
-  checksum = "";
+  checksum = '';
 
   constructor(data?: PartialMessage<QueryCodeRequest>) {
     super();
@@ -116,9 +144,9 @@ export class QueryCodeRequest extends Message<QueryCodeRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.lightclients.wasm.v1.QueryCodeRequest";
+  static readonly typeName = 'ibc.lightclients.wasm.v1.QueryCodeRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "checksum", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'checksum', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryCodeRequest {
@@ -133,7 +161,10 @@ export class QueryCodeRequest extends Message<QueryCodeRequest> {
     return new QueryCodeRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryCodeRequest | PlainMessage<QueryCodeRequest> | undefined, b: QueryCodeRequest | PlainMessage<QueryCodeRequest> | undefined): boolean {
+  static equals(
+    a: QueryCodeRequest | PlainMessage<QueryCodeRequest> | undefined,
+    b: QueryCodeRequest | PlainMessage<QueryCodeRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryCodeRequest, a, b);
   }
 }
@@ -155,9 +186,9 @@ export class QueryCodeResponse extends Message<QueryCodeResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.lightclients.wasm.v1.QueryCodeResponse";
+  static readonly typeName = 'ibc.lightclients.wasm.v1.QueryCodeResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'data', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryCodeResponse {
@@ -172,8 +203,10 @@ export class QueryCodeResponse extends Message<QueryCodeResponse> {
     return new QueryCodeResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryCodeResponse | PlainMessage<QueryCodeResponse> | undefined, b: QueryCodeResponse | PlainMessage<QueryCodeResponse> | undefined): boolean {
+  static equals(
+    a: QueryCodeResponse | PlainMessage<QueryCodeResponse> | undefined,
+    b: QueryCodeResponse | PlainMessage<QueryCodeResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryCodeResponse, a, b);
   }
 }
-

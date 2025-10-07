@@ -373,9 +373,7 @@ describe.skipIf(skipIntegrationTests)('IPFS Integration Tests', () => {
       await expect(
         Promise.race([
           ipfsClient.getEnclaveData(nonExistentCid),
-          new Promise((_, reject) =>
-            setTimeout(() => reject(new Error('Timeout')), 5000)
-          )
+          new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 5000)),
         ])
       ).rejects.toThrow();
     });
@@ -416,7 +414,7 @@ describe.skipIf(skipIntegrationTests)('IPFS Performance Benchmarks', () => {
         size: `${size / 1024}KB`,
         storeTime: `${storeTime.toFixed(2)}ms`,
         retrieveTime: `${retrieveTime.toFixed(2)}ms`,
-        throughput: `${(size / storeTime * 1000 / 1024).toFixed(2)}KB/s`,
+        throughput: `${(((size / storeTime) * 1000) / 1024).toFixed(2)}KB/s`,
       });
     }
 

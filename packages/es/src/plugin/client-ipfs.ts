@@ -68,10 +68,7 @@ export class VaultClientWithIPFS extends VaultClient {
       throw new Error('IPFS not initialized');
     }
 
-    const result = await this.enclaveManager.storeEnclaveData(
-      enclaveData,
-      encryptedPayload
-    );
+    const result = await this.enclaveManager.storeEnclaveData(enclaveData, encryptedPayload);
 
     // Save reference to database if persistence is enabled
     if (this.ipfsConfig.enablePersistence) {
@@ -100,9 +97,7 @@ export class VaultClientWithIPFS extends VaultClient {
   /**
    * Store vault enclave with automatic encryption
    */
-  async storeVaultEnclave(
-    privateKeyShares: string[]
-  ): Promise<string> {
+  async storeVaultEnclave(privateKeyShares: string[]): Promise<string> {
     if (!this.enclaveManager) {
       throw new Error('IPFS not initialized');
     }
@@ -163,18 +158,12 @@ export class VaultClientWithIPFS extends VaultClient {
   /**
    * Verify enclave data integrity
    */
-  async verifyEnclaveIntegrity(
-    cid: string,
-    expectedData: Uint8Array
-  ): Promise<boolean> {
+  async verifyEnclaveIntegrity(cid: string, expectedData: Uint8Array): Promise<boolean> {
     if (!this.enclaveManager) {
       throw new Error('IPFS not initialized');
     }
 
-    return await this.enclaveManager.verifyEnclaveDataIntegrity(
-      cid,
-      expectedData
-    );
+    return await this.enclaveManager.verifyEnclaveDataIntegrity(cid, expectedData);
   }
 
   /**
@@ -242,7 +231,7 @@ export class VaultClientWithIPFS extends VaultClient {
       }
     }
 
-    return results.map(r => r.cid);
+    return results.map((r) => r.cid);
   }
 
   /**
@@ -299,10 +288,7 @@ export class VaultClientWithIPFS extends VaultClient {
     const database = (this as any).database;
     if (!database) return [];
 
-    const metadata = await database.metadata
-      .where('type')
-      .equals('ipfs_reference')
-      .toArray();
+    const metadata = await database.metadata.where('type').equals('ipfs_reference').toArray();
 
     return metadata.map((m: any) => m.data);
   }
@@ -349,8 +335,7 @@ export class VaultClientWithIPFS extends VaultClient {
       id: 'current',
       accountAddress,
       isInitialized: this.isReady(),
-      enclave: this.ipfsConfig.enclave ?
-        JSON.stringify(this.ipfsConfig.enclave) : undefined,
+      enclave: this.ipfsConfig.enclave ? JSON.stringify(this.ipfsConfig.enclave) : undefined,
       lastAccessed: Date.now(),
       createdAt: Date.now(),
       ipfsReferences: references,
@@ -367,7 +352,7 @@ export class VaultClientWithIPFS extends VaultClient {
     const bytes = new Uint8Array(16);
     crypto.getRandomValues(bytes);
     return Array.from(bytes)
-      .map(b => b.toString(16).padStart(2, '0'))
+      .map((b) => b.toString(16).padStart(2, '0'))
       .join('');
   }
 
@@ -391,9 +376,7 @@ export class VaultClientWithIPFS extends VaultClient {
 /**
  * Create a VaultClient with IPFS support
  */
-export function createVaultClientWithIPFS(
-  config?: VaultConfigWithIPFS
-): VaultClientWithIPFS {
+export function createVaultClientWithIPFS(config?: VaultConfigWithIPFS): VaultClientWithIPFS {
   return new VaultClientWithIPFS(config);
 }
 

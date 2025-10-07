@@ -3,11 +3,18 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
-import { PageRequest, PageResponse } from "../../../cosmos/base/query/v1beta1/pagination_pb.js";
-import { Log, Params, TraceConfig } from "./evm_pb.js";
-import { MsgEthereumTx } from "./tx_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64, Timestamp } from '@bufbuild/protobuf';
+import { PageRequest, PageResponse } from '../../../cosmos/base/query/v1beta1/pagination_pb.js';
+import { Log, Params, TraceConfig } from './evm_pb.js';
+import { MsgEthereumTx } from './tx_pb.js';
 
 /**
  * QueryAccountRequest is the request type for the Query/Account RPC method.
@@ -20,7 +27,7 @@ export class QueryAccountRequest extends Message<QueryAccountRequest> {
    *
    * @generated from field: string address = 1;
    */
-  address = "";
+  address = '';
 
   constructor(data?: PartialMessage<QueryAccountRequest>) {
     super();
@@ -28,9 +35,9 @@ export class QueryAccountRequest extends Message<QueryAccountRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.QueryAccountRequest";
+  static readonly typeName = 'ethermint.evm.v1.QueryAccountRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryAccountRequest {
@@ -41,11 +48,17 @@ export class QueryAccountRequest extends Message<QueryAccountRequest> {
     return new QueryAccountRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryAccountRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryAccountRequest {
     return new QueryAccountRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryAccountRequest | PlainMessage<QueryAccountRequest> | undefined, b: QueryAccountRequest | PlainMessage<QueryAccountRequest> | undefined): boolean {
+  static equals(
+    a: QueryAccountRequest | PlainMessage<QueryAccountRequest> | undefined,
+    b: QueryAccountRequest | PlainMessage<QueryAccountRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryAccountRequest, a, b);
   }
 }
@@ -61,14 +74,14 @@ export class QueryAccountResponse extends Message<QueryAccountResponse> {
    *
    * @generated from field: string balance = 1;
    */
-  balance = "";
+  balance = '';
 
   /**
    * code_hash is the hex-formatted code bytes from the EOA.
    *
    * @generated from field: string code_hash = 2;
    */
-  codeHash = "";
+  codeHash = '';
 
   /**
    * nonce is the account's sequence number.
@@ -83,11 +96,11 @@ export class QueryAccountResponse extends Message<QueryAccountResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.QueryAccountResponse";
+  static readonly typeName = 'ethermint.evm.v1.QueryAccountResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "balance", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "code_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "nonce", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'balance', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'code_hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'nonce', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryAccountResponse {
@@ -98,11 +111,17 @@ export class QueryAccountResponse extends Message<QueryAccountResponse> {
     return new QueryAccountResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryAccountResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryAccountResponse {
     return new QueryAccountResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryAccountResponse | PlainMessage<QueryAccountResponse> | undefined, b: QueryAccountResponse | PlainMessage<QueryAccountResponse> | undefined): boolean {
+  static equals(
+    a: QueryAccountResponse | PlainMessage<QueryAccountResponse> | undefined,
+    b: QueryAccountResponse | PlainMessage<QueryAccountResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryAccountResponse, a, b);
   }
 }
@@ -119,7 +138,7 @@ export class QueryCosmosAccountRequest extends Message<QueryCosmosAccountRequest
    *
    * @generated from field: string address = 1;
    */
-  address = "";
+  address = '';
 
   constructor(data?: PartialMessage<QueryCosmosAccountRequest>) {
     super();
@@ -127,24 +146,36 @@ export class QueryCosmosAccountRequest extends Message<QueryCosmosAccountRequest
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.QueryCosmosAccountRequest";
+  static readonly typeName = 'ethermint.evm.v1.QueryCosmosAccountRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryCosmosAccountRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryCosmosAccountRequest {
     return new QueryCosmosAccountRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryCosmosAccountRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryCosmosAccountRequest {
     return new QueryCosmosAccountRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryCosmosAccountRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryCosmosAccountRequest {
     return new QueryCosmosAccountRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryCosmosAccountRequest | PlainMessage<QueryCosmosAccountRequest> | undefined, b: QueryCosmosAccountRequest | PlainMessage<QueryCosmosAccountRequest> | undefined): boolean {
+  static equals(
+    a: QueryCosmosAccountRequest | PlainMessage<QueryCosmosAccountRequest> | undefined,
+    b: QueryCosmosAccountRequest | PlainMessage<QueryCosmosAccountRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryCosmosAccountRequest, a, b);
   }
 }
@@ -161,7 +192,7 @@ export class QueryCosmosAccountResponse extends Message<QueryCosmosAccountRespon
    *
    * @generated from field: string cosmos_address = 1;
    */
-  cosmosAddress = "";
+  cosmosAddress = '';
 
   /**
    * sequence is the account's sequence number.
@@ -183,26 +214,38 @@ export class QueryCosmosAccountResponse extends Message<QueryCosmosAccountRespon
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.QueryCosmosAccountResponse";
+  static readonly typeName = 'ethermint.evm.v1.QueryCosmosAccountResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "cosmos_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "account_number", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'cosmos_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'sequence', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'account_number', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryCosmosAccountResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryCosmosAccountResponse {
     return new QueryCosmosAccountResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryCosmosAccountResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryCosmosAccountResponse {
     return new QueryCosmosAccountResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryCosmosAccountResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryCosmosAccountResponse {
     return new QueryCosmosAccountResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryCosmosAccountResponse | PlainMessage<QueryCosmosAccountResponse> | undefined, b: QueryCosmosAccountResponse | PlainMessage<QueryCosmosAccountResponse> | undefined): boolean {
+  static equals(
+    a: QueryCosmosAccountResponse | PlainMessage<QueryCosmosAccountResponse> | undefined,
+    b: QueryCosmosAccountResponse | PlainMessage<QueryCosmosAccountResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryCosmosAccountResponse, a, b);
   }
 }
@@ -219,7 +262,7 @@ export class QueryValidatorAccountRequest extends Message<QueryValidatorAccountR
    *
    * @generated from field: string cons_address = 1;
    */
-  consAddress = "";
+  consAddress = '';
 
   constructor(data?: PartialMessage<QueryValidatorAccountRequest>) {
     super();
@@ -227,24 +270,36 @@ export class QueryValidatorAccountRequest extends Message<QueryValidatorAccountR
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.QueryValidatorAccountRequest";
+  static readonly typeName = 'ethermint.evm.v1.QueryValidatorAccountRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "cons_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'cons_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryValidatorAccountRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryValidatorAccountRequest {
     return new QueryValidatorAccountRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryValidatorAccountRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryValidatorAccountRequest {
     return new QueryValidatorAccountRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryValidatorAccountRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryValidatorAccountRequest {
     return new QueryValidatorAccountRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryValidatorAccountRequest | PlainMessage<QueryValidatorAccountRequest> | undefined, b: QueryValidatorAccountRequest | PlainMessage<QueryValidatorAccountRequest> | undefined): boolean {
+  static equals(
+    a: QueryValidatorAccountRequest | PlainMessage<QueryValidatorAccountRequest> | undefined,
+    b: QueryValidatorAccountRequest | PlainMessage<QueryValidatorAccountRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryValidatorAccountRequest, a, b);
   }
 }
@@ -261,7 +316,7 @@ export class QueryValidatorAccountResponse extends Message<QueryValidatorAccount
    *
    * @generated from field: string account_address = 1;
    */
-  accountAddress = "";
+  accountAddress = '';
 
   /**
    * sequence is the account's sequence number.
@@ -283,26 +338,38 @@ export class QueryValidatorAccountResponse extends Message<QueryValidatorAccount
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.QueryValidatorAccountResponse";
+  static readonly typeName = 'ethermint.evm.v1.QueryValidatorAccountResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "account_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "account_number", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'account_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'sequence', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'account_number', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryValidatorAccountResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryValidatorAccountResponse {
     return new QueryValidatorAccountResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryValidatorAccountResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryValidatorAccountResponse {
     return new QueryValidatorAccountResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryValidatorAccountResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryValidatorAccountResponse {
     return new QueryValidatorAccountResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryValidatorAccountResponse | PlainMessage<QueryValidatorAccountResponse> | undefined, b: QueryValidatorAccountResponse | PlainMessage<QueryValidatorAccountResponse> | undefined): boolean {
+  static equals(
+    a: QueryValidatorAccountResponse | PlainMessage<QueryValidatorAccountResponse> | undefined,
+    b: QueryValidatorAccountResponse | PlainMessage<QueryValidatorAccountResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryValidatorAccountResponse, a, b);
   }
 }
@@ -318,7 +385,7 @@ export class QueryBalanceRequest extends Message<QueryBalanceRequest> {
    *
    * @generated from field: string address = 1;
    */
-  address = "";
+  address = '';
 
   constructor(data?: PartialMessage<QueryBalanceRequest>) {
     super();
@@ -326,9 +393,9 @@ export class QueryBalanceRequest extends Message<QueryBalanceRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.QueryBalanceRequest";
+  static readonly typeName = 'ethermint.evm.v1.QueryBalanceRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryBalanceRequest {
@@ -339,11 +406,17 @@ export class QueryBalanceRequest extends Message<QueryBalanceRequest> {
     return new QueryBalanceRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryBalanceRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryBalanceRequest {
     return new QueryBalanceRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryBalanceRequest | PlainMessage<QueryBalanceRequest> | undefined, b: QueryBalanceRequest | PlainMessage<QueryBalanceRequest> | undefined): boolean {
+  static equals(
+    a: QueryBalanceRequest | PlainMessage<QueryBalanceRequest> | undefined,
+    b: QueryBalanceRequest | PlainMessage<QueryBalanceRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryBalanceRequest, a, b);
   }
 }
@@ -359,7 +432,7 @@ export class QueryBalanceResponse extends Message<QueryBalanceResponse> {
    *
    * @generated from field: string balance = 1;
    */
-  balance = "";
+  balance = '';
 
   constructor(data?: PartialMessage<QueryBalanceResponse>) {
     super();
@@ -367,9 +440,9 @@ export class QueryBalanceResponse extends Message<QueryBalanceResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.QueryBalanceResponse";
+  static readonly typeName = 'ethermint.evm.v1.QueryBalanceResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "balance", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'balance', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryBalanceResponse {
@@ -380,11 +453,17 @@ export class QueryBalanceResponse extends Message<QueryBalanceResponse> {
     return new QueryBalanceResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryBalanceResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryBalanceResponse {
     return new QueryBalanceResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryBalanceResponse | PlainMessage<QueryBalanceResponse> | undefined, b: QueryBalanceResponse | PlainMessage<QueryBalanceResponse> | undefined): boolean {
+  static equals(
+    a: QueryBalanceResponse | PlainMessage<QueryBalanceResponse> | undefined,
+    b: QueryBalanceResponse | PlainMessage<QueryBalanceResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryBalanceResponse, a, b);
   }
 }
@@ -400,14 +479,14 @@ export class QueryStorageRequest extends Message<QueryStorageRequest> {
    *
    * @generated from field: string address = 1;
    */
-  address = "";
+  address = '';
 
   /**
    * key defines the key of the storage state
    *
    * @generated from field: string key = 2;
    */
-  key = "";
+  key = '';
 
   constructor(data?: PartialMessage<QueryStorageRequest>) {
     super();
@@ -415,10 +494,10 @@ export class QueryStorageRequest extends Message<QueryStorageRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.QueryStorageRequest";
+  static readonly typeName = 'ethermint.evm.v1.QueryStorageRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'key', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryStorageRequest {
@@ -429,11 +508,17 @@ export class QueryStorageRequest extends Message<QueryStorageRequest> {
     return new QueryStorageRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryStorageRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryStorageRequest {
     return new QueryStorageRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryStorageRequest | PlainMessage<QueryStorageRequest> | undefined, b: QueryStorageRequest | PlainMessage<QueryStorageRequest> | undefined): boolean {
+  static equals(
+    a: QueryStorageRequest | PlainMessage<QueryStorageRequest> | undefined,
+    b: QueryStorageRequest | PlainMessage<QueryStorageRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryStorageRequest, a, b);
   }
 }
@@ -450,7 +535,7 @@ export class QueryStorageResponse extends Message<QueryStorageResponse> {
    *
    * @generated from field: string value = 1;
    */
-  value = "";
+  value = '';
 
   constructor(data?: PartialMessage<QueryStorageResponse>) {
     super();
@@ -458,9 +543,9 @@ export class QueryStorageResponse extends Message<QueryStorageResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.QueryStorageResponse";
+  static readonly typeName = 'ethermint.evm.v1.QueryStorageResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'value', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryStorageResponse {
@@ -471,11 +556,17 @@ export class QueryStorageResponse extends Message<QueryStorageResponse> {
     return new QueryStorageResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryStorageResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryStorageResponse {
     return new QueryStorageResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryStorageResponse | PlainMessage<QueryStorageResponse> | undefined, b: QueryStorageResponse | PlainMessage<QueryStorageResponse> | undefined): boolean {
+  static equals(
+    a: QueryStorageResponse | PlainMessage<QueryStorageResponse> | undefined,
+    b: QueryStorageResponse | PlainMessage<QueryStorageResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryStorageResponse, a, b);
   }
 }
@@ -491,7 +582,7 @@ export class QueryCodeRequest extends Message<QueryCodeRequest> {
    *
    * @generated from field: string address = 1;
    */
-  address = "";
+  address = '';
 
   constructor(data?: PartialMessage<QueryCodeRequest>) {
     super();
@@ -499,9 +590,9 @@ export class QueryCodeRequest extends Message<QueryCodeRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.QueryCodeRequest";
+  static readonly typeName = 'ethermint.evm.v1.QueryCodeRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryCodeRequest {
@@ -516,7 +607,10 @@ export class QueryCodeRequest extends Message<QueryCodeRequest> {
     return new QueryCodeRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryCodeRequest | PlainMessage<QueryCodeRequest> | undefined, b: QueryCodeRequest | PlainMessage<QueryCodeRequest> | undefined): boolean {
+  static equals(
+    a: QueryCodeRequest | PlainMessage<QueryCodeRequest> | undefined,
+    b: QueryCodeRequest | PlainMessage<QueryCodeRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryCodeRequest, a, b);
   }
 }
@@ -541,9 +635,9 @@ export class QueryCodeResponse extends Message<QueryCodeResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.QueryCodeResponse";
+  static readonly typeName = 'ethermint.evm.v1.QueryCodeResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "code", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'code', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryCodeResponse {
@@ -558,7 +652,10 @@ export class QueryCodeResponse extends Message<QueryCodeResponse> {
     return new QueryCodeResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryCodeResponse | PlainMessage<QueryCodeResponse> | undefined, b: QueryCodeResponse | PlainMessage<QueryCodeResponse> | undefined): boolean {
+  static equals(
+    a: QueryCodeResponse | PlainMessage<QueryCodeResponse> | undefined,
+    b: QueryCodeResponse | PlainMessage<QueryCodeResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryCodeResponse, a, b);
   }
 }
@@ -574,7 +671,7 @@ export class QueryTxLogsRequest extends Message<QueryTxLogsRequest> {
    *
    * @generated from field: string hash = 1;
    */
-  hash = "";
+  hash = '';
 
   /**
    * pagination defines an optional pagination for the request.
@@ -589,10 +686,10 @@ export class QueryTxLogsRequest extends Message<QueryTxLogsRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.QueryTxLogsRequest";
+  static readonly typeName = 'ethermint.evm.v1.QueryTxLogsRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "pagination", kind: "message", T: PageRequest },
+    { no: 1, name: 'hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'pagination', kind: 'message', T: PageRequest },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryTxLogsRequest {
@@ -603,11 +700,17 @@ export class QueryTxLogsRequest extends Message<QueryTxLogsRequest> {
     return new QueryTxLogsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryTxLogsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryTxLogsRequest {
     return new QueryTxLogsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryTxLogsRequest | PlainMessage<QueryTxLogsRequest> | undefined, b: QueryTxLogsRequest | PlainMessage<QueryTxLogsRequest> | undefined): boolean {
+  static equals(
+    a: QueryTxLogsRequest | PlainMessage<QueryTxLogsRequest> | undefined,
+    b: QueryTxLogsRequest | PlainMessage<QueryTxLogsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryTxLogsRequest, a, b);
   }
 }
@@ -638,10 +741,10 @@ export class QueryTxLogsResponse extends Message<QueryTxLogsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.QueryTxLogsResponse";
+  static readonly typeName = 'ethermint.evm.v1.QueryTxLogsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "logs", kind: "message", T: Log, repeated: true },
-    { no: 2, name: "pagination", kind: "message", T: PageResponse },
+    { no: 1, name: 'logs', kind: 'message', T: Log, repeated: true },
+    { no: 2, name: 'pagination', kind: 'message', T: PageResponse },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryTxLogsResponse {
@@ -652,11 +755,17 @@ export class QueryTxLogsResponse extends Message<QueryTxLogsResponse> {
     return new QueryTxLogsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryTxLogsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryTxLogsResponse {
     return new QueryTxLogsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryTxLogsResponse | PlainMessage<QueryTxLogsResponse> | undefined, b: QueryTxLogsResponse | PlainMessage<QueryTxLogsResponse> | undefined): boolean {
+  static equals(
+    a: QueryTxLogsResponse | PlainMessage<QueryTxLogsResponse> | undefined,
+    b: QueryTxLogsResponse | PlainMessage<QueryTxLogsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryTxLogsResponse, a, b);
   }
 }
@@ -673,9 +782,8 @@ export class QueryParamsRequest extends Message<QueryParamsRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.QueryParamsRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ethermint.evm.v1.QueryParamsRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryParamsRequest {
     return new QueryParamsRequest().fromBinary(bytes, options);
@@ -685,11 +793,17 @@ export class QueryParamsRequest extends Message<QueryParamsRequest> {
     return new QueryParamsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryParamsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryParamsRequest {
     return new QueryParamsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined, b: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined): boolean {
+  static equals(
+    a: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined,
+    b: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryParamsRequest, a, b);
   }
 }
@@ -713,9 +827,9 @@ export class QueryParamsResponse extends Message<QueryParamsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.QueryParamsResponse";
+  static readonly typeName = 'ethermint.evm.v1.QueryParamsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "params", kind: "message", T: Params },
+    { no: 1, name: 'params', kind: 'message', T: Params },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryParamsResponse {
@@ -726,11 +840,17 @@ export class QueryParamsResponse extends Message<QueryParamsResponse> {
     return new QueryParamsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryParamsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryParamsResponse {
     return new QueryParamsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined, b: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined): boolean {
+  static equals(
+    a: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined,
+    b: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryParamsResponse, a, b);
   }
 }
@@ -775,12 +895,12 @@ export class EthCallRequest extends Message<EthCallRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.EthCallRequest";
+  static readonly typeName = 'ethermint.evm.v1.EthCallRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "args", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 2, name: "gas_cap", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "proposer_address", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 4, name: "chain_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: 'args', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: 'gas_cap', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'proposer_address', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 4, name: 'chain_id', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EthCallRequest {
@@ -795,7 +915,10 @@ export class EthCallRequest extends Message<EthCallRequest> {
     return new EthCallRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EthCallRequest | PlainMessage<EthCallRequest> | undefined, b: EthCallRequest | PlainMessage<EthCallRequest> | undefined): boolean {
+  static equals(
+    a: EthCallRequest | PlainMessage<EthCallRequest> | undefined,
+    b: EthCallRequest | PlainMessage<EthCallRequest> | undefined
+  ): boolean {
     return proto3.util.equals(EthCallRequest, a, b);
   }
 }
@@ -819,9 +942,9 @@ export class EstimateGasResponse extends Message<EstimateGasResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.EstimateGasResponse";
+  static readonly typeName = 'ethermint.evm.v1.EstimateGasResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "gas", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'gas', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EstimateGasResponse {
@@ -832,11 +955,17 @@ export class EstimateGasResponse extends Message<EstimateGasResponse> {
     return new EstimateGasResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EstimateGasResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EstimateGasResponse {
     return new EstimateGasResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EstimateGasResponse | PlainMessage<EstimateGasResponse> | undefined, b: EstimateGasResponse | PlainMessage<EstimateGasResponse> | undefined): boolean {
+  static equals(
+    a: EstimateGasResponse | PlainMessage<EstimateGasResponse> | undefined,
+    b: EstimateGasResponse | PlainMessage<EstimateGasResponse> | undefined
+  ): boolean {
     return proto3.util.equals(EstimateGasResponse, a, b);
   }
 }
@@ -881,7 +1010,7 @@ export class QueryTraceTxRequest extends Message<QueryTraceTxRequest> {
    *
    * @generated from field: string block_hash = 6;
    */
-  blockHash = "";
+  blockHash = '';
 
   /**
    * block_time of requested transaction
@@ -910,16 +1039,16 @@ export class QueryTraceTxRequest extends Message<QueryTraceTxRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.QueryTraceTxRequest";
+  static readonly typeName = 'ethermint.evm.v1.QueryTraceTxRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "msg", kind: "message", T: MsgEthereumTx },
-    { no: 3, name: "trace_config", kind: "message", T: TraceConfig },
-    { no: 4, name: "predecessors", kind: "message", T: MsgEthereumTx, repeated: true },
-    { no: 5, name: "block_number", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 6, name: "block_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "block_time", kind: "message", T: Timestamp },
-    { no: 8, name: "proposer_address", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 9, name: "chain_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: 'msg', kind: 'message', T: MsgEthereumTx },
+    { no: 3, name: 'trace_config', kind: 'message', T: TraceConfig },
+    { no: 4, name: 'predecessors', kind: 'message', T: MsgEthereumTx, repeated: true },
+    { no: 5, name: 'block_number', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 6, name: 'block_hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: 'block_time', kind: 'message', T: Timestamp },
+    { no: 8, name: 'proposer_address', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 9, name: 'chain_id', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryTraceTxRequest {
@@ -930,11 +1059,17 @@ export class QueryTraceTxRequest extends Message<QueryTraceTxRequest> {
     return new QueryTraceTxRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryTraceTxRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryTraceTxRequest {
     return new QueryTraceTxRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryTraceTxRequest | PlainMessage<QueryTraceTxRequest> | undefined, b: QueryTraceTxRequest | PlainMessage<QueryTraceTxRequest> | undefined): boolean {
+  static equals(
+    a: QueryTraceTxRequest | PlainMessage<QueryTraceTxRequest> | undefined,
+    b: QueryTraceTxRequest | PlainMessage<QueryTraceTxRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryTraceTxRequest, a, b);
   }
 }
@@ -958,9 +1093,9 @@ export class QueryTraceTxResponse extends Message<QueryTraceTxResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.QueryTraceTxResponse";
+  static readonly typeName = 'ethermint.evm.v1.QueryTraceTxResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'data', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryTraceTxResponse {
@@ -971,11 +1106,17 @@ export class QueryTraceTxResponse extends Message<QueryTraceTxResponse> {
     return new QueryTraceTxResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryTraceTxResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryTraceTxResponse {
     return new QueryTraceTxResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryTraceTxResponse | PlainMessage<QueryTraceTxResponse> | undefined, b: QueryTraceTxResponse | PlainMessage<QueryTraceTxResponse> | undefined): boolean {
+  static equals(
+    a: QueryTraceTxResponse | PlainMessage<QueryTraceTxResponse> | undefined,
+    b: QueryTraceTxResponse | PlainMessage<QueryTraceTxResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryTraceTxResponse, a, b);
   }
 }
@@ -1012,7 +1153,7 @@ export class QueryTraceBlockRequest extends Message<QueryTraceBlockRequest> {
    *
    * @generated from field: string block_hash = 6;
    */
-  blockHash = "";
+  blockHash = '';
 
   /**
    * block_time of the traced block
@@ -1041,30 +1182,42 @@ export class QueryTraceBlockRequest extends Message<QueryTraceBlockRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.QueryTraceBlockRequest";
+  static readonly typeName = 'ethermint.evm.v1.QueryTraceBlockRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "txs", kind: "message", T: MsgEthereumTx, repeated: true },
-    { no: 3, name: "trace_config", kind: "message", T: TraceConfig },
-    { no: 5, name: "block_number", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 6, name: "block_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "block_time", kind: "message", T: Timestamp },
-    { no: 8, name: "proposer_address", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 9, name: "chain_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: 'txs', kind: 'message', T: MsgEthereumTx, repeated: true },
+    { no: 3, name: 'trace_config', kind: 'message', T: TraceConfig },
+    { no: 5, name: 'block_number', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 6, name: 'block_hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: 'block_time', kind: 'message', T: Timestamp },
+    { no: 8, name: 'proposer_address', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 9, name: 'chain_id', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryTraceBlockRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryTraceBlockRequest {
     return new QueryTraceBlockRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryTraceBlockRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryTraceBlockRequest {
     return new QueryTraceBlockRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryTraceBlockRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryTraceBlockRequest {
     return new QueryTraceBlockRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryTraceBlockRequest | PlainMessage<QueryTraceBlockRequest> | undefined, b: QueryTraceBlockRequest | PlainMessage<QueryTraceBlockRequest> | undefined): boolean {
+  static equals(
+    a: QueryTraceBlockRequest | PlainMessage<QueryTraceBlockRequest> | undefined,
+    b: QueryTraceBlockRequest | PlainMessage<QueryTraceBlockRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryTraceBlockRequest, a, b);
   }
 }
@@ -1088,24 +1241,36 @@ export class QueryTraceBlockResponse extends Message<QueryTraceBlockResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.QueryTraceBlockResponse";
+  static readonly typeName = 'ethermint.evm.v1.QueryTraceBlockResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'data', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryTraceBlockResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryTraceBlockResponse {
     return new QueryTraceBlockResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryTraceBlockResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryTraceBlockResponse {
     return new QueryTraceBlockResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryTraceBlockResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryTraceBlockResponse {
     return new QueryTraceBlockResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryTraceBlockResponse | PlainMessage<QueryTraceBlockResponse> | undefined, b: QueryTraceBlockResponse | PlainMessage<QueryTraceBlockResponse> | undefined): boolean {
+  static equals(
+    a: QueryTraceBlockResponse | PlainMessage<QueryTraceBlockResponse> | undefined,
+    b: QueryTraceBlockResponse | PlainMessage<QueryTraceBlockResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryTraceBlockResponse, a, b);
   }
 }
@@ -1123,9 +1288,8 @@ export class QueryBaseFeeRequest extends Message<QueryBaseFeeRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.QueryBaseFeeRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ethermint.evm.v1.QueryBaseFeeRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryBaseFeeRequest {
     return new QueryBaseFeeRequest().fromBinary(bytes, options);
@@ -1135,11 +1299,17 @@ export class QueryBaseFeeRequest extends Message<QueryBaseFeeRequest> {
     return new QueryBaseFeeRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryBaseFeeRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryBaseFeeRequest {
     return new QueryBaseFeeRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryBaseFeeRequest | PlainMessage<QueryBaseFeeRequest> | undefined, b: QueryBaseFeeRequest | PlainMessage<QueryBaseFeeRequest> | undefined): boolean {
+  static equals(
+    a: QueryBaseFeeRequest | PlainMessage<QueryBaseFeeRequest> | undefined,
+    b: QueryBaseFeeRequest | PlainMessage<QueryBaseFeeRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryBaseFeeRequest, a, b);
   }
 }
@@ -1155,7 +1325,7 @@ export class QueryBaseFeeResponse extends Message<QueryBaseFeeResponse> {
    *
    * @generated from field: string base_fee = 1;
    */
-  baseFee = "";
+  baseFee = '';
 
   constructor(data?: PartialMessage<QueryBaseFeeResponse>) {
     super();
@@ -1163,9 +1333,9 @@ export class QueryBaseFeeResponse extends Message<QueryBaseFeeResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.QueryBaseFeeResponse";
+  static readonly typeName = 'ethermint.evm.v1.QueryBaseFeeResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "base_fee", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'base_fee', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryBaseFeeResponse {
@@ -1176,12 +1346,17 @@ export class QueryBaseFeeResponse extends Message<QueryBaseFeeResponse> {
     return new QueryBaseFeeResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryBaseFeeResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryBaseFeeResponse {
     return new QueryBaseFeeResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryBaseFeeResponse | PlainMessage<QueryBaseFeeResponse> | undefined, b: QueryBaseFeeResponse | PlainMessage<QueryBaseFeeResponse> | undefined): boolean {
+  static equals(
+    a: QueryBaseFeeResponse | PlainMessage<QueryBaseFeeResponse> | undefined,
+    b: QueryBaseFeeResponse | PlainMessage<QueryBaseFeeResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryBaseFeeResponse, a, b);
   }
 }
-

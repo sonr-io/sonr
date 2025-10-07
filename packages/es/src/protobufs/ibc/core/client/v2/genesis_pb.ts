@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { CounterpartyInfo } from "./counterparty_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { CounterpartyInfo } from './counterparty_pb.js';
 
 /**
  * GenesisCounterpartyInfo defines the state associating a client with a counterparty.
@@ -18,7 +25,7 @@ export class GenesisCounterpartyInfo extends Message<GenesisCounterpartyInfo> {
    *
    * @generated from field: string client_id = 1;
    */
-  clientId = "";
+  clientId = '';
 
   /**
    * CounterpartyInfo is the counterparty info of the given client.
@@ -33,25 +40,37 @@ export class GenesisCounterpartyInfo extends Message<GenesisCounterpartyInfo> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.client.v2.GenesisCounterpartyInfo";
+  static readonly typeName = 'ibc.core.client.v2.GenesisCounterpartyInfo';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "counterparty_info", kind: "message", T: CounterpartyInfo },
+    { no: 1, name: 'client_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'counterparty_info', kind: 'message', T: CounterpartyInfo },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisCounterpartyInfo {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): GenesisCounterpartyInfo {
     return new GenesisCounterpartyInfo().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GenesisCounterpartyInfo {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): GenesisCounterpartyInfo {
     return new GenesisCounterpartyInfo().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GenesisCounterpartyInfo {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): GenesisCounterpartyInfo {
     return new GenesisCounterpartyInfo().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisCounterpartyInfo | PlainMessage<GenesisCounterpartyInfo> | undefined, b: GenesisCounterpartyInfo | PlainMessage<GenesisCounterpartyInfo> | undefined): boolean {
+  static equals(
+    a: GenesisCounterpartyInfo | PlainMessage<GenesisCounterpartyInfo> | undefined,
+    b: GenesisCounterpartyInfo | PlainMessage<GenesisCounterpartyInfo> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisCounterpartyInfo, a, b);
   }
 }
@@ -75,9 +94,15 @@ export class GenesisState extends Message<GenesisState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.client.v2.GenesisState";
+  static readonly typeName = 'ibc.core.client.v2.GenesisState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "counterparty_infos", kind: "message", T: GenesisCounterpartyInfo, repeated: true },
+    {
+      no: 1,
+      name: 'counterparty_infos',
+      kind: 'message',
+      T: GenesisCounterpartyInfo,
+      repeated: true,
+    },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {
@@ -92,8 +117,10 @@ export class GenesisState extends Message<GenesisState> {
     return new GenesisState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisState | PlainMessage<GenesisState> | undefined, b: GenesisState | PlainMessage<GenesisState> | undefined): boolean {
+  static equals(
+    a: GenesisState | PlainMessage<GenesisState> | undefined,
+    b: GenesisState | PlainMessage<GenesisState> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisState, a, b);
   }
 }
-

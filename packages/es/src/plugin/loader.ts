@@ -28,12 +28,7 @@ const DEFAULT_TIMEOUT = 30000; // 30 seconds
  * Load vault WASM module
  */
 export async function loadVaultWASM(options: WASMLoadOptions = {}): Promise<ArrayBuffer> {
-  const {
-    url,
-    useCDN = false,
-    version = 'latest',
-    timeout = DEFAULT_TIMEOUT,
-  } = options;
+  const { url, useCDN = false, version = 'latest', timeout = DEFAULT_TIMEOUT } = options;
 
   let wasmUrl: string;
 
@@ -55,7 +50,7 @@ export async function loadVaultWASM(options: WASMLoadOptions = {}): Promise<Arra
     const response = await fetch(wasmUrl, {
       signal: controller.signal,
       headers: {
-        'Accept': 'application/wasm',
+        Accept: 'application/wasm',
       },
     });
 
@@ -73,11 +68,9 @@ export async function loadVaultWASM(options: WASMLoadOptions = {}): Promise<Arra
     return await response.arrayBuffer();
   } catch (error: any) {
     if (error.name === 'AbortError') {
-      throw new VaultError(
-        VaultErrorCode.TIMEOUT,
-        `WASM loading timed out after ${timeout}ms`,
-        { url: wasmUrl }
-      );
+      throw new VaultError(VaultErrorCode.TIMEOUT, `WASM loading timed out after ${timeout}ms`, {
+        url: wasmUrl,
+      });
     }
 
     throw new VaultError(
@@ -96,14 +89,14 @@ export async function verifyWASM(wasmBuffer: ArrayBuffer): Promise<boolean> {
     // Check WASM magic number (0x00 0x61 0x73 0x6D)
     const view = new DataView(wasmBuffer);
     const magic = view.getUint32(0, true);
-    
-    if (magic !== 0x6D736100) {
+
+    if (magic !== 0x6d736100) {
       throw new Error('Invalid WASM magic number');
     }
 
     // Try to compile the module
     await WebAssembly.compile(wasmBuffer);
-    
+
     return true;
   } catch (error) {
     console.error('WASM verification failed:', error);
@@ -120,9 +113,9 @@ export async function getWASMInfo(wasmBuffer: ArrayBuffer): Promise<{
   imports: string[];
 }> {
   const module = await WebAssembly.compile(wasmBuffer);
-  
-  const exports = WebAssembly.Module.exports(module).map(exp => exp.name);
-  const imports = WebAssembly.Module.imports(module).map(imp => `${imp.module}.${imp.name}`);
+
+  const exports = WebAssembly.Module.exports(module).map((exp) => exp.name);
+  const imports = WebAssembly.Module.imports(module).map((imp) => `${imp.module}.${imp.name}`);
 
   return {
     size: wasmBuffer.byteLength,

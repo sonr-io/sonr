@@ -3,10 +3,22 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { SwapAmountInRoute, SwapAmountInSplitRoute, SwapAmountOutRoute, SwapAmountOutSplitRoute } from "./swap_route_pb.js";
-import { Coin } from "../../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import {
+  SwapAmountInRoute,
+  SwapAmountInSplitRoute,
+  SwapAmountOutRoute,
+  SwapAmountOutSplitRoute,
+} from './swap_route_pb.js';
+import { Coin } from '../../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * ===================== MsgSwapExactAmountIn
@@ -17,7 +29,7 @@ export class MsgSwapExactAmountIn extends Message<MsgSwapExactAmountIn> {
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * @generated from field: repeated osmosis.poolmanager.v1beta1.SwapAmountInRoute routes = 2;
@@ -32,7 +44,7 @@ export class MsgSwapExactAmountIn extends Message<MsgSwapExactAmountIn> {
   /**
    * @generated from field: string token_out_min_amount = 4;
    */
-  tokenOutMinAmount = "";
+  tokenOutMinAmount = '';
 
   constructor(data?: PartialMessage<MsgSwapExactAmountIn>) {
     super();
@@ -40,12 +52,12 @@ export class MsgSwapExactAmountIn extends Message<MsgSwapExactAmountIn> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.MsgSwapExactAmountIn";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.MsgSwapExactAmountIn';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "routes", kind: "message", T: SwapAmountInRoute, repeated: true },
-    { no: 3, name: "token_in", kind: "message", T: Coin },
-    { no: 4, name: "token_out_min_amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'routes', kind: 'message', T: SwapAmountInRoute, repeated: true },
+    { no: 3, name: 'token_in', kind: 'message', T: Coin },
+    { no: 4, name: 'token_out_min_amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSwapExactAmountIn {
@@ -56,11 +68,17 @@ export class MsgSwapExactAmountIn extends Message<MsgSwapExactAmountIn> {
     return new MsgSwapExactAmountIn().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSwapExactAmountIn {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSwapExactAmountIn {
     return new MsgSwapExactAmountIn().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSwapExactAmountIn | PlainMessage<MsgSwapExactAmountIn> | undefined, b: MsgSwapExactAmountIn | PlainMessage<MsgSwapExactAmountIn> | undefined): boolean {
+  static equals(
+    a: MsgSwapExactAmountIn | PlainMessage<MsgSwapExactAmountIn> | undefined,
+    b: MsgSwapExactAmountIn | PlainMessage<MsgSwapExactAmountIn> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSwapExactAmountIn, a, b);
   }
 }
@@ -72,7 +90,7 @@ export class MsgSwapExactAmountInResponse extends Message<MsgSwapExactAmountInRe
   /**
    * @generated from field: string token_out_amount = 1;
    */
-  tokenOutAmount = "";
+  tokenOutAmount = '';
 
   constructor(data?: PartialMessage<MsgSwapExactAmountInResponse>) {
     super();
@@ -80,24 +98,36 @@ export class MsgSwapExactAmountInResponse extends Message<MsgSwapExactAmountInRe
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.MsgSwapExactAmountInResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.MsgSwapExactAmountInResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "token_out_amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'token_out_amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSwapExactAmountInResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSwapExactAmountInResponse {
     return new MsgSwapExactAmountInResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSwapExactAmountInResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSwapExactAmountInResponse {
     return new MsgSwapExactAmountInResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSwapExactAmountInResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSwapExactAmountInResponse {
     return new MsgSwapExactAmountInResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSwapExactAmountInResponse | PlainMessage<MsgSwapExactAmountInResponse> | undefined, b: MsgSwapExactAmountInResponse | PlainMessage<MsgSwapExactAmountInResponse> | undefined): boolean {
+  static equals(
+    a: MsgSwapExactAmountInResponse | PlainMessage<MsgSwapExactAmountInResponse> | undefined,
+    b: MsgSwapExactAmountInResponse | PlainMessage<MsgSwapExactAmountInResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSwapExactAmountInResponse, a, b);
   }
 }
@@ -111,7 +141,7 @@ export class MsgSplitRouteSwapExactAmountIn extends Message<MsgSplitRouteSwapExa
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * @generated from field: repeated osmosis.poolmanager.v1beta1.SwapAmountInSplitRoute routes = 2;
@@ -121,12 +151,12 @@ export class MsgSplitRouteSwapExactAmountIn extends Message<MsgSplitRouteSwapExa
   /**
    * @generated from field: string token_in_denom = 3;
    */
-  tokenInDenom = "";
+  tokenInDenom = '';
 
   /**
    * @generated from field: string token_out_min_amount = 4;
    */
-  tokenOutMinAmount = "";
+  tokenOutMinAmount = '';
 
   constructor(data?: PartialMessage<MsgSplitRouteSwapExactAmountIn>) {
     super();
@@ -134,27 +164,39 @@ export class MsgSplitRouteSwapExactAmountIn extends Message<MsgSplitRouteSwapExa
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.MsgSplitRouteSwapExactAmountIn";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.MsgSplitRouteSwapExactAmountIn';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "routes", kind: "message", T: SwapAmountInSplitRoute, repeated: true },
-    { no: 3, name: "token_in_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "token_out_min_amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'routes', kind: 'message', T: SwapAmountInSplitRoute, repeated: true },
+    { no: 3, name: 'token_in_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'token_out_min_amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSplitRouteSwapExactAmountIn {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSplitRouteSwapExactAmountIn {
     return new MsgSplitRouteSwapExactAmountIn().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSplitRouteSwapExactAmountIn {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSplitRouteSwapExactAmountIn {
     return new MsgSplitRouteSwapExactAmountIn().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSplitRouteSwapExactAmountIn {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSplitRouteSwapExactAmountIn {
     return new MsgSplitRouteSwapExactAmountIn().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSplitRouteSwapExactAmountIn | PlainMessage<MsgSplitRouteSwapExactAmountIn> | undefined, b: MsgSplitRouteSwapExactAmountIn | PlainMessage<MsgSplitRouteSwapExactAmountIn> | undefined): boolean {
+  static equals(
+    a: MsgSplitRouteSwapExactAmountIn | PlainMessage<MsgSplitRouteSwapExactAmountIn> | undefined,
+    b: MsgSplitRouteSwapExactAmountIn | PlainMessage<MsgSplitRouteSwapExactAmountIn> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSplitRouteSwapExactAmountIn, a, b);
   }
 }
@@ -166,7 +208,7 @@ export class MsgSplitRouteSwapExactAmountInResponse extends Message<MsgSplitRout
   /**
    * @generated from field: string token_out_amount = 1;
    */
-  tokenOutAmount = "";
+  tokenOutAmount = '';
 
   constructor(data?: PartialMessage<MsgSplitRouteSwapExactAmountInResponse>) {
     super();
@@ -174,24 +216,42 @@ export class MsgSplitRouteSwapExactAmountInResponse extends Message<MsgSplitRout
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.MsgSplitRouteSwapExactAmountInResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.MsgSplitRouteSwapExactAmountInResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "token_out_amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'token_out_amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSplitRouteSwapExactAmountInResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSplitRouteSwapExactAmountInResponse {
     return new MsgSplitRouteSwapExactAmountInResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSplitRouteSwapExactAmountInResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSplitRouteSwapExactAmountInResponse {
     return new MsgSplitRouteSwapExactAmountInResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSplitRouteSwapExactAmountInResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSplitRouteSwapExactAmountInResponse {
     return new MsgSplitRouteSwapExactAmountInResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSplitRouteSwapExactAmountInResponse | PlainMessage<MsgSplitRouteSwapExactAmountInResponse> | undefined, b: MsgSplitRouteSwapExactAmountInResponse | PlainMessage<MsgSplitRouteSwapExactAmountInResponse> | undefined): boolean {
+  static equals(
+    a:
+      | MsgSplitRouteSwapExactAmountInResponse
+      | PlainMessage<MsgSplitRouteSwapExactAmountInResponse>
+      | undefined,
+    b:
+      | MsgSplitRouteSwapExactAmountInResponse
+      | PlainMessage<MsgSplitRouteSwapExactAmountInResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(MsgSplitRouteSwapExactAmountInResponse, a, b);
   }
 }
@@ -205,7 +265,7 @@ export class MsgSwapExactAmountOut extends Message<MsgSwapExactAmountOut> {
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * @generated from field: repeated osmosis.poolmanager.v1beta1.SwapAmountOutRoute routes = 2;
@@ -215,7 +275,7 @@ export class MsgSwapExactAmountOut extends Message<MsgSwapExactAmountOut> {
   /**
    * @generated from field: string token_in_max_amount = 3;
    */
-  tokenInMaxAmount = "";
+  tokenInMaxAmount = '';
 
   /**
    * @generated from field: cosmos.base.v1beta1.Coin token_out = 4;
@@ -228,15 +288,18 @@ export class MsgSwapExactAmountOut extends Message<MsgSwapExactAmountOut> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.MsgSwapExactAmountOut";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.MsgSwapExactAmountOut';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "routes", kind: "message", T: SwapAmountOutRoute, repeated: true },
-    { no: 3, name: "token_in_max_amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "token_out", kind: "message", T: Coin },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'routes', kind: 'message', T: SwapAmountOutRoute, repeated: true },
+    { no: 3, name: 'token_in_max_amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'token_out', kind: 'message', T: Coin },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSwapExactAmountOut {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSwapExactAmountOut {
     return new MsgSwapExactAmountOut().fromBinary(bytes, options);
   }
 
@@ -244,11 +307,17 @@ export class MsgSwapExactAmountOut extends Message<MsgSwapExactAmountOut> {
     return new MsgSwapExactAmountOut().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSwapExactAmountOut {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSwapExactAmountOut {
     return new MsgSwapExactAmountOut().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSwapExactAmountOut | PlainMessage<MsgSwapExactAmountOut> | undefined, b: MsgSwapExactAmountOut | PlainMessage<MsgSwapExactAmountOut> | undefined): boolean {
+  static equals(
+    a: MsgSwapExactAmountOut | PlainMessage<MsgSwapExactAmountOut> | undefined,
+    b: MsgSwapExactAmountOut | PlainMessage<MsgSwapExactAmountOut> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSwapExactAmountOut, a, b);
   }
 }
@@ -260,7 +329,7 @@ export class MsgSwapExactAmountOutResponse extends Message<MsgSwapExactAmountOut
   /**
    * @generated from field: string token_in_amount = 1;
    */
-  tokenInAmount = "";
+  tokenInAmount = '';
 
   constructor(data?: PartialMessage<MsgSwapExactAmountOutResponse>) {
     super();
@@ -268,24 +337,36 @@ export class MsgSwapExactAmountOutResponse extends Message<MsgSwapExactAmountOut
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.MsgSwapExactAmountOutResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.MsgSwapExactAmountOutResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "token_in_amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'token_in_amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSwapExactAmountOutResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSwapExactAmountOutResponse {
     return new MsgSwapExactAmountOutResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSwapExactAmountOutResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSwapExactAmountOutResponse {
     return new MsgSwapExactAmountOutResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSwapExactAmountOutResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSwapExactAmountOutResponse {
     return new MsgSwapExactAmountOutResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSwapExactAmountOutResponse | PlainMessage<MsgSwapExactAmountOutResponse> | undefined, b: MsgSwapExactAmountOutResponse | PlainMessage<MsgSwapExactAmountOutResponse> | undefined): boolean {
+  static equals(
+    a: MsgSwapExactAmountOutResponse | PlainMessage<MsgSwapExactAmountOutResponse> | undefined,
+    b: MsgSwapExactAmountOutResponse | PlainMessage<MsgSwapExactAmountOutResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSwapExactAmountOutResponse, a, b);
   }
 }
@@ -299,7 +380,7 @@ export class MsgSplitRouteSwapExactAmountOut extends Message<MsgSplitRouteSwapEx
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * @generated from field: repeated osmosis.poolmanager.v1beta1.SwapAmountOutSplitRoute routes = 2;
@@ -309,12 +390,12 @@ export class MsgSplitRouteSwapExactAmountOut extends Message<MsgSplitRouteSwapEx
   /**
    * @generated from field: string token_out_denom = 3;
    */
-  tokenOutDenom = "";
+  tokenOutDenom = '';
 
   /**
    * @generated from field: string token_in_max_amount = 4;
    */
-  tokenInMaxAmount = "";
+  tokenInMaxAmount = '';
 
   constructor(data?: PartialMessage<MsgSplitRouteSwapExactAmountOut>) {
     super();
@@ -322,27 +403,39 @@ export class MsgSplitRouteSwapExactAmountOut extends Message<MsgSplitRouteSwapEx
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.MsgSplitRouteSwapExactAmountOut";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.MsgSplitRouteSwapExactAmountOut';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "routes", kind: "message", T: SwapAmountOutSplitRoute, repeated: true },
-    { no: 3, name: "token_out_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "token_in_max_amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'routes', kind: 'message', T: SwapAmountOutSplitRoute, repeated: true },
+    { no: 3, name: 'token_out_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'token_in_max_amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSplitRouteSwapExactAmountOut {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSplitRouteSwapExactAmountOut {
     return new MsgSplitRouteSwapExactAmountOut().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSplitRouteSwapExactAmountOut {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSplitRouteSwapExactAmountOut {
     return new MsgSplitRouteSwapExactAmountOut().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSplitRouteSwapExactAmountOut {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSplitRouteSwapExactAmountOut {
     return new MsgSplitRouteSwapExactAmountOut().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSplitRouteSwapExactAmountOut | PlainMessage<MsgSplitRouteSwapExactAmountOut> | undefined, b: MsgSplitRouteSwapExactAmountOut | PlainMessage<MsgSplitRouteSwapExactAmountOut> | undefined): boolean {
+  static equals(
+    a: MsgSplitRouteSwapExactAmountOut | PlainMessage<MsgSplitRouteSwapExactAmountOut> | undefined,
+    b: MsgSplitRouteSwapExactAmountOut | PlainMessage<MsgSplitRouteSwapExactAmountOut> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSplitRouteSwapExactAmountOut, a, b);
   }
 }
@@ -354,7 +447,7 @@ export class MsgSplitRouteSwapExactAmountOutResponse extends Message<MsgSplitRou
   /**
    * @generated from field: string token_in_amount = 1;
    */
-  tokenInAmount = "";
+  tokenInAmount = '';
 
   constructor(data?: PartialMessage<MsgSplitRouteSwapExactAmountOutResponse>) {
     super();
@@ -362,24 +455,42 @@ export class MsgSplitRouteSwapExactAmountOutResponse extends Message<MsgSplitRou
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.MsgSplitRouteSwapExactAmountOutResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.MsgSplitRouteSwapExactAmountOutResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "token_in_amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'token_in_amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSplitRouteSwapExactAmountOutResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSplitRouteSwapExactAmountOutResponse {
     return new MsgSplitRouteSwapExactAmountOutResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSplitRouteSwapExactAmountOutResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSplitRouteSwapExactAmountOutResponse {
     return new MsgSplitRouteSwapExactAmountOutResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSplitRouteSwapExactAmountOutResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSplitRouteSwapExactAmountOutResponse {
     return new MsgSplitRouteSwapExactAmountOutResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSplitRouteSwapExactAmountOutResponse | PlainMessage<MsgSplitRouteSwapExactAmountOutResponse> | undefined, b: MsgSplitRouteSwapExactAmountOutResponse | PlainMessage<MsgSplitRouteSwapExactAmountOutResponse> | undefined): boolean {
+  static equals(
+    a:
+      | MsgSplitRouteSwapExactAmountOutResponse
+      | PlainMessage<MsgSplitRouteSwapExactAmountOutResponse>
+      | undefined,
+    b:
+      | MsgSplitRouteSwapExactAmountOutResponse
+      | PlainMessage<MsgSplitRouteSwapExactAmountOutResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(MsgSplitRouteSwapExactAmountOutResponse, a, b);
   }
 }
@@ -393,7 +504,7 @@ export class MsgSetDenomPairTakerFee extends Message<MsgSetDenomPairTakerFee> {
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * @generated from field: repeated osmosis.poolmanager.v1beta1.DenomPairTakerFee denom_pair_taker_fee = 2;
@@ -406,25 +517,37 @@ export class MsgSetDenomPairTakerFee extends Message<MsgSetDenomPairTakerFee> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.MsgSetDenomPairTakerFee";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.MsgSetDenomPairTakerFee';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "denom_pair_taker_fee", kind: "message", T: DenomPairTakerFee, repeated: true },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'denom_pair_taker_fee', kind: 'message', T: DenomPairTakerFee, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetDenomPairTakerFee {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetDenomPairTakerFee {
     return new MsgSetDenomPairTakerFee().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetDenomPairTakerFee {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetDenomPairTakerFee {
     return new MsgSetDenomPairTakerFee().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetDenomPairTakerFee {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetDenomPairTakerFee {
     return new MsgSetDenomPairTakerFee().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetDenomPairTakerFee | PlainMessage<MsgSetDenomPairTakerFee> | undefined, b: MsgSetDenomPairTakerFee | PlainMessage<MsgSetDenomPairTakerFee> | undefined): boolean {
+  static equals(
+    a: MsgSetDenomPairTakerFee | PlainMessage<MsgSetDenomPairTakerFee> | undefined,
+    b: MsgSetDenomPairTakerFee | PlainMessage<MsgSetDenomPairTakerFee> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetDenomPairTakerFee, a, b);
   }
 }
@@ -444,24 +567,36 @@ export class MsgSetDenomPairTakerFeeResponse extends Message<MsgSetDenomPairTake
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.MsgSetDenomPairTakerFeeResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.MsgSetDenomPairTakerFeeResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'success', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetDenomPairTakerFeeResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetDenomPairTakerFeeResponse {
     return new MsgSetDenomPairTakerFeeResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetDenomPairTakerFeeResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetDenomPairTakerFeeResponse {
     return new MsgSetDenomPairTakerFeeResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetDenomPairTakerFeeResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetDenomPairTakerFeeResponse {
     return new MsgSetDenomPairTakerFeeResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetDenomPairTakerFeeResponse | PlainMessage<MsgSetDenomPairTakerFeeResponse> | undefined, b: MsgSetDenomPairTakerFeeResponse | PlainMessage<MsgSetDenomPairTakerFeeResponse> | undefined): boolean {
+  static equals(
+    a: MsgSetDenomPairTakerFeeResponse | PlainMessage<MsgSetDenomPairTakerFeeResponse> | undefined,
+    b: MsgSetDenomPairTakerFeeResponse | PlainMessage<MsgSetDenomPairTakerFeeResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetDenomPairTakerFeeResponse, a, b);
   }
 }
@@ -475,7 +610,7 @@ export class MsgSetTakerFeeShareAgreementForDenom extends Message<MsgSetTakerFee
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * denom is the denom that the taker fee share agreement is being set for.
@@ -485,7 +620,7 @@ export class MsgSetTakerFeeShareAgreementForDenom extends Message<MsgSetTakerFee
    *
    * @generated from field: string denom = 2;
    */
-  denom = "";
+  denom = '';
 
   /**
    * skim_percent is the percentage of taker fees that will be skimmed for the
@@ -494,7 +629,7 @@ export class MsgSetTakerFeeShareAgreementForDenom extends Message<MsgSetTakerFee
    *
    * @generated from field: string skim_percent = 3;
    */
-  skimPercent = "";
+  skimPercent = '';
 
   /**
    * skim_address is the address belonging to the respective bridge provider
@@ -502,7 +637,7 @@ export class MsgSetTakerFeeShareAgreementForDenom extends Message<MsgSetTakerFee
    *
    * @generated from field: string skim_address = 4;
    */
-  skimAddress = "";
+  skimAddress = '';
 
   constructor(data?: PartialMessage<MsgSetTakerFeeShareAgreementForDenom>) {
     super();
@@ -510,27 +645,45 @@ export class MsgSetTakerFeeShareAgreementForDenom extends Message<MsgSetTakerFee
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.MsgSetTakerFeeShareAgreementForDenom";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.MsgSetTakerFeeShareAgreementForDenom';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "skim_percent", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "skim_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'skim_percent', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'skim_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetTakerFeeShareAgreementForDenom {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetTakerFeeShareAgreementForDenom {
     return new MsgSetTakerFeeShareAgreementForDenom().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetTakerFeeShareAgreementForDenom {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetTakerFeeShareAgreementForDenom {
     return new MsgSetTakerFeeShareAgreementForDenom().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetTakerFeeShareAgreementForDenom {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetTakerFeeShareAgreementForDenom {
     return new MsgSetTakerFeeShareAgreementForDenom().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetTakerFeeShareAgreementForDenom | PlainMessage<MsgSetTakerFeeShareAgreementForDenom> | undefined, b: MsgSetTakerFeeShareAgreementForDenom | PlainMessage<MsgSetTakerFeeShareAgreementForDenom> | undefined): boolean {
+  static equals(
+    a:
+      | MsgSetTakerFeeShareAgreementForDenom
+      | PlainMessage<MsgSetTakerFeeShareAgreementForDenom>
+      | undefined,
+    b:
+      | MsgSetTakerFeeShareAgreementForDenom
+      | PlainMessage<MsgSetTakerFeeShareAgreementForDenom>
+      | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetTakerFeeShareAgreementForDenom, a, b);
   }
 }
@@ -545,23 +698,41 @@ export class MsgSetTakerFeeShareAgreementForDenomResponse extends Message<MsgSet
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.MsgSetTakerFeeShareAgreementForDenomResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName =
+    'osmosis.poolmanager.v1beta1.MsgSetTakerFeeShareAgreementForDenomResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetTakerFeeShareAgreementForDenomResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetTakerFeeShareAgreementForDenomResponse {
     return new MsgSetTakerFeeShareAgreementForDenomResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetTakerFeeShareAgreementForDenomResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetTakerFeeShareAgreementForDenomResponse {
     return new MsgSetTakerFeeShareAgreementForDenomResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetTakerFeeShareAgreementForDenomResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetTakerFeeShareAgreementForDenomResponse {
     return new MsgSetTakerFeeShareAgreementForDenomResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetTakerFeeShareAgreementForDenomResponse | PlainMessage<MsgSetTakerFeeShareAgreementForDenomResponse> | undefined, b: MsgSetTakerFeeShareAgreementForDenomResponse | PlainMessage<MsgSetTakerFeeShareAgreementForDenomResponse> | undefined): boolean {
+  static equals(
+    a:
+      | MsgSetTakerFeeShareAgreementForDenomResponse
+      | PlainMessage<MsgSetTakerFeeShareAgreementForDenomResponse>
+      | undefined,
+    b:
+      | MsgSetTakerFeeShareAgreementForDenomResponse
+      | PlainMessage<MsgSetTakerFeeShareAgreementForDenomResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetTakerFeeShareAgreementForDenomResponse, a, b);
   }
 }
@@ -575,7 +746,7 @@ export class MsgSetRegisteredAlloyedPool extends Message<MsgSetRegisteredAlloyed
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * pool_id is the id of the pool that is being registered as an alloyed pool.
@@ -592,25 +763,37 @@ export class MsgSetRegisteredAlloyedPool extends Message<MsgSetRegisteredAlloyed
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.MsgSetRegisteredAlloyedPool";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.MsgSetRegisteredAlloyedPool';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetRegisteredAlloyedPool {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetRegisteredAlloyedPool {
     return new MsgSetRegisteredAlloyedPool().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetRegisteredAlloyedPool {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetRegisteredAlloyedPool {
     return new MsgSetRegisteredAlloyedPool().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetRegisteredAlloyedPool {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetRegisteredAlloyedPool {
     return new MsgSetRegisteredAlloyedPool().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetRegisteredAlloyedPool | PlainMessage<MsgSetRegisteredAlloyedPool> | undefined, b: MsgSetRegisteredAlloyedPool | PlainMessage<MsgSetRegisteredAlloyedPool> | undefined): boolean {
+  static equals(
+    a: MsgSetRegisteredAlloyedPool | PlainMessage<MsgSetRegisteredAlloyedPool> | undefined,
+    b: MsgSetRegisteredAlloyedPool | PlainMessage<MsgSetRegisteredAlloyedPool> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetRegisteredAlloyedPool, a, b);
   }
 }
@@ -625,23 +808,40 @@ export class MsgSetRegisteredAlloyedPoolResponse extends Message<MsgSetRegistere
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.MsgSetRegisteredAlloyedPoolResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.MsgSetRegisteredAlloyedPoolResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetRegisteredAlloyedPoolResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetRegisteredAlloyedPoolResponse {
     return new MsgSetRegisteredAlloyedPoolResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetRegisteredAlloyedPoolResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetRegisteredAlloyedPoolResponse {
     return new MsgSetRegisteredAlloyedPoolResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetRegisteredAlloyedPoolResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetRegisteredAlloyedPoolResponse {
     return new MsgSetRegisteredAlloyedPoolResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetRegisteredAlloyedPoolResponse | PlainMessage<MsgSetRegisteredAlloyedPoolResponse> | undefined, b: MsgSetRegisteredAlloyedPoolResponse | PlainMessage<MsgSetRegisteredAlloyedPoolResponse> | undefined): boolean {
+  static equals(
+    a:
+      | MsgSetRegisteredAlloyedPoolResponse
+      | PlainMessage<MsgSetRegisteredAlloyedPoolResponse>
+      | undefined,
+    b:
+      | MsgSetRegisteredAlloyedPoolResponse
+      | PlainMessage<MsgSetRegisteredAlloyedPoolResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetRegisteredAlloyedPoolResponse, a, b);
   }
 }
@@ -658,28 +858,28 @@ export class DenomPairTakerFee extends Message<DenomPairTakerFee> {
    * @generated from field: string denom0 = 1 [deprecated = true];
    * @deprecated
    */
-  denom0 = "";
+  denom0 = '';
 
   /**
    * @generated from field: string denom1 = 2 [deprecated = true];
    * @deprecated
    */
-  denom1 = "";
+  denom1 = '';
 
   /**
    * @generated from field: string taker_fee = 3;
    */
-  takerFee = "";
+  takerFee = '';
 
   /**
    * @generated from field: string tokenInDenom = 4;
    */
-  tokenInDenom = "";
+  tokenInDenom = '';
 
   /**
    * @generated from field: string tokenOutDenom = 5;
    */
-  tokenOutDenom = "";
+  tokenOutDenom = '';
 
   constructor(data?: PartialMessage<DenomPairTakerFee>) {
     super();
@@ -687,13 +887,13 @@ export class DenomPairTakerFee extends Message<DenomPairTakerFee> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.DenomPairTakerFee";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.DenomPairTakerFee';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "denom0", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "denom1", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "taker_fee", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "tokenInDenom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "tokenOutDenom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'denom0', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'denom1', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'taker_fee', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'tokenInDenom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'tokenOutDenom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DenomPairTakerFee {
@@ -708,8 +908,10 @@ export class DenomPairTakerFee extends Message<DenomPairTakerFee> {
     return new DenomPairTakerFee().fromJsonString(jsonString, options);
   }
 
-  static equals(a: DenomPairTakerFee | PlainMessage<DenomPairTakerFee> | undefined, b: DenomPairTakerFee | PlainMessage<DenomPairTakerFee> | undefined): boolean {
+  static equals(
+    a: DenomPairTakerFee | PlainMessage<DenomPairTakerFee> | undefined,
+    b: DenomPairTakerFee | PlainMessage<DenomPairTakerFee> | undefined
+  ): boolean {
     return proto3.util.equals(DenomPairTakerFee, a, b);
   }
 }
-

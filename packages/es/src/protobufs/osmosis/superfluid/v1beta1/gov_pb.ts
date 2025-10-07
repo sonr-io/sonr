@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { SuperfluidAsset } from "../superfluid_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { SuperfluidAsset } from '../superfluid_pb.js';
 
 /**
  * SetSuperfluidAssetsProposal is a gov Content type to update the superfluid
@@ -17,12 +24,12 @@ export class SetSuperfluidAssetsProposal extends Message<SetSuperfluidAssetsProp
   /**
    * @generated from field: string title = 1;
    */
-  title = "";
+  title = '';
 
   /**
    * @generated from field: string description = 2;
    */
-  description = "";
+  description = '';
 
   /**
    * @generated from field: repeated osmosis.superfluid.SuperfluidAsset assets = 3;
@@ -35,26 +42,38 @@ export class SetSuperfluidAssetsProposal extends Message<SetSuperfluidAssetsProp
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.superfluid.v1beta1.SetSuperfluidAssetsProposal";
+  static readonly typeName = 'osmosis.superfluid.v1beta1.SetSuperfluidAssetsProposal';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "assets", kind: "message", T: SuperfluidAsset, repeated: true },
+    { no: 1, name: 'title', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'description', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'assets', kind: 'message', T: SuperfluidAsset, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SetSuperfluidAssetsProposal {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): SetSuperfluidAssetsProposal {
     return new SetSuperfluidAssetsProposal().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SetSuperfluidAssetsProposal {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): SetSuperfluidAssetsProposal {
     return new SetSuperfluidAssetsProposal().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SetSuperfluidAssetsProposal {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): SetSuperfluidAssetsProposal {
     return new SetSuperfluidAssetsProposal().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SetSuperfluidAssetsProposal | PlainMessage<SetSuperfluidAssetsProposal> | undefined, b: SetSuperfluidAssetsProposal | PlainMessage<SetSuperfluidAssetsProposal> | undefined): boolean {
+  static equals(
+    a: SetSuperfluidAssetsProposal | PlainMessage<SetSuperfluidAssetsProposal> | undefined,
+    b: SetSuperfluidAssetsProposal | PlainMessage<SetSuperfluidAssetsProposal> | undefined
+  ): boolean {
     return proto3.util.equals(SetSuperfluidAssetsProposal, a, b);
   }
 }
@@ -69,12 +88,12 @@ export class RemoveSuperfluidAssetsProposal extends Message<RemoveSuperfluidAsse
   /**
    * @generated from field: string title = 1;
    */
-  title = "";
+  title = '';
 
   /**
    * @generated from field: string description = 2;
    */
-  description = "";
+  description = '';
 
   /**
    * @generated from field: repeated string superfluid_asset_denoms = 3;
@@ -87,26 +106,44 @@ export class RemoveSuperfluidAssetsProposal extends Message<RemoveSuperfluidAsse
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.superfluid.v1beta1.RemoveSuperfluidAssetsProposal";
+  static readonly typeName = 'osmosis.superfluid.v1beta1.RemoveSuperfluidAssetsProposal';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "superfluid_asset_denoms", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 1, name: 'title', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'description', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    {
+      no: 3,
+      name: 'superfluid_asset_denoms',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RemoveSuperfluidAssetsProposal {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): RemoveSuperfluidAssetsProposal {
     return new RemoveSuperfluidAssetsProposal().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RemoveSuperfluidAssetsProposal {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): RemoveSuperfluidAssetsProposal {
     return new RemoveSuperfluidAssetsProposal().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RemoveSuperfluidAssetsProposal {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): RemoveSuperfluidAssetsProposal {
     return new RemoveSuperfluidAssetsProposal().fromJsonString(jsonString, options);
   }
 
-  static equals(a: RemoveSuperfluidAssetsProposal | PlainMessage<RemoveSuperfluidAssetsProposal> | undefined, b: RemoveSuperfluidAssetsProposal | PlainMessage<RemoveSuperfluidAssetsProposal> | undefined): boolean {
+  static equals(
+    a: RemoveSuperfluidAssetsProposal | PlainMessage<RemoveSuperfluidAssetsProposal> | undefined,
+    b: RemoveSuperfluidAssetsProposal | PlainMessage<RemoveSuperfluidAssetsProposal> | undefined
+  ): boolean {
     return proto3.util.equals(RemoveSuperfluidAssetsProposal, a, b);
   }
 }
@@ -121,12 +158,12 @@ export class UpdateUnpoolWhiteListProposal extends Message<UpdateUnpoolWhiteList
   /**
    * @generated from field: string title = 1;
    */
-  title = "";
+  title = '';
 
   /**
    * @generated from field: string description = 2;
    */
-  description = "";
+  description = '';
 
   /**
    * @generated from field: repeated uint64 ids = 3;
@@ -144,28 +181,39 @@ export class UpdateUnpoolWhiteListProposal extends Message<UpdateUnpoolWhiteList
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.superfluid.v1beta1.UpdateUnpoolWhiteListProposal";
+  static readonly typeName = 'osmosis.superfluid.v1beta1.UpdateUnpoolWhiteListProposal';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "ids", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
-    { no: 4, name: "is_overwrite", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'title', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'description', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'ids', kind: 'scalar', T: 4 /* ScalarType.UINT64 */, repeated: true },
+    { no: 4, name: 'is_overwrite', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateUnpoolWhiteListProposal {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): UpdateUnpoolWhiteListProposal {
     return new UpdateUnpoolWhiteListProposal().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpdateUnpoolWhiteListProposal {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): UpdateUnpoolWhiteListProposal {
     return new UpdateUnpoolWhiteListProposal().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdateUnpoolWhiteListProposal {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): UpdateUnpoolWhiteListProposal {
     return new UpdateUnpoolWhiteListProposal().fromJsonString(jsonString, options);
   }
 
-  static equals(a: UpdateUnpoolWhiteListProposal | PlainMessage<UpdateUnpoolWhiteListProposal> | undefined, b: UpdateUnpoolWhiteListProposal | PlainMessage<UpdateUnpoolWhiteListProposal> | undefined): boolean {
+  static equals(
+    a: UpdateUnpoolWhiteListProposal | PlainMessage<UpdateUnpoolWhiteListProposal> | undefined,
+    b: UpdateUnpoolWhiteListProposal | PlainMessage<UpdateUnpoolWhiteListProposal> | undefined
+  ): boolean {
     return proto3.util.equals(UpdateUnpoolWhiteListProposal, a, b);
   }
 }
-

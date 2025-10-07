@@ -3,11 +3,18 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
-import { Coin } from "../../cosmos/base/v1beta1/coin_pb.js";
-import { PeriodLock, SyntheticLock } from "./lock_pb.js";
-import { Params } from "./params_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Duration, Message, proto3, protoInt64, Timestamp } from '@bufbuild/protobuf';
+import { Coin } from '../../cosmos/base/v1beta1/coin_pb.js';
+import { PeriodLock, SyntheticLock } from './lock_pb.js';
+import { Params } from './params_pb.js';
 
 /**
  * @generated from message osmosis.lockup.ModuleBalanceRequest
@@ -19,9 +26,8 @@ export class ModuleBalanceRequest extends Message<ModuleBalanceRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.ModuleBalanceRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.lockup.ModuleBalanceRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ModuleBalanceRequest {
     return new ModuleBalanceRequest().fromBinary(bytes, options);
@@ -31,11 +37,17 @@ export class ModuleBalanceRequest extends Message<ModuleBalanceRequest> {
     return new ModuleBalanceRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ModuleBalanceRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ModuleBalanceRequest {
     return new ModuleBalanceRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ModuleBalanceRequest | PlainMessage<ModuleBalanceRequest> | undefined, b: ModuleBalanceRequest | PlainMessage<ModuleBalanceRequest> | undefined): boolean {
+  static equals(
+    a: ModuleBalanceRequest | PlainMessage<ModuleBalanceRequest> | undefined,
+    b: ModuleBalanceRequest | PlainMessage<ModuleBalanceRequest> | undefined
+  ): boolean {
     return proto3.util.equals(ModuleBalanceRequest, a, b);
   }
 }
@@ -55,12 +67,15 @@ export class ModuleBalanceResponse extends Message<ModuleBalanceResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.ModuleBalanceResponse";
+  static readonly typeName = 'osmosis.lockup.ModuleBalanceResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "coins", kind: "message", T: Coin, repeated: true },
+    { no: 1, name: 'coins', kind: 'message', T: Coin, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ModuleBalanceResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): ModuleBalanceResponse {
     return new ModuleBalanceResponse().fromBinary(bytes, options);
   }
 
@@ -68,11 +83,17 @@ export class ModuleBalanceResponse extends Message<ModuleBalanceResponse> {
     return new ModuleBalanceResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ModuleBalanceResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ModuleBalanceResponse {
     return new ModuleBalanceResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ModuleBalanceResponse | PlainMessage<ModuleBalanceResponse> | undefined, b: ModuleBalanceResponse | PlainMessage<ModuleBalanceResponse> | undefined): boolean {
+  static equals(
+    a: ModuleBalanceResponse | PlainMessage<ModuleBalanceResponse> | undefined,
+    b: ModuleBalanceResponse | PlainMessage<ModuleBalanceResponse> | undefined
+  ): boolean {
     return proto3.util.equals(ModuleBalanceResponse, a, b);
   }
 }
@@ -87,23 +108,34 @@ export class ModuleLockedAmountRequest extends Message<ModuleLockedAmountRequest
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.ModuleLockedAmountRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.lockup.ModuleLockedAmountRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ModuleLockedAmountRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): ModuleLockedAmountRequest {
     return new ModuleLockedAmountRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ModuleLockedAmountRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): ModuleLockedAmountRequest {
     return new ModuleLockedAmountRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ModuleLockedAmountRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ModuleLockedAmountRequest {
     return new ModuleLockedAmountRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ModuleLockedAmountRequest | PlainMessage<ModuleLockedAmountRequest> | undefined, b: ModuleLockedAmountRequest | PlainMessage<ModuleLockedAmountRequest> | undefined): boolean {
+  static equals(
+    a: ModuleLockedAmountRequest | PlainMessage<ModuleLockedAmountRequest> | undefined,
+    b: ModuleLockedAmountRequest | PlainMessage<ModuleLockedAmountRequest> | undefined
+  ): boolean {
     return proto3.util.equals(ModuleLockedAmountRequest, a, b);
   }
 }
@@ -123,24 +155,36 @@ export class ModuleLockedAmountResponse extends Message<ModuleLockedAmountRespon
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.ModuleLockedAmountResponse";
+  static readonly typeName = 'osmosis.lockup.ModuleLockedAmountResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "coins", kind: "message", T: Coin, repeated: true },
+    { no: 1, name: 'coins', kind: 'message', T: Coin, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ModuleLockedAmountResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): ModuleLockedAmountResponse {
     return new ModuleLockedAmountResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ModuleLockedAmountResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): ModuleLockedAmountResponse {
     return new ModuleLockedAmountResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ModuleLockedAmountResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ModuleLockedAmountResponse {
     return new ModuleLockedAmountResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ModuleLockedAmountResponse | PlainMessage<ModuleLockedAmountResponse> | undefined, b: ModuleLockedAmountResponse | PlainMessage<ModuleLockedAmountResponse> | undefined): boolean {
+  static equals(
+    a: ModuleLockedAmountResponse | PlainMessage<ModuleLockedAmountResponse> | undefined,
+    b: ModuleLockedAmountResponse | PlainMessage<ModuleLockedAmountResponse> | undefined
+  ): boolean {
     return proto3.util.equals(ModuleLockedAmountResponse, a, b);
   }
 }
@@ -152,7 +196,7 @@ export class AccountUnlockableCoinsRequest extends Message<AccountUnlockableCoin
   /**
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   constructor(data?: PartialMessage<AccountUnlockableCoinsRequest>) {
     super();
@@ -160,24 +204,36 @@ export class AccountUnlockableCoinsRequest extends Message<AccountUnlockableCoin
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.AccountUnlockableCoinsRequest";
+  static readonly typeName = 'osmosis.lockup.AccountUnlockableCoinsRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountUnlockableCoinsRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AccountUnlockableCoinsRequest {
     return new AccountUnlockableCoinsRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AccountUnlockableCoinsRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AccountUnlockableCoinsRequest {
     return new AccountUnlockableCoinsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountUnlockableCoinsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountUnlockableCoinsRequest {
     return new AccountUnlockableCoinsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccountUnlockableCoinsRequest | PlainMessage<AccountUnlockableCoinsRequest> | undefined, b: AccountUnlockableCoinsRequest | PlainMessage<AccountUnlockableCoinsRequest> | undefined): boolean {
+  static equals(
+    a: AccountUnlockableCoinsRequest | PlainMessage<AccountUnlockableCoinsRequest> | undefined,
+    b: AccountUnlockableCoinsRequest | PlainMessage<AccountUnlockableCoinsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(AccountUnlockableCoinsRequest, a, b);
   }
 }
@@ -197,24 +253,36 @@ export class AccountUnlockableCoinsResponse extends Message<AccountUnlockableCoi
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.AccountUnlockableCoinsResponse";
+  static readonly typeName = 'osmosis.lockup.AccountUnlockableCoinsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "coins", kind: "message", T: Coin, repeated: true },
+    { no: 1, name: 'coins', kind: 'message', T: Coin, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountUnlockableCoinsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AccountUnlockableCoinsResponse {
     return new AccountUnlockableCoinsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AccountUnlockableCoinsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AccountUnlockableCoinsResponse {
     return new AccountUnlockableCoinsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountUnlockableCoinsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountUnlockableCoinsResponse {
     return new AccountUnlockableCoinsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccountUnlockableCoinsResponse | PlainMessage<AccountUnlockableCoinsResponse> | undefined, b: AccountUnlockableCoinsResponse | PlainMessage<AccountUnlockableCoinsResponse> | undefined): boolean {
+  static equals(
+    a: AccountUnlockableCoinsResponse | PlainMessage<AccountUnlockableCoinsResponse> | undefined,
+    b: AccountUnlockableCoinsResponse | PlainMessage<AccountUnlockableCoinsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(AccountUnlockableCoinsResponse, a, b);
   }
 }
@@ -226,7 +294,7 @@ export class AccountUnlockingCoinsRequest extends Message<AccountUnlockingCoinsR
   /**
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   constructor(data?: PartialMessage<AccountUnlockingCoinsRequest>) {
     super();
@@ -234,24 +302,36 @@ export class AccountUnlockingCoinsRequest extends Message<AccountUnlockingCoinsR
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.AccountUnlockingCoinsRequest";
+  static readonly typeName = 'osmosis.lockup.AccountUnlockingCoinsRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountUnlockingCoinsRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AccountUnlockingCoinsRequest {
     return new AccountUnlockingCoinsRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AccountUnlockingCoinsRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AccountUnlockingCoinsRequest {
     return new AccountUnlockingCoinsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountUnlockingCoinsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountUnlockingCoinsRequest {
     return new AccountUnlockingCoinsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccountUnlockingCoinsRequest | PlainMessage<AccountUnlockingCoinsRequest> | undefined, b: AccountUnlockingCoinsRequest | PlainMessage<AccountUnlockingCoinsRequest> | undefined): boolean {
+  static equals(
+    a: AccountUnlockingCoinsRequest | PlainMessage<AccountUnlockingCoinsRequest> | undefined,
+    b: AccountUnlockingCoinsRequest | PlainMessage<AccountUnlockingCoinsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(AccountUnlockingCoinsRequest, a, b);
   }
 }
@@ -271,24 +351,36 @@ export class AccountUnlockingCoinsResponse extends Message<AccountUnlockingCoins
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.AccountUnlockingCoinsResponse";
+  static readonly typeName = 'osmosis.lockup.AccountUnlockingCoinsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "coins", kind: "message", T: Coin, repeated: true },
+    { no: 1, name: 'coins', kind: 'message', T: Coin, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountUnlockingCoinsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AccountUnlockingCoinsResponse {
     return new AccountUnlockingCoinsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AccountUnlockingCoinsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AccountUnlockingCoinsResponse {
     return new AccountUnlockingCoinsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountUnlockingCoinsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountUnlockingCoinsResponse {
     return new AccountUnlockingCoinsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccountUnlockingCoinsResponse | PlainMessage<AccountUnlockingCoinsResponse> | undefined, b: AccountUnlockingCoinsResponse | PlainMessage<AccountUnlockingCoinsResponse> | undefined): boolean {
+  static equals(
+    a: AccountUnlockingCoinsResponse | PlainMessage<AccountUnlockingCoinsResponse> | undefined,
+    b: AccountUnlockingCoinsResponse | PlainMessage<AccountUnlockingCoinsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(AccountUnlockingCoinsResponse, a, b);
   }
 }
@@ -300,7 +392,7 @@ export class AccountLockedCoinsRequest extends Message<AccountLockedCoinsRequest
   /**
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   constructor(data?: PartialMessage<AccountLockedCoinsRequest>) {
     super();
@@ -308,24 +400,36 @@ export class AccountLockedCoinsRequest extends Message<AccountLockedCoinsRequest
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.AccountLockedCoinsRequest";
+  static readonly typeName = 'osmosis.lockup.AccountLockedCoinsRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountLockedCoinsRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AccountLockedCoinsRequest {
     return new AccountLockedCoinsRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AccountLockedCoinsRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedCoinsRequest {
     return new AccountLockedCoinsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountLockedCoinsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedCoinsRequest {
     return new AccountLockedCoinsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccountLockedCoinsRequest | PlainMessage<AccountLockedCoinsRequest> | undefined, b: AccountLockedCoinsRequest | PlainMessage<AccountLockedCoinsRequest> | undefined): boolean {
+  static equals(
+    a: AccountLockedCoinsRequest | PlainMessage<AccountLockedCoinsRequest> | undefined,
+    b: AccountLockedCoinsRequest | PlainMessage<AccountLockedCoinsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(AccountLockedCoinsRequest, a, b);
   }
 }
@@ -345,24 +449,36 @@ export class AccountLockedCoinsResponse extends Message<AccountLockedCoinsRespon
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.AccountLockedCoinsResponse";
+  static readonly typeName = 'osmosis.lockup.AccountLockedCoinsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "coins", kind: "message", T: Coin, repeated: true },
+    { no: 1, name: 'coins', kind: 'message', T: Coin, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountLockedCoinsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AccountLockedCoinsResponse {
     return new AccountLockedCoinsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AccountLockedCoinsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedCoinsResponse {
     return new AccountLockedCoinsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountLockedCoinsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedCoinsResponse {
     return new AccountLockedCoinsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccountLockedCoinsResponse | PlainMessage<AccountLockedCoinsResponse> | undefined, b: AccountLockedCoinsResponse | PlainMessage<AccountLockedCoinsResponse> | undefined): boolean {
+  static equals(
+    a: AccountLockedCoinsResponse | PlainMessage<AccountLockedCoinsResponse> | undefined,
+    b: AccountLockedCoinsResponse | PlainMessage<AccountLockedCoinsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(AccountLockedCoinsResponse, a, b);
   }
 }
@@ -374,7 +490,7 @@ export class AccountLockedPastTimeRequest extends Message<AccountLockedPastTimeR
   /**
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   /**
    * @generated from field: google.protobuf.Timestamp timestamp = 2;
@@ -387,25 +503,37 @@ export class AccountLockedPastTimeRequest extends Message<AccountLockedPastTimeR
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.AccountLockedPastTimeRequest";
+  static readonly typeName = 'osmosis.lockup.AccountLockedPastTimeRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "timestamp", kind: "message", T: Timestamp },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'timestamp', kind: 'message', T: Timestamp },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountLockedPastTimeRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AccountLockedPastTimeRequest {
     return new AccountLockedPastTimeRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AccountLockedPastTimeRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedPastTimeRequest {
     return new AccountLockedPastTimeRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountLockedPastTimeRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedPastTimeRequest {
     return new AccountLockedPastTimeRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccountLockedPastTimeRequest | PlainMessage<AccountLockedPastTimeRequest> | undefined, b: AccountLockedPastTimeRequest | PlainMessage<AccountLockedPastTimeRequest> | undefined): boolean {
+  static equals(
+    a: AccountLockedPastTimeRequest | PlainMessage<AccountLockedPastTimeRequest> | undefined,
+    b: AccountLockedPastTimeRequest | PlainMessage<AccountLockedPastTimeRequest> | undefined
+  ): boolean {
     return proto3.util.equals(AccountLockedPastTimeRequest, a, b);
   }
 }
@@ -425,24 +553,36 @@ export class AccountLockedPastTimeResponse extends Message<AccountLockedPastTime
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.AccountLockedPastTimeResponse";
+  static readonly typeName = 'osmosis.lockup.AccountLockedPastTimeResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "locks", kind: "message", T: PeriodLock, repeated: true },
+    { no: 1, name: 'locks', kind: 'message', T: PeriodLock, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountLockedPastTimeResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AccountLockedPastTimeResponse {
     return new AccountLockedPastTimeResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AccountLockedPastTimeResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedPastTimeResponse {
     return new AccountLockedPastTimeResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountLockedPastTimeResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedPastTimeResponse {
     return new AccountLockedPastTimeResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccountLockedPastTimeResponse | PlainMessage<AccountLockedPastTimeResponse> | undefined, b: AccountLockedPastTimeResponse | PlainMessage<AccountLockedPastTimeResponse> | undefined): boolean {
+  static equals(
+    a: AccountLockedPastTimeResponse | PlainMessage<AccountLockedPastTimeResponse> | undefined,
+    b: AccountLockedPastTimeResponse | PlainMessage<AccountLockedPastTimeResponse> | undefined
+  ): boolean {
     return proto3.util.equals(AccountLockedPastTimeResponse, a, b);
   }
 }
@@ -454,7 +594,7 @@ export class AccountLockedPastTimeNotUnlockingOnlyRequest extends Message<Accoun
   /**
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   /**
    * @generated from field: google.protobuf.Timestamp timestamp = 2;
@@ -467,25 +607,43 @@ export class AccountLockedPastTimeNotUnlockingOnlyRequest extends Message<Accoun
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.AccountLockedPastTimeNotUnlockingOnlyRequest";
+  static readonly typeName = 'osmosis.lockup.AccountLockedPastTimeNotUnlockingOnlyRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "timestamp", kind: "message", T: Timestamp },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'timestamp', kind: 'message', T: Timestamp },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountLockedPastTimeNotUnlockingOnlyRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AccountLockedPastTimeNotUnlockingOnlyRequest {
     return new AccountLockedPastTimeNotUnlockingOnlyRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AccountLockedPastTimeNotUnlockingOnlyRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedPastTimeNotUnlockingOnlyRequest {
     return new AccountLockedPastTimeNotUnlockingOnlyRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountLockedPastTimeNotUnlockingOnlyRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedPastTimeNotUnlockingOnlyRequest {
     return new AccountLockedPastTimeNotUnlockingOnlyRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccountLockedPastTimeNotUnlockingOnlyRequest | PlainMessage<AccountLockedPastTimeNotUnlockingOnlyRequest> | undefined, b: AccountLockedPastTimeNotUnlockingOnlyRequest | PlainMessage<AccountLockedPastTimeNotUnlockingOnlyRequest> | undefined): boolean {
+  static equals(
+    a:
+      | AccountLockedPastTimeNotUnlockingOnlyRequest
+      | PlainMessage<AccountLockedPastTimeNotUnlockingOnlyRequest>
+      | undefined,
+    b:
+      | AccountLockedPastTimeNotUnlockingOnlyRequest
+      | PlainMessage<AccountLockedPastTimeNotUnlockingOnlyRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(AccountLockedPastTimeNotUnlockingOnlyRequest, a, b);
   }
 }
@@ -505,24 +663,42 @@ export class AccountLockedPastTimeNotUnlockingOnlyResponse extends Message<Accou
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.AccountLockedPastTimeNotUnlockingOnlyResponse";
+  static readonly typeName = 'osmosis.lockup.AccountLockedPastTimeNotUnlockingOnlyResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "locks", kind: "message", T: PeriodLock, repeated: true },
+    { no: 1, name: 'locks', kind: 'message', T: PeriodLock, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountLockedPastTimeNotUnlockingOnlyResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AccountLockedPastTimeNotUnlockingOnlyResponse {
     return new AccountLockedPastTimeNotUnlockingOnlyResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AccountLockedPastTimeNotUnlockingOnlyResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedPastTimeNotUnlockingOnlyResponse {
     return new AccountLockedPastTimeNotUnlockingOnlyResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountLockedPastTimeNotUnlockingOnlyResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedPastTimeNotUnlockingOnlyResponse {
     return new AccountLockedPastTimeNotUnlockingOnlyResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccountLockedPastTimeNotUnlockingOnlyResponse | PlainMessage<AccountLockedPastTimeNotUnlockingOnlyResponse> | undefined, b: AccountLockedPastTimeNotUnlockingOnlyResponse | PlainMessage<AccountLockedPastTimeNotUnlockingOnlyResponse> | undefined): boolean {
+  static equals(
+    a:
+      | AccountLockedPastTimeNotUnlockingOnlyResponse
+      | PlainMessage<AccountLockedPastTimeNotUnlockingOnlyResponse>
+      | undefined,
+    b:
+      | AccountLockedPastTimeNotUnlockingOnlyResponse
+      | PlainMessage<AccountLockedPastTimeNotUnlockingOnlyResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(AccountLockedPastTimeNotUnlockingOnlyResponse, a, b);
   }
 }
@@ -534,7 +710,7 @@ export class AccountUnlockedBeforeTimeRequest extends Message<AccountUnlockedBef
   /**
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   /**
    * @generated from field: google.protobuf.Timestamp timestamp = 2;
@@ -547,25 +723,40 @@ export class AccountUnlockedBeforeTimeRequest extends Message<AccountUnlockedBef
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.AccountUnlockedBeforeTimeRequest";
+  static readonly typeName = 'osmosis.lockup.AccountUnlockedBeforeTimeRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "timestamp", kind: "message", T: Timestamp },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'timestamp', kind: 'message', T: Timestamp },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountUnlockedBeforeTimeRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AccountUnlockedBeforeTimeRequest {
     return new AccountUnlockedBeforeTimeRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AccountUnlockedBeforeTimeRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AccountUnlockedBeforeTimeRequest {
     return new AccountUnlockedBeforeTimeRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountUnlockedBeforeTimeRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountUnlockedBeforeTimeRequest {
     return new AccountUnlockedBeforeTimeRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccountUnlockedBeforeTimeRequest | PlainMessage<AccountUnlockedBeforeTimeRequest> | undefined, b: AccountUnlockedBeforeTimeRequest | PlainMessage<AccountUnlockedBeforeTimeRequest> | undefined): boolean {
+  static equals(
+    a:
+      | AccountUnlockedBeforeTimeRequest
+      | PlainMessage<AccountUnlockedBeforeTimeRequest>
+      | undefined,
+    b: AccountUnlockedBeforeTimeRequest | PlainMessage<AccountUnlockedBeforeTimeRequest> | undefined
+  ): boolean {
     return proto3.util.equals(AccountUnlockedBeforeTimeRequest, a, b);
   }
 }
@@ -585,24 +776,42 @@ export class AccountUnlockedBeforeTimeResponse extends Message<AccountUnlockedBe
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.AccountUnlockedBeforeTimeResponse";
+  static readonly typeName = 'osmosis.lockup.AccountUnlockedBeforeTimeResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "locks", kind: "message", T: PeriodLock, repeated: true },
+    { no: 1, name: 'locks', kind: 'message', T: PeriodLock, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountUnlockedBeforeTimeResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AccountUnlockedBeforeTimeResponse {
     return new AccountUnlockedBeforeTimeResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AccountUnlockedBeforeTimeResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AccountUnlockedBeforeTimeResponse {
     return new AccountUnlockedBeforeTimeResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountUnlockedBeforeTimeResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountUnlockedBeforeTimeResponse {
     return new AccountUnlockedBeforeTimeResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccountUnlockedBeforeTimeResponse | PlainMessage<AccountUnlockedBeforeTimeResponse> | undefined, b: AccountUnlockedBeforeTimeResponse | PlainMessage<AccountUnlockedBeforeTimeResponse> | undefined): boolean {
+  static equals(
+    a:
+      | AccountUnlockedBeforeTimeResponse
+      | PlainMessage<AccountUnlockedBeforeTimeResponse>
+      | undefined,
+    b:
+      | AccountUnlockedBeforeTimeResponse
+      | PlainMessage<AccountUnlockedBeforeTimeResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(AccountUnlockedBeforeTimeResponse, a, b);
   }
 }
@@ -614,7 +823,7 @@ export class AccountLockedPastTimeDenomRequest extends Message<AccountLockedPast
   /**
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   /**
    * @generated from field: google.protobuf.Timestamp timestamp = 2;
@@ -624,7 +833,7 @@ export class AccountLockedPastTimeDenomRequest extends Message<AccountLockedPast
   /**
    * @generated from field: string denom = 3;
    */
-  denom = "";
+  denom = '';
 
   constructor(data?: PartialMessage<AccountLockedPastTimeDenomRequest>) {
     super();
@@ -632,26 +841,44 @@ export class AccountLockedPastTimeDenomRequest extends Message<AccountLockedPast
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.AccountLockedPastTimeDenomRequest";
+  static readonly typeName = 'osmosis.lockup.AccountLockedPastTimeDenomRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "timestamp", kind: "message", T: Timestamp },
-    { no: 3, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'timestamp', kind: 'message', T: Timestamp },
+    { no: 3, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountLockedPastTimeDenomRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AccountLockedPastTimeDenomRequest {
     return new AccountLockedPastTimeDenomRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AccountLockedPastTimeDenomRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedPastTimeDenomRequest {
     return new AccountLockedPastTimeDenomRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountLockedPastTimeDenomRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedPastTimeDenomRequest {
     return new AccountLockedPastTimeDenomRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccountLockedPastTimeDenomRequest | PlainMessage<AccountLockedPastTimeDenomRequest> | undefined, b: AccountLockedPastTimeDenomRequest | PlainMessage<AccountLockedPastTimeDenomRequest> | undefined): boolean {
+  static equals(
+    a:
+      | AccountLockedPastTimeDenomRequest
+      | PlainMessage<AccountLockedPastTimeDenomRequest>
+      | undefined,
+    b:
+      | AccountLockedPastTimeDenomRequest
+      | PlainMessage<AccountLockedPastTimeDenomRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(AccountLockedPastTimeDenomRequest, a, b);
   }
 }
@@ -671,24 +898,42 @@ export class AccountLockedPastTimeDenomResponse extends Message<AccountLockedPas
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.AccountLockedPastTimeDenomResponse";
+  static readonly typeName = 'osmosis.lockup.AccountLockedPastTimeDenomResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "locks", kind: "message", T: PeriodLock, repeated: true },
+    { no: 1, name: 'locks', kind: 'message', T: PeriodLock, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountLockedPastTimeDenomResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AccountLockedPastTimeDenomResponse {
     return new AccountLockedPastTimeDenomResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AccountLockedPastTimeDenomResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedPastTimeDenomResponse {
     return new AccountLockedPastTimeDenomResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountLockedPastTimeDenomResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedPastTimeDenomResponse {
     return new AccountLockedPastTimeDenomResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccountLockedPastTimeDenomResponse | PlainMessage<AccountLockedPastTimeDenomResponse> | undefined, b: AccountLockedPastTimeDenomResponse | PlainMessage<AccountLockedPastTimeDenomResponse> | undefined): boolean {
+  static equals(
+    a:
+      | AccountLockedPastTimeDenomResponse
+      | PlainMessage<AccountLockedPastTimeDenomResponse>
+      | undefined,
+    b:
+      | AccountLockedPastTimeDenomResponse
+      | PlainMessage<AccountLockedPastTimeDenomResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(AccountLockedPastTimeDenomResponse, a, b);
   }
 }
@@ -700,7 +945,7 @@ export class LockedDenomRequest extends Message<LockedDenomRequest> {
   /**
    * @generated from field: string denom = 1;
    */
-  denom = "";
+  denom = '';
 
   /**
    * @generated from field: google.protobuf.Duration duration = 2;
@@ -713,10 +958,10 @@ export class LockedDenomRequest extends Message<LockedDenomRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.LockedDenomRequest";
+  static readonly typeName = 'osmosis.lockup.LockedDenomRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "duration", kind: "message", T: Duration },
+    { no: 1, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'duration', kind: 'message', T: Duration },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LockedDenomRequest {
@@ -727,11 +972,17 @@ export class LockedDenomRequest extends Message<LockedDenomRequest> {
     return new LockedDenomRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): LockedDenomRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): LockedDenomRequest {
     return new LockedDenomRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: LockedDenomRequest | PlainMessage<LockedDenomRequest> | undefined, b: LockedDenomRequest | PlainMessage<LockedDenomRequest> | undefined): boolean {
+  static equals(
+    a: LockedDenomRequest | PlainMessage<LockedDenomRequest> | undefined,
+    b: LockedDenomRequest | PlainMessage<LockedDenomRequest> | undefined
+  ): boolean {
     return proto3.util.equals(LockedDenomRequest, a, b);
   }
 }
@@ -743,7 +994,7 @@ export class LockedDenomResponse extends Message<LockedDenomResponse> {
   /**
    * @generated from field: string amount = 1;
    */
-  amount = "";
+  amount = '';
 
   constructor(data?: PartialMessage<LockedDenomResponse>) {
     super();
@@ -751,9 +1002,9 @@ export class LockedDenomResponse extends Message<LockedDenomResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.LockedDenomResponse";
+  static readonly typeName = 'osmosis.lockup.LockedDenomResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LockedDenomResponse {
@@ -764,11 +1015,17 @@ export class LockedDenomResponse extends Message<LockedDenomResponse> {
     return new LockedDenomResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): LockedDenomResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): LockedDenomResponse {
     return new LockedDenomResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: LockedDenomResponse | PlainMessage<LockedDenomResponse> | undefined, b: LockedDenomResponse | PlainMessage<LockedDenomResponse> | undefined): boolean {
+  static equals(
+    a: LockedDenomResponse | PlainMessage<LockedDenomResponse> | undefined,
+    b: LockedDenomResponse | PlainMessage<LockedDenomResponse> | undefined
+  ): boolean {
     return proto3.util.equals(LockedDenomResponse, a, b);
   }
 }
@@ -788,9 +1045,9 @@ export class LockedRequest extends Message<LockedRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.LockedRequest";
+  static readonly typeName = 'osmosis.lockup.LockedRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "lock_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'lock_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LockedRequest {
@@ -805,7 +1062,10 @@ export class LockedRequest extends Message<LockedRequest> {
     return new LockedRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: LockedRequest | PlainMessage<LockedRequest> | undefined, b: LockedRequest | PlainMessage<LockedRequest> | undefined): boolean {
+  static equals(
+    a: LockedRequest | PlainMessage<LockedRequest> | undefined,
+    b: LockedRequest | PlainMessage<LockedRequest> | undefined
+  ): boolean {
     return proto3.util.equals(LockedRequest, a, b);
   }
 }
@@ -825,9 +1085,9 @@ export class LockedResponse extends Message<LockedResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.LockedResponse";
+  static readonly typeName = 'osmosis.lockup.LockedResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "lock", kind: "message", T: PeriodLock },
+    { no: 1, name: 'lock', kind: 'message', T: PeriodLock },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LockedResponse {
@@ -842,7 +1102,10 @@ export class LockedResponse extends Message<LockedResponse> {
     return new LockedResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: LockedResponse | PlainMessage<LockedResponse> | undefined, b: LockedResponse | PlainMessage<LockedResponse> | undefined): boolean {
+  static equals(
+    a: LockedResponse | PlainMessage<LockedResponse> | undefined,
+    b: LockedResponse | PlainMessage<LockedResponse> | undefined
+  ): boolean {
     return proto3.util.equals(LockedResponse, a, b);
   }
 }
@@ -862,24 +1125,36 @@ export class LockRewardReceiverRequest extends Message<LockRewardReceiverRequest
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.LockRewardReceiverRequest";
+  static readonly typeName = 'osmosis.lockup.LockRewardReceiverRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "lock_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'lock_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LockRewardReceiverRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): LockRewardReceiverRequest {
     return new LockRewardReceiverRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): LockRewardReceiverRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): LockRewardReceiverRequest {
     return new LockRewardReceiverRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): LockRewardReceiverRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): LockRewardReceiverRequest {
     return new LockRewardReceiverRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: LockRewardReceiverRequest | PlainMessage<LockRewardReceiverRequest> | undefined, b: LockRewardReceiverRequest | PlainMessage<LockRewardReceiverRequest> | undefined): boolean {
+  static equals(
+    a: LockRewardReceiverRequest | PlainMessage<LockRewardReceiverRequest> | undefined,
+    b: LockRewardReceiverRequest | PlainMessage<LockRewardReceiverRequest> | undefined
+  ): boolean {
     return proto3.util.equals(LockRewardReceiverRequest, a, b);
   }
 }
@@ -891,7 +1166,7 @@ export class LockRewardReceiverResponse extends Message<LockRewardReceiverRespon
   /**
    * @generated from field: string reward_receiver = 1;
    */
-  rewardReceiver = "";
+  rewardReceiver = '';
 
   constructor(data?: PartialMessage<LockRewardReceiverResponse>) {
     super();
@@ -899,24 +1174,36 @@ export class LockRewardReceiverResponse extends Message<LockRewardReceiverRespon
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.LockRewardReceiverResponse";
+  static readonly typeName = 'osmosis.lockup.LockRewardReceiverResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "reward_receiver", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'reward_receiver', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LockRewardReceiverResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): LockRewardReceiverResponse {
     return new LockRewardReceiverResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): LockRewardReceiverResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): LockRewardReceiverResponse {
     return new LockRewardReceiverResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): LockRewardReceiverResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): LockRewardReceiverResponse {
     return new LockRewardReceiverResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: LockRewardReceiverResponse | PlainMessage<LockRewardReceiverResponse> | undefined, b: LockRewardReceiverResponse | PlainMessage<LockRewardReceiverResponse> | undefined): boolean {
+  static equals(
+    a: LockRewardReceiverResponse | PlainMessage<LockRewardReceiverResponse> | undefined,
+    b: LockRewardReceiverResponse | PlainMessage<LockRewardReceiverResponse> | undefined
+  ): boolean {
     return proto3.util.equals(LockRewardReceiverResponse, a, b);
   }
 }
@@ -931,9 +1218,8 @@ export class NextLockIDRequest extends Message<NextLockIDRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.NextLockIDRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.lockup.NextLockIDRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NextLockIDRequest {
     return new NextLockIDRequest().fromBinary(bytes, options);
@@ -947,7 +1233,10 @@ export class NextLockIDRequest extends Message<NextLockIDRequest> {
     return new NextLockIDRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: NextLockIDRequest | PlainMessage<NextLockIDRequest> | undefined, b: NextLockIDRequest | PlainMessage<NextLockIDRequest> | undefined): boolean {
+  static equals(
+    a: NextLockIDRequest | PlainMessage<NextLockIDRequest> | undefined,
+    b: NextLockIDRequest | PlainMessage<NextLockIDRequest> | undefined
+  ): boolean {
     return proto3.util.equals(NextLockIDRequest, a, b);
   }
 }
@@ -967,9 +1256,9 @@ export class NextLockIDResponse extends Message<NextLockIDResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.NextLockIDResponse";
+  static readonly typeName = 'osmosis.lockup.NextLockIDResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "lock_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'lock_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NextLockIDResponse {
@@ -980,11 +1269,17 @@ export class NextLockIDResponse extends Message<NextLockIDResponse> {
     return new NextLockIDResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): NextLockIDResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): NextLockIDResponse {
     return new NextLockIDResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: NextLockIDResponse | PlainMessage<NextLockIDResponse> | undefined, b: NextLockIDResponse | PlainMessage<NextLockIDResponse> | undefined): boolean {
+  static equals(
+    a: NextLockIDResponse | PlainMessage<NextLockIDResponse> | undefined,
+    b: NextLockIDResponse | PlainMessage<NextLockIDResponse> | undefined
+  ): boolean {
     return proto3.util.equals(NextLockIDResponse, a, b);
   }
 }
@@ -1005,24 +1300,42 @@ export class SyntheticLockupsByLockupIDRequest extends Message<SyntheticLockupsB
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.SyntheticLockupsByLockupIDRequest";
+  static readonly typeName = 'osmosis.lockup.SyntheticLockupsByLockupIDRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "lock_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'lock_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SyntheticLockupsByLockupIDRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): SyntheticLockupsByLockupIDRequest {
     return new SyntheticLockupsByLockupIDRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SyntheticLockupsByLockupIDRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): SyntheticLockupsByLockupIDRequest {
     return new SyntheticLockupsByLockupIDRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SyntheticLockupsByLockupIDRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): SyntheticLockupsByLockupIDRequest {
     return new SyntheticLockupsByLockupIDRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SyntheticLockupsByLockupIDRequest | PlainMessage<SyntheticLockupsByLockupIDRequest> | undefined, b: SyntheticLockupsByLockupIDRequest | PlainMessage<SyntheticLockupsByLockupIDRequest> | undefined): boolean {
+  static equals(
+    a:
+      | SyntheticLockupsByLockupIDRequest
+      | PlainMessage<SyntheticLockupsByLockupIDRequest>
+      | undefined,
+    b:
+      | SyntheticLockupsByLockupIDRequest
+      | PlainMessage<SyntheticLockupsByLockupIDRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(SyntheticLockupsByLockupIDRequest, a, b);
   }
 }
@@ -1043,24 +1356,42 @@ export class SyntheticLockupsByLockupIDResponse extends Message<SyntheticLockups
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.SyntheticLockupsByLockupIDResponse";
+  static readonly typeName = 'osmosis.lockup.SyntheticLockupsByLockupIDResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "synthetic_locks", kind: "message", T: SyntheticLock, repeated: true },
+    { no: 1, name: 'synthetic_locks', kind: 'message', T: SyntheticLock, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SyntheticLockupsByLockupIDResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): SyntheticLockupsByLockupIDResponse {
     return new SyntheticLockupsByLockupIDResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SyntheticLockupsByLockupIDResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): SyntheticLockupsByLockupIDResponse {
     return new SyntheticLockupsByLockupIDResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SyntheticLockupsByLockupIDResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): SyntheticLockupsByLockupIDResponse {
     return new SyntheticLockupsByLockupIDResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SyntheticLockupsByLockupIDResponse | PlainMessage<SyntheticLockupsByLockupIDResponse> | undefined, b: SyntheticLockupsByLockupIDResponse | PlainMessage<SyntheticLockupsByLockupIDResponse> | undefined): boolean {
+  static equals(
+    a:
+      | SyntheticLockupsByLockupIDResponse
+      | PlainMessage<SyntheticLockupsByLockupIDResponse>
+      | undefined,
+    b:
+      | SyntheticLockupsByLockupIDResponse
+      | PlainMessage<SyntheticLockupsByLockupIDResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(SyntheticLockupsByLockupIDResponse, a, b);
   }
 }
@@ -1080,24 +1411,39 @@ export class SyntheticLockupByLockupIDRequest extends Message<SyntheticLockupByL
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.SyntheticLockupByLockupIDRequest";
+  static readonly typeName = 'osmosis.lockup.SyntheticLockupByLockupIDRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "lock_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'lock_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SyntheticLockupByLockupIDRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): SyntheticLockupByLockupIDRequest {
     return new SyntheticLockupByLockupIDRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SyntheticLockupByLockupIDRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): SyntheticLockupByLockupIDRequest {
     return new SyntheticLockupByLockupIDRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SyntheticLockupByLockupIDRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): SyntheticLockupByLockupIDRequest {
     return new SyntheticLockupByLockupIDRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SyntheticLockupByLockupIDRequest | PlainMessage<SyntheticLockupByLockupIDRequest> | undefined, b: SyntheticLockupByLockupIDRequest | PlainMessage<SyntheticLockupByLockupIDRequest> | undefined): boolean {
+  static equals(
+    a:
+      | SyntheticLockupByLockupIDRequest
+      | PlainMessage<SyntheticLockupByLockupIDRequest>
+      | undefined,
+    b: SyntheticLockupByLockupIDRequest | PlainMessage<SyntheticLockupByLockupIDRequest> | undefined
+  ): boolean {
     return proto3.util.equals(SyntheticLockupByLockupIDRequest, a, b);
   }
 }
@@ -1117,24 +1463,42 @@ export class SyntheticLockupByLockupIDResponse extends Message<SyntheticLockupBy
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.SyntheticLockupByLockupIDResponse";
+  static readonly typeName = 'osmosis.lockup.SyntheticLockupByLockupIDResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "synthetic_lock", kind: "message", T: SyntheticLock },
+    { no: 1, name: 'synthetic_lock', kind: 'message', T: SyntheticLock },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SyntheticLockupByLockupIDResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): SyntheticLockupByLockupIDResponse {
     return new SyntheticLockupByLockupIDResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SyntheticLockupByLockupIDResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): SyntheticLockupByLockupIDResponse {
     return new SyntheticLockupByLockupIDResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SyntheticLockupByLockupIDResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): SyntheticLockupByLockupIDResponse {
     return new SyntheticLockupByLockupIDResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SyntheticLockupByLockupIDResponse | PlainMessage<SyntheticLockupByLockupIDResponse> | undefined, b: SyntheticLockupByLockupIDResponse | PlainMessage<SyntheticLockupByLockupIDResponse> | undefined): boolean {
+  static equals(
+    a:
+      | SyntheticLockupByLockupIDResponse
+      | PlainMessage<SyntheticLockupByLockupIDResponse>
+      | undefined,
+    b:
+      | SyntheticLockupByLockupIDResponse
+      | PlainMessage<SyntheticLockupByLockupIDResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(SyntheticLockupByLockupIDResponse, a, b);
   }
 }
@@ -1146,7 +1510,7 @@ export class AccountLockedLongerDurationRequest extends Message<AccountLockedLon
   /**
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   /**
    * @generated from field: google.protobuf.Duration duration = 2;
@@ -1159,25 +1523,43 @@ export class AccountLockedLongerDurationRequest extends Message<AccountLockedLon
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.AccountLockedLongerDurationRequest";
+  static readonly typeName = 'osmosis.lockup.AccountLockedLongerDurationRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "duration", kind: "message", T: Duration },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'duration', kind: 'message', T: Duration },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountLockedLongerDurationRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AccountLockedLongerDurationRequest {
     return new AccountLockedLongerDurationRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AccountLockedLongerDurationRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedLongerDurationRequest {
     return new AccountLockedLongerDurationRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountLockedLongerDurationRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedLongerDurationRequest {
     return new AccountLockedLongerDurationRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccountLockedLongerDurationRequest | PlainMessage<AccountLockedLongerDurationRequest> | undefined, b: AccountLockedLongerDurationRequest | PlainMessage<AccountLockedLongerDurationRequest> | undefined): boolean {
+  static equals(
+    a:
+      | AccountLockedLongerDurationRequest
+      | PlainMessage<AccountLockedLongerDurationRequest>
+      | undefined,
+    b:
+      | AccountLockedLongerDurationRequest
+      | PlainMessage<AccountLockedLongerDurationRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(AccountLockedLongerDurationRequest, a, b);
   }
 }
@@ -1197,24 +1579,42 @@ export class AccountLockedLongerDurationResponse extends Message<AccountLockedLo
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.AccountLockedLongerDurationResponse";
+  static readonly typeName = 'osmosis.lockup.AccountLockedLongerDurationResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "locks", kind: "message", T: PeriodLock, repeated: true },
+    { no: 1, name: 'locks', kind: 'message', T: PeriodLock, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountLockedLongerDurationResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AccountLockedLongerDurationResponse {
     return new AccountLockedLongerDurationResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AccountLockedLongerDurationResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedLongerDurationResponse {
     return new AccountLockedLongerDurationResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountLockedLongerDurationResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedLongerDurationResponse {
     return new AccountLockedLongerDurationResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccountLockedLongerDurationResponse | PlainMessage<AccountLockedLongerDurationResponse> | undefined, b: AccountLockedLongerDurationResponse | PlainMessage<AccountLockedLongerDurationResponse> | undefined): boolean {
+  static equals(
+    a:
+      | AccountLockedLongerDurationResponse
+      | PlainMessage<AccountLockedLongerDurationResponse>
+      | undefined,
+    b:
+      | AccountLockedLongerDurationResponse
+      | PlainMessage<AccountLockedLongerDurationResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(AccountLockedLongerDurationResponse, a, b);
   }
 }
@@ -1226,7 +1626,7 @@ export class AccountLockedDurationRequest extends Message<AccountLockedDurationR
   /**
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   /**
    * @generated from field: google.protobuf.Duration duration = 2;
@@ -1239,25 +1639,37 @@ export class AccountLockedDurationRequest extends Message<AccountLockedDurationR
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.AccountLockedDurationRequest";
+  static readonly typeName = 'osmosis.lockup.AccountLockedDurationRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "duration", kind: "message", T: Duration },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'duration', kind: 'message', T: Duration },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountLockedDurationRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AccountLockedDurationRequest {
     return new AccountLockedDurationRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AccountLockedDurationRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedDurationRequest {
     return new AccountLockedDurationRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountLockedDurationRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedDurationRequest {
     return new AccountLockedDurationRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccountLockedDurationRequest | PlainMessage<AccountLockedDurationRequest> | undefined, b: AccountLockedDurationRequest | PlainMessage<AccountLockedDurationRequest> | undefined): boolean {
+  static equals(
+    a: AccountLockedDurationRequest | PlainMessage<AccountLockedDurationRequest> | undefined,
+    b: AccountLockedDurationRequest | PlainMessage<AccountLockedDurationRequest> | undefined
+  ): boolean {
     return proto3.util.equals(AccountLockedDurationRequest, a, b);
   }
 }
@@ -1277,24 +1689,36 @@ export class AccountLockedDurationResponse extends Message<AccountLockedDuration
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.AccountLockedDurationResponse";
+  static readonly typeName = 'osmosis.lockup.AccountLockedDurationResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "locks", kind: "message", T: PeriodLock, repeated: true },
+    { no: 1, name: 'locks', kind: 'message', T: PeriodLock, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountLockedDurationResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AccountLockedDurationResponse {
     return new AccountLockedDurationResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AccountLockedDurationResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedDurationResponse {
     return new AccountLockedDurationResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountLockedDurationResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedDurationResponse {
     return new AccountLockedDurationResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccountLockedDurationResponse | PlainMessage<AccountLockedDurationResponse> | undefined, b: AccountLockedDurationResponse | PlainMessage<AccountLockedDurationResponse> | undefined): boolean {
+  static equals(
+    a: AccountLockedDurationResponse | PlainMessage<AccountLockedDurationResponse> | undefined,
+    b: AccountLockedDurationResponse | PlainMessage<AccountLockedDurationResponse> | undefined
+  ): boolean {
     return proto3.util.equals(AccountLockedDurationResponse, a, b);
   }
 }
@@ -1306,7 +1730,7 @@ export class AccountLockedLongerDurationNotUnlockingOnlyRequest extends Message<
   /**
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   /**
    * @generated from field: google.protobuf.Duration duration = 2;
@@ -1319,25 +1743,46 @@ export class AccountLockedLongerDurationNotUnlockingOnlyRequest extends Message<
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.AccountLockedLongerDurationNotUnlockingOnlyRequest";
+  static readonly typeName = 'osmosis.lockup.AccountLockedLongerDurationNotUnlockingOnlyRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "duration", kind: "message", T: Duration },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'duration', kind: 'message', T: Duration },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountLockedLongerDurationNotUnlockingOnlyRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AccountLockedLongerDurationNotUnlockingOnlyRequest {
     return new AccountLockedLongerDurationNotUnlockingOnlyRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AccountLockedLongerDurationNotUnlockingOnlyRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedLongerDurationNotUnlockingOnlyRequest {
     return new AccountLockedLongerDurationNotUnlockingOnlyRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountLockedLongerDurationNotUnlockingOnlyRequest {
-    return new AccountLockedLongerDurationNotUnlockingOnlyRequest().fromJsonString(jsonString, options);
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedLongerDurationNotUnlockingOnlyRequest {
+    return new AccountLockedLongerDurationNotUnlockingOnlyRequest().fromJsonString(
+      jsonString,
+      options
+    );
   }
 
-  static equals(a: AccountLockedLongerDurationNotUnlockingOnlyRequest | PlainMessage<AccountLockedLongerDurationNotUnlockingOnlyRequest> | undefined, b: AccountLockedLongerDurationNotUnlockingOnlyRequest | PlainMessage<AccountLockedLongerDurationNotUnlockingOnlyRequest> | undefined): boolean {
+  static equals(
+    a:
+      | AccountLockedLongerDurationNotUnlockingOnlyRequest
+      | PlainMessage<AccountLockedLongerDurationNotUnlockingOnlyRequest>
+      | undefined,
+    b:
+      | AccountLockedLongerDurationNotUnlockingOnlyRequest
+      | PlainMessage<AccountLockedLongerDurationNotUnlockingOnlyRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(AccountLockedLongerDurationNotUnlockingOnlyRequest, a, b);
   }
 }
@@ -1357,24 +1802,45 @@ export class AccountLockedLongerDurationNotUnlockingOnlyResponse extends Message
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.AccountLockedLongerDurationNotUnlockingOnlyResponse";
+  static readonly typeName = 'osmosis.lockup.AccountLockedLongerDurationNotUnlockingOnlyResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "locks", kind: "message", T: PeriodLock, repeated: true },
+    { no: 1, name: 'locks', kind: 'message', T: PeriodLock, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountLockedLongerDurationNotUnlockingOnlyResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AccountLockedLongerDurationNotUnlockingOnlyResponse {
     return new AccountLockedLongerDurationNotUnlockingOnlyResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AccountLockedLongerDurationNotUnlockingOnlyResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedLongerDurationNotUnlockingOnlyResponse {
     return new AccountLockedLongerDurationNotUnlockingOnlyResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountLockedLongerDurationNotUnlockingOnlyResponse {
-    return new AccountLockedLongerDurationNotUnlockingOnlyResponse().fromJsonString(jsonString, options);
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedLongerDurationNotUnlockingOnlyResponse {
+    return new AccountLockedLongerDurationNotUnlockingOnlyResponse().fromJsonString(
+      jsonString,
+      options
+    );
   }
 
-  static equals(a: AccountLockedLongerDurationNotUnlockingOnlyResponse | PlainMessage<AccountLockedLongerDurationNotUnlockingOnlyResponse> | undefined, b: AccountLockedLongerDurationNotUnlockingOnlyResponse | PlainMessage<AccountLockedLongerDurationNotUnlockingOnlyResponse> | undefined): boolean {
+  static equals(
+    a:
+      | AccountLockedLongerDurationNotUnlockingOnlyResponse
+      | PlainMessage<AccountLockedLongerDurationNotUnlockingOnlyResponse>
+      | undefined,
+    b:
+      | AccountLockedLongerDurationNotUnlockingOnlyResponse
+      | PlainMessage<AccountLockedLongerDurationNotUnlockingOnlyResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(AccountLockedLongerDurationNotUnlockingOnlyResponse, a, b);
   }
 }
@@ -1386,7 +1852,7 @@ export class AccountLockedLongerDurationDenomRequest extends Message<AccountLock
   /**
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   /**
    * @generated from field: google.protobuf.Duration duration = 2;
@@ -1396,7 +1862,7 @@ export class AccountLockedLongerDurationDenomRequest extends Message<AccountLock
   /**
    * @generated from field: string denom = 3;
    */
-  denom = "";
+  denom = '';
 
   constructor(data?: PartialMessage<AccountLockedLongerDurationDenomRequest>) {
     super();
@@ -1404,26 +1870,44 @@ export class AccountLockedLongerDurationDenomRequest extends Message<AccountLock
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.AccountLockedLongerDurationDenomRequest";
+  static readonly typeName = 'osmosis.lockup.AccountLockedLongerDurationDenomRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "duration", kind: "message", T: Duration },
-    { no: 3, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'duration', kind: 'message', T: Duration },
+    { no: 3, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountLockedLongerDurationDenomRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AccountLockedLongerDurationDenomRequest {
     return new AccountLockedLongerDurationDenomRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AccountLockedLongerDurationDenomRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedLongerDurationDenomRequest {
     return new AccountLockedLongerDurationDenomRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountLockedLongerDurationDenomRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedLongerDurationDenomRequest {
     return new AccountLockedLongerDurationDenomRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccountLockedLongerDurationDenomRequest | PlainMessage<AccountLockedLongerDurationDenomRequest> | undefined, b: AccountLockedLongerDurationDenomRequest | PlainMessage<AccountLockedLongerDurationDenomRequest> | undefined): boolean {
+  static equals(
+    a:
+      | AccountLockedLongerDurationDenomRequest
+      | PlainMessage<AccountLockedLongerDurationDenomRequest>
+      | undefined,
+    b:
+      | AccountLockedLongerDurationDenomRequest
+      | PlainMessage<AccountLockedLongerDurationDenomRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(AccountLockedLongerDurationDenomRequest, a, b);
   }
 }
@@ -1443,24 +1927,42 @@ export class AccountLockedLongerDurationDenomResponse extends Message<AccountLoc
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.AccountLockedLongerDurationDenomResponse";
+  static readonly typeName = 'osmosis.lockup.AccountLockedLongerDurationDenomResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "locks", kind: "message", T: PeriodLock, repeated: true },
+    { no: 1, name: 'locks', kind: 'message', T: PeriodLock, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountLockedLongerDurationDenomResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AccountLockedLongerDurationDenomResponse {
     return new AccountLockedLongerDurationDenomResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AccountLockedLongerDurationDenomResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedLongerDurationDenomResponse {
     return new AccountLockedLongerDurationDenomResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountLockedLongerDurationDenomResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountLockedLongerDurationDenomResponse {
     return new AccountLockedLongerDurationDenomResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccountLockedLongerDurationDenomResponse | PlainMessage<AccountLockedLongerDurationDenomResponse> | undefined, b: AccountLockedLongerDurationDenomResponse | PlainMessage<AccountLockedLongerDurationDenomResponse> | undefined): boolean {
+  static equals(
+    a:
+      | AccountLockedLongerDurationDenomResponse
+      | PlainMessage<AccountLockedLongerDurationDenomResponse>
+      | undefined,
+    b:
+      | AccountLockedLongerDurationDenomResponse
+      | PlainMessage<AccountLockedLongerDurationDenomResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(AccountLockedLongerDurationDenomResponse, a, b);
   }
 }
@@ -1475,9 +1977,8 @@ export class QueryParamsRequest extends Message<QueryParamsRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.QueryParamsRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.lockup.QueryParamsRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryParamsRequest {
     return new QueryParamsRequest().fromBinary(bytes, options);
@@ -1487,11 +1988,17 @@ export class QueryParamsRequest extends Message<QueryParamsRequest> {
     return new QueryParamsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryParamsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryParamsRequest {
     return new QueryParamsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined, b: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined): boolean {
+  static equals(
+    a: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined,
+    b: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryParamsRequest, a, b);
   }
 }
@@ -1511,9 +2018,9 @@ export class QueryParamsResponse extends Message<QueryParamsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.QueryParamsResponse";
+  static readonly typeName = 'osmosis.lockup.QueryParamsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "params", kind: "message", T: Params },
+    { no: 1, name: 'params', kind: 'message', T: Params },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryParamsResponse {
@@ -1524,12 +2031,17 @@ export class QueryParamsResponse extends Message<QueryParamsResponse> {
     return new QueryParamsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryParamsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryParamsResponse {
     return new QueryParamsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined, b: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined): boolean {
+  static equals(
+    a: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined,
+    b: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryParamsResponse, a, b);
   }
 }
-

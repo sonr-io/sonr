@@ -3,9 +3,24 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgPermissionsGrant, MsgPermissionsGrantResponse, MsgPermissionsRevoke, MsgPermissionsRevokeResponse, MsgProtocolsConfigure, MsgProtocolsConfigureResponse, MsgRecordsDelete, MsgRecordsDeleteResponse, MsgRecordsWrite, MsgRecordsWriteResponse, MsgRotateVaultKeys, MsgRotateVaultKeysResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx_pb.js";
+import {
+  MsgPermissionsGrant,
+  MsgPermissionsGrantResponse,
+  MsgPermissionsRevoke,
+  MsgPermissionsRevokeResponse,
+  MsgProtocolsConfigure,
+  MsgProtocolsConfigureResponse,
+  MsgRecordsDelete,
+  MsgRecordsDeleteResponse,
+  MsgRecordsWrite,
+  MsgRecordsWriteResponse,
+  MsgRotateVaultKeys,
+  MsgRotateVaultKeysResponse,
+  MsgUpdateParams,
+  MsgUpdateParamsResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "dwn.v1.Msg";
+const TYPE_NAME = 'dwn.v1.Msg';
 
 /**
  * UpdateParams defines a governance operation for updating the parameters.
@@ -14,7 +29,7 @@ const TYPE_NAME = "dwn.v1.Msg";
  */
 export const MsgUpdateParamsService = {
   typeName: TYPE_NAME,
-  method: "UpdateParams",
+  method: 'UpdateParams',
   Request: MsgUpdateParams,
   Response: MsgUpdateParamsResponse,
 } as const;
@@ -31,7 +46,7 @@ export const MsgUpdateParamsService = {
  */
 export const MsgRecordsWriteService = {
   typeName: TYPE_NAME,
-  method: "RecordsWrite",
+  method: 'RecordsWrite',
   Request: MsgRecordsWrite,
   Response: MsgRecordsWriteResponse,
 } as const;
@@ -41,7 +56,7 @@ export const MsgRecordsWriteService = {
  */
 export const MsgRecordsDeleteService = {
   typeName: TYPE_NAME,
-  method: "RecordsDelete",
+  method: 'RecordsDelete',
   Request: MsgRecordsDelete,
   Response: MsgRecordsDeleteResponse,
 } as const;
@@ -53,7 +68,7 @@ export const MsgRecordsDeleteService = {
  */
 export const MsgProtocolsConfigureService = {
   typeName: TYPE_NAME,
-  method: "ProtocolsConfigure",
+  method: 'ProtocolsConfigure',
   Request: MsgProtocolsConfigure,
   Response: MsgProtocolsConfigureResponse,
 } as const;
@@ -65,7 +80,7 @@ export const MsgProtocolsConfigureService = {
  */
 export const MsgPermissionsGrantService = {
   typeName: TYPE_NAME,
-  method: "PermissionsGrant",
+  method: 'PermissionsGrant',
   Request: MsgPermissionsGrant,
   Response: MsgPermissionsGrantResponse,
 } as const;
@@ -75,7 +90,7 @@ export const MsgPermissionsGrantService = {
  */
 export const MsgPermissionsRevokeService = {
   typeName: TYPE_NAME,
-  method: "PermissionsRevoke",
+  method: 'PermissionsRevoke',
   Request: MsgPermissionsRevoke,
   Response: MsgPermissionsRevokeResponse,
 } as const;
@@ -87,8 +102,7 @@ export const MsgPermissionsRevokeService = {
  */
 export const MsgRotateVaultKeysService = {
   typeName: TYPE_NAME,
-  method: "RotateVaultKeys",
+  method: 'RotateVaultKeys',
   Request: MsgRotateVaultKeys,
   Response: MsgRotateVaultKeysResponse,
 } as const;
-

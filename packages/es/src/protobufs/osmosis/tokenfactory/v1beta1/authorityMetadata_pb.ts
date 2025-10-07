@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
 
 /**
  * DenomAuthorityMetadata specifies metadata for addresses that have specific
@@ -19,7 +26,7 @@ export class DenomAuthorityMetadata extends Message<DenomAuthorityMetadata> {
    *
    * @generated from field: string admin = 1;
    */
-  admin = "";
+  admin = '';
 
   constructor(data?: PartialMessage<DenomAuthorityMetadata>) {
     super();
@@ -27,25 +34,36 @@ export class DenomAuthorityMetadata extends Message<DenomAuthorityMetadata> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.tokenfactory.v1beta1.DenomAuthorityMetadata";
+  static readonly typeName = 'osmosis.tokenfactory.v1beta1.DenomAuthorityMetadata';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "admin", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'admin', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DenomAuthorityMetadata {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): DenomAuthorityMetadata {
     return new DenomAuthorityMetadata().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DenomAuthorityMetadata {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): DenomAuthorityMetadata {
     return new DenomAuthorityMetadata().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DenomAuthorityMetadata {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): DenomAuthorityMetadata {
     return new DenomAuthorityMetadata().fromJsonString(jsonString, options);
   }
 
-  static equals(a: DenomAuthorityMetadata | PlainMessage<DenomAuthorityMetadata> | undefined, b: DenomAuthorityMetadata | PlainMessage<DenomAuthorityMetadata> | undefined): boolean {
+  static equals(
+    a: DenomAuthorityMetadata | PlainMessage<DenomAuthorityMetadata> | undefined,
+    b: DenomAuthorityMetadata | PlainMessage<DenomAuthorityMetadata> | undefined
+  ): boolean {
     return proto3.util.equals(DenomAuthorityMetadata, a, b);
   }
 }
-

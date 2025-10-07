@@ -3,16 +3,53 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ParamsRequest, ParamsResponse, QueryCalcExitPoolCoinsFromSharesRequest, QueryCalcExitPoolCoinsFromSharesResponse, QueryCalcJoinPoolNoSwapSharesRequest, QueryCalcJoinPoolNoSwapSharesResponse, QueryCalcJoinPoolSharesRequest, QueryCalcJoinPoolSharesResponse, QueryCFMMConcentratedPoolLinksRequest, QueryCFMMConcentratedPoolLinksResponse, QueryConcentratedPoolIdLinkFromCFMMRequest, QueryConcentratedPoolIdLinkFromCFMMResponse, QueryNumPoolsRequest, QueryNumPoolsResponse, QueryPoolParamsRequest, QueryPoolParamsResponse, QueryPoolRequest, QueryPoolResponse, QueryPoolsRequest, QueryPoolsResponse, QueryPoolsWithFilterRequest, QueryPoolsWithFilterResponse, QueryPoolTypeRequest, QueryPoolTypeResponse, QuerySpotPriceRequest, QuerySpotPriceResponse, QuerySwapExactAmountInRequest, QuerySwapExactAmountInResponse, QuerySwapExactAmountOutRequest, QuerySwapExactAmountOutResponse, QueryTotalLiquidityRequest, QueryTotalLiquidityResponse, QueryTotalPoolLiquidityRequest, QueryTotalPoolLiquidityResponse, QueryTotalSharesRequest, QueryTotalSharesResponse } from "./query_pb.js";
+import {
+  ParamsRequest,
+  ParamsResponse,
+  QueryCalcExitPoolCoinsFromSharesRequest,
+  QueryCalcExitPoolCoinsFromSharesResponse,
+  QueryCalcJoinPoolNoSwapSharesRequest,
+  QueryCalcJoinPoolNoSwapSharesResponse,
+  QueryCalcJoinPoolSharesRequest,
+  QueryCalcJoinPoolSharesResponse,
+  QueryCFMMConcentratedPoolLinksRequest,
+  QueryCFMMConcentratedPoolLinksResponse,
+  QueryConcentratedPoolIdLinkFromCFMMRequest,
+  QueryConcentratedPoolIdLinkFromCFMMResponse,
+  QueryNumPoolsRequest,
+  QueryNumPoolsResponse,
+  QueryPoolParamsRequest,
+  QueryPoolParamsResponse,
+  QueryPoolRequest,
+  QueryPoolResponse,
+  QueryPoolsRequest,
+  QueryPoolsResponse,
+  QueryPoolsWithFilterRequest,
+  QueryPoolsWithFilterResponse,
+  QueryPoolTypeRequest,
+  QueryPoolTypeResponse,
+  QuerySpotPriceRequest,
+  QuerySpotPriceResponse,
+  QuerySwapExactAmountInRequest,
+  QuerySwapExactAmountInResponse,
+  QuerySwapExactAmountOutRequest,
+  QuerySwapExactAmountOutResponse,
+  QueryTotalLiquidityRequest,
+  QueryTotalLiquidityResponse,
+  QueryTotalPoolLiquidityRequest,
+  QueryTotalPoolLiquidityResponse,
+  QueryTotalSharesRequest,
+  QueryTotalSharesResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "osmosis.gamm.v1beta1.Query";
+const TYPE_NAME = 'osmosis.gamm.v1beta1.Query';
 
 /**
  * @generated from rpc osmosis.gamm.v1beta1.Query.Pools
  */
 export const QueryPoolsService = {
   typeName: TYPE_NAME,
-  method: "Pools",
+  method: 'Pools',
   Request: QueryPoolsRequest,
   Response: QueryPoolsResponse,
 } as const;
@@ -25,7 +62,7 @@ export const QueryPoolsService = {
  */
 export const QueryNumPoolsService = {
   typeName: TYPE_NAME,
-  method: "NumPools",
+  method: 'NumPools',
   Request: QueryNumPoolsRequest,
   Response: QueryNumPoolsResponse,
 } as const;
@@ -35,7 +72,7 @@ export const QueryNumPoolsService = {
  */
 export const QueryTotalLiquidityService = {
   typeName: TYPE_NAME,
-  method: "TotalLiquidity",
+  method: 'TotalLiquidity',
   Request: QueryTotalLiquidityRequest,
   Response: QueryTotalLiquidityResponse,
 } as const;
@@ -48,7 +85,7 @@ export const QueryTotalLiquidityService = {
  */
 export const QueryPoolsWithFilterService = {
   typeName: TYPE_NAME,
-  method: "PoolsWithFilter",
+  method: 'PoolsWithFilter',
   Request: QueryPoolsWithFilterRequest,
   Response: QueryPoolsWithFilterResponse,
 } as const;
@@ -61,7 +98,7 @@ export const QueryPoolsWithFilterService = {
  */
 export const QueryPoolService = {
   typeName: TYPE_NAME,
-  method: "Pool",
+  method: 'Pool',
   Request: QueryPoolRequest,
   Response: QueryPoolResponse,
 } as const;
@@ -75,7 +112,7 @@ export const QueryPoolService = {
  */
 export const QueryPoolTypeService = {
   typeName: TYPE_NAME,
-  method: "PoolType",
+  method: 'PoolType',
   Request: QueryPoolTypeRequest,
   Response: QueryPoolTypeResponse,
 } as const;
@@ -88,7 +125,7 @@ export const QueryPoolTypeService = {
  */
 export const QueryCalcJoinPoolNoSwapSharesService = {
   typeName: TYPE_NAME,
-  method: "CalcJoinPoolNoSwapShares",
+  method: 'CalcJoinPoolNoSwapShares',
   Request: QueryCalcJoinPoolNoSwapSharesRequest,
   Response: QueryCalcJoinPoolNoSwapSharesResponse,
 } as const;
@@ -98,7 +135,7 @@ export const QueryCalcJoinPoolNoSwapSharesService = {
  */
 export const QueryCalcJoinPoolSharesService = {
   typeName: TYPE_NAME,
-  method: "CalcJoinPoolShares",
+  method: 'CalcJoinPoolShares',
   Request: QueryCalcJoinPoolSharesRequest,
   Response: QueryCalcJoinPoolSharesResponse,
 } as const;
@@ -108,7 +145,7 @@ export const QueryCalcJoinPoolSharesService = {
  */
 export const QueryCalcExitPoolCoinsFromSharesService = {
   typeName: TYPE_NAME,
-  method: "CalcExitPoolCoinsFromShares",
+  method: 'CalcExitPoolCoinsFromShares',
   Request: QueryCalcExitPoolCoinsFromSharesRequest,
   Response: QueryCalcExitPoolCoinsFromSharesResponse,
 } as const;
@@ -118,7 +155,7 @@ export const QueryCalcExitPoolCoinsFromSharesService = {
  */
 export const QueryPoolParamsService = {
   typeName: TYPE_NAME,
-  method: "PoolParams",
+  method: 'PoolParams',
   Request: QueryPoolParamsRequest,
   Response: QueryPoolParamsResponse,
 } as const;
@@ -131,7 +168,7 @@ export const QueryPoolParamsService = {
  */
 export const QueryTotalPoolLiquidityService = {
   typeName: TYPE_NAME,
-  method: "TotalPoolLiquidity",
+  method: 'TotalPoolLiquidity',
   Request: QueryTotalPoolLiquidityRequest,
   Response: QueryTotalPoolLiquidityResponse,
 } as const;
@@ -141,7 +178,7 @@ export const QueryTotalPoolLiquidityService = {
  */
 export const QueryTotalSharesService = {
   typeName: TYPE_NAME,
-  method: "TotalShares",
+  method: 'TotalShares',
   Request: QueryTotalSharesRequest,
   Response: QueryTotalSharesResponse,
 } as const;
@@ -155,7 +192,7 @@ export const QueryTotalSharesService = {
  */
 export const QuerySpotPriceService = {
   typeName: TYPE_NAME,
-  method: "SpotPrice",
+  method: 'SpotPrice',
   Request: QuerySpotPriceRequest,
   Response: QuerySpotPriceResponse,
 } as const;
@@ -168,7 +205,7 @@ export const QuerySpotPriceService = {
  */
 export const QueryEstimateSwapExactAmountInService = {
   typeName: TYPE_NAME,
-  method: "EstimateSwapExactAmountIn",
+  method: 'EstimateSwapExactAmountIn',
   Request: QuerySwapExactAmountInRequest,
   Response: QuerySwapExactAmountInResponse,
 } as const;
@@ -181,7 +218,7 @@ export const QueryEstimateSwapExactAmountInService = {
  */
 export const QueryEstimateSwapExactAmountOutService = {
   typeName: TYPE_NAME,
-  method: "EstimateSwapExactAmountOut",
+  method: 'EstimateSwapExactAmountOut',
   Request: QuerySwapExactAmountOutRequest,
   Response: QuerySwapExactAmountOutResponse,
 } as const;
@@ -194,7 +231,7 @@ export const QueryEstimateSwapExactAmountOutService = {
  */
 export const QueryConcentratedPoolIdLinkFromCFMMService = {
   typeName: TYPE_NAME,
-  method: "ConcentratedPoolIdLinkFromCFMM",
+  method: 'ConcentratedPoolIdLinkFromCFMM',
   Request: QueryConcentratedPoolIdLinkFromCFMMRequest,
   Response: QueryConcentratedPoolIdLinkFromCFMMResponse,
 } as const;
@@ -207,7 +244,7 @@ export const QueryConcentratedPoolIdLinkFromCFMMService = {
  */
 export const QueryCFMMConcentratedPoolLinksService = {
   typeName: TYPE_NAME,
-  method: "CFMMConcentratedPoolLinks",
+  method: 'CFMMConcentratedPoolLinks',
   Request: QueryCFMMConcentratedPoolLinksRequest,
   Response: QueryCFMMConcentratedPoolLinksResponse,
 } as const;
@@ -219,8 +256,7 @@ export const QueryCFMMConcentratedPoolLinksService = {
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: ParamsRequest,
   Response: ParamsResponse,
 } as const;
-

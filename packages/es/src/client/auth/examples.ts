@@ -152,11 +152,7 @@ export async function setupConditionalAuthentication() {
 }
 
 // Example 7: Full registration flow with error handling
-export async function fullRegistrationFlow(
-  username: string,
-  email?: string,
-  phoneNumber?: string
-) {
+export async function fullRegistrationFlow(username: string, email?: string, phoneNumber?: string) {
   const apiUrl = 'http://localhost:1317';
 
   // Check if passkeys are supported
@@ -188,12 +184,12 @@ export async function fullRegistrationFlow(
       console.log('🔐 Vault ID:', result.vaultId);
       console.log('🔑 Assertion Methods:', result.assertionMethods);
       console.log('🎫 UCAN Token:', result.ucanToken);
-      
+
       // Store the UCAN token for future operations
       localStorage.setItem('ucan_token', result.ucanToken || '');
       localStorage.setItem('user_did', result.did || '');
       localStorage.setItem('vault_id', result.vaultId || '');
-      
+
       return result;
     } else {
       console.error('❌ Registration failed:', result.error);

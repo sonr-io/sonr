@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgRegisterInterchainAccount, MsgRegisterInterchainAccountResponse, MsgSendTx, MsgSendTxResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx_pb.js";
+import {
+  MsgRegisterInterchainAccount,
+  MsgRegisterInterchainAccountResponse,
+  MsgSendTx,
+  MsgSendTxResponse,
+  MsgUpdateParams,
+  MsgUpdateParamsResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "ibc.applications.interchain_accounts.controller.v1.Msg";
+const TYPE_NAME = 'ibc.applications.interchain_accounts.controller.v1.Msg';
 
 /**
  * RegisterInterchainAccount defines a rpc handler for MsgRegisterInterchainAccount.
@@ -14,7 +21,7 @@ const TYPE_NAME = "ibc.applications.interchain_accounts.controller.v1.Msg";
  */
 export const MsgRegisterInterchainAccountService = {
   typeName: TYPE_NAME,
-  method: "RegisterInterchainAccount",
+  method: 'RegisterInterchainAccount',
   Request: MsgRegisterInterchainAccount,
   Response: MsgRegisterInterchainAccountResponse,
 } as const;
@@ -26,7 +33,7 @@ export const MsgRegisterInterchainAccountService = {
  */
 export const MsgSendTxService = {
   typeName: TYPE_NAME,
-  method: "SendTx",
+  method: 'SendTx',
   Request: MsgSendTx,
   Response: MsgSendTxResponse,
 } as const;
@@ -38,8 +45,7 @@ export const MsgSendTxService = {
  */
 export const MsgUpdateParamsService = {
   typeName: TYPE_NAME,
-  method: "UpdateParams",
+  method: 'UpdateParams',
   Request: MsgUpdateParams,
   Response: MsgUpdateParamsResponse,
 } as const;
-

@@ -3,9 +3,22 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgCancelOrder, MsgCancelOrderResponse, MsgCreateLimitOrder, MsgCreateLimitOrderResponse, MsgExecuteSwap, MsgExecuteSwapResponse, MsgProvideLiquidity, MsgProvideLiquidityResponse, MsgRegisterDEXAccount, MsgRegisterDEXAccountResponse, MsgRemoveLiquidity, MsgRemoveLiquidityResponse } from "./tx_pb.js";
+import {
+  MsgCancelOrder,
+  MsgCancelOrderResponse,
+  MsgCreateLimitOrder,
+  MsgCreateLimitOrderResponse,
+  MsgExecuteSwap,
+  MsgExecuteSwapResponse,
+  MsgProvideLiquidity,
+  MsgProvideLiquidityResponse,
+  MsgRegisterDEXAccount,
+  MsgRegisterDEXAccountResponse,
+  MsgRemoveLiquidity,
+  MsgRemoveLiquidityResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "dex.v1.Msg";
+const TYPE_NAME = 'dex.v1.Msg';
 
 /**
  * RegisterDEXAccount creates a new ICA account for DEX operations
@@ -19,7 +32,7 @@ const TYPE_NAME = "dex.v1.Msg";
  */
 export const MsgRegisterDEXAccountService = {
   typeName: TYPE_NAME,
-  method: "RegisterDEXAccount",
+  method: 'RegisterDEXAccount',
   Request: MsgRegisterDEXAccount,
   Response: MsgRegisterDEXAccountResponse,
 } as const;
@@ -36,7 +49,7 @@ export const MsgRegisterDEXAccountService = {
  */
 export const MsgExecuteSwapService = {
   typeName: TYPE_NAME,
-  method: "ExecuteSwap",
+  method: 'ExecuteSwap',
   Request: MsgExecuteSwap,
   Response: MsgExecuteSwapResponse,
 } as const;
@@ -53,7 +66,7 @@ export const MsgExecuteSwapService = {
  */
 export const MsgProvideLiquidityService = {
   typeName: TYPE_NAME,
-  method: "ProvideLiquidity",
+  method: 'ProvideLiquidity',
   Request: MsgProvideLiquidity,
   Response: MsgProvideLiquidityResponse,
 } as const;
@@ -70,7 +83,7 @@ export const MsgProvideLiquidityService = {
  */
 export const MsgRemoveLiquidityService = {
   typeName: TYPE_NAME,
-  method: "RemoveLiquidity",
+  method: 'RemoveLiquidity',
   Request: MsgRemoveLiquidity,
   Response: MsgRemoveLiquidityResponse,
 } as const;
@@ -87,7 +100,7 @@ export const MsgRemoveLiquidityService = {
  */
 export const MsgCreateLimitOrderService = {
   typeName: TYPE_NAME,
-  method: "CreateLimitOrder",
+  method: 'CreateLimitOrder',
   Request: MsgCreateLimitOrder,
   Response: MsgCreateLimitOrderResponse,
 } as const;
@@ -104,8 +117,7 @@ export const MsgCreateLimitOrderService = {
  */
 export const MsgCancelOrderService = {
   typeName: TYPE_NAME,
-  method: "CancelOrder",
+  method: 'CancelOrder',
   Request: MsgCancelOrder,
   Response: MsgCancelOrderResponse,
 } as const;
-

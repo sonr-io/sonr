@@ -49,6 +49,10 @@
       "import": "./dist/codec/index.js",
       "default": "./dist/codec/index.js"
     },
+    "./ucan": {
+      "import": "./dist/ucan/index.js",
+      "default": "./dist/ucan/index.js"
+    },
     "./protobufs": {
       "import": "./dist/protobufs/index.js",
       "default": "./dist/protobufs/index.js"

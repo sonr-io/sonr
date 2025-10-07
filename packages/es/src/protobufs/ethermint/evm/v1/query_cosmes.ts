@@ -3,10 +3,33 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { EstimateGasResponse, EthCallRequest, QueryAccountRequest, QueryAccountResponse, QueryBalanceRequest, QueryBalanceResponse, QueryBaseFeeRequest, QueryBaseFeeResponse, QueryCodeRequest, QueryCodeResponse, QueryCosmosAccountRequest, QueryCosmosAccountResponse, QueryParamsRequest, QueryParamsResponse, QueryStorageRequest, QueryStorageResponse, QueryTraceBlockRequest, QueryTraceBlockResponse, QueryTraceTxRequest, QueryTraceTxResponse, QueryValidatorAccountRequest, QueryValidatorAccountResponse } from "./query_pb.js";
-import { MsgEthereumTxResponse } from "./tx_pb.js";
+import {
+  EstimateGasResponse,
+  EthCallRequest,
+  QueryAccountRequest,
+  QueryAccountResponse,
+  QueryBalanceRequest,
+  QueryBalanceResponse,
+  QueryBaseFeeRequest,
+  QueryBaseFeeResponse,
+  QueryCodeRequest,
+  QueryCodeResponse,
+  QueryCosmosAccountRequest,
+  QueryCosmosAccountResponse,
+  QueryParamsRequest,
+  QueryParamsResponse,
+  QueryStorageRequest,
+  QueryStorageResponse,
+  QueryTraceBlockRequest,
+  QueryTraceBlockResponse,
+  QueryTraceTxRequest,
+  QueryTraceTxResponse,
+  QueryValidatorAccountRequest,
+  QueryValidatorAccountResponse,
+} from './query_pb.js';
+import { MsgEthereumTxResponse } from './tx_pb.js';
 
-const TYPE_NAME = "ethermint.evm.v1.Query";
+const TYPE_NAME = 'ethermint.evm.v1.Query';
 
 /**
  * Account queries an Ethereum account.
@@ -15,7 +38,7 @@ const TYPE_NAME = "ethermint.evm.v1.Query";
  */
 export const QueryAccountService = {
   typeName: TYPE_NAME,
-  method: "Account",
+  method: 'Account',
   Request: QueryAccountRequest,
   Response: QueryAccountResponse,
 } as const;
@@ -27,7 +50,7 @@ export const QueryAccountService = {
  */
 export const QueryCosmosAccountService = {
   typeName: TYPE_NAME,
-  method: "CosmosAccount",
+  method: 'CosmosAccount',
   Request: QueryCosmosAccountRequest,
   Response: QueryCosmosAccountResponse,
 } as const;
@@ -40,7 +63,7 @@ export const QueryCosmosAccountService = {
  */
 export const QueryValidatorAccountService = {
   typeName: TYPE_NAME,
-  method: "ValidatorAccount",
+  method: 'ValidatorAccount',
   Request: QueryValidatorAccountRequest,
   Response: QueryValidatorAccountResponse,
 } as const;
@@ -53,7 +76,7 @@ export const QueryValidatorAccountService = {
  */
 export const QueryBalanceService = {
   typeName: TYPE_NAME,
-  method: "Balance",
+  method: 'Balance',
   Request: QueryBalanceRequest,
   Response: QueryBalanceResponse,
 } as const;
@@ -65,7 +88,7 @@ export const QueryBalanceService = {
  */
 export const QueryStorageService = {
   typeName: TYPE_NAME,
-  method: "Storage",
+  method: 'Storage',
   Request: QueryStorageRequest,
   Response: QueryStorageResponse,
 } as const;
@@ -77,7 +100,7 @@ export const QueryStorageService = {
  */
 export const QueryCodeService = {
   typeName: TYPE_NAME,
-  method: "Code",
+  method: 'Code',
   Request: QueryCodeRequest,
   Response: QueryCodeResponse,
 } as const;
@@ -89,7 +112,7 @@ export const QueryCodeService = {
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: QueryParamsRequest,
   Response: QueryParamsResponse,
 } as const;
@@ -101,7 +124,7 @@ export const QueryParamsService = {
  */
 export const QueryEthCallService = {
   typeName: TYPE_NAME,
-  method: "EthCall",
+  method: 'EthCall',
   Request: EthCallRequest,
   Response: MsgEthereumTxResponse,
 } as const;
@@ -113,7 +136,7 @@ export const QueryEthCallService = {
  */
 export const QueryEstimateGasService = {
   typeName: TYPE_NAME,
-  method: "EstimateGas",
+  method: 'EstimateGas',
   Request: EthCallRequest,
   Response: EstimateGasResponse,
 } as const;
@@ -125,7 +148,7 @@ export const QueryEstimateGasService = {
  */
 export const QueryTraceTxService = {
   typeName: TYPE_NAME,
-  method: "TraceTx",
+  method: 'TraceTx',
   Request: QueryTraceTxRequest,
   Response: QueryTraceTxResponse,
 } as const;
@@ -137,7 +160,7 @@ export const QueryTraceTxService = {
  */
 export const QueryTraceBlockService = {
   typeName: TYPE_NAME,
-  method: "TraceBlock",
+  method: 'TraceBlock',
   Request: QueryTraceBlockRequest,
   Response: QueryTraceBlockResponse,
 } as const;
@@ -150,8 +173,7 @@ export const QueryTraceBlockService = {
  */
 export const QueryBaseFeeService = {
   typeName: TYPE_NAME,
-  method: "BaseFee",
+  method: 'BaseFee',
   Request: QueryBaseFeeRequest,
   Response: QueryBaseFeeResponse,
 } as const;
-

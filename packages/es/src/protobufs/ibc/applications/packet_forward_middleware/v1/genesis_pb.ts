@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * GenesisState defines the packetforward genesis state
@@ -28,9 +35,15 @@ export class GenesisState extends Message<GenesisState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.packet_forward_middleware.v1.GenesisState";
+  static readonly typeName = 'ibc.applications.packet_forward_middleware.v1.GenesisState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 2, name: "in_flight_packets", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: InFlightPacket} },
+    {
+      no: 2,
+      name: 'in_flight_packets',
+      kind: 'map',
+      K: 9 /* ScalarType.STRING */,
+      V: { kind: 'message', T: InFlightPacket },
+    },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {
@@ -45,7 +58,10 @@ export class GenesisState extends Message<GenesisState> {
     return new GenesisState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisState | PlainMessage<GenesisState> | undefined, b: GenesisState | PlainMessage<GenesisState> | undefined): boolean {
+  static equals(
+    a: GenesisState | PlainMessage<GenesisState> | undefined,
+    b: GenesisState | PlainMessage<GenesisState> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisState, a, b);
   }
 }
@@ -60,27 +76,27 @@ export class InFlightPacket extends Message<InFlightPacket> {
   /**
    * @generated from field: string original_sender_address = 1;
    */
-  originalSenderAddress = "";
+  originalSenderAddress = '';
 
   /**
    * @generated from field: string refund_channel_id = 2;
    */
-  refundChannelId = "";
+  refundChannelId = '';
 
   /**
    * @generated from field: string refund_port_id = 3;
    */
-  refundPortId = "";
+  refundPortId = '';
 
   /**
    * @generated from field: string packet_src_channel_id = 4;
    */
-  packetSrcChannelId = "";
+  packetSrcChannelId = '';
 
   /**
    * @generated from field: string packet_src_port_id = 5;
    */
-  packetSrcPortId = "";
+  packetSrcPortId = '';
 
   /**
    * @generated from field: uint64 packet_timeout_timestamp = 6;
@@ -90,7 +106,7 @@ export class InFlightPacket extends Message<InFlightPacket> {
   /**
    * @generated from field: string packet_timeout_height = 7;
    */
-  packetTimeoutHeight = "";
+  packetTimeoutHeight = '';
 
   /**
    * @generated from field: bytes packet_data = 8;
@@ -123,20 +139,20 @@ export class InFlightPacket extends Message<InFlightPacket> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.packet_forward_middleware.v1.InFlightPacket";
+  static readonly typeName = 'ibc.applications.packet_forward_middleware.v1.InFlightPacket';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "original_sender_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "refund_channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "refund_port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "packet_src_channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "packet_src_port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "packet_timeout_timestamp", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 7, name: "packet_timeout_height", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 8, name: "packet_data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 9, name: "refund_sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 10, name: "retries_remaining", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 11, name: "timeout", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 12, name: "nonrefundable", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'original_sender_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'refund_channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'refund_port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'packet_src_channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'packet_src_port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'packet_timeout_timestamp', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 7, name: 'packet_timeout_height', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: 'packet_data', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 9, name: 'refund_sequence', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 10, name: 'retries_remaining', kind: 'scalar', T: 5 /* ScalarType.INT32 */ },
+    { no: 11, name: 'timeout', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 12, name: 'nonrefundable', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InFlightPacket {
@@ -151,8 +167,10 @@ export class InFlightPacket extends Message<InFlightPacket> {
     return new InFlightPacket().fromJsonString(jsonString, options);
   }
 
-  static equals(a: InFlightPacket | PlainMessage<InFlightPacket> | undefined, b: InFlightPacket | PlainMessage<InFlightPacket> | undefined): boolean {
+  static equals(
+    a: InFlightPacket | PlainMessage<InFlightPacket> | undefined,
+    b: InFlightPacket | PlainMessage<InFlightPacket> | undefined
+  ): boolean {
     return proto3.util.equals(InFlightPacket, a, b);
   }
 }
-

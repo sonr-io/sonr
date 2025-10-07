@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Duration, Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * @generated from message osmosis.poolincentives.v1beta1.Params
@@ -18,7 +25,7 @@ export class Params extends Message<Params> {
    *
    * @generated from field: string minted_denom = 1;
    */
-  mintedDenom = "";
+  mintedDenom = '';
 
   constructor(data?: PartialMessage<Params>) {
     super();
@@ -26,9 +33,9 @@ export class Params extends Message<Params> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolincentives.v1beta1.Params";
+  static readonly typeName = 'osmosis.poolincentives.v1beta1.Params';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "minted_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'minted_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Params {
@@ -43,7 +50,10 @@ export class Params extends Message<Params> {
     return new Params().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Params | PlainMessage<Params> | undefined, b: Params | PlainMessage<Params> | undefined): boolean {
+  static equals(
+    a: Params | PlainMessage<Params> | undefined,
+    b: Params | PlainMessage<Params> | undefined
+  ): boolean {
     return proto3.util.equals(Params, a, b);
   }
 }
@@ -63,12 +73,15 @@ export class LockableDurationsInfo extends Message<LockableDurationsInfo> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolincentives.v1beta1.LockableDurationsInfo";
+  static readonly typeName = 'osmosis.poolincentives.v1beta1.LockableDurationsInfo';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "lockable_durations", kind: "message", T: Duration, repeated: true },
+    { no: 1, name: 'lockable_durations', kind: 'message', T: Duration, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LockableDurationsInfo {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): LockableDurationsInfo {
     return new LockableDurationsInfo().fromBinary(bytes, options);
   }
 
@@ -76,11 +89,17 @@ export class LockableDurationsInfo extends Message<LockableDurationsInfo> {
     return new LockableDurationsInfo().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): LockableDurationsInfo {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): LockableDurationsInfo {
     return new LockableDurationsInfo().fromJsonString(jsonString, options);
   }
 
-  static equals(a: LockableDurationsInfo | PlainMessage<LockableDurationsInfo> | undefined, b: LockableDurationsInfo | PlainMessage<LockableDurationsInfo> | undefined): boolean {
+  static equals(
+    a: LockableDurationsInfo | PlainMessage<LockableDurationsInfo> | undefined,
+    b: LockableDurationsInfo | PlainMessage<LockableDurationsInfo> | undefined
+  ): boolean {
     return proto3.util.equals(LockableDurationsInfo, a, b);
   }
 }
@@ -92,7 +111,7 @@ export class DistrInfo extends Message<DistrInfo> {
   /**
    * @generated from field: string total_weight = 1;
    */
-  totalWeight = "";
+  totalWeight = '';
 
   /**
    * @generated from field: repeated osmosis.poolincentives.v1beta1.DistrRecord records = 2;
@@ -105,10 +124,10 @@ export class DistrInfo extends Message<DistrInfo> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolincentives.v1beta1.DistrInfo";
+  static readonly typeName = 'osmosis.poolincentives.v1beta1.DistrInfo';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "total_weight", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "records", kind: "message", T: DistrRecord, repeated: true },
+    { no: 1, name: 'total_weight', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'records', kind: 'message', T: DistrRecord, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DistrInfo {
@@ -123,7 +142,10 @@ export class DistrInfo extends Message<DistrInfo> {
     return new DistrInfo().fromJsonString(jsonString, options);
   }
 
-  static equals(a: DistrInfo | PlainMessage<DistrInfo> | undefined, b: DistrInfo | PlainMessage<DistrInfo> | undefined): boolean {
+  static equals(
+    a: DistrInfo | PlainMessage<DistrInfo> | undefined,
+    b: DistrInfo | PlainMessage<DistrInfo> | undefined
+  ): boolean {
     return proto3.util.equals(DistrInfo, a, b);
   }
 }
@@ -140,7 +162,7 @@ export class DistrRecord extends Message<DistrRecord> {
   /**
    * @generated from field: string weight = 2;
    */
-  weight = "";
+  weight = '';
 
   constructor(data?: PartialMessage<DistrRecord>) {
     super();
@@ -148,10 +170,10 @@ export class DistrRecord extends Message<DistrRecord> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolincentives.v1beta1.DistrRecord";
+  static readonly typeName = 'osmosis.poolincentives.v1beta1.DistrRecord';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "gauge_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "weight", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'gauge_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'weight', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DistrRecord {
@@ -166,7 +188,10 @@ export class DistrRecord extends Message<DistrRecord> {
     return new DistrRecord().fromJsonString(jsonString, options);
   }
 
-  static equals(a: DistrRecord | PlainMessage<DistrRecord> | undefined, b: DistrRecord | PlainMessage<DistrRecord> | undefined): boolean {
+  static equals(
+    a: DistrRecord | PlainMessage<DistrRecord> | undefined,
+    b: DistrRecord | PlainMessage<DistrRecord> | undefined
+  ): boolean {
     return proto3.util.equals(DistrRecord, a, b);
   }
 }
@@ -196,11 +221,11 @@ export class PoolToGauge extends Message<PoolToGauge> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolincentives.v1beta1.PoolToGauge";
+  static readonly typeName = 'osmosis.poolincentives.v1beta1.PoolToGauge';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "gauge_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "duration", kind: "message", T: Duration },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'gauge_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'duration', kind: 'message', T: Duration },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PoolToGauge {
@@ -215,7 +240,10 @@ export class PoolToGauge extends Message<PoolToGauge> {
     return new PoolToGauge().fromJsonString(jsonString, options);
   }
 
-  static equals(a: PoolToGauge | PlainMessage<PoolToGauge> | undefined, b: PoolToGauge | PlainMessage<PoolToGauge> | undefined): boolean {
+  static equals(
+    a: PoolToGauge | PlainMessage<PoolToGauge> | undefined,
+    b: PoolToGauge | PlainMessage<PoolToGauge> | undefined
+  ): boolean {
     return proto3.util.equals(PoolToGauge, a, b);
   }
 }
@@ -235,24 +263,36 @@ export class AnyPoolToInternalGauges extends Message<AnyPoolToInternalGauges> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolincentives.v1beta1.AnyPoolToInternalGauges";
+  static readonly typeName = 'osmosis.poolincentives.v1beta1.AnyPoolToInternalGauges';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 2, name: "pool_to_gauge", kind: "message", T: PoolToGauge, repeated: true },
+    { no: 2, name: 'pool_to_gauge', kind: 'message', T: PoolToGauge, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AnyPoolToInternalGauges {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AnyPoolToInternalGauges {
     return new AnyPoolToInternalGauges().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AnyPoolToInternalGauges {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AnyPoolToInternalGauges {
     return new AnyPoolToInternalGauges().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AnyPoolToInternalGauges {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AnyPoolToInternalGauges {
     return new AnyPoolToInternalGauges().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AnyPoolToInternalGauges | PlainMessage<AnyPoolToInternalGauges> | undefined, b: AnyPoolToInternalGauges | PlainMessage<AnyPoolToInternalGauges> | undefined): boolean {
+  static equals(
+    a: AnyPoolToInternalGauges | PlainMessage<AnyPoolToInternalGauges> | undefined,
+    b: AnyPoolToInternalGauges | PlainMessage<AnyPoolToInternalGauges> | undefined
+  ): boolean {
     return proto3.util.equals(AnyPoolToInternalGauges, a, b);
   }
 }
@@ -272,25 +312,36 @@ export class ConcentratedPoolToNoLockGauges extends Message<ConcentratedPoolToNo
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolincentives.v1beta1.ConcentratedPoolToNoLockGauges";
+  static readonly typeName = 'osmosis.poolincentives.v1beta1.ConcentratedPoolToNoLockGauges';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_to_gauge", kind: "message", T: PoolToGauge, repeated: true },
+    { no: 1, name: 'pool_to_gauge', kind: 'message', T: PoolToGauge, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ConcentratedPoolToNoLockGauges {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): ConcentratedPoolToNoLockGauges {
     return new ConcentratedPoolToNoLockGauges().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ConcentratedPoolToNoLockGauges {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): ConcentratedPoolToNoLockGauges {
     return new ConcentratedPoolToNoLockGauges().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ConcentratedPoolToNoLockGauges {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ConcentratedPoolToNoLockGauges {
     return new ConcentratedPoolToNoLockGauges().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ConcentratedPoolToNoLockGauges | PlainMessage<ConcentratedPoolToNoLockGauges> | undefined, b: ConcentratedPoolToNoLockGauges | PlainMessage<ConcentratedPoolToNoLockGauges> | undefined): boolean {
+  static equals(
+    a: ConcentratedPoolToNoLockGauges | PlainMessage<ConcentratedPoolToNoLockGauges> | undefined,
+    b: ConcentratedPoolToNoLockGauges | PlainMessage<ConcentratedPoolToNoLockGauges> | undefined
+  ): boolean {
     return proto3.util.equals(ConcentratedPoolToNoLockGauges, a, b);
   }
 }
-

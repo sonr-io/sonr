@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
-import { DecCoin } from "../../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Duration, Message, proto3, protoInt64, Timestamp } from '@bufbuild/protobuf';
+import { DecCoin } from '../../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * IncentiveRecord is the high-level struct we use to deal with an independent
@@ -50,12 +57,12 @@ export class IncentiveRecord extends Message<IncentiveRecord> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.concentratedliquidity.v1beta1.IncentiveRecord";
+  static readonly typeName = 'osmosis.concentratedliquidity.v1beta1.IncentiveRecord';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "incentive_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 4, name: "incentive_record_body", kind: "message", T: IncentiveRecordBody },
-    { no: 5, name: "min_uptime", kind: "message", T: Duration },
+    { no: 1, name: 'incentive_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 4, name: 'incentive_record_body', kind: 'message', T: IncentiveRecordBody },
+    { no: 5, name: 'min_uptime', kind: 'message', T: Duration },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): IncentiveRecord {
@@ -70,7 +77,10 @@ export class IncentiveRecord extends Message<IncentiveRecord> {
     return new IncentiveRecord().fromJsonString(jsonString, options);
   }
 
-  static equals(a: IncentiveRecord | PlainMessage<IncentiveRecord> | undefined, b: IncentiveRecord | PlainMessage<IncentiveRecord> | undefined): boolean {
+  static equals(
+    a: IncentiveRecord | PlainMessage<IncentiveRecord> | undefined,
+    b: IncentiveRecord | PlainMessage<IncentiveRecord> | undefined
+  ): boolean {
     return proto3.util.equals(IncentiveRecord, a, b);
   }
 }
@@ -94,7 +104,7 @@ export class IncentiveRecordBody extends Message<IncentiveRecordBody> {
    *
    * @generated from field: string emission_rate = 2;
    */
-  emissionRate = "";
+  emissionRate = '';
 
   /**
    * start_time is the time when the incentive starts distributing
@@ -109,11 +119,11 @@ export class IncentiveRecordBody extends Message<IncentiveRecordBody> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.concentratedliquidity.v1beta1.IncentiveRecordBody";
+  static readonly typeName = 'osmosis.concentratedliquidity.v1beta1.IncentiveRecordBody';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "remaining_coin", kind: "message", T: DecCoin },
-    { no: 2, name: "emission_rate", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "start_time", kind: "message", T: Timestamp },
+    { no: 1, name: 'remaining_coin', kind: 'message', T: DecCoin },
+    { no: 2, name: 'emission_rate', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'start_time', kind: 'message', T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): IncentiveRecordBody {
@@ -124,12 +134,17 @@ export class IncentiveRecordBody extends Message<IncentiveRecordBody> {
     return new IncentiveRecordBody().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): IncentiveRecordBody {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): IncentiveRecordBody {
     return new IncentiveRecordBody().fromJsonString(jsonString, options);
   }
 
-  static equals(a: IncentiveRecordBody | PlainMessage<IncentiveRecordBody> | undefined, b: IncentiveRecordBody | PlainMessage<IncentiveRecordBody> | undefined): boolean {
+  static equals(
+    a: IncentiveRecordBody | PlainMessage<IncentiveRecordBody> | undefined,
+    b: IncentiveRecordBody | PlainMessage<IncentiveRecordBody> | undefined
+  ): boolean {
     return proto3.util.equals(IncentiveRecordBody, a, b);
   }
 }
-

@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgMigrateContract, MsgMigrateContractResponse, MsgRemoveChecksum, MsgRemoveChecksumResponse, MsgStoreCode, MsgStoreCodeResponse } from "./tx_pb.js";
+import {
+  MsgMigrateContract,
+  MsgMigrateContractResponse,
+  MsgRemoveChecksum,
+  MsgRemoveChecksumResponse,
+  MsgStoreCode,
+  MsgStoreCodeResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "ibc.lightclients.wasm.v1.Msg";
+const TYPE_NAME = 'ibc.lightclients.wasm.v1.Msg';
 
 /**
  * StoreCode defines a rpc handler method for MsgStoreCode.
@@ -14,7 +21,7 @@ const TYPE_NAME = "ibc.lightclients.wasm.v1.Msg";
  */
 export const MsgStoreCodeService = {
   typeName: TYPE_NAME,
-  method: "StoreCode",
+  method: 'StoreCode',
   Request: MsgStoreCode,
   Response: MsgStoreCodeResponse,
 } as const;
@@ -26,7 +33,7 @@ export const MsgStoreCodeService = {
  */
 export const MsgRemoveChecksumService = {
   typeName: TYPE_NAME,
-  method: "RemoveChecksum",
+  method: 'RemoveChecksum',
   Request: MsgRemoveChecksum,
   Response: MsgRemoveChecksumResponse,
 } as const;
@@ -38,8 +45,7 @@ export const MsgRemoveChecksumService = {
  */
 export const MsgMigrateContractService = {
   typeName: TYPE_NAME,
-  method: "MigrateContract",
+  method: 'MigrateContract',
   Request: MsgMigrateContract,
   Response: MsgMigrateContractResponse,
 } as const;
-

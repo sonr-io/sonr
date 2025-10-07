@@ -58,10 +58,7 @@ describe('EnclaveIPFSManager', () => {
     it('should store encrypted enclave data', async () => {
       const encryptedPayload = new Uint8Array([10, 20, 30]);
 
-      const result = await manager.storeEnclaveData(
-        validEnclaveData,
-        encryptedPayload
-      );
+      const result = await manager.storeEnclaveData(validEnclaveData, encryptedPayload);
 
       expect(result.cid).toBe('QmTestCID123');
       expect(result.isPinned).toBe(true);
@@ -76,9 +73,9 @@ describe('EnclaveIPFSManager', () => {
         encryptionMetadata: undefined,
       };
 
-      await expect(
-        manager.storeEnclaveData(dataWithoutMetadata, new Uint8Array())
-      ).rejects.toThrow('Encryption metadata required for enclave data storage');
+      await expect(manager.storeEnclaveData(dataWithoutMetadata, new Uint8Array())).rejects.toThrow(
+        'Encryption metadata required for enclave data storage'
+      );
     });
 
     it('should validate enclave data structure', async () => {
@@ -87,9 +84,9 @@ describe('EnclaveIPFSManager', () => {
         threshold: 5, // Invalid: threshold > parties
       };
 
-      await expect(
-        manager.storeEnclaveData(invalidData, new Uint8Array())
-      ).rejects.toThrow('Invalid threshold value');
+      await expect(manager.storeEnclaveData(invalidData, new Uint8Array())).rejects.toThrow(
+        'Invalid threshold value'
+      );
     });
 
     it('should retry on failure', async () => {
@@ -101,23 +98,18 @@ describe('EnclaveIPFSManager', () => {
           timestamp: Date.now(),
         });
 
-      const result = await manager.storeEnclaveData(
-        validEnclaveData,
-        new Uint8Array()
-      );
+      const result = await manager.storeEnclaveData(validEnclaveData, new Uint8Array());
 
       expect(result.cid).toBe('QmRetryCID');
       expect(mockIPFSClient.addEnclaveData).toHaveBeenCalledTimes(2);
     });
 
     it('should fail after max retries', async () => {
-      (mockIPFSClient.addEnclaveData as any).mockRejectedValue(
-        new Error('Persistent error')
-      );
+      (mockIPFSClient.addEnclaveData as any).mockRejectedValue(new Error('Persistent error'));
 
-      await expect(
-        manager.storeEnclaveData(validEnclaveData, new Uint8Array())
-      ).rejects.toThrow('Failed to store enclave data after 2 attempts');
+      await expect(manager.storeEnclaveData(validEnclaveData, new Uint8Array())).rejects.toThrow(
+        'Failed to store enclave data after 2 attempts'
+      );
     });
   });
 
@@ -147,10 +139,7 @@ describe('EnclaveIPFSManager', () => {
       const expectedData = new Uint8Array([1, 2, 3, 4, 5]);
       (mockIPFSClient.getEnclaveData as any).mockResolvedValue(expectedData);
 
-      const isValid = await manager.verifyEnclaveDataIntegrity(
-        'QmTestCID123',
-        expectedData
-      );
+      const isValid = await manager.verifyEnclaveDataIntegrity('QmTestCID123', expectedData);
 
       expect(isValid).toBe(true);
     });
@@ -160,23 +149,15 @@ describe('EnclaveIPFSManager', () => {
       const actualData = new Uint8Array([4, 5, 6]);
       (mockIPFSClient.getEnclaveData as any).mockResolvedValue(actualData);
 
-      const isValid = await manager.verifyEnclaveDataIntegrity(
-        'QmTestCID123',
-        expectedData
-      );
+      const isValid = await manager.verifyEnclaveDataIntegrity('QmTestCID123', expectedData);
 
       expect(isValid).toBe(false);
     });
 
     it('should handle retrieval errors', async () => {
-      (mockIPFSClient.getEnclaveData as any).mockRejectedValue(
-        new Error('Retrieval failed')
-      );
+      (mockIPFSClient.getEnclaveData as any).mockRejectedValue(new Error('Retrieval failed'));
 
-      const isValid = await manager.verifyEnclaveDataIntegrity(
-        'QmTestCID123',
-        new Uint8Array()
-      );
+      const isValid = await manager.verifyEnclaveDataIntegrity('QmTestCID123', new Uint8Array());
 
       expect(isValid).toBe(false);
     });
@@ -275,9 +256,7 @@ describe('EnclaveIPFSManager', () => {
         operationTimeout: 0,
       });
 
-      (mockIPFSClient.getEnclaveData as any).mockRejectedValue(
-        new Error('Not found')
-      );
+      (mockIPFSClient.getEnclaveData as any).mockRejectedValue(new Error('Not found'));
       (mockIPFSClient.isPinned as any).mockResolvedValue(false);
 
       const status = await manager.getEnclaveStatus('QmNonExistent');

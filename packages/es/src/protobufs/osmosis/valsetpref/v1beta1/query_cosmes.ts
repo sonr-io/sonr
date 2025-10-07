@@ -3,9 +3,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { UserValidatorPreferencesRequest, UserValidatorPreferencesResponse } from "./query_pb.js";
+import { UserValidatorPreferencesRequest, UserValidatorPreferencesResponse } from './query_pb.js';
 
-const TYPE_NAME = "osmosis.valsetpref.v1beta1.Query";
+const TYPE_NAME = 'osmosis.valsetpref.v1beta1.Query';
 
 /**
  * Returns the list of ValidatorPreferences for the user.
@@ -14,8 +14,7 @@ const TYPE_NAME = "osmosis.valsetpref.v1beta1.Query";
  */
 export const QueryUserValidatorPreferencesService = {
   typeName: TYPE_NAME,
-  method: "UserValidatorPreferences",
+  method: 'UserValidatorPreferences',
   Request: UserValidatorPreferencesRequest,
   Response: UserValidatorPreferencesResponse,
 } as const;
-

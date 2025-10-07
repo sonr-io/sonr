@@ -3,9 +3,20 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryAllBeforeSendHooksAddressesRequest, QueryAllBeforeSendHooksAddressesResponse, QueryBeforeSendHookAddressRequest, QueryBeforeSendHookAddressResponse, QueryDenomAuthorityMetadataRequest, QueryDenomAuthorityMetadataResponse, QueryDenomsFromCreatorRequest, QueryDenomsFromCreatorResponse, QueryParamsRequest, QueryParamsResponse } from "./query_pb.js";
+import {
+  QueryAllBeforeSendHooksAddressesRequest,
+  QueryAllBeforeSendHooksAddressesResponse,
+  QueryBeforeSendHookAddressRequest,
+  QueryBeforeSendHookAddressResponse,
+  QueryDenomAuthorityMetadataRequest,
+  QueryDenomAuthorityMetadataResponse,
+  QueryDenomsFromCreatorRequest,
+  QueryDenomsFromCreatorResponse,
+  QueryParamsRequest,
+  QueryParamsResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "osmosis.tokenfactory.v1beta1.Query";
+const TYPE_NAME = 'osmosis.tokenfactory.v1beta1.Query';
 
 /**
  * Params defines a gRPC query method that returns the tokenfactory module's
@@ -15,7 +26,7 @@ const TYPE_NAME = "osmosis.tokenfactory.v1beta1.Query";
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: QueryParamsRequest,
   Response: QueryParamsResponse,
 } as const;
@@ -28,7 +39,7 @@ export const QueryParamsService = {
  */
 export const QueryDenomAuthorityMetadataService = {
   typeName: TYPE_NAME,
-  method: "DenomAuthorityMetadata",
+  method: 'DenomAuthorityMetadata',
   Request: QueryDenomAuthorityMetadataRequest,
   Response: QueryDenomAuthorityMetadataResponse,
 } as const;
@@ -41,7 +52,7 @@ export const QueryDenomAuthorityMetadataService = {
  */
 export const QueryDenomsFromCreatorService = {
   typeName: TYPE_NAME,
-  method: "DenomsFromCreator",
+  method: 'DenomsFromCreator',
   Request: QueryDenomsFromCreatorRequest,
   Response: QueryDenomsFromCreatorResponse,
 } as const;
@@ -54,7 +65,7 @@ export const QueryDenomsFromCreatorService = {
  */
 export const QueryBeforeSendHookAddressService = {
   typeName: TYPE_NAME,
-  method: "BeforeSendHookAddress",
+  method: 'BeforeSendHookAddress',
   Request: QueryBeforeSendHookAddressRequest,
   Response: QueryBeforeSendHookAddressResponse,
 } as const;
@@ -70,8 +81,7 @@ export const QueryBeforeSendHookAddressService = {
  */
 export const QueryAllBeforeSendHooksAddressesService = {
   typeName: TYPE_NAME,
-  method: "AllBeforeSendHooksAddresses",
+  method: 'AllBeforeSendHooksAddresses',
   Request: QueryAllBeforeSendHooksAddressesRequest,
   Response: QueryAllBeforeSendHooksAddressesResponse,
 } as const;
-

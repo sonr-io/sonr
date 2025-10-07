@@ -3,9 +3,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgRegisterCounterparty, MsgRegisterCounterpartyResponse, MsgUpdateClientConfig, MsgUpdateClientConfigResponse } from "./tx_pb.js";
+import {
+  MsgRegisterCounterparty,
+  MsgRegisterCounterpartyResponse,
+  MsgUpdateClientConfig,
+  MsgUpdateClientConfigResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "ibc.core.client.v2.Msg";
+const TYPE_NAME = 'ibc.core.client.v2.Msg';
 
 /**
  * RegisterCounterparty defines a rpc handler method for MsgRegisterCounterparty.
@@ -14,7 +19,7 @@ const TYPE_NAME = "ibc.core.client.v2.Msg";
  */
 export const MsgRegisterCounterpartyService = {
   typeName: TYPE_NAME,
-  method: "RegisterCounterparty",
+  method: 'RegisterCounterparty',
   Request: MsgRegisterCounterparty,
   Response: MsgRegisterCounterpartyResponse,
 } as const;
@@ -26,8 +31,7 @@ export const MsgRegisterCounterpartyService = {
  */
 export const MsgUpdateClientConfigService = {
   typeName: TYPE_NAME,
-  method: "UpdateClientConfig",
+  method: 'UpdateClientConfig',
   Request: MsgUpdateClientConfig,
   Response: MsgUpdateClientConfigResponse,
 } as const;
-

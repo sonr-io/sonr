@@ -3,10 +3,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { ServiceCapability } from "./state_pb.js";
-import { Coin } from "../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { ServiceCapability } from './state_pb.js';
+import { Coin } from '../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * GenesisState defines the module genesis state
@@ -34,10 +41,10 @@ export class GenesisState extends Message<GenesisState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.GenesisState";
+  static readonly typeName = 'svc.v1.GenesisState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "params", kind: "message", T: Params },
-    { no: 2, name: "capabilities", kind: "message", T: ServiceCapability, repeated: true },
+    { no: 1, name: 'params', kind: 'message', T: Params },
+    { no: 2, name: 'capabilities', kind: 'message', T: ServiceCapability, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {
@@ -52,7 +59,10 @@ export class GenesisState extends Message<GenesisState> {
     return new GenesisState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisState | PlainMessage<GenesisState> | undefined, b: GenesisState | PlainMessage<GenesisState> | undefined): boolean {
+  static equals(
+    a: GenesisState | PlainMessage<GenesisState> | undefined,
+    b: GenesisState | PlainMessage<GenesisState> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisState, a, b);
   }
 }
@@ -215,28 +225,44 @@ export class Params extends Message<Params> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.Params";
+  static readonly typeName = 'svc.v1.Params';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "max_services_per_account", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 2, name: "max_domains_per_service", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 3, name: "max_endpoints_per_service", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 4, name: "domain_verification_timeout", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 5, name: "service_health_check_interval", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 6, name: "capability_default_expiration", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 7, name: "service_registration_fee", kind: "message", T: Coin },
-    { no: 8, name: "domain_verification_fee", kind: "message", T: Coin },
-    { no: 9, name: "min_service_stake", kind: "message", T: Coin },
-    { no: 10, name: "max_delegation_chain_depth", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 11, name: "ucan_max_lifetime", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 12, name: "ucan_min_lifetime", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 13, name: "supported_signature_algorithms", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 14, name: "require_domain_ownership_proof", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 15, name: "require_https", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 16, name: "allow_localhost", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 17, name: "max_service_description_length", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 18, name: "max_registrations_per_block", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 19, name: "max_updates_per_block", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 20, name: "max_capability_grants_per_block", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 1, name: 'max_services_per_account', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
+    { no: 2, name: 'max_domains_per_service', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
+    { no: 3, name: 'max_endpoints_per_service', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
+    { no: 4, name: 'domain_verification_timeout', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 5, name: 'service_health_check_interval', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 6, name: 'capability_default_expiration', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 7, name: 'service_registration_fee', kind: 'message', T: Coin },
+    { no: 8, name: 'domain_verification_fee', kind: 'message', T: Coin },
+    { no: 9, name: 'min_service_stake', kind: 'message', T: Coin },
+    { no: 10, name: 'max_delegation_chain_depth', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
+    { no: 11, name: 'ucan_max_lifetime', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 12, name: 'ucan_min_lifetime', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    {
+      no: 13,
+      name: 'supported_signature_algorithms',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    { no: 14, name: 'require_domain_ownership_proof', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 15, name: 'require_https', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 16, name: 'allow_localhost', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    {
+      no: 17,
+      name: 'max_service_description_length',
+      kind: 'scalar',
+      T: 13 /* ScalarType.UINT32 */,
+    },
+    { no: 18, name: 'max_registrations_per_block', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
+    { no: 19, name: 'max_updates_per_block', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
+    {
+      no: 20,
+      name: 'max_capability_grants_per_block',
+      kind: 'scalar',
+      T: 13 /* ScalarType.UINT32 */,
+    },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Params {
@@ -251,8 +277,10 @@ export class Params extends Message<Params> {
     return new Params().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Params | PlainMessage<Params> | undefined, b: Params | PlainMessage<Params> | undefined): boolean {
+  static equals(
+    a: Params | PlainMessage<Params> | undefined,
+    b: Params | PlainMessage<Params> | undefined
+  ): boolean {
     return proto3.util.equals(Params, a, b);
   }
 }
-

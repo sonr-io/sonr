@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * MsgAddAuthenticatorRequest defines the Msg/AddAuthenticator request type.
@@ -15,12 +22,12 @@ export class MsgAddAuthenticator extends Message<MsgAddAuthenticator> {
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * @generated from field: string authenticator_type = 2;
    */
-  authenticatorType = "";
+  authenticatorType = '';
 
   /**
    * @generated from field: bytes data = 3;
@@ -33,11 +40,11 @@ export class MsgAddAuthenticator extends Message<MsgAddAuthenticator> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.smartaccount.v1beta1.MsgAddAuthenticator";
+  static readonly typeName = 'osmosis.smartaccount.v1beta1.MsgAddAuthenticator';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "authenticator_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'authenticator_type', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'data', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgAddAuthenticator {
@@ -48,11 +55,17 @@ export class MsgAddAuthenticator extends Message<MsgAddAuthenticator> {
     return new MsgAddAuthenticator().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgAddAuthenticator {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgAddAuthenticator {
     return new MsgAddAuthenticator().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgAddAuthenticator | PlainMessage<MsgAddAuthenticator> | undefined, b: MsgAddAuthenticator | PlainMessage<MsgAddAuthenticator> | undefined): boolean {
+  static equals(
+    a: MsgAddAuthenticator | PlainMessage<MsgAddAuthenticator> | undefined,
+    b: MsgAddAuthenticator | PlainMessage<MsgAddAuthenticator> | undefined
+  ): boolean {
     return proto3.util.equals(MsgAddAuthenticator, a, b);
   }
 }
@@ -74,24 +87,36 @@ export class MsgAddAuthenticatorResponse extends Message<MsgAddAuthenticatorResp
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.smartaccount.v1beta1.MsgAddAuthenticatorResponse";
+  static readonly typeName = 'osmosis.smartaccount.v1beta1.MsgAddAuthenticatorResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'success', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgAddAuthenticatorResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgAddAuthenticatorResponse {
     return new MsgAddAuthenticatorResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgAddAuthenticatorResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgAddAuthenticatorResponse {
     return new MsgAddAuthenticatorResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgAddAuthenticatorResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgAddAuthenticatorResponse {
     return new MsgAddAuthenticatorResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgAddAuthenticatorResponse | PlainMessage<MsgAddAuthenticatorResponse> | undefined, b: MsgAddAuthenticatorResponse | PlainMessage<MsgAddAuthenticatorResponse> | undefined): boolean {
+  static equals(
+    a: MsgAddAuthenticatorResponse | PlainMessage<MsgAddAuthenticatorResponse> | undefined,
+    b: MsgAddAuthenticatorResponse | PlainMessage<MsgAddAuthenticatorResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgAddAuthenticatorResponse, a, b);
   }
 }
@@ -106,7 +131,7 @@ export class MsgRemoveAuthenticator extends Message<MsgRemoveAuthenticator> {
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * @generated from field: uint64 id = 2;
@@ -119,25 +144,37 @@ export class MsgRemoveAuthenticator extends Message<MsgRemoveAuthenticator> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.smartaccount.v1beta1.MsgRemoveAuthenticator";
+  static readonly typeName = 'osmosis.smartaccount.v1beta1.MsgRemoveAuthenticator';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRemoveAuthenticator {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgRemoveAuthenticator {
     return new MsgRemoveAuthenticator().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgRemoveAuthenticator {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgRemoveAuthenticator {
     return new MsgRemoveAuthenticator().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgRemoveAuthenticator {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgRemoveAuthenticator {
     return new MsgRemoveAuthenticator().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRemoveAuthenticator | PlainMessage<MsgRemoveAuthenticator> | undefined, b: MsgRemoveAuthenticator | PlainMessage<MsgRemoveAuthenticator> | undefined): boolean {
+  static equals(
+    a: MsgRemoveAuthenticator | PlainMessage<MsgRemoveAuthenticator> | undefined,
+    b: MsgRemoveAuthenticator | PlainMessage<MsgRemoveAuthenticator> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRemoveAuthenticator, a, b);
   }
 }
@@ -160,24 +197,36 @@ export class MsgRemoveAuthenticatorResponse extends Message<MsgRemoveAuthenticat
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.smartaccount.v1beta1.MsgRemoveAuthenticatorResponse";
+  static readonly typeName = 'osmosis.smartaccount.v1beta1.MsgRemoveAuthenticatorResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'success', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRemoveAuthenticatorResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgRemoveAuthenticatorResponse {
     return new MsgRemoveAuthenticatorResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgRemoveAuthenticatorResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgRemoveAuthenticatorResponse {
     return new MsgRemoveAuthenticatorResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgRemoveAuthenticatorResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgRemoveAuthenticatorResponse {
     return new MsgRemoveAuthenticatorResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRemoveAuthenticatorResponse | PlainMessage<MsgRemoveAuthenticatorResponse> | undefined, b: MsgRemoveAuthenticatorResponse | PlainMessage<MsgRemoveAuthenticatorResponse> | undefined): boolean {
+  static equals(
+    a: MsgRemoveAuthenticatorResponse | PlainMessage<MsgRemoveAuthenticatorResponse> | undefined,
+    b: MsgRemoveAuthenticatorResponse | PlainMessage<MsgRemoveAuthenticatorResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRemoveAuthenticatorResponse, a, b);
   }
 }
@@ -189,7 +238,7 @@ export class MsgSetActiveState extends Message<MsgSetActiveState> {
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * @generated from field: bool active = 2;
@@ -202,10 +251,10 @@ export class MsgSetActiveState extends Message<MsgSetActiveState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.smartaccount.v1beta1.MsgSetActiveState";
+  static readonly typeName = 'osmosis.smartaccount.v1beta1.MsgSetActiveState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "active", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'active', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetActiveState {
@@ -220,7 +269,10 @@ export class MsgSetActiveState extends Message<MsgSetActiveState> {
     return new MsgSetActiveState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetActiveState | PlainMessage<MsgSetActiveState> | undefined, b: MsgSetActiveState | PlainMessage<MsgSetActiveState> | undefined): boolean {
+  static equals(
+    a: MsgSetActiveState | PlainMessage<MsgSetActiveState> | undefined,
+    b: MsgSetActiveState | PlainMessage<MsgSetActiveState> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetActiveState, a, b);
   }
 }
@@ -235,23 +287,34 @@ export class MsgSetActiveStateResponse extends Message<MsgSetActiveStateResponse
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.smartaccount.v1beta1.MsgSetActiveStateResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.smartaccount.v1beta1.MsgSetActiveStateResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetActiveStateResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetActiveStateResponse {
     return new MsgSetActiveStateResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetActiveStateResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetActiveStateResponse {
     return new MsgSetActiveStateResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetActiveStateResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetActiveStateResponse {
     return new MsgSetActiveStateResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetActiveStateResponse | PlainMessage<MsgSetActiveStateResponse> | undefined, b: MsgSetActiveStateResponse | PlainMessage<MsgSetActiveStateResponse> | undefined): boolean {
+  static equals(
+    a: MsgSetActiveStateResponse | PlainMessage<MsgSetActiveStateResponse> | undefined,
+    b: MsgSetActiveStateResponse | PlainMessage<MsgSetActiveStateResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetActiveStateResponse, a, b);
   }
 }
@@ -277,9 +340,15 @@ export class TxExtension extends Message<TxExtension> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.smartaccount.v1beta1.TxExtension";
+  static readonly typeName = 'osmosis.smartaccount.v1beta1.TxExtension';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "selected_authenticators", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
+    {
+      no: 1,
+      name: 'selected_authenticators',
+      kind: 'scalar',
+      T: 4 /* ScalarType.UINT64 */,
+      repeated: true,
+    },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TxExtension {
@@ -294,8 +363,10 @@ export class TxExtension extends Message<TxExtension> {
     return new TxExtension().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TxExtension | PlainMessage<TxExtension> | undefined, b: TxExtension | PlainMessage<TxExtension> | undefined): boolean {
+  static equals(
+    a: TxExtension | PlainMessage<TxExtension> | undefined,
+    b: TxExtension | PlainMessage<TxExtension> | undefined
+  ): boolean {
     return proto3.util.equals(TxExtension, a, b);
   }
 }
-

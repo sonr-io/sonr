@@ -1,6 +1,6 @@
 /**
  * Motor plugin implementation for Payment Gateway and OIDC Authorization
- * 
+ *
  * @packageDocumentation
  */
 
@@ -149,7 +149,7 @@ export class MotorPluginImpl implements MotorPlugin {
 
     // Wait for service worker to be ready
     await navigator.serviceWorker.ready;
-    
+
     this.client.updateConfig({
       worker_url: this.config.worker_url,
     });
@@ -186,7 +186,9 @@ export class MotorPluginImpl implements MotorPlugin {
     return this.paymentClient.processPayment(request);
   }
 
-  async validatePaymentMethod(request: ValidatePaymentMethodRequest): Promise<ValidatePaymentMethodResponse> {
+  async validatePaymentMethod(
+    request: ValidatePaymentMethodRequest
+  ): Promise<ValidatePaymentMethodResponse> {
     await this.ensureInitialized();
     return this.paymentClient.validatePaymentMethod(request);
   }
@@ -307,9 +309,7 @@ export class MotorPluginImpl implements MotorPlugin {
 /**
  * Create a Motor plugin with auto-detection
  */
-export async function createMotorPlugin(
-  config?: Partial<MotorPluginConfig>
-): Promise<MotorPlugin> {
+export async function createMotorPlugin(config?: Partial<MotorPluginConfig>): Promise<MotorPlugin> {
   const plugin = new MotorPluginImpl(config);
   await plugin.initialize();
   return plugin;

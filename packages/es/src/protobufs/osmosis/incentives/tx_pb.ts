@@ -3,10 +3,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
-import { QueryCondition } from "../lockup/lock_pb.js";
-import { Coin } from "../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64, Timestamp } from '@bufbuild/protobuf';
+import { QueryCondition } from '../lockup/lock_pb.js';
+import { Coin } from '../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * MsgCreateGauge creates a gauge to distribute rewards to users
@@ -30,7 +37,7 @@ export class MsgCreateGauge extends Message<MsgCreateGauge> {
    *
    * @generated from field: string owner = 2;
    */
-  owner = "";
+  owner = '';
 
   /**
    * distribute_to show which lock the gauge should distribute to by time
@@ -81,15 +88,15 @@ export class MsgCreateGauge extends Message<MsgCreateGauge> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.incentives.MsgCreateGauge";
+  static readonly typeName = 'osmosis.incentives.MsgCreateGauge';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "is_perpetual", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 2, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "distribute_to", kind: "message", T: QueryCondition },
-    { no: 4, name: "coins", kind: "message", T: Coin, repeated: true },
-    { no: 5, name: "start_time", kind: "message", T: Timestamp },
-    { no: 6, name: "num_epochs_paid_over", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 7, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'is_perpetual', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'distribute_to', kind: 'message', T: QueryCondition },
+    { no: 4, name: 'coins', kind: 'message', T: Coin, repeated: true },
+    { no: 5, name: 'start_time', kind: 'message', T: Timestamp },
+    { no: 6, name: 'num_epochs_paid_over', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 7, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgCreateGauge {
@@ -104,7 +111,10 @@ export class MsgCreateGauge extends Message<MsgCreateGauge> {
     return new MsgCreateGauge().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgCreateGauge | PlainMessage<MsgCreateGauge> | undefined, b: MsgCreateGauge | PlainMessage<MsgCreateGauge> | undefined): boolean {
+  static equals(
+    a: MsgCreateGauge | PlainMessage<MsgCreateGauge> | undefined,
+    b: MsgCreateGauge | PlainMessage<MsgCreateGauge> | undefined
+  ): boolean {
     return proto3.util.equals(MsgCreateGauge, a, b);
   }
 }
@@ -119,23 +129,34 @@ export class MsgCreateGaugeResponse extends Message<MsgCreateGaugeResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.incentives.MsgCreateGaugeResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.incentives.MsgCreateGaugeResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgCreateGaugeResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgCreateGaugeResponse {
     return new MsgCreateGaugeResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgCreateGaugeResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgCreateGaugeResponse {
     return new MsgCreateGaugeResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgCreateGaugeResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgCreateGaugeResponse {
     return new MsgCreateGaugeResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgCreateGaugeResponse | PlainMessage<MsgCreateGaugeResponse> | undefined, b: MsgCreateGaugeResponse | PlainMessage<MsgCreateGaugeResponse> | undefined): boolean {
+  static equals(
+    a: MsgCreateGaugeResponse | PlainMessage<MsgCreateGaugeResponse> | undefined,
+    b: MsgCreateGaugeResponse | PlainMessage<MsgCreateGaugeResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgCreateGaugeResponse, a, b);
   }
 }
@@ -151,7 +172,7 @@ export class MsgAddToGauge extends Message<MsgAddToGauge> {
    *
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   /**
    * gauge_id is the ID of gauge that rewards are getting added to
@@ -173,11 +194,11 @@ export class MsgAddToGauge extends Message<MsgAddToGauge> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.incentives.MsgAddToGauge";
+  static readonly typeName = 'osmosis.incentives.MsgAddToGauge';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "gauge_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "rewards", kind: "message", T: Coin, repeated: true },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'gauge_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'rewards', kind: 'message', T: Coin, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgAddToGauge {
@@ -192,7 +213,10 @@ export class MsgAddToGauge extends Message<MsgAddToGauge> {
     return new MsgAddToGauge().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgAddToGauge | PlainMessage<MsgAddToGauge> | undefined, b: MsgAddToGauge | PlainMessage<MsgAddToGauge> | undefined): boolean {
+  static equals(
+    a: MsgAddToGauge | PlainMessage<MsgAddToGauge> | undefined,
+    b: MsgAddToGauge | PlainMessage<MsgAddToGauge> | undefined
+  ): boolean {
     return proto3.util.equals(MsgAddToGauge, a, b);
   }
 }
@@ -207,11 +231,13 @@ export class MsgAddToGaugeResponse extends Message<MsgAddToGaugeResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.incentives.MsgAddToGaugeResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.incentives.MsgAddToGaugeResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgAddToGaugeResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgAddToGaugeResponse {
     return new MsgAddToGaugeResponse().fromBinary(bytes, options);
   }
 
@@ -219,11 +245,17 @@ export class MsgAddToGaugeResponse extends Message<MsgAddToGaugeResponse> {
     return new MsgAddToGaugeResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgAddToGaugeResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgAddToGaugeResponse {
     return new MsgAddToGaugeResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgAddToGaugeResponse | PlainMessage<MsgAddToGaugeResponse> | undefined, b: MsgAddToGaugeResponse | PlainMessage<MsgAddToGaugeResponse> | undefined): boolean {
+  static equals(
+    a: MsgAddToGaugeResponse | PlainMessage<MsgAddToGaugeResponse> | undefined,
+    b: MsgAddToGaugeResponse | PlainMessage<MsgAddToGaugeResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgAddToGaugeResponse, a, b);
   }
 }
@@ -254,7 +286,7 @@ export class MsgCreateGroup extends Message<MsgCreateGroup> {
    *
    * @generated from field: string owner = 3;
    */
-  owner = "";
+  owner = '';
 
   /**
    * pool_ids are the IDs of pools that the group is comprised of
@@ -269,12 +301,12 @@ export class MsgCreateGroup extends Message<MsgCreateGroup> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.incentives.MsgCreateGroup";
+  static readonly typeName = 'osmosis.incentives.MsgCreateGroup';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "coins", kind: "message", T: Coin, repeated: true },
-    { no: 2, name: "num_epochs_paid_over", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "pool_ids", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
+    { no: 1, name: 'coins', kind: 'message', T: Coin, repeated: true },
+    { no: 2, name: 'num_epochs_paid_over', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'pool_ids', kind: 'scalar', T: 4 /* ScalarType.UINT64 */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgCreateGroup {
@@ -289,7 +321,10 @@ export class MsgCreateGroup extends Message<MsgCreateGroup> {
     return new MsgCreateGroup().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgCreateGroup | PlainMessage<MsgCreateGroup> | undefined, b: MsgCreateGroup | PlainMessage<MsgCreateGroup> | undefined): boolean {
+  static equals(
+    a: MsgCreateGroup | PlainMessage<MsgCreateGroup> | undefined,
+    b: MsgCreateGroup | PlainMessage<MsgCreateGroup> | undefined
+  ): boolean {
     return proto3.util.equals(MsgCreateGroup, a, b);
   }
 }
@@ -311,25 +346,36 @@ export class MsgCreateGroupResponse extends Message<MsgCreateGroupResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.incentives.MsgCreateGroupResponse";
+  static readonly typeName = 'osmosis.incentives.MsgCreateGroupResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "group_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'group_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgCreateGroupResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgCreateGroupResponse {
     return new MsgCreateGroupResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgCreateGroupResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgCreateGroupResponse {
     return new MsgCreateGroupResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgCreateGroupResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgCreateGroupResponse {
     return new MsgCreateGroupResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgCreateGroupResponse | PlainMessage<MsgCreateGroupResponse> | undefined, b: MsgCreateGroupResponse | PlainMessage<MsgCreateGroupResponse> | undefined): boolean {
+  static equals(
+    a: MsgCreateGroupResponse | PlainMessage<MsgCreateGroupResponse> | undefined,
+    b: MsgCreateGroupResponse | PlainMessage<MsgCreateGroupResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgCreateGroupResponse, a, b);
   }
 }
-

@@ -8,10 +8,17 @@
 // until clear steps for migration logic and the unknowns for state breaking are
 // investigated for changing proto package.
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
-import { Coin } from "../../../cosmos/base/v1beta1/coin_pb.js";
-import { PeriodLock } from "../../lockup/lock_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64, Timestamp } from '@bufbuild/protobuf';
+import { Coin } from '../../../cosmos/base/v1beta1/coin_pb.js';
+import { PeriodLock } from '../../lockup/lock_pb.js';
 
 /**
  * Position contains position's id, address, pool id, lower tick, upper tick
@@ -28,7 +35,7 @@ export class Position extends Message<Position> {
   /**
    * @generated from field: string address = 2;
    */
-  address = "";
+  address = '';
 
   /**
    * @generated from field: uint64 pool_id = 3;
@@ -53,7 +60,7 @@ export class Position extends Message<Position> {
   /**
    * @generated from field: string liquidity = 7;
    */
-  liquidity = "";
+  liquidity = '';
 
   constructor(data?: PartialMessage<Position>) {
     super();
@@ -61,15 +68,15 @@ export class Position extends Message<Position> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.concentratedliquidity.v1beta1.Position";
+  static readonly typeName = 'osmosis.concentratedliquidity.v1beta1.Position';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "position_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 4, name: "lower_tick", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 5, name: "upper_tick", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 6, name: "join_time", kind: "message", T: Timestamp },
-    { no: 7, name: "liquidity", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'position_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 4, name: 'lower_tick', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 5, name: 'upper_tick', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 6, name: 'join_time', kind: 'message', T: Timestamp },
+    { no: 7, name: 'liquidity', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Position {
@@ -84,7 +91,10 @@ export class Position extends Message<Position> {
     return new Position().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Position | PlainMessage<Position> | undefined, b: Position | PlainMessage<Position> | undefined): boolean {
+  static equals(
+    a: Position | PlainMessage<Position> | undefined,
+    b: Position | PlainMessage<Position> | undefined
+  ): boolean {
     return proto3.util.equals(Position, a, b);
   }
 }
@@ -137,17 +147,20 @@ export class FullPositionBreakdown extends Message<FullPositionBreakdown> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.concentratedliquidity.v1beta1.FullPositionBreakdown";
+  static readonly typeName = 'osmosis.concentratedliquidity.v1beta1.FullPositionBreakdown';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "position", kind: "message", T: Position },
-    { no: 2, name: "asset0", kind: "message", T: Coin },
-    { no: 3, name: "asset1", kind: "message", T: Coin },
-    { no: 4, name: "claimable_spread_rewards", kind: "message", T: Coin, repeated: true },
-    { no: 5, name: "claimable_incentives", kind: "message", T: Coin, repeated: true },
-    { no: 6, name: "forfeited_incentives", kind: "message", T: Coin, repeated: true },
+    { no: 1, name: 'position', kind: 'message', T: Position },
+    { no: 2, name: 'asset0', kind: 'message', T: Coin },
+    { no: 3, name: 'asset1', kind: 'message', T: Coin },
+    { no: 4, name: 'claimable_spread_rewards', kind: 'message', T: Coin, repeated: true },
+    { no: 5, name: 'claimable_incentives', kind: 'message', T: Coin, repeated: true },
+    { no: 6, name: 'forfeited_incentives', kind: 'message', T: Coin, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FullPositionBreakdown {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): FullPositionBreakdown {
     return new FullPositionBreakdown().fromBinary(bytes, options);
   }
 
@@ -155,11 +168,17 @@ export class FullPositionBreakdown extends Message<FullPositionBreakdown> {
     return new FullPositionBreakdown().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FullPositionBreakdown {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): FullPositionBreakdown {
     return new FullPositionBreakdown().fromJsonString(jsonString, options);
   }
 
-  static equals(a: FullPositionBreakdown | PlainMessage<FullPositionBreakdown> | undefined, b: FullPositionBreakdown | PlainMessage<FullPositionBreakdown> | undefined): boolean {
+  static equals(
+    a: FullPositionBreakdown | PlainMessage<FullPositionBreakdown> | undefined,
+    b: FullPositionBreakdown | PlainMessage<FullPositionBreakdown> | undefined
+  ): boolean {
     return proto3.util.equals(FullPositionBreakdown, a, b);
   }
 }
@@ -184,26 +203,37 @@ export class PositionWithPeriodLock extends Message<PositionWithPeriodLock> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.concentratedliquidity.v1beta1.PositionWithPeriodLock";
+  static readonly typeName = 'osmosis.concentratedliquidity.v1beta1.PositionWithPeriodLock';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "position", kind: "message", T: Position },
-    { no: 2, name: "locks", kind: "message", T: PeriodLock },
+    { no: 1, name: 'position', kind: 'message', T: Position },
+    { no: 2, name: 'locks', kind: 'message', T: PeriodLock },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PositionWithPeriodLock {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): PositionWithPeriodLock {
     return new PositionWithPeriodLock().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PositionWithPeriodLock {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): PositionWithPeriodLock {
     return new PositionWithPeriodLock().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PositionWithPeriodLock {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): PositionWithPeriodLock {
     return new PositionWithPeriodLock().fromJsonString(jsonString, options);
   }
 
-  static equals(a: PositionWithPeriodLock | PlainMessage<PositionWithPeriodLock> | undefined, b: PositionWithPeriodLock | PlainMessage<PositionWithPeriodLock> | undefined): boolean {
+  static equals(
+    a: PositionWithPeriodLock | PlainMessage<PositionWithPeriodLock> | undefined,
+    b: PositionWithPeriodLock | PlainMessage<PositionWithPeriodLock> | undefined
+  ): boolean {
     return proto3.util.equals(PositionWithPeriodLock, a, b);
   }
 }
-

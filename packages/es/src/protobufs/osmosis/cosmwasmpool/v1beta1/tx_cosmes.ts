@@ -3,5 +3,4 @@
 /* eslint-disable */
 // @ts-nocheck
 
-const TYPE_NAME = "osmosis.cosmwasmpool.v1beta1.Msg";
-
+const TYPE_NAME = 'osmosis.cosmwasmpool.v1beta1.Msg';

@@ -3,9 +3,24 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgCreateClient, MsgCreateClientResponse, MsgDeleteClientCreator, MsgDeleteClientCreatorResponse, MsgIBCSoftwareUpgrade, MsgIBCSoftwareUpgradeResponse, MsgRecoverClient, MsgRecoverClientResponse, MsgUpdateClient, MsgUpdateClientResponse, MsgUpdateParams, MsgUpdateParamsResponse, MsgUpgradeClient, MsgUpgradeClientResponse } from "./tx_pb.js";
+import {
+  MsgCreateClient,
+  MsgCreateClientResponse,
+  MsgDeleteClientCreator,
+  MsgDeleteClientCreatorResponse,
+  MsgIBCSoftwareUpgrade,
+  MsgIBCSoftwareUpgradeResponse,
+  MsgRecoverClient,
+  MsgRecoverClientResponse,
+  MsgUpdateClient,
+  MsgUpdateClientResponse,
+  MsgUpdateParams,
+  MsgUpdateParamsResponse,
+  MsgUpgradeClient,
+  MsgUpgradeClientResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "ibc.core.client.v1.Msg";
+const TYPE_NAME = 'ibc.core.client.v1.Msg';
 
 /**
  * CreateClient defines a rpc handler method for MsgCreateClient.
@@ -14,7 +29,7 @@ const TYPE_NAME = "ibc.core.client.v1.Msg";
  */
 export const MsgCreateClientService = {
   typeName: TYPE_NAME,
-  method: "CreateClient",
+  method: 'CreateClient',
   Request: MsgCreateClient,
   Response: MsgCreateClientResponse,
 } as const;
@@ -26,7 +41,7 @@ export const MsgCreateClientService = {
  */
 export const MsgUpdateClientService = {
   typeName: TYPE_NAME,
-  method: "UpdateClient",
+  method: 'UpdateClient',
   Request: MsgUpdateClient,
   Response: MsgUpdateClientResponse,
 } as const;
@@ -38,7 +53,7 @@ export const MsgUpdateClientService = {
  */
 export const MsgUpgradeClientService = {
   typeName: TYPE_NAME,
-  method: "UpgradeClient",
+  method: 'UpgradeClient',
   Request: MsgUpgradeClient,
   Response: MsgUpgradeClientResponse,
 } as const;
@@ -50,7 +65,7 @@ export const MsgUpgradeClientService = {
  */
 export const MsgRecoverClientService = {
   typeName: TYPE_NAME,
-  method: "RecoverClient",
+  method: 'RecoverClient',
   Request: MsgRecoverClient,
   Response: MsgRecoverClientResponse,
 } as const;
@@ -62,7 +77,7 @@ export const MsgRecoverClientService = {
  */
 export const MsgIBCSoftwareUpgradeService = {
   typeName: TYPE_NAME,
-  method: "IBCSoftwareUpgrade",
+  method: 'IBCSoftwareUpgrade',
   Request: MsgIBCSoftwareUpgrade,
   Response: MsgIBCSoftwareUpgradeResponse,
 } as const;
@@ -74,7 +89,7 @@ export const MsgIBCSoftwareUpgradeService = {
  */
 export const MsgUpdateClientParamsService = {
   typeName: TYPE_NAME,
-  method: "UpdateClientParams",
+  method: 'UpdateClientParams',
   Request: MsgUpdateParams,
   Response: MsgUpdateParamsResponse,
 } as const;
@@ -86,8 +101,7 @@ export const MsgUpdateClientParamsService = {
  */
 export const MsgDeleteClientCreatorService = {
   typeName: TYPE_NAME,
-  method: "DeleteClientCreator",
+  method: 'DeleteClientCreator',
   Request: MsgDeleteClientCreator,
   Response: MsgDeleteClientCreatorResponse,
 } as const;
-

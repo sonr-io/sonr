@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Duration, Message, proto3, protoInt64, Timestamp } from '@bufbuild/protobuf';
 
 /**
  * EpochInfo is a struct that describes the data going into
@@ -18,7 +25,7 @@ export class EpochInfo extends Message<EpochInfo> {
    *
    * @generated from field: string identifier = 1;
    */
-  identifier = "";
+  identifier = '';
 
   /**
    * start_time is the time at which the timer first ever ticks.
@@ -94,15 +101,15 @@ export class EpochInfo extends Message<EpochInfo> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.epochs.v1beta1.EpochInfo";
+  static readonly typeName = 'osmosis.epochs.v1beta1.EpochInfo';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "identifier", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "start_time", kind: "message", T: Timestamp },
-    { no: 3, name: "duration", kind: "message", T: Duration },
-    { no: 4, name: "current_epoch", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 5, name: "current_epoch_start_time", kind: "message", T: Timestamp },
-    { no: 6, name: "epoch_counting_started", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 8, name: "current_epoch_start_height", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: 'identifier', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'start_time', kind: 'message', T: Timestamp },
+    { no: 3, name: 'duration', kind: 'message', T: Duration },
+    { no: 4, name: 'current_epoch', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 5, name: 'current_epoch_start_time', kind: 'message', T: Timestamp },
+    { no: 6, name: 'epoch_counting_started', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 8, name: 'current_epoch_start_height', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EpochInfo {
@@ -117,7 +124,10 @@ export class EpochInfo extends Message<EpochInfo> {
     return new EpochInfo().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EpochInfo | PlainMessage<EpochInfo> | undefined, b: EpochInfo | PlainMessage<EpochInfo> | undefined): boolean {
+  static equals(
+    a: EpochInfo | PlainMessage<EpochInfo> | undefined,
+    b: EpochInfo | PlainMessage<EpochInfo> | undefined
+  ): boolean {
     return proto3.util.equals(EpochInfo, a, b);
   }
 }
@@ -139,9 +149,9 @@ export class GenesisState extends Message<GenesisState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.epochs.v1beta1.GenesisState";
+  static readonly typeName = 'osmosis.epochs.v1beta1.GenesisState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "epochs", kind: "message", T: EpochInfo, repeated: true },
+    { no: 1, name: 'epochs', kind: 'message', T: EpochInfo, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {
@@ -156,8 +166,10 @@ export class GenesisState extends Message<GenesisState> {
     return new GenesisState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisState | PlainMessage<GenesisState> | undefined, b: GenesisState | PlainMessage<GenesisState> | undefined): boolean {
+  static equals(
+    a: GenesisState | PlainMessage<GenesisState> | undefined,
+    b: GenesisState | PlainMessage<GenesisState> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisState, a, b);
   }
 }
-

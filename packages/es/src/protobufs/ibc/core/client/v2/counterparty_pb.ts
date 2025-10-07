@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
 
 /**
  * CounterpartyInfo defines the key that the counterparty will use to message our client
@@ -24,7 +31,7 @@ export class CounterpartyInfo extends Message<CounterpartyInfo> {
    *
    * @generated from field: string client_id = 2;
    */
-  clientId = "";
+  clientId = '';
 
   constructor(data?: PartialMessage<CounterpartyInfo>) {
     super();
@@ -32,10 +39,10 @@ export class CounterpartyInfo extends Message<CounterpartyInfo> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.client.v2.CounterpartyInfo";
+  static readonly typeName = 'ibc.core.client.v2.CounterpartyInfo';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "merkle_prefix", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
-    { no: 2, name: "client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'merkle_prefix', kind: 'scalar', T: 12 /* ScalarType.BYTES */, repeated: true },
+    { no: 2, name: 'client_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CounterpartyInfo {
@@ -50,8 +57,10 @@ export class CounterpartyInfo extends Message<CounterpartyInfo> {
     return new CounterpartyInfo().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CounterpartyInfo | PlainMessage<CounterpartyInfo> | undefined, b: CounterpartyInfo | PlainMessage<CounterpartyInfo> | undefined): boolean {
+  static equals(
+    a: CounterpartyInfo | PlainMessage<CounterpartyInfo> | undefined,
+    b: CounterpartyInfo | PlainMessage<CounterpartyInfo> | undefined
+  ): boolean {
     return proto3.util.equals(CounterpartyInfo, a, b);
   }
 }
-

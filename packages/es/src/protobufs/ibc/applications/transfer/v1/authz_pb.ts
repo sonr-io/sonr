@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { Coin } from "../../../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { Coin } from '../../../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * Allocation defines the spend limit for a particular port and channel
@@ -18,14 +25,14 @@ export class Allocation extends Message<Allocation> {
    *
    * @generated from field: string source_port = 1;
    */
-  sourcePort = "";
+  sourcePort = '';
 
   /**
    * the channel by which the packet will be sent
    *
    * @generated from field: string source_channel = 2;
    */
-  sourceChannel = "";
+  sourceChannel = '';
 
   /**
    * spend limitation on the channel
@@ -55,13 +62,19 @@ export class Allocation extends Message<Allocation> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.transfer.v1.Allocation";
+  static readonly typeName = 'ibc.applications.transfer.v1.Allocation';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "source_port", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "source_channel", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "spend_limit", kind: "message", T: Coin, repeated: true },
-    { no: 4, name: "allow_list", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 5, name: "allowed_packet_data", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 1, name: 'source_port', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'source_channel', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'spend_limit', kind: 'message', T: Coin, repeated: true },
+    { no: 4, name: 'allow_list', kind: 'scalar', T: 9 /* ScalarType.STRING */, repeated: true },
+    {
+      no: 5,
+      name: 'allowed_packet_data',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Allocation {
@@ -76,7 +89,10 @@ export class Allocation extends Message<Allocation> {
     return new Allocation().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Allocation | PlainMessage<Allocation> | undefined, b: Allocation | PlainMessage<Allocation> | undefined): boolean {
+  static equals(
+    a: Allocation | PlainMessage<Allocation> | undefined,
+    b: Allocation | PlainMessage<Allocation> | undefined
+  ): boolean {
     return proto3.util.equals(Allocation, a, b);
   }
 }
@@ -101,12 +117,15 @@ export class TransferAuthorization extends Message<TransferAuthorization> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.transfer.v1.TransferAuthorization";
+  static readonly typeName = 'ibc.applications.transfer.v1.TransferAuthorization';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "allocations", kind: "message", T: Allocation, repeated: true },
+    { no: 1, name: 'allocations', kind: 'message', T: Allocation, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TransferAuthorization {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): TransferAuthorization {
     return new TransferAuthorization().fromBinary(bytes, options);
   }
 
@@ -114,12 +133,17 @@ export class TransferAuthorization extends Message<TransferAuthorization> {
     return new TransferAuthorization().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TransferAuthorization {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): TransferAuthorization {
     return new TransferAuthorization().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TransferAuthorization | PlainMessage<TransferAuthorization> | undefined, b: TransferAuthorization | PlainMessage<TransferAuthorization> | undefined): boolean {
+  static equals(
+    a: TransferAuthorization | PlainMessage<TransferAuthorization> | undefined,
+    b: TransferAuthorization | PlainMessage<TransferAuthorization> | undefined
+  ): boolean {
     return proto3.util.equals(TransferAuthorization, a, b);
   }
 }
-

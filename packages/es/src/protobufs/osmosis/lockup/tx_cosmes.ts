@@ -3,9 +3,22 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgBeginUnlocking, MsgBeginUnlockingAll, MsgBeginUnlockingAllResponse, MsgBeginUnlockingResponse, MsgExtendLockup, MsgExtendLockupResponse, MsgForceUnlock, MsgForceUnlockResponse, MsgLockTokens, MsgLockTokensResponse, MsgSetRewardReceiverAddress, MsgSetRewardReceiverAddressResponse } from "./tx_pb.js";
+import {
+  MsgBeginUnlocking,
+  MsgBeginUnlockingAll,
+  MsgBeginUnlockingAllResponse,
+  MsgBeginUnlockingResponse,
+  MsgExtendLockup,
+  MsgExtendLockupResponse,
+  MsgForceUnlock,
+  MsgForceUnlockResponse,
+  MsgLockTokens,
+  MsgLockTokensResponse,
+  MsgSetRewardReceiverAddress,
+  MsgSetRewardReceiverAddressResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "osmosis.lockup.Msg";
+const TYPE_NAME = 'osmosis.lockup.Msg';
 
 /**
  * LockTokens lock tokens
@@ -14,7 +27,7 @@ const TYPE_NAME = "osmosis.lockup.Msg";
  */
 export const MsgLockTokensService = {
   typeName: TYPE_NAME,
-  method: "LockTokens",
+  method: 'LockTokens',
   Request: MsgLockTokens,
   Response: MsgLockTokensResponse,
 } as const;
@@ -26,7 +39,7 @@ export const MsgLockTokensService = {
  */
 export const MsgBeginUnlockingAllService = {
   typeName: TYPE_NAME,
-  method: "BeginUnlockingAll",
+  method: 'BeginUnlockingAll',
   Request: MsgBeginUnlockingAll,
   Response: MsgBeginUnlockingAllResponse,
 } as const;
@@ -38,7 +51,7 @@ export const MsgBeginUnlockingAllService = {
  */
 export const MsgBeginUnlockingService = {
   typeName: TYPE_NAME,
-  method: "BeginUnlocking",
+  method: 'BeginUnlocking',
   Request: MsgBeginUnlocking,
   Response: MsgBeginUnlockingResponse,
 } as const;
@@ -50,7 +63,7 @@ export const MsgBeginUnlockingService = {
  */
 export const MsgExtendLockupService = {
   typeName: TYPE_NAME,
-  method: "ExtendLockup",
+  method: 'ExtendLockup',
   Request: MsgExtendLockup,
   Response: MsgExtendLockupResponse,
 } as const;
@@ -60,7 +73,7 @@ export const MsgExtendLockupService = {
  */
 export const MsgForceUnlockService = {
   typeName: TYPE_NAME,
-  method: "ForceUnlock",
+  method: 'ForceUnlock',
   Request: MsgForceUnlock,
   Response: MsgForceUnlockResponse,
 } as const;
@@ -72,8 +85,7 @@ export const MsgForceUnlockService = {
  */
 export const MsgSetRewardReceiverAddressService = {
   typeName: TYPE_NAME,
-  method: "SetRewardReceiverAddress",
+  method: 'SetRewardReceiverAddress',
   Request: MsgSetRewardReceiverAddress,
   Response: MsgSetRewardReceiverAddressResponse,
 } as const;
-

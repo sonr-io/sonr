@@ -3,9 +3,18 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgAddRateLimit, MsgAddRateLimitResponse, MsgRemoveRateLimit, MsgRemoveRateLimitResponse, MsgResetRateLimit, MsgResetRateLimitResponse, MsgUpdateRateLimit, MsgUpdateRateLimitResponse } from "./tx_pb.js";
+import {
+  MsgAddRateLimit,
+  MsgAddRateLimitResponse,
+  MsgRemoveRateLimit,
+  MsgRemoveRateLimitResponse,
+  MsgResetRateLimit,
+  MsgResetRateLimitResponse,
+  MsgUpdateRateLimit,
+  MsgUpdateRateLimitResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "ibc.applications.rate_limiting.v1.Msg";
+const TYPE_NAME = 'ibc.applications.rate_limiting.v1.Msg';
 
 /**
  * Gov tx to add a new rate limit
@@ -14,7 +23,7 @@ const TYPE_NAME = "ibc.applications.rate_limiting.v1.Msg";
  */
 export const MsgAddRateLimitService = {
   typeName: TYPE_NAME,
-  method: "AddRateLimit",
+  method: 'AddRateLimit',
   Request: MsgAddRateLimit,
   Response: MsgAddRateLimitResponse,
 } as const;
@@ -26,7 +35,7 @@ export const MsgAddRateLimitService = {
  */
 export const MsgUpdateRateLimitService = {
   typeName: TYPE_NAME,
-  method: "UpdateRateLimit",
+  method: 'UpdateRateLimit',
   Request: MsgUpdateRateLimit,
   Response: MsgUpdateRateLimitResponse,
 } as const;
@@ -38,7 +47,7 @@ export const MsgUpdateRateLimitService = {
  */
 export const MsgRemoveRateLimitService = {
   typeName: TYPE_NAME,
-  method: "RemoveRateLimit",
+  method: 'RemoveRateLimit',
   Request: MsgRemoveRateLimit,
   Response: MsgRemoveRateLimitResponse,
 } as const;
@@ -50,8 +59,7 @@ export const MsgRemoveRateLimitService = {
  */
 export const MsgResetRateLimitService = {
   typeName: TYPE_NAME,
-  method: "ResetRateLimit",
+  method: 'ResetRateLimit',
   Request: MsgResetRateLimit,
   Response: MsgResetRateLimitResponse,
 } as const;
-

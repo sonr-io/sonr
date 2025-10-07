@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { ValidatorPreference } from "./state_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { ValidatorPreference } from './state_pb.js';
 
 /**
  * Request type for UserValidatorPreferences.
@@ -18,7 +25,7 @@ export class UserValidatorPreferencesRequest extends Message<UserValidatorPrefer
    *
    * @generated from field: string address = 1;
    */
-  address = "";
+  address = '';
 
   constructor(data?: PartialMessage<UserValidatorPreferencesRequest>) {
     super();
@@ -26,24 +33,36 @@ export class UserValidatorPreferencesRequest extends Message<UserValidatorPrefer
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.valsetpref.v1beta1.UserValidatorPreferencesRequest";
+  static readonly typeName = 'osmosis.valsetpref.v1beta1.UserValidatorPreferencesRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UserValidatorPreferencesRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): UserValidatorPreferencesRequest {
     return new UserValidatorPreferencesRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UserValidatorPreferencesRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): UserValidatorPreferencesRequest {
     return new UserValidatorPreferencesRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserValidatorPreferencesRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): UserValidatorPreferencesRequest {
     return new UserValidatorPreferencesRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: UserValidatorPreferencesRequest | PlainMessage<UserValidatorPreferencesRequest> | undefined, b: UserValidatorPreferencesRequest | PlainMessage<UserValidatorPreferencesRequest> | undefined): boolean {
+  static equals(
+    a: UserValidatorPreferencesRequest | PlainMessage<UserValidatorPreferencesRequest> | undefined,
+    b: UserValidatorPreferencesRequest | PlainMessage<UserValidatorPreferencesRequest> | undefined
+  ): boolean {
     return proto3.util.equals(UserValidatorPreferencesRequest, a, b);
   }
 }
@@ -65,25 +84,39 @@ export class UserValidatorPreferencesResponse extends Message<UserValidatorPrefe
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.valsetpref.v1beta1.UserValidatorPreferencesResponse";
+  static readonly typeName = 'osmosis.valsetpref.v1beta1.UserValidatorPreferencesResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "preferences", kind: "message", T: ValidatorPreference, repeated: true },
+    { no: 1, name: 'preferences', kind: 'message', T: ValidatorPreference, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UserValidatorPreferencesResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): UserValidatorPreferencesResponse {
     return new UserValidatorPreferencesResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UserValidatorPreferencesResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): UserValidatorPreferencesResponse {
     return new UserValidatorPreferencesResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UserValidatorPreferencesResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): UserValidatorPreferencesResponse {
     return new UserValidatorPreferencesResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: UserValidatorPreferencesResponse | PlainMessage<UserValidatorPreferencesResponse> | undefined, b: UserValidatorPreferencesResponse | PlainMessage<UserValidatorPreferencesResponse> | undefined): boolean {
+  static equals(
+    a:
+      | UserValidatorPreferencesResponse
+      | PlainMessage<UserValidatorPreferencesResponse>
+      | undefined,
+    b: UserValidatorPreferencesResponse | PlainMessage<UserValidatorPreferencesResponse> | undefined
+  ): boolean {
     return proto3.util.equals(UserValidatorPreferencesResponse, a, b);
   }
 }
-

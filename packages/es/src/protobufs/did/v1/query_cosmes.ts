@@ -3,9 +3,34 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryGetCredentialsByDIDRequest, QueryGetCredentialsByDIDResponse, QueryGetDIDDocumentRequest, QueryGetDIDDocumentResponse, QueryGetDIDDocumentsByControllerRequest, QueryGetDIDDocumentsByControllerResponse, QueryGetServiceRequest, QueryGetServiceResponse, QueryGetVerifiableCredentialRequest, QueryGetVerifiableCredentialResponse, QueryGetVerificationMethodRequest, QueryGetVerificationMethodResponse, QueryListDIDDocumentsRequest, QueryListDIDDocumentsResponse, QueryListVerifiableCredentialsRequest, QueryListVerifiableCredentialsResponse, QueryLoginStartRequest, QueryLoginStartResponse, QueryParamsRequest, QueryParamsResponse, QueryRegisterStartRequest, QueryRegisterStartResponse, QueryResolveDIDRequest, QueryResolveDIDResponse } from "./query_pb.js";
+import {
+  QueryGetCredentialsByDIDRequest,
+  QueryGetCredentialsByDIDResponse,
+  QueryGetDIDDocumentRequest,
+  QueryGetDIDDocumentResponse,
+  QueryGetDIDDocumentsByControllerRequest,
+  QueryGetDIDDocumentsByControllerResponse,
+  QueryGetServiceRequest,
+  QueryGetServiceResponse,
+  QueryGetVerifiableCredentialRequest,
+  QueryGetVerifiableCredentialResponse,
+  QueryGetVerificationMethodRequest,
+  QueryGetVerificationMethodResponse,
+  QueryListDIDDocumentsRequest,
+  QueryListDIDDocumentsResponse,
+  QueryListVerifiableCredentialsRequest,
+  QueryListVerifiableCredentialsResponse,
+  QueryLoginStartRequest,
+  QueryLoginStartResponse,
+  QueryParamsRequest,
+  QueryParamsResponse,
+  QueryRegisterStartRequest,
+  QueryRegisterStartResponse,
+  QueryResolveDIDRequest,
+  QueryResolveDIDResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "did.v1.Query";
+const TYPE_NAME = 'did.v1.Query';
 
 /**
  * Params queries all parameters of the module.
@@ -14,7 +39,7 @@ const TYPE_NAME = "did.v1.Query";
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: QueryParamsRequest,
   Response: QueryParamsResponse,
 } as const;
@@ -31,7 +56,7 @@ export const QueryParamsService = {
  */
 export const QueryResolveDIDService = {
   typeName: TYPE_NAME,
-  method: "ResolveDID",
+  method: 'ResolveDID',
   Request: QueryResolveDIDRequest,
   Response: QueryResolveDIDResponse,
 } as const;
@@ -43,7 +68,7 @@ export const QueryResolveDIDService = {
  */
 export const QueryGetDIDDocumentService = {
   typeName: TYPE_NAME,
-  method: "GetDIDDocument",
+  method: 'GetDIDDocument',
   Request: QueryGetDIDDocumentRequest,
   Response: QueryGetDIDDocumentResponse,
 } as const;
@@ -55,7 +80,7 @@ export const QueryGetDIDDocumentService = {
  */
 export const QueryListDIDDocumentsService = {
   typeName: TYPE_NAME,
-  method: "ListDIDDocuments",
+  method: 'ListDIDDocuments',
   Request: QueryListDIDDocumentsRequest,
   Response: QueryListDIDDocumentsResponse,
 } as const;
@@ -67,7 +92,7 @@ export const QueryListDIDDocumentsService = {
  */
 export const QueryGetDIDDocumentsByControllerService = {
   typeName: TYPE_NAME,
-  method: "GetDIDDocumentsByController",
+  method: 'GetDIDDocumentsByController',
   Request: QueryGetDIDDocumentsByControllerRequest,
   Response: QueryGetDIDDocumentsByControllerResponse,
 } as const;
@@ -79,7 +104,7 @@ export const QueryGetDIDDocumentsByControllerService = {
  */
 export const QueryGetVerificationMethodService = {
   typeName: TYPE_NAME,
-  method: "GetVerificationMethod",
+  method: 'GetVerificationMethod',
   Request: QueryGetVerificationMethodRequest,
   Response: QueryGetVerificationMethodResponse,
 } as const;
@@ -91,7 +116,7 @@ export const QueryGetVerificationMethodService = {
  */
 export const QueryGetServiceService = {
   typeName: TYPE_NAME,
-  method: "GetService",
+  method: 'GetService',
   Request: QueryGetServiceRequest,
   Response: QueryGetServiceResponse,
 } as const;
@@ -103,7 +128,7 @@ export const QueryGetServiceService = {
  */
 export const QueryGetVerifiableCredentialService = {
   typeName: TYPE_NAME,
-  method: "GetVerifiableCredential",
+  method: 'GetVerifiableCredential',
   Request: QueryGetVerifiableCredentialRequest,
   Response: QueryGetVerifiableCredentialResponse,
 } as const;
@@ -115,7 +140,7 @@ export const QueryGetVerifiableCredentialService = {
  */
 export const QueryListVerifiableCredentialsService = {
   typeName: TYPE_NAME,
-  method: "ListVerifiableCredentials",
+  method: 'ListVerifiableCredentials',
   Request: QueryListVerifiableCredentialsRequest,
   Response: QueryListVerifiableCredentialsResponse,
 } as const;
@@ -127,7 +152,7 @@ export const QueryListVerifiableCredentialsService = {
  */
 export const QueryGetCredentialsByDIDService = {
   typeName: TYPE_NAME,
-  method: "GetCredentialsByDID",
+  method: 'GetCredentialsByDID',
   Request: QueryGetCredentialsByDIDRequest,
   Response: QueryGetCredentialsByDIDResponse,
 } as const;
@@ -139,7 +164,7 @@ export const QueryGetCredentialsByDIDService = {
  */
 export const QueryRegisterStartService = {
   typeName: TYPE_NAME,
-  method: "RegisterStart",
+  method: 'RegisterStart',
   Request: QueryRegisterStartRequest,
   Response: QueryRegisterStartResponse,
 } as const;
@@ -151,8 +176,7 @@ export const QueryRegisterStartService = {
  */
 export const QueryLoginStartService = {
   typeName: TYPE_NAME,
-  method: "LoginStart",
+  method: 'LoginStart',
   Request: QueryLoginStartRequest,
   Response: QueryLoginStartResponse,
 } as const;
-

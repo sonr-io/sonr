@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * Gov tx to add a new rate limit
@@ -17,7 +24,7 @@ export class MsgAddRateLimit extends Message<MsgAddRateLimit> {
    *
    * @generated from field: string signer = 1;
    */
-  signer = "";
+  signer = '';
 
   /**
    * Denom for the rate limit, as it appears on the rate limited chain
@@ -25,14 +32,14 @@ export class MsgAddRateLimit extends Message<MsgAddRateLimit> {
    *
    * @generated from field: string denom = 2;
    */
-  denom = "";
+  denom = '';
 
   /**
    * ChannelId for the rate limit, on the side of the rate limited chain
    *
    * @generated from field: string channel_or_client_id = 3;
    */
-  channelOrClientId = "";
+  channelOrClientId = '';
 
   /**
    * MaxPercentSend defines the threshold for outflows
@@ -40,7 +47,7 @@ export class MsgAddRateLimit extends Message<MsgAddRateLimit> {
    *
    * @generated from field: string max_percent_send = 4;
    */
-  maxPercentSend = "";
+  maxPercentSend = '';
 
   /**
    * MaxPercentSend defines the threshold for inflows
@@ -48,7 +55,7 @@ export class MsgAddRateLimit extends Message<MsgAddRateLimit> {
    *
    * @generated from field: string max_percent_recv = 5;
    */
-  maxPercentRecv = "";
+  maxPercentRecv = '';
 
   /**
    * DurationHours specifies the number of hours before the rate limit
@@ -64,14 +71,14 @@ export class MsgAddRateLimit extends Message<MsgAddRateLimit> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.MsgAddRateLimit";
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.MsgAddRateLimit';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "channel_or_client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "max_percent_send", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "max_percent_recv", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "duration_hours", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'channel_or_client_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'max_percent_send', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'max_percent_recv', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'duration_hours', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgAddRateLimit {
@@ -86,7 +93,10 @@ export class MsgAddRateLimit extends Message<MsgAddRateLimit> {
     return new MsgAddRateLimit().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgAddRateLimit | PlainMessage<MsgAddRateLimit> | undefined, b: MsgAddRateLimit | PlainMessage<MsgAddRateLimit> | undefined): boolean {
+  static equals(
+    a: MsgAddRateLimit | PlainMessage<MsgAddRateLimit> | undefined,
+    b: MsgAddRateLimit | PlainMessage<MsgAddRateLimit> | undefined
+  ): boolean {
     return proto3.util.equals(MsgAddRateLimit, a, b);
   }
 }
@@ -103,23 +113,34 @@ export class MsgAddRateLimitResponse extends Message<MsgAddRateLimitResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.MsgAddRateLimitResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.MsgAddRateLimitResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgAddRateLimitResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgAddRateLimitResponse {
     return new MsgAddRateLimitResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgAddRateLimitResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgAddRateLimitResponse {
     return new MsgAddRateLimitResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgAddRateLimitResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgAddRateLimitResponse {
     return new MsgAddRateLimitResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgAddRateLimitResponse | PlainMessage<MsgAddRateLimitResponse> | undefined, b: MsgAddRateLimitResponse | PlainMessage<MsgAddRateLimitResponse> | undefined): boolean {
+  static equals(
+    a: MsgAddRateLimitResponse | PlainMessage<MsgAddRateLimitResponse> | undefined,
+    b: MsgAddRateLimitResponse | PlainMessage<MsgAddRateLimitResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgAddRateLimitResponse, a, b);
   }
 }
@@ -135,7 +156,7 @@ export class MsgUpdateRateLimit extends Message<MsgUpdateRateLimit> {
    *
    * @generated from field: string signer = 1;
    */
-  signer = "";
+  signer = '';
 
   /**
    * Denom for the rate limit, as it appears on the rate limited chain
@@ -143,14 +164,14 @@ export class MsgUpdateRateLimit extends Message<MsgUpdateRateLimit> {
    *
    * @generated from field: string denom = 2;
    */
-  denom = "";
+  denom = '';
 
   /**
    * ChannelId for the rate limit, on the side of the rate limited chain
    *
    * @generated from field: string channel_or_client_id = 3;
    */
-  channelOrClientId = "";
+  channelOrClientId = '';
 
   /**
    * MaxPercentSend defines the threshold for outflows
@@ -158,7 +179,7 @@ export class MsgUpdateRateLimit extends Message<MsgUpdateRateLimit> {
    *
    * @generated from field: string max_percent_send = 4;
    */
-  maxPercentSend = "";
+  maxPercentSend = '';
 
   /**
    * MaxPercentSend defines the threshold for inflows
@@ -166,7 +187,7 @@ export class MsgUpdateRateLimit extends Message<MsgUpdateRateLimit> {
    *
    * @generated from field: string max_percent_recv = 5;
    */
-  maxPercentRecv = "";
+  maxPercentRecv = '';
 
   /**
    * DurationHours specifies the number of hours before the rate limit
@@ -182,14 +203,14 @@ export class MsgUpdateRateLimit extends Message<MsgUpdateRateLimit> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.MsgUpdateRateLimit";
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.MsgUpdateRateLimit';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "channel_or_client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "max_percent_send", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "max_percent_recv", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "duration_hours", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'channel_or_client_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'max_percent_send', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'max_percent_recv', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'duration_hours', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUpdateRateLimit {
@@ -200,11 +221,17 @@ export class MsgUpdateRateLimit extends Message<MsgUpdateRateLimit> {
     return new MsgUpdateRateLimit().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgUpdateRateLimit {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgUpdateRateLimit {
     return new MsgUpdateRateLimit().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgUpdateRateLimit | PlainMessage<MsgUpdateRateLimit> | undefined, b: MsgUpdateRateLimit | PlainMessage<MsgUpdateRateLimit> | undefined): boolean {
+  static equals(
+    a: MsgUpdateRateLimit | PlainMessage<MsgUpdateRateLimit> | undefined,
+    b: MsgUpdateRateLimit | PlainMessage<MsgUpdateRateLimit> | undefined
+  ): boolean {
     return proto3.util.equals(MsgUpdateRateLimit, a, b);
   }
 }
@@ -221,23 +248,34 @@ export class MsgUpdateRateLimitResponse extends Message<MsgUpdateRateLimitRespon
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.MsgUpdateRateLimitResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.MsgUpdateRateLimitResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUpdateRateLimitResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgUpdateRateLimitResponse {
     return new MsgUpdateRateLimitResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgUpdateRateLimitResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgUpdateRateLimitResponse {
     return new MsgUpdateRateLimitResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgUpdateRateLimitResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgUpdateRateLimitResponse {
     return new MsgUpdateRateLimitResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgUpdateRateLimitResponse | PlainMessage<MsgUpdateRateLimitResponse> | undefined, b: MsgUpdateRateLimitResponse | PlainMessage<MsgUpdateRateLimitResponse> | undefined): boolean {
+  static equals(
+    a: MsgUpdateRateLimitResponse | PlainMessage<MsgUpdateRateLimitResponse> | undefined,
+    b: MsgUpdateRateLimitResponse | PlainMessage<MsgUpdateRateLimitResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgUpdateRateLimitResponse, a, b);
   }
 }
@@ -253,7 +291,7 @@ export class MsgRemoveRateLimit extends Message<MsgRemoveRateLimit> {
    *
    * @generated from field: string signer = 1;
    */
-  signer = "";
+  signer = '';
 
   /**
    * Denom for the rate limit, as it appears on the rate limited chain
@@ -261,14 +299,14 @@ export class MsgRemoveRateLimit extends Message<MsgRemoveRateLimit> {
    *
    * @generated from field: string denom = 2;
    */
-  denom = "";
+  denom = '';
 
   /**
    * ChannelId for the rate limit, on the side of the rate limited chain
    *
    * @generated from field: string channel_or_client_id = 3;
    */
-  channelOrClientId = "";
+  channelOrClientId = '';
 
   constructor(data?: PartialMessage<MsgRemoveRateLimit>) {
     super();
@@ -276,11 +314,11 @@ export class MsgRemoveRateLimit extends Message<MsgRemoveRateLimit> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.MsgRemoveRateLimit";
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.MsgRemoveRateLimit';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "channel_or_client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'channel_or_client_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRemoveRateLimit {
@@ -291,11 +329,17 @@ export class MsgRemoveRateLimit extends Message<MsgRemoveRateLimit> {
     return new MsgRemoveRateLimit().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgRemoveRateLimit {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgRemoveRateLimit {
     return new MsgRemoveRateLimit().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRemoveRateLimit | PlainMessage<MsgRemoveRateLimit> | undefined, b: MsgRemoveRateLimit | PlainMessage<MsgRemoveRateLimit> | undefined): boolean {
+  static equals(
+    a: MsgRemoveRateLimit | PlainMessage<MsgRemoveRateLimit> | undefined,
+    b: MsgRemoveRateLimit | PlainMessage<MsgRemoveRateLimit> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRemoveRateLimit, a, b);
   }
 }
@@ -312,23 +356,34 @@ export class MsgRemoveRateLimitResponse extends Message<MsgRemoveRateLimitRespon
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.MsgRemoveRateLimitResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.MsgRemoveRateLimitResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRemoveRateLimitResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgRemoveRateLimitResponse {
     return new MsgRemoveRateLimitResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgRemoveRateLimitResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgRemoveRateLimitResponse {
     return new MsgRemoveRateLimitResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgRemoveRateLimitResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgRemoveRateLimitResponse {
     return new MsgRemoveRateLimitResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRemoveRateLimitResponse | PlainMessage<MsgRemoveRateLimitResponse> | undefined, b: MsgRemoveRateLimitResponse | PlainMessage<MsgRemoveRateLimitResponse> | undefined): boolean {
+  static equals(
+    a: MsgRemoveRateLimitResponse | PlainMessage<MsgRemoveRateLimitResponse> | undefined,
+    b: MsgRemoveRateLimitResponse | PlainMessage<MsgRemoveRateLimitResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRemoveRateLimitResponse, a, b);
   }
 }
@@ -344,7 +399,7 @@ export class MsgResetRateLimit extends Message<MsgResetRateLimit> {
    *
    * @generated from field: string signer = 1;
    */
-  signer = "";
+  signer = '';
 
   /**
    * Denom for the rate limit, as it appears on the rate limited chain
@@ -352,14 +407,14 @@ export class MsgResetRateLimit extends Message<MsgResetRateLimit> {
    *
    * @generated from field: string denom = 2;
    */
-  denom = "";
+  denom = '';
 
   /**
    * ChannelId for the rate limit, on the side of the rate limited chain
    *
    * @generated from field: string channel_or_client_id = 3;
    */
-  channelOrClientId = "";
+  channelOrClientId = '';
 
   constructor(data?: PartialMessage<MsgResetRateLimit>) {
     super();
@@ -367,11 +422,11 @@ export class MsgResetRateLimit extends Message<MsgResetRateLimit> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.MsgResetRateLimit";
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.MsgResetRateLimit';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "channel_or_client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'channel_or_client_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgResetRateLimit {
@@ -386,7 +441,10 @@ export class MsgResetRateLimit extends Message<MsgResetRateLimit> {
     return new MsgResetRateLimit().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgResetRateLimit | PlainMessage<MsgResetRateLimit> | undefined, b: MsgResetRateLimit | PlainMessage<MsgResetRateLimit> | undefined): boolean {
+  static equals(
+    a: MsgResetRateLimit | PlainMessage<MsgResetRateLimit> | undefined,
+    b: MsgResetRateLimit | PlainMessage<MsgResetRateLimit> | undefined
+  ): boolean {
     return proto3.util.equals(MsgResetRateLimit, a, b);
   }
 }
@@ -403,24 +461,34 @@ export class MsgResetRateLimitResponse extends Message<MsgResetRateLimitResponse
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.MsgResetRateLimitResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.MsgResetRateLimitResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgResetRateLimitResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgResetRateLimitResponse {
     return new MsgResetRateLimitResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgResetRateLimitResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgResetRateLimitResponse {
     return new MsgResetRateLimitResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgResetRateLimitResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgResetRateLimitResponse {
     return new MsgResetRateLimitResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgResetRateLimitResponse | PlainMessage<MsgResetRateLimitResponse> | undefined, b: MsgResetRateLimitResponse | PlainMessage<MsgResetRateLimitResponse> | undefined): boolean {
+  static equals(
+    a: MsgResetRateLimitResponse | PlainMessage<MsgResetRateLimitResponse> | undefined,
+    b: MsgResetRateLimitResponse | PlainMessage<MsgResetRateLimitResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgResetRateLimitResponse, a, b);
   }
 }
-

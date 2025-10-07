@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { BaseDenom, InfoByPoolType, PoolWeights, TokenPairArbRoutes } from "./protorev_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { BaseDenom, InfoByPoolType, PoolWeights, TokenPairArbRoutes } from './protorev_pb.js';
 
 /**
  * MsgSetHotRoutes defines the Msg/SetHotRoutes request type.
@@ -18,7 +25,7 @@ export class MsgSetHotRoutes extends Message<MsgSetHotRoutes> {
    *
    * @generated from field: string admin = 1;
    */
-  admin = "";
+  admin = '';
 
   /**
    * hot_routes is the list of hot routes to set.
@@ -33,10 +40,10 @@ export class MsgSetHotRoutes extends Message<MsgSetHotRoutes> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.protorev.v1beta1.MsgSetHotRoutes";
+  static readonly typeName = 'osmosis.protorev.v1beta1.MsgSetHotRoutes';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "admin", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "hot_routes", kind: "message", T: TokenPairArbRoutes, repeated: true },
+    { no: 1, name: 'admin', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'hot_routes', kind: 'message', T: TokenPairArbRoutes, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetHotRoutes {
@@ -51,7 +58,10 @@ export class MsgSetHotRoutes extends Message<MsgSetHotRoutes> {
     return new MsgSetHotRoutes().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetHotRoutes | PlainMessage<MsgSetHotRoutes> | undefined, b: MsgSetHotRoutes | PlainMessage<MsgSetHotRoutes> | undefined): boolean {
+  static equals(
+    a: MsgSetHotRoutes | PlainMessage<MsgSetHotRoutes> | undefined,
+    b: MsgSetHotRoutes | PlainMessage<MsgSetHotRoutes> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetHotRoutes, a, b);
   }
 }
@@ -68,23 +78,34 @@ export class MsgSetHotRoutesResponse extends Message<MsgSetHotRoutesResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.protorev.v1beta1.MsgSetHotRoutesResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.protorev.v1beta1.MsgSetHotRoutesResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetHotRoutesResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetHotRoutesResponse {
     return new MsgSetHotRoutesResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetHotRoutesResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetHotRoutesResponse {
     return new MsgSetHotRoutesResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetHotRoutesResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetHotRoutesResponse {
     return new MsgSetHotRoutesResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetHotRoutesResponse | PlainMessage<MsgSetHotRoutesResponse> | undefined, b: MsgSetHotRoutesResponse | PlainMessage<MsgSetHotRoutesResponse> | undefined): boolean {
+  static equals(
+    a: MsgSetHotRoutesResponse | PlainMessage<MsgSetHotRoutesResponse> | undefined,
+    b: MsgSetHotRoutesResponse | PlainMessage<MsgSetHotRoutesResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetHotRoutesResponse, a, b);
   }
 }
@@ -100,7 +121,7 @@ export class MsgSetDeveloperAccount extends Message<MsgSetDeveloperAccount> {
    *
    * @generated from field: string admin = 1;
    */
-  admin = "";
+  admin = '';
 
   /**
    * developer_account is the account that will receive a portion of the profits
@@ -108,7 +129,7 @@ export class MsgSetDeveloperAccount extends Message<MsgSetDeveloperAccount> {
    *
    * @generated from field: string developer_account = 2;
    */
-  developerAccount = "";
+  developerAccount = '';
 
   constructor(data?: PartialMessage<MsgSetDeveloperAccount>) {
     super();
@@ -116,25 +137,37 @@ export class MsgSetDeveloperAccount extends Message<MsgSetDeveloperAccount> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.protorev.v1beta1.MsgSetDeveloperAccount";
+  static readonly typeName = 'osmosis.protorev.v1beta1.MsgSetDeveloperAccount';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "admin", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "developer_account", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'admin', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'developer_account', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetDeveloperAccount {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetDeveloperAccount {
     return new MsgSetDeveloperAccount().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetDeveloperAccount {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetDeveloperAccount {
     return new MsgSetDeveloperAccount().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetDeveloperAccount {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetDeveloperAccount {
     return new MsgSetDeveloperAccount().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetDeveloperAccount | PlainMessage<MsgSetDeveloperAccount> | undefined, b: MsgSetDeveloperAccount | PlainMessage<MsgSetDeveloperAccount> | undefined): boolean {
+  static equals(
+    a: MsgSetDeveloperAccount | PlainMessage<MsgSetDeveloperAccount> | undefined,
+    b: MsgSetDeveloperAccount | PlainMessage<MsgSetDeveloperAccount> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetDeveloperAccount, a, b);
   }
 }
@@ -152,23 +185,34 @@ export class MsgSetDeveloperAccountResponse extends Message<MsgSetDeveloperAccou
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.protorev.v1beta1.MsgSetDeveloperAccountResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.protorev.v1beta1.MsgSetDeveloperAccountResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetDeveloperAccountResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetDeveloperAccountResponse {
     return new MsgSetDeveloperAccountResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetDeveloperAccountResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetDeveloperAccountResponse {
     return new MsgSetDeveloperAccountResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetDeveloperAccountResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetDeveloperAccountResponse {
     return new MsgSetDeveloperAccountResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetDeveloperAccountResponse | PlainMessage<MsgSetDeveloperAccountResponse> | undefined, b: MsgSetDeveloperAccountResponse | PlainMessage<MsgSetDeveloperAccountResponse> | undefined): boolean {
+  static equals(
+    a: MsgSetDeveloperAccountResponse | PlainMessage<MsgSetDeveloperAccountResponse> | undefined,
+    b: MsgSetDeveloperAccountResponse | PlainMessage<MsgSetDeveloperAccountResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetDeveloperAccountResponse, a, b);
   }
 }
@@ -184,7 +228,7 @@ export class MsgSetInfoByPoolType extends Message<MsgSetInfoByPoolType> {
    *
    * @generated from field: string admin = 1;
    */
-  admin = "";
+  admin = '';
 
   /**
    * info_by_pool_type contains information about the pool types.
@@ -199,10 +243,10 @@ export class MsgSetInfoByPoolType extends Message<MsgSetInfoByPoolType> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.protorev.v1beta1.MsgSetInfoByPoolType";
+  static readonly typeName = 'osmosis.protorev.v1beta1.MsgSetInfoByPoolType';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "admin", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "info_by_pool_type", kind: "message", T: InfoByPoolType },
+    { no: 1, name: 'admin', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'info_by_pool_type', kind: 'message', T: InfoByPoolType },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetInfoByPoolType {
@@ -213,11 +257,17 @@ export class MsgSetInfoByPoolType extends Message<MsgSetInfoByPoolType> {
     return new MsgSetInfoByPoolType().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetInfoByPoolType {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetInfoByPoolType {
     return new MsgSetInfoByPoolType().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetInfoByPoolType | PlainMessage<MsgSetInfoByPoolType> | undefined, b: MsgSetInfoByPoolType | PlainMessage<MsgSetInfoByPoolType> | undefined): boolean {
+  static equals(
+    a: MsgSetInfoByPoolType | PlainMessage<MsgSetInfoByPoolType> | undefined,
+    b: MsgSetInfoByPoolType | PlainMessage<MsgSetInfoByPoolType> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetInfoByPoolType, a, b);
   }
 }
@@ -234,23 +284,34 @@ export class MsgSetInfoByPoolTypeResponse extends Message<MsgSetInfoByPoolTypeRe
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.protorev.v1beta1.MsgSetInfoByPoolTypeResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.protorev.v1beta1.MsgSetInfoByPoolTypeResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetInfoByPoolTypeResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetInfoByPoolTypeResponse {
     return new MsgSetInfoByPoolTypeResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetInfoByPoolTypeResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetInfoByPoolTypeResponse {
     return new MsgSetInfoByPoolTypeResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetInfoByPoolTypeResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetInfoByPoolTypeResponse {
     return new MsgSetInfoByPoolTypeResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetInfoByPoolTypeResponse | PlainMessage<MsgSetInfoByPoolTypeResponse> | undefined, b: MsgSetInfoByPoolTypeResponse | PlainMessage<MsgSetInfoByPoolTypeResponse> | undefined): boolean {
+  static equals(
+    a: MsgSetInfoByPoolTypeResponse | PlainMessage<MsgSetInfoByPoolTypeResponse> | undefined,
+    b: MsgSetInfoByPoolTypeResponse | PlainMessage<MsgSetInfoByPoolTypeResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetInfoByPoolTypeResponse, a, b);
   }
 }
@@ -266,7 +327,7 @@ export class MsgSetMaxPoolPointsPerTx extends Message<MsgSetMaxPoolPointsPerTx> 
    *
    * @generated from field: string admin = 1;
    */
-  admin = "";
+  admin = '';
 
   /**
    * max_pool_points_per_tx is the maximum number of pool points that can be
@@ -282,25 +343,37 @@ export class MsgSetMaxPoolPointsPerTx extends Message<MsgSetMaxPoolPointsPerTx> 
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.protorev.v1beta1.MsgSetMaxPoolPointsPerTx";
+  static readonly typeName = 'osmosis.protorev.v1beta1.MsgSetMaxPoolPointsPerTx';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "admin", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "max_pool_points_per_tx", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'admin', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'max_pool_points_per_tx', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetMaxPoolPointsPerTx {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetMaxPoolPointsPerTx {
     return new MsgSetMaxPoolPointsPerTx().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetMaxPoolPointsPerTx {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetMaxPoolPointsPerTx {
     return new MsgSetMaxPoolPointsPerTx().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetMaxPoolPointsPerTx {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetMaxPoolPointsPerTx {
     return new MsgSetMaxPoolPointsPerTx().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetMaxPoolPointsPerTx | PlainMessage<MsgSetMaxPoolPointsPerTx> | undefined, b: MsgSetMaxPoolPointsPerTx | PlainMessage<MsgSetMaxPoolPointsPerTx> | undefined): boolean {
+  static equals(
+    a: MsgSetMaxPoolPointsPerTx | PlainMessage<MsgSetMaxPoolPointsPerTx> | undefined,
+    b: MsgSetMaxPoolPointsPerTx | PlainMessage<MsgSetMaxPoolPointsPerTx> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetMaxPoolPointsPerTx, a, b);
   }
 }
@@ -318,23 +391,37 @@ export class MsgSetMaxPoolPointsPerTxResponse extends Message<MsgSetMaxPoolPoint
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.protorev.v1beta1.MsgSetMaxPoolPointsPerTxResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.protorev.v1beta1.MsgSetMaxPoolPointsPerTxResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetMaxPoolPointsPerTxResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetMaxPoolPointsPerTxResponse {
     return new MsgSetMaxPoolPointsPerTxResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetMaxPoolPointsPerTxResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetMaxPoolPointsPerTxResponse {
     return new MsgSetMaxPoolPointsPerTxResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetMaxPoolPointsPerTxResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetMaxPoolPointsPerTxResponse {
     return new MsgSetMaxPoolPointsPerTxResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetMaxPoolPointsPerTxResponse | PlainMessage<MsgSetMaxPoolPointsPerTxResponse> | undefined, b: MsgSetMaxPoolPointsPerTxResponse | PlainMessage<MsgSetMaxPoolPointsPerTxResponse> | undefined): boolean {
+  static equals(
+    a:
+      | MsgSetMaxPoolPointsPerTxResponse
+      | PlainMessage<MsgSetMaxPoolPointsPerTxResponse>
+      | undefined,
+    b: MsgSetMaxPoolPointsPerTxResponse | PlainMessage<MsgSetMaxPoolPointsPerTxResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetMaxPoolPointsPerTxResponse, a, b);
   }
 }
@@ -352,7 +439,7 @@ export class MsgSetMaxPoolPointsPerBlock extends Message<MsgSetMaxPoolPointsPerB
    *
    * @generated from field: string admin = 1;
    */
-  admin = "";
+  admin = '';
 
   /**
    * max_pool_points_per_block is the maximum number of pool points that can be
@@ -368,25 +455,37 @@ export class MsgSetMaxPoolPointsPerBlock extends Message<MsgSetMaxPoolPointsPerB
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.protorev.v1beta1.MsgSetMaxPoolPointsPerBlock";
+  static readonly typeName = 'osmosis.protorev.v1beta1.MsgSetMaxPoolPointsPerBlock';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "admin", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "max_pool_points_per_block", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'admin', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'max_pool_points_per_block', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetMaxPoolPointsPerBlock {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetMaxPoolPointsPerBlock {
     return new MsgSetMaxPoolPointsPerBlock().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetMaxPoolPointsPerBlock {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetMaxPoolPointsPerBlock {
     return new MsgSetMaxPoolPointsPerBlock().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetMaxPoolPointsPerBlock {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetMaxPoolPointsPerBlock {
     return new MsgSetMaxPoolPointsPerBlock().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetMaxPoolPointsPerBlock | PlainMessage<MsgSetMaxPoolPointsPerBlock> | undefined, b: MsgSetMaxPoolPointsPerBlock | PlainMessage<MsgSetMaxPoolPointsPerBlock> | undefined): boolean {
+  static equals(
+    a: MsgSetMaxPoolPointsPerBlock | PlainMessage<MsgSetMaxPoolPointsPerBlock> | undefined,
+    b: MsgSetMaxPoolPointsPerBlock | PlainMessage<MsgSetMaxPoolPointsPerBlock> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetMaxPoolPointsPerBlock, a, b);
   }
 }
@@ -404,23 +503,40 @@ export class MsgSetMaxPoolPointsPerBlockResponse extends Message<MsgSetMaxPoolPo
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.protorev.v1beta1.MsgSetMaxPoolPointsPerBlockResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.protorev.v1beta1.MsgSetMaxPoolPointsPerBlockResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetMaxPoolPointsPerBlockResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetMaxPoolPointsPerBlockResponse {
     return new MsgSetMaxPoolPointsPerBlockResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetMaxPoolPointsPerBlockResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetMaxPoolPointsPerBlockResponse {
     return new MsgSetMaxPoolPointsPerBlockResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetMaxPoolPointsPerBlockResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetMaxPoolPointsPerBlockResponse {
     return new MsgSetMaxPoolPointsPerBlockResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetMaxPoolPointsPerBlockResponse | PlainMessage<MsgSetMaxPoolPointsPerBlockResponse> | undefined, b: MsgSetMaxPoolPointsPerBlockResponse | PlainMessage<MsgSetMaxPoolPointsPerBlockResponse> | undefined): boolean {
+  static equals(
+    a:
+      | MsgSetMaxPoolPointsPerBlockResponse
+      | PlainMessage<MsgSetMaxPoolPointsPerBlockResponse>
+      | undefined,
+    b:
+      | MsgSetMaxPoolPointsPerBlockResponse
+      | PlainMessage<MsgSetMaxPoolPointsPerBlockResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetMaxPoolPointsPerBlockResponse, a, b);
   }
 }
@@ -436,7 +552,7 @@ export class MsgSetBaseDenoms extends Message<MsgSetBaseDenoms> {
    *
    * @generated from field: string admin = 1;
    */
-  admin = "";
+  admin = '';
 
   /**
    * base_denoms is the list of base denoms to set.
@@ -451,10 +567,10 @@ export class MsgSetBaseDenoms extends Message<MsgSetBaseDenoms> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.protorev.v1beta1.MsgSetBaseDenoms";
+  static readonly typeName = 'osmosis.protorev.v1beta1.MsgSetBaseDenoms';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "admin", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "base_denoms", kind: "message", T: BaseDenom, repeated: true },
+    { no: 1, name: 'admin', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'base_denoms', kind: 'message', T: BaseDenom, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetBaseDenoms {
@@ -469,7 +585,10 @@ export class MsgSetBaseDenoms extends Message<MsgSetBaseDenoms> {
     return new MsgSetBaseDenoms().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetBaseDenoms | PlainMessage<MsgSetBaseDenoms> | undefined, b: MsgSetBaseDenoms | PlainMessage<MsgSetBaseDenoms> | undefined): boolean {
+  static equals(
+    a: MsgSetBaseDenoms | PlainMessage<MsgSetBaseDenoms> | undefined,
+    b: MsgSetBaseDenoms | PlainMessage<MsgSetBaseDenoms> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetBaseDenoms, a, b);
   }
 }
@@ -487,23 +606,34 @@ export class MsgSetBaseDenomsResponse extends Message<MsgSetBaseDenomsResponse> 
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.protorev.v1beta1.MsgSetBaseDenomsResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.protorev.v1beta1.MsgSetBaseDenomsResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetBaseDenomsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetBaseDenomsResponse {
     return new MsgSetBaseDenomsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetBaseDenomsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetBaseDenomsResponse {
     return new MsgSetBaseDenomsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetBaseDenomsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetBaseDenomsResponse {
     return new MsgSetBaseDenomsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetBaseDenomsResponse | PlainMessage<MsgSetBaseDenomsResponse> | undefined, b: MsgSetBaseDenomsResponse | PlainMessage<MsgSetBaseDenomsResponse> | undefined): boolean {
+  static equals(
+    a: MsgSetBaseDenomsResponse | PlainMessage<MsgSetBaseDenomsResponse> | undefined,
+    b: MsgSetBaseDenomsResponse | PlainMessage<MsgSetBaseDenomsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetBaseDenomsResponse, a, b);
   }
 }
@@ -519,7 +649,7 @@ export class MsgSetPoolWeights extends Message<MsgSetPoolWeights> {
    *
    * @generated from field: string admin = 1;
    */
-  admin = "";
+  admin = '';
 
   /**
    * pool_weights is the list of pool weights to set.
@@ -534,10 +664,10 @@ export class MsgSetPoolWeights extends Message<MsgSetPoolWeights> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.protorev.v1beta1.MsgSetPoolWeights";
+  static readonly typeName = 'osmosis.protorev.v1beta1.MsgSetPoolWeights';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "admin", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "pool_weights", kind: "message", T: PoolWeights },
+    { no: 1, name: 'admin', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'pool_weights', kind: 'message', T: PoolWeights },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetPoolWeights {
@@ -552,8 +682,10 @@ export class MsgSetPoolWeights extends Message<MsgSetPoolWeights> {
     return new MsgSetPoolWeights().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetPoolWeights | PlainMessage<MsgSetPoolWeights> | undefined, b: MsgSetPoolWeights | PlainMessage<MsgSetPoolWeights> | undefined): boolean {
+  static equals(
+    a: MsgSetPoolWeights | PlainMessage<MsgSetPoolWeights> | undefined,
+    b: MsgSetPoolWeights | PlainMessage<MsgSetPoolWeights> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetPoolWeights, a, b);
   }
 }
-

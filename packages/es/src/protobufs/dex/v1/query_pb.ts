@@ -3,12 +3,19 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { Params } from "./genesis_pb.js";
-import { InterchainDEXAccount } from "./ica_pb.js";
-import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination_pb.js";
-import { Coin } from "../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { Params } from './genesis_pb.js';
+import { InterchainDEXAccount } from './ica_pb.js';
+import { PageRequest, PageResponse } from '../../cosmos/base/query/v1beta1/pagination_pb.js';
+import { Coin } from '../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * QueryParamsRequest is request type for Query/Params RPC method
@@ -22,9 +29,8 @@ export class QueryParamsRequest extends Message<QueryParamsRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.QueryParamsRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'dex.v1.QueryParamsRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryParamsRequest {
     return new QueryParamsRequest().fromBinary(bytes, options);
@@ -34,11 +40,17 @@ export class QueryParamsRequest extends Message<QueryParamsRequest> {
     return new QueryParamsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryParamsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryParamsRequest {
     return new QueryParamsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined, b: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined): boolean {
+  static equals(
+    a: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined,
+    b: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryParamsRequest, a, b);
   }
 }
@@ -62,9 +74,9 @@ export class QueryParamsResponse extends Message<QueryParamsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.QueryParamsResponse";
+  static readonly typeName = 'dex.v1.QueryParamsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "params", kind: "message", T: Params },
+    { no: 1, name: 'params', kind: 'message', T: Params },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryParamsResponse {
@@ -75,11 +87,17 @@ export class QueryParamsResponse extends Message<QueryParamsResponse> {
     return new QueryParamsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryParamsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryParamsResponse {
     return new QueryParamsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined, b: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined): boolean {
+  static equals(
+    a: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined,
+    b: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryParamsResponse, a, b);
   }
 }
@@ -95,14 +113,14 @@ export class QueryAccountRequest extends Message<QueryAccountRequest> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * IBC connection ID
    *
    * @generated from field: string connection_id = 2;
    */
-  connectionId = "";
+  connectionId = '';
 
   constructor(data?: PartialMessage<QueryAccountRequest>) {
     super();
@@ -110,10 +128,10 @@ export class QueryAccountRequest extends Message<QueryAccountRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.QueryAccountRequest";
+  static readonly typeName = 'dex.v1.QueryAccountRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryAccountRequest {
@@ -124,11 +142,17 @@ export class QueryAccountRequest extends Message<QueryAccountRequest> {
     return new QueryAccountRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryAccountRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryAccountRequest {
     return new QueryAccountRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryAccountRequest | PlainMessage<QueryAccountRequest> | undefined, b: QueryAccountRequest | PlainMessage<QueryAccountRequest> | undefined): boolean {
+  static equals(
+    a: QueryAccountRequest | PlainMessage<QueryAccountRequest> | undefined,
+    b: QueryAccountRequest | PlainMessage<QueryAccountRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryAccountRequest, a, b);
   }
 }
@@ -152,9 +176,9 @@ export class QueryAccountResponse extends Message<QueryAccountResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.QueryAccountResponse";
+  static readonly typeName = 'dex.v1.QueryAccountResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "account", kind: "message", T: InterchainDEXAccount },
+    { no: 1, name: 'account', kind: 'message', T: InterchainDEXAccount },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryAccountResponse {
@@ -165,11 +189,17 @@ export class QueryAccountResponse extends Message<QueryAccountResponse> {
     return new QueryAccountResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryAccountResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryAccountResponse {
     return new QueryAccountResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryAccountResponse | PlainMessage<QueryAccountResponse> | undefined, b: QueryAccountResponse | PlainMessage<QueryAccountResponse> | undefined): boolean {
+  static equals(
+    a: QueryAccountResponse | PlainMessage<QueryAccountResponse> | undefined,
+    b: QueryAccountResponse | PlainMessage<QueryAccountResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryAccountResponse, a, b);
   }
 }
@@ -185,7 +215,7 @@ export class QueryAccountsRequest extends Message<QueryAccountsRequest> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * pagination defines optional pagination
@@ -200,10 +230,10 @@ export class QueryAccountsRequest extends Message<QueryAccountsRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.QueryAccountsRequest";
+  static readonly typeName = 'dex.v1.QueryAccountsRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "pagination", kind: "message", T: PageRequest },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'pagination', kind: 'message', T: PageRequest },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryAccountsRequest {
@@ -214,11 +244,17 @@ export class QueryAccountsRequest extends Message<QueryAccountsRequest> {
     return new QueryAccountsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryAccountsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryAccountsRequest {
     return new QueryAccountsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryAccountsRequest | PlainMessage<QueryAccountsRequest> | undefined, b: QueryAccountsRequest | PlainMessage<QueryAccountsRequest> | undefined): boolean {
+  static equals(
+    a: QueryAccountsRequest | PlainMessage<QueryAccountsRequest> | undefined,
+    b: QueryAccountsRequest | PlainMessage<QueryAccountsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryAccountsRequest, a, b);
   }
 }
@@ -249,13 +285,16 @@ export class QueryAccountsResponse extends Message<QueryAccountsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.QueryAccountsResponse";
+  static readonly typeName = 'dex.v1.QueryAccountsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "accounts", kind: "message", T: InterchainDEXAccount, repeated: true },
-    { no: 2, name: "pagination", kind: "message", T: PageResponse },
+    { no: 1, name: 'accounts', kind: 'message', T: InterchainDEXAccount, repeated: true },
+    { no: 2, name: 'pagination', kind: 'message', T: PageResponse },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryAccountsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryAccountsResponse {
     return new QueryAccountsResponse().fromBinary(bytes, options);
   }
 
@@ -263,11 +302,17 @@ export class QueryAccountsResponse extends Message<QueryAccountsResponse> {
     return new QueryAccountsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryAccountsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryAccountsResponse {
     return new QueryAccountsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryAccountsResponse | PlainMessage<QueryAccountsResponse> | undefined, b: QueryAccountsResponse | PlainMessage<QueryAccountsResponse> | undefined): boolean {
+  static equals(
+    a: QueryAccountsResponse | PlainMessage<QueryAccountsResponse> | undefined,
+    b: QueryAccountsResponse | PlainMessage<QueryAccountsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryAccountsResponse, a, b);
   }
 }
@@ -283,21 +328,21 @@ export class QueryBalanceRequest extends Message<QueryBalanceRequest> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * IBC connection ID
    *
    * @generated from field: string connection_id = 2;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * Optional specific denom to query
    *
    * @generated from field: string denom = 3;
    */
-  denom = "";
+  denom = '';
 
   constructor(data?: PartialMessage<QueryBalanceRequest>) {
     super();
@@ -305,11 +350,11 @@ export class QueryBalanceRequest extends Message<QueryBalanceRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.QueryBalanceRequest";
+  static readonly typeName = 'dex.v1.QueryBalanceRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryBalanceRequest {
@@ -320,11 +365,17 @@ export class QueryBalanceRequest extends Message<QueryBalanceRequest> {
     return new QueryBalanceRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryBalanceRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryBalanceRequest {
     return new QueryBalanceRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryBalanceRequest | PlainMessage<QueryBalanceRequest> | undefined, b: QueryBalanceRequest | PlainMessage<QueryBalanceRequest> | undefined): boolean {
+  static equals(
+    a: QueryBalanceRequest | PlainMessage<QueryBalanceRequest> | undefined,
+    b: QueryBalanceRequest | PlainMessage<QueryBalanceRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryBalanceRequest, a, b);
   }
 }
@@ -348,9 +399,9 @@ export class QueryBalanceResponse extends Message<QueryBalanceResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.QueryBalanceResponse";
+  static readonly typeName = 'dex.v1.QueryBalanceResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "balances", kind: "message", T: Coin, repeated: true },
+    { no: 1, name: 'balances', kind: 'message', T: Coin, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryBalanceResponse {
@@ -361,11 +412,17 @@ export class QueryBalanceResponse extends Message<QueryBalanceResponse> {
     return new QueryBalanceResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryBalanceResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryBalanceResponse {
     return new QueryBalanceResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryBalanceResponse | PlainMessage<QueryBalanceResponse> | undefined, b: QueryBalanceResponse | PlainMessage<QueryBalanceResponse> | undefined): boolean {
+  static equals(
+    a: QueryBalanceResponse | PlainMessage<QueryBalanceResponse> | undefined,
+    b: QueryBalanceResponse | PlainMessage<QueryBalanceResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryBalanceResponse, a, b);
   }
 }
@@ -381,14 +438,14 @@ export class QueryPoolRequest extends Message<QueryPoolRequest> {
    *
    * @generated from field: string connection_id = 1;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * Pool ID to query
    *
    * @generated from field: string pool_id = 2;
    */
-  poolId = "";
+  poolId = '';
 
   constructor(data?: PartialMessage<QueryPoolRequest>) {
     super();
@@ -396,10 +453,10 @@ export class QueryPoolRequest extends Message<QueryPoolRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.QueryPoolRequest";
+  static readonly typeName = 'dex.v1.QueryPoolRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "pool_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'pool_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryPoolRequest {
@@ -414,7 +471,10 @@ export class QueryPoolRequest extends Message<QueryPoolRequest> {
     return new QueryPoolRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryPoolRequest | PlainMessage<QueryPoolRequest> | undefined, b: QueryPoolRequest | PlainMessage<QueryPoolRequest> | undefined): boolean {
+  static equals(
+    a: QueryPoolRequest | PlainMessage<QueryPoolRequest> | undefined,
+    b: QueryPoolRequest | PlainMessage<QueryPoolRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryPoolRequest, a, b);
   }
 }
@@ -438,9 +498,9 @@ export class QueryPoolResponse extends Message<QueryPoolResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.QueryPoolResponse";
+  static readonly typeName = 'dex.v1.QueryPoolResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool", kind: "message", T: PoolInfo },
+    { no: 1, name: 'pool', kind: 'message', T: PoolInfo },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryPoolResponse {
@@ -455,7 +515,10 @@ export class QueryPoolResponse extends Message<QueryPoolResponse> {
     return new QueryPoolResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryPoolResponse | PlainMessage<QueryPoolResponse> | undefined, b: QueryPoolResponse | PlainMessage<QueryPoolResponse> | undefined): boolean {
+  static equals(
+    a: QueryPoolResponse | PlainMessage<QueryPoolResponse> | undefined,
+    b: QueryPoolResponse | PlainMessage<QueryPoolResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryPoolResponse, a, b);
   }
 }
@@ -471,7 +534,7 @@ export class PoolInfo extends Message<PoolInfo> {
    *
    * @generated from field: string pool_id = 1;
    */
-  poolId = "";
+  poolId = '';
 
   /**
    * Pool assets
@@ -485,14 +548,14 @@ export class PoolInfo extends Message<PoolInfo> {
    *
    * @generated from field: string total_shares = 3;
    */
-  totalShares = "";
+  totalShares = '';
 
   /**
    * Swap fee
    *
    * @generated from field: string swap_fee = 4;
    */
-  swapFee = "";
+  swapFee = '';
 
   constructor(data?: PartialMessage<PoolInfo>) {
     super();
@@ -500,12 +563,12 @@ export class PoolInfo extends Message<PoolInfo> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.PoolInfo";
+  static readonly typeName = 'dex.v1.PoolInfo';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "assets", kind: "message", T: Coin, repeated: true },
-    { no: 3, name: "total_shares", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "swap_fee", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'assets', kind: 'message', T: Coin, repeated: true },
+    { no: 3, name: 'total_shares', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'swap_fee', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PoolInfo {
@@ -520,7 +583,10 @@ export class PoolInfo extends Message<PoolInfo> {
     return new PoolInfo().fromJsonString(jsonString, options);
   }
 
-  static equals(a: PoolInfo | PlainMessage<PoolInfo> | undefined, b: PoolInfo | PlainMessage<PoolInfo> | undefined): boolean {
+  static equals(
+    a: PoolInfo | PlainMessage<PoolInfo> | undefined,
+    b: PoolInfo | PlainMessage<PoolInfo> | undefined
+  ): boolean {
     return proto3.util.equals(PoolInfo, a, b);
   }
 }
@@ -536,21 +602,21 @@ export class QueryOrdersRequest extends Message<QueryOrdersRequest> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * IBC connection ID
    *
    * @generated from field: string connection_id = 2;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * Filter by status (optional)
    *
    * @generated from field: string status = 3;
    */
-  status = "";
+  status = '';
 
   /**
    * pagination defines optional pagination
@@ -565,12 +631,12 @@ export class QueryOrdersRequest extends Message<QueryOrdersRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.QueryOrdersRequest";
+  static readonly typeName = 'dex.v1.QueryOrdersRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "status", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "pagination", kind: "message", T: PageRequest },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'status', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'pagination', kind: 'message', T: PageRequest },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryOrdersRequest {
@@ -581,11 +647,17 @@ export class QueryOrdersRequest extends Message<QueryOrdersRequest> {
     return new QueryOrdersRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryOrdersRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryOrdersRequest {
     return new QueryOrdersRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryOrdersRequest | PlainMessage<QueryOrdersRequest> | undefined, b: QueryOrdersRequest | PlainMessage<QueryOrdersRequest> | undefined): boolean {
+  static equals(
+    a: QueryOrdersRequest | PlainMessage<QueryOrdersRequest> | undefined,
+    b: QueryOrdersRequest | PlainMessage<QueryOrdersRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryOrdersRequest, a, b);
   }
 }
@@ -616,10 +688,10 @@ export class QueryOrdersResponse extends Message<QueryOrdersResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.QueryOrdersResponse";
+  static readonly typeName = 'dex.v1.QueryOrdersResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "orders", kind: "message", T: Order, repeated: true },
-    { no: 2, name: "pagination", kind: "message", T: PageResponse },
+    { no: 1, name: 'orders', kind: 'message', T: Order, repeated: true },
+    { no: 2, name: 'pagination', kind: 'message', T: PageResponse },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryOrdersResponse {
@@ -630,11 +702,17 @@ export class QueryOrdersResponse extends Message<QueryOrdersResponse> {
     return new QueryOrdersResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryOrdersResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryOrdersResponse {
     return new QueryOrdersResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryOrdersResponse | PlainMessage<QueryOrdersResponse> | undefined, b: QueryOrdersResponse | PlainMessage<QueryOrdersResponse> | undefined): boolean {
+  static equals(
+    a: QueryOrdersResponse | PlainMessage<QueryOrdersResponse> | undefined,
+    b: QueryOrdersResponse | PlainMessage<QueryOrdersResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryOrdersResponse, a, b);
   }
 }
@@ -650,56 +728,56 @@ export class Order extends Message<Order> {
    *
    * @generated from field: string order_id = 1;
    */
-  orderId = "";
+  orderId = '';
 
   /**
    * Order type
    *
    * @generated from field: string order_type = 2;
    */
-  orderType = "";
+  orderType = '';
 
   /**
    * Sell token
    *
    * @generated from field: string sell_denom = 3;
    */
-  sellDenom = "";
+  sellDenom = '';
 
   /**
    * Buy token
    *
    * @generated from field: string buy_denom = 4;
    */
-  buyDenom = "";
+  buyDenom = '';
 
   /**
    * Amount
    *
    * @generated from field: string amount = 5;
    */
-  amount = "";
+  amount = '';
 
   /**
    * Price
    *
    * @generated from field: string price = 6;
    */
-  price = "";
+  price = '';
 
   /**
    * Status
    *
    * @generated from field: string status = 7;
    */
-  status = "";
+  status = '';
 
   /**
    * Creation time
    *
    * @generated from field: string created_at = 8;
    */
-  createdAt = "";
+  createdAt = '';
 
   constructor(data?: PartialMessage<Order>) {
     super();
@@ -707,16 +785,16 @@ export class Order extends Message<Order> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.Order";
+  static readonly typeName = 'dex.v1.Order';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "order_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "order_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "sell_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "buy_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "price", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "status", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 8, name: "created_at", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'order_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'order_type', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'sell_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'buy_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'price', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: 'status', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: 'created_at', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Order {
@@ -731,7 +809,10 @@ export class Order extends Message<Order> {
     return new Order().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Order | PlainMessage<Order> | undefined, b: Order | PlainMessage<Order> | undefined): boolean {
+  static equals(
+    a: Order | PlainMessage<Order> | undefined,
+    b: Order | PlainMessage<Order> | undefined
+  ): boolean {
     return proto3.util.equals(Order, a, b);
   }
 }
@@ -747,21 +828,21 @@ export class QueryHistoryRequest extends Message<QueryHistoryRequest> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * Optional connection filter
    *
    * @generated from field: string connection_id = 2;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * Optional operation type filter
    *
    * @generated from field: string operation_type = 3;
    */
-  operationType = "";
+  operationType = '';
 
   /**
    * pagination defines optional pagination
@@ -776,12 +857,12 @@ export class QueryHistoryRequest extends Message<QueryHistoryRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.QueryHistoryRequest";
+  static readonly typeName = 'dex.v1.QueryHistoryRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "operation_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "pagination", kind: "message", T: PageRequest },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'operation_type', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'pagination', kind: 'message', T: PageRequest },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryHistoryRequest {
@@ -792,11 +873,17 @@ export class QueryHistoryRequest extends Message<QueryHistoryRequest> {
     return new QueryHistoryRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryHistoryRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryHistoryRequest {
     return new QueryHistoryRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryHistoryRequest | PlainMessage<QueryHistoryRequest> | undefined, b: QueryHistoryRequest | PlainMessage<QueryHistoryRequest> | undefined): boolean {
+  static equals(
+    a: QueryHistoryRequest | PlainMessage<QueryHistoryRequest> | undefined,
+    b: QueryHistoryRequest | PlainMessage<QueryHistoryRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryHistoryRequest, a, b);
   }
 }
@@ -827,10 +914,10 @@ export class QueryHistoryResponse extends Message<QueryHistoryResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.QueryHistoryResponse";
+  static readonly typeName = 'dex.v1.QueryHistoryResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "transactions", kind: "message", T: Transaction, repeated: true },
-    { no: 2, name: "pagination", kind: "message", T: PageResponse },
+    { no: 1, name: 'transactions', kind: 'message', T: Transaction, repeated: true },
+    { no: 2, name: 'pagination', kind: 'message', T: PageResponse },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryHistoryResponse {
@@ -841,11 +928,17 @@ export class QueryHistoryResponse extends Message<QueryHistoryResponse> {
     return new QueryHistoryResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryHistoryResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryHistoryResponse {
     return new QueryHistoryResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryHistoryResponse | PlainMessage<QueryHistoryResponse> | undefined, b: QueryHistoryResponse | PlainMessage<QueryHistoryResponse> | undefined): boolean {
+  static equals(
+    a: QueryHistoryResponse | PlainMessage<QueryHistoryResponse> | undefined,
+    b: QueryHistoryResponse | PlainMessage<QueryHistoryResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryHistoryResponse, a, b);
   }
 }
@@ -861,42 +954,42 @@ export class Transaction extends Message<Transaction> {
    *
    * @generated from field: string tx_id = 1;
    */
-  txId = "";
+  txId = '';
 
   /**
    * Operation type (swap, provide_liquidity, etc.)
    *
    * @generated from field: string operation_type = 2;
    */
-  operationType = "";
+  operationType = '';
 
   /**
    * Connection ID
    *
    * @generated from field: string connection_id = 3;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * Transaction details (JSON)
    *
    * @generated from field: string details = 4;
    */
-  details = "";
+  details = '';
 
   /**
    * Status
    *
    * @generated from field: string status = 5;
    */
-  status = "";
+  status = '';
 
   /**
    * Timestamp
    *
    * @generated from field: string timestamp = 6;
    */
-  timestamp = "";
+  timestamp = '';
 
   constructor(data?: PartialMessage<Transaction>) {
     super();
@@ -904,14 +997,14 @@ export class Transaction extends Message<Transaction> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.Transaction";
+  static readonly typeName = 'dex.v1.Transaction';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "tx_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "operation_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "details", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "status", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "timestamp", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'tx_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'operation_type', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'details', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'status', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'timestamp', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Transaction {
@@ -926,8 +1019,10 @@ export class Transaction extends Message<Transaction> {
     return new Transaction().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Transaction | PlainMessage<Transaction> | undefined, b: Transaction | PlainMessage<Transaction> | undefined): boolean {
+  static equals(
+    a: Transaction | PlainMessage<Transaction> | undefined,
+    b: Transaction | PlainMessage<Transaction> | undefined
+  ): boolean {
     return proto3.util.equals(Transaction, a, b);
   }
 }
-

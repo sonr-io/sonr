@@ -90,4 +90,3 @@ export * as ipfs from './client/services';
 // Vault Plugin - MPC-based cryptographic vault
 export * as vault from './plugin';
 export * as motor from './worker';
-

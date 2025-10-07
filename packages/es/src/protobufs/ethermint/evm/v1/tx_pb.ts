@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Any, Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { AccessTuple, Log, Params } from "./evm_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Any, Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { AccessTuple, Log, Params } from './evm_pb.js';
 
 /**
  * MsgEthereumTx encapsulates an Ethereum transaction as an SDK message.
@@ -32,7 +39,7 @@ export class MsgEthereumTx extends Message<MsgEthereumTx> {
    *
    * @generated from field: string hash = 3;
    */
-  hash = "";
+  hash = '';
 
   /**
    * from is the ethereum signer address in hex format. This address value is checked
@@ -41,7 +48,7 @@ export class MsgEthereumTx extends Message<MsgEthereumTx> {
    *
    * @generated from field: string from = 4;
    */
-  from = "";
+  from = '';
 
   constructor(data?: PartialMessage<MsgEthereumTx>) {
     super();
@@ -49,12 +56,12 @@ export class MsgEthereumTx extends Message<MsgEthereumTx> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.MsgEthereumTx";
+  static readonly typeName = 'ethermint.evm.v1.MsgEthereumTx';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "data", kind: "message", T: Any },
-    { no: 2, name: "size", kind: "scalar", T: 1 /* ScalarType.DOUBLE */ },
-    { no: 3, name: "hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "from", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'data', kind: 'message', T: Any },
+    { no: 2, name: 'size', kind: 'scalar', T: 1 /* ScalarType.DOUBLE */ },
+    { no: 3, name: 'hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'from', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgEthereumTx {
@@ -69,7 +76,10 @@ export class MsgEthereumTx extends Message<MsgEthereumTx> {
     return new MsgEthereumTx().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgEthereumTx | PlainMessage<MsgEthereumTx> | undefined, b: MsgEthereumTx | PlainMessage<MsgEthereumTx> | undefined): boolean {
+  static equals(
+    a: MsgEthereumTx | PlainMessage<MsgEthereumTx> | undefined,
+    b: MsgEthereumTx | PlainMessage<MsgEthereumTx> | undefined
+  ): boolean {
     return proto3.util.equals(MsgEthereumTx, a, b);
   }
 }
@@ -94,7 +104,7 @@ export class LegacyTx extends Message<LegacyTx> {
    *
    * @generated from field: string gas_price = 2;
    */
-  gasPrice = "";
+  gasPrice = '';
 
   /**
    * gas defines the gas limit defined for the transaction.
@@ -108,14 +118,14 @@ export class LegacyTx extends Message<LegacyTx> {
    *
    * @generated from field: string to = 4;
    */
-  to = "";
+  to = '';
 
   /**
    * value defines the unsigned integer value of the transaction amount.
    *
    * @generated from field: string value = 5;
    */
-  value = "";
+  value = '';
 
   /**
    * data is the data payload bytes of the transaction.
@@ -151,17 +161,17 @@ export class LegacyTx extends Message<LegacyTx> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.LegacyTx";
+  static readonly typeName = 'ethermint.evm.v1.LegacyTx';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "nonce", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "gas_price", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "gas", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 4, name: "to", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 7, name: "v", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 8, name: "r", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 9, name: "s", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'nonce', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'gas_price', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'gas', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 4, name: 'to', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'value', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'data', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 7, name: 'v', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 8, name: 'r', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 9, name: 's', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LegacyTx {
@@ -176,7 +186,10 @@ export class LegacyTx extends Message<LegacyTx> {
     return new LegacyTx().fromJsonString(jsonString, options);
   }
 
-  static equals(a: LegacyTx | PlainMessage<LegacyTx> | undefined, b: LegacyTx | PlainMessage<LegacyTx> | undefined): boolean {
+  static equals(
+    a: LegacyTx | PlainMessage<LegacyTx> | undefined,
+    b: LegacyTx | PlainMessage<LegacyTx> | undefined
+  ): boolean {
     return proto3.util.equals(LegacyTx, a, b);
   }
 }
@@ -192,7 +205,7 @@ export class AccessListTx extends Message<AccessListTx> {
    *
    * @generated from field: string chain_id = 1;
    */
-  chainId = "";
+  chainId = '';
 
   /**
    * nonce corresponds to the account nonce (transaction sequence).
@@ -206,7 +219,7 @@ export class AccessListTx extends Message<AccessListTx> {
    *
    * @generated from field: string gas_price = 3;
    */
-  gasPrice = "";
+  gasPrice = '';
 
   /**
    * gas defines the gas limit defined for the transaction.
@@ -220,14 +233,14 @@ export class AccessListTx extends Message<AccessListTx> {
    *
    * @generated from field: string to = 5;
    */
-  to = "";
+  to = '';
 
   /**
    * value defines the unsigned integer value of the transaction amount.
    *
    * @generated from field: string value = 6;
    */
-  value = "";
+  value = '';
 
   /**
    * data is the data payload bytes of the transaction.
@@ -270,19 +283,19 @@ export class AccessListTx extends Message<AccessListTx> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.AccessListTx";
+  static readonly typeName = 'ethermint.evm.v1.AccessListTx';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "chain_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "nonce", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "gas_price", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "gas", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 5, name: "to", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 8, name: "accesses", kind: "message", T: AccessTuple, repeated: true },
-    { no: 9, name: "v", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 10, name: "r", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 11, name: "s", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'chain_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'nonce', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'gas_price', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'gas', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 5, name: 'to', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'value', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: 'data', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 8, name: 'accesses', kind: 'message', T: AccessTuple, repeated: true },
+    { no: 9, name: 'v', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 10, name: 'r', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 11, name: 's', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccessListTx {
@@ -297,7 +310,10 @@ export class AccessListTx extends Message<AccessListTx> {
     return new AccessListTx().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccessListTx | PlainMessage<AccessListTx> | undefined, b: AccessListTx | PlainMessage<AccessListTx> | undefined): boolean {
+  static equals(
+    a: AccessListTx | PlainMessage<AccessListTx> | undefined,
+    b: AccessListTx | PlainMessage<AccessListTx> | undefined
+  ): boolean {
     return proto3.util.equals(AccessListTx, a, b);
   }
 }
@@ -313,7 +329,7 @@ export class DynamicFeeTx extends Message<DynamicFeeTx> {
    *
    * @generated from field: string chain_id = 1;
    */
-  chainId = "";
+  chainId = '';
 
   /**
    * nonce corresponds to the account nonce (transaction sequence).
@@ -327,14 +343,14 @@ export class DynamicFeeTx extends Message<DynamicFeeTx> {
    *
    * @generated from field: string gas_tip_cap = 3;
    */
-  gasTipCap = "";
+  gasTipCap = '';
 
   /**
    * gas_fee_cap defines the max value for the gas fee
    *
    * @generated from field: string gas_fee_cap = 4;
    */
-  gasFeeCap = "";
+  gasFeeCap = '';
 
   /**
    * gas defines the gas limit defined for the transaction.
@@ -348,14 +364,14 @@ export class DynamicFeeTx extends Message<DynamicFeeTx> {
    *
    * @generated from field: string to = 6;
    */
-  to = "";
+  to = '';
 
   /**
    * value defines the the transaction amount.
    *
    * @generated from field: string value = 7;
    */
-  value = "";
+  value = '';
 
   /**
    * data is the data payload bytes of the transaction.
@@ -398,20 +414,20 @@ export class DynamicFeeTx extends Message<DynamicFeeTx> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.DynamicFeeTx";
+  static readonly typeName = 'ethermint.evm.v1.DynamicFeeTx';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "chain_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "nonce", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "gas_tip_cap", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "gas_fee_cap", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "gas", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 6, name: "to", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "value", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 8, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 9, name: "accesses", kind: "message", T: AccessTuple, repeated: true },
-    { no: 10, name: "v", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 11, name: "r", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 12, name: "s", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'chain_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'nonce', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'gas_tip_cap', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'gas_fee_cap', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'gas', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 6, name: 'to', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: 'value', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: 'data', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 9, name: 'accesses', kind: 'message', T: AccessTuple, repeated: true },
+    { no: 10, name: 'v', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 11, name: 'r', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 12, name: 's', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DynamicFeeTx {
@@ -426,7 +442,10 @@ export class DynamicFeeTx extends Message<DynamicFeeTx> {
     return new DynamicFeeTx().fromJsonString(jsonString, options);
   }
 
-  static equals(a: DynamicFeeTx | PlainMessage<DynamicFeeTx> | undefined, b: DynamicFeeTx | PlainMessage<DynamicFeeTx> | undefined): boolean {
+  static equals(
+    a: DynamicFeeTx | PlainMessage<DynamicFeeTx> | undefined,
+    b: DynamicFeeTx | PlainMessage<DynamicFeeTx> | undefined
+  ): boolean {
     return proto3.util.equals(DynamicFeeTx, a, b);
   }
 }
@@ -443,23 +462,34 @@ export class ExtensionOptionsEthereumTx extends Message<ExtensionOptionsEthereum
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.ExtensionOptionsEthereumTx";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ethermint.evm.v1.ExtensionOptionsEthereumTx';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExtensionOptionsEthereumTx {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): ExtensionOptionsEthereumTx {
     return new ExtensionOptionsEthereumTx().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExtensionOptionsEthereumTx {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): ExtensionOptionsEthereumTx {
     return new ExtensionOptionsEthereumTx().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExtensionOptionsEthereumTx {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ExtensionOptionsEthereumTx {
     return new ExtensionOptionsEthereumTx().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ExtensionOptionsEthereumTx | PlainMessage<ExtensionOptionsEthereumTx> | undefined, b: ExtensionOptionsEthereumTx | PlainMessage<ExtensionOptionsEthereumTx> | undefined): boolean {
+  static equals(
+    a: ExtensionOptionsEthereumTx | PlainMessage<ExtensionOptionsEthereumTx> | undefined,
+    b: ExtensionOptionsEthereumTx | PlainMessage<ExtensionOptionsEthereumTx> | undefined
+  ): boolean {
     return proto3.util.equals(ExtensionOptionsEthereumTx, a, b);
   }
 }
@@ -477,7 +507,7 @@ export class MsgEthereumTxResponse extends Message<MsgEthereumTxResponse> {
    *
    * @generated from field: string hash = 1;
    */
-  hash = "";
+  hash = '';
 
   /**
    * logs contains the transaction hash and the proto-compatible ethereum
@@ -500,7 +530,7 @@ export class MsgEthereumTxResponse extends Message<MsgEthereumTxResponse> {
    *
    * @generated from field: string vm_error = 4;
    */
-  vmError = "";
+  vmError = '';
 
   /**
    * gas_used specifies how much gas was consumed by the transaction
@@ -515,16 +545,19 @@ export class MsgEthereumTxResponse extends Message<MsgEthereumTxResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.MsgEthereumTxResponse";
+  static readonly typeName = 'ethermint.evm.v1.MsgEthereumTxResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "logs", kind: "message", T: Log, repeated: true },
-    { no: 3, name: "ret", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 4, name: "vm_error", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "gas_used", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'logs', kind: 'message', T: Log, repeated: true },
+    { no: 3, name: 'ret', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 4, name: 'vm_error', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'gas_used', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgEthereumTxResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgEthereumTxResponse {
     return new MsgEthereumTxResponse().fromBinary(bytes, options);
   }
 
@@ -532,11 +565,17 @@ export class MsgEthereumTxResponse extends Message<MsgEthereumTxResponse> {
     return new MsgEthereumTxResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgEthereumTxResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgEthereumTxResponse {
     return new MsgEthereumTxResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgEthereumTxResponse | PlainMessage<MsgEthereumTxResponse> | undefined, b: MsgEthereumTxResponse | PlainMessage<MsgEthereumTxResponse> | undefined): boolean {
+  static equals(
+    a: MsgEthereumTxResponse | PlainMessage<MsgEthereumTxResponse> | undefined,
+    b: MsgEthereumTxResponse | PlainMessage<MsgEthereumTxResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgEthereumTxResponse, a, b);
   }
 }
@@ -552,7 +591,7 @@ export class MsgUpdateParams extends Message<MsgUpdateParams> {
    *
    * @generated from field: string authority = 1;
    */
-  authority = "";
+  authority = '';
 
   /**
    * params defines the x/evm parameters to update.
@@ -568,10 +607,10 @@ export class MsgUpdateParams extends Message<MsgUpdateParams> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.MsgUpdateParams";
+  static readonly typeName = 'ethermint.evm.v1.MsgUpdateParams';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "authority", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "params", kind: "message", T: Params },
+    { no: 1, name: 'authority', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'params', kind: 'message', T: Params },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUpdateParams {
@@ -586,7 +625,10 @@ export class MsgUpdateParams extends Message<MsgUpdateParams> {
     return new MsgUpdateParams().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined, b: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined): boolean {
+  static equals(
+    a: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined,
+    b: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined
+  ): boolean {
     return proto3.util.equals(MsgUpdateParams, a, b);
   }
 }
@@ -604,24 +646,34 @@ export class MsgUpdateParamsResponse extends Message<MsgUpdateParamsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.MsgUpdateParamsResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ethermint.evm.v1.MsgUpdateParamsResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUpdateParamsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgUpdateParamsResponse {
     return new MsgUpdateParamsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgUpdateParamsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgUpdateParamsResponse {
     return new MsgUpdateParamsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgUpdateParamsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgUpdateParamsResponse {
     return new MsgUpdateParamsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined, b: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined): boolean {
+  static equals(
+    a: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined,
+    b: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgUpdateParamsResponse, a, b);
   }
 }
-

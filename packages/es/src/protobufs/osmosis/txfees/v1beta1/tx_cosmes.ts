@@ -3,17 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgSetFeeTokens, MsgSetFeeTokensResponse } from "./tx_pb.js";
+import { MsgSetFeeTokens, MsgSetFeeTokensResponse } from './tx_pb.js';
 
-const TYPE_NAME = "osmosis.txfees.v1beta1.Msg";
+const TYPE_NAME = 'osmosis.txfees.v1beta1.Msg';
 
 /**
  * @generated from rpc osmosis.txfees.v1beta1.Msg.SetFeeTokens
  */
 export const MsgSetFeeTokensService = {
   typeName: TYPE_NAME,
-  method: "SetFeeTokens",
+  method: 'SetFeeTokens',
   Request: MsgSetFeeTokens,
   Response: MsgSetFeeTokensResponse,
 } as const;
-

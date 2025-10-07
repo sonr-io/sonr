@@ -3,9 +3,21 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3 } from "@bufbuild/protobuf";
-import { AnyPoolToInternalGauges, ConcentratedPoolToNoLockGauges, DistrInfo, Params } from "./incentives_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Duration, Message, proto3 } from '@bufbuild/protobuf';
+import {
+  AnyPoolToInternalGauges,
+  ConcentratedPoolToNoLockGauges,
+  DistrInfo,
+  Params,
+} from './incentives_pb.js';
 
 /**
  * GenesisState defines the pool incentives module's genesis state.
@@ -54,13 +66,18 @@ export class GenesisState extends Message<GenesisState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolincentives.v1beta1.GenesisState";
+  static readonly typeName = 'osmosis.poolincentives.v1beta1.GenesisState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "params", kind: "message", T: Params },
-    { no: 2, name: "lockable_durations", kind: "message", T: Duration, repeated: true },
-    { no: 3, name: "distr_info", kind: "message", T: DistrInfo },
-    { no: 4, name: "any_pool_to_internal_gauges", kind: "message", T: AnyPoolToInternalGauges },
-    { no: 5, name: "concentrated_pool_to_no_lock_gauges", kind: "message", T: ConcentratedPoolToNoLockGauges },
+    { no: 1, name: 'params', kind: 'message', T: Params },
+    { no: 2, name: 'lockable_durations', kind: 'message', T: Duration, repeated: true },
+    { no: 3, name: 'distr_info', kind: 'message', T: DistrInfo },
+    { no: 4, name: 'any_pool_to_internal_gauges', kind: 'message', T: AnyPoolToInternalGauges },
+    {
+      no: 5,
+      name: 'concentrated_pool_to_no_lock_gauges',
+      kind: 'message',
+      T: ConcentratedPoolToNoLockGauges,
+    },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {
@@ -75,8 +92,10 @@ export class GenesisState extends Message<GenesisState> {
     return new GenesisState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisState | PlainMessage<GenesisState> | undefined, b: GenesisState | PlainMessage<GenesisState> | undefined): boolean {
+  static equals(
+    a: GenesisState | PlainMessage<GenesisState> | undefined,
+    b: GenesisState | PlainMessage<GenesisState> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisState, a, b);
   }
 }
-

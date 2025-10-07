@@ -3,11 +3,18 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Any, Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Channel, IdentifiedChannel, PacketState } from "./channel_pb.js";
-import { Height, IdentifiedClientState } from "../../client/v1/client_pb.js";
-import { PageRequest, PageResponse } from "../../../../cosmos/base/query/v1beta1/pagination_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Any, Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { Channel, IdentifiedChannel, PacketState } from './channel_pb.js';
+import { Height, IdentifiedClientState } from '../../client/v1/client_pb.js';
+import { PageRequest, PageResponse } from '../../../../cosmos/base/query/v1beta1/pagination_pb.js';
 
 /**
  * QueryChannelRequest is the request type for the Query/Channel RPC method
@@ -20,14 +27,14 @@ export class QueryChannelRequest extends Message<QueryChannelRequest> {
    *
    * @generated from field: string port_id = 1;
    */
-  portId = "";
+  portId = '';
 
   /**
    * channel unique identifier
    *
    * @generated from field: string channel_id = 2;
    */
-  channelId = "";
+  channelId = '';
 
   constructor(data?: PartialMessage<QueryChannelRequest>) {
     super();
@@ -35,10 +42,10 @@ export class QueryChannelRequest extends Message<QueryChannelRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryChannelRequest";
+  static readonly typeName = 'ibc.core.channel.v1.QueryChannelRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryChannelRequest {
@@ -49,11 +56,17 @@ export class QueryChannelRequest extends Message<QueryChannelRequest> {
     return new QueryChannelRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryChannelRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryChannelRequest {
     return new QueryChannelRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryChannelRequest | PlainMessage<QueryChannelRequest> | undefined, b: QueryChannelRequest | PlainMessage<QueryChannelRequest> | undefined): boolean {
+  static equals(
+    a: QueryChannelRequest | PlainMessage<QueryChannelRequest> | undefined,
+    b: QueryChannelRequest | PlainMessage<QueryChannelRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryChannelRequest, a, b);
   }
 }
@@ -93,11 +106,11 @@ export class QueryChannelResponse extends Message<QueryChannelResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryChannelResponse";
+  static readonly typeName = 'ibc.core.channel.v1.QueryChannelResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "channel", kind: "message", T: Channel },
-    { no: 2, name: "proof", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "proof_height", kind: "message", T: Height },
+    { no: 1, name: 'channel', kind: 'message', T: Channel },
+    { no: 2, name: 'proof', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: 'proof_height', kind: 'message', T: Height },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryChannelResponse {
@@ -108,11 +121,17 @@ export class QueryChannelResponse extends Message<QueryChannelResponse> {
     return new QueryChannelResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryChannelResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryChannelResponse {
     return new QueryChannelResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryChannelResponse | PlainMessage<QueryChannelResponse> | undefined, b: QueryChannelResponse | PlainMessage<QueryChannelResponse> | undefined): boolean {
+  static equals(
+    a: QueryChannelResponse | PlainMessage<QueryChannelResponse> | undefined,
+    b: QueryChannelResponse | PlainMessage<QueryChannelResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryChannelResponse, a, b);
   }
 }
@@ -136,9 +155,9 @@ export class QueryChannelsRequest extends Message<QueryChannelsRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryChannelsRequest";
+  static readonly typeName = 'ibc.core.channel.v1.QueryChannelsRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pagination", kind: "message", T: PageRequest },
+    { no: 1, name: 'pagination', kind: 'message', T: PageRequest },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryChannelsRequest {
@@ -149,11 +168,17 @@ export class QueryChannelsRequest extends Message<QueryChannelsRequest> {
     return new QueryChannelsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryChannelsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryChannelsRequest {
     return new QueryChannelsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryChannelsRequest | PlainMessage<QueryChannelsRequest> | undefined, b: QueryChannelsRequest | PlainMessage<QueryChannelsRequest> | undefined): boolean {
+  static equals(
+    a: QueryChannelsRequest | PlainMessage<QueryChannelsRequest> | undefined,
+    b: QueryChannelsRequest | PlainMessage<QueryChannelsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryChannelsRequest, a, b);
   }
 }
@@ -191,14 +216,17 @@ export class QueryChannelsResponse extends Message<QueryChannelsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryChannelsResponse";
+  static readonly typeName = 'ibc.core.channel.v1.QueryChannelsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "channels", kind: "message", T: IdentifiedChannel, repeated: true },
-    { no: 2, name: "pagination", kind: "message", T: PageResponse },
-    { no: 3, name: "height", kind: "message", T: Height },
+    { no: 1, name: 'channels', kind: 'message', T: IdentifiedChannel, repeated: true },
+    { no: 2, name: 'pagination', kind: 'message', T: PageResponse },
+    { no: 3, name: 'height', kind: 'message', T: Height },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryChannelsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryChannelsResponse {
     return new QueryChannelsResponse().fromBinary(bytes, options);
   }
 
@@ -206,11 +234,17 @@ export class QueryChannelsResponse extends Message<QueryChannelsResponse> {
     return new QueryChannelsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryChannelsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryChannelsResponse {
     return new QueryChannelsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryChannelsResponse | PlainMessage<QueryChannelsResponse> | undefined, b: QueryChannelsResponse | PlainMessage<QueryChannelsResponse> | undefined): boolean {
+  static equals(
+    a: QueryChannelsResponse | PlainMessage<QueryChannelsResponse> | undefined,
+    b: QueryChannelsResponse | PlainMessage<QueryChannelsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryChannelsResponse, a, b);
   }
 }
@@ -227,7 +261,7 @@ export class QueryConnectionChannelsRequest extends Message<QueryConnectionChann
    *
    * @generated from field: string connection = 1;
    */
-  connection = "";
+  connection = '';
 
   /**
    * pagination request
@@ -242,25 +276,37 @@ export class QueryConnectionChannelsRequest extends Message<QueryConnectionChann
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryConnectionChannelsRequest";
+  static readonly typeName = 'ibc.core.channel.v1.QueryConnectionChannelsRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "connection", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "pagination", kind: "message", T: PageRequest },
+    { no: 1, name: 'connection', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'pagination', kind: 'message', T: PageRequest },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryConnectionChannelsRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryConnectionChannelsRequest {
     return new QueryConnectionChannelsRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryConnectionChannelsRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryConnectionChannelsRequest {
     return new QueryConnectionChannelsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryConnectionChannelsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryConnectionChannelsRequest {
     return new QueryConnectionChannelsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryConnectionChannelsRequest | PlainMessage<QueryConnectionChannelsRequest> | undefined, b: QueryConnectionChannelsRequest | PlainMessage<QueryConnectionChannelsRequest> | undefined): boolean {
+  static equals(
+    a: QueryConnectionChannelsRequest | PlainMessage<QueryConnectionChannelsRequest> | undefined,
+    b: QueryConnectionChannelsRequest | PlainMessage<QueryConnectionChannelsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryConnectionChannelsRequest, a, b);
   }
 }
@@ -299,26 +345,38 @@ export class QueryConnectionChannelsResponse extends Message<QueryConnectionChan
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryConnectionChannelsResponse";
+  static readonly typeName = 'ibc.core.channel.v1.QueryConnectionChannelsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "channels", kind: "message", T: IdentifiedChannel, repeated: true },
-    { no: 2, name: "pagination", kind: "message", T: PageResponse },
-    { no: 3, name: "height", kind: "message", T: Height },
+    { no: 1, name: 'channels', kind: 'message', T: IdentifiedChannel, repeated: true },
+    { no: 2, name: 'pagination', kind: 'message', T: PageResponse },
+    { no: 3, name: 'height', kind: 'message', T: Height },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryConnectionChannelsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryConnectionChannelsResponse {
     return new QueryConnectionChannelsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryConnectionChannelsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryConnectionChannelsResponse {
     return new QueryConnectionChannelsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryConnectionChannelsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryConnectionChannelsResponse {
     return new QueryConnectionChannelsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryConnectionChannelsResponse | PlainMessage<QueryConnectionChannelsResponse> | undefined, b: QueryConnectionChannelsResponse | PlainMessage<QueryConnectionChannelsResponse> | undefined): boolean {
+  static equals(
+    a: QueryConnectionChannelsResponse | PlainMessage<QueryConnectionChannelsResponse> | undefined,
+    b: QueryConnectionChannelsResponse | PlainMessage<QueryConnectionChannelsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryConnectionChannelsResponse, a, b);
   }
 }
@@ -335,14 +393,14 @@ export class QueryChannelClientStateRequest extends Message<QueryChannelClientSt
    *
    * @generated from field: string port_id = 1;
    */
-  portId = "";
+  portId = '';
 
   /**
    * channel unique identifier
    *
    * @generated from field: string channel_id = 2;
    */
-  channelId = "";
+  channelId = '';
 
   constructor(data?: PartialMessage<QueryChannelClientStateRequest>) {
     super();
@@ -350,25 +408,37 @@ export class QueryChannelClientStateRequest extends Message<QueryChannelClientSt
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryChannelClientStateRequest";
+  static readonly typeName = 'ibc.core.channel.v1.QueryChannelClientStateRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryChannelClientStateRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryChannelClientStateRequest {
     return new QueryChannelClientStateRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryChannelClientStateRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryChannelClientStateRequest {
     return new QueryChannelClientStateRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryChannelClientStateRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryChannelClientStateRequest {
     return new QueryChannelClientStateRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryChannelClientStateRequest | PlainMessage<QueryChannelClientStateRequest> | undefined, b: QueryChannelClientStateRequest | PlainMessage<QueryChannelClientStateRequest> | undefined): boolean {
+  static equals(
+    a: QueryChannelClientStateRequest | PlainMessage<QueryChannelClientStateRequest> | undefined,
+    b: QueryChannelClientStateRequest | PlainMessage<QueryChannelClientStateRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryChannelClientStateRequest, a, b);
   }
 }
@@ -407,26 +477,38 @@ export class QueryChannelClientStateResponse extends Message<QueryChannelClientS
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryChannelClientStateResponse";
+  static readonly typeName = 'ibc.core.channel.v1.QueryChannelClientStateResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "identified_client_state", kind: "message", T: IdentifiedClientState },
-    { no: 2, name: "proof", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "proof_height", kind: "message", T: Height },
+    { no: 1, name: 'identified_client_state', kind: 'message', T: IdentifiedClientState },
+    { no: 2, name: 'proof', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: 'proof_height', kind: 'message', T: Height },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryChannelClientStateResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryChannelClientStateResponse {
     return new QueryChannelClientStateResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryChannelClientStateResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryChannelClientStateResponse {
     return new QueryChannelClientStateResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryChannelClientStateResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryChannelClientStateResponse {
     return new QueryChannelClientStateResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryChannelClientStateResponse | PlainMessage<QueryChannelClientStateResponse> | undefined, b: QueryChannelClientStateResponse | PlainMessage<QueryChannelClientStateResponse> | undefined): boolean {
+  static equals(
+    a: QueryChannelClientStateResponse | PlainMessage<QueryChannelClientStateResponse> | undefined,
+    b: QueryChannelClientStateResponse | PlainMessage<QueryChannelClientStateResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryChannelClientStateResponse, a, b);
   }
 }
@@ -443,14 +525,14 @@ export class QueryChannelConsensusStateRequest extends Message<QueryChannelConse
    *
    * @generated from field: string port_id = 1;
    */
-  portId = "";
+  portId = '';
 
   /**
    * channel unique identifier
    *
    * @generated from field: string channel_id = 2;
    */
-  channelId = "";
+  channelId = '';
 
   /**
    * revision number of the consensus state
@@ -472,27 +554,45 @@ export class QueryChannelConsensusStateRequest extends Message<QueryChannelConse
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryChannelConsensusStateRequest";
+  static readonly typeName = 'ibc.core.channel.v1.QueryChannelConsensusStateRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "revision_number", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 4, name: "revision_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'revision_number', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 4, name: 'revision_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryChannelConsensusStateRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryChannelConsensusStateRequest {
     return new QueryChannelConsensusStateRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryChannelConsensusStateRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryChannelConsensusStateRequest {
     return new QueryChannelConsensusStateRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryChannelConsensusStateRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryChannelConsensusStateRequest {
     return new QueryChannelConsensusStateRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryChannelConsensusStateRequest | PlainMessage<QueryChannelConsensusStateRequest> | undefined, b: QueryChannelConsensusStateRequest | PlainMessage<QueryChannelConsensusStateRequest> | undefined): boolean {
+  static equals(
+    a:
+      | QueryChannelConsensusStateRequest
+      | PlainMessage<QueryChannelConsensusStateRequest>
+      | undefined,
+    b:
+      | QueryChannelConsensusStateRequest
+      | PlainMessage<QueryChannelConsensusStateRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(QueryChannelConsensusStateRequest, a, b);
   }
 }
@@ -516,7 +616,7 @@ export class QueryChannelConsensusStateResponse extends Message<QueryChannelCons
    *
    * @generated from field: string client_id = 2;
    */
-  clientId = "";
+  clientId = '';
 
   /**
    * merkle proof of existence
@@ -538,27 +638,45 @@ export class QueryChannelConsensusStateResponse extends Message<QueryChannelCons
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryChannelConsensusStateResponse";
+  static readonly typeName = 'ibc.core.channel.v1.QueryChannelConsensusStateResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "consensus_state", kind: "message", T: Any },
-    { no: 2, name: "client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "proof", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 4, name: "proof_height", kind: "message", T: Height },
+    { no: 1, name: 'consensus_state', kind: 'message', T: Any },
+    { no: 2, name: 'client_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'proof', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 4, name: 'proof_height', kind: 'message', T: Height },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryChannelConsensusStateResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryChannelConsensusStateResponse {
     return new QueryChannelConsensusStateResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryChannelConsensusStateResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryChannelConsensusStateResponse {
     return new QueryChannelConsensusStateResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryChannelConsensusStateResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryChannelConsensusStateResponse {
     return new QueryChannelConsensusStateResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryChannelConsensusStateResponse | PlainMessage<QueryChannelConsensusStateResponse> | undefined, b: QueryChannelConsensusStateResponse | PlainMessage<QueryChannelConsensusStateResponse> | undefined): boolean {
+  static equals(
+    a:
+      | QueryChannelConsensusStateResponse
+      | PlainMessage<QueryChannelConsensusStateResponse>
+      | undefined,
+    b:
+      | QueryChannelConsensusStateResponse
+      | PlainMessage<QueryChannelConsensusStateResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(QueryChannelConsensusStateResponse, a, b);
   }
 }
@@ -575,14 +693,14 @@ export class QueryPacketCommitmentRequest extends Message<QueryPacketCommitmentR
    *
    * @generated from field: string port_id = 1;
    */
-  portId = "";
+  portId = '';
 
   /**
    * channel unique identifier
    *
    * @generated from field: string channel_id = 2;
    */
-  channelId = "";
+  channelId = '';
 
   /**
    * packet sequence
@@ -597,26 +715,38 @@ export class QueryPacketCommitmentRequest extends Message<QueryPacketCommitmentR
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryPacketCommitmentRequest";
+  static readonly typeName = 'ibc.core.channel.v1.QueryPacketCommitmentRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'sequence', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryPacketCommitmentRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryPacketCommitmentRequest {
     return new QueryPacketCommitmentRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryPacketCommitmentRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryPacketCommitmentRequest {
     return new QueryPacketCommitmentRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryPacketCommitmentRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryPacketCommitmentRequest {
     return new QueryPacketCommitmentRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryPacketCommitmentRequest | PlainMessage<QueryPacketCommitmentRequest> | undefined, b: QueryPacketCommitmentRequest | PlainMessage<QueryPacketCommitmentRequest> | undefined): boolean {
+  static equals(
+    a: QueryPacketCommitmentRequest | PlainMessage<QueryPacketCommitmentRequest> | undefined,
+    b: QueryPacketCommitmentRequest | PlainMessage<QueryPacketCommitmentRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryPacketCommitmentRequest, a, b);
   }
 }
@@ -656,26 +786,38 @@ export class QueryPacketCommitmentResponse extends Message<QueryPacketCommitment
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryPacketCommitmentResponse";
+  static readonly typeName = 'ibc.core.channel.v1.QueryPacketCommitmentResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "commitment", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 2, name: "proof", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "proof_height", kind: "message", T: Height },
+    { no: 1, name: 'commitment', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: 'proof', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: 'proof_height', kind: 'message', T: Height },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryPacketCommitmentResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryPacketCommitmentResponse {
     return new QueryPacketCommitmentResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryPacketCommitmentResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryPacketCommitmentResponse {
     return new QueryPacketCommitmentResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryPacketCommitmentResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryPacketCommitmentResponse {
     return new QueryPacketCommitmentResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryPacketCommitmentResponse | PlainMessage<QueryPacketCommitmentResponse> | undefined, b: QueryPacketCommitmentResponse | PlainMessage<QueryPacketCommitmentResponse> | undefined): boolean {
+  static equals(
+    a: QueryPacketCommitmentResponse | PlainMessage<QueryPacketCommitmentResponse> | undefined,
+    b: QueryPacketCommitmentResponse | PlainMessage<QueryPacketCommitmentResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryPacketCommitmentResponse, a, b);
   }
 }
@@ -692,14 +834,14 @@ export class QueryPacketCommitmentsRequest extends Message<QueryPacketCommitment
    *
    * @generated from field: string port_id = 1;
    */
-  portId = "";
+  portId = '';
 
   /**
    * channel unique identifier
    *
    * @generated from field: string channel_id = 2;
    */
-  channelId = "";
+  channelId = '';
 
   /**
    * pagination request
@@ -714,26 +856,38 @@ export class QueryPacketCommitmentsRequest extends Message<QueryPacketCommitment
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryPacketCommitmentsRequest";
+  static readonly typeName = 'ibc.core.channel.v1.QueryPacketCommitmentsRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "pagination", kind: "message", T: PageRequest },
+    { no: 1, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'pagination', kind: 'message', T: PageRequest },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryPacketCommitmentsRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryPacketCommitmentsRequest {
     return new QueryPacketCommitmentsRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryPacketCommitmentsRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryPacketCommitmentsRequest {
     return new QueryPacketCommitmentsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryPacketCommitmentsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryPacketCommitmentsRequest {
     return new QueryPacketCommitmentsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryPacketCommitmentsRequest | PlainMessage<QueryPacketCommitmentsRequest> | undefined, b: QueryPacketCommitmentsRequest | PlainMessage<QueryPacketCommitmentsRequest> | undefined): boolean {
+  static equals(
+    a: QueryPacketCommitmentsRequest | PlainMessage<QueryPacketCommitmentsRequest> | undefined,
+    b: QueryPacketCommitmentsRequest | PlainMessage<QueryPacketCommitmentsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryPacketCommitmentsRequest, a, b);
   }
 }
@@ -770,26 +924,38 @@ export class QueryPacketCommitmentsResponse extends Message<QueryPacketCommitmen
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryPacketCommitmentsResponse";
+  static readonly typeName = 'ibc.core.channel.v1.QueryPacketCommitmentsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "commitments", kind: "message", T: PacketState, repeated: true },
-    { no: 2, name: "pagination", kind: "message", T: PageResponse },
-    { no: 3, name: "height", kind: "message", T: Height },
+    { no: 1, name: 'commitments', kind: 'message', T: PacketState, repeated: true },
+    { no: 2, name: 'pagination', kind: 'message', T: PageResponse },
+    { no: 3, name: 'height', kind: 'message', T: Height },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryPacketCommitmentsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryPacketCommitmentsResponse {
     return new QueryPacketCommitmentsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryPacketCommitmentsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryPacketCommitmentsResponse {
     return new QueryPacketCommitmentsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryPacketCommitmentsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryPacketCommitmentsResponse {
     return new QueryPacketCommitmentsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryPacketCommitmentsResponse | PlainMessage<QueryPacketCommitmentsResponse> | undefined, b: QueryPacketCommitmentsResponse | PlainMessage<QueryPacketCommitmentsResponse> | undefined): boolean {
+  static equals(
+    a: QueryPacketCommitmentsResponse | PlainMessage<QueryPacketCommitmentsResponse> | undefined,
+    b: QueryPacketCommitmentsResponse | PlainMessage<QueryPacketCommitmentsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryPacketCommitmentsResponse, a, b);
   }
 }
@@ -806,14 +972,14 @@ export class QueryPacketReceiptRequest extends Message<QueryPacketReceiptRequest
    *
    * @generated from field: string port_id = 1;
    */
-  portId = "";
+  portId = '';
 
   /**
    * channel unique identifier
    *
    * @generated from field: string channel_id = 2;
    */
-  channelId = "";
+  channelId = '';
 
   /**
    * packet sequence
@@ -828,26 +994,38 @@ export class QueryPacketReceiptRequest extends Message<QueryPacketReceiptRequest
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryPacketReceiptRequest";
+  static readonly typeName = 'ibc.core.channel.v1.QueryPacketReceiptRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'sequence', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryPacketReceiptRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryPacketReceiptRequest {
     return new QueryPacketReceiptRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryPacketReceiptRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryPacketReceiptRequest {
     return new QueryPacketReceiptRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryPacketReceiptRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryPacketReceiptRequest {
     return new QueryPacketReceiptRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryPacketReceiptRequest | PlainMessage<QueryPacketReceiptRequest> | undefined, b: QueryPacketReceiptRequest | PlainMessage<QueryPacketReceiptRequest> | undefined): boolean {
+  static equals(
+    a: QueryPacketReceiptRequest | PlainMessage<QueryPacketReceiptRequest> | undefined,
+    b: QueryPacketReceiptRequest | PlainMessage<QueryPacketReceiptRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryPacketReceiptRequest, a, b);
   }
 }
@@ -887,26 +1065,38 @@ export class QueryPacketReceiptResponse extends Message<QueryPacketReceiptRespon
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryPacketReceiptResponse";
+  static readonly typeName = 'ibc.core.channel.v1.QueryPacketReceiptResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 2, name: "received", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 3, name: "proof", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 4, name: "proof_height", kind: "message", T: Height },
+    { no: 2, name: 'received', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: 'proof', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 4, name: 'proof_height', kind: 'message', T: Height },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryPacketReceiptResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryPacketReceiptResponse {
     return new QueryPacketReceiptResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryPacketReceiptResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryPacketReceiptResponse {
     return new QueryPacketReceiptResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryPacketReceiptResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryPacketReceiptResponse {
     return new QueryPacketReceiptResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryPacketReceiptResponse | PlainMessage<QueryPacketReceiptResponse> | undefined, b: QueryPacketReceiptResponse | PlainMessage<QueryPacketReceiptResponse> | undefined): boolean {
+  static equals(
+    a: QueryPacketReceiptResponse | PlainMessage<QueryPacketReceiptResponse> | undefined,
+    b: QueryPacketReceiptResponse | PlainMessage<QueryPacketReceiptResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryPacketReceiptResponse, a, b);
   }
 }
@@ -923,14 +1113,14 @@ export class QueryPacketAcknowledgementRequest extends Message<QueryPacketAcknow
    *
    * @generated from field: string port_id = 1;
    */
-  portId = "";
+  portId = '';
 
   /**
    * channel unique identifier
    *
    * @generated from field: string channel_id = 2;
    */
-  channelId = "";
+  channelId = '';
 
   /**
    * packet sequence
@@ -945,26 +1135,44 @@ export class QueryPacketAcknowledgementRequest extends Message<QueryPacketAcknow
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryPacketAcknowledgementRequest";
+  static readonly typeName = 'ibc.core.channel.v1.QueryPacketAcknowledgementRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'sequence', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryPacketAcknowledgementRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryPacketAcknowledgementRequest {
     return new QueryPacketAcknowledgementRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryPacketAcknowledgementRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryPacketAcknowledgementRequest {
     return new QueryPacketAcknowledgementRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryPacketAcknowledgementRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryPacketAcknowledgementRequest {
     return new QueryPacketAcknowledgementRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryPacketAcknowledgementRequest | PlainMessage<QueryPacketAcknowledgementRequest> | undefined, b: QueryPacketAcknowledgementRequest | PlainMessage<QueryPacketAcknowledgementRequest> | undefined): boolean {
+  static equals(
+    a:
+      | QueryPacketAcknowledgementRequest
+      | PlainMessage<QueryPacketAcknowledgementRequest>
+      | undefined,
+    b:
+      | QueryPacketAcknowledgementRequest
+      | PlainMessage<QueryPacketAcknowledgementRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(QueryPacketAcknowledgementRequest, a, b);
   }
 }
@@ -1004,26 +1212,44 @@ export class QueryPacketAcknowledgementResponse extends Message<QueryPacketAckno
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryPacketAcknowledgementResponse";
+  static readonly typeName = 'ibc.core.channel.v1.QueryPacketAcknowledgementResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "acknowledgement", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 2, name: "proof", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "proof_height", kind: "message", T: Height },
+    { no: 1, name: 'acknowledgement', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: 'proof', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: 'proof_height', kind: 'message', T: Height },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryPacketAcknowledgementResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryPacketAcknowledgementResponse {
     return new QueryPacketAcknowledgementResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryPacketAcknowledgementResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryPacketAcknowledgementResponse {
     return new QueryPacketAcknowledgementResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryPacketAcknowledgementResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryPacketAcknowledgementResponse {
     return new QueryPacketAcknowledgementResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryPacketAcknowledgementResponse | PlainMessage<QueryPacketAcknowledgementResponse> | undefined, b: QueryPacketAcknowledgementResponse | PlainMessage<QueryPacketAcknowledgementResponse> | undefined): boolean {
+  static equals(
+    a:
+      | QueryPacketAcknowledgementResponse
+      | PlainMessage<QueryPacketAcknowledgementResponse>
+      | undefined,
+    b:
+      | QueryPacketAcknowledgementResponse
+      | PlainMessage<QueryPacketAcknowledgementResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(QueryPacketAcknowledgementResponse, a, b);
   }
 }
@@ -1040,14 +1266,14 @@ export class QueryPacketAcknowledgementsRequest extends Message<QueryPacketAckno
    *
    * @generated from field: string port_id = 1;
    */
-  portId = "";
+  portId = '';
 
   /**
    * channel unique identifier
    *
    * @generated from field: string channel_id = 2;
    */
-  channelId = "";
+  channelId = '';
 
   /**
    * pagination request
@@ -1069,27 +1295,51 @@ export class QueryPacketAcknowledgementsRequest extends Message<QueryPacketAckno
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryPacketAcknowledgementsRequest";
+  static readonly typeName = 'ibc.core.channel.v1.QueryPacketAcknowledgementsRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "pagination", kind: "message", T: PageRequest },
-    { no: 4, name: "packet_commitment_sequences", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
+    { no: 1, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'pagination', kind: 'message', T: PageRequest },
+    {
+      no: 4,
+      name: 'packet_commitment_sequences',
+      kind: 'scalar',
+      T: 4 /* ScalarType.UINT64 */,
+      repeated: true,
+    },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryPacketAcknowledgementsRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryPacketAcknowledgementsRequest {
     return new QueryPacketAcknowledgementsRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryPacketAcknowledgementsRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryPacketAcknowledgementsRequest {
     return new QueryPacketAcknowledgementsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryPacketAcknowledgementsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryPacketAcknowledgementsRequest {
     return new QueryPacketAcknowledgementsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryPacketAcknowledgementsRequest | PlainMessage<QueryPacketAcknowledgementsRequest> | undefined, b: QueryPacketAcknowledgementsRequest | PlainMessage<QueryPacketAcknowledgementsRequest> | undefined): boolean {
+  static equals(
+    a:
+      | QueryPacketAcknowledgementsRequest
+      | PlainMessage<QueryPacketAcknowledgementsRequest>
+      | undefined,
+    b:
+      | QueryPacketAcknowledgementsRequest
+      | PlainMessage<QueryPacketAcknowledgementsRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(QueryPacketAcknowledgementsRequest, a, b);
   }
 }
@@ -1126,26 +1376,44 @@ export class QueryPacketAcknowledgementsResponse extends Message<QueryPacketAckn
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryPacketAcknowledgementsResponse";
+  static readonly typeName = 'ibc.core.channel.v1.QueryPacketAcknowledgementsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "acknowledgements", kind: "message", T: PacketState, repeated: true },
-    { no: 2, name: "pagination", kind: "message", T: PageResponse },
-    { no: 3, name: "height", kind: "message", T: Height },
+    { no: 1, name: 'acknowledgements', kind: 'message', T: PacketState, repeated: true },
+    { no: 2, name: 'pagination', kind: 'message', T: PageResponse },
+    { no: 3, name: 'height', kind: 'message', T: Height },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryPacketAcknowledgementsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryPacketAcknowledgementsResponse {
     return new QueryPacketAcknowledgementsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryPacketAcknowledgementsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryPacketAcknowledgementsResponse {
     return new QueryPacketAcknowledgementsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryPacketAcknowledgementsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryPacketAcknowledgementsResponse {
     return new QueryPacketAcknowledgementsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryPacketAcknowledgementsResponse | PlainMessage<QueryPacketAcknowledgementsResponse> | undefined, b: QueryPacketAcknowledgementsResponse | PlainMessage<QueryPacketAcknowledgementsResponse> | undefined): boolean {
+  static equals(
+    a:
+      | QueryPacketAcknowledgementsResponse
+      | PlainMessage<QueryPacketAcknowledgementsResponse>
+      | undefined,
+    b:
+      | QueryPacketAcknowledgementsResponse
+      | PlainMessage<QueryPacketAcknowledgementsResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(QueryPacketAcknowledgementsResponse, a, b);
   }
 }
@@ -1162,14 +1430,14 @@ export class QueryUnreceivedPacketsRequest extends Message<QueryUnreceivedPacket
    *
    * @generated from field: string port_id = 1;
    */
-  portId = "";
+  portId = '';
 
   /**
    * channel unique identifier
    *
    * @generated from field: string channel_id = 2;
    */
-  channelId = "";
+  channelId = '';
 
   /**
    * list of packet sequences
@@ -1184,26 +1452,44 @@ export class QueryUnreceivedPacketsRequest extends Message<QueryUnreceivedPacket
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryUnreceivedPacketsRequest";
+  static readonly typeName = 'ibc.core.channel.v1.QueryUnreceivedPacketsRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "packet_commitment_sequences", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
+    { no: 1, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    {
+      no: 3,
+      name: 'packet_commitment_sequences',
+      kind: 'scalar',
+      T: 4 /* ScalarType.UINT64 */,
+      repeated: true,
+    },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryUnreceivedPacketsRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryUnreceivedPacketsRequest {
     return new QueryUnreceivedPacketsRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryUnreceivedPacketsRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryUnreceivedPacketsRequest {
     return new QueryUnreceivedPacketsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryUnreceivedPacketsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryUnreceivedPacketsRequest {
     return new QueryUnreceivedPacketsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryUnreceivedPacketsRequest | PlainMessage<QueryUnreceivedPacketsRequest> | undefined, b: QueryUnreceivedPacketsRequest | PlainMessage<QueryUnreceivedPacketsRequest> | undefined): boolean {
+  static equals(
+    a: QueryUnreceivedPacketsRequest | PlainMessage<QueryUnreceivedPacketsRequest> | undefined,
+    b: QueryUnreceivedPacketsRequest | PlainMessage<QueryUnreceivedPacketsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryUnreceivedPacketsRequest, a, b);
   }
 }
@@ -1235,25 +1521,37 @@ export class QueryUnreceivedPacketsResponse extends Message<QueryUnreceivedPacke
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryUnreceivedPacketsResponse";
+  static readonly typeName = 'ibc.core.channel.v1.QueryUnreceivedPacketsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sequences", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
-    { no: 2, name: "height", kind: "message", T: Height },
+    { no: 1, name: 'sequences', kind: 'scalar', T: 4 /* ScalarType.UINT64 */, repeated: true },
+    { no: 2, name: 'height', kind: 'message', T: Height },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryUnreceivedPacketsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryUnreceivedPacketsResponse {
     return new QueryUnreceivedPacketsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryUnreceivedPacketsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryUnreceivedPacketsResponse {
     return new QueryUnreceivedPacketsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryUnreceivedPacketsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryUnreceivedPacketsResponse {
     return new QueryUnreceivedPacketsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryUnreceivedPacketsResponse | PlainMessage<QueryUnreceivedPacketsResponse> | undefined, b: QueryUnreceivedPacketsResponse | PlainMessage<QueryUnreceivedPacketsResponse> | undefined): boolean {
+  static equals(
+    a: QueryUnreceivedPacketsResponse | PlainMessage<QueryUnreceivedPacketsResponse> | undefined,
+    b: QueryUnreceivedPacketsResponse | PlainMessage<QueryUnreceivedPacketsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryUnreceivedPacketsResponse, a, b);
   }
 }
@@ -1270,14 +1568,14 @@ export class QueryUnreceivedAcksRequest extends Message<QueryUnreceivedAcksReque
    *
    * @generated from field: string port_id = 1;
    */
-  portId = "";
+  portId = '';
 
   /**
    * channel unique identifier
    *
    * @generated from field: string channel_id = 2;
    */
-  channelId = "";
+  channelId = '';
 
   /**
    * list of acknowledgement sequences
@@ -1292,26 +1590,44 @@ export class QueryUnreceivedAcksRequest extends Message<QueryUnreceivedAcksReque
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryUnreceivedAcksRequest";
+  static readonly typeName = 'ibc.core.channel.v1.QueryUnreceivedAcksRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "packet_ack_sequences", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
+    { no: 1, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    {
+      no: 3,
+      name: 'packet_ack_sequences',
+      kind: 'scalar',
+      T: 4 /* ScalarType.UINT64 */,
+      repeated: true,
+    },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryUnreceivedAcksRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryUnreceivedAcksRequest {
     return new QueryUnreceivedAcksRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryUnreceivedAcksRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryUnreceivedAcksRequest {
     return new QueryUnreceivedAcksRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryUnreceivedAcksRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryUnreceivedAcksRequest {
     return new QueryUnreceivedAcksRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryUnreceivedAcksRequest | PlainMessage<QueryUnreceivedAcksRequest> | undefined, b: QueryUnreceivedAcksRequest | PlainMessage<QueryUnreceivedAcksRequest> | undefined): boolean {
+  static equals(
+    a: QueryUnreceivedAcksRequest | PlainMessage<QueryUnreceivedAcksRequest> | undefined,
+    b: QueryUnreceivedAcksRequest | PlainMessage<QueryUnreceivedAcksRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryUnreceivedAcksRequest, a, b);
   }
 }
@@ -1343,25 +1659,37 @@ export class QueryUnreceivedAcksResponse extends Message<QueryUnreceivedAcksResp
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryUnreceivedAcksResponse";
+  static readonly typeName = 'ibc.core.channel.v1.QueryUnreceivedAcksResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sequences", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
-    { no: 2, name: "height", kind: "message", T: Height },
+    { no: 1, name: 'sequences', kind: 'scalar', T: 4 /* ScalarType.UINT64 */, repeated: true },
+    { no: 2, name: 'height', kind: 'message', T: Height },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryUnreceivedAcksResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryUnreceivedAcksResponse {
     return new QueryUnreceivedAcksResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryUnreceivedAcksResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryUnreceivedAcksResponse {
     return new QueryUnreceivedAcksResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryUnreceivedAcksResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryUnreceivedAcksResponse {
     return new QueryUnreceivedAcksResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryUnreceivedAcksResponse | PlainMessage<QueryUnreceivedAcksResponse> | undefined, b: QueryUnreceivedAcksResponse | PlainMessage<QueryUnreceivedAcksResponse> | undefined): boolean {
+  static equals(
+    a: QueryUnreceivedAcksResponse | PlainMessage<QueryUnreceivedAcksResponse> | undefined,
+    b: QueryUnreceivedAcksResponse | PlainMessage<QueryUnreceivedAcksResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryUnreceivedAcksResponse, a, b);
   }
 }
@@ -1378,14 +1706,14 @@ export class QueryNextSequenceReceiveRequest extends Message<QueryNextSequenceRe
    *
    * @generated from field: string port_id = 1;
    */
-  portId = "";
+  portId = '';
 
   /**
    * channel unique identifier
    *
    * @generated from field: string channel_id = 2;
    */
-  channelId = "";
+  channelId = '';
 
   constructor(data?: PartialMessage<QueryNextSequenceReceiveRequest>) {
     super();
@@ -1393,25 +1721,37 @@ export class QueryNextSequenceReceiveRequest extends Message<QueryNextSequenceRe
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryNextSequenceReceiveRequest";
+  static readonly typeName = 'ibc.core.channel.v1.QueryNextSequenceReceiveRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryNextSequenceReceiveRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryNextSequenceReceiveRequest {
     return new QueryNextSequenceReceiveRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryNextSequenceReceiveRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryNextSequenceReceiveRequest {
     return new QueryNextSequenceReceiveRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryNextSequenceReceiveRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryNextSequenceReceiveRequest {
     return new QueryNextSequenceReceiveRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryNextSequenceReceiveRequest | PlainMessage<QueryNextSequenceReceiveRequest> | undefined, b: QueryNextSequenceReceiveRequest | PlainMessage<QueryNextSequenceReceiveRequest> | undefined): boolean {
+  static equals(
+    a: QueryNextSequenceReceiveRequest | PlainMessage<QueryNextSequenceReceiveRequest> | undefined,
+    b: QueryNextSequenceReceiveRequest | PlainMessage<QueryNextSequenceReceiveRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryNextSequenceReceiveRequest, a, b);
   }
 }
@@ -1450,26 +1790,41 @@ export class QueryNextSequenceReceiveResponse extends Message<QueryNextSequenceR
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryNextSequenceReceiveResponse";
+  static readonly typeName = 'ibc.core.channel.v1.QueryNextSequenceReceiveResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "next_sequence_receive", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "proof", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "proof_height", kind: "message", T: Height },
+    { no: 1, name: 'next_sequence_receive', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'proof', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: 'proof_height', kind: 'message', T: Height },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryNextSequenceReceiveResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryNextSequenceReceiveResponse {
     return new QueryNextSequenceReceiveResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryNextSequenceReceiveResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryNextSequenceReceiveResponse {
     return new QueryNextSequenceReceiveResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryNextSequenceReceiveResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryNextSequenceReceiveResponse {
     return new QueryNextSequenceReceiveResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryNextSequenceReceiveResponse | PlainMessage<QueryNextSequenceReceiveResponse> | undefined, b: QueryNextSequenceReceiveResponse | PlainMessage<QueryNextSequenceReceiveResponse> | undefined): boolean {
+  static equals(
+    a:
+      | QueryNextSequenceReceiveResponse
+      | PlainMessage<QueryNextSequenceReceiveResponse>
+      | undefined,
+    b: QueryNextSequenceReceiveResponse | PlainMessage<QueryNextSequenceReceiveResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryNextSequenceReceiveResponse, a, b);
   }
 }
@@ -1486,14 +1841,14 @@ export class QueryNextSequenceSendRequest extends Message<QueryNextSequenceSendR
    *
    * @generated from field: string port_id = 1;
    */
-  portId = "";
+  portId = '';
 
   /**
    * channel unique identifier
    *
    * @generated from field: string channel_id = 2;
    */
-  channelId = "";
+  channelId = '';
 
   constructor(data?: PartialMessage<QueryNextSequenceSendRequest>) {
     super();
@@ -1501,25 +1856,37 @@ export class QueryNextSequenceSendRequest extends Message<QueryNextSequenceSendR
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryNextSequenceSendRequest";
+  static readonly typeName = 'ibc.core.channel.v1.QueryNextSequenceSendRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryNextSequenceSendRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryNextSequenceSendRequest {
     return new QueryNextSequenceSendRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryNextSequenceSendRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryNextSequenceSendRequest {
     return new QueryNextSequenceSendRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryNextSequenceSendRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryNextSequenceSendRequest {
     return new QueryNextSequenceSendRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryNextSequenceSendRequest | PlainMessage<QueryNextSequenceSendRequest> | undefined, b: QueryNextSequenceSendRequest | PlainMessage<QueryNextSequenceSendRequest> | undefined): boolean {
+  static equals(
+    a: QueryNextSequenceSendRequest | PlainMessage<QueryNextSequenceSendRequest> | undefined,
+    b: QueryNextSequenceSendRequest | PlainMessage<QueryNextSequenceSendRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryNextSequenceSendRequest, a, b);
   }
 }
@@ -1558,27 +1925,38 @@ export class QueryNextSequenceSendResponse extends Message<QueryNextSequenceSend
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.QueryNextSequenceSendResponse";
+  static readonly typeName = 'ibc.core.channel.v1.QueryNextSequenceSendResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "next_sequence_send", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "proof", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "proof_height", kind: "message", T: Height },
+    { no: 1, name: 'next_sequence_send', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'proof', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: 'proof_height', kind: 'message', T: Height },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryNextSequenceSendResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryNextSequenceSendResponse {
     return new QueryNextSequenceSendResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryNextSequenceSendResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryNextSequenceSendResponse {
     return new QueryNextSequenceSendResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryNextSequenceSendResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryNextSequenceSendResponse {
     return new QueryNextSequenceSendResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryNextSequenceSendResponse | PlainMessage<QueryNextSequenceSendResponse> | undefined, b: QueryNextSequenceSendResponse | PlainMessage<QueryNextSequenceSendResponse> | undefined): boolean {
+  static equals(
+    a: QueryNextSequenceSendResponse | PlainMessage<QueryNextSequenceSendResponse> | undefined,
+    b: QueryNextSequenceSendResponse | PlainMessage<QueryNextSequenceSendResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryNextSequenceSendResponse, a, b);
   }
 }
-

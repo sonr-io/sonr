@@ -3,9 +3,50 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AccountLockedCoinsRequest, AccountLockedCoinsResponse, AccountLockedDurationRequest, AccountLockedDurationResponse, AccountLockedLongerDurationDenomRequest, AccountLockedLongerDurationDenomResponse, AccountLockedLongerDurationNotUnlockingOnlyRequest, AccountLockedLongerDurationNotUnlockingOnlyResponse, AccountLockedLongerDurationRequest, AccountLockedLongerDurationResponse, AccountLockedPastTimeDenomRequest, AccountLockedPastTimeDenomResponse, AccountLockedPastTimeNotUnlockingOnlyRequest, AccountLockedPastTimeNotUnlockingOnlyResponse, AccountLockedPastTimeRequest, AccountLockedPastTimeResponse, AccountUnlockableCoinsRequest, AccountUnlockableCoinsResponse, AccountUnlockedBeforeTimeRequest, AccountUnlockedBeforeTimeResponse, AccountUnlockingCoinsRequest, AccountUnlockingCoinsResponse, LockedDenomRequest, LockedDenomResponse, LockedRequest, LockedResponse, LockRewardReceiverRequest, LockRewardReceiverResponse, ModuleBalanceRequest, ModuleBalanceResponse, ModuleLockedAmountRequest, ModuleLockedAmountResponse, NextLockIDRequest, NextLockIDResponse, QueryParamsRequest, QueryParamsResponse, SyntheticLockupByLockupIDRequest, SyntheticLockupByLockupIDResponse, SyntheticLockupsByLockupIDRequest, SyntheticLockupsByLockupIDResponse } from "./query_pb.js";
+import {
+  AccountLockedCoinsRequest,
+  AccountLockedCoinsResponse,
+  AccountLockedDurationRequest,
+  AccountLockedDurationResponse,
+  AccountLockedLongerDurationDenomRequest,
+  AccountLockedLongerDurationDenomResponse,
+  AccountLockedLongerDurationNotUnlockingOnlyRequest,
+  AccountLockedLongerDurationNotUnlockingOnlyResponse,
+  AccountLockedLongerDurationRequest,
+  AccountLockedLongerDurationResponse,
+  AccountLockedPastTimeDenomRequest,
+  AccountLockedPastTimeDenomResponse,
+  AccountLockedPastTimeNotUnlockingOnlyRequest,
+  AccountLockedPastTimeNotUnlockingOnlyResponse,
+  AccountLockedPastTimeRequest,
+  AccountLockedPastTimeResponse,
+  AccountUnlockableCoinsRequest,
+  AccountUnlockableCoinsResponse,
+  AccountUnlockedBeforeTimeRequest,
+  AccountUnlockedBeforeTimeResponse,
+  AccountUnlockingCoinsRequest,
+  AccountUnlockingCoinsResponse,
+  LockedDenomRequest,
+  LockedDenomResponse,
+  LockedRequest,
+  LockedResponse,
+  LockRewardReceiverRequest,
+  LockRewardReceiverResponse,
+  ModuleBalanceRequest,
+  ModuleBalanceResponse,
+  ModuleLockedAmountRequest,
+  ModuleLockedAmountResponse,
+  NextLockIDRequest,
+  NextLockIDResponse,
+  QueryParamsRequest,
+  QueryParamsResponse,
+  SyntheticLockupByLockupIDRequest,
+  SyntheticLockupByLockupIDResponse,
+  SyntheticLockupsByLockupIDRequest,
+  SyntheticLockupsByLockupIDResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "osmosis.lockup.Query";
+const TYPE_NAME = 'osmosis.lockup.Query';
 
 /**
  * Return full balance of the module
@@ -14,7 +55,7 @@ const TYPE_NAME = "osmosis.lockup.Query";
  */
 export const QueryModuleBalanceService = {
   typeName: TYPE_NAME,
-  method: "ModuleBalance",
+  method: 'ModuleBalance',
   Request: ModuleBalanceRequest,
   Response: ModuleBalanceResponse,
 } as const;
@@ -26,7 +67,7 @@ export const QueryModuleBalanceService = {
  */
 export const QueryModuleLockedAmountService = {
   typeName: TYPE_NAME,
-  method: "ModuleLockedAmount",
+  method: 'ModuleLockedAmount',
   Request: ModuleLockedAmountRequest,
   Response: ModuleLockedAmountResponse,
 } as const;
@@ -38,7 +79,7 @@ export const QueryModuleLockedAmountService = {
  */
 export const QueryAccountUnlockableCoinsService = {
   typeName: TYPE_NAME,
-  method: "AccountUnlockableCoins",
+  method: 'AccountUnlockableCoins',
   Request: AccountUnlockableCoinsRequest,
   Response: AccountUnlockableCoinsResponse,
 } as const;
@@ -50,7 +91,7 @@ export const QueryAccountUnlockableCoinsService = {
  */
 export const QueryAccountUnlockingCoinsService = {
   typeName: TYPE_NAME,
-  method: "AccountUnlockingCoins",
+  method: 'AccountUnlockingCoins',
   Request: AccountUnlockingCoinsRequest,
   Response: AccountUnlockingCoinsResponse,
 } as const;
@@ -62,7 +103,7 @@ export const QueryAccountUnlockingCoinsService = {
  */
 export const QueryAccountLockedCoinsService = {
   typeName: TYPE_NAME,
-  method: "AccountLockedCoins",
+  method: 'AccountLockedCoins',
   Request: AccountLockedCoinsRequest,
   Response: AccountLockedCoinsResponse,
 } as const;
@@ -74,7 +115,7 @@ export const QueryAccountLockedCoinsService = {
  */
 export const QueryAccountLockedPastTimeService = {
   typeName: TYPE_NAME,
-  method: "AccountLockedPastTime",
+  method: 'AccountLockedPastTime',
   Request: AccountLockedPastTimeRequest,
   Response: AccountLockedPastTimeResponse,
 } as const;
@@ -87,7 +128,7 @@ export const QueryAccountLockedPastTimeService = {
  */
 export const QueryAccountLockedPastTimeNotUnlockingOnlyService = {
   typeName: TYPE_NAME,
-  method: "AccountLockedPastTimeNotUnlockingOnly",
+  method: 'AccountLockedPastTimeNotUnlockingOnly',
   Request: AccountLockedPastTimeNotUnlockingOnlyRequest,
   Response: AccountLockedPastTimeNotUnlockingOnlyResponse,
 } as const;
@@ -99,7 +140,7 @@ export const QueryAccountLockedPastTimeNotUnlockingOnlyService = {
  */
 export const QueryAccountUnlockedBeforeTimeService = {
   typeName: TYPE_NAME,
-  method: "AccountUnlockedBeforeTime",
+  method: 'AccountUnlockedBeforeTime',
   Request: AccountUnlockedBeforeTimeRequest,
   Response: AccountUnlockedBeforeTimeResponse,
 } as const;
@@ -111,7 +152,7 @@ export const QueryAccountUnlockedBeforeTimeService = {
  */
 export const QueryAccountLockedPastTimeDenomService = {
   typeName: TYPE_NAME,
-  method: "AccountLockedPastTimeDenom",
+  method: 'AccountLockedPastTimeDenom',
   Request: AccountLockedPastTimeDenomRequest,
   Response: AccountLockedPastTimeDenomResponse,
 } as const;
@@ -123,7 +164,7 @@ export const QueryAccountLockedPastTimeDenomService = {
  */
 export const QueryLockedDenomService = {
   typeName: TYPE_NAME,
-  method: "LockedDenom",
+  method: 'LockedDenom',
   Request: LockedDenomRequest,
   Response: LockedDenomResponse,
 } as const;
@@ -135,7 +176,7 @@ export const QueryLockedDenomService = {
  */
 export const QueryLockedByIDService = {
   typeName: TYPE_NAME,
-  method: "LockedByID",
+  method: 'LockedByID',
   Request: LockedRequest,
   Response: LockedResponse,
 } as const;
@@ -147,7 +188,7 @@ export const QueryLockedByIDService = {
  */
 export const QueryLockRewardReceiverService = {
   typeName: TYPE_NAME,
-  method: "LockRewardReceiver",
+  method: 'LockRewardReceiver',
   Request: LockRewardReceiverRequest,
   Response: LockRewardReceiverResponse,
 } as const;
@@ -159,7 +200,7 @@ export const QueryLockRewardReceiverService = {
  */
 export const QueryNextLockIDService = {
   typeName: TYPE_NAME,
-  method: "NextLockID",
+  method: 'NextLockID',
   Request: NextLockIDRequest,
   Response: NextLockIDResponse,
 } as const;
@@ -173,7 +214,7 @@ export const QueryNextLockIDService = {
  */
 export const QuerySyntheticLockupsByLockupIDService = {
   typeName: TYPE_NAME,
-  method: "SyntheticLockupsByLockupID",
+  method: 'SyntheticLockupsByLockupID',
   Request: SyntheticLockupsByLockupIDRequest,
   Response: SyntheticLockupsByLockupIDResponse,
 } as const;
@@ -185,7 +226,7 @@ export const QuerySyntheticLockupsByLockupIDService = {
  */
 export const QuerySyntheticLockupByLockupIDService = {
   typeName: TYPE_NAME,
-  method: "SyntheticLockupByLockupID",
+  method: 'SyntheticLockupByLockupID',
   Request: SyntheticLockupByLockupIDRequest,
   Response: SyntheticLockupByLockupIDResponse,
 } as const;
@@ -197,7 +238,7 @@ export const QuerySyntheticLockupByLockupIDService = {
  */
 export const QueryAccountLockedLongerDurationService = {
   typeName: TYPE_NAME,
-  method: "AccountLockedLongerDuration",
+  method: 'AccountLockedLongerDuration',
   Request: AccountLockedLongerDurationRequest,
   Response: AccountLockedLongerDurationResponse,
 } as const;
@@ -209,7 +250,7 @@ export const QueryAccountLockedLongerDurationService = {
  */
 export const QueryAccountLockedDurationService = {
   typeName: TYPE_NAME,
-  method: "AccountLockedDuration",
+  method: 'AccountLockedDuration',
   Request: AccountLockedDurationRequest,
   Response: AccountLockedDurationResponse,
 } as const;
@@ -222,7 +263,7 @@ export const QueryAccountLockedDurationService = {
  */
 export const QueryAccountLockedLongerDurationNotUnlockingOnlyService = {
   typeName: TYPE_NAME,
-  method: "AccountLockedLongerDurationNotUnlockingOnly",
+  method: 'AccountLockedLongerDurationNotUnlockingOnly',
   Request: AccountLockedLongerDurationNotUnlockingOnlyRequest,
   Response: AccountLockedLongerDurationNotUnlockingOnlyResponse,
 } as const;
@@ -234,7 +275,7 @@ export const QueryAccountLockedLongerDurationNotUnlockingOnlyService = {
  */
 export const QueryAccountLockedLongerDurationDenomService = {
   typeName: TYPE_NAME,
-  method: "AccountLockedLongerDurationDenom",
+  method: 'AccountLockedLongerDurationDenom',
   Request: AccountLockedLongerDurationDenomRequest,
   Response: AccountLockedLongerDurationDenomResponse,
 } as const;
@@ -246,8 +287,7 @@ export const QueryAccountLockedLongerDurationDenomService = {
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: QueryParamsRequest,
   Response: QueryParamsResponse,
 } as const;
-

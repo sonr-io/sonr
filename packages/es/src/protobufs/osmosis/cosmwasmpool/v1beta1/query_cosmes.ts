@@ -3,9 +3,18 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ContractInfoByPoolIdRequest, ContractInfoByPoolIdResponse, ParamsRequest, ParamsResponse, PoolRawFilteredStateRequest, PoolRawFilteredStateResponse, PoolsRequest, PoolsResponse } from "./query_pb.js";
+import {
+  ContractInfoByPoolIdRequest,
+  ContractInfoByPoolIdResponse,
+  ParamsRequest,
+  ParamsResponse,
+  PoolRawFilteredStateRequest,
+  PoolRawFilteredStateResponse,
+  PoolsRequest,
+  PoolsResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "osmosis.cosmwasmpool.v1beta1.Query";
+const TYPE_NAME = 'osmosis.cosmwasmpool.v1beta1.Query';
 
 /**
  * Pools returns all cosmwasm pools
@@ -14,7 +23,7 @@ const TYPE_NAME = "osmosis.cosmwasmpool.v1beta1.Query";
  */
 export const QueryPoolsService = {
   typeName: TYPE_NAME,
-  method: "Pools",
+  method: 'Pools',
   Request: PoolsRequest,
   Response: PoolsResponse,
 } as const;
@@ -26,7 +35,7 @@ export const QueryPoolsService = {
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: ParamsRequest,
   Response: ParamsResponse,
 } as const;
@@ -36,7 +45,7 @@ export const QueryParamsService = {
  */
 export const QueryContractInfoByPoolIdService = {
   typeName: TYPE_NAME,
-  method: "ContractInfoByPoolId",
+  method: 'ContractInfoByPoolId',
   Request: ContractInfoByPoolIdRequest,
   Response: ContractInfoByPoolIdResponse,
 } as const;
@@ -46,8 +55,7 @@ export const QueryContractInfoByPoolIdService = {
  */
 export const QueryPoolRawFilteredStateService = {
   typeName: TYPE_NAME,
-  method: "PoolRawFilteredState",
+  method: 'PoolRawFilteredState',
   Request: PoolRawFilteredStateRequest,
   Response: PoolRawFilteredStateResponse,
 } as const;
-

@@ -3,11 +3,24 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Params } from "./params_pb.js";
-import { BaseDenom, CyclicArbTracker, InfoByPoolType, PoolWeights, TokenPairArbRoutes } from "./protorev_pb.js";
-import { Coin } from "../../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { Params } from './params_pb.js';
+import {
+  BaseDenom,
+  CyclicArbTracker,
+  InfoByPoolType,
+  PoolWeights,
+  TokenPairArbRoutes,
+} from './protorev_pb.js';
+import { Coin } from '../../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * GenesisState defines the protorev module's genesis state.
@@ -73,7 +86,7 @@ export class GenesisState extends Message<GenesisState> {
    *
    * @generated from field: string developer_address = 8;
    */
-  developerAddress = "";
+  developerAddress = '';
 
   /**
    * Max pool points per block i.e. the maximum compute time (in ms)
@@ -124,22 +137,28 @@ export class GenesisState extends Message<GenesisState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.protorev.v1beta1.GenesisState";
+  static readonly typeName = 'osmosis.protorev.v1beta1.GenesisState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "params", kind: "message", T: Params },
-    { no: 2, name: "token_pair_arb_routes", kind: "message", T: TokenPairArbRoutes, repeated: true },
-    { no: 3, name: "base_denoms", kind: "message", T: BaseDenom, repeated: true },
-    { no: 4, name: "pool_weights", kind: "message", T: PoolWeights },
-    { no: 5, name: "days_since_module_genesis", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 6, name: "developer_fees", kind: "message", T: Coin, repeated: true },
-    { no: 7, name: "latest_block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 8, name: "developer_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 9, name: "max_pool_points_per_block", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 10, name: "max_pool_points_per_tx", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 11, name: "point_count_for_block", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 12, name: "profits", kind: "message", T: Coin, repeated: true },
-    { no: 13, name: "info_by_pool_type", kind: "message", T: InfoByPoolType },
-    { no: 14, name: "cyclic_arb_tracker", kind: "message", T: CyclicArbTracker },
+    { no: 1, name: 'params', kind: 'message', T: Params },
+    {
+      no: 2,
+      name: 'token_pair_arb_routes',
+      kind: 'message',
+      T: TokenPairArbRoutes,
+      repeated: true,
+    },
+    { no: 3, name: 'base_denoms', kind: 'message', T: BaseDenom, repeated: true },
+    { no: 4, name: 'pool_weights', kind: 'message', T: PoolWeights },
+    { no: 5, name: 'days_since_module_genesis', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 6, name: 'developer_fees', kind: 'message', T: Coin, repeated: true },
+    { no: 7, name: 'latest_block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 8, name: 'developer_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: 'max_pool_points_per_block', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 10, name: 'max_pool_points_per_tx', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 11, name: 'point_count_for_block', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 12, name: 'profits', kind: 'message', T: Coin, repeated: true },
+    { no: 13, name: 'info_by_pool_type', kind: 'message', T: InfoByPoolType },
+    { no: 14, name: 'cyclic_arb_tracker', kind: 'message', T: CyclicArbTracker },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {
@@ -154,8 +173,10 @@ export class GenesisState extends Message<GenesisState> {
     return new GenesisState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisState | PlainMessage<GenesisState> | undefined, b: GenesisState | PlainMessage<GenesisState> | undefined): boolean {
+  static equals(
+    a: GenesisState | PlainMessage<GenesisState> | undefined,
+    b: GenesisState | PlainMessage<GenesisState> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisState, a, b);
   }
 }
-

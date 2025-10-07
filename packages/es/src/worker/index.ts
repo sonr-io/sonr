@@ -1,16 +1,16 @@
 /**
  * Motor WASM service worker integration for @sonr.io/es
- * 
+ *
  * This module provides TypeScript wrapper methods for the Motor WASM service worker,
  * enabling type-safe interactions with Payment Gateway and OIDC Authorization services.
- * 
+ *
  * ## Features
- * 
+ *
  * - **Payment Gateway**: W3C Payment Handler API implementation
  * - **OIDC Authorization**: OpenID Connect authentication flows
  * - **Service Worker Management**: Automatic registration and lifecycle handling
  * - **Cross-Environment Support**: Works in browser and Node.js environments
- * 
+ *
  * @packageDocumentation
  */
 
@@ -154,21 +154,23 @@ export default async function getDefaultMotorPlugin(
  * Automatically register the Motor service worker in browser environments
  */
 if (typeof window !== 'undefined' && process.env.MOTOR_DISABLE_AUTO_REGISTER !== 'true') {
-  import('./worker').then(({ MotorServiceWorkerManager }) => {
-    if (MotorServiceWorkerManager.isSupported()) {
-      const manager = new MotorServiceWorkerManager({
-        worker_script: '/motor-worker.js',
-        scope: '/motor-worker',
-        debug: process.env.NODE_ENV === 'development',
-      });
+  import('./worker')
+    .then(({ MotorServiceWorkerManager }) => {
+      if (MotorServiceWorkerManager.isSupported()) {
+        const manager = new MotorServiceWorkerManager({
+          worker_script: '/motor-worker.js',
+          scope: '/motor-worker',
+          debug: process.env.NODE_ENV === 'development',
+        });
 
-      manager.register().catch((error) => {
-        console.warn('[Motor] Auto-registration failed:', error);
-      });
-    }
-  }).catch(() => {
-    // Silently ignore import errors
-  });
+        manager.register().catch((error) => {
+          console.warn('[Motor] Auto-registration failed:', error);
+        });
+      }
+    })
+    .catch(() => {
+      // Silently ignore import errors
+    });
 }
 
 // Browser Events Setup
@@ -179,18 +181,22 @@ if (typeof window !== 'undefined' && process.env.MOTOR_DISABLE_AUTO_REGISTER !==
 if (typeof window !== 'undefined') {
   window.addEventListener('motor-service-worker-update', ((event: CustomEvent) => {
     console.log('[Motor] Service worker update available:', event.detail);
-    
-    window.dispatchEvent(new CustomEvent('motor-update-available', {
-      detail: event.detail,
-    }));
+
+    window.dispatchEvent(
+      new CustomEvent('motor-update-available', {
+        detail: event.detail,
+      })
+    );
   }) as EventListener);
 
   window.addEventListener('motor-service-worker-health-failure', ((event: CustomEvent) => {
     console.warn('[Motor] Service worker health check failed:', event.detail);
-    
-    window.dispatchEvent(new CustomEvent('motor-health-failure', {
-      detail: event.detail,
-    }));
+
+    window.dispatchEvent(
+      new CustomEvent('motor-health-failure', {
+        detail: event.detail,
+      })
+    );
   }) as EventListener);
 }
 

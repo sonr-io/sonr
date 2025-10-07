@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { Coin } from "../../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { Coin } from '../../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * @generated from message osmosis.poolmanager.v1beta1.TrackedVolume
@@ -22,9 +29,9 @@ export class TrackedVolume extends Message<TrackedVolume> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.TrackedVolume";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.TrackedVolume';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "amount", kind: "message", T: Coin, repeated: true },
+    { no: 1, name: 'amount', kind: 'message', T: Coin, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TrackedVolume {
@@ -39,8 +46,10 @@ export class TrackedVolume extends Message<TrackedVolume> {
     return new TrackedVolume().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TrackedVolume | PlainMessage<TrackedVolume> | undefined, b: TrackedVolume | PlainMessage<TrackedVolume> | undefined): boolean {
+  static equals(
+    a: TrackedVolume | PlainMessage<TrackedVolume> | undefined,
+    b: TrackedVolume | PlainMessage<TrackedVolume> | undefined
+  ): boolean {
     return proto3.util.equals(TrackedVolume, a, b);
   }
 }
-

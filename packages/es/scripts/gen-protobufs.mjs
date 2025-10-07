@@ -6,13 +6,13 @@
  * files, and then generates an `index.ts` file to re-export the generated code.
  */
 
-import { spawnSync } from "child_process";
-import degit from "degit";
-import { mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
-import { globSync } from "glob";
-import { capitalize } from "lodash-es";
-import { dirname, join } from "path";
-import { fileURLToPath } from "url";
+import { spawnSync } from 'child_process';
+import degit from 'degit';
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'fs';
+import { globSync } from 'glob';
+import { capitalize } from 'lodash-es';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 
 /**
  * @typedef Repo
@@ -29,8 +29,8 @@ const REPOS = [
   // NOTE: cosmos-sdk is excluded because we use pre-generated cosmos proto files
   // to avoid issues with degit and version mismatches
   {
-    repo: "cosmos/ibc-go#main",
-    paths: ["proto"],
+    repo: 'cosmos/ibc-go#main',
+    paths: ['proto'],
   },
   // Use local proto files for sonr instead of fetching from external repo
   // {
@@ -38,16 +38,16 @@ const REPOS = [
   //   paths: ["proto"],
   // },
   {
-    repo: "CosmWasm/wasmd#main",
-    paths: ["proto"],
+    repo: 'CosmWasm/wasmd#main',
+    paths: ['proto'],
   },
   {
-    repo: "osmosis-labs/osmosis#main",
-    paths: ["proto"],
+    repo: 'osmosis-labs/osmosis#main',
+    paths: ['proto'],
   },
   {
-    repo: "evmos/ethermint#main",
-    paths: ["proto"],
+    repo: 'evmos/ethermint#main',
+    paths: ['proto'],
   },
   // Commented out babylon as it requires cosmos/staking which we don't generate
   // {
@@ -57,12 +57,12 @@ const REPOS = [
 ];
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const PROTOBUFS_DIR = join(__dirname, "..", "src", "protobufs");
-const TMP_DIR = join(PROTOBUFS_DIR, ".tmp");
+const PROTOBUFS_DIR = join(__dirname, '..', 'src', 'protobufs');
+const TMP_DIR = join(PROTOBUFS_DIR, '.tmp');
 /** Generates a unique dirname from `repo` to use in `TMP_DIR`. */
-const id = (/** @type {string} */ repo) => repo.replace(/[#/]/g, "-");
+const id = (/** @type {string} */ repo) => repo.replace(/[#/]/g, '-');
 
-console.log("Initialising directories...");
+console.log('Initialising directories...');
 {
   // Don't delete the entire protobufs directory to preserve cosmos files
   // Only delete directories that will be regenerated
@@ -74,14 +74,14 @@ console.log("Initialising directories...");
 
   // Only clean up directories for repos we're regenerating
   const dirsToClean = [
-    "ibc",
-    "cosmwasm",
-    "osmosis",
-    "ethermint",
-    "babylon", // Add babylon to clean list
-    "did",
-    "dwn",
-    "svc",
+    'ibc',
+    'cosmwasm',
+    'osmosis',
+    'ethermint',
+    'babylon', // Add babylon to clean list
+    'did',
+    'dwn',
+    'svc',
   ];
   for (const dir of dirsToClean) {
     const dirPath = join(PROTOBUFS_DIR, dir);
@@ -89,32 +89,27 @@ console.log("Initialising directories...");
   }
 }
 
-console.log("Cloning required repos...");
+console.log('Cloning required repos...');
 {
-  await Promise.all(
-    REPOS.map(({ repo }) => degit(repo).clone(join(TMP_DIR, id(repo))))
-  );
+  await Promise.all(REPOS.map(({ repo }) => degit(repo).clone(join(TMP_DIR, id(repo)))));
 }
 
-console.log("Generating TS files from proto files...");
+console.log('Generating TS files from proto files...');
 {
   for (const { repo, paths } of REPOS) {
     for (const path of paths) {
       spawnSync(
-        "pnpm",
+        'pnpm',
         [
-          "buf",
-          "generate",
+          'buf',
+          'generate',
           join(TMP_DIR, id(repo), path),
-          "--output",
-          join(
-            PROTOBUFS_DIR,
-            repo.startsWith("dymensionxyz") ? "dymension" : ""
-          ),
+          '--output',
+          join(PROTOBUFS_DIR, repo.startsWith('dymensionxyz') ? 'dymension' : ''),
         ],
         {
           cwd: process.cwd(),
-          stdio: "inherit",
+          stdio: 'inherit',
         }
       );
     }
@@ -122,25 +117,20 @@ console.log("Generating TS files from proto files...");
   }
 
   // Generate from local Sonr proto files
-  console.log("Generating TS files from local Sonr proto files...");
-  const localProtoPath = join(__dirname, "..", "..", "..", "proto");
-  spawnSync(
-    "pnpm",
-    ["buf", "generate", localProtoPath, "--output", PROTOBUFS_DIR],
-    {
-      cwd: process.cwd(),
-      stdio: "inherit",
-    }
-  );
+  console.log('Generating TS files from local Sonr proto files...');
+  const localProtoPath = join(__dirname, '..', '..', '..', 'proto');
+  spawnSync('pnpm', ['buf', 'generate', localProtoPath, '--output', PROTOBUFS_DIR], {
+    cwd: process.cwd(),
+    stdio: 'inherit',
+  });
   console.log(`✔️ [local sonr proto files]`);
 }
 
-console.log("Generating src/index.ts file and renaming exports...");
+console.log('Generating src/index.ts file and renaming exports...');
 {
   const LAST_SEGMENT_REGEX = /[^/]+$/;
   const EXPORTED_NAME_REGEX = /^export \w+ (\w+) /gm;
-  let contents =
-    "/** This file is generated by gen-protobufs.mjs. Do not edit. */\n\n";
+  let contents = '/** This file is generated by gen-protobufs.mjs. Do not edit. */\n\n';
   /**
    * Builds the `src/proto/index.ts` file to re-export generated code.
    * A prefix is added to the exported names to avoid name collisions.
@@ -151,36 +141,37 @@ console.log("Generating src/index.ts file and renaming exports...");
    * @param {string} dir
    */
   function generateIndexExports(dir) {
-    const files = globSync(join(dir, "*"));
+    const files = globSync(join(dir, '*'));
     if (files.length === 0) {
       return;
     }
     const prefixName = dir
-      .replace(PROTOBUFS_DIR + "/", "")
-      .split("/")
+      .replace(PROTOBUFS_DIR + '/', '')
+      .split('/')
       .map((name) =>
         // convert all names to PascalCase
-        name.split(/[-_]/).map(capitalize).join("")
+        name
+          .split(/[-_]/)
+          .map(capitalize)
+          .join('')
       )
-      .join("");
+      .join('');
     for (const file of files) {
       const fileName = file.match(LAST_SEGMENT_REGEX)?.[0];
       if (!fileName) {
-        console.error("Could not find name for", file);
+        console.error('Could not find name for', file);
         continue;
       }
-      if (!fileName.endsWith(".ts")) {
+      if (!fileName.endsWith('.ts')) {
         continue;
       }
-      const code = readFileSync(file, "utf8");
+      const code = readFileSync(file, 'utf8');
       contents += `export {\n`;
       for (const match of code.matchAll(EXPORTED_NAME_REGEX)) {
         const exportedName = match[1];
         contents += `  ${exportedName} as ${prefixName + exportedName},\n`;
       }
-      const exportedFile = file
-        .replace(PROTOBUFS_DIR + "/", "")
-        .replace(".ts", ".js");
+      const exportedFile = file.replace(PROTOBUFS_DIR + '/', '').replace('.ts', '.js');
       contents += `} from "./${exportedFile}";\n`;
     }
     for (const file of files) {
@@ -188,12 +179,12 @@ console.log("Generating src/index.ts file and renaming exports...");
     }
   }
   generateIndexExports(PROTOBUFS_DIR);
-  writeFileSync(join(PROTOBUFS_DIR, "index.ts"), contents);
+  writeFileSync(join(PROTOBUFS_DIR, 'index.ts'), contents);
 }
 
-console.log("Cleaning up...");
+console.log('Cleaning up...');
 {
   rmSync(TMP_DIR, { recursive: true, force: true });
 }
 
-console.log("Proto generation completed successfully!");
+console.log('Proto generation completed successfully!');

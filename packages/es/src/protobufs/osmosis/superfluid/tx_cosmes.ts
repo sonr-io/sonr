@@ -3,9 +3,30 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgAddToConcentratedLiquiditySuperfluidPosition, MsgAddToConcentratedLiquiditySuperfluidPositionResponse, MsgCreateFullRangePositionAndSuperfluidDelegate, MsgCreateFullRangePositionAndSuperfluidDelegateResponse, MsgLockAndSuperfluidDelegate, MsgLockAndSuperfluidDelegateResponse, MsgSuperfluidDelegate, MsgSuperfluidDelegateResponse, MsgSuperfluidUnbondLock, MsgSuperfluidUnbondLockResponse, MsgSuperfluidUndelegate, MsgSuperfluidUndelegateAndUnbondLock, MsgSuperfluidUndelegateAndUnbondLockResponse, MsgSuperfluidUndelegateResponse, MsgUnbondConvertAndStake, MsgUnbondConvertAndStakeResponse, MsgUnlockAndMigrateSharesToFullRangeConcentratedPosition, MsgUnlockAndMigrateSharesToFullRangeConcentratedPositionResponse, MsgUnPoolWhitelistedPool, MsgUnPoolWhitelistedPoolResponse } from "./tx_pb.js";
+import {
+  MsgAddToConcentratedLiquiditySuperfluidPosition,
+  MsgAddToConcentratedLiquiditySuperfluidPositionResponse,
+  MsgCreateFullRangePositionAndSuperfluidDelegate,
+  MsgCreateFullRangePositionAndSuperfluidDelegateResponse,
+  MsgLockAndSuperfluidDelegate,
+  MsgLockAndSuperfluidDelegateResponse,
+  MsgSuperfluidDelegate,
+  MsgSuperfluidDelegateResponse,
+  MsgSuperfluidUnbondLock,
+  MsgSuperfluidUnbondLockResponse,
+  MsgSuperfluidUndelegate,
+  MsgSuperfluidUndelegateAndUnbondLock,
+  MsgSuperfluidUndelegateAndUnbondLockResponse,
+  MsgSuperfluidUndelegateResponse,
+  MsgUnbondConvertAndStake,
+  MsgUnbondConvertAndStakeResponse,
+  MsgUnlockAndMigrateSharesToFullRangeConcentratedPosition,
+  MsgUnlockAndMigrateSharesToFullRangeConcentratedPositionResponse,
+  MsgUnPoolWhitelistedPool,
+  MsgUnPoolWhitelistedPoolResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "osmosis.superfluid.Msg";
+const TYPE_NAME = 'osmosis.superfluid.Msg';
 
 /**
  * Execute superfluid delegation for a lockup
@@ -14,7 +35,7 @@ const TYPE_NAME = "osmosis.superfluid.Msg";
  */
 export const MsgSuperfluidDelegateService = {
   typeName: TYPE_NAME,
-  method: "SuperfluidDelegate",
+  method: 'SuperfluidDelegate',
   Request: MsgSuperfluidDelegate,
   Response: MsgSuperfluidDelegateResponse,
 } as const;
@@ -26,7 +47,7 @@ export const MsgSuperfluidDelegateService = {
  */
 export const MsgSuperfluidUndelegateService = {
   typeName: TYPE_NAME,
-  method: "SuperfluidUndelegate",
+  method: 'SuperfluidUndelegate',
   Request: MsgSuperfluidUndelegate,
   Response: MsgSuperfluidUndelegateResponse,
 } as const;
@@ -39,7 +60,7 @@ export const MsgSuperfluidUndelegateService = {
  */
 export const MsgSuperfluidUnbondLockService = {
   typeName: TYPE_NAME,
-  method: "SuperfluidUnbondLock",
+  method: 'SuperfluidUnbondLock',
   Request: MsgSuperfluidUnbondLock,
   Response: MsgSuperfluidUnbondLockResponse,
 } as const;
@@ -51,7 +72,7 @@ export const MsgSuperfluidUnbondLockService = {
  */
 export const MsgSuperfluidUndelegateAndUnbondLockService = {
   typeName: TYPE_NAME,
-  method: "SuperfluidUndelegateAndUnbondLock",
+  method: 'SuperfluidUndelegateAndUnbondLock',
   Request: MsgSuperfluidUndelegateAndUnbondLock,
   Response: MsgSuperfluidUndelegateAndUnbondLockResponse,
 } as const;
@@ -63,7 +84,7 @@ export const MsgSuperfluidUndelegateAndUnbondLockService = {
  */
 export const MsgLockAndSuperfluidDelegateService = {
   typeName: TYPE_NAME,
-  method: "LockAndSuperfluidDelegate",
+  method: 'LockAndSuperfluidDelegate',
   Request: MsgLockAndSuperfluidDelegate,
   Response: MsgLockAndSuperfluidDelegateResponse,
 } as const;
@@ -73,7 +94,7 @@ export const MsgLockAndSuperfluidDelegateService = {
  */
 export const MsgCreateFullRangePositionAndSuperfluidDelegateService = {
   typeName: TYPE_NAME,
-  method: "CreateFullRangePositionAndSuperfluidDelegate",
+  method: 'CreateFullRangePositionAndSuperfluidDelegate',
   Request: MsgCreateFullRangePositionAndSuperfluidDelegate,
   Response: MsgCreateFullRangePositionAndSuperfluidDelegateResponse,
 } as const;
@@ -83,7 +104,7 @@ export const MsgCreateFullRangePositionAndSuperfluidDelegateService = {
  */
 export const MsgUnPoolWhitelistedPoolService = {
   typeName: TYPE_NAME,
-  method: "UnPoolWhitelistedPool",
+  method: 'UnPoolWhitelistedPool',
   Request: MsgUnPoolWhitelistedPool,
   Response: MsgUnPoolWhitelistedPoolResponse,
 } as const;
@@ -93,7 +114,7 @@ export const MsgUnPoolWhitelistedPoolService = {
  */
 export const MsgUnlockAndMigrateSharesToFullRangeConcentratedPositionService = {
   typeName: TYPE_NAME,
-  method: "UnlockAndMigrateSharesToFullRangeConcentratedPosition",
+  method: 'UnlockAndMigrateSharesToFullRangeConcentratedPosition',
   Request: MsgUnlockAndMigrateSharesToFullRangeConcentratedPosition,
   Response: MsgUnlockAndMigrateSharesToFullRangeConcentratedPositionResponse,
 } as const;
@@ -103,7 +124,7 @@ export const MsgUnlockAndMigrateSharesToFullRangeConcentratedPositionService = {
  */
 export const MsgAddToConcentratedLiquiditySuperfluidPositionService = {
   typeName: TYPE_NAME,
-  method: "AddToConcentratedLiquiditySuperfluidPosition",
+  method: 'AddToConcentratedLiquiditySuperfluidPosition',
   Request: MsgAddToConcentratedLiquiditySuperfluidPosition,
   Response: MsgAddToConcentratedLiquiditySuperfluidPositionResponse,
 } as const;
@@ -116,8 +137,7 @@ export const MsgAddToConcentratedLiquiditySuperfluidPositionService = {
  */
 export const MsgUnbondConvertAndStakeService = {
   typeName: TYPE_NAME,
-  method: "UnbondConvertAndStake",
+  method: 'UnbondConvertAndStake',
   Request: MsgUnbondConvertAndStake,
   Response: MsgUnbondConvertAndStakeResponse,
 } as const;
-

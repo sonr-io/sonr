@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
 
 /**
  * EventFeeMarket is the event type for the fee market module
@@ -17,7 +24,7 @@ export class EventFeeMarket extends Message<EventFeeMarket> {
    *
    * @generated from field: string base_fee = 1;
    */
-  baseFee = "";
+  baseFee = '';
 
   constructor(data?: PartialMessage<EventFeeMarket>) {
     super();
@@ -25,9 +32,9 @@ export class EventFeeMarket extends Message<EventFeeMarket> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.feemarket.v1.EventFeeMarket";
+  static readonly typeName = 'ethermint.feemarket.v1.EventFeeMarket';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "base_fee", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'base_fee', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventFeeMarket {
@@ -42,7 +49,10 @@ export class EventFeeMarket extends Message<EventFeeMarket> {
     return new EventFeeMarket().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventFeeMarket | PlainMessage<EventFeeMarket> | undefined, b: EventFeeMarket | PlainMessage<EventFeeMarket> | undefined): boolean {
+  static equals(
+    a: EventFeeMarket | PlainMessage<EventFeeMarket> | undefined,
+    b: EventFeeMarket | PlainMessage<EventFeeMarket> | undefined
+  ): boolean {
     return proto3.util.equals(EventFeeMarket, a, b);
   }
 }
@@ -58,14 +68,14 @@ export class EventBlockGas extends Message<EventBlockGas> {
    *
    * @generated from field: string height = 1;
    */
-  height = "";
+  height = '';
 
   /**
    * amount of gas wanted by the block
    *
    * @generated from field: string amount = 2;
    */
-  amount = "";
+  amount = '';
 
   constructor(data?: PartialMessage<EventBlockGas>) {
     super();
@@ -73,10 +83,10 @@ export class EventBlockGas extends Message<EventBlockGas> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.feemarket.v1.EventBlockGas";
+  static readonly typeName = 'ethermint.feemarket.v1.EventBlockGas';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "height", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'height', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventBlockGas {
@@ -91,8 +101,10 @@ export class EventBlockGas extends Message<EventBlockGas> {
     return new EventBlockGas().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventBlockGas | PlainMessage<EventBlockGas> | undefined, b: EventBlockGas | PlainMessage<EventBlockGas> | undefined): boolean {
+  static equals(
+    a: EventBlockGas | PlainMessage<EventBlockGas> | undefined,
+    b: EventBlockGas | PlainMessage<EventBlockGas> | undefined
+  ): boolean {
     return proto3.util.equals(EventBlockGas, a, b);
   }
 }
-

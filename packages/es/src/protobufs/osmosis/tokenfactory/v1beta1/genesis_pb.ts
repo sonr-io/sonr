@@ -3,10 +3,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { Params } from "./params_pb.js";
-import { DenomAuthorityMetadata } from "./authorityMetadata_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { Params } from './params_pb.js';
+import { DenomAuthorityMetadata } from './authorityMetadata_pb.js';
 
 /**
  * GenesisState defines the tokenfactory module's genesis state.
@@ -32,10 +39,10 @@ export class GenesisState extends Message<GenesisState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.tokenfactory.v1beta1.GenesisState";
+  static readonly typeName = 'osmosis.tokenfactory.v1beta1.GenesisState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "params", kind: "message", T: Params },
-    { no: 2, name: "factory_denoms", kind: "message", T: GenesisDenom, repeated: true },
+    { no: 1, name: 'params', kind: 'message', T: Params },
+    { no: 2, name: 'factory_denoms', kind: 'message', T: GenesisDenom, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {
@@ -50,7 +57,10 @@ export class GenesisState extends Message<GenesisState> {
     return new GenesisState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisState | PlainMessage<GenesisState> | undefined, b: GenesisState | PlainMessage<GenesisState> | undefined): boolean {
+  static equals(
+    a: GenesisState | PlainMessage<GenesisState> | undefined,
+    b: GenesisState | PlainMessage<GenesisState> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisState, a, b);
   }
 }
@@ -66,7 +76,7 @@ export class GenesisDenom extends Message<GenesisDenom> {
   /**
    * @generated from field: string denom = 1;
    */
-  denom = "";
+  denom = '';
 
   /**
    * @generated from field: osmosis.tokenfactory.v1beta1.DenomAuthorityMetadata authority_metadata = 2;
@@ -79,10 +89,10 @@ export class GenesisDenom extends Message<GenesisDenom> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.tokenfactory.v1beta1.GenesisDenom";
+  static readonly typeName = 'osmosis.tokenfactory.v1beta1.GenesisDenom';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "authority_metadata", kind: "message", T: DenomAuthorityMetadata },
+    { no: 1, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'authority_metadata', kind: 'message', T: DenomAuthorityMetadata },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisDenom {
@@ -97,8 +107,10 @@ export class GenesisDenom extends Message<GenesisDenom> {
     return new GenesisDenom().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisDenom | PlainMessage<GenesisDenom> | undefined, b: GenesisDenom | PlainMessage<GenesisDenom> | undefined): boolean {
+  static equals(
+    a: GenesisDenom | PlainMessage<GenesisDenom> | undefined,
+    b: GenesisDenom | PlainMessage<GenesisDenom> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisDenom, a, b);
   }
 }
-

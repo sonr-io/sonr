@@ -3,9 +3,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgEmitIBCAck, MsgEmitIBCAckResponse } from "./tx_pb.js";
+import { MsgEmitIBCAck, MsgEmitIBCAckResponse } from './tx_pb.js';
 
-const TYPE_NAME = "osmosis.ibchooks.Msg";
+const TYPE_NAME = 'osmosis.ibchooks.Msg';
 
 /**
  * EmitIBCAck checks the sender can emit the ack and writes the IBC
@@ -15,8 +15,7 @@ const TYPE_NAME = "osmosis.ibchooks.Msg";
  */
 export const MsgEmitIBCAckService = {
   typeName: TYPE_NAME,
-  method: "EmitIBCAck",
+  method: 'EmitIBCAck',
   Request: MsgEmitIBCAck,
   Response: MsgEmitIBCAckResponse,
 } as const;
-

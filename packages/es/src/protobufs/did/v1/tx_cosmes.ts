@@ -3,9 +3,34 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgAddService, MsgAddServiceResponse, MsgAddVerificationMethod, MsgAddVerificationMethodResponse, MsgCreateDID, MsgCreateDIDResponse, MsgDeactivateDID, MsgDeactivateDIDResponse, MsgIssueVerifiableCredential, MsgIssueVerifiableCredentialResponse, MsgLinkExternalWallet, MsgLinkExternalWalletResponse, MsgRegisterWebAuthnCredential, MsgRegisterWebAuthnCredentialResponse, MsgRemoveService, MsgRemoveServiceResponse, MsgRemoveVerificationMethod, MsgRemoveVerificationMethodResponse, MsgRevokeVerifiableCredential, MsgRevokeVerifiableCredentialResponse, MsgUpdateDID, MsgUpdateDIDResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx_pb.js";
+import {
+  MsgAddService,
+  MsgAddServiceResponse,
+  MsgAddVerificationMethod,
+  MsgAddVerificationMethodResponse,
+  MsgCreateDID,
+  MsgCreateDIDResponse,
+  MsgDeactivateDID,
+  MsgDeactivateDIDResponse,
+  MsgIssueVerifiableCredential,
+  MsgIssueVerifiableCredentialResponse,
+  MsgLinkExternalWallet,
+  MsgLinkExternalWalletResponse,
+  MsgRegisterWebAuthnCredential,
+  MsgRegisterWebAuthnCredentialResponse,
+  MsgRemoveService,
+  MsgRemoveServiceResponse,
+  MsgRemoveVerificationMethod,
+  MsgRemoveVerificationMethodResponse,
+  MsgRevokeVerifiableCredential,
+  MsgRevokeVerifiableCredentialResponse,
+  MsgUpdateDID,
+  MsgUpdateDIDResponse,
+  MsgUpdateParams,
+  MsgUpdateParamsResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "did.v1.Msg";
+const TYPE_NAME = 'did.v1.Msg';
 
 /**
  * UpdateParams defines a governance operation for updating the parameters.
@@ -16,7 +41,7 @@ const TYPE_NAME = "did.v1.Msg";
  */
 export const MsgUpdateParamsService = {
   typeName: TYPE_NAME,
-  method: "UpdateParams",
+  method: 'UpdateParams',
   Request: MsgUpdateParams,
   Response: MsgUpdateParamsResponse,
 } as const;
@@ -33,7 +58,7 @@ export const MsgUpdateParamsService = {
  */
 export const MsgCreateDIDService = {
   typeName: TYPE_NAME,
-  method: "CreateDID",
+  method: 'CreateDID',
   Request: MsgCreateDID,
   Response: MsgCreateDIDResponse,
 } as const;
@@ -50,7 +75,7 @@ export const MsgCreateDIDService = {
  */
 export const MsgUpdateDIDService = {
   typeName: TYPE_NAME,
-  method: "UpdateDID",
+  method: 'UpdateDID',
   Request: MsgUpdateDID,
   Response: MsgUpdateDIDResponse,
 } as const;
@@ -62,7 +87,7 @@ export const MsgUpdateDIDService = {
  */
 export const MsgDeactivateDIDService = {
   typeName: TYPE_NAME,
-  method: "DeactivateDID",
+  method: 'DeactivateDID',
   Request: MsgDeactivateDID,
   Response: MsgDeactivateDIDResponse,
 } as const;
@@ -74,7 +99,7 @@ export const MsgDeactivateDIDService = {
  */
 export const MsgAddVerificationMethodService = {
   typeName: TYPE_NAME,
-  method: "AddVerificationMethod",
+  method: 'AddVerificationMethod',
   Request: MsgAddVerificationMethod,
   Response: MsgAddVerificationMethodResponse,
 } as const;
@@ -86,7 +111,7 @@ export const MsgAddVerificationMethodService = {
  */
 export const MsgRemoveVerificationMethodService = {
   typeName: TYPE_NAME,
-  method: "RemoveVerificationMethod",
+  method: 'RemoveVerificationMethod',
   Request: MsgRemoveVerificationMethod,
   Response: MsgRemoveVerificationMethodResponse,
 } as const;
@@ -98,7 +123,7 @@ export const MsgRemoveVerificationMethodService = {
  */
 export const MsgAddServiceService = {
   typeName: TYPE_NAME,
-  method: "AddService",
+  method: 'AddService',
   Request: MsgAddService,
   Response: MsgAddServiceResponse,
 } as const;
@@ -110,7 +135,7 @@ export const MsgAddServiceService = {
  */
 export const MsgRemoveServiceService = {
   typeName: TYPE_NAME,
-  method: "RemoveService",
+  method: 'RemoveService',
   Request: MsgRemoveService,
   Response: MsgRemoveServiceResponse,
 } as const;
@@ -122,7 +147,7 @@ export const MsgRemoveServiceService = {
  */
 export const MsgIssueVerifiableCredentialService = {
   typeName: TYPE_NAME,
-  method: "IssueVerifiableCredential",
+  method: 'IssueVerifiableCredential',
   Request: MsgIssueVerifiableCredential,
   Response: MsgIssueVerifiableCredentialResponse,
 } as const;
@@ -134,7 +159,7 @@ export const MsgIssueVerifiableCredentialService = {
  */
 export const MsgRevokeVerifiableCredentialService = {
   typeName: TYPE_NAME,
-  method: "RevokeVerifiableCredential",
+  method: 'RevokeVerifiableCredential',
   Request: MsgRevokeVerifiableCredential,
   Response: MsgRevokeVerifiableCredentialResponse,
 } as const;
@@ -146,7 +171,7 @@ export const MsgRevokeVerifiableCredentialService = {
  */
 export const MsgLinkExternalWalletService = {
   typeName: TYPE_NAME,
-  method: "LinkExternalWallet",
+  method: 'LinkExternalWallet',
   Request: MsgLinkExternalWallet,
   Response: MsgLinkExternalWalletResponse,
 } as const;
@@ -163,8 +188,7 @@ export const MsgLinkExternalWalletService = {
  */
 export const MsgRegisterWebAuthnCredentialService = {
   typeName: TYPE_NAME,
-  method: "RegisterWebAuthnCredential",
+  method: 'RegisterWebAuthnCredential',
   Request: MsgRegisterWebAuthnCredential,
   Response: MsgRegisterWebAuthnCredentialResponse,
 } as const;
-

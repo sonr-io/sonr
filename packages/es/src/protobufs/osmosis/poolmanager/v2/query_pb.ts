@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * SpotPriceRequest defines the gRPC request structure for a SpotPrice
@@ -21,12 +28,12 @@ export class SpotPriceRequest extends Message<SpotPriceRequest> {
   /**
    * @generated from field: string base_asset_denom = 2;
    */
-  baseAssetDenom = "";
+  baseAssetDenom = '';
 
   /**
    * @generated from field: string quote_asset_denom = 3;
    */
-  quoteAssetDenom = "";
+  quoteAssetDenom = '';
 
   constructor(data?: PartialMessage<SpotPriceRequest>) {
     super();
@@ -34,11 +41,11 @@ export class SpotPriceRequest extends Message<SpotPriceRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v2.SpotPriceRequest";
+  static readonly typeName = 'osmosis.poolmanager.v2.SpotPriceRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "base_asset_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "quote_asset_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'base_asset_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'quote_asset_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SpotPriceRequest {
@@ -53,7 +60,10 @@ export class SpotPriceRequest extends Message<SpotPriceRequest> {
     return new SpotPriceRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SpotPriceRequest | PlainMessage<SpotPriceRequest> | undefined, b: SpotPriceRequest | PlainMessage<SpotPriceRequest> | undefined): boolean {
+  static equals(
+    a: SpotPriceRequest | PlainMessage<SpotPriceRequest> | undefined,
+    b: SpotPriceRequest | PlainMessage<SpotPriceRequest> | undefined
+  ): boolean {
     return proto3.util.equals(SpotPriceRequest, a, b);
   }
 }
@@ -70,7 +80,7 @@ export class SpotPriceResponse extends Message<SpotPriceResponse> {
    *
    * @generated from field: string spot_price = 1;
    */
-  spotPrice = "";
+  spotPrice = '';
 
   constructor(data?: PartialMessage<SpotPriceResponse>) {
     super();
@@ -78,9 +88,9 @@ export class SpotPriceResponse extends Message<SpotPriceResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v2.SpotPriceResponse";
+  static readonly typeName = 'osmosis.poolmanager.v2.SpotPriceResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "spot_price", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'spot_price', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SpotPriceResponse {
@@ -95,8 +105,10 @@ export class SpotPriceResponse extends Message<SpotPriceResponse> {
     return new SpotPriceResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SpotPriceResponse | PlainMessage<SpotPriceResponse> | undefined, b: SpotPriceResponse | PlainMessage<SpotPriceResponse> | undefined): boolean {
+  static equals(
+    a: SpotPriceResponse | PlainMessage<SpotPriceResponse> | undefined,
+    b: SpotPriceResponse | PlainMessage<SpotPriceResponse> | undefined
+  ): boolean {
     return proto3.util.equals(SpotPriceResponse, a, b);
   }
 }
-

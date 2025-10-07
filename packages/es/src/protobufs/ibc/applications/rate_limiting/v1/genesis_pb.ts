@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { HourEpoch, RateLimit, WhitelistedAddressPair } from "./rate_limiting_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { HourEpoch, RateLimit, WhitelistedAddressPair } from './rate_limiting_pb.js';
 
 /**
  * GenesisState defines the ratelimit module's genesis state.
@@ -44,13 +51,31 @@ export class GenesisState extends Message<GenesisState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.GenesisState";
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.GenesisState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "rate_limits", kind: "message", T: RateLimit, repeated: true },
-    { no: 2, name: "whitelisted_address_pairs", kind: "message", T: WhitelistedAddressPair, repeated: true },
-    { no: 3, name: "blacklisted_denoms", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 4, name: "pending_send_packet_sequence_numbers", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 5, name: "hour_epoch", kind: "message", T: HourEpoch },
+    { no: 1, name: 'rate_limits', kind: 'message', T: RateLimit, repeated: true },
+    {
+      no: 2,
+      name: 'whitelisted_address_pairs',
+      kind: 'message',
+      T: WhitelistedAddressPair,
+      repeated: true,
+    },
+    {
+      no: 3,
+      name: 'blacklisted_denoms',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 4,
+      name: 'pending_send_packet_sequence_numbers',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    { no: 5, name: 'hour_epoch', kind: 'message', T: HourEpoch },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {
@@ -65,8 +90,10 @@ export class GenesisState extends Message<GenesisState> {
     return new GenesisState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisState | PlainMessage<GenesisState> | undefined, b: GenesisState | PlainMessage<GenesisState> | undefined): boolean {
+  static equals(
+    a: GenesisState | PlainMessage<GenesisState> | undefined,
+    b: GenesisState | PlainMessage<GenesisState> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisState, a, b);
   }
 }
-

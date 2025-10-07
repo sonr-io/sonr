@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Duration, Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * @generated from message osmosis.concentratedliquidity.Params
@@ -35,7 +42,7 @@ export class Params extends Message<Params> {
    *
    * @generated from field: string balancer_shares_reward_discount = 3;
    */
-  balancerSharesRewardDiscount = "";
+  balancerSharesRewardDiscount = '';
 
   /**
    * DEPRECATED: authorized_quote_denoms is a list of quote denoms that can be
@@ -89,16 +96,50 @@ export class Params extends Message<Params> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.concentratedliquidity.Params";
+  static readonly typeName = 'osmosis.concentratedliquidity.Params';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "authorized_tick_spacing", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
-    { no: 2, name: "authorized_spread_factors", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 3, name: "balancer_shares_reward_discount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "authorized_quote_denoms", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 5, name: "authorized_uptimes", kind: "message", T: Duration, repeated: true },
-    { no: 6, name: "is_permissionless_pool_creation_enabled", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 7, name: "unrestricted_pool_creator_whitelist", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 8, name: "hook_gas_limit", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    {
+      no: 1,
+      name: 'authorized_tick_spacing',
+      kind: 'scalar',
+      T: 4 /* ScalarType.UINT64 */,
+      repeated: true,
+    },
+    {
+      no: 2,
+      name: 'authorized_spread_factors',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 3,
+      name: 'balancer_shares_reward_discount',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+    },
+    {
+      no: 4,
+      name: 'authorized_quote_denoms',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    { no: 5, name: 'authorized_uptimes', kind: 'message', T: Duration, repeated: true },
+    {
+      no: 6,
+      name: 'is_permissionless_pool_creation_enabled',
+      kind: 'scalar',
+      T: 8 /* ScalarType.BOOL */,
+    },
+    {
+      no: 7,
+      name: 'unrestricted_pool_creator_whitelist',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    { no: 8, name: 'hook_gas_limit', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Params {
@@ -113,8 +154,10 @@ export class Params extends Message<Params> {
     return new Params().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Params | PlainMessage<Params> | undefined, b: Params | PlainMessage<Params> | undefined): boolean {
+  static equals(
+    a: Params | PlainMessage<Params> | undefined,
+    b: Params | PlainMessage<Params> | undefined
+  ): boolean {
     return proto3.util.equals(Params, a, b);
   }
 }
-

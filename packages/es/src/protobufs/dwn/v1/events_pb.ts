@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64, Timestamp } from '@bufbuild/protobuf';
 
 /**
  * EventRecordWritten is emitted when a record is written to DWN
@@ -17,35 +24,35 @@ export class EventRecordWritten extends Message<EventRecordWritten> {
    *
    * @generated from field: string record_id = 1;
    */
-  recordId = "";
+  recordId = '';
 
   /**
    * Target DID
    *
    * @generated from field: string target = 2;
    */
-  target = "";
+  target = '';
 
   /**
    * Protocol URI
    *
    * @generated from field: string protocol = 3;
    */
-  protocol = "";
+  protocol = '';
 
   /**
    * Schema URI
    *
    * @generated from field: string schema = 4;
    */
-  schema = "";
+  schema = '';
 
   /**
    * Data CID
    *
    * @generated from field: string data_cid = 5;
    */
-  dataCid = "";
+  dataCid = '';
 
   /**
    * Data size in bytes
@@ -74,16 +81,16 @@ export class EventRecordWritten extends Message<EventRecordWritten> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.EventRecordWritten";
+  static readonly typeName = 'dwn.v1.EventRecordWritten';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "record_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "target", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "protocol", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "schema", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "data_cid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "data_size", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 7, name: "encrypted", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 8, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'record_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'target', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'protocol', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'schema', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'data_cid', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'data_size', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 7, name: 'encrypted', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 8, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventRecordWritten {
@@ -94,11 +101,17 @@ export class EventRecordWritten extends Message<EventRecordWritten> {
     return new EventRecordWritten().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventRecordWritten {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventRecordWritten {
     return new EventRecordWritten().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventRecordWritten | PlainMessage<EventRecordWritten> | undefined, b: EventRecordWritten | PlainMessage<EventRecordWritten> | undefined): boolean {
+  static equals(
+    a: EventRecordWritten | PlainMessage<EventRecordWritten> | undefined,
+    b: EventRecordWritten | PlainMessage<EventRecordWritten> | undefined
+  ): boolean {
     return proto3.util.equals(EventRecordWritten, a, b);
   }
 }
@@ -114,21 +127,21 @@ export class EventRecordDeleted extends Message<EventRecordDeleted> {
    *
    * @generated from field: string record_id = 1;
    */
-  recordId = "";
+  recordId = '';
 
   /**
    * Target DID
    *
    * @generated from field: string target = 2;
    */
-  target = "";
+  target = '';
 
   /**
    * Deleter address
    *
    * @generated from field: string deleter = 3;
    */
-  deleter = "";
+  deleter = '';
 
   /**
    * Block height
@@ -143,12 +156,12 @@ export class EventRecordDeleted extends Message<EventRecordDeleted> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.EventRecordDeleted";
+  static readonly typeName = 'dwn.v1.EventRecordDeleted';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "record_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "target", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "deleter", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'record_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'target', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'deleter', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventRecordDeleted {
@@ -159,11 +172,17 @@ export class EventRecordDeleted extends Message<EventRecordDeleted> {
     return new EventRecordDeleted().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventRecordDeleted {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventRecordDeleted {
     return new EventRecordDeleted().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventRecordDeleted | PlainMessage<EventRecordDeleted> | undefined, b: EventRecordDeleted | PlainMessage<EventRecordDeleted> | undefined): boolean {
+  static equals(
+    a: EventRecordDeleted | PlainMessage<EventRecordDeleted> | undefined,
+    b: EventRecordDeleted | PlainMessage<EventRecordDeleted> | undefined
+  ): boolean {
     return proto3.util.equals(EventRecordDeleted, a, b);
   }
 }
@@ -179,14 +198,14 @@ export class EventProtocolConfigured extends Message<EventProtocolConfigured> {
    *
    * @generated from field: string target = 1;
    */
-  target = "";
+  target = '';
 
   /**
    * Protocol URI
    *
    * @generated from field: string protocol_uri = 2;
    */
-  protocolUri = "";
+  protocolUri = '';
 
   /**
    * Whether protocol is published
@@ -208,27 +227,39 @@ export class EventProtocolConfigured extends Message<EventProtocolConfigured> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.EventProtocolConfigured";
+  static readonly typeName = 'dwn.v1.EventProtocolConfigured';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "target", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "protocol_uri", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "published", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 4, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'target', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'protocol_uri', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'published', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventProtocolConfigured {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EventProtocolConfigured {
     return new EventProtocolConfigured().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EventProtocolConfigured {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EventProtocolConfigured {
     return new EventProtocolConfigured().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventProtocolConfigured {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventProtocolConfigured {
     return new EventProtocolConfigured().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventProtocolConfigured | PlainMessage<EventProtocolConfigured> | undefined, b: EventProtocolConfigured | PlainMessage<EventProtocolConfigured> | undefined): boolean {
+  static equals(
+    a: EventProtocolConfigured | PlainMessage<EventProtocolConfigured> | undefined,
+    b: EventProtocolConfigured | PlainMessage<EventProtocolConfigured> | undefined
+  ): boolean {
     return proto3.util.equals(EventProtocolConfigured, a, b);
   }
 }
@@ -244,35 +275,35 @@ export class EventPermissionGranted extends Message<EventPermissionGranted> {
    *
    * @generated from field: string permission_id = 1;
    */
-  permissionId = "";
+  permissionId = '';
 
   /**
    * Grantor DID
    *
    * @generated from field: string grantor = 2;
    */
-  grantor = "";
+  grantor = '';
 
   /**
    * Grantee DID
    *
    * @generated from field: string grantee = 3;
    */
-  grantee = "";
+  grantee = '';
 
   /**
    * Interface name
    *
    * @generated from field: string interface_name = 4;
    */
-  interfaceName = "";
+  interfaceName = '';
 
   /**
    * Method name
    *
    * @generated from field: string method = 5;
    */
-  method = "";
+  method = '';
 
   /**
    * Expiration timestamp
@@ -294,30 +325,42 @@ export class EventPermissionGranted extends Message<EventPermissionGranted> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.EventPermissionGranted";
+  static readonly typeName = 'dwn.v1.EventPermissionGranted';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "permission_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "grantor", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "grantee", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "interface_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "method", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "expires_at", kind: "message", T: Timestamp },
-    { no: 7, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'permission_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'grantor', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'grantee', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'interface_name', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'method', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'expires_at', kind: 'message', T: Timestamp },
+    { no: 7, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventPermissionGranted {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EventPermissionGranted {
     return new EventPermissionGranted().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EventPermissionGranted {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EventPermissionGranted {
     return new EventPermissionGranted().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventPermissionGranted {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventPermissionGranted {
     return new EventPermissionGranted().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventPermissionGranted | PlainMessage<EventPermissionGranted> | undefined, b: EventPermissionGranted | PlainMessage<EventPermissionGranted> | undefined): boolean {
+  static equals(
+    a: EventPermissionGranted | PlainMessage<EventPermissionGranted> | undefined,
+    b: EventPermissionGranted | PlainMessage<EventPermissionGranted> | undefined
+  ): boolean {
     return proto3.util.equals(EventPermissionGranted, a, b);
   }
 }
@@ -333,14 +376,14 @@ export class EventPermissionRevoked extends Message<EventPermissionRevoked> {
    *
    * @generated from field: string permission_id = 1;
    */
-  permissionId = "";
+  permissionId = '';
 
   /**
    * Revoker DID
    *
    * @generated from field: string revoker = 2;
    */
-  revoker = "";
+  revoker = '';
 
   /**
    * Block height
@@ -355,26 +398,38 @@ export class EventPermissionRevoked extends Message<EventPermissionRevoked> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.EventPermissionRevoked";
+  static readonly typeName = 'dwn.v1.EventPermissionRevoked';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "permission_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "revoker", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'permission_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'revoker', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventPermissionRevoked {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EventPermissionRevoked {
     return new EventPermissionRevoked().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EventPermissionRevoked {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EventPermissionRevoked {
     return new EventPermissionRevoked().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventPermissionRevoked {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventPermissionRevoked {
     return new EventPermissionRevoked().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventPermissionRevoked | PlainMessage<EventPermissionRevoked> | undefined, b: EventPermissionRevoked | PlainMessage<EventPermissionRevoked> | undefined): boolean {
+  static equals(
+    a: EventPermissionRevoked | PlainMessage<EventPermissionRevoked> | undefined,
+    b: EventPermissionRevoked | PlainMessage<EventPermissionRevoked> | undefined
+  ): boolean {
     return proto3.util.equals(EventPermissionRevoked, a, b);
   }
 }
@@ -390,21 +445,21 @@ export class EventVaultCreated extends Message<EventVaultCreated> {
    *
    * @generated from field: string vault_id = 1;
    */
-  vaultId = "";
+  vaultId = '';
 
   /**
    * Owner DID
    *
    * @generated from field: string owner = 2;
    */
-  owner = "";
+  owner = '';
 
   /**
    * Vault public key
    *
    * @generated from field: string public_key = 3;
    */
-  publicKey = "";
+  publicKey = '';
 
   /**
    * Block height
@@ -419,12 +474,12 @@ export class EventVaultCreated extends Message<EventVaultCreated> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.EventVaultCreated";
+  static readonly typeName = 'dwn.v1.EventVaultCreated';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "vault_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "public_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'vault_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'public_key', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventVaultCreated {
@@ -439,7 +494,10 @@ export class EventVaultCreated extends Message<EventVaultCreated> {
     return new EventVaultCreated().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventVaultCreated | PlainMessage<EventVaultCreated> | undefined, b: EventVaultCreated | PlainMessage<EventVaultCreated> | undefined): boolean {
+  static equals(
+    a: EventVaultCreated | PlainMessage<EventVaultCreated> | undefined,
+    b: EventVaultCreated | PlainMessage<EventVaultCreated> | undefined
+  ): boolean {
     return proto3.util.equals(EventVaultCreated, a, b);
   }
 }
@@ -455,21 +513,21 @@ export class EventVaultKeysRotated extends Message<EventVaultKeysRotated> {
    *
    * @generated from field: string vault_id = 1;
    */
-  vaultId = "";
+  vaultId = '';
 
   /**
    * Owner DID
    *
    * @generated from field: string owner = 2;
    */
-  owner = "";
+  owner = '';
 
   /**
    * New public key
    *
    * @generated from field: string new_public_key = 3;
    */
-  newPublicKey = "";
+  newPublicKey = '';
 
   /**
    * Rotation height
@@ -491,16 +549,19 @@ export class EventVaultKeysRotated extends Message<EventVaultKeysRotated> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.EventVaultKeysRotated";
+  static readonly typeName = 'dwn.v1.EventVaultKeysRotated';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "vault_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "new_public_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "rotation_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 5, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'vault_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'new_public_key', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'rotation_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 5, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventVaultKeysRotated {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EventVaultKeysRotated {
     return new EventVaultKeysRotated().fromBinary(bytes, options);
   }
 
@@ -508,11 +569,17 @@ export class EventVaultKeysRotated extends Message<EventVaultKeysRotated> {
     return new EventVaultKeysRotated().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventVaultKeysRotated {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventVaultKeysRotated {
     return new EventVaultKeysRotated().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventVaultKeysRotated | PlainMessage<EventVaultKeysRotated> | undefined, b: EventVaultKeysRotated | PlainMessage<EventVaultKeysRotated> | undefined): boolean {
+  static equals(
+    a: EventVaultKeysRotated | PlainMessage<EventVaultKeysRotated> | undefined,
+    b: EventVaultKeysRotated | PlainMessage<EventVaultKeysRotated> | undefined
+  ): boolean {
     return proto3.util.equals(EventVaultKeysRotated, a, b);
   }
 }
@@ -542,7 +609,7 @@ export class EventKeyRotation extends Message<EventKeyRotation> {
    *
    * @generated from field: string reason = 3;
    */
-  reason = "";
+  reason = '';
 
   /**
    * Block height when rotation occurred
@@ -571,14 +638,14 @@ export class EventKeyRotation extends Message<EventKeyRotation> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.EventKeyRotation";
+  static readonly typeName = 'dwn.v1.EventKeyRotation';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "old_key_version", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "new_key_version", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "reason", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 5, name: "single_node_mode", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 6, name: "validator_count", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 1, name: 'old_key_version', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'new_key_version', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'reason', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 5, name: 'single_node_mode', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: 'validator_count', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventKeyRotation {
@@ -593,8 +660,10 @@ export class EventKeyRotation extends Message<EventKeyRotation> {
     return new EventKeyRotation().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventKeyRotation | PlainMessage<EventKeyRotation> | undefined, b: EventKeyRotation | PlainMessage<EventKeyRotation> | undefined): boolean {
+  static equals(
+    a: EventKeyRotation | PlainMessage<EventKeyRotation> | undefined,
+    b: EventKeyRotation | PlainMessage<EventKeyRotation> | undefined
+  ): boolean {
     return proto3.util.equals(EventKeyRotation, a, b);
   }
 }
-

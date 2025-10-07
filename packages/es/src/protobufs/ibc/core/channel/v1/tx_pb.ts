@@ -3,10 +3,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Channel, Packet } from "./channel_pb.js";
-import { Height } from "../../client/v1/client_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { Channel, Packet } from './channel_pb.js';
+import { Height } from '../../client/v1/client_pb.js';
 
 /**
  * ResponseResultType defines the possible outcomes of the execution of a message
@@ -43,11 +50,11 @@ export enum ResponseResultType {
   FAILURE = 3,
 }
 // Retrieve enum metadata with: proto3.getEnumType(ResponseResultType)
-proto3.util.setEnumType(ResponseResultType, "ibc.core.channel.v1.ResponseResultType", [
-  { no: 0, name: "RESPONSE_RESULT_TYPE_UNSPECIFIED" },
-  { no: 1, name: "RESPONSE_RESULT_TYPE_NOOP" },
-  { no: 2, name: "RESPONSE_RESULT_TYPE_SUCCESS" },
-  { no: 3, name: "RESPONSE_RESULT_TYPE_FAILURE" },
+proto3.util.setEnumType(ResponseResultType, 'ibc.core.channel.v1.ResponseResultType', [
+  { no: 0, name: 'RESPONSE_RESULT_TYPE_UNSPECIFIED' },
+  { no: 1, name: 'RESPONSE_RESULT_TYPE_NOOP' },
+  { no: 2, name: 'RESPONSE_RESULT_TYPE_SUCCESS' },
+  { no: 3, name: 'RESPONSE_RESULT_TYPE_FAILURE' },
 ]);
 
 /**
@@ -60,7 +67,7 @@ export class MsgChannelOpenInit extends Message<MsgChannelOpenInit> {
   /**
    * @generated from field: string port_id = 1;
    */
-  portId = "";
+  portId = '';
 
   /**
    * @generated from field: ibc.core.channel.v1.Channel channel = 2;
@@ -70,7 +77,7 @@ export class MsgChannelOpenInit extends Message<MsgChannelOpenInit> {
   /**
    * @generated from field: string signer = 3;
    */
-  signer = "";
+  signer = '';
 
   constructor(data?: PartialMessage<MsgChannelOpenInit>) {
     super();
@@ -78,11 +85,11 @@ export class MsgChannelOpenInit extends Message<MsgChannelOpenInit> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.MsgChannelOpenInit";
+  static readonly typeName = 'ibc.core.channel.v1.MsgChannelOpenInit';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel", kind: "message", T: Channel },
-    { no: 3, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'channel', kind: 'message', T: Channel },
+    { no: 3, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgChannelOpenInit {
@@ -93,11 +100,17 @@ export class MsgChannelOpenInit extends Message<MsgChannelOpenInit> {
     return new MsgChannelOpenInit().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgChannelOpenInit {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgChannelOpenInit {
     return new MsgChannelOpenInit().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgChannelOpenInit | PlainMessage<MsgChannelOpenInit> | undefined, b: MsgChannelOpenInit | PlainMessage<MsgChannelOpenInit> | undefined): boolean {
+  static equals(
+    a: MsgChannelOpenInit | PlainMessage<MsgChannelOpenInit> | undefined,
+    b: MsgChannelOpenInit | PlainMessage<MsgChannelOpenInit> | undefined
+  ): boolean {
     return proto3.util.equals(MsgChannelOpenInit, a, b);
   }
 }
@@ -111,12 +124,12 @@ export class MsgChannelOpenInitResponse extends Message<MsgChannelOpenInitRespon
   /**
    * @generated from field: string channel_id = 1;
    */
-  channelId = "";
+  channelId = '';
 
   /**
    * @generated from field: string version = 2;
    */
-  version = "";
+  version = '';
 
   constructor(data?: PartialMessage<MsgChannelOpenInitResponse>) {
     super();
@@ -124,25 +137,37 @@ export class MsgChannelOpenInitResponse extends Message<MsgChannelOpenInitRespon
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.MsgChannelOpenInitResponse";
+  static readonly typeName = 'ibc.core.channel.v1.MsgChannelOpenInitResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'version', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgChannelOpenInitResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgChannelOpenInitResponse {
     return new MsgChannelOpenInitResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgChannelOpenInitResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgChannelOpenInitResponse {
     return new MsgChannelOpenInitResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgChannelOpenInitResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgChannelOpenInitResponse {
     return new MsgChannelOpenInitResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgChannelOpenInitResponse | PlainMessage<MsgChannelOpenInitResponse> | undefined, b: MsgChannelOpenInitResponse | PlainMessage<MsgChannelOpenInitResponse> | undefined): boolean {
+  static equals(
+    a: MsgChannelOpenInitResponse | PlainMessage<MsgChannelOpenInitResponse> | undefined,
+    b: MsgChannelOpenInitResponse | PlainMessage<MsgChannelOpenInitResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgChannelOpenInitResponse, a, b);
   }
 }
@@ -158,7 +183,7 @@ export class MsgChannelOpenTry extends Message<MsgChannelOpenTry> {
   /**
    * @generated from field: string port_id = 1;
    */
-  portId = "";
+  portId = '';
 
   /**
    * Deprecated: this field is unused. Crossing hello's are no longer supported in core IBC.
@@ -166,7 +191,7 @@ export class MsgChannelOpenTry extends Message<MsgChannelOpenTry> {
    * @generated from field: string previous_channel_id = 2 [deprecated = true];
    * @deprecated
    */
-  previousChannelId = "";
+  previousChannelId = '';
 
   /**
    * NOTE: the version field within the channel has been deprecated. Its value will be ignored by core IBC.
@@ -178,7 +203,7 @@ export class MsgChannelOpenTry extends Message<MsgChannelOpenTry> {
   /**
    * @generated from field: string counterparty_version = 4;
    */
-  counterpartyVersion = "";
+  counterpartyVersion = '';
 
   /**
    * @generated from field: bytes proof_init = 5;
@@ -193,7 +218,7 @@ export class MsgChannelOpenTry extends Message<MsgChannelOpenTry> {
   /**
    * @generated from field: string signer = 7;
    */
-  signer = "";
+  signer = '';
 
   constructor(data?: PartialMessage<MsgChannelOpenTry>) {
     super();
@@ -201,15 +226,15 @@ export class MsgChannelOpenTry extends Message<MsgChannelOpenTry> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.MsgChannelOpenTry";
+  static readonly typeName = 'ibc.core.channel.v1.MsgChannelOpenTry';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "previous_channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "channel", kind: "message", T: Channel },
-    { no: 4, name: "counterparty_version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "proof_init", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 6, name: "proof_height", kind: "message", T: Height },
-    { no: 7, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'previous_channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'channel', kind: 'message', T: Channel },
+    { no: 4, name: 'counterparty_version', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'proof_init', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 6, name: 'proof_height', kind: 'message', T: Height },
+    { no: 7, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgChannelOpenTry {
@@ -224,7 +249,10 @@ export class MsgChannelOpenTry extends Message<MsgChannelOpenTry> {
     return new MsgChannelOpenTry().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgChannelOpenTry | PlainMessage<MsgChannelOpenTry> | undefined, b: MsgChannelOpenTry | PlainMessage<MsgChannelOpenTry> | undefined): boolean {
+  static equals(
+    a: MsgChannelOpenTry | PlainMessage<MsgChannelOpenTry> | undefined,
+    b: MsgChannelOpenTry | PlainMessage<MsgChannelOpenTry> | undefined
+  ): boolean {
     return proto3.util.equals(MsgChannelOpenTry, a, b);
   }
 }
@@ -238,12 +266,12 @@ export class MsgChannelOpenTryResponse extends Message<MsgChannelOpenTryResponse
   /**
    * @generated from field: string version = 1;
    */
-  version = "";
+  version = '';
 
   /**
    * @generated from field: string channel_id = 2;
    */
-  channelId = "";
+  channelId = '';
 
   constructor(data?: PartialMessage<MsgChannelOpenTryResponse>) {
     super();
@@ -251,25 +279,37 @@ export class MsgChannelOpenTryResponse extends Message<MsgChannelOpenTryResponse
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.MsgChannelOpenTryResponse";
+  static readonly typeName = 'ibc.core.channel.v1.MsgChannelOpenTryResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'version', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgChannelOpenTryResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgChannelOpenTryResponse {
     return new MsgChannelOpenTryResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgChannelOpenTryResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgChannelOpenTryResponse {
     return new MsgChannelOpenTryResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgChannelOpenTryResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgChannelOpenTryResponse {
     return new MsgChannelOpenTryResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgChannelOpenTryResponse | PlainMessage<MsgChannelOpenTryResponse> | undefined, b: MsgChannelOpenTryResponse | PlainMessage<MsgChannelOpenTryResponse> | undefined): boolean {
+  static equals(
+    a: MsgChannelOpenTryResponse | PlainMessage<MsgChannelOpenTryResponse> | undefined,
+    b: MsgChannelOpenTryResponse | PlainMessage<MsgChannelOpenTryResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgChannelOpenTryResponse, a, b);
   }
 }
@@ -284,22 +324,22 @@ export class MsgChannelOpenAck extends Message<MsgChannelOpenAck> {
   /**
    * @generated from field: string port_id = 1;
    */
-  portId = "";
+  portId = '';
 
   /**
    * @generated from field: string channel_id = 2;
    */
-  channelId = "";
+  channelId = '';
 
   /**
    * @generated from field: string counterparty_channel_id = 3;
    */
-  counterpartyChannelId = "";
+  counterpartyChannelId = '';
 
   /**
    * @generated from field: string counterparty_version = 4;
    */
-  counterpartyVersion = "";
+  counterpartyVersion = '';
 
   /**
    * @generated from field: bytes proof_try = 5;
@@ -314,7 +354,7 @@ export class MsgChannelOpenAck extends Message<MsgChannelOpenAck> {
   /**
    * @generated from field: string signer = 7;
    */
-  signer = "";
+  signer = '';
 
   constructor(data?: PartialMessage<MsgChannelOpenAck>) {
     super();
@@ -322,15 +362,15 @@ export class MsgChannelOpenAck extends Message<MsgChannelOpenAck> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.MsgChannelOpenAck";
+  static readonly typeName = 'ibc.core.channel.v1.MsgChannelOpenAck';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "counterparty_channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "counterparty_version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "proof_try", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 6, name: "proof_height", kind: "message", T: Height },
-    { no: 7, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'counterparty_channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'counterparty_version', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'proof_try', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 6, name: 'proof_height', kind: 'message', T: Height },
+    { no: 7, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgChannelOpenAck {
@@ -345,7 +385,10 @@ export class MsgChannelOpenAck extends Message<MsgChannelOpenAck> {
     return new MsgChannelOpenAck().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgChannelOpenAck | PlainMessage<MsgChannelOpenAck> | undefined, b: MsgChannelOpenAck | PlainMessage<MsgChannelOpenAck> | undefined): boolean {
+  static equals(
+    a: MsgChannelOpenAck | PlainMessage<MsgChannelOpenAck> | undefined,
+    b: MsgChannelOpenAck | PlainMessage<MsgChannelOpenAck> | undefined
+  ): boolean {
     return proto3.util.equals(MsgChannelOpenAck, a, b);
   }
 }
@@ -362,23 +405,34 @@ export class MsgChannelOpenAckResponse extends Message<MsgChannelOpenAckResponse
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.MsgChannelOpenAckResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ibc.core.channel.v1.MsgChannelOpenAckResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgChannelOpenAckResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgChannelOpenAckResponse {
     return new MsgChannelOpenAckResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgChannelOpenAckResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgChannelOpenAckResponse {
     return new MsgChannelOpenAckResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgChannelOpenAckResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgChannelOpenAckResponse {
     return new MsgChannelOpenAckResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgChannelOpenAckResponse | PlainMessage<MsgChannelOpenAckResponse> | undefined, b: MsgChannelOpenAckResponse | PlainMessage<MsgChannelOpenAckResponse> | undefined): boolean {
+  static equals(
+    a: MsgChannelOpenAckResponse | PlainMessage<MsgChannelOpenAckResponse> | undefined,
+    b: MsgChannelOpenAckResponse | PlainMessage<MsgChannelOpenAckResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgChannelOpenAckResponse, a, b);
   }
 }
@@ -393,12 +447,12 @@ export class MsgChannelOpenConfirm extends Message<MsgChannelOpenConfirm> {
   /**
    * @generated from field: string port_id = 1;
    */
-  portId = "";
+  portId = '';
 
   /**
    * @generated from field: string channel_id = 2;
    */
-  channelId = "";
+  channelId = '';
 
   /**
    * @generated from field: bytes proof_ack = 3;
@@ -413,7 +467,7 @@ export class MsgChannelOpenConfirm extends Message<MsgChannelOpenConfirm> {
   /**
    * @generated from field: string signer = 5;
    */
-  signer = "";
+  signer = '';
 
   constructor(data?: PartialMessage<MsgChannelOpenConfirm>) {
     super();
@@ -421,16 +475,19 @@ export class MsgChannelOpenConfirm extends Message<MsgChannelOpenConfirm> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.MsgChannelOpenConfirm";
+  static readonly typeName = 'ibc.core.channel.v1.MsgChannelOpenConfirm';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "proof_ack", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 4, name: "proof_height", kind: "message", T: Height },
-    { no: 5, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'proof_ack', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 4, name: 'proof_height', kind: 'message', T: Height },
+    { no: 5, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgChannelOpenConfirm {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgChannelOpenConfirm {
     return new MsgChannelOpenConfirm().fromBinary(bytes, options);
   }
 
@@ -438,11 +495,17 @@ export class MsgChannelOpenConfirm extends Message<MsgChannelOpenConfirm> {
     return new MsgChannelOpenConfirm().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgChannelOpenConfirm {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgChannelOpenConfirm {
     return new MsgChannelOpenConfirm().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgChannelOpenConfirm | PlainMessage<MsgChannelOpenConfirm> | undefined, b: MsgChannelOpenConfirm | PlainMessage<MsgChannelOpenConfirm> | undefined): boolean {
+  static equals(
+    a: MsgChannelOpenConfirm | PlainMessage<MsgChannelOpenConfirm> | undefined,
+    b: MsgChannelOpenConfirm | PlainMessage<MsgChannelOpenConfirm> | undefined
+  ): boolean {
     return proto3.util.equals(MsgChannelOpenConfirm, a, b);
   }
 }
@@ -460,23 +523,34 @@ export class MsgChannelOpenConfirmResponse extends Message<MsgChannelOpenConfirm
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.MsgChannelOpenConfirmResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ibc.core.channel.v1.MsgChannelOpenConfirmResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgChannelOpenConfirmResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgChannelOpenConfirmResponse {
     return new MsgChannelOpenConfirmResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgChannelOpenConfirmResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgChannelOpenConfirmResponse {
     return new MsgChannelOpenConfirmResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgChannelOpenConfirmResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgChannelOpenConfirmResponse {
     return new MsgChannelOpenConfirmResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgChannelOpenConfirmResponse | PlainMessage<MsgChannelOpenConfirmResponse> | undefined, b: MsgChannelOpenConfirmResponse | PlainMessage<MsgChannelOpenConfirmResponse> | undefined): boolean {
+  static equals(
+    a: MsgChannelOpenConfirmResponse | PlainMessage<MsgChannelOpenConfirmResponse> | undefined,
+    b: MsgChannelOpenConfirmResponse | PlainMessage<MsgChannelOpenConfirmResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgChannelOpenConfirmResponse, a, b);
   }
 }
@@ -491,17 +565,17 @@ export class MsgChannelCloseInit extends Message<MsgChannelCloseInit> {
   /**
    * @generated from field: string port_id = 1;
    */
-  portId = "";
+  portId = '';
 
   /**
    * @generated from field: string channel_id = 2;
    */
-  channelId = "";
+  channelId = '';
 
   /**
    * @generated from field: string signer = 3;
    */
-  signer = "";
+  signer = '';
 
   constructor(data?: PartialMessage<MsgChannelCloseInit>) {
     super();
@@ -509,11 +583,11 @@ export class MsgChannelCloseInit extends Message<MsgChannelCloseInit> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.MsgChannelCloseInit";
+  static readonly typeName = 'ibc.core.channel.v1.MsgChannelCloseInit';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgChannelCloseInit {
@@ -524,11 +598,17 @@ export class MsgChannelCloseInit extends Message<MsgChannelCloseInit> {
     return new MsgChannelCloseInit().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgChannelCloseInit {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgChannelCloseInit {
     return new MsgChannelCloseInit().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgChannelCloseInit | PlainMessage<MsgChannelCloseInit> | undefined, b: MsgChannelCloseInit | PlainMessage<MsgChannelCloseInit> | undefined): boolean {
+  static equals(
+    a: MsgChannelCloseInit | PlainMessage<MsgChannelCloseInit> | undefined,
+    b: MsgChannelCloseInit | PlainMessage<MsgChannelCloseInit> | undefined
+  ): boolean {
     return proto3.util.equals(MsgChannelCloseInit, a, b);
   }
 }
@@ -545,23 +625,34 @@ export class MsgChannelCloseInitResponse extends Message<MsgChannelCloseInitResp
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.MsgChannelCloseInitResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ibc.core.channel.v1.MsgChannelCloseInitResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgChannelCloseInitResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgChannelCloseInitResponse {
     return new MsgChannelCloseInitResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgChannelCloseInitResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgChannelCloseInitResponse {
     return new MsgChannelCloseInitResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgChannelCloseInitResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgChannelCloseInitResponse {
     return new MsgChannelCloseInitResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgChannelCloseInitResponse | PlainMessage<MsgChannelCloseInitResponse> | undefined, b: MsgChannelCloseInitResponse | PlainMessage<MsgChannelCloseInitResponse> | undefined): boolean {
+  static equals(
+    a: MsgChannelCloseInitResponse | PlainMessage<MsgChannelCloseInitResponse> | undefined,
+    b: MsgChannelCloseInitResponse | PlainMessage<MsgChannelCloseInitResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgChannelCloseInitResponse, a, b);
   }
 }
@@ -576,12 +667,12 @@ export class MsgChannelCloseConfirm extends Message<MsgChannelCloseConfirm> {
   /**
    * @generated from field: string port_id = 1;
    */
-  portId = "";
+  portId = '';
 
   /**
    * @generated from field: string channel_id = 2;
    */
-  channelId = "";
+  channelId = '';
 
   /**
    * @generated from field: bytes proof_init = 3;
@@ -596,7 +687,7 @@ export class MsgChannelCloseConfirm extends Message<MsgChannelCloseConfirm> {
   /**
    * @generated from field: string signer = 5;
    */
-  signer = "";
+  signer = '';
 
   constructor(data?: PartialMessage<MsgChannelCloseConfirm>) {
     super();
@@ -604,28 +695,40 @@ export class MsgChannelCloseConfirm extends Message<MsgChannelCloseConfirm> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.MsgChannelCloseConfirm";
+  static readonly typeName = 'ibc.core.channel.v1.MsgChannelCloseConfirm';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "proof_init", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 4, name: "proof_height", kind: "message", T: Height },
-    { no: 5, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'proof_init', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 4, name: 'proof_height', kind: 'message', T: Height },
+    { no: 5, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgChannelCloseConfirm {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgChannelCloseConfirm {
     return new MsgChannelCloseConfirm().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgChannelCloseConfirm {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgChannelCloseConfirm {
     return new MsgChannelCloseConfirm().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgChannelCloseConfirm {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgChannelCloseConfirm {
     return new MsgChannelCloseConfirm().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgChannelCloseConfirm | PlainMessage<MsgChannelCloseConfirm> | undefined, b: MsgChannelCloseConfirm | PlainMessage<MsgChannelCloseConfirm> | undefined): boolean {
+  static equals(
+    a: MsgChannelCloseConfirm | PlainMessage<MsgChannelCloseConfirm> | undefined,
+    b: MsgChannelCloseConfirm | PlainMessage<MsgChannelCloseConfirm> | undefined
+  ): boolean {
     return proto3.util.equals(MsgChannelCloseConfirm, a, b);
   }
 }
@@ -643,23 +746,34 @@ export class MsgChannelCloseConfirmResponse extends Message<MsgChannelCloseConfi
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.MsgChannelCloseConfirmResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ibc.core.channel.v1.MsgChannelCloseConfirmResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgChannelCloseConfirmResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgChannelCloseConfirmResponse {
     return new MsgChannelCloseConfirmResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgChannelCloseConfirmResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgChannelCloseConfirmResponse {
     return new MsgChannelCloseConfirmResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgChannelCloseConfirmResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgChannelCloseConfirmResponse {
     return new MsgChannelCloseConfirmResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgChannelCloseConfirmResponse | PlainMessage<MsgChannelCloseConfirmResponse> | undefined, b: MsgChannelCloseConfirmResponse | PlainMessage<MsgChannelCloseConfirmResponse> | undefined): boolean {
+  static equals(
+    a: MsgChannelCloseConfirmResponse | PlainMessage<MsgChannelCloseConfirmResponse> | undefined,
+    b: MsgChannelCloseConfirmResponse | PlainMessage<MsgChannelCloseConfirmResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgChannelCloseConfirmResponse, a, b);
   }
 }
@@ -688,7 +802,7 @@ export class MsgRecvPacket extends Message<MsgRecvPacket> {
   /**
    * @generated from field: string signer = 4;
    */
-  signer = "";
+  signer = '';
 
   constructor(data?: PartialMessage<MsgRecvPacket>) {
     super();
@@ -696,12 +810,12 @@ export class MsgRecvPacket extends Message<MsgRecvPacket> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.MsgRecvPacket";
+  static readonly typeName = 'ibc.core.channel.v1.MsgRecvPacket';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "packet", kind: "message", T: Packet },
-    { no: 2, name: "proof_commitment", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "proof_height", kind: "message", T: Height },
-    { no: 4, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'packet', kind: 'message', T: Packet },
+    { no: 2, name: 'proof_commitment', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: 'proof_height', kind: 'message', T: Height },
+    { no: 4, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRecvPacket {
@@ -716,7 +830,10 @@ export class MsgRecvPacket extends Message<MsgRecvPacket> {
     return new MsgRecvPacket().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRecvPacket | PlainMessage<MsgRecvPacket> | undefined, b: MsgRecvPacket | PlainMessage<MsgRecvPacket> | undefined): boolean {
+  static equals(
+    a: MsgRecvPacket | PlainMessage<MsgRecvPacket> | undefined,
+    b: MsgRecvPacket | PlainMessage<MsgRecvPacket> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRecvPacket, a, b);
   }
 }
@@ -738,12 +855,15 @@ export class MsgRecvPacketResponse extends Message<MsgRecvPacketResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.MsgRecvPacketResponse";
+  static readonly typeName = 'ibc.core.channel.v1.MsgRecvPacketResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "result", kind: "enum", T: proto3.getEnumType(ResponseResultType) },
+    { no: 1, name: 'result', kind: 'enum', T: proto3.getEnumType(ResponseResultType) },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRecvPacketResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgRecvPacketResponse {
     return new MsgRecvPacketResponse().fromBinary(bytes, options);
   }
 
@@ -751,11 +871,17 @@ export class MsgRecvPacketResponse extends Message<MsgRecvPacketResponse> {
     return new MsgRecvPacketResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgRecvPacketResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgRecvPacketResponse {
     return new MsgRecvPacketResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRecvPacketResponse | PlainMessage<MsgRecvPacketResponse> | undefined, b: MsgRecvPacketResponse | PlainMessage<MsgRecvPacketResponse> | undefined): boolean {
+  static equals(
+    a: MsgRecvPacketResponse | PlainMessage<MsgRecvPacketResponse> | undefined,
+    b: MsgRecvPacketResponse | PlainMessage<MsgRecvPacketResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRecvPacketResponse, a, b);
   }
 }
@@ -789,7 +915,7 @@ export class MsgTimeout extends Message<MsgTimeout> {
   /**
    * @generated from field: string signer = 5;
    */
-  signer = "";
+  signer = '';
 
   constructor(data?: PartialMessage<MsgTimeout>) {
     super();
@@ -797,13 +923,13 @@ export class MsgTimeout extends Message<MsgTimeout> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.MsgTimeout";
+  static readonly typeName = 'ibc.core.channel.v1.MsgTimeout';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "packet", kind: "message", T: Packet },
-    { no: 2, name: "proof_unreceived", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "proof_height", kind: "message", T: Height },
-    { no: 4, name: "next_sequence_recv", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 5, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'packet', kind: 'message', T: Packet },
+    { no: 2, name: 'proof_unreceived', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: 'proof_height', kind: 'message', T: Height },
+    { no: 4, name: 'next_sequence_recv', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 5, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgTimeout {
@@ -818,7 +944,10 @@ export class MsgTimeout extends Message<MsgTimeout> {
     return new MsgTimeout().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgTimeout | PlainMessage<MsgTimeout> | undefined, b: MsgTimeout | PlainMessage<MsgTimeout> | undefined): boolean {
+  static equals(
+    a: MsgTimeout | PlainMessage<MsgTimeout> | undefined,
+    b: MsgTimeout | PlainMessage<MsgTimeout> | undefined
+  ): boolean {
     return proto3.util.equals(MsgTimeout, a, b);
   }
 }
@@ -840,9 +969,9 @@ export class MsgTimeoutResponse extends Message<MsgTimeoutResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.MsgTimeoutResponse";
+  static readonly typeName = 'ibc.core.channel.v1.MsgTimeoutResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "result", kind: "enum", T: proto3.getEnumType(ResponseResultType) },
+    { no: 1, name: 'result', kind: 'enum', T: proto3.getEnumType(ResponseResultType) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgTimeoutResponse {
@@ -853,11 +982,17 @@ export class MsgTimeoutResponse extends Message<MsgTimeoutResponse> {
     return new MsgTimeoutResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgTimeoutResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgTimeoutResponse {
     return new MsgTimeoutResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgTimeoutResponse | PlainMessage<MsgTimeoutResponse> | undefined, b: MsgTimeoutResponse | PlainMessage<MsgTimeoutResponse> | undefined): boolean {
+  static equals(
+    a: MsgTimeoutResponse | PlainMessage<MsgTimeoutResponse> | undefined,
+    b: MsgTimeoutResponse | PlainMessage<MsgTimeoutResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgTimeoutResponse, a, b);
   }
 }
@@ -896,7 +1031,7 @@ export class MsgTimeoutOnClose extends Message<MsgTimeoutOnClose> {
   /**
    * @generated from field: string signer = 6;
    */
-  signer = "";
+  signer = '';
 
   constructor(data?: PartialMessage<MsgTimeoutOnClose>) {
     super();
@@ -904,14 +1039,14 @@ export class MsgTimeoutOnClose extends Message<MsgTimeoutOnClose> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.MsgTimeoutOnClose";
+  static readonly typeName = 'ibc.core.channel.v1.MsgTimeoutOnClose';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "packet", kind: "message", T: Packet },
-    { no: 2, name: "proof_unreceived", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "proof_close", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 4, name: "proof_height", kind: "message", T: Height },
-    { no: 5, name: "next_sequence_recv", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 6, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'packet', kind: 'message', T: Packet },
+    { no: 2, name: 'proof_unreceived', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: 'proof_close', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 4, name: 'proof_height', kind: 'message', T: Height },
+    { no: 5, name: 'next_sequence_recv', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 6, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgTimeoutOnClose {
@@ -926,7 +1061,10 @@ export class MsgTimeoutOnClose extends Message<MsgTimeoutOnClose> {
     return new MsgTimeoutOnClose().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgTimeoutOnClose | PlainMessage<MsgTimeoutOnClose> | undefined, b: MsgTimeoutOnClose | PlainMessage<MsgTimeoutOnClose> | undefined): boolean {
+  static equals(
+    a: MsgTimeoutOnClose | PlainMessage<MsgTimeoutOnClose> | undefined,
+    b: MsgTimeoutOnClose | PlainMessage<MsgTimeoutOnClose> | undefined
+  ): boolean {
     return proto3.util.equals(MsgTimeoutOnClose, a, b);
   }
 }
@@ -948,24 +1086,36 @@ export class MsgTimeoutOnCloseResponse extends Message<MsgTimeoutOnCloseResponse
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.MsgTimeoutOnCloseResponse";
+  static readonly typeName = 'ibc.core.channel.v1.MsgTimeoutOnCloseResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "result", kind: "enum", T: proto3.getEnumType(ResponseResultType) },
+    { no: 1, name: 'result', kind: 'enum', T: proto3.getEnumType(ResponseResultType) },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgTimeoutOnCloseResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgTimeoutOnCloseResponse {
     return new MsgTimeoutOnCloseResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgTimeoutOnCloseResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgTimeoutOnCloseResponse {
     return new MsgTimeoutOnCloseResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgTimeoutOnCloseResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgTimeoutOnCloseResponse {
     return new MsgTimeoutOnCloseResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgTimeoutOnCloseResponse | PlainMessage<MsgTimeoutOnCloseResponse> | undefined, b: MsgTimeoutOnCloseResponse | PlainMessage<MsgTimeoutOnCloseResponse> | undefined): boolean {
+  static equals(
+    a: MsgTimeoutOnCloseResponse | PlainMessage<MsgTimeoutOnCloseResponse> | undefined,
+    b: MsgTimeoutOnCloseResponse | PlainMessage<MsgTimeoutOnCloseResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgTimeoutOnCloseResponse, a, b);
   }
 }
@@ -999,7 +1149,7 @@ export class MsgAcknowledgement extends Message<MsgAcknowledgement> {
   /**
    * @generated from field: string signer = 5;
    */
-  signer = "";
+  signer = '';
 
   constructor(data?: PartialMessage<MsgAcknowledgement>) {
     super();
@@ -1007,13 +1157,13 @@ export class MsgAcknowledgement extends Message<MsgAcknowledgement> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.MsgAcknowledgement";
+  static readonly typeName = 'ibc.core.channel.v1.MsgAcknowledgement';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "packet", kind: "message", T: Packet },
-    { no: 2, name: "acknowledgement", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "proof_acked", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 4, name: "proof_height", kind: "message", T: Height },
-    { no: 5, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'packet', kind: 'message', T: Packet },
+    { no: 2, name: 'acknowledgement', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: 'proof_acked', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 4, name: 'proof_height', kind: 'message', T: Height },
+    { no: 5, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgAcknowledgement {
@@ -1024,11 +1174,17 @@ export class MsgAcknowledgement extends Message<MsgAcknowledgement> {
     return new MsgAcknowledgement().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgAcknowledgement {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgAcknowledgement {
     return new MsgAcknowledgement().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgAcknowledgement | PlainMessage<MsgAcknowledgement> | undefined, b: MsgAcknowledgement | PlainMessage<MsgAcknowledgement> | undefined): boolean {
+  static equals(
+    a: MsgAcknowledgement | PlainMessage<MsgAcknowledgement> | undefined,
+    b: MsgAcknowledgement | PlainMessage<MsgAcknowledgement> | undefined
+  ): boolean {
     return proto3.util.equals(MsgAcknowledgement, a, b);
   }
 }
@@ -1050,25 +1206,36 @@ export class MsgAcknowledgementResponse extends Message<MsgAcknowledgementRespon
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v1.MsgAcknowledgementResponse";
+  static readonly typeName = 'ibc.core.channel.v1.MsgAcknowledgementResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "result", kind: "enum", T: proto3.getEnumType(ResponseResultType) },
+    { no: 1, name: 'result', kind: 'enum', T: proto3.getEnumType(ResponseResultType) },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgAcknowledgementResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgAcknowledgementResponse {
     return new MsgAcknowledgementResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgAcknowledgementResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgAcknowledgementResponse {
     return new MsgAcknowledgementResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgAcknowledgementResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgAcknowledgementResponse {
     return new MsgAcknowledgementResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgAcknowledgementResponse | PlainMessage<MsgAcknowledgementResponse> | undefined, b: MsgAcknowledgementResponse | PlainMessage<MsgAcknowledgementResponse> | undefined): boolean {
+  static equals(
+    a: MsgAcknowledgementResponse | PlainMessage<MsgAcknowledgementResponse> | undefined,
+    b: MsgAcknowledgementResponse | PlainMessage<MsgAcknowledgementResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgAcknowledgementResponse, a, b);
   }
 }
-

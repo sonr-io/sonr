@@ -8,9 +8,16 @@
 // until clear steps for migration logic and the unknowns for state breaking are
 // investigated for changing proto package.
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { DecCoin } from "../../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { DecCoin } from '../../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * @generated from message osmosis.concentratedliquidity.v1beta1.TickInfo
@@ -19,12 +26,12 @@ export class TickInfo extends Message<TickInfo> {
   /**
    * @generated from field: string liquidity_gross = 1;
    */
-  liquidityGross = "";
+  liquidityGross = '';
 
   /**
    * @generated from field: string liquidity_net = 2;
    */
-  liquidityNet = "";
+  liquidityNet = '';
 
   /**
    * Total spread rewards accumulated in the opposite direction that the tick
@@ -63,12 +70,18 @@ export class TickInfo extends Message<TickInfo> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.concentratedliquidity.v1beta1.TickInfo";
+  static readonly typeName = 'osmosis.concentratedliquidity.v1beta1.TickInfo';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "liquidity_gross", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "liquidity_net", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "spread_reward_growth_opposite_direction_of_last_traversal", kind: "message", T: DecCoin, repeated: true },
-    { no: 4, name: "uptime_trackers", kind: "message", T: UptimeTrackers },
+    { no: 1, name: 'liquidity_gross', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'liquidity_net', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    {
+      no: 3,
+      name: 'spread_reward_growth_opposite_direction_of_last_traversal',
+      kind: 'message',
+      T: DecCoin,
+      repeated: true,
+    },
+    { no: 4, name: 'uptime_trackers', kind: 'message', T: UptimeTrackers },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TickInfo {
@@ -83,7 +96,10 @@ export class TickInfo extends Message<TickInfo> {
     return new TickInfo().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TickInfo | PlainMessage<TickInfo> | undefined, b: TickInfo | PlainMessage<TickInfo> | undefined): boolean {
+  static equals(
+    a: TickInfo | PlainMessage<TickInfo> | undefined,
+    b: TickInfo | PlainMessage<TickInfo> | undefined
+  ): boolean {
     return proto3.util.equals(TickInfo, a, b);
   }
 }
@@ -103,9 +119,9 @@ export class UptimeTrackers extends Message<UptimeTrackers> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.concentratedliquidity.v1beta1.UptimeTrackers";
+  static readonly typeName = 'osmosis.concentratedliquidity.v1beta1.UptimeTrackers';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "list", kind: "message", T: UptimeTracker, repeated: true },
+    { no: 1, name: 'list', kind: 'message', T: UptimeTracker, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UptimeTrackers {
@@ -120,7 +136,10 @@ export class UptimeTrackers extends Message<UptimeTrackers> {
     return new UptimeTrackers().fromJsonString(jsonString, options);
   }
 
-  static equals(a: UptimeTrackers | PlainMessage<UptimeTrackers> | undefined, b: UptimeTrackers | PlainMessage<UptimeTrackers> | undefined): boolean {
+  static equals(
+    a: UptimeTrackers | PlainMessage<UptimeTrackers> | undefined,
+    b: UptimeTrackers | PlainMessage<UptimeTrackers> | undefined
+  ): boolean {
     return proto3.util.equals(UptimeTrackers, a, b);
   }
 }
@@ -140,9 +159,9 @@ export class UptimeTracker extends Message<UptimeTracker> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.concentratedliquidity.v1beta1.UptimeTracker";
+  static readonly typeName = 'osmosis.concentratedliquidity.v1beta1.UptimeTracker';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "uptime_growth_outside", kind: "message", T: DecCoin, repeated: true },
+    { no: 1, name: 'uptime_growth_outside', kind: 'message', T: DecCoin, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UptimeTracker {
@@ -157,8 +176,10 @@ export class UptimeTracker extends Message<UptimeTracker> {
     return new UptimeTracker().fromJsonString(jsonString, options);
   }
 
-  static equals(a: UptimeTracker | PlainMessage<UptimeTracker> | undefined, b: UptimeTracker | PlainMessage<UptimeTracker> | undefined): boolean {
+  static equals(
+    a: UptimeTracker | PlainMessage<UptimeTracker> | undefined,
+    b: UptimeTracker | PlainMessage<UptimeTracker> | undefined
+  ): boolean {
     return proto3.util.equals(UptimeTracker, a, b);
   }
 }
-

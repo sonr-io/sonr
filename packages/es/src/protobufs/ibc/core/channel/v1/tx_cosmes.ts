@@ -3,9 +3,30 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgAcknowledgement, MsgAcknowledgementResponse, MsgChannelCloseConfirm, MsgChannelCloseConfirmResponse, MsgChannelCloseInit, MsgChannelCloseInitResponse, MsgChannelOpenAck, MsgChannelOpenAckResponse, MsgChannelOpenConfirm, MsgChannelOpenConfirmResponse, MsgChannelOpenInit, MsgChannelOpenInitResponse, MsgChannelOpenTry, MsgChannelOpenTryResponse, MsgRecvPacket, MsgRecvPacketResponse, MsgTimeout, MsgTimeoutOnClose, MsgTimeoutOnCloseResponse, MsgTimeoutResponse } from "./tx_pb.js";
+import {
+  MsgAcknowledgement,
+  MsgAcknowledgementResponse,
+  MsgChannelCloseConfirm,
+  MsgChannelCloseConfirmResponse,
+  MsgChannelCloseInit,
+  MsgChannelCloseInitResponse,
+  MsgChannelOpenAck,
+  MsgChannelOpenAckResponse,
+  MsgChannelOpenConfirm,
+  MsgChannelOpenConfirmResponse,
+  MsgChannelOpenInit,
+  MsgChannelOpenInitResponse,
+  MsgChannelOpenTry,
+  MsgChannelOpenTryResponse,
+  MsgRecvPacket,
+  MsgRecvPacketResponse,
+  MsgTimeout,
+  MsgTimeoutOnClose,
+  MsgTimeoutOnCloseResponse,
+  MsgTimeoutResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "ibc.core.channel.v1.Msg";
+const TYPE_NAME = 'ibc.core.channel.v1.Msg';
 
 /**
  * ChannelOpenInit defines a rpc handler method for MsgChannelOpenInit.
@@ -14,7 +35,7 @@ const TYPE_NAME = "ibc.core.channel.v1.Msg";
  */
 export const MsgChannelOpenInitService = {
   typeName: TYPE_NAME,
-  method: "ChannelOpenInit",
+  method: 'ChannelOpenInit',
   Request: MsgChannelOpenInit,
   Response: MsgChannelOpenInitResponse,
 } as const;
@@ -26,7 +47,7 @@ export const MsgChannelOpenInitService = {
  */
 export const MsgChannelOpenTryService = {
   typeName: TYPE_NAME,
-  method: "ChannelOpenTry",
+  method: 'ChannelOpenTry',
   Request: MsgChannelOpenTry,
   Response: MsgChannelOpenTryResponse,
 } as const;
@@ -38,7 +59,7 @@ export const MsgChannelOpenTryService = {
  */
 export const MsgChannelOpenAckService = {
   typeName: TYPE_NAME,
-  method: "ChannelOpenAck",
+  method: 'ChannelOpenAck',
   Request: MsgChannelOpenAck,
   Response: MsgChannelOpenAckResponse,
 } as const;
@@ -50,7 +71,7 @@ export const MsgChannelOpenAckService = {
  */
 export const MsgChannelOpenConfirmService = {
   typeName: TYPE_NAME,
-  method: "ChannelOpenConfirm",
+  method: 'ChannelOpenConfirm',
   Request: MsgChannelOpenConfirm,
   Response: MsgChannelOpenConfirmResponse,
 } as const;
@@ -62,7 +83,7 @@ export const MsgChannelOpenConfirmService = {
  */
 export const MsgChannelCloseInitService = {
   typeName: TYPE_NAME,
-  method: "ChannelCloseInit",
+  method: 'ChannelCloseInit',
   Request: MsgChannelCloseInit,
   Response: MsgChannelCloseInitResponse,
 } as const;
@@ -75,7 +96,7 @@ export const MsgChannelCloseInitService = {
  */
 export const MsgChannelCloseConfirmService = {
   typeName: TYPE_NAME,
-  method: "ChannelCloseConfirm",
+  method: 'ChannelCloseConfirm',
   Request: MsgChannelCloseConfirm,
   Response: MsgChannelCloseConfirmResponse,
 } as const;
@@ -87,7 +108,7 @@ export const MsgChannelCloseConfirmService = {
  */
 export const MsgRecvPacketService = {
   typeName: TYPE_NAME,
-  method: "RecvPacket",
+  method: 'RecvPacket',
   Request: MsgRecvPacket,
   Response: MsgRecvPacketResponse,
 } as const;
@@ -99,7 +120,7 @@ export const MsgRecvPacketService = {
  */
 export const MsgTimeoutService = {
   typeName: TYPE_NAME,
-  method: "Timeout",
+  method: 'Timeout',
   Request: MsgTimeout,
   Response: MsgTimeoutResponse,
 } as const;
@@ -111,7 +132,7 @@ export const MsgTimeoutService = {
  */
 export const MsgTimeoutOnCloseService = {
   typeName: TYPE_NAME,
-  method: "TimeoutOnClose",
+  method: 'TimeoutOnClose',
   Request: MsgTimeoutOnClose,
   Response: MsgTimeoutOnCloseResponse,
 } as const;
@@ -123,8 +144,7 @@ export const MsgTimeoutOnCloseService = {
  */
 export const MsgAcknowledgementService = {
   typeName: TYPE_NAME,
-  method: "Acknowledgement",
+  method: 'Acknowledgement',
   Request: MsgAcknowledgement,
   Response: MsgAcknowledgementResponse,
 } as const;
-

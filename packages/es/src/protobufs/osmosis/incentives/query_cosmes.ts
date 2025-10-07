@@ -3,9 +3,46 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ActiveGaugesPerDenomRequest, ActiveGaugesPerDenomResponse, ActiveGaugesRequest, ActiveGaugesResponse, GaugeByIDRequest, GaugeByIDResponse, GaugesRequest, GaugesResponse, ModuleToDistributeCoinsRequest, ModuleToDistributeCoinsResponse, ParamsRequest, ParamsResponse, QueryAllGroupsGaugesRequest, QueryAllGroupsGaugesResponse, QueryAllGroupsRequest, QueryAllGroupsResponse, QueryAllGroupsWithGaugeRequest, QueryAllGroupsWithGaugeResponse, QueryCurrentWeightByGroupGaugeIDRequest, QueryCurrentWeightByGroupGaugeIDResponse, QueryExternalGaugesRequest, QueryExternalGaugesResponse, QueryGaugesByPoolIDRequest, QueryGaugesByPoolIDResponse, QueryGroupByGroupGaugeIDRequest, QueryGroupByGroupGaugeIDResponse, QueryInternalGaugesRequest, QueryInternalGaugesResponse, QueryLockableDurationsRequest, QueryLockableDurationsResponse, RewardsEstRequest, RewardsEstResponse, UpcomingGaugesPerDenomRequest, UpcomingGaugesPerDenomResponse, UpcomingGaugesRequest, UpcomingGaugesResponse } from "./query_pb.js";
+import {
+  ActiveGaugesPerDenomRequest,
+  ActiveGaugesPerDenomResponse,
+  ActiveGaugesRequest,
+  ActiveGaugesResponse,
+  GaugeByIDRequest,
+  GaugeByIDResponse,
+  GaugesRequest,
+  GaugesResponse,
+  ModuleToDistributeCoinsRequest,
+  ModuleToDistributeCoinsResponse,
+  ParamsRequest,
+  ParamsResponse,
+  QueryAllGroupsGaugesRequest,
+  QueryAllGroupsGaugesResponse,
+  QueryAllGroupsRequest,
+  QueryAllGroupsResponse,
+  QueryAllGroupsWithGaugeRequest,
+  QueryAllGroupsWithGaugeResponse,
+  QueryCurrentWeightByGroupGaugeIDRequest,
+  QueryCurrentWeightByGroupGaugeIDResponse,
+  QueryExternalGaugesRequest,
+  QueryExternalGaugesResponse,
+  QueryGaugesByPoolIDRequest,
+  QueryGaugesByPoolIDResponse,
+  QueryGroupByGroupGaugeIDRequest,
+  QueryGroupByGroupGaugeIDResponse,
+  QueryInternalGaugesRequest,
+  QueryInternalGaugesResponse,
+  QueryLockableDurationsRequest,
+  QueryLockableDurationsResponse,
+  RewardsEstRequest,
+  RewardsEstResponse,
+  UpcomingGaugesPerDenomRequest,
+  UpcomingGaugesPerDenomResponse,
+  UpcomingGaugesRequest,
+  UpcomingGaugesResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "osmosis.incentives.Query";
+const TYPE_NAME = 'osmosis.incentives.Query';
 
 /**
  * ModuleToDistributeCoins returns coins that are going to be distributed
@@ -14,7 +51,7 @@ const TYPE_NAME = "osmosis.incentives.Query";
  */
 export const QueryModuleToDistributeCoinsService = {
   typeName: TYPE_NAME,
-  method: "ModuleToDistributeCoins",
+  method: 'ModuleToDistributeCoins',
   Request: ModuleToDistributeCoinsRequest,
   Response: ModuleToDistributeCoinsResponse,
 } as const;
@@ -26,7 +63,7 @@ export const QueryModuleToDistributeCoinsService = {
  */
 export const QueryGaugeByIDService = {
   typeName: TYPE_NAME,
-  method: "GaugeByID",
+  method: 'GaugeByID',
   Request: GaugeByIDRequest,
   Response: GaugeByIDResponse,
 } as const;
@@ -38,7 +75,7 @@ export const QueryGaugeByIDService = {
  */
 export const QueryGaugesService = {
   typeName: TYPE_NAME,
-  method: "Gauges",
+  method: 'Gauges',
   Request: GaugesRequest,
   Response: GaugesResponse,
 } as const;
@@ -50,7 +87,7 @@ export const QueryGaugesService = {
  */
 export const QueryActiveGaugesService = {
   typeName: TYPE_NAME,
-  method: "ActiveGauges",
+  method: 'ActiveGauges',
   Request: ActiveGaugesRequest,
   Response: ActiveGaugesResponse,
 } as const;
@@ -62,7 +99,7 @@ export const QueryActiveGaugesService = {
  */
 export const QueryActiveGaugesPerDenomService = {
   typeName: TYPE_NAME,
-  method: "ActiveGaugesPerDenom",
+  method: 'ActiveGaugesPerDenom',
   Request: ActiveGaugesPerDenomRequest,
   Response: ActiveGaugesPerDenomResponse,
 } as const;
@@ -74,7 +111,7 @@ export const QueryActiveGaugesPerDenomService = {
  */
 export const QueryUpcomingGaugesService = {
   typeName: TYPE_NAME,
-  method: "UpcomingGauges",
+  method: 'UpcomingGauges',
   Request: UpcomingGaugesRequest,
   Response: UpcomingGaugesResponse,
 } as const;
@@ -87,7 +124,7 @@ export const QueryUpcomingGaugesService = {
  */
 export const QueryUpcomingGaugesPerDenomService = {
   typeName: TYPE_NAME,
-  method: "UpcomingGaugesPerDenom",
+  method: 'UpcomingGaugesPerDenom',
   Request: UpcomingGaugesPerDenomRequest,
   Response: UpcomingGaugesPerDenomResponse,
 } as const;
@@ -101,7 +138,7 @@ export const QueryUpcomingGaugesPerDenomService = {
  */
 export const QueryRewardsEstService = {
   typeName: TYPE_NAME,
-  method: "RewardsEst",
+  method: 'RewardsEst',
   Request: RewardsEstRequest,
   Response: RewardsEstResponse,
 } as const;
@@ -114,7 +151,7 @@ export const QueryRewardsEstService = {
  */
 export const QueryLockableDurationsService = {
   typeName: TYPE_NAME,
-  method: "LockableDurations",
+  method: 'LockableDurations',
   Request: QueryLockableDurationsRequest,
   Response: QueryLockableDurationsResponse,
 } as const;
@@ -126,7 +163,7 @@ export const QueryLockableDurationsService = {
  */
 export const QueryAllGroupsService = {
   typeName: TYPE_NAME,
-  method: "AllGroups",
+  method: 'AllGroups',
   Request: QueryAllGroupsRequest,
   Response: QueryAllGroupsResponse,
 } as const;
@@ -138,7 +175,7 @@ export const QueryAllGroupsService = {
  */
 export const QueryAllGroupsGaugesService = {
   typeName: TYPE_NAME,
-  method: "AllGroupsGauges",
+  method: 'AllGroupsGauges',
   Request: QueryAllGroupsGaugesRequest,
   Response: QueryAllGroupsGaugesResponse,
 } as const;
@@ -150,7 +187,7 @@ export const QueryAllGroupsGaugesService = {
  */
 export const QueryAllGroupsWithGaugeService = {
   typeName: TYPE_NAME,
-  method: "AllGroupsWithGauge",
+  method: 'AllGroupsWithGauge',
   Request: QueryAllGroupsWithGaugeRequest,
   Response: QueryAllGroupsWithGaugeResponse,
 } as const;
@@ -162,7 +199,7 @@ export const QueryAllGroupsWithGaugeService = {
  */
 export const QueryGroupByGroupGaugeIDService = {
   typeName: TYPE_NAME,
-  method: "GroupByGroupGaugeID",
+  method: 'GroupByGroupGaugeID',
   Request: QueryGroupByGroupGaugeIDRequest,
   Response: QueryGroupByGroupGaugeIDResponse,
 } as const;
@@ -175,7 +212,7 @@ export const QueryGroupByGroupGaugeIDService = {
  */
 export const QueryCurrentWeightByGroupGaugeIDService = {
   typeName: TYPE_NAME,
-  method: "CurrentWeightByGroupGaugeID",
+  method: 'CurrentWeightByGroupGaugeID',
   Request: QueryCurrentWeightByGroupGaugeIDRequest,
   Response: QueryCurrentWeightByGroupGaugeIDResponse,
 } as const;
@@ -185,7 +222,7 @@ export const QueryCurrentWeightByGroupGaugeIDService = {
  */
 export const QueryInternalGaugesService = {
   typeName: TYPE_NAME,
-  method: "InternalGauges",
+  method: 'InternalGauges',
   Request: QueryInternalGaugesRequest,
   Response: QueryInternalGaugesResponse,
 } as const;
@@ -195,7 +232,7 @@ export const QueryInternalGaugesService = {
  */
 export const QueryExternalGaugesService = {
   typeName: TYPE_NAME,
-  method: "ExternalGauges",
+  method: 'ExternalGauges',
   Request: QueryExternalGaugesRequest,
   Response: QueryExternalGaugesResponse,
 } as const;
@@ -205,7 +242,7 @@ export const QueryExternalGaugesService = {
  */
 export const QueryGaugesByPoolIDService = {
   typeName: TYPE_NAME,
-  method: "GaugesByPoolID",
+  method: 'GaugesByPoolID',
   Request: QueryGaugesByPoolIDRequest,
   Response: QueryGaugesByPoolIDResponse,
 } as const;
@@ -217,8 +254,7 @@ export const QueryGaugesByPoolIDService = {
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: ParamsRequest,
   Response: ParamsResponse,
 } as const;
-

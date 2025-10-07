@@ -3,9 +3,46 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { AllAssetsRequest, AllAssetsResponse, AllIntermediaryAccountsRequest, AllIntermediaryAccountsResponse, AssetMultiplierRequest, AssetMultiplierResponse, AssetTypeRequest, AssetTypeResponse, ConnectedIntermediaryAccountRequest, ConnectedIntermediaryAccountResponse, EstimateSuperfluidDelegatedAmountByValidatorDenomRequest, EstimateSuperfluidDelegatedAmountByValidatorDenomResponse, QueryParamsRequest, QueryParamsResponse, QueryRestSupplyRequest, QueryRestSupplyResponse, QueryTotalDelegationByDelegatorRequest, QueryTotalDelegationByDelegatorResponse, QueryTotalDelegationByValidatorForDenomRequest, QueryTotalDelegationByValidatorForDenomResponse, QueryUnpoolWhitelistRequest, QueryUnpoolWhitelistResponse, SuperfluidDelegationAmountRequest, SuperfluidDelegationAmountResponse, SuperfluidDelegationsByDelegatorRequest, SuperfluidDelegationsByDelegatorResponse, SuperfluidDelegationsByValidatorDenomRequest, SuperfluidDelegationsByValidatorDenomResponse, SuperfluidUndelegationsByDelegatorRequest, SuperfluidUndelegationsByDelegatorResponse, TotalSuperfluidDelegationsRequest, TotalSuperfluidDelegationsResponse, UserConcentratedSuperfluidPositionsDelegatedRequest, UserConcentratedSuperfluidPositionsDelegatedResponse, UserConcentratedSuperfluidPositionsUndelegatingRequest, UserConcentratedSuperfluidPositionsUndelegatingResponse } from "./query_pb.js";
+import {
+  AllAssetsRequest,
+  AllAssetsResponse,
+  AllIntermediaryAccountsRequest,
+  AllIntermediaryAccountsResponse,
+  AssetMultiplierRequest,
+  AssetMultiplierResponse,
+  AssetTypeRequest,
+  AssetTypeResponse,
+  ConnectedIntermediaryAccountRequest,
+  ConnectedIntermediaryAccountResponse,
+  EstimateSuperfluidDelegatedAmountByValidatorDenomRequest,
+  EstimateSuperfluidDelegatedAmountByValidatorDenomResponse,
+  QueryParamsRequest,
+  QueryParamsResponse,
+  QueryRestSupplyRequest,
+  QueryRestSupplyResponse,
+  QueryTotalDelegationByDelegatorRequest,
+  QueryTotalDelegationByDelegatorResponse,
+  QueryTotalDelegationByValidatorForDenomRequest,
+  QueryTotalDelegationByValidatorForDenomResponse,
+  QueryUnpoolWhitelistRequest,
+  QueryUnpoolWhitelistResponse,
+  SuperfluidDelegationAmountRequest,
+  SuperfluidDelegationAmountResponse,
+  SuperfluidDelegationsByDelegatorRequest,
+  SuperfluidDelegationsByDelegatorResponse,
+  SuperfluidDelegationsByValidatorDenomRequest,
+  SuperfluidDelegationsByValidatorDenomResponse,
+  SuperfluidUndelegationsByDelegatorRequest,
+  SuperfluidUndelegationsByDelegatorResponse,
+  TotalSuperfluidDelegationsRequest,
+  TotalSuperfluidDelegationsResponse,
+  UserConcentratedSuperfluidPositionsDelegatedRequest,
+  UserConcentratedSuperfluidPositionsDelegatedResponse,
+  UserConcentratedSuperfluidPositionsUndelegatingRequest,
+  UserConcentratedSuperfluidPositionsUndelegatingResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "osmosis.superfluid.Query";
+const TYPE_NAME = 'osmosis.superfluid.Query';
 
 /**
  * Params returns the total set of superfluid parameters.
@@ -14,7 +51,7 @@ const TYPE_NAME = "osmosis.superfluid.Query";
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: QueryParamsRequest,
   Response: QueryParamsResponse,
 } as const;
@@ -27,7 +64,7 @@ export const QueryParamsService = {
  */
 export const QueryAssetTypeService = {
   typeName: TYPE_NAME,
-  method: "AssetType",
+  method: 'AssetType',
   Request: AssetTypeRequest,
   Response: AssetTypeResponse,
 } as const;
@@ -39,7 +76,7 @@ export const QueryAssetTypeService = {
  */
 export const QueryAllAssetsService = {
   typeName: TYPE_NAME,
-  method: "AllAssets",
+  method: 'AllAssets',
   Request: AllAssetsRequest,
   Response: AllAssetsResponse,
 } as const;
@@ -51,7 +88,7 @@ export const QueryAllAssetsService = {
  */
 export const QueryAssetMultiplierService = {
   typeName: TYPE_NAME,
-  method: "AssetMultiplier",
+  method: 'AssetMultiplier',
   Request: AssetMultiplierRequest,
   Response: AssetMultiplierResponse,
 } as const;
@@ -63,7 +100,7 @@ export const QueryAssetMultiplierService = {
  */
 export const QueryAllIntermediaryAccountsService = {
   typeName: TYPE_NAME,
-  method: "AllIntermediaryAccounts",
+  method: 'AllIntermediaryAccounts',
   Request: AllIntermediaryAccountsRequest,
   Response: AllIntermediaryAccountsResponse,
 } as const;
@@ -75,7 +112,7 @@ export const QueryAllIntermediaryAccountsService = {
  */
 export const QueryConnectedIntermediaryAccountService = {
   typeName: TYPE_NAME,
-  method: "ConnectedIntermediaryAccount",
+  method: 'ConnectedIntermediaryAccount',
   Request: ConnectedIntermediaryAccountRequest,
   Response: ConnectedIntermediaryAccountResponse,
 } as const;
@@ -87,7 +124,7 @@ export const QueryConnectedIntermediaryAccountService = {
  */
 export const QueryTotalDelegationByValidatorForDenomService = {
   typeName: TYPE_NAME,
-  method: "TotalDelegationByValidatorForDenom",
+  method: 'TotalDelegationByValidatorForDenom',
   Request: QueryTotalDelegationByValidatorForDenomRequest,
   Response: QueryTotalDelegationByValidatorForDenomResponse,
 } as const;
@@ -100,7 +137,7 @@ export const QueryTotalDelegationByValidatorForDenomService = {
  */
 export const QueryTotalSuperfluidDelegationsService = {
   typeName: TYPE_NAME,
-  method: "TotalSuperfluidDelegations",
+  method: 'TotalSuperfluidDelegations',
   Request: TotalSuperfluidDelegationsRequest,
   Response: TotalSuperfluidDelegationsResponse,
 } as const;
@@ -113,7 +150,7 @@ export const QueryTotalSuperfluidDelegationsService = {
  */
 export const QuerySuperfluidDelegationAmountService = {
   typeName: TYPE_NAME,
-  method: "SuperfluidDelegationAmount",
+  method: 'SuperfluidDelegationAmount',
   Request: SuperfluidDelegationAmountRequest,
   Response: SuperfluidDelegationAmountResponse,
 } as const;
@@ -125,7 +162,7 @@ export const QuerySuperfluidDelegationAmountService = {
  */
 export const QuerySuperfluidDelegationsByDelegatorService = {
   typeName: TYPE_NAME,
-  method: "SuperfluidDelegationsByDelegator",
+  method: 'SuperfluidDelegationsByDelegator',
   Request: SuperfluidDelegationsByDelegatorRequest,
   Response: SuperfluidDelegationsByDelegatorResponse,
 } as const;
@@ -137,7 +174,7 @@ export const QuerySuperfluidDelegationsByDelegatorService = {
  */
 export const QuerySuperfluidUndelegationsByDelegatorService = {
   typeName: TYPE_NAME,
-  method: "SuperfluidUndelegationsByDelegator",
+  method: 'SuperfluidUndelegationsByDelegator',
   Request: SuperfluidUndelegationsByDelegatorRequest,
   Response: SuperfluidUndelegationsByDelegatorResponse,
 } as const;
@@ -150,7 +187,7 @@ export const QuerySuperfluidUndelegationsByDelegatorService = {
  */
 export const QuerySuperfluidDelegationsByValidatorDenomService = {
   typeName: TYPE_NAME,
-  method: "SuperfluidDelegationsByValidatorDenom",
+  method: 'SuperfluidDelegationsByValidatorDenom',
   Request: SuperfluidDelegationsByValidatorDenomRequest,
   Response: SuperfluidDelegationsByValidatorDenomResponse,
 } as const;
@@ -164,7 +201,7 @@ export const QuerySuperfluidDelegationsByValidatorDenomService = {
  */
 export const QueryEstimateSuperfluidDelegatedAmountByValidatorDenomService = {
   typeName: TYPE_NAME,
-  method: "EstimateSuperfluidDelegatedAmountByValidatorDenom",
+  method: 'EstimateSuperfluidDelegatedAmountByValidatorDenom',
   Request: EstimateSuperfluidDelegatedAmountByValidatorDenomRequest,
   Response: EstimateSuperfluidDelegatedAmountByValidatorDenomResponse,
 } as const;
@@ -176,7 +213,7 @@ export const QueryEstimateSuperfluidDelegatedAmountByValidatorDenomService = {
  */
 export const QueryTotalDelegationByDelegatorService = {
   typeName: TYPE_NAME,
-  method: "TotalDelegationByDelegator",
+  method: 'TotalDelegationByDelegator',
   Request: QueryTotalDelegationByDelegatorRequest,
   Response: QueryTotalDelegationByDelegatorResponse,
 } as const;
@@ -188,7 +225,7 @@ export const QueryTotalDelegationByDelegatorService = {
  */
 export const QueryUnpoolWhitelistService = {
   typeName: TYPE_NAME,
-  method: "UnpoolWhitelist",
+  method: 'UnpoolWhitelist',
   Request: QueryUnpoolWhitelistRequest,
   Response: QueryUnpoolWhitelistResponse,
 } as const;
@@ -200,7 +237,7 @@ export const QueryUnpoolWhitelistService = {
  */
 export const QueryUserConcentratedSuperfluidPositionsDelegatedService = {
   typeName: TYPE_NAME,
-  method: "UserConcentratedSuperfluidPositionsDelegated",
+  method: 'UserConcentratedSuperfluidPositionsDelegated',
   Request: UserConcentratedSuperfluidPositionsDelegatedRequest,
   Response: UserConcentratedSuperfluidPositionsDelegatedResponse,
 } as const;
@@ -210,7 +247,7 @@ export const QueryUserConcentratedSuperfluidPositionsDelegatedService = {
  */
 export const QueryUserConcentratedSuperfluidPositionsUndelegatingService = {
   typeName: TYPE_NAME,
-  method: "UserConcentratedSuperfluidPositionsUndelegating",
+  method: 'UserConcentratedSuperfluidPositionsUndelegating',
   Request: UserConcentratedSuperfluidPositionsUndelegatingRequest,
   Response: UserConcentratedSuperfluidPositionsUndelegatingResponse,
 } as const;
@@ -220,8 +257,7 @@ export const QueryUserConcentratedSuperfluidPositionsUndelegatingService = {
  */
 export const QueryRestSupplyService = {
   typeName: TYPE_NAME,
-  method: "RestSupply",
+  method: 'RestSupply',
   Request: QueryRestSupplyRequest,
   Response: QueryRestSupplyResponse,
 } as const;
-

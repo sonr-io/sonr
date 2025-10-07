@@ -3,10 +3,22 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { Params } from "./params_pb.js";
-import { LockIdIntermediaryAccountConnection, OsmoEquivalentMultiplierRecord, SuperfluidAsset, SuperfluidIntermediaryAccount } from "./superfluid_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { Params } from './params_pb.js';
+import {
+  LockIdIntermediaryAccountConnection,
+  OsmoEquivalentMultiplierRecord,
+  SuperfluidAsset,
+  SuperfluidIntermediaryAccount,
+} from './superfluid_pb.js';
 
 /**
  * GenesisState defines the module's genesis state.
@@ -54,13 +66,31 @@ export class GenesisState extends Message<GenesisState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.superfluid.GenesisState";
+  static readonly typeName = 'osmosis.superfluid.GenesisState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "params", kind: "message", T: Params },
-    { no: 2, name: "superfluid_assets", kind: "message", T: SuperfluidAsset, repeated: true },
-    { no: 3, name: "osmo_equivalent_multipliers", kind: "message", T: OsmoEquivalentMultiplierRecord, repeated: true },
-    { no: 4, name: "intermediary_accounts", kind: "message", T: SuperfluidIntermediaryAccount, repeated: true },
-    { no: 5, name: "intemediary_account_connections", kind: "message", T: LockIdIntermediaryAccountConnection, repeated: true },
+    { no: 1, name: 'params', kind: 'message', T: Params },
+    { no: 2, name: 'superfluid_assets', kind: 'message', T: SuperfluidAsset, repeated: true },
+    {
+      no: 3,
+      name: 'osmo_equivalent_multipliers',
+      kind: 'message',
+      T: OsmoEquivalentMultiplierRecord,
+      repeated: true,
+    },
+    {
+      no: 4,
+      name: 'intermediary_accounts',
+      kind: 'message',
+      T: SuperfluidIntermediaryAccount,
+      repeated: true,
+    },
+    {
+      no: 5,
+      name: 'intemediary_account_connections',
+      kind: 'message',
+      T: LockIdIntermediaryAccountConnection,
+      repeated: true,
+    },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {
@@ -75,8 +105,10 @@ export class GenesisState extends Message<GenesisState> {
     return new GenesisState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisState | PlainMessage<GenesisState> | undefined, b: GenesisState | PlainMessage<GenesisState> | undefined): boolean {
+  static equals(
+    a: GenesisState | PlainMessage<GenesisState> | undefined,
+    b: GenesisState | PlainMessage<GenesisState> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisState, a, b);
   }
 }
-

@@ -3,17 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgCreateBalancerPool, MsgCreateBalancerPoolResponse } from "./tx_pb.js";
+import { MsgCreateBalancerPool, MsgCreateBalancerPoolResponse } from './tx_pb.js';
 
-const TYPE_NAME = "osmosis.gamm.poolmodels.balancer.v1beta1.Msg";
+const TYPE_NAME = 'osmosis.gamm.poolmodels.balancer.v1beta1.Msg';
 
 /**
  * @generated from rpc osmosis.gamm.poolmodels.balancer.v1beta1.Msg.CreateBalancerPool
  */
 export const MsgCreateBalancerPoolService = {
   typeName: TYPE_NAME,
-  method: "CreateBalancerPool",
+  method: 'CreateBalancerPool',
   Request: MsgCreateBalancerPool,
   Response: MsgCreateBalancerPoolResponse,
 } as const;
-

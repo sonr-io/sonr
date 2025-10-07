@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * AccountAuthenticator represents a foundational model for all authenticators.
@@ -28,7 +35,7 @@ export class AccountAuthenticator extends Message<AccountAuthenticator> {
    *
    * @generated from field: string type = 2;
    */
-  type = "";
+  type = '';
 
   /**
    * Config is a versatile field used in conjunction with the specific type of
@@ -46,11 +53,11 @@ export class AccountAuthenticator extends Message<AccountAuthenticator> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.smartaccount.v1beta1.AccountAuthenticator";
+  static readonly typeName = 'osmosis.smartaccount.v1beta1.AccountAuthenticator';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "config", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'type', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'config', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccountAuthenticator {
@@ -61,12 +68,17 @@ export class AccountAuthenticator extends Message<AccountAuthenticator> {
     return new AccountAuthenticator().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AccountAuthenticator {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AccountAuthenticator {
     return new AccountAuthenticator().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccountAuthenticator | PlainMessage<AccountAuthenticator> | undefined, b: AccountAuthenticator | PlainMessage<AccountAuthenticator> | undefined): boolean {
+  static equals(
+    a: AccountAuthenticator | PlainMessage<AccountAuthenticator> | undefined,
+    b: AccountAuthenticator | PlainMessage<AccountAuthenticator> | undefined
+  ): boolean {
     return proto3.util.equals(AccountAuthenticator, a, b);
   }
 }
-

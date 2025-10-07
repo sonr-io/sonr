@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { InterchainDEXAccount } from "./ica_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { InterchainDEXAccount } from './ica_pb.js';
 
 /**
  * GenesisState defines the DEX module's genesis state
@@ -25,7 +32,7 @@ export class GenesisState extends Message<GenesisState> {
    *
    * @generated from field: string port_id = 2;
    */
-  portId = "";
+  portId = '';
 
   /**
    * Registered DEX accounts
@@ -47,12 +54,12 @@ export class GenesisState extends Message<GenesisState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.GenesisState";
+  static readonly typeName = 'dex.v1.GenesisState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "params", kind: "message", T: Params },
-    { no: 2, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "accounts", kind: "message", T: InterchainDEXAccount, repeated: true },
-    { no: 4, name: "account_sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'params', kind: 'message', T: Params },
+    { no: 2, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'accounts', kind: 'message', T: InterchainDEXAccount, repeated: true },
+    { no: 4, name: 'account_sequence', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {
@@ -67,7 +74,10 @@ export class GenesisState extends Message<GenesisState> {
     return new GenesisState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisState | PlainMessage<GenesisState> | undefined, b: GenesisState | PlainMessage<GenesisState> | undefined): boolean {
+  static equals(
+    a: GenesisState | PlainMessage<GenesisState> | undefined,
+    b: GenesisState | PlainMessage<GenesisState> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisState, a, b);
   }
 }
@@ -111,14 +121,14 @@ export class Params extends Message<Params> {
    *
    * @generated from field: string min_swap_amount = 5;
    */
-  minSwapAmount = "";
+  minSwapAmount = '';
 
   /**
    * Maximum daily volume per DID (in USD equivalent)
    *
    * @generated from field: string max_daily_volume = 6;
    */
-  maxDailyVolume = "";
+  maxDailyVolume = '';
 
   /**
    * Rate limit parameters
@@ -140,16 +150,22 @@ export class Params extends Message<Params> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.Params";
+  static readonly typeName = 'dex.v1.Params';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "enabled", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 2, name: "max_accounts_per_did", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 3, name: "default_timeout_seconds", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 4, name: "allowed_connections", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 5, name: "min_swap_amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "max_daily_volume", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "rate_limits", kind: "message", T: RateLimitParams },
-    { no: 8, name: "fees", kind: "message", T: FeeParams },
+    { no: 1, name: 'enabled', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: 'max_accounts_per_did', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
+    { no: 3, name: 'default_timeout_seconds', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    {
+      no: 4,
+      name: 'allowed_connections',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    { no: 5, name: 'min_swap_amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'max_daily_volume', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: 'rate_limits', kind: 'message', T: RateLimitParams },
+    { no: 8, name: 'fees', kind: 'message', T: FeeParams },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Params {
@@ -164,7 +180,10 @@ export class Params extends Message<Params> {
     return new Params().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Params | PlainMessage<Params> | undefined, b: Params | PlainMessage<Params> | undefined): boolean {
+  static equals(
+    a: Params | PlainMessage<Params> | undefined,
+    b: Params | PlainMessage<Params> | undefined
+  ): boolean {
     return proto3.util.equals(Params, a, b);
   }
 }
@@ -202,11 +221,11 @@ export class RateLimitParams extends Message<RateLimitParams> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.RateLimitParams";
+  static readonly typeName = 'dex.v1.RateLimitParams';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "max_ops_per_block", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 2, name: "max_ops_per_did_per_day", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 3, name: "cooldown_blocks", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 1, name: 'max_ops_per_block', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
+    { no: 2, name: 'max_ops_per_did_per_day', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
+    { no: 3, name: 'cooldown_blocks', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RateLimitParams {
@@ -221,7 +240,10 @@ export class RateLimitParams extends Message<RateLimitParams> {
     return new RateLimitParams().fromJsonString(jsonString, options);
   }
 
-  static equals(a: RateLimitParams | PlainMessage<RateLimitParams> | undefined, b: RateLimitParams | PlainMessage<RateLimitParams> | undefined): boolean {
+  static equals(
+    a: RateLimitParams | PlainMessage<RateLimitParams> | undefined,
+    b: RateLimitParams | PlainMessage<RateLimitParams> | undefined
+  ): boolean {
     return proto3.util.equals(RateLimitParams, a, b);
   }
 }
@@ -258,7 +280,7 @@ export class FeeParams extends Message<FeeParams> {
    *
    * @generated from field: string fee_collector = 4;
    */
-  feeCollector = "";
+  feeCollector = '';
 
   constructor(data?: PartialMessage<FeeParams>) {
     super();
@@ -266,12 +288,12 @@ export class FeeParams extends Message<FeeParams> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.FeeParams";
+  static readonly typeName = 'dex.v1.FeeParams';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "swap_fee_bps", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 2, name: "liquidity_fee_bps", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 3, name: "order_fee_bps", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 4, name: "fee_collector", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'swap_fee_bps', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
+    { no: 2, name: 'liquidity_fee_bps', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
+    { no: 3, name: 'order_fee_bps', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
+    { no: 4, name: 'fee_collector', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FeeParams {
@@ -286,8 +308,10 @@ export class FeeParams extends Message<FeeParams> {
     return new FeeParams().fromJsonString(jsonString, options);
   }
 
-  static equals(a: FeeParams | PlainMessage<FeeParams> | undefined, b: FeeParams | PlainMessage<FeeParams> | undefined): boolean {
+  static equals(
+    a: FeeParams | PlainMessage<FeeParams> | undefined,
+    b: FeeParams | PlainMessage<FeeParams> | undefined
+  ): boolean {
     return proto3.util.equals(FeeParams, a, b);
   }
 }
-

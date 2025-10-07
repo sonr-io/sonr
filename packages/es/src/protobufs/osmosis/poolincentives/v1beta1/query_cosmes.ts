@@ -3,9 +3,22 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryDistrInfoRequest, QueryDistrInfoResponse, QueryExternalIncentiveGaugesRequest, QueryExternalIncentiveGaugesResponse, QueryGaugeIdsRequest, QueryGaugeIdsResponse, QueryIncentivizedPoolsRequest, QueryIncentivizedPoolsResponse, QueryLockableDurationsRequest, QueryLockableDurationsResponse, QueryParamsRequest, QueryParamsResponse } from "./query_pb.js";
+import {
+  QueryDistrInfoRequest,
+  QueryDistrInfoResponse,
+  QueryExternalIncentiveGaugesRequest,
+  QueryExternalIncentiveGaugesResponse,
+  QueryGaugeIdsRequest,
+  QueryGaugeIdsResponse,
+  QueryIncentivizedPoolsRequest,
+  QueryIncentivizedPoolsResponse,
+  QueryLockableDurationsRequest,
+  QueryLockableDurationsResponse,
+  QueryParamsRequest,
+  QueryParamsResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "osmosis.poolincentives.v1beta1.Query";
+const TYPE_NAME = 'osmosis.poolincentives.v1beta1.Query';
 
 /**
  * GaugeIds takes the pool id and returns the matching gauge ids and durations
@@ -14,7 +27,7 @@ const TYPE_NAME = "osmosis.poolincentives.v1beta1.Query";
  */
 export const QueryGaugeIdsService = {
   typeName: TYPE_NAME,
-  method: "GaugeIds",
+  method: 'GaugeIds',
   Request: QueryGaugeIdsRequest,
   Response: QueryGaugeIdsResponse,
 } as const;
@@ -26,7 +39,7 @@ export const QueryGaugeIdsService = {
  */
 export const QueryDistrInfoService = {
   typeName: TYPE_NAME,
-  method: "DistrInfo",
+  method: 'DistrInfo',
   Request: QueryDistrInfoRequest,
   Response: QueryDistrInfoResponse,
 } as const;
@@ -38,7 +51,7 @@ export const QueryDistrInfoService = {
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: QueryParamsRequest,
   Response: QueryParamsResponse,
 } as const;
@@ -50,7 +63,7 @@ export const QueryParamsService = {
  */
 export const QueryLockableDurationsService = {
   typeName: TYPE_NAME,
-  method: "LockableDurations",
+  method: 'LockableDurations',
   Request: QueryLockableDurationsRequest,
   Response: QueryLockableDurationsResponse,
 } as const;
@@ -62,7 +75,7 @@ export const QueryLockableDurationsService = {
  */
 export const QueryIncentivizedPoolsService = {
   typeName: TYPE_NAME,
-  method: "IncentivizedPools",
+  method: 'IncentivizedPools',
   Request: QueryIncentivizedPoolsRequest,
   Response: QueryIncentivizedPoolsResponse,
 } as const;
@@ -74,8 +87,7 @@ export const QueryIncentivizedPoolsService = {
  */
 export const QueryExternalIncentiveGaugesService = {
   typeName: TYPE_NAME,
-  method: "ExternalIncentiveGauges",
+  method: 'ExternalIncentiveGauges',
   Request: QueryExternalIncentiveGaugesRequest,
   Response: QueryExternalIncentiveGaugesResponse,
 } as const;
-

@@ -3,10 +3,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Any, Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Counterparty, Params, Version } from "./connection_pb.js";
-import { Height } from "../../client/v1/client_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Any, Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { Counterparty, Params, Version } from './connection_pb.js';
+import { Height } from '../../client/v1/client_pb.js';
 
 /**
  * MsgConnectionOpenInit defines the msg sent by an account on Chain A to
@@ -18,7 +25,7 @@ export class MsgConnectionOpenInit extends Message<MsgConnectionOpenInit> {
   /**
    * @generated from field: string client_id = 1;
    */
-  clientId = "";
+  clientId = '';
 
   /**
    * @generated from field: ibc.core.connection.v1.Counterparty counterparty = 2;
@@ -38,7 +45,7 @@ export class MsgConnectionOpenInit extends Message<MsgConnectionOpenInit> {
   /**
    * @generated from field: string signer = 5;
    */
-  signer = "";
+  signer = '';
 
   constructor(data?: PartialMessage<MsgConnectionOpenInit>) {
     super();
@@ -46,16 +53,19 @@ export class MsgConnectionOpenInit extends Message<MsgConnectionOpenInit> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.connection.v1.MsgConnectionOpenInit";
+  static readonly typeName = 'ibc.core.connection.v1.MsgConnectionOpenInit';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "counterparty", kind: "message", T: Counterparty },
-    { no: 3, name: "version", kind: "message", T: Version },
-    { no: 4, name: "delay_period", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 5, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'client_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'counterparty', kind: 'message', T: Counterparty },
+    { no: 3, name: 'version', kind: 'message', T: Version },
+    { no: 4, name: 'delay_period', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 5, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgConnectionOpenInit {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgConnectionOpenInit {
     return new MsgConnectionOpenInit().fromBinary(bytes, options);
   }
 
@@ -63,11 +73,17 @@ export class MsgConnectionOpenInit extends Message<MsgConnectionOpenInit> {
     return new MsgConnectionOpenInit().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgConnectionOpenInit {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgConnectionOpenInit {
     return new MsgConnectionOpenInit().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgConnectionOpenInit | PlainMessage<MsgConnectionOpenInit> | undefined, b: MsgConnectionOpenInit | PlainMessage<MsgConnectionOpenInit> | undefined): boolean {
+  static equals(
+    a: MsgConnectionOpenInit | PlainMessage<MsgConnectionOpenInit> | undefined,
+    b: MsgConnectionOpenInit | PlainMessage<MsgConnectionOpenInit> | undefined
+  ): boolean {
     return proto3.util.equals(MsgConnectionOpenInit, a, b);
   }
 }
@@ -85,23 +101,34 @@ export class MsgConnectionOpenInitResponse extends Message<MsgConnectionOpenInit
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.connection.v1.MsgConnectionOpenInitResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ibc.core.connection.v1.MsgConnectionOpenInitResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgConnectionOpenInitResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgConnectionOpenInitResponse {
     return new MsgConnectionOpenInitResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgConnectionOpenInitResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgConnectionOpenInitResponse {
     return new MsgConnectionOpenInitResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgConnectionOpenInitResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgConnectionOpenInitResponse {
     return new MsgConnectionOpenInitResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgConnectionOpenInitResponse | PlainMessage<MsgConnectionOpenInitResponse> | undefined, b: MsgConnectionOpenInitResponse | PlainMessage<MsgConnectionOpenInitResponse> | undefined): boolean {
+  static equals(
+    a: MsgConnectionOpenInitResponse | PlainMessage<MsgConnectionOpenInitResponse> | undefined,
+    b: MsgConnectionOpenInitResponse | PlainMessage<MsgConnectionOpenInitResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgConnectionOpenInitResponse, a, b);
   }
 }
@@ -116,7 +143,7 @@ export class MsgConnectionOpenTry extends Message<MsgConnectionOpenTry> {
   /**
    * @generated from field: string client_id = 1;
    */
-  clientId = "";
+  clientId = '';
 
   /**
    * Deprecated: this field is unused. Crossing hellos are no longer supported in core IBC.
@@ -124,7 +151,7 @@ export class MsgConnectionOpenTry extends Message<MsgConnectionOpenTry> {
    * @generated from field: string previous_connection_id = 2 [deprecated = true];
    * @deprecated
    */
-  previousConnectionId = "";
+  previousConnectionId = '';
 
   /**
    * Deprecated: this field is unused.
@@ -189,7 +216,7 @@ export class MsgConnectionOpenTry extends Message<MsgConnectionOpenTry> {
   /**
    * @generated from field: string signer = 12;
    */
-  signer = "";
+  signer = '';
 
   /**
    * Deprecated: this field is unused.
@@ -205,21 +232,21 @@ export class MsgConnectionOpenTry extends Message<MsgConnectionOpenTry> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.connection.v1.MsgConnectionOpenTry";
+  static readonly typeName = 'ibc.core.connection.v1.MsgConnectionOpenTry';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "previous_connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "client_state", kind: "message", T: Any },
-    { no: 4, name: "counterparty", kind: "message", T: Counterparty },
-    { no: 5, name: "delay_period", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 6, name: "counterparty_versions", kind: "message", T: Version, repeated: true },
-    { no: 7, name: "proof_height", kind: "message", T: Height },
-    { no: 8, name: "proof_init", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 9, name: "proof_client", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 10, name: "proof_consensus", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 11, name: "consensus_height", kind: "message", T: Height },
-    { no: 12, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 13, name: "host_consensus_state_proof", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'client_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'previous_connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'client_state', kind: 'message', T: Any },
+    { no: 4, name: 'counterparty', kind: 'message', T: Counterparty },
+    { no: 5, name: 'delay_period', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 6, name: 'counterparty_versions', kind: 'message', T: Version, repeated: true },
+    { no: 7, name: 'proof_height', kind: 'message', T: Height },
+    { no: 8, name: 'proof_init', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 9, name: 'proof_client', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 10, name: 'proof_consensus', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 11, name: 'consensus_height', kind: 'message', T: Height },
+    { no: 12, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 13, name: 'host_consensus_state_proof', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgConnectionOpenTry {
@@ -230,11 +257,17 @@ export class MsgConnectionOpenTry extends Message<MsgConnectionOpenTry> {
     return new MsgConnectionOpenTry().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgConnectionOpenTry {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgConnectionOpenTry {
     return new MsgConnectionOpenTry().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgConnectionOpenTry | PlainMessage<MsgConnectionOpenTry> | undefined, b: MsgConnectionOpenTry | PlainMessage<MsgConnectionOpenTry> | undefined): boolean {
+  static equals(
+    a: MsgConnectionOpenTry | PlainMessage<MsgConnectionOpenTry> | undefined,
+    b: MsgConnectionOpenTry | PlainMessage<MsgConnectionOpenTry> | undefined
+  ): boolean {
     return proto3.util.equals(MsgConnectionOpenTry, a, b);
   }
 }
@@ -251,23 +284,34 @@ export class MsgConnectionOpenTryResponse extends Message<MsgConnectionOpenTryRe
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.connection.v1.MsgConnectionOpenTryResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ibc.core.connection.v1.MsgConnectionOpenTryResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgConnectionOpenTryResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgConnectionOpenTryResponse {
     return new MsgConnectionOpenTryResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgConnectionOpenTryResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgConnectionOpenTryResponse {
     return new MsgConnectionOpenTryResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgConnectionOpenTryResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgConnectionOpenTryResponse {
     return new MsgConnectionOpenTryResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgConnectionOpenTryResponse | PlainMessage<MsgConnectionOpenTryResponse> | undefined, b: MsgConnectionOpenTryResponse | PlainMessage<MsgConnectionOpenTryResponse> | undefined): boolean {
+  static equals(
+    a: MsgConnectionOpenTryResponse | PlainMessage<MsgConnectionOpenTryResponse> | undefined,
+    b: MsgConnectionOpenTryResponse | PlainMessage<MsgConnectionOpenTryResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgConnectionOpenTryResponse, a, b);
   }
 }
@@ -282,12 +326,12 @@ export class MsgConnectionOpenAck extends Message<MsgConnectionOpenAck> {
   /**
    * @generated from field: string connection_id = 1;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * @generated from field: string counterparty_connection_id = 2;
    */
-  counterpartyConnectionId = "";
+  counterpartyConnectionId = '';
 
   /**
    * @generated from field: ibc.core.connection.v1.Version version = 3;
@@ -342,7 +386,7 @@ export class MsgConnectionOpenAck extends Message<MsgConnectionOpenAck> {
   /**
    * @generated from field: string signer = 10;
    */
-  signer = "";
+  signer = '';
 
   /**
    * Deprecated: this field is unused.
@@ -358,19 +402,19 @@ export class MsgConnectionOpenAck extends Message<MsgConnectionOpenAck> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.connection.v1.MsgConnectionOpenAck";
+  static readonly typeName = 'ibc.core.connection.v1.MsgConnectionOpenAck';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "counterparty_connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "version", kind: "message", T: Version },
-    { no: 4, name: "client_state", kind: "message", T: Any },
-    { no: 5, name: "proof_height", kind: "message", T: Height },
-    { no: 6, name: "proof_try", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 7, name: "proof_client", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 8, name: "proof_consensus", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 9, name: "consensus_height", kind: "message", T: Height },
-    { no: 10, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 11, name: "host_consensus_state_proof", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'counterparty_connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'version', kind: 'message', T: Version },
+    { no: 4, name: 'client_state', kind: 'message', T: Any },
+    { no: 5, name: 'proof_height', kind: 'message', T: Height },
+    { no: 6, name: 'proof_try', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 7, name: 'proof_client', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 8, name: 'proof_consensus', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 9, name: 'consensus_height', kind: 'message', T: Height },
+    { no: 10, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 11, name: 'host_consensus_state_proof', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgConnectionOpenAck {
@@ -381,11 +425,17 @@ export class MsgConnectionOpenAck extends Message<MsgConnectionOpenAck> {
     return new MsgConnectionOpenAck().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgConnectionOpenAck {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgConnectionOpenAck {
     return new MsgConnectionOpenAck().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgConnectionOpenAck | PlainMessage<MsgConnectionOpenAck> | undefined, b: MsgConnectionOpenAck | PlainMessage<MsgConnectionOpenAck> | undefined): boolean {
+  static equals(
+    a: MsgConnectionOpenAck | PlainMessage<MsgConnectionOpenAck> | undefined,
+    b: MsgConnectionOpenAck | PlainMessage<MsgConnectionOpenAck> | undefined
+  ): boolean {
     return proto3.util.equals(MsgConnectionOpenAck, a, b);
   }
 }
@@ -402,23 +452,34 @@ export class MsgConnectionOpenAckResponse extends Message<MsgConnectionOpenAckRe
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.connection.v1.MsgConnectionOpenAckResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ibc.core.connection.v1.MsgConnectionOpenAckResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgConnectionOpenAckResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgConnectionOpenAckResponse {
     return new MsgConnectionOpenAckResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgConnectionOpenAckResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgConnectionOpenAckResponse {
     return new MsgConnectionOpenAckResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgConnectionOpenAckResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgConnectionOpenAckResponse {
     return new MsgConnectionOpenAckResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgConnectionOpenAckResponse | PlainMessage<MsgConnectionOpenAckResponse> | undefined, b: MsgConnectionOpenAckResponse | PlainMessage<MsgConnectionOpenAckResponse> | undefined): boolean {
+  static equals(
+    a: MsgConnectionOpenAckResponse | PlainMessage<MsgConnectionOpenAckResponse> | undefined,
+    b: MsgConnectionOpenAckResponse | PlainMessage<MsgConnectionOpenAckResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgConnectionOpenAckResponse, a, b);
   }
 }
@@ -433,7 +494,7 @@ export class MsgConnectionOpenConfirm extends Message<MsgConnectionOpenConfirm> 
   /**
    * @generated from field: string connection_id = 1;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * proof for the change of the connection state on Chain A: `INIT -> OPEN`
@@ -450,7 +511,7 @@ export class MsgConnectionOpenConfirm extends Message<MsgConnectionOpenConfirm> 
   /**
    * @generated from field: string signer = 4;
    */
-  signer = "";
+  signer = '';
 
   constructor(data?: PartialMessage<MsgConnectionOpenConfirm>) {
     super();
@@ -458,27 +519,39 @@ export class MsgConnectionOpenConfirm extends Message<MsgConnectionOpenConfirm> 
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.connection.v1.MsgConnectionOpenConfirm";
+  static readonly typeName = 'ibc.core.connection.v1.MsgConnectionOpenConfirm';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "proof_ack", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "proof_height", kind: "message", T: Height },
-    { no: 4, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'proof_ack', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: 'proof_height', kind: 'message', T: Height },
+    { no: 4, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgConnectionOpenConfirm {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgConnectionOpenConfirm {
     return new MsgConnectionOpenConfirm().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgConnectionOpenConfirm {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgConnectionOpenConfirm {
     return new MsgConnectionOpenConfirm().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgConnectionOpenConfirm {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgConnectionOpenConfirm {
     return new MsgConnectionOpenConfirm().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgConnectionOpenConfirm | PlainMessage<MsgConnectionOpenConfirm> | undefined, b: MsgConnectionOpenConfirm | PlainMessage<MsgConnectionOpenConfirm> | undefined): boolean {
+  static equals(
+    a: MsgConnectionOpenConfirm | PlainMessage<MsgConnectionOpenConfirm> | undefined,
+    b: MsgConnectionOpenConfirm | PlainMessage<MsgConnectionOpenConfirm> | undefined
+  ): boolean {
     return proto3.util.equals(MsgConnectionOpenConfirm, a, b);
   }
 }
@@ -496,23 +569,37 @@ export class MsgConnectionOpenConfirmResponse extends Message<MsgConnectionOpenC
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.connection.v1.MsgConnectionOpenConfirmResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ibc.core.connection.v1.MsgConnectionOpenConfirmResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgConnectionOpenConfirmResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgConnectionOpenConfirmResponse {
     return new MsgConnectionOpenConfirmResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgConnectionOpenConfirmResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgConnectionOpenConfirmResponse {
     return new MsgConnectionOpenConfirmResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgConnectionOpenConfirmResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgConnectionOpenConfirmResponse {
     return new MsgConnectionOpenConfirmResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgConnectionOpenConfirmResponse | PlainMessage<MsgConnectionOpenConfirmResponse> | undefined, b: MsgConnectionOpenConfirmResponse | PlainMessage<MsgConnectionOpenConfirmResponse> | undefined): boolean {
+  static equals(
+    a:
+      | MsgConnectionOpenConfirmResponse
+      | PlainMessage<MsgConnectionOpenConfirmResponse>
+      | undefined,
+    b: MsgConnectionOpenConfirmResponse | PlainMessage<MsgConnectionOpenConfirmResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgConnectionOpenConfirmResponse, a, b);
   }
 }
@@ -528,7 +615,7 @@ export class MsgUpdateParams extends Message<MsgUpdateParams> {
    *
    * @generated from field: string signer = 1;
    */
-  signer = "";
+  signer = '';
 
   /**
    * params defines the connection parameters to update.
@@ -545,10 +632,10 @@ export class MsgUpdateParams extends Message<MsgUpdateParams> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.connection.v1.MsgUpdateParams";
+  static readonly typeName = 'ibc.core.connection.v1.MsgUpdateParams';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "params", kind: "message", T: Params },
+    { no: 1, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'params', kind: 'message', T: Params },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUpdateParams {
@@ -563,7 +650,10 @@ export class MsgUpdateParams extends Message<MsgUpdateParams> {
     return new MsgUpdateParams().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined, b: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined): boolean {
+  static equals(
+    a: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined,
+    b: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined
+  ): boolean {
     return proto3.util.equals(MsgUpdateParams, a, b);
   }
 }
@@ -580,24 +670,34 @@ export class MsgUpdateParamsResponse extends Message<MsgUpdateParamsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.connection.v1.MsgUpdateParamsResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ibc.core.connection.v1.MsgUpdateParamsResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUpdateParamsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgUpdateParamsResponse {
     return new MsgUpdateParamsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgUpdateParamsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgUpdateParamsResponse {
     return new MsgUpdateParamsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgUpdateParamsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgUpdateParamsResponse {
     return new MsgUpdateParamsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined, b: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined): boolean {
+  static equals(
+    a: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined,
+    b: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgUpdateParamsResponse, a, b);
   }
 }
-

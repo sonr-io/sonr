@@ -29,7 +29,7 @@ export async function registerMotorServiceWorker(
   options?: RegistrationOptions
 ): Promise<ServiceWorkerRegistration> {
   const env = detectEnvironment();
-  
+
   if (!env.supports_service_worker) {
     throw new Error('Service workers are not supported in this environment');
   }
@@ -62,14 +62,14 @@ export async function registerMotorServiceWorker(
  */
 export async function unregisterMotorServiceWorker(): Promise<boolean> {
   const env = detectEnvironment();
-  
+
   if (!env.supports_service_worker) {
     return false;
   }
 
   try {
     const registrations = await navigator.serviceWorker.getRegistrations();
-    
+
     for (const registration of registrations) {
       // Check if this is the Motor service worker
       if (registration.active?.scriptURL.includes('motr')) {
@@ -80,7 +80,7 @@ export async function unregisterMotorServiceWorker(): Promise<boolean> {
         return success;
       }
     }
-    
+
     return false;
   } catch (error) {
     console.error('Failed to unregister Motor service worker:', error);
@@ -93,14 +93,14 @@ export async function unregisterMotorServiceWorker(): Promise<boolean> {
  */
 export async function getMotorServiceWorkerStatus(): Promise<ServiceWorkerStatus> {
   const env = detectEnvironment();
-  
+
   if (!env.supports_service_worker) {
     return { registered: false };
   }
 
   try {
     const registrations = await navigator.serviceWorker.getRegistrations();
-    
+
     for (const registration of registrations) {
       // Check if this is the Motor service worker
       if (registration.active?.scriptURL.includes('motr')) {
@@ -112,7 +112,7 @@ export async function getMotorServiceWorkerStatus(): Promise<ServiceWorkerStatus
         };
       }
     }
-    
+
     return { registered: false };
   } catch (error) {
     console.error('Failed to get Motor service worker status:', error);
@@ -209,13 +209,13 @@ export class MotorServiceWorkerManager {
     };
 
     this.registration = await registerMotorServiceWorker(this.config.worker_script, options);
-    
+
     // Set up update checking
     this.startUpdateChecking();
-    
+
     // Listen for service worker events
     this.attachEventListeners();
-    
+
     return this.registration;
   }
 
@@ -224,7 +224,7 @@ export class MotorServiceWorkerManager {
    */
   async unregister(): Promise<boolean> {
     this.stopUpdateChecking();
-    
+
     if (this.registration) {
       const success = await this.registration.unregister();
       if (success) {
@@ -232,7 +232,7 @@ export class MotorServiceWorkerManager {
       }
       return success;
     }
-    
+
     return await unregisterMotorServiceWorker();
   }
 
@@ -262,8 +262,9 @@ export class MotorServiceWorkerManager {
       return { registered: false };
     }
 
-    const worker = this.registration.active || this.registration.waiting || this.registration.installing;
-    
+    const worker =
+      this.registration.active || this.registration.waiting || this.registration.installing;
+
     if (!worker) {
       return { registered: false };
     }
@@ -322,14 +323,14 @@ export class MotorServiceWorkerManager {
       if (this.debug) {
         console.log('Motor service worker update found');
       }
-      
+
       const newWorker = this.registration!.installing;
       if (newWorker) {
         newWorker.addEventListener('statechange', () => {
           if (this.debug) {
             console.log('Motor service worker state changed:', newWorker.state);
           }
-          
+
           if (newWorker.state === 'activated') {
             console.log('Motor service worker updated and activated');
           }
@@ -360,20 +361,22 @@ export function getDefaultServiceWorkerManager(
   if (!defaultManager && config) {
     defaultManager = new MotorServiceWorkerManager(config);
   }
-  
+
   if (!defaultManager) {
     throw new Error('Motor service worker manager not initialized');
   }
-  
+
   return defaultManager;
 }
 
 /**
  * Waits for the service worker to be ready
  */
-export async function waitForServiceWorker(timeoutMs: number = 30000): Promise<ServiceWorkerRegistration> {
+export async function waitForServiceWorker(
+  timeoutMs: number = 30000
+): Promise<ServiceWorkerRegistration> {
   const env = detectEnvironment();
-  
+
   if (!env.supports_service_worker) {
     throw new Error('Service workers are not supported');
   }
@@ -383,12 +386,14 @@ export async function waitForServiceWorker(timeoutMs: number = 30000): Promise<S
       reject(new Error('Service worker registration timed out'));
     }, timeoutMs);
 
-    navigator.serviceWorker.ready.then((registration) => {
-      clearTimeout(timeout);
-      resolve(registration);
-    }).catch((error) => {
-      clearTimeout(timeout);
-      reject(error);
-    });
+    navigator.serviceWorker.ready
+      .then((registration) => {
+        clearTimeout(timeout);
+        resolve(registration);
+      })
+      .catch((error) => {
+        clearTimeout(timeout);
+        reject(error);
+      });
   });
 }

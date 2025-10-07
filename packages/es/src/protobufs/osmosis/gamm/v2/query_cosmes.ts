@@ -3,9 +3,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QuerySpotPriceRequest, QuerySpotPriceResponse } from "./query_pb.js";
+import { QuerySpotPriceRequest, QuerySpotPriceResponse } from './query_pb.js';
 
-const TYPE_NAME = "osmosis.gamm.v2.Query";
+const TYPE_NAME = 'osmosis.gamm.v2.Query';
 
 /**
  * Deprecated: please use alternate in x/poolmanager
@@ -15,8 +15,7 @@ const TYPE_NAME = "osmosis.gamm.v2.Query";
  */
 export const QuerySpotPriceService = {
   typeName: TYPE_NAME,
-  method: "SpotPrice",
+  method: 'SpotPrice',
   Request: QuerySpotPriceRequest,
   Response: QuerySpotPriceResponse,
 } as const;
-

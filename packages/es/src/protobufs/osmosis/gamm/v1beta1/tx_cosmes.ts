@@ -3,16 +3,33 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgExitPool, MsgExitPoolResponse, MsgExitSwapExternAmountOut, MsgExitSwapExternAmountOutResponse, MsgExitSwapShareAmountIn, MsgExitSwapShareAmountInResponse, MsgJoinPool, MsgJoinPoolResponse, MsgJoinSwapExternAmountIn, MsgJoinSwapExternAmountInResponse, MsgJoinSwapShareAmountOut, MsgJoinSwapShareAmountOutResponse, MsgSwapExactAmountIn, MsgSwapExactAmountInResponse, MsgSwapExactAmountOut, MsgSwapExactAmountOutResponse } from "./tx_pb.js";
+import {
+  MsgExitPool,
+  MsgExitPoolResponse,
+  MsgExitSwapExternAmountOut,
+  MsgExitSwapExternAmountOutResponse,
+  MsgExitSwapShareAmountIn,
+  MsgExitSwapShareAmountInResponse,
+  MsgJoinPool,
+  MsgJoinPoolResponse,
+  MsgJoinSwapExternAmountIn,
+  MsgJoinSwapExternAmountInResponse,
+  MsgJoinSwapShareAmountOut,
+  MsgJoinSwapShareAmountOutResponse,
+  MsgSwapExactAmountIn,
+  MsgSwapExactAmountInResponse,
+  MsgSwapExactAmountOut,
+  MsgSwapExactAmountOutResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "osmosis.gamm.v1beta1.Msg";
+const TYPE_NAME = 'osmosis.gamm.v1beta1.Msg';
 
 /**
  * @generated from rpc osmosis.gamm.v1beta1.Msg.JoinPool
  */
 export const MsgJoinPoolService = {
   typeName: TYPE_NAME,
-  method: "JoinPool",
+  method: 'JoinPool',
   Request: MsgJoinPool,
   Response: MsgJoinPoolResponse,
 } as const;
@@ -22,7 +39,7 @@ export const MsgJoinPoolService = {
  */
 export const MsgExitPoolService = {
   typeName: TYPE_NAME,
-  method: "ExitPool",
+  method: 'ExitPool',
   Request: MsgExitPool,
   Response: MsgExitPoolResponse,
 } as const;
@@ -32,7 +49,7 @@ export const MsgExitPoolService = {
  */
 export const MsgSwapExactAmountInService = {
   typeName: TYPE_NAME,
-  method: "SwapExactAmountIn",
+  method: 'SwapExactAmountIn',
   Request: MsgSwapExactAmountIn,
   Response: MsgSwapExactAmountInResponse,
 } as const;
@@ -42,7 +59,7 @@ export const MsgSwapExactAmountInService = {
  */
 export const MsgSwapExactAmountOutService = {
   typeName: TYPE_NAME,
-  method: "SwapExactAmountOut",
+  method: 'SwapExactAmountOut',
   Request: MsgSwapExactAmountOut,
   Response: MsgSwapExactAmountOutResponse,
 } as const;
@@ -52,7 +69,7 @@ export const MsgSwapExactAmountOutService = {
  */
 export const MsgJoinSwapExternAmountInService = {
   typeName: TYPE_NAME,
-  method: "JoinSwapExternAmountIn",
+  method: 'JoinSwapExternAmountIn',
   Request: MsgJoinSwapExternAmountIn,
   Response: MsgJoinSwapExternAmountInResponse,
 } as const;
@@ -62,7 +79,7 @@ export const MsgJoinSwapExternAmountInService = {
  */
 export const MsgJoinSwapShareAmountOutService = {
   typeName: TYPE_NAME,
-  method: "JoinSwapShareAmountOut",
+  method: 'JoinSwapShareAmountOut',
   Request: MsgJoinSwapShareAmountOut,
   Response: MsgJoinSwapShareAmountOutResponse,
 } as const;
@@ -72,7 +89,7 @@ export const MsgJoinSwapShareAmountOutService = {
  */
 export const MsgExitSwapExternAmountOutService = {
   typeName: TYPE_NAME,
-  method: "ExitSwapExternAmountOut",
+  method: 'ExitSwapExternAmountOut',
   Request: MsgExitSwapExternAmountOut,
   Response: MsgExitSwapExternAmountOutResponse,
 } as const;
@@ -82,8 +99,7 @@ export const MsgExitSwapExternAmountOutService = {
  */
 export const MsgExitSwapShareAmountInService = {
   typeName: TYPE_NAME,
-  method: "ExitSwapShareAmountIn",
+  method: 'ExitSwapShareAmountIn',
   Request: MsgExitSwapShareAmountIn,
   Response: MsgExitSwapShareAmountInResponse,
 } as const;
-

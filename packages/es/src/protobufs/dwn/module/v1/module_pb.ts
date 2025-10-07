@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
 
 /**
  * Module is the app config object of the module.
@@ -19,9 +26,8 @@ export class Module extends Message<Module> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.module.v1.Module";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'dwn.module.v1.Module';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Module {
     return new Module().fromBinary(bytes, options);
@@ -35,8 +41,10 @@ export class Module extends Message<Module> {
     return new Module().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Module | PlainMessage<Module> | undefined, b: Module | PlainMessage<Module> | undefined): boolean {
+  static equals(
+    a: Module | PlainMessage<Module> | undefined,
+    b: Module | PlainMessage<Module> | undefined
+  ): boolean {
     return proto3.util.equals(Module, a, b);
   }
 }
-

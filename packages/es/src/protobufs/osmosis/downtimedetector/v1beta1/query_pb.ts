@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3 } from "@bufbuild/protobuf";
-import { Downtime } from "./downtime_duration_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Duration, Message, proto3 } from '@bufbuild/protobuf';
+import { Downtime } from './downtime_duration_pb.js';
 
 /**
  * Query for has it been at least $RECOVERY_DURATION units of time,
@@ -30,25 +37,44 @@ export class RecoveredSinceDowntimeOfLengthRequest extends Message<RecoveredSinc
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.downtimedetector.v1beta1.RecoveredSinceDowntimeOfLengthRequest";
+  static readonly typeName =
+    'osmosis.downtimedetector.v1beta1.RecoveredSinceDowntimeOfLengthRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "downtime", kind: "enum", T: proto3.getEnumType(Downtime) },
-    { no: 2, name: "recovery", kind: "message", T: Duration },
+    { no: 1, name: 'downtime', kind: 'enum', T: proto3.getEnumType(Downtime) },
+    { no: 2, name: 'recovery', kind: 'message', T: Duration },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RecoveredSinceDowntimeOfLengthRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): RecoveredSinceDowntimeOfLengthRequest {
     return new RecoveredSinceDowntimeOfLengthRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RecoveredSinceDowntimeOfLengthRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): RecoveredSinceDowntimeOfLengthRequest {
     return new RecoveredSinceDowntimeOfLengthRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RecoveredSinceDowntimeOfLengthRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): RecoveredSinceDowntimeOfLengthRequest {
     return new RecoveredSinceDowntimeOfLengthRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: RecoveredSinceDowntimeOfLengthRequest | PlainMessage<RecoveredSinceDowntimeOfLengthRequest> | undefined, b: RecoveredSinceDowntimeOfLengthRequest | PlainMessage<RecoveredSinceDowntimeOfLengthRequest> | undefined): boolean {
+  static equals(
+    a:
+      | RecoveredSinceDowntimeOfLengthRequest
+      | PlainMessage<RecoveredSinceDowntimeOfLengthRequest>
+      | undefined,
+    b:
+      | RecoveredSinceDowntimeOfLengthRequest
+      | PlainMessage<RecoveredSinceDowntimeOfLengthRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(RecoveredSinceDowntimeOfLengthRequest, a, b);
   }
 }
@@ -68,25 +94,43 @@ export class RecoveredSinceDowntimeOfLengthResponse extends Message<RecoveredSin
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.downtimedetector.v1beta1.RecoveredSinceDowntimeOfLengthResponse";
+  static readonly typeName =
+    'osmosis.downtimedetector.v1beta1.RecoveredSinceDowntimeOfLengthResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "succesfully_recovered", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'succesfully_recovered', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RecoveredSinceDowntimeOfLengthResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): RecoveredSinceDowntimeOfLengthResponse {
     return new RecoveredSinceDowntimeOfLengthResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RecoveredSinceDowntimeOfLengthResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): RecoveredSinceDowntimeOfLengthResponse {
     return new RecoveredSinceDowntimeOfLengthResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RecoveredSinceDowntimeOfLengthResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): RecoveredSinceDowntimeOfLengthResponse {
     return new RecoveredSinceDowntimeOfLengthResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: RecoveredSinceDowntimeOfLengthResponse | PlainMessage<RecoveredSinceDowntimeOfLengthResponse> | undefined, b: RecoveredSinceDowntimeOfLengthResponse | PlainMessage<RecoveredSinceDowntimeOfLengthResponse> | undefined): boolean {
+  static equals(
+    a:
+      | RecoveredSinceDowntimeOfLengthResponse
+      | PlainMessage<RecoveredSinceDowntimeOfLengthResponse>
+      | undefined,
+    b:
+      | RecoveredSinceDowntimeOfLengthResponse
+      | PlainMessage<RecoveredSinceDowntimeOfLengthResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(RecoveredSinceDowntimeOfLengthResponse, a, b);
   }
 }
-

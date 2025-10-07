@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { Coin } from "../../../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { Coin } from '../../../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * ===================== CalcOutAmtGivenIn
@@ -25,14 +32,14 @@ export class CalcOutAmtGivenIn extends Message<CalcOutAmtGivenIn> {
    *
    * @generated from field: string token_out_denom = 2;
    */
-  tokenOutDenom = "";
+  tokenOutDenom = '';
 
   /**
    * swap_fee is the swap fee for this swap estimate.
    *
    * @generated from field: string swap_fee = 3;
    */
-  swapFee = "";
+  swapFee = '';
 
   constructor(data?: PartialMessage<CalcOutAmtGivenIn>) {
     super();
@@ -40,11 +47,11 @@ export class CalcOutAmtGivenIn extends Message<CalcOutAmtGivenIn> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.cosmwasmpool.v1beta1.CalcOutAmtGivenIn";
+  static readonly typeName = 'osmosis.cosmwasmpool.v1beta1.CalcOutAmtGivenIn';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "token_in", kind: "message", T: Coin },
-    { no: 2, name: "token_out_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "swap_fee", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'token_in', kind: 'message', T: Coin },
+    { no: 2, name: 'token_out_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'swap_fee', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CalcOutAmtGivenIn {
@@ -59,7 +66,10 @@ export class CalcOutAmtGivenIn extends Message<CalcOutAmtGivenIn> {
     return new CalcOutAmtGivenIn().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CalcOutAmtGivenIn | PlainMessage<CalcOutAmtGivenIn> | undefined, b: CalcOutAmtGivenIn | PlainMessage<CalcOutAmtGivenIn> | undefined): boolean {
+  static equals(
+    a: CalcOutAmtGivenIn | PlainMessage<CalcOutAmtGivenIn> | undefined,
+    b: CalcOutAmtGivenIn | PlainMessage<CalcOutAmtGivenIn> | undefined
+  ): boolean {
     return proto3.util.equals(CalcOutAmtGivenIn, a, b);
   }
 }
@@ -82,24 +92,36 @@ export class CalcOutAmtGivenInRequest extends Message<CalcOutAmtGivenInRequest> 
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.cosmwasmpool.v1beta1.CalcOutAmtGivenInRequest";
+  static readonly typeName = 'osmosis.cosmwasmpool.v1beta1.CalcOutAmtGivenInRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "calc_out_amt_given_in", kind: "message", T: CalcOutAmtGivenIn },
+    { no: 1, name: 'calc_out_amt_given_in', kind: 'message', T: CalcOutAmtGivenIn },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CalcOutAmtGivenInRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): CalcOutAmtGivenInRequest {
     return new CalcOutAmtGivenInRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CalcOutAmtGivenInRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): CalcOutAmtGivenInRequest {
     return new CalcOutAmtGivenInRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CalcOutAmtGivenInRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): CalcOutAmtGivenInRequest {
     return new CalcOutAmtGivenInRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CalcOutAmtGivenInRequest | PlainMessage<CalcOutAmtGivenInRequest> | undefined, b: CalcOutAmtGivenInRequest | PlainMessage<CalcOutAmtGivenInRequest> | undefined): boolean {
+  static equals(
+    a: CalcOutAmtGivenInRequest | PlainMessage<CalcOutAmtGivenInRequest> | undefined,
+    b: CalcOutAmtGivenInRequest | PlainMessage<CalcOutAmtGivenInRequest> | undefined
+  ): boolean {
     return proto3.util.equals(CalcOutAmtGivenInRequest, a, b);
   }
 }
@@ -121,24 +143,36 @@ export class CalcOutAmtGivenInResponse extends Message<CalcOutAmtGivenInResponse
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.cosmwasmpool.v1beta1.CalcOutAmtGivenInResponse";
+  static readonly typeName = 'osmosis.cosmwasmpool.v1beta1.CalcOutAmtGivenInResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "token_out", kind: "message", T: Coin },
+    { no: 1, name: 'token_out', kind: 'message', T: Coin },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CalcOutAmtGivenInResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): CalcOutAmtGivenInResponse {
     return new CalcOutAmtGivenInResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CalcOutAmtGivenInResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): CalcOutAmtGivenInResponse {
     return new CalcOutAmtGivenInResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CalcOutAmtGivenInResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): CalcOutAmtGivenInResponse {
     return new CalcOutAmtGivenInResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CalcOutAmtGivenInResponse | PlainMessage<CalcOutAmtGivenInResponse> | undefined, b: CalcOutAmtGivenInResponse | PlainMessage<CalcOutAmtGivenInResponse> | undefined): boolean {
+  static equals(
+    a: CalcOutAmtGivenInResponse | PlainMessage<CalcOutAmtGivenInResponse> | undefined,
+    b: CalcOutAmtGivenInResponse | PlainMessage<CalcOutAmtGivenInResponse> | undefined
+  ): boolean {
     return proto3.util.equals(CalcOutAmtGivenInResponse, a, b);
   }
 }
@@ -161,14 +195,14 @@ export class CalcInAmtGivenOut extends Message<CalcInAmtGivenOut> {
    *
    * @generated from field: string token_in_denom = 2;
    */
-  tokenInDenom = "";
+  tokenInDenom = '';
 
   /**
    * swap_fee is the swap fee for this swap estimate.
    *
    * @generated from field: string swap_fee = 3;
    */
-  swapFee = "";
+  swapFee = '';
 
   constructor(data?: PartialMessage<CalcInAmtGivenOut>) {
     super();
@@ -176,11 +210,11 @@ export class CalcInAmtGivenOut extends Message<CalcInAmtGivenOut> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.cosmwasmpool.v1beta1.CalcInAmtGivenOut";
+  static readonly typeName = 'osmosis.cosmwasmpool.v1beta1.CalcInAmtGivenOut';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "token_out", kind: "message", T: Coin },
-    { no: 2, name: "token_in_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "swap_fee", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'token_out', kind: 'message', T: Coin },
+    { no: 2, name: 'token_in_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'swap_fee', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CalcInAmtGivenOut {
@@ -195,7 +229,10 @@ export class CalcInAmtGivenOut extends Message<CalcInAmtGivenOut> {
     return new CalcInAmtGivenOut().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CalcInAmtGivenOut | PlainMessage<CalcInAmtGivenOut> | undefined, b: CalcInAmtGivenOut | PlainMessage<CalcInAmtGivenOut> | undefined): boolean {
+  static equals(
+    a: CalcInAmtGivenOut | PlainMessage<CalcInAmtGivenOut> | undefined,
+    b: CalcInAmtGivenOut | PlainMessage<CalcInAmtGivenOut> | undefined
+  ): boolean {
     return proto3.util.equals(CalcInAmtGivenOut, a, b);
   }
 }
@@ -218,24 +255,36 @@ export class CalcInAmtGivenOutRequest extends Message<CalcInAmtGivenOutRequest> 
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.cosmwasmpool.v1beta1.CalcInAmtGivenOutRequest";
+  static readonly typeName = 'osmosis.cosmwasmpool.v1beta1.CalcInAmtGivenOutRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "calc_in_amt_given_out", kind: "message", T: CalcInAmtGivenOut },
+    { no: 1, name: 'calc_in_amt_given_out', kind: 'message', T: CalcInAmtGivenOut },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CalcInAmtGivenOutRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): CalcInAmtGivenOutRequest {
     return new CalcInAmtGivenOutRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CalcInAmtGivenOutRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): CalcInAmtGivenOutRequest {
     return new CalcInAmtGivenOutRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CalcInAmtGivenOutRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): CalcInAmtGivenOutRequest {
     return new CalcInAmtGivenOutRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CalcInAmtGivenOutRequest | PlainMessage<CalcInAmtGivenOutRequest> | undefined, b: CalcInAmtGivenOutRequest | PlainMessage<CalcInAmtGivenOutRequest> | undefined): boolean {
+  static equals(
+    a: CalcInAmtGivenOutRequest | PlainMessage<CalcInAmtGivenOutRequest> | undefined,
+    b: CalcInAmtGivenOutRequest | PlainMessage<CalcInAmtGivenOutRequest> | undefined
+  ): boolean {
     return proto3.util.equals(CalcInAmtGivenOutRequest, a, b);
   }
 }
@@ -257,25 +306,36 @@ export class CalcInAmtGivenOutResponse extends Message<CalcInAmtGivenOutResponse
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.cosmwasmpool.v1beta1.CalcInAmtGivenOutResponse";
+  static readonly typeName = 'osmosis.cosmwasmpool.v1beta1.CalcInAmtGivenOutResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "token_in", kind: "message", T: Coin },
+    { no: 1, name: 'token_in', kind: 'message', T: Coin },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CalcInAmtGivenOutResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): CalcInAmtGivenOutResponse {
     return new CalcInAmtGivenOutResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CalcInAmtGivenOutResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): CalcInAmtGivenOutResponse {
     return new CalcInAmtGivenOutResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CalcInAmtGivenOutResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): CalcInAmtGivenOutResponse {
     return new CalcInAmtGivenOutResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CalcInAmtGivenOutResponse | PlainMessage<CalcInAmtGivenOutResponse> | undefined, b: CalcInAmtGivenOutResponse | PlainMessage<CalcInAmtGivenOutResponse> | undefined): boolean {
+  static equals(
+    a: CalcInAmtGivenOutResponse | PlainMessage<CalcInAmtGivenOutResponse> | undefined,
+    b: CalcInAmtGivenOutResponse | PlainMessage<CalcInAmtGivenOutResponse> | undefined
+  ): boolean {
     return proto3.util.equals(CalcInAmtGivenOutResponse, a, b);
   }
 }
-

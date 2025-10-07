@@ -23,17 +23,17 @@ export interface WebAuthnConfig {
     residentKey?: 'required' | 'preferred' | 'discouraged';
     userVerification?: 'required' | 'preferred' | 'discouraged';
   };
-  
+
   // Attestation preference
   attestation?: 'none' | 'indirect' | 'direct' | 'enterprise';
-  
+
   // Algorithm preferences (in order of preference)
   algorithms?: number[];
-  
+
   // UI/UX options
   showQROption?: boolean;
   preferPlatformAuthenticator?: boolean;
-  
+
   // Callbacks
   onStart?: (options: any) => void | Promise<void>;
   onComplete?: (credential: any) => void | Promise<void>;
@@ -51,9 +51,9 @@ export const DEFAULT_WEBAUTHN_CONFIG: WebAuthnConfig = {
   },
   attestation: 'none', // Simplest option for broad compatibility
   algorithms: [
-    -7,   // ES256 (most common)
+    -7, // ES256 (most common)
     -257, // RS256
-    -8,   // EdDSA
+    -8, // EdDSA
   ],
   showQROption: true,
   preferPlatformAuthenticator: false,
@@ -63,7 +63,7 @@ export const DEFAULT_WEBAUTHN_CONFIG: WebAuthnConfig = {
 export const WEBAUTHN_PRESETS = {
   // Maximum compatibility - works with most devices
   BROAD_COMPATIBILITY: DEFAULT_WEBAUTHN_CONFIG,
-  
+
   // Platform only - for native app feel
   PLATFORM_ONLY: {
     ...DEFAULT_WEBAUTHN_CONFIG,
@@ -76,7 +76,7 @@ export const WEBAUTHN_PRESETS = {
     showQROption: false,
     preferPlatformAuthenticator: true,
   },
-  
+
   // Security key focused
   SECURITY_KEY: {
     ...DEFAULT_WEBAUTHN_CONFIG,
@@ -89,7 +89,7 @@ export const WEBAUTHN_PRESETS = {
     attestation: 'direct' as const,
     showQROption: false,
   },
-  
+
   // Mobile friendly with QR codes
   MOBILE_FRIENDLY: {
     ...DEFAULT_WEBAUTHN_CONFIG,
@@ -101,7 +101,7 @@ export const WEBAUTHN_PRESETS = {
     showQROption: true,
     preferPlatformAuthenticator: false,
   },
-  
+
   // High security (enterprise)
   HIGH_SECURITY: {
     ...DEFAULT_WEBAUTHN_CONFIG,
@@ -169,23 +169,26 @@ export async function registerWithPasskey(
   options: PasskeyRegistrationOptions
 ): Promise<PasskeyRegistrationResult> {
   const config = { ...DEFAULT_WEBAUTHN_CONFIG, ...options.config };
-  
+
   try {
     // Check WebAuthn support
     if (!browserSupportsWebAuthn()) {
       throw new Error('WebAuthn is not supported in this browser');
     }
-    
+
     // Check platform authenticator if preferred
     if (config.preferPlatformAuthenticator) {
       const hasPlatform = await platformAuthenticatorIsAvailable();
       if (!hasPlatform) {
-        config.onStatusUpdate?.('Platform authenticator not available, using cross-platform options', 'warning');
+        config.onStatusUpdate?.(
+          'Platform authenticator not available, using cross-platform options',
+          'warning'
+        );
       }
     }
-    
+
     config.onStatusUpdate?.('Preparing registration...', 'info');
-    
+
     // If using custom config, build options directly
     if (options.config) {
       const registrationOptions: PublicKeyCredentialCreationOptionsJSON = {
@@ -199,7 +202,7 @@ export async function registerWithPasskey(
           name: options.username,
           displayName: options.displayName || options.username,
         },
-        pubKeyCredParams: (config.algorithms || DEFAULT_WEBAUTHN_CONFIG.algorithms!).map(alg => ({
+        pubKeyCredParams: (config.algorithms || DEFAULT_WEBAUTHN_CONFIG.algorithms!).map((alg) => ({
           type: 'public-key' as const,
           alg,
         })),
@@ -207,20 +210,20 @@ export async function registerWithPasskey(
         timeout: options.timeout || 60000,
         attestation: config.attestation as AttestationConveyancePreference,
       };
-      
+
       // Call start callback
       await config.onStart?.(registrationOptions);
-      
+
       config.onStatusUpdate?.('Please interact with your authenticator...', 'info');
-      
+
       // Create credential with WebAuthn
       const credential = await startRegistration(registrationOptions);
-      
+
       // Call complete callback
       await config.onComplete?.(credential);
-      
+
       config.onStatusUpdate?.('Registration successful!', 'success');
-      
+
       // For custom config, return simplified result
       return {
         success: true,
@@ -228,29 +231,29 @@ export async function registerWithPasskey(
         did: `did:sonr:${options.username}`, // Placeholder
       };
     }
-    
+
     // Original flow for Sonr blockchain integration
     const registrationOptions = await beginRegistrationPasskey(apiUrl, options);
     await config.onStart?.(registrationOptions);
-    
+
     config.onStatusUpdate?.('Please interact with your authenticator...', 'info');
     const credential = await startRegistration(registrationOptions);
     await config.onComplete?.(credential);
-    
+
     const result = await finishRegistrationPasskey(
       apiUrl,
       options,
       credential,
       registrationOptions.challenge
     );
-    
+
     config.onStatusUpdate?.('Registration successful!', 'success');
     return result;
   } catch (error) {
     const err = error as Error;
     await config.onError?.(err);
     config.onStatusUpdate?.(`Registration failed: ${err.message}`, 'error');
-    
+
     console.error('Passkey registration failed:', error);
     return {
       success: false,
@@ -267,15 +270,15 @@ export async function loginWithPasskey(
   options: PasskeyLoginOptions
 ): Promise<PasskeyLoginResult> {
   const config = { ...DEFAULT_WEBAUTHN_CONFIG, ...options.config };
-  
+
   try {
     // Check WebAuthn support
     if (!browserSupportsWebAuthn()) {
       throw new Error('WebAuthn is not supported in this browser');
     }
-    
+
     config.onStatusUpdate?.('Preparing authentication...', 'info');
-    
+
     // If using custom config, build options directly
     if (options.config) {
       const authOptions: PublicKeyCredentialRequestOptionsJSON = {
@@ -284,20 +287,20 @@ export async function loginWithPasskey(
         timeout: options.timeout || 60000,
         userVerification: config.authenticatorSelection?.userVerification || 'preferred',
       };
-      
+
       // Call start callback
       await config.onStart?.(authOptions);
-      
+
       config.onStatusUpdate?.('Please authenticate with your passkey...', 'info');
-      
+
       // Authenticate with WebAuthn
       const credential = await startAuthentication(authOptions);
-      
+
       // Call complete callback
       await config.onComplete?.(credential);
-      
+
       config.onStatusUpdate?.('Authentication successful!', 'success');
-      
+
       // For custom config, return simplified result
       return {
         success: true,
@@ -305,29 +308,29 @@ export async function loginWithPasskey(
         sessionToken: credential.id,
       };
     }
-    
+
     // Original flow for Sonr blockchain integration
     const loginOptions = await beginLoginPasskey(apiUrl, options);
     await config.onStart?.(loginOptions);
-    
+
     config.onStatusUpdate?.('Please authenticate with your passkey...', 'info');
     const credential = await startAuthentication(loginOptions);
     await config.onComplete?.(credential);
-    
+
     const result = await finishLoginPasskey(
       apiUrl,
       options.username,
       credential,
       loginOptions.challenge
     );
-    
+
     config.onStatusUpdate?.('Authentication successful!', 'success');
     return result;
   } catch (error) {
     const err = error as Error;
     await config.onError?.(err);
     config.onStatusUpdate?.(`Authentication failed: ${err.message}`, 'error');
-    
+
     console.error('Passkey authentication failed:', error);
     return {
       success: false,
@@ -360,7 +363,7 @@ export function createRegistrationButton(
   buttonElement.addEventListener('click', async () => {
     buttonElement.disabled = true;
     const originalText = buttonElement.textContent;
-    
+
     // Default status update if not provided
     const config = options.config || {};
     if (!config.onStatusUpdate) {
@@ -369,9 +372,9 @@ export function createRegistrationButton(
         buttonElement.className = `webauthn-button webauthn-${type}`;
       };
     }
-    
+
     const result = await registerWithPasskey(apiUrl, { ...options, config });
-    
+
     if (result.success) {
       buttonElement.textContent = '✓ Registered';
     } else {
@@ -392,7 +395,7 @@ export function createLoginButton(
   buttonElement.addEventListener('click', async () => {
     buttonElement.disabled = true;
     const originalText = buttonElement.textContent;
-    
+
     // Default status update if not provided
     const config = options.config || {};
     if (!config.onStatusUpdate) {
@@ -401,9 +404,9 @@ export function createLoginButton(
         buttonElement.className = `webauthn-button webauthn-${type}`;
       };
     }
-    
+
     const result = await loginWithPasskey(apiUrl, { ...options, config });
-    
+
     if (result.success) {
       buttonElement.textContent = '✓ Logged In';
     } else {
@@ -422,9 +425,9 @@ export async function checkConditionalMediationSupport(): Promise<{
   platformAuthenticator: boolean;
 }> {
   const supported = browserSupportsWebAuthn();
-  const available = supported && await browserSupportsWebAuthnAutofill();
-  const platformAuthenticator = supported && await platformAuthenticatorIsAvailable();
-  
+  const available = supported && (await browserSupportsWebAuthnAutofill());
+  const platformAuthenticator = supported && (await platformAuthenticatorIsAvailable());
+
   return {
     supported,
     available,
@@ -479,7 +482,7 @@ async function beginRegistrationPasskey(
       displayName: options.displayName || options.username,
     },
     pubKeyCredParams: data.pubKeyCredParams || [
-      { alg: -7, type: 'public-key' },  // ES256
+      { alg: -7, type: 'public-key' }, // ES256
       { alg: -257, type: 'public-key' }, // RS256
     ],
     timeout: data.timeout || options.timeout || 60000,
@@ -523,9 +526,7 @@ async function finishRegistrationPasskey(
   });
 
   if (!response.ok) {
-    const error = await response
-      .json()
-      .catch(() => ({ error: 'Registration submission failed' }));
+    const error = await response.json().catch(() => ({ error: 'Registration submission failed' }));
     throw new Error(error.error || 'Registration submission failed');
   }
 
@@ -534,10 +535,7 @@ async function finishRegistrationPasskey(
     success: true,
     did: result.did,
     vaultId: result.vault_id,
-    assertionMethods: [
-      `did:sonr:${options.username}`,
-      `did:${assertionType}:${assertionValue}`,
-    ],
+    assertionMethods: [`did:sonr:${options.username}`, `did:${assertionType}:${assertionValue}`],
     ucanToken: result.ucan_token,
     credential: result.credential,
   };
@@ -548,7 +546,7 @@ async function beginLoginPasskey(
   options: PasskeyLoginOptions
 ): Promise<PublicKeyCredentialRequestOptionsJSON> {
   const url = new URL(`${apiUrl}/did/v1/login/start`);
-  
+
   const response = await fetch(url.toString(), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -604,7 +602,6 @@ async function finishLoginPasskey(
     sessionToken: result.session_token,
   };
 }
-
 
 // Helper function to generate a random user ID
 function generateUserId(): string {

@@ -3,9 +3,26 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryNextSequenceSendRequest, QueryNextSequenceSendResponse, QueryPacketAcknowledgementRequest, QueryPacketAcknowledgementResponse, QueryPacketAcknowledgementsRequest, QueryPacketAcknowledgementsResponse, QueryPacketCommitmentRequest, QueryPacketCommitmentResponse, QueryPacketCommitmentsRequest, QueryPacketCommitmentsResponse, QueryPacketReceiptRequest, QueryPacketReceiptResponse, QueryUnreceivedAcksRequest, QueryUnreceivedAcksResponse, QueryUnreceivedPacketsRequest, QueryUnreceivedPacketsResponse } from "./query_pb.js";
+import {
+  QueryNextSequenceSendRequest,
+  QueryNextSequenceSendResponse,
+  QueryPacketAcknowledgementRequest,
+  QueryPacketAcknowledgementResponse,
+  QueryPacketAcknowledgementsRequest,
+  QueryPacketAcknowledgementsResponse,
+  QueryPacketCommitmentRequest,
+  QueryPacketCommitmentResponse,
+  QueryPacketCommitmentsRequest,
+  QueryPacketCommitmentsResponse,
+  QueryPacketReceiptRequest,
+  QueryPacketReceiptResponse,
+  QueryUnreceivedAcksRequest,
+  QueryUnreceivedAcksResponse,
+  QueryUnreceivedPacketsRequest,
+  QueryUnreceivedPacketsResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "ibc.core.channel.v2.Query";
+const TYPE_NAME = 'ibc.core.channel.v2.Query';
 
 /**
  * NextSequenceSend returns the next send sequence for a given channel.
@@ -14,7 +31,7 @@ const TYPE_NAME = "ibc.core.channel.v2.Query";
  */
 export const QueryNextSequenceSendService = {
   typeName: TYPE_NAME,
-  method: "NextSequenceSend",
+  method: 'NextSequenceSend',
   Request: QueryNextSequenceSendRequest,
   Response: QueryNextSequenceSendResponse,
 } as const;
@@ -26,7 +43,7 @@ export const QueryNextSequenceSendService = {
  */
 export const QueryPacketCommitmentService = {
   typeName: TYPE_NAME,
-  method: "PacketCommitment",
+  method: 'PacketCommitment',
   Request: QueryPacketCommitmentRequest,
   Response: QueryPacketCommitmentResponse,
 } as const;
@@ -38,7 +55,7 @@ export const QueryPacketCommitmentService = {
  */
 export const QueryPacketCommitmentsService = {
   typeName: TYPE_NAME,
-  method: "PacketCommitments",
+  method: 'PacketCommitments',
   Request: QueryPacketCommitmentsRequest,
   Response: QueryPacketCommitmentsResponse,
 } as const;
@@ -50,7 +67,7 @@ export const QueryPacketCommitmentsService = {
  */
 export const QueryPacketAcknowledgementService = {
   typeName: TYPE_NAME,
-  method: "PacketAcknowledgement",
+  method: 'PacketAcknowledgement',
   Request: QueryPacketAcknowledgementRequest,
   Response: QueryPacketAcknowledgementResponse,
 } as const;
@@ -62,7 +79,7 @@ export const QueryPacketAcknowledgementService = {
  */
 export const QueryPacketAcknowledgementsService = {
   typeName: TYPE_NAME,
-  method: "PacketAcknowledgements",
+  method: 'PacketAcknowledgements',
   Request: QueryPacketAcknowledgementsRequest,
   Response: QueryPacketAcknowledgementsResponse,
 } as const;
@@ -74,7 +91,7 @@ export const QueryPacketAcknowledgementsService = {
  */
 export const QueryPacketReceiptService = {
   typeName: TYPE_NAME,
-  method: "PacketReceipt",
+  method: 'PacketReceipt',
   Request: QueryPacketReceiptRequest,
   Response: QueryPacketReceiptResponse,
 } as const;
@@ -86,7 +103,7 @@ export const QueryPacketReceiptService = {
  */
 export const QueryUnreceivedPacketsService = {
   typeName: TYPE_NAME,
-  method: "UnreceivedPackets",
+  method: 'UnreceivedPackets',
   Request: QueryUnreceivedPacketsRequest,
   Response: QueryUnreceivedPacketsResponse,
 } as const;
@@ -98,8 +115,7 @@ export const QueryUnreceivedPacketsService = {
  */
 export const QueryUnreceivedAcksService = {
   typeName: TYPE_NAME,
-  method: "UnreceivedAcks",
+  method: 'UnreceivedAcks',
   Request: QueryUnreceivedAcksRequest,
   Response: QueryUnreceivedAcksResponse,
 } as const;
-

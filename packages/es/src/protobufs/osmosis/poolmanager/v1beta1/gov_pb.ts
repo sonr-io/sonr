@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { DenomPairTakerFee } from "./tx_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { DenomPairTakerFee } from './tx_pb.js';
 
 /**
  * DenomPairTakerFeeProposal is a type for adding/removing a custom taker fee(s)
@@ -17,12 +24,12 @@ export class DenomPairTakerFeeProposal extends Message<DenomPairTakerFeeProposal
   /**
    * @generated from field: string title = 1;
    */
-  title = "";
+  title = '';
 
   /**
    * @generated from field: string description = 2;
    */
-  description = "";
+  description = '';
 
   /**
    * @generated from field: repeated osmosis.poolmanager.v1beta1.DenomPairTakerFee denom_pair_taker_fee = 3;
@@ -35,27 +42,38 @@ export class DenomPairTakerFeeProposal extends Message<DenomPairTakerFeeProposal
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.DenomPairTakerFeeProposal";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.DenomPairTakerFeeProposal';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "denom_pair_taker_fee", kind: "message", T: DenomPairTakerFee, repeated: true },
+    { no: 1, name: 'title', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'description', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'denom_pair_taker_fee', kind: 'message', T: DenomPairTakerFee, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DenomPairTakerFeeProposal {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): DenomPairTakerFeeProposal {
     return new DenomPairTakerFeeProposal().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DenomPairTakerFeeProposal {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): DenomPairTakerFeeProposal {
     return new DenomPairTakerFeeProposal().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DenomPairTakerFeeProposal {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): DenomPairTakerFeeProposal {
     return new DenomPairTakerFeeProposal().fromJsonString(jsonString, options);
   }
 
-  static equals(a: DenomPairTakerFeeProposal | PlainMessage<DenomPairTakerFeeProposal> | undefined, b: DenomPairTakerFeeProposal | PlainMessage<DenomPairTakerFeeProposal> | undefined): boolean {
+  static equals(
+    a: DenomPairTakerFeeProposal | PlainMessage<DenomPairTakerFeeProposal> | undefined,
+    b: DenomPairTakerFeeProposal | PlainMessage<DenomPairTakerFeeProposal> | undefined
+  ): boolean {
     return proto3.util.equals(DenomPairTakerFeeProposal, a, b);
   }
 }
-

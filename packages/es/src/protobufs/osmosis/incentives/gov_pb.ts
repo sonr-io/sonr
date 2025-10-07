@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { CreateGroup } from "./group_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { CreateGroup } from './group_pb.js';
 
 /**
  * CreateGroupsProposal is a type for creating one or more groups via
@@ -18,12 +25,12 @@ export class CreateGroupsProposal extends Message<CreateGroupsProposal> {
   /**
    * @generated from field: string title = 1;
    */
-  title = "";
+  title = '';
 
   /**
    * @generated from field: string description = 2;
    */
-  description = "";
+  description = '';
 
   /**
    * @generated from field: repeated osmosis.incentives.CreateGroup create_groups = 3;
@@ -36,11 +43,11 @@ export class CreateGroupsProposal extends Message<CreateGroupsProposal> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.incentives.CreateGroupsProposal";
+  static readonly typeName = 'osmosis.incentives.CreateGroupsProposal';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "create_groups", kind: "message", T: CreateGroup, repeated: true },
+    { no: 1, name: 'title', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'description', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'create_groups', kind: 'message', T: CreateGroup, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateGroupsProposal {
@@ -51,12 +58,17 @@ export class CreateGroupsProposal extends Message<CreateGroupsProposal> {
     return new CreateGroupsProposal().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateGroupsProposal {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): CreateGroupsProposal {
     return new CreateGroupsProposal().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CreateGroupsProposal | PlainMessage<CreateGroupsProposal> | undefined, b: CreateGroupsProposal | PlainMessage<CreateGroupsProposal> | undefined): boolean {
+  static equals(
+    a: CreateGroupsProposal | PlainMessage<CreateGroupsProposal> | undefined,
+    b: CreateGroupsProposal | PlainMessage<CreateGroupsProposal> | undefined
+  ): boolean {
     return proto3.util.equals(CreateGroupsProposal, a, b);
   }
 }
-

@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { Params } from "./genesis_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { Params } from './genesis_pb.js';
 
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
@@ -20,7 +27,7 @@ export class MsgUpdateParams extends Message<MsgUpdateParams> {
    *
    * @generated from field: string authority = 1;
    */
-  authority = "";
+  authority = '';
 
   /**
    * params defines the parameters to update.
@@ -37,10 +44,10 @@ export class MsgUpdateParams extends Message<MsgUpdateParams> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.MsgUpdateParams";
+  static readonly typeName = 'svc.v1.MsgUpdateParams';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "authority", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "params", kind: "message", T: Params },
+    { no: 1, name: 'authority', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'params', kind: 'message', T: Params },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUpdateParams {
@@ -55,7 +62,10 @@ export class MsgUpdateParams extends Message<MsgUpdateParams> {
     return new MsgUpdateParams().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined, b: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined): boolean {
+  static equals(
+    a: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined,
+    b: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined
+  ): boolean {
     return proto3.util.equals(MsgUpdateParams, a, b);
   }
 }
@@ -75,23 +85,34 @@ export class MsgUpdateParamsResponse extends Message<MsgUpdateParamsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.MsgUpdateParamsResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'svc.v1.MsgUpdateParamsResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUpdateParamsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgUpdateParamsResponse {
     return new MsgUpdateParamsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgUpdateParamsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgUpdateParamsResponse {
     return new MsgUpdateParamsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgUpdateParamsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgUpdateParamsResponse {
     return new MsgUpdateParamsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined, b: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined): boolean {
+  static equals(
+    a: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined,
+    b: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgUpdateParamsResponse, a, b);
   }
 }
@@ -107,14 +128,14 @@ export class MsgInitiateDomainVerification extends Message<MsgInitiateDomainVeri
    *
    * @generated from field: string creator = 1;
    */
-  creator = "";
+  creator = '';
 
   /**
    * Domain to be verified (e.g., "example.com")
    *
    * @generated from field: string domain = 2;
    */
-  domain = "";
+  domain = '';
 
   constructor(data?: PartialMessage<MsgInitiateDomainVerification>) {
     super();
@@ -122,25 +143,37 @@ export class MsgInitiateDomainVerification extends Message<MsgInitiateDomainVeri
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.MsgInitiateDomainVerification";
+  static readonly typeName = 'svc.v1.MsgInitiateDomainVerification';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "creator", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "domain", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'creator', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'domain', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgInitiateDomainVerification {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgInitiateDomainVerification {
     return new MsgInitiateDomainVerification().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgInitiateDomainVerification {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgInitiateDomainVerification {
     return new MsgInitiateDomainVerification().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgInitiateDomainVerification {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgInitiateDomainVerification {
     return new MsgInitiateDomainVerification().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgInitiateDomainVerification | PlainMessage<MsgInitiateDomainVerification> | undefined, b: MsgInitiateDomainVerification | PlainMessage<MsgInitiateDomainVerification> | undefined): boolean {
+  static equals(
+    a: MsgInitiateDomainVerification | PlainMessage<MsgInitiateDomainVerification> | undefined,
+    b: MsgInitiateDomainVerification | PlainMessage<MsgInitiateDomainVerification> | undefined
+  ): boolean {
     return proto3.util.equals(MsgInitiateDomainVerification, a, b);
   }
 }
@@ -157,14 +190,14 @@ export class MsgInitiateDomainVerificationResponse extends Message<MsgInitiateDo
    *
    * @generated from field: string verification_token = 1;
    */
-  verificationToken = "";
+  verificationToken = '';
 
   /**
    * Instructions for DNS TXT record setup
    *
    * @generated from field: string dns_instruction = 2;
    */
-  dnsInstruction = "";
+  dnsInstruction = '';
 
   constructor(data?: PartialMessage<MsgInitiateDomainVerificationResponse>) {
     super();
@@ -172,25 +205,43 @@ export class MsgInitiateDomainVerificationResponse extends Message<MsgInitiateDo
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.MsgInitiateDomainVerificationResponse";
+  static readonly typeName = 'svc.v1.MsgInitiateDomainVerificationResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "verification_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "dns_instruction", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'verification_token', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'dns_instruction', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgInitiateDomainVerificationResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgInitiateDomainVerificationResponse {
     return new MsgInitiateDomainVerificationResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgInitiateDomainVerificationResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgInitiateDomainVerificationResponse {
     return new MsgInitiateDomainVerificationResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgInitiateDomainVerificationResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgInitiateDomainVerificationResponse {
     return new MsgInitiateDomainVerificationResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgInitiateDomainVerificationResponse | PlainMessage<MsgInitiateDomainVerificationResponse> | undefined, b: MsgInitiateDomainVerificationResponse | PlainMessage<MsgInitiateDomainVerificationResponse> | undefined): boolean {
+  static equals(
+    a:
+      | MsgInitiateDomainVerificationResponse
+      | PlainMessage<MsgInitiateDomainVerificationResponse>
+      | undefined,
+    b:
+      | MsgInitiateDomainVerificationResponse
+      | PlainMessage<MsgInitiateDomainVerificationResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(MsgInitiateDomainVerificationResponse, a, b);
   }
 }
@@ -206,14 +257,14 @@ export class MsgVerifyDomain extends Message<MsgVerifyDomain> {
    *
    * @generated from field: string creator = 1;
    */
-  creator = "";
+  creator = '';
 
   /**
    * Domain to be verified
    *
    * @generated from field: string domain = 2;
    */
-  domain = "";
+  domain = '';
 
   constructor(data?: PartialMessage<MsgVerifyDomain>) {
     super();
@@ -221,10 +272,10 @@ export class MsgVerifyDomain extends Message<MsgVerifyDomain> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.MsgVerifyDomain";
+  static readonly typeName = 'svc.v1.MsgVerifyDomain';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "creator", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "domain", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'creator', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'domain', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgVerifyDomain {
@@ -239,7 +290,10 @@ export class MsgVerifyDomain extends Message<MsgVerifyDomain> {
     return new MsgVerifyDomain().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgVerifyDomain | PlainMessage<MsgVerifyDomain> | undefined, b: MsgVerifyDomain | PlainMessage<MsgVerifyDomain> | undefined): boolean {
+  static equals(
+    a: MsgVerifyDomain | PlainMessage<MsgVerifyDomain> | undefined,
+    b: MsgVerifyDomain | PlainMessage<MsgVerifyDomain> | undefined
+  ): boolean {
     return proto3.util.equals(MsgVerifyDomain, a, b);
   }
 }
@@ -262,7 +316,7 @@ export class MsgVerifyDomainResponse extends Message<MsgVerifyDomainResponse> {
    *
    * @generated from field: string message = 2;
    */
-  message = "";
+  message = '';
 
   constructor(data?: PartialMessage<MsgVerifyDomainResponse>) {
     super();
@@ -270,25 +324,37 @@ export class MsgVerifyDomainResponse extends Message<MsgVerifyDomainResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.MsgVerifyDomainResponse";
+  static readonly typeName = 'svc.v1.MsgVerifyDomainResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "verified", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 2, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'verified', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: 'message', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgVerifyDomainResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgVerifyDomainResponse {
     return new MsgVerifyDomainResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgVerifyDomainResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgVerifyDomainResponse {
     return new MsgVerifyDomainResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgVerifyDomainResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgVerifyDomainResponse {
     return new MsgVerifyDomainResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgVerifyDomainResponse | PlainMessage<MsgVerifyDomainResponse> | undefined, b: MsgVerifyDomainResponse | PlainMessage<MsgVerifyDomainResponse> | undefined): boolean {
+  static equals(
+    a: MsgVerifyDomainResponse | PlainMessage<MsgVerifyDomainResponse> | undefined,
+    b: MsgVerifyDomainResponse | PlainMessage<MsgVerifyDomainResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgVerifyDomainResponse, a, b);
   }
 }
@@ -304,21 +370,21 @@ export class MsgRegisterService extends Message<MsgRegisterService> {
    *
    * @generated from field: string creator = 1;
    */
-  creator = "";
+  creator = '';
 
   /**
    * Unique identifier for the service
    *
    * @generated from field: string service_id = 2;
    */
-  serviceId = "";
+  serviceId = '';
 
   /**
    * Verified domain to bind to this service
    *
    * @generated from field: string domain = 3;
    */
-  domain = "";
+  domain = '';
 
   /**
    * List of permissions requested for this service
@@ -332,7 +398,7 @@ export class MsgRegisterService extends Message<MsgRegisterService> {
    *
    * @generated from field: string ucan_delegation_chain = 5;
    */
-  ucanDelegationChain = "";
+  ucanDelegationChain = '';
 
   constructor(data?: PartialMessage<MsgRegisterService>) {
     super();
@@ -340,13 +406,19 @@ export class MsgRegisterService extends Message<MsgRegisterService> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.MsgRegisterService";
+  static readonly typeName = 'svc.v1.MsgRegisterService';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "creator", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "service_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "domain", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "requested_permissions", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 5, name: "ucan_delegation_chain", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'creator', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'service_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'domain', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    {
+      no: 4,
+      name: 'requested_permissions',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    { no: 5, name: 'ucan_delegation_chain', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRegisterService {
@@ -357,11 +429,17 @@ export class MsgRegisterService extends Message<MsgRegisterService> {
     return new MsgRegisterService().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgRegisterService {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgRegisterService {
     return new MsgRegisterService().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRegisterService | PlainMessage<MsgRegisterService> | undefined, b: MsgRegisterService | PlainMessage<MsgRegisterService> | undefined): boolean {
+  static equals(
+    a: MsgRegisterService | PlainMessage<MsgRegisterService> | undefined,
+    b: MsgRegisterService | PlainMessage<MsgRegisterService> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRegisterService, a, b);
   }
 }
@@ -377,14 +455,14 @@ export class MsgRegisterServiceResponse extends Message<MsgRegisterServiceRespon
    *
    * @generated from field: string root_capability_cid = 1;
    */
-  rootCapabilityCid = "";
+  rootCapabilityCid = '';
 
   /**
    * Service registration details
    *
    * @generated from field: string service_id = 2;
    */
-  serviceId = "";
+  serviceId = '';
 
   constructor(data?: PartialMessage<MsgRegisterServiceResponse>) {
     super();
@@ -392,26 +470,37 @@ export class MsgRegisterServiceResponse extends Message<MsgRegisterServiceRespon
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.MsgRegisterServiceResponse";
+  static readonly typeName = 'svc.v1.MsgRegisterServiceResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "root_capability_cid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "service_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'root_capability_cid', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'service_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRegisterServiceResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgRegisterServiceResponse {
     return new MsgRegisterServiceResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgRegisterServiceResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgRegisterServiceResponse {
     return new MsgRegisterServiceResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgRegisterServiceResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgRegisterServiceResponse {
     return new MsgRegisterServiceResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRegisterServiceResponse | PlainMessage<MsgRegisterServiceResponse> | undefined, b: MsgRegisterServiceResponse | PlainMessage<MsgRegisterServiceResponse> | undefined): boolean {
+  static equals(
+    a: MsgRegisterServiceResponse | PlainMessage<MsgRegisterServiceResponse> | undefined,
+    b: MsgRegisterServiceResponse | PlainMessage<MsgRegisterServiceResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRegisterServiceResponse, a, b);
   }
 }
-

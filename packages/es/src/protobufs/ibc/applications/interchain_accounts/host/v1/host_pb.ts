@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
 
 /**
  * Params defines the set of on-chain interchain accounts parameters.
@@ -33,10 +40,10 @@ export class Params extends Message<Params> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.interchain_accounts.host.v1.Params";
+  static readonly typeName = 'ibc.applications.interchain_accounts.host.v1.Params';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "host_enabled", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 2, name: "allow_messages", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 1, name: 'host_enabled', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: 'allow_messages', kind: 'scalar', T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Params {
@@ -51,7 +58,10 @@ export class Params extends Message<Params> {
     return new Params().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Params | PlainMessage<Params> | undefined, b: Params | PlainMessage<Params> | undefined): boolean {
+  static equals(
+    a: Params | PlainMessage<Params> | undefined,
+    b: Params | PlainMessage<Params> | undefined
+  ): boolean {
     return proto3.util.equals(Params, a, b);
   }
 }
@@ -69,7 +79,7 @@ export class QueryRequest extends Message<QueryRequest> {
    *
    * @generated from field: string path = 1;
    */
-  path = "";
+  path = '';
 
   /**
    * data defines the payload of the query request as defined by ADR-021.
@@ -85,10 +95,10 @@ export class QueryRequest extends Message<QueryRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.interchain_accounts.host.v1.QueryRequest";
+  static readonly typeName = 'ibc.applications.interchain_accounts.host.v1.QueryRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'path', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'data', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryRequest {
@@ -103,8 +113,10 @@ export class QueryRequest extends Message<QueryRequest> {
     return new QueryRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryRequest | PlainMessage<QueryRequest> | undefined, b: QueryRequest | PlainMessage<QueryRequest> | undefined): boolean {
+  static equals(
+    a: QueryRequest | PlainMessage<QueryRequest> | undefined,
+    b: QueryRequest | PlainMessage<QueryRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryRequest, a, b);
   }
 }
-

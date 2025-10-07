@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { Config } from "./config_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { Config } from './config_pb.js';
 
 /**
  * MsgRegisterCounterparty defines a message to register a counterparty on a client
@@ -18,7 +25,7 @@ export class MsgRegisterCounterparty extends Message<MsgRegisterCounterparty> {
    *
    * @generated from field: string client_id = 1;
    */
-  clientId = "";
+  clientId = '';
 
   /**
    * counterparty merkle prefix
@@ -32,14 +39,14 @@ export class MsgRegisterCounterparty extends Message<MsgRegisterCounterparty> {
    *
    * @generated from field: string counterparty_client_id = 3;
    */
-  counterpartyClientId = "";
+  counterpartyClientId = '';
 
   /**
    * signer address
    *
    * @generated from field: string signer = 4;
    */
-  signer = "";
+  signer = '';
 
   constructor(data?: PartialMessage<MsgRegisterCounterparty>) {
     super();
@@ -47,27 +54,45 @@ export class MsgRegisterCounterparty extends Message<MsgRegisterCounterparty> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.client.v2.MsgRegisterCounterparty";
+  static readonly typeName = 'ibc.core.client.v2.MsgRegisterCounterparty';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "counterparty_merkle_prefix", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
-    { no: 3, name: "counterparty_client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'client_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    {
+      no: 2,
+      name: 'counterparty_merkle_prefix',
+      kind: 'scalar',
+      T: 12 /* ScalarType.BYTES */,
+      repeated: true,
+    },
+    { no: 3, name: 'counterparty_client_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRegisterCounterparty {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgRegisterCounterparty {
     return new MsgRegisterCounterparty().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgRegisterCounterparty {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgRegisterCounterparty {
     return new MsgRegisterCounterparty().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgRegisterCounterparty {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgRegisterCounterparty {
     return new MsgRegisterCounterparty().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRegisterCounterparty | PlainMessage<MsgRegisterCounterparty> | undefined, b: MsgRegisterCounterparty | PlainMessage<MsgRegisterCounterparty> | undefined): boolean {
+  static equals(
+    a: MsgRegisterCounterparty | PlainMessage<MsgRegisterCounterparty> | undefined,
+    b: MsgRegisterCounterparty | PlainMessage<MsgRegisterCounterparty> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRegisterCounterparty, a, b);
   }
 }
@@ -84,23 +109,34 @@ export class MsgRegisterCounterpartyResponse extends Message<MsgRegisterCounterp
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.client.v2.MsgRegisterCounterpartyResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ibc.core.client.v2.MsgRegisterCounterpartyResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRegisterCounterpartyResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgRegisterCounterpartyResponse {
     return new MsgRegisterCounterpartyResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgRegisterCounterpartyResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgRegisterCounterpartyResponse {
     return new MsgRegisterCounterpartyResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgRegisterCounterpartyResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgRegisterCounterpartyResponse {
     return new MsgRegisterCounterpartyResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRegisterCounterpartyResponse | PlainMessage<MsgRegisterCounterpartyResponse> | undefined, b: MsgRegisterCounterpartyResponse | PlainMessage<MsgRegisterCounterpartyResponse> | undefined): boolean {
+  static equals(
+    a: MsgRegisterCounterpartyResponse | PlainMessage<MsgRegisterCounterpartyResponse> | undefined,
+    b: MsgRegisterCounterpartyResponse | PlainMessage<MsgRegisterCounterpartyResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRegisterCounterpartyResponse, a, b);
   }
 }
@@ -116,7 +152,7 @@ export class MsgUpdateClientConfig extends Message<MsgUpdateClientConfig> {
    *
    * @generated from field: string client_id = 1;
    */
-  clientId = "";
+  clientId = '';
 
   /**
    * allowed relayers
@@ -132,7 +168,7 @@ export class MsgUpdateClientConfig extends Message<MsgUpdateClientConfig> {
    *
    * @generated from field: string signer = 3;
    */
-  signer = "";
+  signer = '';
 
   constructor(data?: PartialMessage<MsgUpdateClientConfig>) {
     super();
@@ -140,14 +176,17 @@ export class MsgUpdateClientConfig extends Message<MsgUpdateClientConfig> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.client.v2.MsgUpdateClientConfig";
+  static readonly typeName = 'ibc.core.client.v2.MsgUpdateClientConfig';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "config", kind: "message", T: Config },
-    { no: 3, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'client_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'config', kind: 'message', T: Config },
+    { no: 3, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUpdateClientConfig {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgUpdateClientConfig {
     return new MsgUpdateClientConfig().fromBinary(bytes, options);
   }
 
@@ -155,11 +194,17 @@ export class MsgUpdateClientConfig extends Message<MsgUpdateClientConfig> {
     return new MsgUpdateClientConfig().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgUpdateClientConfig {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgUpdateClientConfig {
     return new MsgUpdateClientConfig().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgUpdateClientConfig | PlainMessage<MsgUpdateClientConfig> | undefined, b: MsgUpdateClientConfig | PlainMessage<MsgUpdateClientConfig> | undefined): boolean {
+  static equals(
+    a: MsgUpdateClientConfig | PlainMessage<MsgUpdateClientConfig> | undefined,
+    b: MsgUpdateClientConfig | PlainMessage<MsgUpdateClientConfig> | undefined
+  ): boolean {
     return proto3.util.equals(MsgUpdateClientConfig, a, b);
   }
 }
@@ -176,24 +221,34 @@ export class MsgUpdateClientConfigResponse extends Message<MsgUpdateClientConfig
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.client.v2.MsgUpdateClientConfigResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ibc.core.client.v2.MsgUpdateClientConfigResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUpdateClientConfigResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgUpdateClientConfigResponse {
     return new MsgUpdateClientConfigResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgUpdateClientConfigResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgUpdateClientConfigResponse {
     return new MsgUpdateClientConfigResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgUpdateClientConfigResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgUpdateClientConfigResponse {
     return new MsgUpdateClientConfigResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgUpdateClientConfigResponse | PlainMessage<MsgUpdateClientConfigResponse> | undefined, b: MsgUpdateClientConfigResponse | PlainMessage<MsgUpdateClientConfigResponse> | undefined): boolean {
+  static equals(
+    a: MsgUpdateClientConfigResponse | PlainMessage<MsgUpdateClientConfigResponse> | undefined,
+    b: MsgUpdateClientConfigResponse | PlainMessage<MsgUpdateClientConfigResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgUpdateClientConfigResponse, a, b);
   }
 }
-

@@ -3,9 +3,22 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { CredentialProof, CredentialStatus, Service, VerificationMethod, VerificationMethodReference } from "./types_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import {
+  CredentialProof,
+  CredentialStatus,
+  Service,
+  VerificationMethod,
+  VerificationMethodReference,
+} from './types_pb.js';
 
 /**
  * Authentication is the authentication method to be used by the DID.
@@ -18,35 +31,35 @@ export class Authentication extends Message<Authentication> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * The authentication of the DID
    *
    * @generated from field: string controller = 2;
    */
-  controller = "";
+  controller = '';
 
   /**
    * Origin of the authentication
    *
    * @generated from field: string subject = 3;
    */
-  subject = "";
+  subject = '';
 
   /**
    * string is the verification method
    *
    * @generated from field: string public_key_base64 = 4;
    */
-  publicKeyBase64 = "";
+  publicKeyBase64 = '';
 
   /**
    * AssertionKind is the assertion type
    *
    * @generated from field: string did_kind = 5;
    */
-  didKind = "";
+  didKind = '';
 
   /**
    * CreationBlock is the block number of the creation of the authentication
@@ -61,14 +74,14 @@ export class Authentication extends Message<Authentication> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.Authentication";
+  static readonly typeName = 'did.v1.Authentication';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "controller", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "subject", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "public_key_base64", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "did_kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "creation_block", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'controller', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'subject', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'public_key_base64', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'did_kind', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'creation_block', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Authentication {
@@ -83,7 +96,10 @@ export class Authentication extends Message<Authentication> {
     return new Authentication().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Authentication | PlainMessage<Authentication> | undefined, b: Authentication | PlainMessage<Authentication> | undefined): boolean {
+  static equals(
+    a: Authentication | PlainMessage<Authentication> | undefined,
+    b: Authentication | PlainMessage<Authentication> | undefined
+  ): boolean {
     return proto3.util.equals(Authentication, a, b);
   }
 }
@@ -99,35 +115,35 @@ export class Assertion extends Message<Assertion> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * The authentication of the DID
    *
    * @generated from field: string controller = 2;
    */
-  controller = "";
+  controller = '';
 
   /**
    * Origin of the authentication
    *
    * @generated from field: string subject = 3;
    */
-  subject = "";
+  subject = '';
 
   /**
    * string is the verification method
    *
    * @generated from field: string public_key_base64 = 4;
    */
-  publicKeyBase64 = "";
+  publicKeyBase64 = '';
 
   /**
    * DIDKind is the DID type
    *
    * @generated from field: string did_kind = 5;
    */
-  didKind = "";
+  didKind = '';
 
   /**
    * CreationBlock is the block number of the creation of the authentication
@@ -142,14 +158,14 @@ export class Assertion extends Message<Assertion> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.Assertion";
+  static readonly typeName = 'did.v1.Assertion';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "controller", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "subject", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "public_key_base64", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "did_kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "creation_block", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'controller', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'subject', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'public_key_base64', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'did_kind', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'creation_block', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Assertion {
@@ -164,7 +180,10 @@ export class Assertion extends Message<Assertion> {
     return new Assertion().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Assertion | PlainMessage<Assertion> | undefined, b: Assertion | PlainMessage<Assertion> | undefined): boolean {
+  static equals(
+    a: Assertion | PlainMessage<Assertion> | undefined,
+    b: Assertion | PlainMessage<Assertion> | undefined
+  ): boolean {
     return proto3.util.equals(Assertion, a, b);
   }
 }
@@ -180,35 +199,35 @@ export class Controller extends Message<Controller> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * The authentication of the DID
    *
    * @generated from field: string address = 2;
    */
-  address = "";
+  address = '';
 
   /**
    * Origin of the authentication
    *
    * @generated from field: string subject = 3;
    */
-  subject = "";
+  subject = '';
 
   /**
    * string is the verification method
    *
    * @generated from field: string public_key_base64 = 4;
    */
-  publicKeyBase64 = "";
+  publicKeyBase64 = '';
 
   /**
    * DIDKind is the DID type
    *
    * @generated from field: string did_kind = 5;
    */
-  didKind = "";
+  didKind = '';
 
   /**
    * CreationBlock is the block number of the creation of the authentication
@@ -223,14 +242,14 @@ export class Controller extends Message<Controller> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.Controller";
+  static readonly typeName = 'did.v1.Controller';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "subject", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "public_key_base64", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "did_kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "creation_block", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'subject', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'public_key_base64', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'did_kind', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'creation_block', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Controller {
@@ -245,7 +264,10 @@ export class Controller extends Message<Controller> {
     return new Controller().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Controller | PlainMessage<Controller> | undefined, b: Controller | PlainMessage<Controller> | undefined): boolean {
+  static equals(
+    a: Controller | PlainMessage<Controller> | undefined,
+    b: Controller | PlainMessage<Controller> | undefined
+  ): boolean {
     return proto3.util.equals(Controller, a, b);
   }
 }
@@ -262,35 +284,35 @@ export class Delegation extends Message<Delegation> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * The authentication of the DID
    *
    * @generated from field: string controller = 2;
    */
-  controller = "";
+  controller = '';
 
   /**
    * Origin of the authentication
    *
    * @generated from field: string subject = 3;
    */
-  subject = "";
+  subject = '';
 
   /**
    * string is the verification method
    *
    * @generated from field: string public_key_base64 = 4;
    */
-  publicKeyBase64 = "";
+  publicKeyBase64 = '';
 
   /**
    * DIDKind is the DID type
    *
    * @generated from field: string did_kind = 5;
    */
-  didKind = "";
+  didKind = '';
 
   /**
    * CreationBlock is the block number of the creation of the authentication
@@ -305,14 +327,14 @@ export class Delegation extends Message<Delegation> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.Delegation";
+  static readonly typeName = 'did.v1.Delegation';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "controller", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "subject", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "public_key_base64", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "did_kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "creation_block", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'controller', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'subject', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'public_key_base64', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'did_kind', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'creation_block', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Delegation {
@@ -327,7 +349,10 @@ export class Delegation extends Message<Delegation> {
     return new Delegation().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Delegation | PlainMessage<Delegation> | undefined, b: Delegation | PlainMessage<Delegation> | undefined): boolean {
+  static equals(
+    a: Delegation | PlainMessage<Delegation> | undefined,
+    b: Delegation | PlainMessage<Delegation> | undefined
+  ): boolean {
     return proto3.util.equals(Delegation, a, b);
   }
 }
@@ -344,35 +369,35 @@ export class Invocation extends Message<Invocation> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * The authentication of the DID
    *
    * @generated from field: string controller = 2;
    */
-  controller = "";
+  controller = '';
 
   /**
    * Origin of the authentication
    *
    * @generated from field: string subject = 3;
    */
-  subject = "";
+  subject = '';
 
   /**
    * string is the verification method
    *
    * @generated from field: string public_key_base64 = 4;
    */
-  publicKeyBase64 = "";
+  publicKeyBase64 = '';
 
   /**
    * DIDKind is the DID type
    *
    * @generated from field: string did_kind = 5;
    */
-  didKind = "";
+  didKind = '';
 
   /**
    * CreationBlock is the block number of the creation of the authentication
@@ -387,14 +412,14 @@ export class Invocation extends Message<Invocation> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.Invocation";
+  static readonly typeName = 'did.v1.Invocation';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "controller", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "subject", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "public_key_base64", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "did_kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "creation_block", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'controller', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'subject', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'public_key_base64', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'did_kind', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'creation_block', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Invocation {
@@ -409,7 +434,10 @@ export class Invocation extends Message<Invocation> {
     return new Invocation().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Invocation | PlainMessage<Invocation> | undefined, b: Invocation | PlainMessage<Invocation> | undefined): boolean {
+  static equals(
+    a: Invocation | PlainMessage<Invocation> | undefined,
+    b: Invocation | PlainMessage<Invocation> | undefined
+  ): boolean {
     return proto3.util.equals(Invocation, a, b);
   }
 }
@@ -425,7 +453,7 @@ export class DIDDocument extends Message<DIDDocument> {
    *
    * @generated from field: string id = 1;
    */
-  id = "";
+  id = '';
 
   /**
    * primary_controller identifies the primary entity that controls the DID
@@ -433,7 +461,7 @@ export class DIDDocument extends Message<DIDDocument> {
    *
    * @generated from field: string primary_controller = 2;
    */
-  primaryController = "";
+  primaryController = '';
 
   /**
    * alsoKnownAs expresses other identifiers for the DID subject (OPTIONAL)
@@ -528,22 +556,52 @@ export class DIDDocument extends Message<DIDDocument> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.DIDDocument";
+  static readonly typeName = 'did.v1.DIDDocument';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "primary_controller", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "also_known_as", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 4, name: "verification_method", kind: "message", T: VerificationMethod, repeated: true },
-    { no: 5, name: "authentication", kind: "message", T: VerificationMethodReference, repeated: true },
-    { no: 6, name: "assertion_method", kind: "message", T: VerificationMethodReference, repeated: true },
-    { no: 7, name: "key_agreement", kind: "message", T: VerificationMethodReference, repeated: true },
-    { no: 8, name: "capability_invocation", kind: "message", T: VerificationMethodReference, repeated: true },
-    { no: 9, name: "capability_delegation", kind: "message", T: VerificationMethodReference, repeated: true },
-    { no: 10, name: "service", kind: "message", T: Service, repeated: true },
-    { no: 11, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 12, name: "updated_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 13, name: "deactivated", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 14, name: "version", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'primary_controller', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'also_known_as', kind: 'scalar', T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 4, name: 'verification_method', kind: 'message', T: VerificationMethod, repeated: true },
+    {
+      no: 5,
+      name: 'authentication',
+      kind: 'message',
+      T: VerificationMethodReference,
+      repeated: true,
+    },
+    {
+      no: 6,
+      name: 'assertion_method',
+      kind: 'message',
+      T: VerificationMethodReference,
+      repeated: true,
+    },
+    {
+      no: 7,
+      name: 'key_agreement',
+      kind: 'message',
+      T: VerificationMethodReference,
+      repeated: true,
+    },
+    {
+      no: 8,
+      name: 'capability_invocation',
+      kind: 'message',
+      T: VerificationMethodReference,
+      repeated: true,
+    },
+    {
+      no: 9,
+      name: 'capability_delegation',
+      kind: 'message',
+      T: VerificationMethodReference,
+      repeated: true,
+    },
+    { no: 10, name: 'service', kind: 'message', T: Service, repeated: true },
+    { no: 11, name: 'created_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 12, name: 'updated_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 13, name: 'deactivated', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 14, name: 'version', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DIDDocument {
@@ -558,7 +616,10 @@ export class DIDDocument extends Message<DIDDocument> {
     return new DIDDocument().fromJsonString(jsonString, options);
   }
 
-  static equals(a: DIDDocument | PlainMessage<DIDDocument> | undefined, b: DIDDocument | PlainMessage<DIDDocument> | undefined): boolean {
+  static equals(
+    a: DIDDocument | PlainMessage<DIDDocument> | undefined,
+    b: DIDDocument | PlainMessage<DIDDocument> | undefined
+  ): boolean {
     return proto3.util.equals(DIDDocument, a, b);
   }
 }
@@ -574,7 +635,7 @@ export class DIDDocumentMetadata extends Message<DIDDocumentMetadata> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * created is when the DID was created
@@ -602,7 +663,7 @@ export class DIDDocumentMetadata extends Message<DIDDocumentMetadata> {
    *
    * @generated from field: string version_id = 5;
    */
-  versionId = "";
+  versionId = '';
 
   /**
    * next_update is when the next update is scheduled (if applicable)
@@ -616,7 +677,7 @@ export class DIDDocumentMetadata extends Message<DIDDocumentMetadata> {
    *
    * @generated from field: string next_version_id = 7;
    */
-  nextVersionId = "";
+  nextVersionId = '';
 
   /**
    * equivalentId lists equivalent DIDs
@@ -630,7 +691,7 @@ export class DIDDocumentMetadata extends Message<DIDDocumentMetadata> {
    *
    * @generated from field: string canonical_id = 9;
    */
-  canonicalId = "";
+  canonicalId = '';
 
   constructor(data?: PartialMessage<DIDDocumentMetadata>) {
     super();
@@ -638,17 +699,17 @@ export class DIDDocumentMetadata extends Message<DIDDocumentMetadata> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.DIDDocumentMetadata";
+  static readonly typeName = 'did.v1.DIDDocumentMetadata';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "created", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 3, name: "updated", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 4, name: "deactivated", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 5, name: "version_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "next_update", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 7, name: "next_version_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 8, name: "equivalent_id", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 9, name: "canonical_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'created', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 3, name: 'updated', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 4, name: 'deactivated', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 5, name: 'version_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'next_update', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 7, name: 'next_version_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: 'equivalent_id', kind: 'scalar', T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 9, name: 'canonical_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DIDDocumentMetadata {
@@ -659,11 +720,17 @@ export class DIDDocumentMetadata extends Message<DIDDocumentMetadata> {
     return new DIDDocumentMetadata().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DIDDocumentMetadata {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): DIDDocumentMetadata {
     return new DIDDocumentMetadata().fromJsonString(jsonString, options);
   }
 
-  static equals(a: DIDDocumentMetadata | PlainMessage<DIDDocumentMetadata> | undefined, b: DIDDocumentMetadata | PlainMessage<DIDDocumentMetadata> | undefined): boolean {
+  static equals(
+    a: DIDDocumentMetadata | PlainMessage<DIDDocumentMetadata> | undefined,
+    b: DIDDocumentMetadata | PlainMessage<DIDDocumentMetadata> | undefined
+  ): boolean {
     return proto3.util.equals(DIDDocumentMetadata, a, b);
   }
 }
@@ -679,7 +746,7 @@ export class VerifiableCredential extends Message<VerifiableCredential> {
    *
    * @generated from field: string id = 1;
    */
-  id = "";
+  id = '';
 
   /**
    * context is the JSON-LD contexts
@@ -700,21 +767,21 @@ export class VerifiableCredential extends Message<VerifiableCredential> {
    *
    * @generated from field: string issuer = 4;
    */
-  issuer = "";
+  issuer = '';
 
   /**
    * issuanceDate is when the credential was issued
    *
    * @generated from field: string issuance_date = 5;
    */
-  issuanceDate = "";
+  issuanceDate = '';
 
   /**
    * expirationDate is when the credential expires (optional)
    *
    * @generated from field: string expiration_date = 6;
    */
-  expirationDate = "";
+  expirationDate = '';
 
   /**
    * credentialSubject contains the claims about the subject as JSON
@@ -743,7 +810,7 @@ export class VerifiableCredential extends Message<VerifiableCredential> {
    *
    * @generated from field: string subject = 10;
    */
-  subject = "";
+  subject = '';
 
   /**
    * Block height when issued
@@ -772,21 +839,27 @@ export class VerifiableCredential extends Message<VerifiableCredential> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.VerifiableCredential";
+  static readonly typeName = 'did.v1.VerifiableCredential';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "context", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 3, name: "credential_kinds", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 4, name: "issuer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "issuance_date", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "expiration_date", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "credential_subject", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 8, name: "proof", kind: "message", T: CredentialProof, repeated: true },
-    { no: 9, name: "credential_status", kind: "message", T: CredentialStatus },
-    { no: 10, name: "subject", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 11, name: "issued_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 12, name: "expires_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 13, name: "revoked", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'context', kind: 'scalar', T: 9 /* ScalarType.STRING */, repeated: true },
+    {
+      no: 3,
+      name: 'credential_kinds',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    { no: 4, name: 'issuer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'issuance_date', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'expiration_date', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: 'credential_subject', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 8, name: 'proof', kind: 'message', T: CredentialProof, repeated: true },
+    { no: 9, name: 'credential_status', kind: 'message', T: CredentialStatus },
+    { no: 10, name: 'subject', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 11, name: 'issued_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 12, name: 'expires_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 13, name: 'revoked', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VerifiableCredential {
@@ -797,11 +870,17 @@ export class VerifiableCredential extends Message<VerifiableCredential> {
     return new VerifiableCredential().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): VerifiableCredential {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): VerifiableCredential {
     return new VerifiableCredential().fromJsonString(jsonString, options);
   }
 
-  static equals(a: VerifiableCredential | PlainMessage<VerifiableCredential> | undefined, b: VerifiableCredential | PlainMessage<VerifiableCredential> | undefined): boolean {
+  static equals(
+    a: VerifiableCredential | PlainMessage<VerifiableCredential> | undefined,
+    b: VerifiableCredential | PlainMessage<VerifiableCredential> | undefined
+  ): boolean {
     return proto3.util.equals(VerifiableCredential, a, b);
   }
 }
@@ -824,14 +903,14 @@ export class DIDController extends Message<DIDController> {
    *
    * @generated from field: string did = 2;
    */
-  did = "";
+  did = '';
 
   /**
    * controller_did is the controller DID
    *
    * @generated from field: string controller_did = 3;
    */
-  controllerDid = "";
+  controllerDid = '';
 
   /**
    * added_at is when this controller was added
@@ -846,12 +925,12 @@ export class DIDController extends Message<DIDController> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.DIDController";
+  static readonly typeName = 'did.v1.DIDController';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "controller_did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "added_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: 'id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'controller_did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'added_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DIDController {
@@ -866,8 +945,10 @@ export class DIDController extends Message<DIDController> {
     return new DIDController().fromJsonString(jsonString, options);
   }
 
-  static equals(a: DIDController | PlainMessage<DIDController> | undefined, b: DIDController | PlainMessage<DIDController> | undefined): boolean {
+  static equals(
+    a: DIDController | PlainMessage<DIDController> | undefined,
+    b: DIDController | PlainMessage<DIDController> | undefined
+  ): boolean {
     return proto3.util.equals(DIDController, a, b);
   }
 }
-

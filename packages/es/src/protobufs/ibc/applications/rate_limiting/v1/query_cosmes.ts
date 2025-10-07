@@ -3,9 +3,22 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryAllBlacklistedDenomsRequest, QueryAllBlacklistedDenomsResponse, QueryAllRateLimitsRequest, QueryAllRateLimitsResponse, QueryAllWhitelistedAddressesRequest, QueryAllWhitelistedAddressesResponse, QueryRateLimitRequest, QueryRateLimitResponse, QueryRateLimitsByChainIDRequest, QueryRateLimitsByChainIDResponse, QueryRateLimitsByChannelOrClientIDRequest, QueryRateLimitsByChannelOrClientIDResponse } from "./query_pb.js";
+import {
+  QueryAllBlacklistedDenomsRequest,
+  QueryAllBlacklistedDenomsResponse,
+  QueryAllRateLimitsRequest,
+  QueryAllRateLimitsResponse,
+  QueryAllWhitelistedAddressesRequest,
+  QueryAllWhitelistedAddressesResponse,
+  QueryRateLimitRequest,
+  QueryRateLimitResponse,
+  QueryRateLimitsByChainIDRequest,
+  QueryRateLimitsByChainIDResponse,
+  QueryRateLimitsByChannelOrClientIDRequest,
+  QueryRateLimitsByChannelOrClientIDResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "ibc.applications.rate_limiting.v1.Query";
+const TYPE_NAME = 'ibc.applications.rate_limiting.v1.Query';
 
 /**
  * Queries all rate limits
@@ -14,7 +27,7 @@ const TYPE_NAME = "ibc.applications.rate_limiting.v1.Query";
  */
 export const QueryAllRateLimitsService = {
   typeName: TYPE_NAME,
-  method: "AllRateLimits",
+  method: 'AllRateLimits',
   Request: QueryAllRateLimitsRequest,
   Response: QueryAllRateLimitsResponse,
 } as const;
@@ -28,7 +41,7 @@ export const QueryAllRateLimitsService = {
  */
 export const QueryRateLimitService = {
   typeName: TYPE_NAME,
-  method: "RateLimit",
+  method: 'RateLimit',
   Request: QueryRateLimitRequest,
   Response: QueryRateLimitResponse,
 } as const;
@@ -40,7 +53,7 @@ export const QueryRateLimitService = {
  */
 export const QueryRateLimitsByChainIDService = {
   typeName: TYPE_NAME,
-  method: "RateLimitsByChainID",
+  method: 'RateLimitsByChainID',
   Request: QueryRateLimitsByChainIDRequest,
   Response: QueryRateLimitsByChainIDResponse,
 } as const;
@@ -52,7 +65,7 @@ export const QueryRateLimitsByChainIDService = {
  */
 export const QueryRateLimitsByChannelOrClientIDService = {
   typeName: TYPE_NAME,
-  method: "RateLimitsByChannelOrClientID",
+  method: 'RateLimitsByChannelOrClientID',
   Request: QueryRateLimitsByChannelOrClientIDRequest,
   Response: QueryRateLimitsByChannelOrClientIDResponse,
 } as const;
@@ -64,7 +77,7 @@ export const QueryRateLimitsByChannelOrClientIDService = {
  */
 export const QueryAllBlacklistedDenomsService = {
   typeName: TYPE_NAME,
-  method: "AllBlacklistedDenoms",
+  method: 'AllBlacklistedDenoms',
   Request: QueryAllBlacklistedDenomsRequest,
   Response: QueryAllBlacklistedDenomsResponse,
 } as const;
@@ -76,8 +89,7 @@ export const QueryAllBlacklistedDenomsService = {
  */
 export const QueryAllWhitelistedAddressesService = {
   typeName: TYPE_NAME,
-  method: "AllWhitelistedAddresses",
+  method: 'AllWhitelistedAddresses',
   Request: QueryAllWhitelistedAddressesRequest,
   Response: QueryAllWhitelistedAddressesResponse,
 } as const;
-

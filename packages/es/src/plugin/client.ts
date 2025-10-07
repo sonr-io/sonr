@@ -1,8 +1,5 @@
 import { createPlugin, Plugin } from '@extism/extism';
-import {
-  VaultError,
-  VaultErrorCode,
-} from './types';
+import { VaultError, VaultErrorCode } from './types';
 import type {
   VaultConfig,
   VaultPlugin,
@@ -74,7 +71,6 @@ export class VaultClient implements VaultPlugin {
       this.plugin = await createPlugin(pluginConfig, {
         useWasi: true,
       });
-
     } catch (error) {
       throw new VaultError(
         VaultErrorCode.WASM_NOT_LOADED,
@@ -89,7 +85,7 @@ export class VaultClient implements VaultPlugin {
    */
   private prepareConfig(): Record<string, string> {
     const config: Record<string, string> = {};
-    
+
     if (this.config.chainId) {
       config.chain_id = this.config.chainId;
     }
@@ -122,10 +118,7 @@ export class VaultClient implements VaultPlugin {
    */
   private parsePluginOutput<T>(output: any): T {
     if (!output) {
-      throw new VaultError(
-        VaultErrorCode.OPERATION_FAILED,
-        'No output from plugin'
-      );
+      throw new VaultError(VaultErrorCode.OPERATION_FAILED, 'No output from plugin');
     }
 
     // Handle both Uint8Array and PluginOutput types
@@ -140,7 +133,7 @@ export class VaultClient implements VaultPlugin {
     } else {
       text = output.toString();
     }
-    
+
     return JSON.parse(text) as T;
   }
 
@@ -156,10 +149,7 @@ export class VaultClient implements VaultPlugin {
       const response = this.parsePluginOutput<UCANTokenResponse>(output);
 
       if (response.error) {
-        throw new VaultError(
-          VaultErrorCode.OPERATION_FAILED,
-          response.error
-        );
+        throw new VaultError(VaultErrorCode.OPERATION_FAILED, response.error);
       }
 
       // Save token if persistence is enabled
@@ -192,10 +182,7 @@ export class VaultClient implements VaultPlugin {
       const response = this.parsePluginOutput<UCANTokenResponse>(output);
 
       if (response.error) {
-        throw new VaultError(
-          VaultErrorCode.OPERATION_FAILED,
-          response.error
-        );
+        throw new VaultError(VaultErrorCode.OPERATION_FAILED, response.error);
       }
 
       // Save token if persistence is enabled
@@ -230,10 +217,7 @@ export class VaultClient implements VaultPlugin {
       const response = this.parsePluginOutput<any>(output);
 
       if (response.error) {
-        throw new VaultError(
-          VaultErrorCode.OPERATION_FAILED,
-          response.error
-        );
+        throw new VaultError(VaultErrorCode.OPERATION_FAILED, response.error);
       }
 
       return {
@@ -244,11 +228,7 @@ export class VaultClient implements VaultPlugin {
       if (error instanceof VaultError) {
         throw error;
       }
-      throw new VaultError(
-        VaultErrorCode.OPERATION_FAILED,
-        `Failed to sign data: ${error}`,
-        error
-      );
+      throw new VaultError(VaultErrorCode.OPERATION_FAILED, `Failed to sign data: ${error}`, error);
     }
   }
 
@@ -267,10 +247,7 @@ export class VaultClient implements VaultPlugin {
       const response = this.parsePluginOutput<VerifyDataResponse>(output);
 
       if (response.error) {
-        throw new VaultError(
-          VaultErrorCode.OPERATION_FAILED,
-          response.error
-        );
+        throw new VaultError(VaultErrorCode.OPERATION_FAILED, response.error);
       }
 
       return response;
@@ -297,10 +274,7 @@ export class VaultClient implements VaultPlugin {
       const response = this.parsePluginOutput<GetIssuerDIDResponse>(output);
 
       if (response.error) {
-        throw new VaultError(
-          VaultErrorCode.OPERATION_FAILED,
-          response.error
-        );
+        throw new VaultError(VaultErrorCode.OPERATION_FAILED, response.error);
       }
 
       return response;
@@ -406,10 +380,7 @@ export class VaultClient implements VaultPlugin {
     if (!this.database) return;
 
     const now = Date.now();
-    await this.database.tokens
-      .where('expiresAt')
-      .below(now)
-      .delete();
+    await this.database.tokens.where('expiresAt').below(now).delete();
   }
 
   // ============= Account Management Methods =============
@@ -419,10 +390,7 @@ export class VaultClient implements VaultPlugin {
    */
   async switchAccount(newAccountAddress: string): Promise<void> {
     if (!this.storageManager) {
-      throw new VaultError(
-        VaultErrorCode.NOT_INITIALIZED,
-        'Storage manager not initialized'
-      );
+      throw new VaultError(VaultErrorCode.NOT_INITIALIZED, 'Storage manager not initialized');
     }
 
     // Save current state before switching

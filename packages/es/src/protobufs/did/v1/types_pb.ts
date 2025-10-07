@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * VerificationMethod represents a verification method in a DID document
@@ -17,21 +24,21 @@ export class VerificationMethod extends Message<VerificationMethod> {
    *
    * @generated from field: string id = 1;
    */
-  id = "";
+  id = '';
 
   /**
    * verification_method_kind is the verification method type (REQUIRED)
    *
    * @generated from field: string verification_method_kind = 2;
    */
-  verificationMethodKind = "";
+  verificationMethodKind = '';
 
   /**
    * controller is the DID that controls this verification method (REQUIRED)
    *
    * @generated from field: string controller = 3;
    */
-  controller = "";
+  controller = '';
 
   /**
    * Public key material (optional, only one should be set)
@@ -39,42 +46,42 @@ export class VerificationMethod extends Message<VerificationMethod> {
    *
    * @generated from field: string public_key_jwk = 4;
    */
-  publicKeyJwk = "";
+  publicKeyJwk = '';
 
   /**
    * publicKeyMultibase represents the public key as multibase
    *
    * @generated from field: string public_key_multibase = 5;
    */
-  publicKeyMultibase = "";
+  publicKeyMultibase = '';
 
   /**
    * publicKeyBase58 represents the public key in Base58 (legacy)
    *
    * @generated from field: string public_key_base58 = 6;
    */
-  publicKeyBase58 = "";
+  publicKeyBase58 = '';
 
   /**
    * publicKeyBase64 represents the public key in Base64 (legacy)
    *
    * @generated from field: string public_key_base64 = 7;
    */
-  publicKeyBase64 = "";
+  publicKeyBase64 = '';
 
   /**
    * publicKeyPem represents the public key in PEM format (legacy)
    *
    * @generated from field: string public_key_pem = 8;
    */
-  publicKeyPem = "";
+  publicKeyPem = '';
 
   /**
    * publicKeyHex represents the public key in hexadecimal (legacy)
    *
    * @generated from field: string public_key_hex = 9;
    */
-  publicKeyHex = "";
+  publicKeyHex = '';
 
   /**
    * WebAuthn credential information (for WebAuthn integration)
@@ -90,7 +97,7 @@ export class VerificationMethod extends Message<VerificationMethod> {
    *
    * @generated from field: string blockchain_account_id = 11;
    */
-  blockchainAccountId = "";
+  blockchainAccountId = '';
 
   constructor(data?: PartialMessage<VerificationMethod>) {
     super();
@@ -98,19 +105,19 @@ export class VerificationMethod extends Message<VerificationMethod> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.VerificationMethod";
+  static readonly typeName = 'did.v1.VerificationMethod';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "verification_method_kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "controller", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "public_key_jwk", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "public_key_multibase", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "public_key_base58", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "public_key_base64", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 8, name: "public_key_pem", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 9, name: "public_key_hex", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 10, name: "webauthn_credential", kind: "message", T: WebAuthnCredential },
-    { no: 11, name: "blockchain_account_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'verification_method_kind', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'controller', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'public_key_jwk', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'public_key_multibase', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'public_key_base58', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: 'public_key_base64', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: 'public_key_pem', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: 'public_key_hex', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 10, name: 'webauthn_credential', kind: 'message', T: WebAuthnCredential },
+    { no: 11, name: 'blockchain_account_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VerificationMethod {
@@ -121,11 +128,17 @@ export class VerificationMethod extends Message<VerificationMethod> {
     return new VerificationMethod().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): VerificationMethod {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): VerificationMethod {
     return new VerificationMethod().fromJsonString(jsonString, options);
   }
 
-  static equals(a: VerificationMethod | PlainMessage<VerificationMethod> | undefined, b: VerificationMethod | PlainMessage<VerificationMethod> | undefined): boolean {
+  static equals(
+    a: VerificationMethod | PlainMessage<VerificationMethod> | undefined,
+    b: VerificationMethod | PlainMessage<VerificationMethod> | undefined
+  ): boolean {
     return proto3.util.equals(VerificationMethod, a, b);
   }
 }
@@ -142,7 +155,7 @@ export class VerificationMethodReference extends Message<VerificationMethodRefer
    *
    * @generated from field: string verification_method_id = 1;
    */
-  verificationMethodId = "";
+  verificationMethodId = '';
 
   /**
    * embedded_verification_method is an embedded verification method (optional)
@@ -157,25 +170,37 @@ export class VerificationMethodReference extends Message<VerificationMethodRefer
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.VerificationMethodReference";
+  static readonly typeName = 'did.v1.VerificationMethodReference';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "verification_method_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "embedded_verification_method", kind: "message", T: VerificationMethod },
+    { no: 1, name: 'verification_method_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'embedded_verification_method', kind: 'message', T: VerificationMethod },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VerificationMethodReference {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): VerificationMethodReference {
     return new VerificationMethodReference().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): VerificationMethodReference {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): VerificationMethodReference {
     return new VerificationMethodReference().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): VerificationMethodReference {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): VerificationMethodReference {
     return new VerificationMethodReference().fromJsonString(jsonString, options);
   }
 
-  static equals(a: VerificationMethodReference | PlainMessage<VerificationMethodReference> | undefined, b: VerificationMethodReference | PlainMessage<VerificationMethodReference> | undefined): boolean {
+  static equals(
+    a: VerificationMethodReference | PlainMessage<VerificationMethodReference> | undefined,
+    b: VerificationMethodReference | PlainMessage<VerificationMethodReference> | undefined
+  ): boolean {
     return proto3.util.equals(VerificationMethodReference, a, b);
   }
 }
@@ -191,21 +216,21 @@ export class Service extends Message<Service> {
    *
    * @generated from field: string id = 1;
    */
-  id = "";
+  id = '';
 
   /**
    * service_kind is the service type (REQUIRED)
    *
    * @generated from field: string service_kind = 2;
    */
-  serviceKind = "";
+  serviceKind = '';
 
   /**
    * single_endpoint for a single URL
    *
    * @generated from field: string single_endpoint = 3;
    */
-  singleEndpoint = "";
+  singleEndpoint = '';
 
   /**
    * multiple_endpoints for multiple URLs
@@ -234,14 +259,20 @@ export class Service extends Message<Service> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.Service";
+  static readonly typeName = 'did.v1.Service';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "service_kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "single_endpoint", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "multiple_endpoints", kind: "message", T: ServiceEndpoints },
-    { no: 5, name: "complex_endpoint", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 6, name: "properties", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 1, name: 'id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'service_kind', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'single_endpoint', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'multiple_endpoints', kind: 'message', T: ServiceEndpoints },
+    { no: 5, name: 'complex_endpoint', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    {
+      no: 6,
+      name: 'properties',
+      kind: 'map',
+      K: 9 /* ScalarType.STRING */,
+      V: { kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Service {
@@ -256,7 +287,10 @@ export class Service extends Message<Service> {
     return new Service().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Service | PlainMessage<Service> | undefined, b: Service | PlainMessage<Service> | undefined): boolean {
+  static equals(
+    a: Service | PlainMessage<Service> | undefined,
+    b: Service | PlainMessage<Service> | undefined
+  ): boolean {
     return proto3.util.equals(Service, a, b);
   }
 }
@@ -278,9 +312,9 @@ export class ServiceEndpoints extends Message<ServiceEndpoints> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.ServiceEndpoints";
+  static readonly typeName = 'did.v1.ServiceEndpoints';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "endpoints", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 1, name: 'endpoints', kind: 'scalar', T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ServiceEndpoints {
@@ -295,7 +329,10 @@ export class ServiceEndpoints extends Message<ServiceEndpoints> {
     return new ServiceEndpoints().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ServiceEndpoints | PlainMessage<ServiceEndpoints> | undefined, b: ServiceEndpoints | PlainMessage<ServiceEndpoints> | undefined): boolean {
+  static equals(
+    a: ServiceEndpoints | PlainMessage<ServiceEndpoints> | undefined,
+    b: ServiceEndpoints | PlainMessage<ServiceEndpoints> | undefined
+  ): boolean {
     return proto3.util.equals(ServiceEndpoints, a, b);
   }
 }
@@ -311,7 +348,7 @@ export class WebAuthnCredential extends Message<WebAuthnCredential> {
    *
    * @generated from field: string credential_id = 1;
    */
-  credentialId = "";
+  credentialId = '';
 
   /**
    * public_key is the WebAuthn public key
@@ -332,14 +369,14 @@ export class WebAuthnCredential extends Message<WebAuthnCredential> {
    *
    * @generated from field: string attestation_type = 4;
    */
-  attestationType = "";
+  attestationType = '';
 
   /**
    * origin is the origin where the credential was created
    *
    * @generated from field: string origin = 5;
    */
-  origin = "";
+  origin = '';
 
   /**
    * created_at is when the credential was created
@@ -353,14 +390,14 @@ export class WebAuthnCredential extends Message<WebAuthnCredential> {
    *
    * @generated from field: string rp_id = 7;
    */
-  rpId = "";
+  rpId = '';
 
   /**
    * rp_name is the Relying Party Name
    *
    * @generated from field: string rp_name = 8;
    */
-  rpName = "";
+  rpName = '';
 
   /**
    * transports are the authenticator transports
@@ -381,28 +418,28 @@ export class WebAuthnCredential extends Message<WebAuthnCredential> {
    *
    * @generated from field: string signature_algorithm = 11;
    */
-  signatureAlgorithm = "";
+  signatureAlgorithm = '';
 
   /**
    * raw_id is the base64url encoded raw credential ID
    *
    * @generated from field: string raw_id = 12;
    */
-  rawId = "";
+  rawId = '';
 
   /**
    * client_data_json is the base64url encoded client data JSON
    *
    * @generated from field: string client_data_json = 13;
    */
-  clientDataJson = "";
+  clientDataJson = '';
 
   /**
    * attestation_object is the base64url encoded attestation object
    *
    * @generated from field: string attestation_object = 14;
    */
-  attestationObject = "";
+  attestationObject = '';
 
   constructor(data?: PartialMessage<WebAuthnCredential>) {
     super();
@@ -410,22 +447,22 @@ export class WebAuthnCredential extends Message<WebAuthnCredential> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.WebAuthnCredential";
+  static readonly typeName = 'did.v1.WebAuthnCredential';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "credential_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "public_key", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "algorithm", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 4, name: "attestation_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "origin", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 7, name: "rp_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 8, name: "rp_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 9, name: "transports", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 10, name: "user_verified", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 11, name: "signature_algorithm", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 12, name: "raw_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 13, name: "client_data_json", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 14, name: "attestation_object", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'credential_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'public_key', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: 'algorithm', kind: 'scalar', T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: 'attestation_type', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'origin', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'created_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 7, name: 'rp_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: 'rp_name', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: 'transports', kind: 'scalar', T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 10, name: 'user_verified', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 11, name: 'signature_algorithm', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 12, name: 'raw_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 13, name: 'client_data_json', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 14, name: 'attestation_object', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): WebAuthnCredential {
@@ -436,11 +473,17 @@ export class WebAuthnCredential extends Message<WebAuthnCredential> {
     return new WebAuthnCredential().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): WebAuthnCredential {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): WebAuthnCredential {
     return new WebAuthnCredential().fromJsonString(jsonString, options);
   }
 
-  static equals(a: WebAuthnCredential | PlainMessage<WebAuthnCredential> | undefined, b: WebAuthnCredential | PlainMessage<WebAuthnCredential> | undefined): boolean {
+  static equals(
+    a: WebAuthnCredential | PlainMessage<WebAuthnCredential> | undefined,
+    b: WebAuthnCredential | PlainMessage<WebAuthnCredential> | undefined
+  ): boolean {
     return proto3.util.equals(WebAuthnCredential, a, b);
   }
 }
@@ -457,35 +500,35 @@ export class CredentialProof extends Message<CredentialProof> {
    *
    * @generated from field: string proof_kind = 1;
    */
-  proofKind = "";
+  proofKind = '';
 
   /**
    * created is when the proof was created
    *
    * @generated from field: string created = 2;
    */
-  created = "";
+  created = '';
 
   /**
    * verificationMethod is the verification method used
    *
    * @generated from field: string verification_method = 3;
    */
-  verificationMethod = "";
+  verificationMethod = '';
 
   /**
    * proofPurpose is the purpose of the proof
    *
    * @generated from field: string proof_purpose = 4;
    */
-  proofPurpose = "";
+  proofPurpose = '';
 
   /**
    * signature is the cryptographic signature
    *
    * @generated from field: string signature = 5;
    */
-  signature = "";
+  signature = '';
 
   /**
    * Additional proof properties
@@ -500,14 +543,20 @@ export class CredentialProof extends Message<CredentialProof> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.CredentialProof";
+  static readonly typeName = 'did.v1.CredentialProof';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "proof_kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "created", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "verification_method", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "proof_purpose", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "signature", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "properties", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 1, name: 'proof_kind', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'created', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'verification_method', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'proof_purpose', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'signature', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    {
+      no: 6,
+      name: 'properties',
+      kind: 'map',
+      K: 9 /* ScalarType.STRING */,
+      V: { kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CredentialProof {
@@ -522,7 +571,10 @@ export class CredentialProof extends Message<CredentialProof> {
     return new CredentialProof().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CredentialProof | PlainMessage<CredentialProof> | undefined, b: CredentialProof | PlainMessage<CredentialProof> | undefined): boolean {
+  static equals(
+    a: CredentialProof | PlainMessage<CredentialProof> | undefined,
+    b: CredentialProof | PlainMessage<CredentialProof> | undefined
+  ): boolean {
     return proto3.util.equals(CredentialProof, a, b);
   }
 }
@@ -538,14 +590,14 @@ export class CredentialStatus extends Message<CredentialStatus> {
    *
    * @generated from field: string id = 1;
    */
-  id = "";
+  id = '';
 
   /**
    * status_kind is the status type
    *
    * @generated from field: string status_kind = 2;
    */
-  statusKind = "";
+  statusKind = '';
 
   /**
    * Additional status properties
@@ -560,11 +612,17 @@ export class CredentialStatus extends Message<CredentialStatus> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.CredentialStatus";
+  static readonly typeName = 'did.v1.CredentialStatus';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "status_kind", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "properties", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 1, name: 'id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'status_kind', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    {
+      no: 3,
+      name: 'properties',
+      kind: 'map',
+      K: 9 /* ScalarType.STRING */,
+      V: { kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CredentialStatus {
@@ -579,8 +637,10 @@ export class CredentialStatus extends Message<CredentialStatus> {
     return new CredentialStatus().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CredentialStatus | PlainMessage<CredentialStatus> | undefined, b: CredentialStatus | PlainMessage<CredentialStatus> | undefined): boolean {
+  static equals(
+    a: CredentialStatus | PlainMessage<CredentialStatus> | undefined,
+    b: CredentialStatus | PlainMessage<CredentialStatus> | undefined
+  ): boolean {
     return proto3.util.equals(CredentialStatus, a, b);
   }
 }
-

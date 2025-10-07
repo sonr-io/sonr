@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
 
 /**
  * MsgStoreCode defines the request type for the StoreCode rpc.
@@ -17,7 +24,7 @@ export class MsgStoreCode extends Message<MsgStoreCode> {
    *
    * @generated from field: string signer = 1;
    */
-  signer = "";
+  signer = '';
 
   /**
    * wasm byte code of light client contract. It can be raw or gzip compressed
@@ -32,10 +39,10 @@ export class MsgStoreCode extends Message<MsgStoreCode> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.lightclients.wasm.v1.MsgStoreCode";
+  static readonly typeName = 'ibc.lightclients.wasm.v1.MsgStoreCode';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "wasm_byte_code", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'wasm_byte_code', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgStoreCode {
@@ -50,7 +57,10 @@ export class MsgStoreCode extends Message<MsgStoreCode> {
     return new MsgStoreCode().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgStoreCode | PlainMessage<MsgStoreCode> | undefined, b: MsgStoreCode | PlainMessage<MsgStoreCode> | undefined): boolean {
+  static equals(
+    a: MsgStoreCode | PlainMessage<MsgStoreCode> | undefined,
+    b: MsgStoreCode | PlainMessage<MsgStoreCode> | undefined
+  ): boolean {
     return proto3.util.equals(MsgStoreCode, a, b);
   }
 }
@@ -74,9 +84,9 @@ export class MsgStoreCodeResponse extends Message<MsgStoreCodeResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.lightclients.wasm.v1.MsgStoreCodeResponse";
+  static readonly typeName = 'ibc.lightclients.wasm.v1.MsgStoreCodeResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "checksum", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'checksum', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgStoreCodeResponse {
@@ -87,11 +97,17 @@ export class MsgStoreCodeResponse extends Message<MsgStoreCodeResponse> {
     return new MsgStoreCodeResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgStoreCodeResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgStoreCodeResponse {
     return new MsgStoreCodeResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgStoreCodeResponse | PlainMessage<MsgStoreCodeResponse> | undefined, b: MsgStoreCodeResponse | PlainMessage<MsgStoreCodeResponse> | undefined): boolean {
+  static equals(
+    a: MsgStoreCodeResponse | PlainMessage<MsgStoreCodeResponse> | undefined,
+    b: MsgStoreCodeResponse | PlainMessage<MsgStoreCodeResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgStoreCodeResponse, a, b);
   }
 }
@@ -107,7 +123,7 @@ export class MsgRemoveChecksum extends Message<MsgRemoveChecksum> {
    *
    * @generated from field: string signer = 1;
    */
-  signer = "";
+  signer = '';
 
   /**
    * checksum is the sha256 hash to be removed from the store
@@ -122,10 +138,10 @@ export class MsgRemoveChecksum extends Message<MsgRemoveChecksum> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.lightclients.wasm.v1.MsgRemoveChecksum";
+  static readonly typeName = 'ibc.lightclients.wasm.v1.MsgRemoveChecksum';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "checksum", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'checksum', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRemoveChecksum {
@@ -140,7 +156,10 @@ export class MsgRemoveChecksum extends Message<MsgRemoveChecksum> {
     return new MsgRemoveChecksum().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRemoveChecksum | PlainMessage<MsgRemoveChecksum> | undefined, b: MsgRemoveChecksum | PlainMessage<MsgRemoveChecksum> | undefined): boolean {
+  static equals(
+    a: MsgRemoveChecksum | PlainMessage<MsgRemoveChecksum> | undefined,
+    b: MsgRemoveChecksum | PlainMessage<MsgRemoveChecksum> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRemoveChecksum, a, b);
   }
 }
@@ -157,23 +176,34 @@ export class MsgRemoveChecksumResponse extends Message<MsgRemoveChecksumResponse
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.lightclients.wasm.v1.MsgRemoveChecksumResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ibc.lightclients.wasm.v1.MsgRemoveChecksumResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRemoveChecksumResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgRemoveChecksumResponse {
     return new MsgRemoveChecksumResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgRemoveChecksumResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgRemoveChecksumResponse {
     return new MsgRemoveChecksumResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgRemoveChecksumResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgRemoveChecksumResponse {
     return new MsgRemoveChecksumResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRemoveChecksumResponse | PlainMessage<MsgRemoveChecksumResponse> | undefined, b: MsgRemoveChecksumResponse | PlainMessage<MsgRemoveChecksumResponse> | undefined): boolean {
+  static equals(
+    a: MsgRemoveChecksumResponse | PlainMessage<MsgRemoveChecksumResponse> | undefined,
+    b: MsgRemoveChecksumResponse | PlainMessage<MsgRemoveChecksumResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRemoveChecksumResponse, a, b);
   }
 }
@@ -189,14 +219,14 @@ export class MsgMigrateContract extends Message<MsgMigrateContract> {
    *
    * @generated from field: string signer = 1;
    */
-  signer = "";
+  signer = '';
 
   /**
    * the client id of the contract
    *
    * @generated from field: string client_id = 2;
    */
-  clientId = "";
+  clientId = '';
 
   /**
    * checksum is the sha256 hash of the new wasm byte code for the contract
@@ -218,12 +248,12 @@ export class MsgMigrateContract extends Message<MsgMigrateContract> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.lightclients.wasm.v1.MsgMigrateContract";
+  static readonly typeName = 'ibc.lightclients.wasm.v1.MsgMigrateContract';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "checksum", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 4, name: "msg", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'client_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'checksum', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 4, name: 'msg', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgMigrateContract {
@@ -234,11 +264,17 @@ export class MsgMigrateContract extends Message<MsgMigrateContract> {
     return new MsgMigrateContract().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgMigrateContract {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgMigrateContract {
     return new MsgMigrateContract().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgMigrateContract | PlainMessage<MsgMigrateContract> | undefined, b: MsgMigrateContract | PlainMessage<MsgMigrateContract> | undefined): boolean {
+  static equals(
+    a: MsgMigrateContract | PlainMessage<MsgMigrateContract> | undefined,
+    b: MsgMigrateContract | PlainMessage<MsgMigrateContract> | undefined
+  ): boolean {
     return proto3.util.equals(MsgMigrateContract, a, b);
   }
 }
@@ -255,24 +291,34 @@ export class MsgMigrateContractResponse extends Message<MsgMigrateContractRespon
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.lightclients.wasm.v1.MsgMigrateContractResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ibc.lightclients.wasm.v1.MsgMigrateContractResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgMigrateContractResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgMigrateContractResponse {
     return new MsgMigrateContractResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgMigrateContractResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgMigrateContractResponse {
     return new MsgMigrateContractResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgMigrateContractResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgMigrateContractResponse {
     return new MsgMigrateContractResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgMigrateContractResponse | PlainMessage<MsgMigrateContractResponse> | undefined, b: MsgMigrateContractResponse | PlainMessage<MsgMigrateContractResponse> | undefined): boolean {
+  static equals(
+    a: MsgMigrateContractResponse | PlainMessage<MsgMigrateContractResponse> | undefined,
+    b: MsgMigrateContractResponse | PlainMessage<MsgMigrateContractResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgMigrateContractResponse, a, b);
   }
 }
-

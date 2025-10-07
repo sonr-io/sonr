@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
 
 /**
  * ValidatorPreference defines the message structure for
@@ -22,14 +29,14 @@ export class ValidatorPreference extends Message<ValidatorPreference> {
    *
    * @generated from field: string val_oper_address = 1;
    */
-  valOperAddress = "";
+  valOperAddress = '';
 
   /**
    * weight is decimal between 0 and 1, and they all sum to 1.
    *
    * @generated from field: string weight = 2;
    */
-  weight = "";
+  weight = '';
 
   constructor(data?: PartialMessage<ValidatorPreference>) {
     super();
@@ -37,10 +44,10 @@ export class ValidatorPreference extends Message<ValidatorPreference> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.valsetpref.v1beta1.ValidatorPreference";
+  static readonly typeName = 'osmosis.valsetpref.v1beta1.ValidatorPreference';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "val_oper_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "weight", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'val_oper_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'weight', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ValidatorPreference {
@@ -51,11 +58,17 @@ export class ValidatorPreference extends Message<ValidatorPreference> {
     return new ValidatorPreference().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ValidatorPreference {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ValidatorPreference {
     return new ValidatorPreference().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ValidatorPreference | PlainMessage<ValidatorPreference> | undefined, b: ValidatorPreference | PlainMessage<ValidatorPreference> | undefined): boolean {
+  static equals(
+    a: ValidatorPreference | PlainMessage<ValidatorPreference> | undefined,
+    b: ValidatorPreference | PlainMessage<ValidatorPreference> | undefined
+  ): boolean {
     return proto3.util.equals(ValidatorPreference, a, b);
   }
 }
@@ -82,25 +95,36 @@ export class ValidatorSetPreferences extends Message<ValidatorSetPreferences> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.valsetpref.v1beta1.ValidatorSetPreferences";
+  static readonly typeName = 'osmosis.valsetpref.v1beta1.ValidatorSetPreferences';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 2, name: "preferences", kind: "message", T: ValidatorPreference, repeated: true },
+    { no: 2, name: 'preferences', kind: 'message', T: ValidatorPreference, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ValidatorSetPreferences {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): ValidatorSetPreferences {
     return new ValidatorSetPreferences().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ValidatorSetPreferences {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): ValidatorSetPreferences {
     return new ValidatorSetPreferences().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ValidatorSetPreferences {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ValidatorSetPreferences {
     return new ValidatorSetPreferences().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ValidatorSetPreferences | PlainMessage<ValidatorSetPreferences> | undefined, b: ValidatorSetPreferences | PlainMessage<ValidatorSetPreferences> | undefined): boolean {
+  static equals(
+    a: ValidatorSetPreferences | PlainMessage<ValidatorSetPreferences> | undefined,
+    b: ValidatorSetPreferences | PlainMessage<ValidatorSetPreferences> | undefined
+  ): boolean {
     return proto3.util.equals(ValidatorSetPreferences, a, b);
   }
 }
-

@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
-import { Coin } from "../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64, Timestamp } from '@bufbuild/protobuf';
+import { Coin } from '../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * AccountStatus defines the status of an ICA account
@@ -42,11 +49,11 @@ export enum AccountStatus {
   FAILED = 3,
 }
 // Retrieve enum metadata with: proto3.getEnumType(AccountStatus)
-proto3.util.setEnumType(AccountStatus, "dex.v1.AccountStatus", [
-  { no: 0, name: "ACCOUNT_STATUS_PENDING" },
-  { no: 1, name: "ACCOUNT_STATUS_ACTIVE" },
-  { no: 2, name: "ACCOUNT_STATUS_DISABLED" },
-  { no: 3, name: "ACCOUNT_STATUS_FAILED" },
+proto3.util.setEnumType(AccountStatus, 'dex.v1.AccountStatus', [
+  { no: 0, name: 'ACCOUNT_STATUS_PENDING' },
+  { no: 1, name: 'ACCOUNT_STATUS_ACTIVE' },
+  { no: 2, name: 'ACCOUNT_STATUS_DISABLED' },
+  { no: 3, name: 'ACCOUNT_STATUS_FAILED' },
 ]);
 
 /**
@@ -91,12 +98,12 @@ export enum DEXFeatures {
   DEX_FEATURE_GOVERNANCE = 4,
 }
 // Retrieve enum metadata with: proto3.getEnumType(DEXFeatures)
-proto3.util.setEnumType(DEXFeatures, "dex.v1.DEXFeatures", [
-  { no: 0, name: "DEX_FEATURE_SWAP" },
-  { no: 1, name: "DEX_FEATURE_LIQUIDITY" },
-  { no: 2, name: "DEX_FEATURE_ORDERS" },
-  { no: 3, name: "DEX_FEATURE_STAKING" },
-  { no: 4, name: "DEX_FEATURE_GOVERNANCE" },
+proto3.util.setEnumType(DEXFeatures, 'dex.v1.DEXFeatures', [
+  { no: 0, name: 'DEX_FEATURE_SWAP' },
+  { no: 1, name: 'DEX_FEATURE_LIQUIDITY' },
+  { no: 2, name: 'DEX_FEATURE_ORDERS' },
+  { no: 3, name: 'DEX_FEATURE_STAKING' },
+  { no: 4, name: 'DEX_FEATURE_GOVERNANCE' },
 ]);
 
 /**
@@ -110,35 +117,35 @@ export class InterchainDEXAccount extends Message<InterchainDEXAccount> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * IBC connection to the remote chain
    *
    * @generated from field: string connection_id = 2;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * Remote chain ID (e.g., osmosis-1)
    *
    * @generated from field: string host_chain_id = 3;
    */
-  hostChainId = "";
+  hostChainId = '';
 
   /**
    * Account address on the remote chain
    *
    * @generated from field: string account_address = 4;
    */
-  accountAddress = "";
+  accountAddress = '';
 
   /**
    * ICA port ID for this account
    *
    * @generated from field: string port_id = 5;
    */
-  portId = "";
+  portId = '';
 
   /**
    * Account creation timestamp
@@ -167,16 +174,22 @@ export class InterchainDEXAccount extends Message<InterchainDEXAccount> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.InterchainDEXAccount";
+  static readonly typeName = 'dex.v1.InterchainDEXAccount';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "host_chain_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "account_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "created_at", kind: "message", T: Timestamp },
-    { no: 7, name: "enabled_features", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 8, name: "status", kind: "enum", T: proto3.getEnumType(AccountStatus) },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'host_chain_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'account_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'created_at', kind: 'message', T: Timestamp },
+    {
+      no: 7,
+      name: 'enabled_features',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    { no: 8, name: 'status', kind: 'enum', T: proto3.getEnumType(AccountStatus) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InterchainDEXAccount {
@@ -187,11 +200,17 @@ export class InterchainDEXAccount extends Message<InterchainDEXAccount> {
     return new InterchainDEXAccount().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InterchainDEXAccount {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): InterchainDEXAccount {
     return new InterchainDEXAccount().fromJsonString(jsonString, options);
   }
 
-  static equals(a: InterchainDEXAccount | PlainMessage<InterchainDEXAccount> | undefined, b: InterchainDEXAccount | PlainMessage<InterchainDEXAccount> | undefined): boolean {
+  static equals(
+    a: InterchainDEXAccount | PlainMessage<InterchainDEXAccount> | undefined,
+    b: InterchainDEXAccount | PlainMessage<InterchainDEXAccount> | undefined
+  ): boolean {
     return proto3.util.equals(InterchainDEXAccount, a, b);
   }
 }
@@ -207,28 +226,28 @@ export class DEXActivity extends Message<DEXActivity> {
    *
    * @generated from field: string type = 1;
    */
-  type = "";
+  type = '';
 
   /**
    * DID that performed the activity
    *
    * @generated from field: string did = 2;
    */
-  did = "";
+  did = '';
 
   /**
    * Connection ID where the activity occurred
    *
    * @generated from field: string connection_id = 3;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * Transaction hash of the activity
    *
    * @generated from field: string tx_hash = 4;
    */
-  txHash = "";
+  txHash = '';
 
   /**
    * Block height when the activity occurred
@@ -249,14 +268,14 @@ export class DEXActivity extends Message<DEXActivity> {
    *
    * @generated from field: string details = 7;
    */
-  details = "";
+  details = '';
 
   /**
    * Status of the activity (pending, success, failed)
    *
    * @generated from field: string status = 8;
    */
-  status = "";
+  status = '';
 
   /**
    * Amount involved in the activity (if applicable)
@@ -278,18 +297,18 @@ export class DEXActivity extends Message<DEXActivity> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.DEXActivity";
+  static readonly typeName = 'dex.v1.DEXActivity';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "tx_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "block_height", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 6, name: "timestamp", kind: "message", T: Timestamp },
-    { no: 7, name: "details", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 8, name: "status", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 9, name: "amount", kind: "message", T: Coin, repeated: true },
-    { no: 10, name: "gas_used", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'type', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'tx_hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'block_height', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 6, name: 'timestamp', kind: 'message', T: Timestamp },
+    { no: 7, name: 'details', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: 'status', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: 'amount', kind: 'message', T: Coin, repeated: true },
+    { no: 10, name: 'gas_used', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DEXActivity {
@@ -304,8 +323,10 @@ export class DEXActivity extends Message<DEXActivity> {
     return new DEXActivity().fromJsonString(jsonString, options);
   }
 
-  static equals(a: DEXActivity | PlainMessage<DEXActivity> | undefined, b: DEXActivity | PlainMessage<DEXActivity> | undefined): boolean {
+  static equals(
+    a: DEXActivity | PlainMessage<DEXActivity> | undefined,
+    b: DEXActivity | PlainMessage<DEXActivity> | undefined
+  ): boolean {
     return proto3.util.equals(DEXActivity, a, b);
   }
 }
-

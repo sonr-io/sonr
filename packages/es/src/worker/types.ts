@@ -1,6 +1,6 @@
 /**
  * TypeScript type definitions for Motor Payment Gateway & OIDC Authorization
- * 
+ *
  * @packageDocumentation
  */
 
@@ -547,13 +547,13 @@ export interface JWK {
   x5t?: string;
   /** X.509 certificate SHA-256 thumbprint */
   'x5t#S256'?: string;
-  
+
   // RSA specific
   /** RSA modulus */
   n?: string;
   /** RSA exponent */
   e?: string;
-  
+
   // EC specific
   /** Elliptic curve */
   crv?: string;
@@ -647,98 +647,100 @@ export interface ErrorResponse {
  */
 export interface MotorPlugin {
   // Payment Gateway Operations
-  
+
   /**
    * Get available payment instruments
    * @returns Promise resolving to payment instruments
    */
   getPaymentInstruments(): Promise<PaymentInstrument[]>;
-  
+
   /**
    * Check if payment can be made
    * @param request Can make payment request
    * @returns Promise resolving to whether payment can be made
    */
   canMakePayment(request: CanMakePaymentRequest): Promise<CanMakePaymentResponse>;
-  
+
   /**
    * Handle payment request event (W3C Payment Handler API)
    * @param event Payment request event
    * @returns Promise resolving to payment response
    */
   handlePaymentRequest(event: PaymentRequestEvent): Promise<PaymentHandlerResponse>;
-  
+
   /**
    * Process a payment transaction
    * @param request Payment processing request
    * @returns Promise resolving to payment response
    */
   processPayment(request: ProcessPaymentRequest): Promise<ProcessPaymentResponse>;
-  
+
   /**
    * Validate a payment method
    * @param request Payment method validation request
    * @returns Promise resolving to validation response
    */
-  validatePaymentMethod(request: ValidatePaymentMethodRequest): Promise<ValidatePaymentMethodResponse>;
-  
+  validatePaymentMethod(
+    request: ValidatePaymentMethodRequest
+  ): Promise<ValidatePaymentMethodResponse>;
+
   /**
    * Get payment status
    * @param paymentId Payment identifier
    * @returns Promise resolving to payment status
    */
   getPaymentStatus(paymentId: string): Promise<PaymentStatus>;
-  
+
   /**
    * Process a refund
    * @param request Refund request
    * @returns Promise resolving to refund response
    */
   refundPayment(request: RefundPaymentRequest): Promise<RefundPaymentResponse>;
-  
+
   // OIDC Operations
-  
+
   /**
    * Get OIDC configuration
    * @returns Promise resolving to OIDC configuration
    */
   getOIDCConfiguration(): Promise<OIDCConfiguration>;
-  
+
   /**
    * Handle authorization request
    * @param request Authorization request
    * @returns Promise resolving to authorization response
    */
   authorize(request: OIDCAuthorizationRequest): Promise<OIDCAuthorizationResponse>;
-  
+
   /**
    * Exchange authorization code for tokens
    * @param request Token request
    * @returns Promise resolving to token response
    */
   token(request: OIDCTokenRequest): Promise<OIDCTokenResponse>;
-  
+
   /**
    * Get user information
    * @param accessToken Access token
    * @returns Promise resolving to user info
    */
   getUserInfo(accessToken: string): Promise<OIDCUserInfo>;
-  
+
   /**
    * Get JSON Web Key Set
    * @returns Promise resolving to JWKS
    */
   getJWKS(): Promise<JWKS>;
-  
+
   // Health & Status
-  
+
   /**
    * Check service health
    * @returns Promise resolving to health status
    */
   healthCheck(): Promise<HealthCheckResponse>;
-  
+
   /**
    * Get service information
    * @returns Promise resolving to service info

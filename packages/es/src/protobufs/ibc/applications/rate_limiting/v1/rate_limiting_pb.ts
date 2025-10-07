@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Duration, Message, proto3, protoInt64, Timestamp } from '@bufbuild/protobuf';
 
 /**
  * PacketDirection defines whether the transfer packet is being sent from
@@ -24,9 +31,9 @@ export enum PacketDirection {
   PACKET_RECV = 1,
 }
 // Retrieve enum metadata with: proto3.getEnumType(PacketDirection)
-proto3.util.setEnumType(PacketDirection, "ibc.applications.rate_limiting.v1.PacketDirection", [
-  { no: 0, name: "PACKET_SEND" },
-  { no: 1, name: "PACKET_RECV" },
+proto3.util.setEnumType(PacketDirection, 'ibc.applications.rate_limiting.v1.PacketDirection', [
+  { no: 0, name: 'PACKET_SEND' },
+  { no: 1, name: 'PACKET_RECV' },
 ]);
 
 /**
@@ -38,12 +45,12 @@ export class Path extends Message<Path> {
   /**
    * @generated from field: string denom = 1;
    */
-  denom = "";
+  denom = '';
 
   /**
    * @generated from field: string channel_or_client_id = 2;
    */
-  channelOrClientId = "";
+  channelOrClientId = '';
 
   constructor(data?: PartialMessage<Path>) {
     super();
@@ -51,10 +58,10 @@ export class Path extends Message<Path> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.Path";
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.Path';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel_or_client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'channel_or_client_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Path {
@@ -69,7 +76,10 @@ export class Path extends Message<Path> {
     return new Path().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Path | PlainMessage<Path> | undefined, b: Path | PlainMessage<Path> | undefined): boolean {
+  static equals(
+    a: Path | PlainMessage<Path> | undefined,
+    b: Path | PlainMessage<Path> | undefined
+  ): boolean {
     return proto3.util.equals(Path, a, b);
   }
 }
@@ -86,7 +96,7 @@ export class Quota extends Message<Quota> {
    *
    * @generated from field: string max_percent_send = 1;
    */
-  maxPercentSend = "";
+  maxPercentSend = '';
 
   /**
    * MaxPercentSend defines the threshold for inflows
@@ -94,7 +104,7 @@ export class Quota extends Message<Quota> {
    *
    * @generated from field: string max_percent_recv = 2;
    */
-  maxPercentRecv = "";
+  maxPercentRecv = '';
 
   /**
    * DurationHours specifies the number of hours before the rate limit
@@ -110,11 +120,11 @@ export class Quota extends Message<Quota> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.Quota";
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.Quota';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "max_percent_send", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "max_percent_recv", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "duration_hours", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'max_percent_send', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'max_percent_recv', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'duration_hours', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Quota {
@@ -129,7 +139,10 @@ export class Quota extends Message<Quota> {
     return new Quota().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Quota | PlainMessage<Quota> | undefined, b: Quota | PlainMessage<Quota> | undefined): boolean {
+  static equals(
+    a: Quota | PlainMessage<Quota> | undefined,
+    b: Quota | PlainMessage<Quota> | undefined
+  ): boolean {
     return proto3.util.equals(Quota, a, b);
   }
 }
@@ -146,7 +159,7 @@ export class Flow extends Message<Flow> {
    *
    * @generated from field: string inflow = 1;
    */
-  inflow = "";
+  inflow = '';
 
   /**
    * Outflow defines the total amount of outbound transfers for the given
@@ -154,7 +167,7 @@ export class Flow extends Message<Flow> {
    *
    * @generated from field: string outflow = 2;
    */
-  outflow = "";
+  outflow = '';
 
   /**
    * ChannelValue stores the total supply of the denom at the start of
@@ -164,7 +177,7 @@ export class Flow extends Message<Flow> {
    *
    * @generated from field: string channel_value = 3;
    */
-  channelValue = "";
+  channelValue = '';
 
   constructor(data?: PartialMessage<Flow>) {
     super();
@@ -172,11 +185,11 @@ export class Flow extends Message<Flow> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.Flow";
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.Flow';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "inflow", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "outflow", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "channel_value", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'inflow', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'outflow', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'channel_value', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Flow {
@@ -191,7 +204,10 @@ export class Flow extends Message<Flow> {
     return new Flow().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Flow | PlainMessage<Flow> | undefined, b: Flow | PlainMessage<Flow> | undefined): boolean {
+  static equals(
+    a: Flow | PlainMessage<Flow> | undefined,
+    b: Flow | PlainMessage<Flow> | undefined
+  ): boolean {
     return proto3.util.equals(Flow, a, b);
   }
 }
@@ -225,11 +241,11 @@ export class RateLimit extends Message<RateLimit> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.RateLimit";
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.RateLimit';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "path", kind: "message", T: Path },
-    { no: 2, name: "quota", kind: "message", T: Quota },
-    { no: 3, name: "flow", kind: "message", T: Flow },
+    { no: 1, name: 'path', kind: 'message', T: Path },
+    { no: 2, name: 'quota', kind: 'message', T: Quota },
+    { no: 3, name: 'flow', kind: 'message', T: Flow },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RateLimit {
@@ -244,7 +260,10 @@ export class RateLimit extends Message<RateLimit> {
     return new RateLimit().fromJsonString(jsonString, options);
   }
 
-  static equals(a: RateLimit | PlainMessage<RateLimit> | undefined, b: RateLimit | PlainMessage<RateLimit> | undefined): boolean {
+  static equals(
+    a: RateLimit | PlainMessage<RateLimit> | undefined,
+    b: RateLimit | PlainMessage<RateLimit> | undefined
+  ): boolean {
     return proto3.util.equals(RateLimit, a, b);
   }
 }
@@ -259,12 +278,12 @@ export class WhitelistedAddressPair extends Message<WhitelistedAddressPair> {
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * @generated from field: string receiver = 2;
    */
-  receiver = "";
+  receiver = '';
 
   constructor(data?: PartialMessage<WhitelistedAddressPair>) {
     super();
@@ -272,25 +291,37 @@ export class WhitelistedAddressPair extends Message<WhitelistedAddressPair> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.WhitelistedAddressPair";
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.WhitelistedAddressPair';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "receiver", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'receiver', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): WhitelistedAddressPair {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): WhitelistedAddressPair {
     return new WhitelistedAddressPair().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): WhitelistedAddressPair {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): WhitelistedAddressPair {
     return new WhitelistedAddressPair().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): WhitelistedAddressPair {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): WhitelistedAddressPair {
     return new WhitelistedAddressPair().fromJsonString(jsonString, options);
   }
 
-  static equals(a: WhitelistedAddressPair | PlainMessage<WhitelistedAddressPair> | undefined, b: WhitelistedAddressPair | PlainMessage<WhitelistedAddressPair> | undefined): boolean {
+  static equals(
+    a: WhitelistedAddressPair | PlainMessage<WhitelistedAddressPair> | undefined,
+    b: WhitelistedAddressPair | PlainMessage<WhitelistedAddressPair> | undefined
+  ): boolean {
     return proto3.util.equals(WhitelistedAddressPair, a, b);
   }
 }
@@ -327,12 +358,12 @@ export class HourEpoch extends Message<HourEpoch> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.HourEpoch";
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.HourEpoch';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "epoch_number", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "duration", kind: "message", T: Duration },
-    { no: 3, name: "epoch_start_time", kind: "message", T: Timestamp },
-    { no: 4, name: "epoch_start_height", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: 'epoch_number', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'duration', kind: 'message', T: Duration },
+    { no: 3, name: 'epoch_start_time', kind: 'message', T: Timestamp },
+    { no: 4, name: 'epoch_start_height', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): HourEpoch {
@@ -347,8 +378,10 @@ export class HourEpoch extends Message<HourEpoch> {
     return new HourEpoch().fromJsonString(jsonString, options);
   }
 
-  static equals(a: HourEpoch | PlainMessage<HourEpoch> | undefined, b: HourEpoch | PlainMessage<HourEpoch> | undefined): boolean {
+  static equals(
+    a: HourEpoch | PlainMessage<HourEpoch> | undefined,
+    b: HourEpoch | PlainMessage<HourEpoch> | undefined
+  ): boolean {
     return proto3.util.equals(HourEpoch, a, b);
   }
 }
-

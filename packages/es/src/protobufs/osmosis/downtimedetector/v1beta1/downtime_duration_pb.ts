@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { proto3 } from "@bufbuild/protobuf";
+import { proto3 } from '@bufbuild/protobuf';
 
 /**
  * @generated from enum osmosis.downtimedetector.v1beta1.Downtime
@@ -135,31 +135,30 @@ export enum Downtime {
   DURATION_48H = 24,
 }
 // Retrieve enum metadata with: proto3.getEnumType(Downtime)
-proto3.util.setEnumType(Downtime, "osmosis.downtimedetector.v1beta1.Downtime", [
-  { no: 0, name: "DURATION_30S" },
-  { no: 1, name: "DURATION_1M" },
-  { no: 2, name: "DURATION_2M" },
-  { no: 3, name: "DURATION_3M" },
-  { no: 4, name: "DURATION_4M" },
-  { no: 5, name: "DURATION_5M" },
-  { no: 6, name: "DURATION_10M" },
-  { no: 7, name: "DURATION_20M" },
-  { no: 8, name: "DURATION_30M" },
-  { no: 9, name: "DURATION_40M" },
-  { no: 10, name: "DURATION_50M" },
-  { no: 11, name: "DURATION_1H" },
-  { no: 12, name: "DURATION_1_5H" },
-  { no: 13, name: "DURATION_2H" },
-  { no: 14, name: "DURATION_2_5H" },
-  { no: 15, name: "DURATION_3H" },
-  { no: 16, name: "DURATION_4H" },
-  { no: 17, name: "DURATION_5H" },
-  { no: 18, name: "DURATION_6H" },
-  { no: 19, name: "DURATION_9H" },
-  { no: 20, name: "DURATION_12H" },
-  { no: 21, name: "DURATION_18H" },
-  { no: 22, name: "DURATION_24H" },
-  { no: 23, name: "DURATION_36H" },
-  { no: 24, name: "DURATION_48H" },
+proto3.util.setEnumType(Downtime, 'osmosis.downtimedetector.v1beta1.Downtime', [
+  { no: 0, name: 'DURATION_30S' },
+  { no: 1, name: 'DURATION_1M' },
+  { no: 2, name: 'DURATION_2M' },
+  { no: 3, name: 'DURATION_3M' },
+  { no: 4, name: 'DURATION_4M' },
+  { no: 5, name: 'DURATION_5M' },
+  { no: 6, name: 'DURATION_10M' },
+  { no: 7, name: 'DURATION_20M' },
+  { no: 8, name: 'DURATION_30M' },
+  { no: 9, name: 'DURATION_40M' },
+  { no: 10, name: 'DURATION_50M' },
+  { no: 11, name: 'DURATION_1H' },
+  { no: 12, name: 'DURATION_1_5H' },
+  { no: 13, name: 'DURATION_2H' },
+  { no: 14, name: 'DURATION_2_5H' },
+  { no: 15, name: 'DURATION_3H' },
+  { no: 16, name: 'DURATION_4H' },
+  { no: 17, name: 'DURATION_5H' },
+  { no: 18, name: 'DURATION_6H' },
+  { no: 19, name: 'DURATION_9H' },
+  { no: 20, name: 'DURATION_12H' },
+  { no: 21, name: 'DURATION_18H' },
+  { no: 22, name: 'DURATION_24H' },
+  { no: 23, name: 'DURATION_36H' },
+  { no: 24, name: 'DURATION_48H' },
 ]);
-

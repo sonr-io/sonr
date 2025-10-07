@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * EncryptionMetadata contains metadata for consensus-based encryption
@@ -17,7 +24,7 @@ export class EncryptionMetadata extends Message<EncryptionMetadata> {
    *
    * @generated from field: string algorithm = 1;
    */
-  algorithm = "";
+  algorithm = '';
 
   /**
    * Input used for VRF consensus key derivation
@@ -95,19 +102,19 @@ export class EncryptionMetadata extends Message<EncryptionMetadata> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.EncryptionMetadata";
+  static readonly typeName = 'dwn.v1.EncryptionMetadata';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "algorithm", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "consensus_input", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "nonce", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 4, name: "auth_tag", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 5, name: "encryption_height", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 6, name: "validator_set", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 7, name: "key_version", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 8, name: "single_node_mode", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 9, name: "data_hmac", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 10, name: "key_derivation_salt", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 11, name: "additional_data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'algorithm', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'consensus_input', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: 'nonce', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 4, name: 'auth_tag', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 5, name: 'encryption_height', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 6, name: 'validator_set', kind: 'scalar', T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 7, name: 'key_version', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 8, name: 'single_node_mode', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 9, name: 'data_hmac', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 10, name: 'key_derivation_salt', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 11, name: 'additional_data', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EncryptionMetadata {
@@ -118,11 +125,17 @@ export class EncryptionMetadata extends Message<EncryptionMetadata> {
     return new EncryptionMetadata().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EncryptionMetadata {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EncryptionMetadata {
     return new EncryptionMetadata().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EncryptionMetadata | PlainMessage<EncryptionMetadata> | undefined, b: EncryptionMetadata | PlainMessage<EncryptionMetadata> | undefined): boolean {
+  static equals(
+    a: EncryptionMetadata | PlainMessage<EncryptionMetadata> | undefined,
+    b: EncryptionMetadata | PlainMessage<EncryptionMetadata> | undefined
+  ): boolean {
     return proto3.util.equals(EncryptionMetadata, a, b);
   }
 }
@@ -223,20 +236,20 @@ export class EncryptionKeyState extends Message<EncryptionKeyState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.EncryptionKeyState";
+  static readonly typeName = 'dwn.v1.EncryptionKeyState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "current_key", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 2, name: "key_version", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "validator_set", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 4, name: "contributions", kind: "message", T: VRFContribution, repeated: true },
-    { no: 5, name: "last_rotation", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 6, name: "next_rotation", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 7, name: "single_node_mode", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 8, name: "usage_count", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 9, name: "max_usage_count", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 10, name: "rotation_interval", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 11, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 12, name: "previous_key_version", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'current_key', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: 'key_version', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'validator_set', kind: 'scalar', T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 4, name: 'contributions', kind: 'message', T: VRFContribution, repeated: true },
+    { no: 5, name: 'last_rotation', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 6, name: 'next_rotation', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 7, name: 'single_node_mode', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 8, name: 'usage_count', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 9, name: 'max_usage_count', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 10, name: 'rotation_interval', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 11, name: 'created_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 12, name: 'previous_key_version', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EncryptionKeyState {
@@ -247,11 +260,17 @@ export class EncryptionKeyState extends Message<EncryptionKeyState> {
     return new EncryptionKeyState().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EncryptionKeyState {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EncryptionKeyState {
     return new EncryptionKeyState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EncryptionKeyState | PlainMessage<EncryptionKeyState> | undefined, b: EncryptionKeyState | PlainMessage<EncryptionKeyState> | undefined): boolean {
+  static equals(
+    a: EncryptionKeyState | PlainMessage<EncryptionKeyState> | undefined,
+    b: EncryptionKeyState | PlainMessage<EncryptionKeyState> | undefined
+  ): boolean {
     return proto3.util.equals(EncryptionKeyState, a, b);
   }
 }
@@ -295,7 +314,7 @@ export class VRFConsensusRound extends Message<VRFConsensusRound> {
    *
    * @generated from field: string status = 5;
    */
-  status = "";
+  status = '';
 
   /**
    * Block height when this round expires
@@ -331,17 +350,17 @@ export class VRFConsensusRound extends Message<VRFConsensusRound> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.VRFConsensusRound";
+  static readonly typeName = 'dwn.v1.VRFConsensusRound';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "round_number", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "key_version", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "required_contributions", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 4, name: "received_contributions", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 5, name: "status", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "expiry_height", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 7, name: "initiated_height", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 8, name: "consensus_input", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 9, name: "completed", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'round_number', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'key_version', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'required_contributions', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
+    { no: 4, name: 'received_contributions', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
+    { no: 5, name: 'status', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'expiry_height', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 7, name: 'initiated_height', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 8, name: 'consensus_input', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 9, name: 'completed', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VRFConsensusRound {
@@ -356,7 +375,10 @@ export class VRFConsensusRound extends Message<VRFConsensusRound> {
     return new VRFConsensusRound().fromJsonString(jsonString, options);
   }
 
-  static equals(a: VRFConsensusRound | PlainMessage<VRFConsensusRound> | undefined, b: VRFConsensusRound | PlainMessage<VRFConsensusRound> | undefined): boolean {
+  static equals(
+    a: VRFConsensusRound | PlainMessage<VRFConsensusRound> | undefined,
+    b: VRFConsensusRound | PlainMessage<VRFConsensusRound> | undefined
+  ): boolean {
     return proto3.util.equals(VRFConsensusRound, a, b);
   }
 }
@@ -394,11 +416,11 @@ export class EncryptionStats extends Message<EncryptionStats> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.EncryptionStats";
+  static readonly typeName = 'dwn.v1.EncryptionStats';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "total_encrypted_records", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 2, name: "total_decryption_errors", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 3, name: "last_encryption_height", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: 'total_encrypted_records', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: 'total_decryption_errors', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 3, name: 'last_encryption_height', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EncryptionStats {
@@ -413,7 +435,10 @@ export class EncryptionStats extends Message<EncryptionStats> {
     return new EncryptionStats().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EncryptionStats | PlainMessage<EncryptionStats> | undefined, b: EncryptionStats | PlainMessage<EncryptionStats> | undefined): boolean {
+  static equals(
+    a: EncryptionStats | PlainMessage<EncryptionStats> | undefined,
+    b: EncryptionStats | PlainMessage<EncryptionStats> | undefined
+  ): boolean {
     return proto3.util.equals(EncryptionStats, a, b);
   }
 }
@@ -429,7 +454,7 @@ export class SaltStore extends Message<SaltStore> {
    *
    * @generated from field: string record_id = 1;
    */
-  recordId = "";
+  recordId = '';
 
   /**
    * Salt value used for key derivation
@@ -457,7 +482,7 @@ export class SaltStore extends Message<SaltStore> {
    *
    * @generated from field: string algorithm = 5;
    */
-  algorithm = "";
+  algorithm = '';
 
   constructor(data?: PartialMessage<SaltStore>) {
     super();
@@ -465,13 +490,13 @@ export class SaltStore extends Message<SaltStore> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.SaltStore";
+  static readonly typeName = 'dwn.v1.SaltStore';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "record_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "salt_value", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 4, name: "key_version", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 5, name: "algorithm", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'record_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'salt_value', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: 'created_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 4, name: 'key_version', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 5, name: 'algorithm', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SaltStore {
@@ -486,7 +511,10 @@ export class SaltStore extends Message<SaltStore> {
     return new SaltStore().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SaltStore | PlainMessage<SaltStore> | undefined, b: SaltStore | PlainMessage<SaltStore> | undefined): boolean {
+  static equals(
+    a: SaltStore | PlainMessage<SaltStore> | undefined,
+    b: SaltStore | PlainMessage<SaltStore> | undefined
+  ): boolean {
     return proto3.util.equals(SaltStore, a, b);
   }
 }
@@ -502,7 +530,7 @@ export class VRFContribution extends Message<VRFContribution> {
    *
    * @generated from field: string validator_address = 1;
    */
-  validatorAddress = "";
+  validatorAddress = '';
 
   /**
    * VRF randomness output
@@ -538,13 +566,13 @@ export class VRFContribution extends Message<VRFContribution> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.VRFContribution";
+  static readonly typeName = 'dwn.v1.VRFContribution';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "validator_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "randomness", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "proof", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 4, name: "block_height", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 5, name: "timestamp", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: 'validator_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'randomness', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: 'proof', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 4, name: 'block_height', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 5, name: 'timestamp', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VRFContribution {
@@ -559,7 +587,10 @@ export class VRFContribution extends Message<VRFContribution> {
     return new VRFContribution().fromJsonString(jsonString, options);
   }
 
-  static equals(a: VRFContribution | PlainMessage<VRFContribution> | undefined, b: VRFContribution | PlainMessage<VRFContribution> | undefined): boolean {
+  static equals(
+    a: VRFContribution | PlainMessage<VRFContribution> | undefined,
+    b: VRFContribution | PlainMessage<VRFContribution> | undefined
+  ): boolean {
     return proto3.util.equals(VRFContribution, a, b);
   }
 }
@@ -575,7 +606,7 @@ export class EncryptedDWNRecord extends Message<EncryptedDWNRecord> {
    *
    * @generated from field: string record_id = 1;
    */
-  recordId = "";
+  recordId = '';
 
   /**
    * Encrypted data
@@ -603,7 +634,7 @@ export class EncryptedDWNRecord extends Message<EncryptedDWNRecord> {
    *
    * @generated from field: string ipfs_hash = 5;
    */
-  ipfsHash = "";
+  ipfsHash = '';
 
   constructor(data?: PartialMessage<EncryptedDWNRecord>) {
     super();
@@ -611,13 +642,13 @@ export class EncryptedDWNRecord extends Message<EncryptedDWNRecord> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.EncryptedDWNRecord";
+  static readonly typeName = 'dwn.v1.EncryptedDWNRecord';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "record_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "encrypted_data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "nonce", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 4, name: "key_version", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 5, name: "ipfs_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'record_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'encrypted_data', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: 'nonce', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 4, name: 'key_version', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 5, name: 'ipfs_hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EncryptedDWNRecord {
@@ -628,11 +659,17 @@ export class EncryptedDWNRecord extends Message<EncryptedDWNRecord> {
     return new EncryptedDWNRecord().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EncryptedDWNRecord {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EncryptedDWNRecord {
     return new EncryptedDWNRecord().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EncryptedDWNRecord | PlainMessage<EncryptedDWNRecord> | undefined, b: EncryptedDWNRecord | PlainMessage<EncryptedDWNRecord> | undefined): boolean {
+  static equals(
+    a: EncryptedDWNRecord | PlainMessage<EncryptedDWNRecord> | undefined,
+    b: EncryptedDWNRecord | PlainMessage<EncryptedDWNRecord> | undefined
+  ): boolean {
     return proto3.util.equals(EncryptedDWNRecord, a, b);
   }
 }
@@ -662,7 +699,7 @@ export class EnclaveData extends Message<EnclaveData> {
    *
    * @generated from field: string enclave_id = 3;
    */
-  enclaveId = "";
+  enclaveId = '';
 
   /**
    * Version number for refresh tracking
@@ -677,12 +714,12 @@ export class EnclaveData extends Message<EnclaveData> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.EnclaveData";
+  static readonly typeName = 'dwn.v1.EnclaveData';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "private_data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 2, name: "public_key", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "enclave_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "version", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: 'private_data', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: 'public_key', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: 'enclave_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'version', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EnclaveData {
@@ -697,7 +734,10 @@ export class EnclaveData extends Message<EnclaveData> {
     return new EnclaveData().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EnclaveData | PlainMessage<EnclaveData> | undefined, b: EnclaveData | PlainMessage<EnclaveData> | undefined): boolean {
+  static equals(
+    a: EnclaveData | PlainMessage<EnclaveData> | undefined,
+    b: EnclaveData | PlainMessage<EnclaveData> | undefined
+  ): boolean {
     return proto3.util.equals(EnclaveData, a, b);
   }
 }
@@ -713,28 +753,28 @@ export class DWNMessageDescriptor extends Message<DWNMessageDescriptor> {
    *
    * @generated from field: string interface_name = 1;
    */
-  interfaceName = "";
+  interfaceName = '';
 
   /**
    * Method name (e.g., "Write", "Query", "Configure")
    *
    * @generated from field: string method = 2;
    */
-  method = "";
+  method = '';
 
   /**
    * ISO 8601 timestamp of when the message was created
    *
    * @generated from field: string message_timestamp = 3;
    */
-  messageTimestamp = "";
+  messageTimestamp = '';
 
   /**
    * CID of the message data
    *
    * @generated from field: string data_cid = 4;
    */
-  dataCid = "";
+  dataCid = '';
 
   /**
    * Size of the data in bytes
@@ -748,7 +788,7 @@ export class DWNMessageDescriptor extends Message<DWNMessageDescriptor> {
    *
    * @generated from field: string data_format = 6;
    */
-  dataFormat = "";
+  dataFormat = '';
 
   constructor(data?: PartialMessage<DWNMessageDescriptor>) {
     super();
@@ -756,14 +796,14 @@ export class DWNMessageDescriptor extends Message<DWNMessageDescriptor> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.DWNMessageDescriptor";
+  static readonly typeName = 'dwn.v1.DWNMessageDescriptor';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "interface_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "method", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "message_timestamp", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "data_cid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "data_size", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 6, name: "data_format", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'interface_name', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'method', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'message_timestamp', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'data_cid', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'data_size', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 6, name: 'data_format', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DWNMessageDescriptor {
@@ -774,11 +814,17 @@ export class DWNMessageDescriptor extends Message<DWNMessageDescriptor> {
     return new DWNMessageDescriptor().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DWNMessageDescriptor {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): DWNMessageDescriptor {
     return new DWNMessageDescriptor().fromJsonString(jsonString, options);
   }
 
-  static equals(a: DWNMessageDescriptor | PlainMessage<DWNMessageDescriptor> | undefined, b: DWNMessageDescriptor | PlainMessage<DWNMessageDescriptor> | undefined): boolean {
+  static equals(
+    a: DWNMessageDescriptor | PlainMessage<DWNMessageDescriptor> | undefined,
+    b: DWNMessageDescriptor | PlainMessage<DWNMessageDescriptor> | undefined
+  ): boolean {
     return proto3.util.equals(DWNMessageDescriptor, a, b);
   }
 }
@@ -794,14 +840,14 @@ export class DWNRecord extends Message<DWNRecord> {
    *
    * @generated from field: string record_id = 1;
    */
-  recordId = "";
+  recordId = '';
 
   /**
    * DID of the DWN target
    *
    * @generated from field: string target = 2;
    */
-  target = "";
+  target = '';
 
   /**
    * Message descriptor
@@ -815,7 +861,7 @@ export class DWNRecord extends Message<DWNRecord> {
    *
    * @generated from field: string authorization = 4;
    */
-  authorization = "";
+  authorization = '';
 
   /**
    * Record data payload
@@ -829,28 +875,28 @@ export class DWNRecord extends Message<DWNRecord> {
    *
    * @generated from field: string protocol = 6;
    */
-  protocol = "";
+  protocol = '';
 
   /**
    * Optional protocol path
    *
    * @generated from field: string protocol_path = 7;
    */
-  protocolPath = "";
+  protocolPath = '';
 
   /**
    * Optional schema URI for data validation
    *
    * @generated from field: string schema = 8;
    */
-  schema = "";
+  schema = '';
 
   /**
    * Optional parent record ID for threading
    *
    * @generated from field: string parent_id = 9;
    */
-  parentId = "";
+  parentId = '';
 
   /**
    * Published flag for public visibility
@@ -864,21 +910,21 @@ export class DWNRecord extends Message<DWNRecord> {
    *
    * @generated from field: string attestation = 11;
    */
-  attestation = "";
+  attestation = '';
 
   /**
    * Encryption details (legacy field)
    *
    * @generated from field: string encryption = 12;
    */
-  encryption = "";
+  encryption = '';
 
   /**
    * Key derivation scheme (legacy field)
    *
    * @generated from field: string key_derivation_scheme = 13;
    */
-  keyDerivationScheme = "";
+  keyDerivationScheme = '';
 
   /**
    * Creation timestamp (Unix timestamp)
@@ -921,26 +967,26 @@ export class DWNRecord extends Message<DWNRecord> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.DWNRecord";
+  static readonly typeName = 'dwn.v1.DWNRecord';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "record_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "target", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "descriptor", kind: "message", T: DWNMessageDescriptor },
-    { no: 4, name: "authorization", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 6, name: "protocol", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "protocol_path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 8, name: "schema", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 9, name: "parent_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 10, name: "published", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 11, name: "attestation", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 12, name: "encryption", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 13, name: "key_derivation_scheme", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 14, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 15, name: "updated_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 16, name: "created_height", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 17, name: "encryption_metadata", kind: "message", T: EncryptionMetadata },
-    { no: 18, name: "is_encrypted", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'record_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'target', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'descriptor', kind: 'message', T: DWNMessageDescriptor },
+    { no: 4, name: 'authorization', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'data', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 6, name: 'protocol', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: 'protocol_path', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: 'schema', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: 'parent_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 10, name: 'published', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 11, name: 'attestation', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 12, name: 'encryption', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 13, name: 'key_derivation_scheme', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 14, name: 'created_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 15, name: 'updated_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 16, name: 'created_height', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 17, name: 'encryption_metadata', kind: 'message', T: EncryptionMetadata },
+    { no: 18, name: 'is_encrypted', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DWNRecord {
@@ -955,7 +1001,10 @@ export class DWNRecord extends Message<DWNRecord> {
     return new DWNRecord().fromJsonString(jsonString, options);
   }
 
-  static equals(a: DWNRecord | PlainMessage<DWNRecord> | undefined, b: DWNRecord | PlainMessage<DWNRecord> | undefined): boolean {
+  static equals(
+    a: DWNRecord | PlainMessage<DWNRecord> | undefined,
+    b: DWNRecord | PlainMessage<DWNRecord> | undefined
+  ): boolean {
     return proto3.util.equals(DWNRecord, a, b);
   }
 }
@@ -971,14 +1020,14 @@ export class DWNProtocol extends Message<DWNProtocol> {
    *
    * @generated from field: string target = 1;
    */
-  target = "";
+  target = '';
 
   /**
    * Protocol URI identifier
    *
    * @generated from field: string protocol_uri = 2;
    */
-  protocolUri = "";
+  protocolUri = '';
 
   /**
    * Protocol definition JSON
@@ -1014,14 +1063,14 @@ export class DWNProtocol extends Message<DWNProtocol> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.DWNProtocol";
+  static readonly typeName = 'dwn.v1.DWNProtocol';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "target", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "protocol_uri", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "definition", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 4, name: "published", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 5, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 6, name: "created_height", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: 'target', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'protocol_uri', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'definition', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 4, name: 'published', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 5, name: 'created_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 6, name: 'created_height', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DWNProtocol {
@@ -1036,7 +1085,10 @@ export class DWNProtocol extends Message<DWNProtocol> {
     return new DWNProtocol().fromJsonString(jsonString, options);
   }
 
-  static equals(a: DWNProtocol | PlainMessage<DWNProtocol> | undefined, b: DWNProtocol | PlainMessage<DWNProtocol> | undefined): boolean {
+  static equals(
+    a: DWNProtocol | PlainMessage<DWNProtocol> | undefined,
+    b: DWNProtocol | PlainMessage<DWNProtocol> | undefined
+  ): boolean {
     return proto3.util.equals(DWNProtocol, a, b);
   }
 }
@@ -1052,56 +1104,56 @@ export class DWNPermission extends Message<DWNPermission> {
    *
    * @generated from field: string permission_id = 1;
    */
-  permissionId = "";
+  permissionId = '';
 
   /**
    * DID of the permission grantor
    *
    * @generated from field: string grantor = 2;
    */
-  grantor = "";
+  grantor = '';
 
   /**
    * DID of the permission grantee
    *
    * @generated from field: string grantee = 3;
    */
-  grantee = "";
+  grantee = '';
 
   /**
    * DID of the DWN target
    *
    * @generated from field: string target = 4;
    */
-  target = "";
+  target = '';
 
   /**
    * Interface scope (e.g., "Records", "Protocols")
    *
    * @generated from field: string interface_name = 5;
    */
-  interfaceName = "";
+  interfaceName = '';
 
   /**
    * Method scope (e.g., "Write", "Query")
    *
    * @generated from field: string method = 6;
    */
-  method = "";
+  method = '';
 
   /**
    * Optional protocol scope
    *
    * @generated from field: string protocol = 7;
    */
-  protocol = "";
+  protocol = '';
 
   /**
    * Optional record scope
    *
    * @generated from field: string record_id = 8;
    */
-  recordId = "";
+  recordId = '';
 
   /**
    * Permission conditions JSON
@@ -1144,21 +1196,21 @@ export class DWNPermission extends Message<DWNPermission> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.DWNPermission";
+  static readonly typeName = 'dwn.v1.DWNPermission';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "permission_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "grantor", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "grantee", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "target", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "interface_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "method", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "protocol", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 8, name: "record_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 9, name: "conditions", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 10, name: "expires_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 11, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 12, name: "revoked", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 13, name: "created_height", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: 'permission_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'grantor', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'grantee', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'target', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'interface_name', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'method', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: 'protocol', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: 'record_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: 'conditions', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 10, name: 'expires_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 11, name: 'created_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 12, name: 'revoked', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 13, name: 'created_height', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DWNPermission {
@@ -1173,7 +1225,10 @@ export class DWNPermission extends Message<DWNPermission> {
     return new DWNPermission().fromJsonString(jsonString, options);
   }
 
-  static equals(a: DWNPermission | PlainMessage<DWNPermission> | undefined, b: DWNPermission | PlainMessage<DWNPermission> | undefined): boolean {
+  static equals(
+    a: DWNPermission | PlainMessage<DWNPermission> | undefined,
+    b: DWNPermission | PlainMessage<DWNPermission> | undefined
+  ): boolean {
     return proto3.util.equals(DWNPermission, a, b);
   }
 }
@@ -1189,14 +1244,14 @@ export class VaultState extends Message<VaultState> {
    *
    * @generated from field: string vault_id = 1;
    */
-  vaultId = "";
+  vaultId = '';
 
   /**
    * Owner DID or address
    *
    * @generated from field: string owner = 2;
    */
-  owner = "";
+  owner = '';
 
   /**
    * Enclave data containing encrypted keys
@@ -1246,16 +1301,16 @@ export class VaultState extends Message<VaultState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.VaultState";
+  static readonly typeName = 'dwn.v1.VaultState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "vault_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "enclave_data", kind: "message", T: EnclaveData },
-    { no: 4, name: "public_key", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 5, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 6, name: "last_refreshed", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 7, name: "created_height", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 8, name: "encryption_metadata", kind: "message", T: EncryptionMetadata },
+    { no: 1, name: 'vault_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'enclave_data', kind: 'message', T: EnclaveData },
+    { no: 4, name: 'public_key', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 5, name: 'created_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 6, name: 'last_refreshed', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 7, name: 'created_height', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 8, name: 'encryption_metadata', kind: 'message', T: EncryptionMetadata },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VaultState {
@@ -1270,8 +1325,10 @@ export class VaultState extends Message<VaultState> {
     return new VaultState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: VaultState | PlainMessage<VaultState> | undefined, b: VaultState | PlainMessage<VaultState> | undefined): boolean {
+  static equals(
+    a: VaultState | PlainMessage<VaultState> | undefined,
+    b: VaultState | PlainMessage<VaultState> | undefined
+  ): boolean {
     return proto3.util.equals(VaultState, a, b);
   }
 }
-

@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
 
 /**
  * ExtensionOptionDynamicFeeTx is an extension option that specifies the maxPrioPrice for cosmos tx
@@ -17,7 +24,7 @@ export class ExtensionOptionDynamicFeeTx extends Message<ExtensionOptionDynamicF
    *
    * @generated from field: string max_priority_price = 1;
    */
-  maxPriorityPrice = "";
+  maxPriorityPrice = '';
 
   constructor(data?: PartialMessage<ExtensionOptionDynamicFeeTx>) {
     super();
@@ -25,25 +32,36 @@ export class ExtensionOptionDynamicFeeTx extends Message<ExtensionOptionDynamicF
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.types.v1.ExtensionOptionDynamicFeeTx";
+  static readonly typeName = 'ethermint.types.v1.ExtensionOptionDynamicFeeTx';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "max_priority_price", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'max_priority_price', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExtensionOptionDynamicFeeTx {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): ExtensionOptionDynamicFeeTx {
     return new ExtensionOptionDynamicFeeTx().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExtensionOptionDynamicFeeTx {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): ExtensionOptionDynamicFeeTx {
     return new ExtensionOptionDynamicFeeTx().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExtensionOptionDynamicFeeTx {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ExtensionOptionDynamicFeeTx {
     return new ExtensionOptionDynamicFeeTx().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ExtensionOptionDynamicFeeTx | PlainMessage<ExtensionOptionDynamicFeeTx> | undefined, b: ExtensionOptionDynamicFeeTx | PlainMessage<ExtensionOptionDynamicFeeTx> | undefined): boolean {
+  static equals(
+    a: ExtensionOptionDynamicFeeTx | PlainMessage<ExtensionOptionDynamicFeeTx> | undefined,
+    b: ExtensionOptionDynamicFeeTx | PlainMessage<ExtensionOptionDynamicFeeTx> | undefined
+  ): boolean {
     return proto3.util.equals(ExtensionOptionDynamicFeeTx, a, b);
   }
 }
-

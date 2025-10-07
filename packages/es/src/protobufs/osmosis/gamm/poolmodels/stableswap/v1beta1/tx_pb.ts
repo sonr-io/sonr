@@ -3,10 +3,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { PoolParams } from "./stableswap_pool_pb.js";
-import { Coin } from "../../../../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { PoolParams } from './stableswap_pool_pb.js';
+import { Coin } from '../../../../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * ===================== MsgCreatePool
@@ -17,7 +24,7 @@ export class MsgCreateStableswapPool extends Message<MsgCreateStableswapPool> {
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * @generated from field: osmosis.gamm.poolmodels.stableswap.v1beta1.PoolParams pool_params = 2;
@@ -37,12 +44,12 @@ export class MsgCreateStableswapPool extends Message<MsgCreateStableswapPool> {
   /**
    * @generated from field: string future_pool_governor = 5;
    */
-  futurePoolGovernor = "";
+  futurePoolGovernor = '';
 
   /**
    * @generated from field: string scaling_factor_controller = 6;
    */
-  scalingFactorController = "";
+  scalingFactorController = '';
 
   constructor(data?: PartialMessage<MsgCreateStableswapPool>) {
     super();
@@ -50,29 +57,47 @@ export class MsgCreateStableswapPool extends Message<MsgCreateStableswapPool> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.gamm.poolmodels.stableswap.v1beta1.MsgCreateStableswapPool";
+  static readonly typeName = 'osmosis.gamm.poolmodels.stableswap.v1beta1.MsgCreateStableswapPool';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "pool_params", kind: "message", T: PoolParams },
-    { no: 3, name: "initial_pool_liquidity", kind: "message", T: Coin, repeated: true },
-    { no: 4, name: "scaling_factors", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
-    { no: 5, name: "future_pool_governor", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "scaling_factor_controller", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'pool_params', kind: 'message', T: PoolParams },
+    { no: 3, name: 'initial_pool_liquidity', kind: 'message', T: Coin, repeated: true },
+    {
+      no: 4,
+      name: 'scaling_factors',
+      kind: 'scalar',
+      T: 4 /* ScalarType.UINT64 */,
+      repeated: true,
+    },
+    { no: 5, name: 'future_pool_governor', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'scaling_factor_controller', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgCreateStableswapPool {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgCreateStableswapPool {
     return new MsgCreateStableswapPool().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgCreateStableswapPool {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgCreateStableswapPool {
     return new MsgCreateStableswapPool().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgCreateStableswapPool {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgCreateStableswapPool {
     return new MsgCreateStableswapPool().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgCreateStableswapPool | PlainMessage<MsgCreateStableswapPool> | undefined, b: MsgCreateStableswapPool | PlainMessage<MsgCreateStableswapPool> | undefined): boolean {
+  static equals(
+    a: MsgCreateStableswapPool | PlainMessage<MsgCreateStableswapPool> | undefined,
+    b: MsgCreateStableswapPool | PlainMessage<MsgCreateStableswapPool> | undefined
+  ): boolean {
     return proto3.util.equals(MsgCreateStableswapPool, a, b);
   }
 }
@@ -94,24 +119,37 @@ export class MsgCreateStableswapPoolResponse extends Message<MsgCreateStableswap
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.gamm.poolmodels.stableswap.v1beta1.MsgCreateStableswapPoolResponse";
+  static readonly typeName =
+    'osmosis.gamm.poolmodels.stableswap.v1beta1.MsgCreateStableswapPoolResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgCreateStableswapPoolResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgCreateStableswapPoolResponse {
     return new MsgCreateStableswapPoolResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgCreateStableswapPoolResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgCreateStableswapPoolResponse {
     return new MsgCreateStableswapPoolResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgCreateStableswapPoolResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgCreateStableswapPoolResponse {
     return new MsgCreateStableswapPoolResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgCreateStableswapPoolResponse | PlainMessage<MsgCreateStableswapPoolResponse> | undefined, b: MsgCreateStableswapPoolResponse | PlainMessage<MsgCreateStableswapPoolResponse> | undefined): boolean {
+  static equals(
+    a: MsgCreateStableswapPoolResponse | PlainMessage<MsgCreateStableswapPoolResponse> | undefined,
+    b: MsgCreateStableswapPoolResponse | PlainMessage<MsgCreateStableswapPoolResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgCreateStableswapPoolResponse, a, b);
   }
 }
@@ -126,7 +164,7 @@ export class MsgStableSwapAdjustScalingFactors extends Message<MsgStableSwapAdju
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * @generated from field: uint64 pool_id = 2;
@@ -144,26 +182,51 @@ export class MsgStableSwapAdjustScalingFactors extends Message<MsgStableSwapAdju
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.gamm.poolmodels.stableswap.v1beta1.MsgStableSwapAdjustScalingFactors";
+  static readonly typeName =
+    'osmosis.gamm.poolmodels.stableswap.v1beta1.MsgStableSwapAdjustScalingFactors';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "scaling_factors", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    {
+      no: 3,
+      name: 'scaling_factors',
+      kind: 'scalar',
+      T: 4 /* ScalarType.UINT64 */,
+      repeated: true,
+    },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgStableSwapAdjustScalingFactors {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgStableSwapAdjustScalingFactors {
     return new MsgStableSwapAdjustScalingFactors().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgStableSwapAdjustScalingFactors {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgStableSwapAdjustScalingFactors {
     return new MsgStableSwapAdjustScalingFactors().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgStableSwapAdjustScalingFactors {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgStableSwapAdjustScalingFactors {
     return new MsgStableSwapAdjustScalingFactors().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgStableSwapAdjustScalingFactors | PlainMessage<MsgStableSwapAdjustScalingFactors> | undefined, b: MsgStableSwapAdjustScalingFactors | PlainMessage<MsgStableSwapAdjustScalingFactors> | undefined): boolean {
+  static equals(
+    a:
+      | MsgStableSwapAdjustScalingFactors
+      | PlainMessage<MsgStableSwapAdjustScalingFactors>
+      | undefined,
+    b:
+      | MsgStableSwapAdjustScalingFactors
+      | PlainMessage<MsgStableSwapAdjustScalingFactors>
+      | undefined
+  ): boolean {
     return proto3.util.equals(MsgStableSwapAdjustScalingFactors, a, b);
   }
 }
@@ -178,24 +241,41 @@ export class MsgStableSwapAdjustScalingFactorsResponse extends Message<MsgStable
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.gamm.poolmodels.stableswap.v1beta1.MsgStableSwapAdjustScalingFactorsResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName =
+    'osmosis.gamm.poolmodels.stableswap.v1beta1.MsgStableSwapAdjustScalingFactorsResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgStableSwapAdjustScalingFactorsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgStableSwapAdjustScalingFactorsResponse {
     return new MsgStableSwapAdjustScalingFactorsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgStableSwapAdjustScalingFactorsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgStableSwapAdjustScalingFactorsResponse {
     return new MsgStableSwapAdjustScalingFactorsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgStableSwapAdjustScalingFactorsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgStableSwapAdjustScalingFactorsResponse {
     return new MsgStableSwapAdjustScalingFactorsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgStableSwapAdjustScalingFactorsResponse | PlainMessage<MsgStableSwapAdjustScalingFactorsResponse> | undefined, b: MsgStableSwapAdjustScalingFactorsResponse | PlainMessage<MsgStableSwapAdjustScalingFactorsResponse> | undefined): boolean {
+  static equals(
+    a:
+      | MsgStableSwapAdjustScalingFactorsResponse
+      | PlainMessage<MsgStableSwapAdjustScalingFactorsResponse>
+      | undefined,
+    b:
+      | MsgStableSwapAdjustScalingFactorsResponse
+      | PlainMessage<MsgStableSwapAdjustScalingFactorsResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(MsgStableSwapAdjustScalingFactorsResponse, a, b);
   }
 }
-

@@ -524,7 +524,9 @@ describe('VaultClient with Dexie.js Storage - End to End', () => {
 
     it('should handle invalid account address', async () => {
       await expect(storageManager.getDatabase('')).rejects.toThrow('Account address is required');
-      await expect(storageManager.getDatabase(null as any)).rejects.toThrow('Account address is required');
+      await expect(storageManager.getDatabase(null as any)).rejects.toThrow(
+        'Account address is required'
+      );
     });
 
     it('should handle database errors gracefully', async () => {

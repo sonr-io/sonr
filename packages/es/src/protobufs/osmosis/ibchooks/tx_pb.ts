@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * @generated from message osmosis.ibchooks.MsgEmitIBCAck
@@ -13,7 +20,7 @@ export class MsgEmitIBCAck extends Message<MsgEmitIBCAck> {
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * @generated from field: uint64 packet_sequence = 2;
@@ -23,7 +30,7 @@ export class MsgEmitIBCAck extends Message<MsgEmitIBCAck> {
   /**
    * @generated from field: string channel = 3;
    */
-  channel = "";
+  channel = '';
 
   constructor(data?: PartialMessage<MsgEmitIBCAck>) {
     super();
@@ -31,11 +38,11 @@ export class MsgEmitIBCAck extends Message<MsgEmitIBCAck> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.ibchooks.MsgEmitIBCAck";
+  static readonly typeName = 'osmosis.ibchooks.MsgEmitIBCAck';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "packet_sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "channel", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'packet_sequence', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'channel', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgEmitIBCAck {
@@ -50,7 +57,10 @@ export class MsgEmitIBCAck extends Message<MsgEmitIBCAck> {
     return new MsgEmitIBCAck().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgEmitIBCAck | PlainMessage<MsgEmitIBCAck> | undefined, b: MsgEmitIBCAck | PlainMessage<MsgEmitIBCAck> | undefined): boolean {
+  static equals(
+    a: MsgEmitIBCAck | PlainMessage<MsgEmitIBCAck> | undefined,
+    b: MsgEmitIBCAck | PlainMessage<MsgEmitIBCAck> | undefined
+  ): boolean {
     return proto3.util.equals(MsgEmitIBCAck, a, b);
   }
 }
@@ -62,12 +72,12 @@ export class MsgEmitIBCAckResponse extends Message<MsgEmitIBCAckResponse> {
   /**
    * @generated from field: string contract_result = 1;
    */
-  contractResult = "";
+  contractResult = '';
 
   /**
    * @generated from field: string ibc_ack = 2;
    */
-  ibcAck = "";
+  ibcAck = '';
 
   constructor(data?: PartialMessage<MsgEmitIBCAckResponse>) {
     super();
@@ -75,13 +85,16 @@ export class MsgEmitIBCAckResponse extends Message<MsgEmitIBCAckResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.ibchooks.MsgEmitIBCAckResponse";
+  static readonly typeName = 'osmosis.ibchooks.MsgEmitIBCAckResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "contract_result", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "ibc_ack", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'contract_result', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'ibc_ack', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgEmitIBCAckResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgEmitIBCAckResponse {
     return new MsgEmitIBCAckResponse().fromBinary(bytes, options);
   }
 
@@ -89,12 +102,17 @@ export class MsgEmitIBCAckResponse extends Message<MsgEmitIBCAckResponse> {
     return new MsgEmitIBCAckResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgEmitIBCAckResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgEmitIBCAckResponse {
     return new MsgEmitIBCAckResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgEmitIBCAckResponse | PlainMessage<MsgEmitIBCAckResponse> | undefined, b: MsgEmitIBCAckResponse | PlainMessage<MsgEmitIBCAckResponse> | undefined): boolean {
+  static equals(
+    a: MsgEmitIBCAckResponse | PlainMessage<MsgEmitIBCAckResponse> | undefined,
+    b: MsgEmitIBCAckResponse | PlainMessage<MsgEmitIBCAckResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgEmitIBCAckResponse, a, b);
   }
 }
-

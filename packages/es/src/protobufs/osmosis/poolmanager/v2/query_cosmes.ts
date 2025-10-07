@@ -3,9 +3,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { SpotPriceRequest, SpotPriceResponse } from "./query_pb.js";
+import { SpotPriceRequest, SpotPriceResponse } from './query_pb.js';
 
-const TYPE_NAME = "osmosis.poolmanager.v2.Query";
+const TYPE_NAME = 'osmosis.poolmanager.v2.Query';
 
 /**
  * SpotPriceV2 defines a gRPC query handler that returns the spot price given
@@ -18,8 +18,7 @@ const TYPE_NAME = "osmosis.poolmanager.v2.Query";
  */
 export const QuerySpotPriceV2Service = {
   typeName: TYPE_NAME,
-  method: "SpotPriceV2",
+  method: 'SpotPriceV2',
   Request: SpotPriceRequest,
   Response: SpotPriceResponse,
 } as const;
-

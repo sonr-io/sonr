@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * PoolData represents a structure encapsulating an Osmosis liquidity pool.
@@ -41,11 +48,11 @@ export class PoolData extends Message<PoolData> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.ingest.v1beta1.PoolData";
+  static readonly typeName = 'osmosis.ingest.v1beta1.PoolData';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "chain_model", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 2, name: "sqs_model", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "tick_model", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'chain_model', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: 'sqs_model', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: 'tick_model', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PoolData {
@@ -60,7 +67,10 @@ export class PoolData extends Message<PoolData> {
     return new PoolData().fromJsonString(jsonString, options);
   }
 
-  static equals(a: PoolData | PlainMessage<PoolData> | undefined, b: PoolData | PlainMessage<PoolData> | undefined): boolean {
+  static equals(
+    a: PoolData | PlainMessage<PoolData> | undefined,
+    b: PoolData | PlainMessage<PoolData> | undefined
+  ): boolean {
     return proto3.util.equals(PoolData, a, b);
   }
 }
@@ -99,11 +109,11 @@ export class ProcessBlockRequest extends Message<ProcessBlockRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.ingest.v1beta1.ProcessBlockRequest";
+  static readonly typeName = 'osmosis.ingest.v1beta1.ProcessBlockRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "taker_fees_map", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "pools", kind: "message", T: PoolData, repeated: true },
+    { no: 1, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'taker_fees_map', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: 'pools', kind: 'message', T: PoolData, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProcessBlockRequest {
@@ -114,11 +124,17 @@ export class ProcessBlockRequest extends Message<ProcessBlockRequest> {
     return new ProcessBlockRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ProcessBlockRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ProcessBlockRequest {
     return new ProcessBlockRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ProcessBlockRequest | PlainMessage<ProcessBlockRequest> | undefined, b: ProcessBlockRequest | PlainMessage<ProcessBlockRequest> | undefined): boolean {
+  static equals(
+    a: ProcessBlockRequest | PlainMessage<ProcessBlockRequest> | undefined,
+    b: ProcessBlockRequest | PlainMessage<ProcessBlockRequest> | undefined
+  ): boolean {
     return proto3.util.equals(ProcessBlockRequest, a, b);
   }
 }
@@ -135,9 +151,8 @@ export class ProcessBlockReply extends Message<ProcessBlockReply> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.ingest.v1beta1.ProcessBlockReply";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.ingest.v1beta1.ProcessBlockReply';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProcessBlockReply {
     return new ProcessBlockReply().fromBinary(bytes, options);
@@ -151,8 +166,10 @@ export class ProcessBlockReply extends Message<ProcessBlockReply> {
     return new ProcessBlockReply().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ProcessBlockReply | PlainMessage<ProcessBlockReply> | undefined, b: ProcessBlockReply | PlainMessage<ProcessBlockReply> | undefined): boolean {
+  static equals(
+    a: ProcessBlockReply | PlainMessage<ProcessBlockReply> | undefined,
+    b: ProcessBlockReply | PlainMessage<ProcessBlockReply> | undefined
+  ): boolean {
     return proto3.util.equals(ProcessBlockReply, a, b);
   }
 }
-

@@ -1,9 +1,5 @@
 import Dexie, { type Table } from 'dexie';
-import type {
-  StoredVaultState,
-  StoredUCANToken,
-  VaultStorageConfig
-} from './types';
+import type { StoredVaultState, StoredUCANToken, VaultStorageConfig } from './types';
 
 /**
  * Session data stored in IndexedDB
@@ -44,7 +40,7 @@ export class AccountVaultDatabase extends Dexie {
       state: 'id, accountAddress, lastAccessed',
       tokens: 'id, type, issuer, audience, expiresAt, createdAt',
       sessions: 'id, accountAddress, expiresAt, createdAt',
-      metadata: 'id, accountAddress, key, updatedAt'
+      metadata: 'id, accountAddress, key, updatedAt',
     });
   }
 }
@@ -62,7 +58,7 @@ export class VaultStorageManager {
       enablePersistence: false,
       autoCleanup: true,
       cleanupInterval: 3600000, // 1 hour
-      ...config
+      ...config,
     };
 
     if (this.config.autoCleanup) {
@@ -116,8 +112,8 @@ export class VaultStorageManager {
   async listPersistedAccounts(): Promise<string[]> {
     const databases = await Dexie.getDatabaseNames();
     return databases
-      .filter(name => name.startsWith('vault_'))
-      .map(name => name.replace('vault_', ''));
+      .filter((name) => name.startsWith('vault_'))
+      .map((name) => name.replace('vault_', ''));
   }
 
   /**
@@ -174,20 +170,14 @@ export class VaultStorageManager {
     for (const [accountAddress, db] of this.databases.entries()) {
       try {
         // Remove expired tokens
-        await db.tokens
-          .where('expiresAt')
-          .below(now)
-          .delete();
+        await db.tokens.where('expiresAt').below(now).delete();
 
         // Remove expired sessions
-        await db.sessions
-          .where('expiresAt')
-          .below(now)
-          .delete();
+        await db.sessions.where('expiresAt').below(now).delete();
 
         // Update last accessed time for state
         await db.state.where('accountAddress').equals(accountAddress).modify({
-          lastAccessed: now
+          lastAccessed: now,
         });
       } catch (error) {
         console.error(`Cleanup failed for account ${accountAddress}:`, error);
@@ -260,5 +250,5 @@ export class VaultStorageManager {
  */
 export const defaultStorageManager = new VaultStorageManager({
   enablePersistence: true,
-  autoCleanup: true
+  autoCleanup: true,
 });

@@ -3,16 +3,27 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ArithmeticTwapRequest, ArithmeticTwapResponse, ArithmeticTwapToNowRequest, ArithmeticTwapToNowResponse, GeometricTwapRequest, GeometricTwapResponse, GeometricTwapToNowRequest, GeometricTwapToNowResponse, ParamsRequest, ParamsResponse } from "./query_pb.js";
+import {
+  ArithmeticTwapRequest,
+  ArithmeticTwapResponse,
+  ArithmeticTwapToNowRequest,
+  ArithmeticTwapToNowResponse,
+  GeometricTwapRequest,
+  GeometricTwapResponse,
+  GeometricTwapToNowRequest,
+  GeometricTwapToNowResponse,
+  ParamsRequest,
+  ParamsResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "osmosis.twap.v1beta1.Query";
+const TYPE_NAME = 'osmosis.twap.v1beta1.Query';
 
 /**
  * @generated from rpc osmosis.twap.v1beta1.Query.Params
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: ParamsRequest,
   Response: ParamsResponse,
 } as const;
@@ -22,7 +33,7 @@ export const QueryParamsService = {
  */
 export const QueryArithmeticTwapService = {
   typeName: TYPE_NAME,
-  method: "ArithmeticTwap",
+  method: 'ArithmeticTwap',
   Request: ArithmeticTwapRequest,
   Response: ArithmeticTwapResponse,
 } as const;
@@ -32,7 +43,7 @@ export const QueryArithmeticTwapService = {
  */
 export const QueryArithmeticTwapToNowService = {
   typeName: TYPE_NAME,
-  method: "ArithmeticTwapToNow",
+  method: 'ArithmeticTwapToNow',
   Request: ArithmeticTwapToNowRequest,
   Response: ArithmeticTwapToNowResponse,
 } as const;
@@ -42,7 +53,7 @@ export const QueryArithmeticTwapToNowService = {
  */
 export const QueryGeometricTwapService = {
   typeName: TYPE_NAME,
-  method: "GeometricTwap",
+  method: 'GeometricTwap',
   Request: GeometricTwapRequest,
   Response: GeometricTwapResponse,
 } as const;
@@ -52,8 +63,7 @@ export const QueryGeometricTwapService = {
  */
 export const QueryGeometricTwapToNowService = {
   typeName: TYPE_NAME,
-  method: "GeometricTwapToNow",
+  method: 'GeometricTwapToNow',
   Request: GeometricTwapToNowRequest,
   Response: GeometricTwapToNowResponse,
 } as const;
-

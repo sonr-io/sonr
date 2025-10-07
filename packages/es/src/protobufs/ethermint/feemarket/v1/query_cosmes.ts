@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryBaseFeeRequest, QueryBaseFeeResponse, QueryBlockGasRequest, QueryBlockGasResponse, QueryParamsRequest, QueryParamsResponse } from "./query_pb.js";
+import {
+  QueryBaseFeeRequest,
+  QueryBaseFeeResponse,
+  QueryBlockGasRequest,
+  QueryBlockGasResponse,
+  QueryParamsRequest,
+  QueryParamsResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "ethermint.feemarket.v1.Query";
+const TYPE_NAME = 'ethermint.feemarket.v1.Query';
 
 /**
  * Params queries the parameters of x/feemarket module.
@@ -14,7 +21,7 @@ const TYPE_NAME = "ethermint.feemarket.v1.Query";
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: QueryParamsRequest,
   Response: QueryParamsResponse,
 } as const;
@@ -26,7 +33,7 @@ export const QueryParamsService = {
  */
 export const QueryBaseFeeService = {
   typeName: TYPE_NAME,
-  method: "BaseFee",
+  method: 'BaseFee',
   Request: QueryBaseFeeRequest,
   Response: QueryBaseFeeResponse,
 } as const;
@@ -38,8 +45,7 @@ export const QueryBaseFeeService = {
  */
 export const QueryBlockGasService = {
   typeName: TYPE_NAME,
-  method: "BlockGas",
+  method: 'BlockGas',
   Request: QueryBlockGasRequest,
   Response: QueryBlockGasResponse,
 } as const;
-

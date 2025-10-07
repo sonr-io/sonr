@@ -3,16 +3,23 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgAddAuthenticator, MsgAddAuthenticatorResponse, MsgRemoveAuthenticator, MsgRemoveAuthenticatorResponse, MsgSetActiveState, MsgSetActiveStateResponse } from "./tx_pb.js";
+import {
+  MsgAddAuthenticator,
+  MsgAddAuthenticatorResponse,
+  MsgRemoveAuthenticator,
+  MsgRemoveAuthenticatorResponse,
+  MsgSetActiveState,
+  MsgSetActiveStateResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "osmosis.smartaccount.v1beta1.Msg";
+const TYPE_NAME = 'osmosis.smartaccount.v1beta1.Msg';
 
 /**
  * @generated from rpc osmosis.smartaccount.v1beta1.Msg.AddAuthenticator
  */
 export const MsgAddAuthenticatorService = {
   typeName: TYPE_NAME,
-  method: "AddAuthenticator",
+  method: 'AddAuthenticator',
   Request: MsgAddAuthenticator,
   Response: MsgAddAuthenticatorResponse,
 } as const;
@@ -22,7 +29,7 @@ export const MsgAddAuthenticatorService = {
  */
 export const MsgRemoveAuthenticatorService = {
   typeName: TYPE_NAME,
-  method: "RemoveAuthenticator",
+  method: 'RemoveAuthenticator',
   Request: MsgRemoveAuthenticator,
   Response: MsgRemoveAuthenticatorResponse,
 } as const;
@@ -35,8 +42,7 @@ export const MsgRemoveAuthenticatorService = {
  */
 export const MsgSetActiveStateService = {
   typeName: TYPE_NAME,
-  method: "SetActiveState",
+  method: 'SetActiveState',
   Request: MsgSetActiveState,
   Response: MsgSetActiveStateResponse,
 } as const;
-

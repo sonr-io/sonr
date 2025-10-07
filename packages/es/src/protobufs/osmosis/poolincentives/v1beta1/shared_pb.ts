@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * MigrationRecords contains all the links between balancer and concentrated
@@ -27,9 +34,15 @@ export class MigrationRecords extends Message<MigrationRecords> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolincentives.v1beta1.MigrationRecords";
+  static readonly typeName = 'osmosis.poolincentives.v1beta1.MigrationRecords';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "balancer_to_concentrated_pool_links", kind: "message", T: BalancerToConcentratedPoolLink, repeated: true },
+    {
+      no: 1,
+      name: 'balancer_to_concentrated_pool_links',
+      kind: 'message',
+      T: BalancerToConcentratedPoolLink,
+      repeated: true,
+    },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MigrationRecords {
@@ -44,7 +57,10 @@ export class MigrationRecords extends Message<MigrationRecords> {
     return new MigrationRecords().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MigrationRecords | PlainMessage<MigrationRecords> | undefined, b: MigrationRecords | PlainMessage<MigrationRecords> | undefined): boolean {
+  static equals(
+    a: MigrationRecords | PlainMessage<MigrationRecords> | undefined,
+    b: MigrationRecords | PlainMessage<MigrationRecords> | undefined
+  ): boolean {
     return proto3.util.equals(MigrationRecords, a, b);
   }
 }
@@ -79,26 +95,37 @@ export class BalancerToConcentratedPoolLink extends Message<BalancerToConcentrat
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolincentives.v1beta1.BalancerToConcentratedPoolLink";
+  static readonly typeName = 'osmosis.poolincentives.v1beta1.BalancerToConcentratedPoolLink';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "balancer_pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "cl_pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'balancer_pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'cl_pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BalancerToConcentratedPoolLink {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): BalancerToConcentratedPoolLink {
     return new BalancerToConcentratedPoolLink().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): BalancerToConcentratedPoolLink {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): BalancerToConcentratedPoolLink {
     return new BalancerToConcentratedPoolLink().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): BalancerToConcentratedPoolLink {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): BalancerToConcentratedPoolLink {
     return new BalancerToConcentratedPoolLink().fromJsonString(jsonString, options);
   }
 
-  static equals(a: BalancerToConcentratedPoolLink | PlainMessage<BalancerToConcentratedPoolLink> | undefined, b: BalancerToConcentratedPoolLink | PlainMessage<BalancerToConcentratedPoolLink> | undefined): boolean {
+  static equals(
+    a: BalancerToConcentratedPoolLink | PlainMessage<BalancerToConcentratedPoolLink> | undefined,
+    b: BalancerToConcentratedPoolLink | PlainMessage<BalancerToConcentratedPoolLink> | undefined
+  ): boolean {
     return proto3.util.equals(BalancerToConcentratedPoolLink, a, b);
   }
 }
-

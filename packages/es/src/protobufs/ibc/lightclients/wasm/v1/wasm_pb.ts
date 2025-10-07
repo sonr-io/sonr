@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { Height } from "../../../core/client/v1/client_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { Height } from '../../../core/client/v1/client_pb.js';
 
 /**
  * Wasm light client's Client state
@@ -37,11 +44,11 @@ export class ClientState extends Message<ClientState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.lightclients.wasm.v1.ClientState";
+  static readonly typeName = 'ibc.lightclients.wasm.v1.ClientState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 2, name: "checksum", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "latest_height", kind: "message", T: Height },
+    { no: 1, name: 'data', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: 'checksum', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: 'latest_height', kind: 'message', T: Height },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ClientState {
@@ -56,7 +63,10 @@ export class ClientState extends Message<ClientState> {
     return new ClientState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ClientState | PlainMessage<ClientState> | undefined, b: ClientState | PlainMessage<ClientState> | undefined): boolean {
+  static equals(
+    a: ClientState | PlainMessage<ClientState> | undefined,
+    b: ClientState | PlainMessage<ClientState> | undefined
+  ): boolean {
     return proto3.util.equals(ClientState, a, b);
   }
 }
@@ -81,9 +91,9 @@ export class ConsensusState extends Message<ConsensusState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.lightclients.wasm.v1.ConsensusState";
+  static readonly typeName = 'ibc.lightclients.wasm.v1.ConsensusState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'data', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ConsensusState {
@@ -98,7 +108,10 @@ export class ConsensusState extends Message<ConsensusState> {
     return new ConsensusState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ConsensusState | PlainMessage<ConsensusState> | undefined, b: ConsensusState | PlainMessage<ConsensusState> | undefined): boolean {
+  static equals(
+    a: ConsensusState | PlainMessage<ConsensusState> | undefined,
+    b: ConsensusState | PlainMessage<ConsensusState> | undefined
+  ): boolean {
     return proto3.util.equals(ConsensusState, a, b);
   }
 }
@@ -120,9 +133,9 @@ export class ClientMessage extends Message<ClientMessage> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.lightclients.wasm.v1.ClientMessage";
+  static readonly typeName = 'ibc.lightclients.wasm.v1.ClientMessage';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'data', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ClientMessage {
@@ -137,8 +150,10 @@ export class ClientMessage extends Message<ClientMessage> {
     return new ClientMessage().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ClientMessage | PlainMessage<ClientMessage> | undefined, b: ClientMessage | PlainMessage<ClientMessage> | undefined): boolean {
+  static equals(
+    a: ClientMessage | PlainMessage<ClientMessage> | undefined,
+    b: ClientMessage | PlainMessage<ClientMessage> | undefined
+  ): boolean {
     return proto3.util.equals(ClientMessage, a, b);
   }
 }
-

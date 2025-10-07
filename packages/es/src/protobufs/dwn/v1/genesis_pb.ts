@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { DWNPermission, DWNProtocol, DWNRecord, VaultState } from "./state_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { DWNPermission, DWNProtocol, DWNRecord, VaultState } from './state_pb.js';
 
 /**
  * GenesisState defines the module genesis state
@@ -54,13 +61,13 @@ export class GenesisState extends Message<GenesisState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.GenesisState";
+  static readonly typeName = 'dwn.v1.GenesisState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "params", kind: "message", T: Params },
-    { no: 2, name: "records", kind: "message", T: DWNRecord, repeated: true },
-    { no: 3, name: "protocols", kind: "message", T: DWNProtocol, repeated: true },
-    { no: 4, name: "permissions", kind: "message", T: DWNPermission, repeated: true },
-    { no: 5, name: "vaults", kind: "message", T: VaultState, repeated: true },
+    { no: 1, name: 'params', kind: 'message', T: Params },
+    { no: 2, name: 'records', kind: 'message', T: DWNRecord, repeated: true },
+    { no: 3, name: 'protocols', kind: 'message', T: DWNProtocol, repeated: true },
+    { no: 4, name: 'permissions', kind: 'message', T: DWNPermission, repeated: true },
+    { no: 5, name: 'vaults', kind: 'message', T: VaultState, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {
@@ -75,7 +82,10 @@ export class GenesisState extends Message<GenesisState> {
     return new GenesisState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisState | PlainMessage<GenesisState> | undefined, b: GenesisState | PlainMessage<GenesisState> | undefined): boolean {
+  static equals(
+    a: GenesisState | PlainMessage<GenesisState> | undefined,
+    b: GenesisState | PlainMessage<GenesisState> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisState, a, b);
   }
 }
@@ -169,19 +179,31 @@ export class Params extends Message<Params> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.Params";
+  static readonly typeName = 'dwn.v1.Params';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "max_record_size", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "max_protocols_per_dwn", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 3, name: "max_permissions_per_dwn", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 4, name: "vault_creation_enabled", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 5, name: "min_vault_refresh_interval", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 6, name: "encryption_enabled", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 7, name: "key_rotation_days", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 8, name: "min_validators_for_key_gen", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 9, name: "encrypted_protocols", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 10, name: "encrypted_schemas", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 11, name: "single_node_fallback", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'max_record_size', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'max_protocols_per_dwn', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
+    { no: 3, name: 'max_permissions_per_dwn', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
+    { no: 4, name: 'vault_creation_enabled', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 5, name: 'min_vault_refresh_interval', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 6, name: 'encryption_enabled', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 7, name: 'key_rotation_days', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
+    { no: 8, name: 'min_validators_for_key_gen', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
+    {
+      no: 9,
+      name: 'encrypted_protocols',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 10,
+      name: 'encrypted_schemas',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    { no: 11, name: 'single_node_fallback', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Params {
@@ -196,7 +218,10 @@ export class Params extends Message<Params> {
     return new Params().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Params | PlainMessage<Params> | undefined, b: Params | PlainMessage<Params> | undefined): boolean {
+  static equals(
+    a: Params | PlainMessage<Params> | undefined,
+    b: Params | PlainMessage<Params> | undefined
+  ): boolean {
     return proto3.util.equals(Params, a, b);
   }
 }
@@ -208,22 +233,22 @@ export class IPFSStatus extends Message<IPFSStatus> {
   /**
    * @generated from field: string peer_id = 1;
    */
-  peerId = "";
+  peerId = '';
 
   /**
    * @generated from field: string peer_name = 2;
    */
-  peerName = "";
+  peerName = '';
 
   /**
    * @generated from field: string peer_type = 3;
    */
-  peerType = "";
+  peerType = '';
 
   /**
    * @generated from field: string version = 4;
    */
-  version = "";
+  version = '';
 
   constructor(data?: PartialMessage<IPFSStatus>) {
     super();
@@ -231,12 +256,12 @@ export class IPFSStatus extends Message<IPFSStatus> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.IPFSStatus";
+  static readonly typeName = 'dwn.v1.IPFSStatus';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "peer_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "peer_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "peer_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'peer_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'peer_name', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'peer_type', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'version', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): IPFSStatus {
@@ -251,8 +276,10 @@ export class IPFSStatus extends Message<IPFSStatus> {
     return new IPFSStatus().fromJsonString(jsonString, options);
   }
 
-  static equals(a: IPFSStatus | PlainMessage<IPFSStatus> | undefined, b: IPFSStatus | PlainMessage<IPFSStatus> | undefined): boolean {
+  static equals(
+    a: IPFSStatus | PlainMessage<IPFSStatus> | undefined,
+    b: IPFSStatus | PlainMessage<IPFSStatus> | undefined
+  ): boolean {
     return proto3.util.equals(IPFSStatus, a, b);
   }
 }
-

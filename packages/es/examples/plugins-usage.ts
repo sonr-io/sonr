@@ -14,7 +14,7 @@ import { MotorPluginImpl } from '@sonr.io/es/plugins/motor';
 
 async function demonstrateVaultPlugin() {
   console.log('=== Vault Plugin Demo ===');
-  
+
   // Create a vault client
   const vault = createVaultClient({
     chainId: 'sonr-testnet-1',
@@ -32,9 +32,7 @@ async function demonstrateVaultPlugin() {
   // Create a UCAN token
   const tokenResponse = await vault.newOriginToken({
     audience_did: 'did:sonr:example123',
-    attenuations: [
-      { can: ['sign', 'verify'], with: 'vault://keys/*' }
-    ],
+    attenuations: [{ can: ['sign', 'verify'], with: 'vault://keys/*' }],
     expires_at: Date.now() + 3600000, // 1 hour from now
   });
   console.log('UCAN Token created:', tokenResponse.token.substring(0, 50) + '...');
@@ -57,7 +55,7 @@ async function demonstrateVaultPlugin() {
 
 async function demonstrateMotorPlugin() {
   console.log('\n=== Motor Plugin Demo ===');
-  
+
   // Create a motor plugin (auto-detects environment)
   const motor = await createMotorPlugin({
     debug: true,
@@ -89,9 +87,7 @@ async function demonstrateMotorPlugin() {
   // Create a UCAN token using motor
   const tokenResponse = await motor.newOriginToken({
     audience_did: 'did:sonr:motor123',
-    attenuations: [
-      { can: ['create', 'read', 'update', 'delete'], with: 'dwn://records/*' }
-    ],
+    attenuations: [{ can: ['create', 'read', 'update', 'delete'], with: 'dwn://records/*' }],
   });
   console.log('Motor UCAN Token:', tokenResponse.token.substring(0, 50) + '...');
 
@@ -101,7 +97,7 @@ async function demonstrateMotorPlugin() {
 
 async function demonstratePluginNamespaces() {
   console.log('\n=== Using Plugin Namespaces ===');
-  
+
   // Access plugins through namespace
   const vaultClient = plugins.vault.createVaultClient();
   const motorPlugin = await plugins.motor.createMotorPlugin();
@@ -123,7 +119,7 @@ async function main() {
     await demonstrateVaultPlugin();
     await demonstrateMotorPlugin();
     await demonstratePluginNamespaces();
-    
+
     console.log('\n✅ All plugin demonstrations completed successfully!');
   } catch (error) {
     console.error('❌ Error during plugin demonstration:', error);

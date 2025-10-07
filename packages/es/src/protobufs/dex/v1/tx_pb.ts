@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
-import { Coin } from "../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64, Timestamp } from '@bufbuild/protobuf';
+import { Coin } from '../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * MsgRegisterDEXAccount registers a new ICA account for DEX operations
@@ -18,14 +25,14 @@ export class MsgRegisterDEXAccount extends Message<MsgRegisterDEXAccount> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * IBC connection to target chain
    *
    * @generated from field: string connection_id = 2;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * Requested features for this account
@@ -39,7 +46,7 @@ export class MsgRegisterDEXAccount extends Message<MsgRegisterDEXAccount> {
    *
    * @generated from field: string metadata = 4;
    */
-  metadata = "";
+  metadata = '';
 
   constructor(data?: PartialMessage<MsgRegisterDEXAccount>) {
     super();
@@ -47,15 +54,18 @@ export class MsgRegisterDEXAccount extends Message<MsgRegisterDEXAccount> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.MsgRegisterDEXAccount";
+  static readonly typeName = 'dex.v1.MsgRegisterDEXAccount';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "features", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 4, name: "metadata", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'features', kind: 'scalar', T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 4, name: 'metadata', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRegisterDEXAccount {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgRegisterDEXAccount {
     return new MsgRegisterDEXAccount().fromBinary(bytes, options);
   }
 
@@ -63,11 +73,17 @@ export class MsgRegisterDEXAccount extends Message<MsgRegisterDEXAccount> {
     return new MsgRegisterDEXAccount().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgRegisterDEXAccount {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgRegisterDEXAccount {
     return new MsgRegisterDEXAccount().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRegisterDEXAccount | PlainMessage<MsgRegisterDEXAccount> | undefined, b: MsgRegisterDEXAccount | PlainMessage<MsgRegisterDEXAccount> | undefined): boolean {
+  static equals(
+    a: MsgRegisterDEXAccount | PlainMessage<MsgRegisterDEXAccount> | undefined,
+    b: MsgRegisterDEXAccount | PlainMessage<MsgRegisterDEXAccount> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRegisterDEXAccount, a, b);
   }
 }
@@ -83,14 +99,14 @@ export class MsgRegisterDEXAccountResponse extends Message<MsgRegisterDEXAccount
    *
    * @generated from field: string port_id = 1;
    */
-  portId = "";
+  portId = '';
 
   /**
    * Account address on remote chain (once available)
    *
    * @generated from field: string account_address = 2;
    */
-  accountAddress = "";
+  accountAddress = '';
 
   constructor(data?: PartialMessage<MsgRegisterDEXAccountResponse>) {
     super();
@@ -98,25 +114,37 @@ export class MsgRegisterDEXAccountResponse extends Message<MsgRegisterDEXAccount
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.MsgRegisterDEXAccountResponse";
+  static readonly typeName = 'dex.v1.MsgRegisterDEXAccountResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "account_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'account_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRegisterDEXAccountResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgRegisterDEXAccountResponse {
     return new MsgRegisterDEXAccountResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgRegisterDEXAccountResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgRegisterDEXAccountResponse {
     return new MsgRegisterDEXAccountResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgRegisterDEXAccountResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgRegisterDEXAccountResponse {
     return new MsgRegisterDEXAccountResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRegisterDEXAccountResponse | PlainMessage<MsgRegisterDEXAccountResponse> | undefined, b: MsgRegisterDEXAccountResponse | PlainMessage<MsgRegisterDEXAccountResponse> | undefined): boolean {
+  static equals(
+    a: MsgRegisterDEXAccountResponse | PlainMessage<MsgRegisterDEXAccountResponse> | undefined,
+    b: MsgRegisterDEXAccountResponse | PlainMessage<MsgRegisterDEXAccountResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRegisterDEXAccountResponse, a, b);
   }
 }
@@ -132,56 +160,56 @@ export class MsgExecuteSwap extends Message<MsgExecuteSwap> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * IBC connection to DEX chain
    *
    * @generated from field: string connection_id = 2;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * Token to swap from
    *
    * @generated from field: string source_denom = 3;
    */
-  sourceDenom = "";
+  sourceDenom = '';
 
   /**
    * Token to swap to
    *
    * @generated from field: string target_denom = 4;
    */
-  targetDenom = "";
+  targetDenom = '';
 
   /**
    * Amount to swap
    *
    * @generated from field: string amount = 5;
    */
-  amount = "";
+  amount = '';
 
   /**
    * Minimum amount out (slippage protection)
    *
    * @generated from field: string min_amount_out = 6;
    */
-  minAmountOut = "";
+  minAmountOut = '';
 
   /**
    * Optional specific route
    *
    * @generated from field: string route = 7;
    */
-  route = "";
+  route = '';
 
   /**
    * UCAN authorization token
    *
    * @generated from field: string ucan_token = 8;
    */
-  ucanToken = "";
+  ucanToken = '';
 
   /**
    * Timeout for the swap
@@ -196,17 +224,17 @@ export class MsgExecuteSwap extends Message<MsgExecuteSwap> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.MsgExecuteSwap";
+  static readonly typeName = 'dex.v1.MsgExecuteSwap';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "source_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "target_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "min_amount_out", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "route", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 8, name: "ucan_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 9, name: "timeout", kind: "message", T: Timestamp },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'source_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'target_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'min_amount_out', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: 'route', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: 'ucan_token', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: 'timeout', kind: 'message', T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgExecuteSwap {
@@ -221,7 +249,10 @@ export class MsgExecuteSwap extends Message<MsgExecuteSwap> {
     return new MsgExecuteSwap().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgExecuteSwap | PlainMessage<MsgExecuteSwap> | undefined, b: MsgExecuteSwap | PlainMessage<MsgExecuteSwap> | undefined): boolean {
+  static equals(
+    a: MsgExecuteSwap | PlainMessage<MsgExecuteSwap> | undefined,
+    b: MsgExecuteSwap | PlainMessage<MsgExecuteSwap> | undefined
+  ): boolean {
     return proto3.util.equals(MsgExecuteSwap, a, b);
   }
 }
@@ -237,14 +268,14 @@ export class MsgExecuteSwapResponse extends Message<MsgExecuteSwapResponse> {
    *
    * @generated from field: string tx_hash = 1;
    */
-  txHash = "";
+  txHash = '';
 
   /**
    * Actual amount received
    *
    * @generated from field: string amount_received = 2;
    */
-  amountReceived = "";
+  amountReceived = '';
 
   /**
    * IBC packet sequence
@@ -259,26 +290,38 @@ export class MsgExecuteSwapResponse extends Message<MsgExecuteSwapResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.MsgExecuteSwapResponse";
+  static readonly typeName = 'dex.v1.MsgExecuteSwapResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "tx_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "amount_received", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'tx_hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'amount_received', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'sequence', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgExecuteSwapResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgExecuteSwapResponse {
     return new MsgExecuteSwapResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgExecuteSwapResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgExecuteSwapResponse {
     return new MsgExecuteSwapResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgExecuteSwapResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgExecuteSwapResponse {
     return new MsgExecuteSwapResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgExecuteSwapResponse | PlainMessage<MsgExecuteSwapResponse> | undefined, b: MsgExecuteSwapResponse | PlainMessage<MsgExecuteSwapResponse> | undefined): boolean {
+  static equals(
+    a: MsgExecuteSwapResponse | PlainMessage<MsgExecuteSwapResponse> | undefined,
+    b: MsgExecuteSwapResponse | PlainMessage<MsgExecuteSwapResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgExecuteSwapResponse, a, b);
   }
 }
@@ -294,21 +337,21 @@ export class MsgProvideLiquidity extends Message<MsgProvideLiquidity> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * IBC connection to DEX chain
    *
    * @generated from field: string connection_id = 2;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * Pool ID to add liquidity to
    *
    * @generated from field: string pool_id = 3;
    */
-  poolId = "";
+  poolId = '';
 
   /**
    * Assets to provide
@@ -322,14 +365,14 @@ export class MsgProvideLiquidity extends Message<MsgProvideLiquidity> {
    *
    * @generated from field: string min_shares = 5;
    */
-  minShares = "";
+  minShares = '';
 
   /**
    * UCAN authorization token
    *
    * @generated from field: string ucan_token = 6;
    */
-  ucanToken = "";
+  ucanToken = '';
 
   /**
    * Timeout for the operation
@@ -344,15 +387,15 @@ export class MsgProvideLiquidity extends Message<MsgProvideLiquidity> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.MsgProvideLiquidity";
+  static readonly typeName = 'dex.v1.MsgProvideLiquidity';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "pool_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "assets", kind: "message", T: Coin, repeated: true },
-    { no: 5, name: "min_shares", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "ucan_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "timeout", kind: "message", T: Timestamp },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'pool_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'assets', kind: 'message', T: Coin, repeated: true },
+    { no: 5, name: 'min_shares', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'ucan_token', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: 'timeout', kind: 'message', T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgProvideLiquidity {
@@ -363,11 +406,17 @@ export class MsgProvideLiquidity extends Message<MsgProvideLiquidity> {
     return new MsgProvideLiquidity().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgProvideLiquidity {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgProvideLiquidity {
     return new MsgProvideLiquidity().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgProvideLiquidity | PlainMessage<MsgProvideLiquidity> | undefined, b: MsgProvideLiquidity | PlainMessage<MsgProvideLiquidity> | undefined): boolean {
+  static equals(
+    a: MsgProvideLiquidity | PlainMessage<MsgProvideLiquidity> | undefined,
+    b: MsgProvideLiquidity | PlainMessage<MsgProvideLiquidity> | undefined
+  ): boolean {
     return proto3.util.equals(MsgProvideLiquidity, a, b);
   }
 }
@@ -383,14 +432,14 @@ export class MsgProvideLiquidityResponse extends Message<MsgProvideLiquidityResp
    *
    * @generated from field: string tx_hash = 1;
    */
-  txHash = "";
+  txHash = '';
 
   /**
    * LP tokens received
    *
    * @generated from field: string shares_received = 2;
    */
-  sharesReceived = "";
+  sharesReceived = '';
 
   /**
    * IBC packet sequence
@@ -405,26 +454,38 @@ export class MsgProvideLiquidityResponse extends Message<MsgProvideLiquidityResp
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.MsgProvideLiquidityResponse";
+  static readonly typeName = 'dex.v1.MsgProvideLiquidityResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "tx_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "shares_received", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'tx_hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'shares_received', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'sequence', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgProvideLiquidityResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgProvideLiquidityResponse {
     return new MsgProvideLiquidityResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgProvideLiquidityResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgProvideLiquidityResponse {
     return new MsgProvideLiquidityResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgProvideLiquidityResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgProvideLiquidityResponse {
     return new MsgProvideLiquidityResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgProvideLiquidityResponse | PlainMessage<MsgProvideLiquidityResponse> | undefined, b: MsgProvideLiquidityResponse | PlainMessage<MsgProvideLiquidityResponse> | undefined): boolean {
+  static equals(
+    a: MsgProvideLiquidityResponse | PlainMessage<MsgProvideLiquidityResponse> | undefined,
+    b: MsgProvideLiquidityResponse | PlainMessage<MsgProvideLiquidityResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgProvideLiquidityResponse, a, b);
   }
 }
@@ -440,28 +501,28 @@ export class MsgRemoveLiquidity extends Message<MsgRemoveLiquidity> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * IBC connection to DEX chain
    *
    * @generated from field: string connection_id = 2;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * Pool ID to remove liquidity from
    *
    * @generated from field: string pool_id = 3;
    */
-  poolId = "";
+  poolId = '';
 
   /**
    * Amount of shares to remove
    *
    * @generated from field: string shares = 4;
    */
-  shares = "";
+  shares = '';
 
   /**
    * Minimum assets to receive
@@ -475,7 +536,7 @@ export class MsgRemoveLiquidity extends Message<MsgRemoveLiquidity> {
    *
    * @generated from field: string ucan_token = 6;
    */
-  ucanToken = "";
+  ucanToken = '';
 
   /**
    * Timeout for the operation
@@ -490,15 +551,15 @@ export class MsgRemoveLiquidity extends Message<MsgRemoveLiquidity> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.MsgRemoveLiquidity";
+  static readonly typeName = 'dex.v1.MsgRemoveLiquidity';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "pool_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "shares", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "min_amounts", kind: "message", T: Coin, repeated: true },
-    { no: 6, name: "ucan_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "timeout", kind: "message", T: Timestamp },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'pool_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'shares', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'min_amounts', kind: 'message', T: Coin, repeated: true },
+    { no: 6, name: 'ucan_token', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: 'timeout', kind: 'message', T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRemoveLiquidity {
@@ -509,11 +570,17 @@ export class MsgRemoveLiquidity extends Message<MsgRemoveLiquidity> {
     return new MsgRemoveLiquidity().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgRemoveLiquidity {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgRemoveLiquidity {
     return new MsgRemoveLiquidity().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRemoveLiquidity | PlainMessage<MsgRemoveLiquidity> | undefined, b: MsgRemoveLiquidity | PlainMessage<MsgRemoveLiquidity> | undefined): boolean {
+  static equals(
+    a: MsgRemoveLiquidity | PlainMessage<MsgRemoveLiquidity> | undefined,
+    b: MsgRemoveLiquidity | PlainMessage<MsgRemoveLiquidity> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRemoveLiquidity, a, b);
   }
 }
@@ -529,7 +596,7 @@ export class MsgRemoveLiquidityResponse extends Message<MsgRemoveLiquidityRespon
    *
    * @generated from field: string tx_hash = 1;
    */
-  txHash = "";
+  txHash = '';
 
   /**
    * Assets received
@@ -551,26 +618,38 @@ export class MsgRemoveLiquidityResponse extends Message<MsgRemoveLiquidityRespon
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.MsgRemoveLiquidityResponse";
+  static readonly typeName = 'dex.v1.MsgRemoveLiquidityResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "tx_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "assets_received", kind: "message", T: Coin, repeated: true },
-    { no: 3, name: "sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'tx_hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'assets_received', kind: 'message', T: Coin, repeated: true },
+    { no: 3, name: 'sequence', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRemoveLiquidityResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgRemoveLiquidityResponse {
     return new MsgRemoveLiquidityResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgRemoveLiquidityResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgRemoveLiquidityResponse {
     return new MsgRemoveLiquidityResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgRemoveLiquidityResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgRemoveLiquidityResponse {
     return new MsgRemoveLiquidityResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRemoveLiquidityResponse | PlainMessage<MsgRemoveLiquidityResponse> | undefined, b: MsgRemoveLiquidityResponse | PlainMessage<MsgRemoveLiquidityResponse> | undefined): boolean {
+  static equals(
+    a: MsgRemoveLiquidityResponse | PlainMessage<MsgRemoveLiquidityResponse> | undefined,
+    b: MsgRemoveLiquidityResponse | PlainMessage<MsgRemoveLiquidityResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRemoveLiquidityResponse, a, b);
   }
 }
@@ -586,42 +665,42 @@ export class MsgCreateLimitOrder extends Message<MsgCreateLimitOrder> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * IBC connection to DEX chain
    *
    * @generated from field: string connection_id = 2;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * Token to sell
    *
    * @generated from field: string sell_denom = 3;
    */
-  sellDenom = "";
+  sellDenom = '';
 
   /**
    * Token to buy
    *
    * @generated from field: string buy_denom = 4;
    */
-  buyDenom = "";
+  buyDenom = '';
 
   /**
    * Amount to sell
    *
    * @generated from field: string amount = 5;
    */
-  amount = "";
+  amount = '';
 
   /**
    * Price per unit
    *
    * @generated from field: string price = 6;
    */
-  price = "";
+  price = '';
 
   /**
    * Order expiration
@@ -635,7 +714,7 @@ export class MsgCreateLimitOrder extends Message<MsgCreateLimitOrder> {
    *
    * @generated from field: string ucan_token = 8;
    */
-  ucanToken = "";
+  ucanToken = '';
 
   constructor(data?: PartialMessage<MsgCreateLimitOrder>) {
     super();
@@ -643,16 +722,16 @@ export class MsgCreateLimitOrder extends Message<MsgCreateLimitOrder> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.MsgCreateLimitOrder";
+  static readonly typeName = 'dex.v1.MsgCreateLimitOrder';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "sell_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "buy_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "price", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "expiration", kind: "message", T: Timestamp },
-    { no: 8, name: "ucan_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'sell_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'buy_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'price', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: 'expiration', kind: 'message', T: Timestamp },
+    { no: 8, name: 'ucan_token', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgCreateLimitOrder {
@@ -663,11 +742,17 @@ export class MsgCreateLimitOrder extends Message<MsgCreateLimitOrder> {
     return new MsgCreateLimitOrder().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgCreateLimitOrder {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgCreateLimitOrder {
     return new MsgCreateLimitOrder().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgCreateLimitOrder | PlainMessage<MsgCreateLimitOrder> | undefined, b: MsgCreateLimitOrder | PlainMessage<MsgCreateLimitOrder> | undefined): boolean {
+  static equals(
+    a: MsgCreateLimitOrder | PlainMessage<MsgCreateLimitOrder> | undefined,
+    b: MsgCreateLimitOrder | PlainMessage<MsgCreateLimitOrder> | undefined
+  ): boolean {
     return proto3.util.equals(MsgCreateLimitOrder, a, b);
   }
 }
@@ -683,14 +768,14 @@ export class MsgCreateLimitOrderResponse extends Message<MsgCreateLimitOrderResp
    *
    * @generated from field: string order_id = 1;
    */
-  orderId = "";
+  orderId = '';
 
   /**
    * Transaction ID
    *
    * @generated from field: string tx_hash = 2;
    */
-  txHash = "";
+  txHash = '';
 
   /**
    * IBC packet sequence
@@ -705,26 +790,38 @@ export class MsgCreateLimitOrderResponse extends Message<MsgCreateLimitOrderResp
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.MsgCreateLimitOrderResponse";
+  static readonly typeName = 'dex.v1.MsgCreateLimitOrderResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "order_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "tx_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'order_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'tx_hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'sequence', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgCreateLimitOrderResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgCreateLimitOrderResponse {
     return new MsgCreateLimitOrderResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgCreateLimitOrderResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgCreateLimitOrderResponse {
     return new MsgCreateLimitOrderResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgCreateLimitOrderResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgCreateLimitOrderResponse {
     return new MsgCreateLimitOrderResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgCreateLimitOrderResponse | PlainMessage<MsgCreateLimitOrderResponse> | undefined, b: MsgCreateLimitOrderResponse | PlainMessage<MsgCreateLimitOrderResponse> | undefined): boolean {
+  static equals(
+    a: MsgCreateLimitOrderResponse | PlainMessage<MsgCreateLimitOrderResponse> | undefined,
+    b: MsgCreateLimitOrderResponse | PlainMessage<MsgCreateLimitOrderResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgCreateLimitOrderResponse, a, b);
   }
 }
@@ -740,28 +837,28 @@ export class MsgCancelOrder extends Message<MsgCancelOrder> {
    *
    * @generated from field: string did = 1;
    */
-  did = "";
+  did = '';
 
   /**
    * IBC connection to DEX chain
    *
    * @generated from field: string connection_id = 2;
    */
-  connectionId = "";
+  connectionId = '';
 
   /**
    * Order ID to cancel
    *
    * @generated from field: string order_id = 3;
    */
-  orderId = "";
+  orderId = '';
 
   /**
    * UCAN authorization token
    *
    * @generated from field: string ucan_token = 4;
    */
-  ucanToken = "";
+  ucanToken = '';
 
   constructor(data?: PartialMessage<MsgCancelOrder>) {
     super();
@@ -769,12 +866,12 @@ export class MsgCancelOrder extends Message<MsgCancelOrder> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.MsgCancelOrder";
+  static readonly typeName = 'dex.v1.MsgCancelOrder';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "did", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "order_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "ucan_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'did', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'order_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'ucan_token', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgCancelOrder {
@@ -789,7 +886,10 @@ export class MsgCancelOrder extends Message<MsgCancelOrder> {
     return new MsgCancelOrder().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgCancelOrder | PlainMessage<MsgCancelOrder> | undefined, b: MsgCancelOrder | PlainMessage<MsgCancelOrder> | undefined): boolean {
+  static equals(
+    a: MsgCancelOrder | PlainMessage<MsgCancelOrder> | undefined,
+    b: MsgCancelOrder | PlainMessage<MsgCancelOrder> | undefined
+  ): boolean {
     return proto3.util.equals(MsgCancelOrder, a, b);
   }
 }
@@ -805,7 +905,7 @@ export class MsgCancelOrderResponse extends Message<MsgCancelOrderResponse> {
    *
    * @generated from field: string tx_hash = 1;
    */
-  txHash = "";
+  txHash = '';
 
   /**
    * IBC packet sequence
@@ -820,26 +920,37 @@ export class MsgCancelOrderResponse extends Message<MsgCancelOrderResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dex.v1.MsgCancelOrderResponse";
+  static readonly typeName = 'dex.v1.MsgCancelOrderResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "tx_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'tx_hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'sequence', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgCancelOrderResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgCancelOrderResponse {
     return new MsgCancelOrderResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgCancelOrderResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgCancelOrderResponse {
     return new MsgCancelOrderResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgCancelOrderResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgCancelOrderResponse {
     return new MsgCancelOrderResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgCancelOrderResponse | PlainMessage<MsgCancelOrderResponse> | undefined, b: MsgCancelOrderResponse | PlainMessage<MsgCancelOrderResponse> | undefined): boolean {
+  static equals(
+    a: MsgCancelOrderResponse | PlainMessage<MsgCancelOrderResponse> | undefined,
+    b: MsgCancelOrderResponse | PlainMessage<MsgCancelOrderResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgCancelOrderResponse, a, b);
   }
 }
-

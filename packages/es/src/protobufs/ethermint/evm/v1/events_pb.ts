@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
 
 /**
  * EventEthereumTx defines the event for an Ethereum transaction
@@ -17,49 +24,49 @@ export class EventEthereumTx extends Message<EventEthereumTx> {
    *
    * @generated from field: string amount = 1;
    */
-  amount = "";
+  amount = '';
 
   /**
    * eth_hash is the Ethereum hash of the transaction
    *
    * @generated from field: string eth_hash = 2;
    */
-  ethHash = "";
+  ethHash = '';
 
   /**
    * index of the transaction in the block
    *
    * @generated from field: string index = 3;
    */
-  index = "";
+  index = '';
 
   /**
    * gas_used is the amount of gas used by the transaction
    *
    * @generated from field: string gas_used = 4;
    */
-  gasUsed = "";
+  gasUsed = '';
 
   /**
    * hash is the Tendermint hash of the transaction
    *
    * @generated from field: string hash = 5;
    */
-  hash = "";
+  hash = '';
 
   /**
    * recipient of the transaction
    *
    * @generated from field: string recipient = 6;
    */
-  recipient = "";
+  recipient = '';
 
   /**
    * eth_tx_failed contains a VM error should it occur
    *
    * @generated from field: string eth_tx_failed = 7;
    */
-  ethTxFailed = "";
+  ethTxFailed = '';
 
   constructor(data?: PartialMessage<EventEthereumTx>) {
     super();
@@ -67,15 +74,15 @@ export class EventEthereumTx extends Message<EventEthereumTx> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.EventEthereumTx";
+  static readonly typeName = 'ethermint.evm.v1.EventEthereumTx';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "eth_hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "index", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "gas_used", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "recipient", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "eth_tx_failed", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'eth_hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'index', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'gas_used', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'recipient', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: 'eth_tx_failed', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventEthereumTx {
@@ -90,7 +97,10 @@ export class EventEthereumTx extends Message<EventEthereumTx> {
     return new EventEthereumTx().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventEthereumTx | PlainMessage<EventEthereumTx> | undefined, b: EventEthereumTx | PlainMessage<EventEthereumTx> | undefined): boolean {
+  static equals(
+    a: EventEthereumTx | PlainMessage<EventEthereumTx> | undefined,
+    b: EventEthereumTx | PlainMessage<EventEthereumTx> | undefined
+  ): boolean {
     return proto3.util.equals(EventEthereumTx, a, b);
   }
 }
@@ -114,9 +124,9 @@ export class EventTxLog extends Message<EventTxLog> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.EventTxLog";
+  static readonly typeName = 'ethermint.evm.v1.EventTxLog';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "tx_logs", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 1, name: 'tx_logs', kind: 'scalar', T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventTxLog {
@@ -131,7 +141,10 @@ export class EventTxLog extends Message<EventTxLog> {
     return new EventTxLog().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventTxLog | PlainMessage<EventTxLog> | undefined, b: EventTxLog | PlainMessage<EventTxLog> | undefined): boolean {
+  static equals(
+    a: EventTxLog | PlainMessage<EventTxLog> | undefined,
+    b: EventTxLog | PlainMessage<EventTxLog> | undefined
+  ): boolean {
     return proto3.util.equals(EventTxLog, a, b);
   }
 }
@@ -147,21 +160,21 @@ export class EventMessage extends Message<EventMessage> {
    *
    * @generated from field: string module = 1;
    */
-  module = "";
+  module = '';
 
   /**
    * sender of the message
    *
    * @generated from field: string sender = 2;
    */
-  sender = "";
+  sender = '';
 
   /**
    * tx_type is the type of the message
    *
    * @generated from field: string tx_type = 3;
    */
-  txType = "";
+  txType = '';
 
   constructor(data?: PartialMessage<EventMessage>) {
     super();
@@ -169,11 +182,11 @@ export class EventMessage extends Message<EventMessage> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.EventMessage";
+  static readonly typeName = 'ethermint.evm.v1.EventMessage';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "module", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "tx_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'module', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'tx_type', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventMessage {
@@ -188,7 +201,10 @@ export class EventMessage extends Message<EventMessage> {
     return new EventMessage().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventMessage | PlainMessage<EventMessage> | undefined, b: EventMessage | PlainMessage<EventMessage> | undefined): boolean {
+  static equals(
+    a: EventMessage | PlainMessage<EventMessage> | undefined,
+    b: EventMessage | PlainMessage<EventMessage> | undefined
+  ): boolean {
     return proto3.util.equals(EventMessage, a, b);
   }
 }
@@ -204,7 +220,7 @@ export class EventBlockBloom extends Message<EventBlockBloom> {
    *
    * @generated from field: string bloom = 1;
    */
-  bloom = "";
+  bloom = '';
 
   constructor(data?: PartialMessage<EventBlockBloom>) {
     super();
@@ -212,9 +228,9 @@ export class EventBlockBloom extends Message<EventBlockBloom> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.evm.v1.EventBlockBloom";
+  static readonly typeName = 'ethermint.evm.v1.EventBlockBloom';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "bloom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'bloom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventBlockBloom {
@@ -229,8 +245,10 @@ export class EventBlockBloom extends Message<EventBlockBloom> {
     return new EventBlockBloom().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventBlockBloom | PlainMessage<EventBlockBloom> | undefined, b: EventBlockBloom | PlainMessage<EventBlockBloom> | undefined): boolean {
+  static equals(
+    a: EventBlockBloom | PlainMessage<EventBlockBloom> | undefined,
+    b: EventBlockBloom | PlainMessage<EventBlockBloom> | undefined
+  ): boolean {
     return proto3.util.equals(EventBlockBloom, a, b);
   }
 }
-

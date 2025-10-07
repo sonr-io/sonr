@@ -3,9 +3,44 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgAddCodeUploadParamsAddresses, MsgAddCodeUploadParamsAddressesResponse, MsgClearAdmin, MsgClearAdminResponse, MsgExecuteContract, MsgExecuteContractResponse, MsgInstantiateContract, MsgInstantiateContract2, MsgInstantiateContract2Response, MsgInstantiateContractResponse, MsgMigrateContract, MsgMigrateContractResponse, MsgPinCodes, MsgPinCodesResponse, MsgRemoveCodeUploadParamsAddresses, MsgRemoveCodeUploadParamsAddressesResponse, MsgStoreAndInstantiateContract, MsgStoreAndInstantiateContractResponse, MsgStoreAndMigrateContract, MsgStoreAndMigrateContractResponse, MsgStoreCode, MsgStoreCodeResponse, MsgSudoContract, MsgSudoContractResponse, MsgUnpinCodes, MsgUnpinCodesResponse, MsgUpdateAdmin, MsgUpdateAdminResponse, MsgUpdateContractLabel, MsgUpdateContractLabelResponse, MsgUpdateInstantiateConfig, MsgUpdateInstantiateConfigResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx_pb.js";
+import {
+  MsgAddCodeUploadParamsAddresses,
+  MsgAddCodeUploadParamsAddressesResponse,
+  MsgClearAdmin,
+  MsgClearAdminResponse,
+  MsgExecuteContract,
+  MsgExecuteContractResponse,
+  MsgInstantiateContract,
+  MsgInstantiateContract2,
+  MsgInstantiateContract2Response,
+  MsgInstantiateContractResponse,
+  MsgMigrateContract,
+  MsgMigrateContractResponse,
+  MsgPinCodes,
+  MsgPinCodesResponse,
+  MsgRemoveCodeUploadParamsAddresses,
+  MsgRemoveCodeUploadParamsAddressesResponse,
+  MsgStoreAndInstantiateContract,
+  MsgStoreAndInstantiateContractResponse,
+  MsgStoreAndMigrateContract,
+  MsgStoreAndMigrateContractResponse,
+  MsgStoreCode,
+  MsgStoreCodeResponse,
+  MsgSudoContract,
+  MsgSudoContractResponse,
+  MsgUnpinCodes,
+  MsgUnpinCodesResponse,
+  MsgUpdateAdmin,
+  MsgUpdateAdminResponse,
+  MsgUpdateContractLabel,
+  MsgUpdateContractLabelResponse,
+  MsgUpdateInstantiateConfig,
+  MsgUpdateInstantiateConfigResponse,
+  MsgUpdateParams,
+  MsgUpdateParamsResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "cosmwasm.wasm.v1.Msg";
+const TYPE_NAME = 'cosmwasm.wasm.v1.Msg';
 
 /**
  * StoreCode to submit Wasm code to the system
@@ -14,7 +49,7 @@ const TYPE_NAME = "cosmwasm.wasm.v1.Msg";
  */
 export const MsgStoreCodeService = {
   typeName: TYPE_NAME,
-  method: "StoreCode",
+  method: 'StoreCode',
   Request: MsgStoreCode,
   Response: MsgStoreCodeResponse,
 } as const;
@@ -27,7 +62,7 @@ export const MsgStoreCodeService = {
  */
 export const MsgInstantiateContractService = {
   typeName: TYPE_NAME,
-  method: "InstantiateContract",
+  method: 'InstantiateContract',
   Request: MsgInstantiateContract,
   Response: MsgInstantiateContractResponse,
 } as const;
@@ -40,7 +75,7 @@ export const MsgInstantiateContractService = {
  */
 export const MsgInstantiateContract2Service = {
   typeName: TYPE_NAME,
-  method: "InstantiateContract2",
+  method: 'InstantiateContract2',
   Request: MsgInstantiateContract2,
   Response: MsgInstantiateContract2Response,
 } as const;
@@ -52,7 +87,7 @@ export const MsgInstantiateContract2Service = {
  */
 export const MsgExecuteContractService = {
   typeName: TYPE_NAME,
-  method: "ExecuteContract",
+  method: 'ExecuteContract',
   Request: MsgExecuteContract,
   Response: MsgExecuteContractResponse,
 } as const;
@@ -64,7 +99,7 @@ export const MsgExecuteContractService = {
  */
 export const MsgMigrateContractService = {
   typeName: TYPE_NAME,
-  method: "MigrateContract",
+  method: 'MigrateContract',
   Request: MsgMigrateContract,
   Response: MsgMigrateContractResponse,
 } as const;
@@ -76,7 +111,7 @@ export const MsgMigrateContractService = {
  */
 export const MsgUpdateAdminService = {
   typeName: TYPE_NAME,
-  method: "UpdateAdmin",
+  method: 'UpdateAdmin',
   Request: MsgUpdateAdmin,
   Response: MsgUpdateAdminResponse,
 } as const;
@@ -88,7 +123,7 @@ export const MsgUpdateAdminService = {
  */
 export const MsgClearAdminService = {
   typeName: TYPE_NAME,
-  method: "ClearAdmin",
+  method: 'ClearAdmin',
   Request: MsgClearAdmin,
   Response: MsgClearAdminResponse,
 } as const;
@@ -100,7 +135,7 @@ export const MsgClearAdminService = {
  */
 export const MsgUpdateInstantiateConfigService = {
   typeName: TYPE_NAME,
-  method: "UpdateInstantiateConfig",
+  method: 'UpdateInstantiateConfig',
   Request: MsgUpdateInstantiateConfig,
   Response: MsgUpdateInstantiateConfigResponse,
 } as const;
@@ -115,7 +150,7 @@ export const MsgUpdateInstantiateConfigService = {
  */
 export const MsgUpdateParamsService = {
   typeName: TYPE_NAME,
-  method: "UpdateParams",
+  method: 'UpdateParams',
   Request: MsgUpdateParams,
   Response: MsgUpdateParamsResponse,
 } as const;
@@ -130,7 +165,7 @@ export const MsgUpdateParamsService = {
  */
 export const MsgSudoContractService = {
   typeName: TYPE_NAME,
-  method: "SudoContract",
+  method: 'SudoContract',
   Request: MsgSudoContract,
   Response: MsgSudoContractResponse,
 } as const;
@@ -145,7 +180,7 @@ export const MsgSudoContractService = {
  */
 export const MsgPinCodesService = {
   typeName: TYPE_NAME,
-  method: "PinCodes",
+  method: 'PinCodes',
   Request: MsgPinCodes,
   Response: MsgPinCodesResponse,
 } as const;
@@ -160,7 +195,7 @@ export const MsgPinCodesService = {
  */
 export const MsgUnpinCodesService = {
   typeName: TYPE_NAME,
-  method: "UnpinCodes",
+  method: 'UnpinCodes',
   Request: MsgUnpinCodes,
   Response: MsgUnpinCodesResponse,
 } as const;
@@ -175,7 +210,7 @@ export const MsgUnpinCodesService = {
  */
 export const MsgStoreAndInstantiateContractService = {
   typeName: TYPE_NAME,
-  method: "StoreAndInstantiateContract",
+  method: 'StoreAndInstantiateContract',
   Request: MsgStoreAndInstantiateContract,
   Response: MsgStoreAndInstantiateContractResponse,
 } as const;
@@ -189,7 +224,7 @@ export const MsgStoreAndInstantiateContractService = {
  */
 export const MsgRemoveCodeUploadParamsAddressesService = {
   typeName: TYPE_NAME,
-  method: "RemoveCodeUploadParamsAddresses",
+  method: 'RemoveCodeUploadParamsAddresses',
   Request: MsgRemoveCodeUploadParamsAddresses,
   Response: MsgRemoveCodeUploadParamsAddressesResponse,
 } as const;
@@ -203,7 +238,7 @@ export const MsgRemoveCodeUploadParamsAddressesService = {
  */
 export const MsgAddCodeUploadParamsAddressesService = {
   typeName: TYPE_NAME,
-  method: "AddCodeUploadParamsAddresses",
+  method: 'AddCodeUploadParamsAddresses',
   Request: MsgAddCodeUploadParamsAddresses,
   Response: MsgAddCodeUploadParamsAddressesResponse,
 } as const;
@@ -218,7 +253,7 @@ export const MsgAddCodeUploadParamsAddressesService = {
  */
 export const MsgStoreAndMigrateContractService = {
   typeName: TYPE_NAME,
-  method: "StoreAndMigrateContract",
+  method: 'StoreAndMigrateContract',
   Request: MsgStoreAndMigrateContract,
   Response: MsgStoreAndMigrateContractResponse,
 } as const;
@@ -232,8 +267,7 @@ export const MsgStoreAndMigrateContractService = {
  */
 export const MsgUpdateContractLabelService = {
   typeName: TYPE_NAME,
-  method: "UpdateContractLabel",
+  method: 'UpdateContractLabel',
   Request: MsgUpdateContractLabel,
   Response: MsgUpdateContractLabelResponse,
 } as const;
-

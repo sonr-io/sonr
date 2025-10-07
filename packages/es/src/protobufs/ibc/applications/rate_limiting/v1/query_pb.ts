@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { RateLimit, WhitelistedAddressPair } from "./rate_limiting_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { RateLimit, WhitelistedAddressPair } from './rate_limiting_pb.js';
 
 /**
  * Queries all rate limits
@@ -19,23 +26,34 @@ export class QueryAllRateLimitsRequest extends Message<QueryAllRateLimitsRequest
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.QueryAllRateLimitsRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.QueryAllRateLimitsRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryAllRateLimitsRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryAllRateLimitsRequest {
     return new QueryAllRateLimitsRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryAllRateLimitsRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryAllRateLimitsRequest {
     return new QueryAllRateLimitsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryAllRateLimitsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryAllRateLimitsRequest {
     return new QueryAllRateLimitsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryAllRateLimitsRequest | PlainMessage<QueryAllRateLimitsRequest> | undefined, b: QueryAllRateLimitsRequest | PlainMessage<QueryAllRateLimitsRequest> | undefined): boolean {
+  static equals(
+    a: QueryAllRateLimitsRequest | PlainMessage<QueryAllRateLimitsRequest> | undefined,
+    b: QueryAllRateLimitsRequest | PlainMessage<QueryAllRateLimitsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryAllRateLimitsRequest, a, b);
   }
 }
@@ -57,24 +75,36 @@ export class QueryAllRateLimitsResponse extends Message<QueryAllRateLimitsRespon
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.QueryAllRateLimitsResponse";
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.QueryAllRateLimitsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "rate_limits", kind: "message", T: RateLimit, repeated: true },
+    { no: 1, name: 'rate_limits', kind: 'message', T: RateLimit, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryAllRateLimitsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryAllRateLimitsResponse {
     return new QueryAllRateLimitsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryAllRateLimitsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryAllRateLimitsResponse {
     return new QueryAllRateLimitsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryAllRateLimitsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryAllRateLimitsResponse {
     return new QueryAllRateLimitsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryAllRateLimitsResponse | PlainMessage<QueryAllRateLimitsResponse> | undefined, b: QueryAllRateLimitsResponse | PlainMessage<QueryAllRateLimitsResponse> | undefined): boolean {
+  static equals(
+    a: QueryAllRateLimitsResponse | PlainMessage<QueryAllRateLimitsResponse> | undefined,
+    b: QueryAllRateLimitsResponse | PlainMessage<QueryAllRateLimitsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryAllRateLimitsResponse, a, b);
   }
 }
@@ -88,12 +118,12 @@ export class QueryRateLimitRequest extends Message<QueryRateLimitRequest> {
   /**
    * @generated from field: string denom = 1;
    */
-  denom = "";
+  denom = '';
 
   /**
    * @generated from field: string channel_or_client_id = 2;
    */
-  channelOrClientId = "";
+  channelOrClientId = '';
 
   constructor(data?: PartialMessage<QueryRateLimitRequest>) {
     super();
@@ -101,13 +131,16 @@ export class QueryRateLimitRequest extends Message<QueryRateLimitRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.QueryRateLimitRequest";
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.QueryRateLimitRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel_or_client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'channel_or_client_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryRateLimitRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryRateLimitRequest {
     return new QueryRateLimitRequest().fromBinary(bytes, options);
   }
 
@@ -115,11 +148,17 @@ export class QueryRateLimitRequest extends Message<QueryRateLimitRequest> {
     return new QueryRateLimitRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryRateLimitRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryRateLimitRequest {
     return new QueryRateLimitRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryRateLimitRequest | PlainMessage<QueryRateLimitRequest> | undefined, b: QueryRateLimitRequest | PlainMessage<QueryRateLimitRequest> | undefined): boolean {
+  static equals(
+    a: QueryRateLimitRequest | PlainMessage<QueryRateLimitRequest> | undefined,
+    b: QueryRateLimitRequest | PlainMessage<QueryRateLimitRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryRateLimitRequest, a, b);
   }
 }
@@ -141,24 +180,36 @@ export class QueryRateLimitResponse extends Message<QueryRateLimitResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.QueryRateLimitResponse";
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.QueryRateLimitResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "rate_limit", kind: "message", T: RateLimit },
+    { no: 1, name: 'rate_limit', kind: 'message', T: RateLimit },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryRateLimitResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryRateLimitResponse {
     return new QueryRateLimitResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryRateLimitResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryRateLimitResponse {
     return new QueryRateLimitResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryRateLimitResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryRateLimitResponse {
     return new QueryRateLimitResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryRateLimitResponse | PlainMessage<QueryRateLimitResponse> | undefined, b: QueryRateLimitResponse | PlainMessage<QueryRateLimitResponse> | undefined): boolean {
+  static equals(
+    a: QueryRateLimitResponse | PlainMessage<QueryRateLimitResponse> | undefined,
+    b: QueryRateLimitResponse | PlainMessage<QueryRateLimitResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryRateLimitResponse, a, b);
   }
 }
@@ -172,7 +223,7 @@ export class QueryRateLimitsByChainIDRequest extends Message<QueryRateLimitsByCh
   /**
    * @generated from field: string chain_id = 1;
    */
-  chainId = "";
+  chainId = '';
 
   constructor(data?: PartialMessage<QueryRateLimitsByChainIDRequest>) {
     super();
@@ -180,24 +231,36 @@ export class QueryRateLimitsByChainIDRequest extends Message<QueryRateLimitsByCh
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.QueryRateLimitsByChainIDRequest";
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.QueryRateLimitsByChainIDRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "chain_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'chain_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryRateLimitsByChainIDRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryRateLimitsByChainIDRequest {
     return new QueryRateLimitsByChainIDRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryRateLimitsByChainIDRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryRateLimitsByChainIDRequest {
     return new QueryRateLimitsByChainIDRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryRateLimitsByChainIDRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryRateLimitsByChainIDRequest {
     return new QueryRateLimitsByChainIDRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryRateLimitsByChainIDRequest | PlainMessage<QueryRateLimitsByChainIDRequest> | undefined, b: QueryRateLimitsByChainIDRequest | PlainMessage<QueryRateLimitsByChainIDRequest> | undefined): boolean {
+  static equals(
+    a: QueryRateLimitsByChainIDRequest | PlainMessage<QueryRateLimitsByChainIDRequest> | undefined,
+    b: QueryRateLimitsByChainIDRequest | PlainMessage<QueryRateLimitsByChainIDRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryRateLimitsByChainIDRequest, a, b);
   }
 }
@@ -219,24 +282,39 @@ export class QueryRateLimitsByChainIDResponse extends Message<QueryRateLimitsByC
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.QueryRateLimitsByChainIDResponse";
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.QueryRateLimitsByChainIDResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "rate_limits", kind: "message", T: RateLimit, repeated: true },
+    { no: 1, name: 'rate_limits', kind: 'message', T: RateLimit, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryRateLimitsByChainIDResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryRateLimitsByChainIDResponse {
     return new QueryRateLimitsByChainIDResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryRateLimitsByChainIDResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryRateLimitsByChainIDResponse {
     return new QueryRateLimitsByChainIDResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryRateLimitsByChainIDResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryRateLimitsByChainIDResponse {
     return new QueryRateLimitsByChainIDResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryRateLimitsByChainIDResponse | PlainMessage<QueryRateLimitsByChainIDResponse> | undefined, b: QueryRateLimitsByChainIDResponse | PlainMessage<QueryRateLimitsByChainIDResponse> | undefined): boolean {
+  static equals(
+    a:
+      | QueryRateLimitsByChainIDResponse
+      | PlainMessage<QueryRateLimitsByChainIDResponse>
+      | undefined,
+    b: QueryRateLimitsByChainIDResponse | PlainMessage<QueryRateLimitsByChainIDResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryRateLimitsByChainIDResponse, a, b);
   }
 }
@@ -250,7 +328,7 @@ export class QueryRateLimitsByChannelOrClientIDRequest extends Message<QueryRate
   /**
    * @generated from field: string channel_or_client_id = 1;
    */
-  channelOrClientId = "";
+  channelOrClientId = '';
 
   constructor(data?: PartialMessage<QueryRateLimitsByChannelOrClientIDRequest>) {
     super();
@@ -258,24 +336,43 @@ export class QueryRateLimitsByChannelOrClientIDRequest extends Message<QueryRate
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.QueryRateLimitsByChannelOrClientIDRequest";
+  static readonly typeName =
+    'ibc.applications.rate_limiting.v1.QueryRateLimitsByChannelOrClientIDRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "channel_or_client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'channel_or_client_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryRateLimitsByChannelOrClientIDRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryRateLimitsByChannelOrClientIDRequest {
     return new QueryRateLimitsByChannelOrClientIDRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryRateLimitsByChannelOrClientIDRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryRateLimitsByChannelOrClientIDRequest {
     return new QueryRateLimitsByChannelOrClientIDRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryRateLimitsByChannelOrClientIDRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryRateLimitsByChannelOrClientIDRequest {
     return new QueryRateLimitsByChannelOrClientIDRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryRateLimitsByChannelOrClientIDRequest | PlainMessage<QueryRateLimitsByChannelOrClientIDRequest> | undefined, b: QueryRateLimitsByChannelOrClientIDRequest | PlainMessage<QueryRateLimitsByChannelOrClientIDRequest> | undefined): boolean {
+  static equals(
+    a:
+      | QueryRateLimitsByChannelOrClientIDRequest
+      | PlainMessage<QueryRateLimitsByChannelOrClientIDRequest>
+      | undefined,
+    b:
+      | QueryRateLimitsByChannelOrClientIDRequest
+      | PlainMessage<QueryRateLimitsByChannelOrClientIDRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(QueryRateLimitsByChannelOrClientIDRequest, a, b);
   }
 }
@@ -297,24 +394,43 @@ export class QueryRateLimitsByChannelOrClientIDResponse extends Message<QueryRat
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.QueryRateLimitsByChannelOrClientIDResponse";
+  static readonly typeName =
+    'ibc.applications.rate_limiting.v1.QueryRateLimitsByChannelOrClientIDResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "rate_limits", kind: "message", T: RateLimit, repeated: true },
+    { no: 1, name: 'rate_limits', kind: 'message', T: RateLimit, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryRateLimitsByChannelOrClientIDResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryRateLimitsByChannelOrClientIDResponse {
     return new QueryRateLimitsByChannelOrClientIDResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryRateLimitsByChannelOrClientIDResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryRateLimitsByChannelOrClientIDResponse {
     return new QueryRateLimitsByChannelOrClientIDResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryRateLimitsByChannelOrClientIDResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryRateLimitsByChannelOrClientIDResponse {
     return new QueryRateLimitsByChannelOrClientIDResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryRateLimitsByChannelOrClientIDResponse | PlainMessage<QueryRateLimitsByChannelOrClientIDResponse> | undefined, b: QueryRateLimitsByChannelOrClientIDResponse | PlainMessage<QueryRateLimitsByChannelOrClientIDResponse> | undefined): boolean {
+  static equals(
+    a:
+      | QueryRateLimitsByChannelOrClientIDResponse
+      | PlainMessage<QueryRateLimitsByChannelOrClientIDResponse>
+      | undefined,
+    b:
+      | QueryRateLimitsByChannelOrClientIDResponse
+      | PlainMessage<QueryRateLimitsByChannelOrClientIDResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(QueryRateLimitsByChannelOrClientIDResponse, a, b);
   }
 }
@@ -331,23 +447,37 @@ export class QueryAllBlacklistedDenomsRequest extends Message<QueryAllBlackliste
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.QueryAllBlacklistedDenomsRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.QueryAllBlacklistedDenomsRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryAllBlacklistedDenomsRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryAllBlacklistedDenomsRequest {
     return new QueryAllBlacklistedDenomsRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryAllBlacklistedDenomsRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryAllBlacklistedDenomsRequest {
     return new QueryAllBlacklistedDenomsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryAllBlacklistedDenomsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryAllBlacklistedDenomsRequest {
     return new QueryAllBlacklistedDenomsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryAllBlacklistedDenomsRequest | PlainMessage<QueryAllBlacklistedDenomsRequest> | undefined, b: QueryAllBlacklistedDenomsRequest | PlainMessage<QueryAllBlacklistedDenomsRequest> | undefined): boolean {
+  static equals(
+    a:
+      | QueryAllBlacklistedDenomsRequest
+      | PlainMessage<QueryAllBlacklistedDenomsRequest>
+      | undefined,
+    b: QueryAllBlacklistedDenomsRequest | PlainMessage<QueryAllBlacklistedDenomsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryAllBlacklistedDenomsRequest, a, b);
   }
 }
@@ -369,24 +499,42 @@ export class QueryAllBlacklistedDenomsResponse extends Message<QueryAllBlacklist
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.QueryAllBlacklistedDenomsResponse";
+  static readonly typeName = 'ibc.applications.rate_limiting.v1.QueryAllBlacklistedDenomsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "denoms", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 1, name: 'denoms', kind: 'scalar', T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryAllBlacklistedDenomsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryAllBlacklistedDenomsResponse {
     return new QueryAllBlacklistedDenomsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryAllBlacklistedDenomsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryAllBlacklistedDenomsResponse {
     return new QueryAllBlacklistedDenomsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryAllBlacklistedDenomsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryAllBlacklistedDenomsResponse {
     return new QueryAllBlacklistedDenomsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryAllBlacklistedDenomsResponse | PlainMessage<QueryAllBlacklistedDenomsResponse> | undefined, b: QueryAllBlacklistedDenomsResponse | PlainMessage<QueryAllBlacklistedDenomsResponse> | undefined): boolean {
+  static equals(
+    a:
+      | QueryAllBlacklistedDenomsResponse
+      | PlainMessage<QueryAllBlacklistedDenomsResponse>
+      | undefined,
+    b:
+      | QueryAllBlacklistedDenomsResponse
+      | PlainMessage<QueryAllBlacklistedDenomsResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(QueryAllBlacklistedDenomsResponse, a, b);
   }
 }
@@ -403,23 +551,41 @@ export class QueryAllWhitelistedAddressesRequest extends Message<QueryAllWhiteli
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.QueryAllWhitelistedAddressesRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName =
+    'ibc.applications.rate_limiting.v1.QueryAllWhitelistedAddressesRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryAllWhitelistedAddressesRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryAllWhitelistedAddressesRequest {
     return new QueryAllWhitelistedAddressesRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryAllWhitelistedAddressesRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryAllWhitelistedAddressesRequest {
     return new QueryAllWhitelistedAddressesRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryAllWhitelistedAddressesRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryAllWhitelistedAddressesRequest {
     return new QueryAllWhitelistedAddressesRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryAllWhitelistedAddressesRequest | PlainMessage<QueryAllWhitelistedAddressesRequest> | undefined, b: QueryAllWhitelistedAddressesRequest | PlainMessage<QueryAllWhitelistedAddressesRequest> | undefined): boolean {
+  static equals(
+    a:
+      | QueryAllWhitelistedAddressesRequest
+      | PlainMessage<QueryAllWhitelistedAddressesRequest>
+      | undefined,
+    b:
+      | QueryAllWhitelistedAddressesRequest
+      | PlainMessage<QueryAllWhitelistedAddressesRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(QueryAllWhitelistedAddressesRequest, a, b);
   }
 }
@@ -441,25 +607,43 @@ export class QueryAllWhitelistedAddressesResponse extends Message<QueryAllWhitel
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.rate_limiting.v1.QueryAllWhitelistedAddressesResponse";
+  static readonly typeName =
+    'ibc.applications.rate_limiting.v1.QueryAllWhitelistedAddressesResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "address_pairs", kind: "message", T: WhitelistedAddressPair, repeated: true },
+    { no: 1, name: 'address_pairs', kind: 'message', T: WhitelistedAddressPair, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryAllWhitelistedAddressesResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryAllWhitelistedAddressesResponse {
     return new QueryAllWhitelistedAddressesResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryAllWhitelistedAddressesResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryAllWhitelistedAddressesResponse {
     return new QueryAllWhitelistedAddressesResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryAllWhitelistedAddressesResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryAllWhitelistedAddressesResponse {
     return new QueryAllWhitelistedAddressesResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryAllWhitelistedAddressesResponse | PlainMessage<QueryAllWhitelistedAddressesResponse> | undefined, b: QueryAllWhitelistedAddressesResponse | PlainMessage<QueryAllWhitelistedAddressesResponse> | undefined): boolean {
+  static equals(
+    a:
+      | QueryAllWhitelistedAddressesResponse
+      | PlainMessage<QueryAllWhitelistedAddressesResponse>
+      | undefined,
+    b:
+      | QueryAllWhitelistedAddressesResponse
+      | PlainMessage<QueryAllWhitelistedAddressesResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(QueryAllWhitelistedAddressesResponse, a, b);
   }
 }
-

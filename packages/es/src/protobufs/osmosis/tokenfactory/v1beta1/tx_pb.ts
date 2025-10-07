@@ -3,10 +3,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { Coin } from "../../../cosmos/base/v1beta1/coin_pb.js";
-import { Metadata } from "../../../cosmos/bank/v1beta1/bank_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { Coin } from '../../../cosmos/base/v1beta1/coin_pb.js';
+import { Metadata } from '../../../cosmos/bank/v1beta1/bank_pb.js';
 
 /**
  * MsgCreateDenom defines the message structure for the CreateDenom gRPC service
@@ -25,14 +32,14 @@ export class MsgCreateDenom extends Message<MsgCreateDenom> {
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * subdenom can be up to 44 "alphanumeric" characters long.
    *
    * @generated from field: string subdenom = 2;
    */
-  subdenom = "";
+  subdenom = '';
 
   constructor(data?: PartialMessage<MsgCreateDenom>) {
     super();
@@ -40,10 +47,10 @@ export class MsgCreateDenom extends Message<MsgCreateDenom> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.tokenfactory.v1beta1.MsgCreateDenom";
+  static readonly typeName = 'osmosis.tokenfactory.v1beta1.MsgCreateDenom';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "subdenom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'subdenom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgCreateDenom {
@@ -58,7 +65,10 @@ export class MsgCreateDenom extends Message<MsgCreateDenom> {
     return new MsgCreateDenom().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgCreateDenom | PlainMessage<MsgCreateDenom> | undefined, b: MsgCreateDenom | PlainMessage<MsgCreateDenom> | undefined): boolean {
+  static equals(
+    a: MsgCreateDenom | PlainMessage<MsgCreateDenom> | undefined,
+    b: MsgCreateDenom | PlainMessage<MsgCreateDenom> | undefined
+  ): boolean {
     return proto3.util.equals(MsgCreateDenom, a, b);
   }
 }
@@ -73,7 +83,7 @@ export class MsgCreateDenomResponse extends Message<MsgCreateDenomResponse> {
   /**
    * @generated from field: string new_token_denom = 1;
    */
-  newTokenDenom = "";
+  newTokenDenom = '';
 
   constructor(data?: PartialMessage<MsgCreateDenomResponse>) {
     super();
@@ -81,24 +91,36 @@ export class MsgCreateDenomResponse extends Message<MsgCreateDenomResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.tokenfactory.v1beta1.MsgCreateDenomResponse";
+  static readonly typeName = 'osmosis.tokenfactory.v1beta1.MsgCreateDenomResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "new_token_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'new_token_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgCreateDenomResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgCreateDenomResponse {
     return new MsgCreateDenomResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgCreateDenomResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgCreateDenomResponse {
     return new MsgCreateDenomResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgCreateDenomResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgCreateDenomResponse {
     return new MsgCreateDenomResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgCreateDenomResponse | PlainMessage<MsgCreateDenomResponse> | undefined, b: MsgCreateDenomResponse | PlainMessage<MsgCreateDenomResponse> | undefined): boolean {
+  static equals(
+    a: MsgCreateDenomResponse | PlainMessage<MsgCreateDenomResponse> | undefined,
+    b: MsgCreateDenomResponse | PlainMessage<MsgCreateDenomResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgCreateDenomResponse, a, b);
   }
 }
@@ -115,7 +137,7 @@ export class MsgMint extends Message<MsgMint> {
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * @generated from field: cosmos.base.v1beta1.Coin amount = 2;
@@ -125,7 +147,7 @@ export class MsgMint extends Message<MsgMint> {
   /**
    * @generated from field: string mintToAddress = 3;
    */
-  mintToAddress = "";
+  mintToAddress = '';
 
   constructor(data?: PartialMessage<MsgMint>) {
     super();
@@ -133,11 +155,11 @@ export class MsgMint extends Message<MsgMint> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.tokenfactory.v1beta1.MsgMint";
+  static readonly typeName = 'osmosis.tokenfactory.v1beta1.MsgMint';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "amount", kind: "message", T: Coin },
-    { no: 3, name: "mintToAddress", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'amount', kind: 'message', T: Coin },
+    { no: 3, name: 'mintToAddress', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgMint {
@@ -152,7 +174,10 @@ export class MsgMint extends Message<MsgMint> {
     return new MsgMint().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgMint | PlainMessage<MsgMint> | undefined, b: MsgMint | PlainMessage<MsgMint> | undefined): boolean {
+  static equals(
+    a: MsgMint | PlainMessage<MsgMint> | undefined,
+    b: MsgMint | PlainMessage<MsgMint> | undefined
+  ): boolean {
     return proto3.util.equals(MsgMint, a, b);
   }
 }
@@ -167,9 +192,8 @@ export class MsgMintResponse extends Message<MsgMintResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.tokenfactory.v1beta1.MsgMintResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.tokenfactory.v1beta1.MsgMintResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgMintResponse {
     return new MsgMintResponse().fromBinary(bytes, options);
@@ -183,7 +207,10 @@ export class MsgMintResponse extends Message<MsgMintResponse> {
     return new MsgMintResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgMintResponse | PlainMessage<MsgMintResponse> | undefined, b: MsgMintResponse | PlainMessage<MsgMintResponse> | undefined): boolean {
+  static equals(
+    a: MsgMintResponse | PlainMessage<MsgMintResponse> | undefined,
+    b: MsgMintResponse | PlainMessage<MsgMintResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgMintResponse, a, b);
   }
 }
@@ -200,7 +227,7 @@ export class MsgBurn extends Message<MsgBurn> {
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * @generated from field: cosmos.base.v1beta1.Coin amount = 2;
@@ -210,7 +237,7 @@ export class MsgBurn extends Message<MsgBurn> {
   /**
    * @generated from field: string burnFromAddress = 3;
    */
-  burnFromAddress = "";
+  burnFromAddress = '';
 
   constructor(data?: PartialMessage<MsgBurn>) {
     super();
@@ -218,11 +245,11 @@ export class MsgBurn extends Message<MsgBurn> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.tokenfactory.v1beta1.MsgBurn";
+  static readonly typeName = 'osmosis.tokenfactory.v1beta1.MsgBurn';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "amount", kind: "message", T: Coin },
-    { no: 3, name: "burnFromAddress", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'amount', kind: 'message', T: Coin },
+    { no: 3, name: 'burnFromAddress', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgBurn {
@@ -237,7 +264,10 @@ export class MsgBurn extends Message<MsgBurn> {
     return new MsgBurn().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgBurn | PlainMessage<MsgBurn> | undefined, b: MsgBurn | PlainMessage<MsgBurn> | undefined): boolean {
+  static equals(
+    a: MsgBurn | PlainMessage<MsgBurn> | undefined,
+    b: MsgBurn | PlainMessage<MsgBurn> | undefined
+  ): boolean {
     return proto3.util.equals(MsgBurn, a, b);
   }
 }
@@ -252,9 +282,8 @@ export class MsgBurnResponse extends Message<MsgBurnResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.tokenfactory.v1beta1.MsgBurnResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.tokenfactory.v1beta1.MsgBurnResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgBurnResponse {
     return new MsgBurnResponse().fromBinary(bytes, options);
@@ -268,7 +297,10 @@ export class MsgBurnResponse extends Message<MsgBurnResponse> {
     return new MsgBurnResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgBurnResponse | PlainMessage<MsgBurnResponse> | undefined, b: MsgBurnResponse | PlainMessage<MsgBurnResponse> | undefined): boolean {
+  static equals(
+    a: MsgBurnResponse | PlainMessage<MsgBurnResponse> | undefined,
+    b: MsgBurnResponse | PlainMessage<MsgBurnResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgBurnResponse, a, b);
   }
 }
@@ -283,17 +315,17 @@ export class MsgChangeAdmin extends Message<MsgChangeAdmin> {
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * @generated from field: string denom = 2;
    */
-  denom = "";
+  denom = '';
 
   /**
    * @generated from field: string new_admin = 3;
    */
-  newAdmin = "";
+  newAdmin = '';
 
   constructor(data?: PartialMessage<MsgChangeAdmin>) {
     super();
@@ -301,11 +333,11 @@ export class MsgChangeAdmin extends Message<MsgChangeAdmin> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.tokenfactory.v1beta1.MsgChangeAdmin";
+  static readonly typeName = 'osmosis.tokenfactory.v1beta1.MsgChangeAdmin';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "new_admin", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'new_admin', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgChangeAdmin {
@@ -320,7 +352,10 @@ export class MsgChangeAdmin extends Message<MsgChangeAdmin> {
     return new MsgChangeAdmin().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgChangeAdmin | PlainMessage<MsgChangeAdmin> | undefined, b: MsgChangeAdmin | PlainMessage<MsgChangeAdmin> | undefined): boolean {
+  static equals(
+    a: MsgChangeAdmin | PlainMessage<MsgChangeAdmin> | undefined,
+    b: MsgChangeAdmin | PlainMessage<MsgChangeAdmin> | undefined
+  ): boolean {
     return proto3.util.equals(MsgChangeAdmin, a, b);
   }
 }
@@ -338,23 +373,34 @@ export class MsgChangeAdminResponse extends Message<MsgChangeAdminResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.tokenfactory.v1beta1.MsgChangeAdminResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.tokenfactory.v1beta1.MsgChangeAdminResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgChangeAdminResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgChangeAdminResponse {
     return new MsgChangeAdminResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgChangeAdminResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgChangeAdminResponse {
     return new MsgChangeAdminResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgChangeAdminResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgChangeAdminResponse {
     return new MsgChangeAdminResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgChangeAdminResponse | PlainMessage<MsgChangeAdminResponse> | undefined, b: MsgChangeAdminResponse | PlainMessage<MsgChangeAdminResponse> | undefined): boolean {
+  static equals(
+    a: MsgChangeAdminResponse | PlainMessage<MsgChangeAdminResponse> | undefined,
+    b: MsgChangeAdminResponse | PlainMessage<MsgChangeAdminResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgChangeAdminResponse, a, b);
   }
 }
@@ -369,17 +415,17 @@ export class MsgSetBeforeSendHook extends Message<MsgSetBeforeSendHook> {
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * @generated from field: string denom = 2;
    */
-  denom = "";
+  denom = '';
 
   /**
    * @generated from field: string cosmwasm_address = 3;
    */
-  cosmwasmAddress = "";
+  cosmwasmAddress = '';
 
   constructor(data?: PartialMessage<MsgSetBeforeSendHook>) {
     super();
@@ -387,11 +433,11 @@ export class MsgSetBeforeSendHook extends Message<MsgSetBeforeSendHook> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.tokenfactory.v1beta1.MsgSetBeforeSendHook";
+  static readonly typeName = 'osmosis.tokenfactory.v1beta1.MsgSetBeforeSendHook';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "cosmwasm_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'cosmwasm_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetBeforeSendHook {
@@ -402,11 +448,17 @@ export class MsgSetBeforeSendHook extends Message<MsgSetBeforeSendHook> {
     return new MsgSetBeforeSendHook().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetBeforeSendHook {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetBeforeSendHook {
     return new MsgSetBeforeSendHook().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetBeforeSendHook | PlainMessage<MsgSetBeforeSendHook> | undefined, b: MsgSetBeforeSendHook | PlainMessage<MsgSetBeforeSendHook> | undefined): boolean {
+  static equals(
+    a: MsgSetBeforeSendHook | PlainMessage<MsgSetBeforeSendHook> | undefined,
+    b: MsgSetBeforeSendHook | PlainMessage<MsgSetBeforeSendHook> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetBeforeSendHook, a, b);
   }
 }
@@ -424,23 +476,34 @@ export class MsgSetBeforeSendHookResponse extends Message<MsgSetBeforeSendHookRe
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.tokenfactory.v1beta1.MsgSetBeforeSendHookResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.tokenfactory.v1beta1.MsgSetBeforeSendHookResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetBeforeSendHookResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetBeforeSendHookResponse {
     return new MsgSetBeforeSendHookResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetBeforeSendHookResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetBeforeSendHookResponse {
     return new MsgSetBeforeSendHookResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetBeforeSendHookResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetBeforeSendHookResponse {
     return new MsgSetBeforeSendHookResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetBeforeSendHookResponse | PlainMessage<MsgSetBeforeSendHookResponse> | undefined, b: MsgSetBeforeSendHookResponse | PlainMessage<MsgSetBeforeSendHookResponse> | undefined): boolean {
+  static equals(
+    a: MsgSetBeforeSendHookResponse | PlainMessage<MsgSetBeforeSendHookResponse> | undefined,
+    b: MsgSetBeforeSendHookResponse | PlainMessage<MsgSetBeforeSendHookResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetBeforeSendHookResponse, a, b);
   }
 }
@@ -455,7 +518,7 @@ export class MsgSetDenomMetadata extends Message<MsgSetDenomMetadata> {
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * @generated from field: cosmos.bank.v1beta1.Metadata metadata = 2;
@@ -468,10 +531,10 @@ export class MsgSetDenomMetadata extends Message<MsgSetDenomMetadata> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.tokenfactory.v1beta1.MsgSetDenomMetadata";
+  static readonly typeName = 'osmosis.tokenfactory.v1beta1.MsgSetDenomMetadata';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "metadata", kind: "message", T: Metadata },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'metadata', kind: 'message', T: Metadata },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetDenomMetadata {
@@ -482,11 +545,17 @@ export class MsgSetDenomMetadata extends Message<MsgSetDenomMetadata> {
     return new MsgSetDenomMetadata().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetDenomMetadata {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetDenomMetadata {
     return new MsgSetDenomMetadata().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetDenomMetadata | PlainMessage<MsgSetDenomMetadata> | undefined, b: MsgSetDenomMetadata | PlainMessage<MsgSetDenomMetadata> | undefined): boolean {
+  static equals(
+    a: MsgSetDenomMetadata | PlainMessage<MsgSetDenomMetadata> | undefined,
+    b: MsgSetDenomMetadata | PlainMessage<MsgSetDenomMetadata> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetDenomMetadata, a, b);
   }
 }
@@ -504,23 +573,34 @@ export class MsgSetDenomMetadataResponse extends Message<MsgSetDenomMetadataResp
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.tokenfactory.v1beta1.MsgSetDenomMetadataResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.tokenfactory.v1beta1.MsgSetDenomMetadataResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetDenomMetadataResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetDenomMetadataResponse {
     return new MsgSetDenomMetadataResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetDenomMetadataResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetDenomMetadataResponse {
     return new MsgSetDenomMetadataResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetDenomMetadataResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetDenomMetadataResponse {
     return new MsgSetDenomMetadataResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetDenomMetadataResponse | PlainMessage<MsgSetDenomMetadataResponse> | undefined, b: MsgSetDenomMetadataResponse | PlainMessage<MsgSetDenomMetadataResponse> | undefined): boolean {
+  static equals(
+    a: MsgSetDenomMetadataResponse | PlainMessage<MsgSetDenomMetadataResponse> | undefined,
+    b: MsgSetDenomMetadataResponse | PlainMessage<MsgSetDenomMetadataResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetDenomMetadataResponse, a, b);
   }
 }
@@ -532,7 +612,7 @@ export class MsgForceTransfer extends Message<MsgForceTransfer> {
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * @generated from field: cosmos.base.v1beta1.Coin amount = 2;
@@ -542,12 +622,12 @@ export class MsgForceTransfer extends Message<MsgForceTransfer> {
   /**
    * @generated from field: string transferFromAddress = 3;
    */
-  transferFromAddress = "";
+  transferFromAddress = '';
 
   /**
    * @generated from field: string transferToAddress = 4;
    */
-  transferToAddress = "";
+  transferToAddress = '';
 
   constructor(data?: PartialMessage<MsgForceTransfer>) {
     super();
@@ -555,12 +635,12 @@ export class MsgForceTransfer extends Message<MsgForceTransfer> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.tokenfactory.v1beta1.MsgForceTransfer";
+  static readonly typeName = 'osmosis.tokenfactory.v1beta1.MsgForceTransfer';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "amount", kind: "message", T: Coin },
-    { no: 3, name: "transferFromAddress", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "transferToAddress", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'amount', kind: 'message', T: Coin },
+    { no: 3, name: 'transferFromAddress', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'transferToAddress', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgForceTransfer {
@@ -575,7 +655,10 @@ export class MsgForceTransfer extends Message<MsgForceTransfer> {
     return new MsgForceTransfer().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgForceTransfer | PlainMessage<MsgForceTransfer> | undefined, b: MsgForceTransfer | PlainMessage<MsgForceTransfer> | undefined): boolean {
+  static equals(
+    a: MsgForceTransfer | PlainMessage<MsgForceTransfer> | undefined,
+    b: MsgForceTransfer | PlainMessage<MsgForceTransfer> | undefined
+  ): boolean {
     return proto3.util.equals(MsgForceTransfer, a, b);
   }
 }
@@ -590,24 +673,34 @@ export class MsgForceTransferResponse extends Message<MsgForceTransferResponse> 
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.tokenfactory.v1beta1.MsgForceTransferResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.tokenfactory.v1beta1.MsgForceTransferResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgForceTransferResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgForceTransferResponse {
     return new MsgForceTransferResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgForceTransferResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgForceTransferResponse {
     return new MsgForceTransferResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgForceTransferResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgForceTransferResponse {
     return new MsgForceTransferResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgForceTransferResponse | PlainMessage<MsgForceTransferResponse> | undefined, b: MsgForceTransferResponse | PlainMessage<MsgForceTransferResponse> | undefined): boolean {
+  static equals(
+    a: MsgForceTransferResponse | PlainMessage<MsgForceTransferResponse> | undefined,
+    b: MsgForceTransferResponse | PlainMessage<MsgForceTransferResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgForceTransferResponse, a, b);
   }
 }
-

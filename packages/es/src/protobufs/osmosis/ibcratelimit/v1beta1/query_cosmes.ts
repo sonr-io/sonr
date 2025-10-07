@@ -3,9 +3,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ParamsRequest, ParamsResponse } from "./query_pb.js";
+import { ParamsRequest, ParamsResponse } from './query_pb.js';
 
-const TYPE_NAME = "osmosis.ibcratelimit.v1beta1.Query";
+const TYPE_NAME = 'osmosis.ibcratelimit.v1beta1.Query';
 
 /**
  * Params defines a gRPC query method that returns the ibc-rate-limit module's
@@ -15,8 +15,7 @@ const TYPE_NAME = "osmosis.ibcratelimit.v1beta1.Query";
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: ParamsRequest,
   Response: ParamsResponse,
 } as const;
-

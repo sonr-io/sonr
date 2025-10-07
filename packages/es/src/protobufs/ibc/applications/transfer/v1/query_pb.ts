@@ -3,12 +3,19 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { Params } from "./transfer_pb.js";
-import { Denom } from "./token_pb.js";
-import { PageRequest, PageResponse } from "../../../../cosmos/base/query/v1beta1/pagination_pb.js";
-import { Coin } from "../../../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { Params } from './transfer_pb.js';
+import { Denom } from './token_pb.js';
+import { PageRequest, PageResponse } from '../../../../cosmos/base/query/v1beta1/pagination_pb.js';
+import { Coin } from '../../../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * QueryParamsRequest is the request type for the Query/Params RPC method.
@@ -22,9 +29,8 @@ export class QueryParamsRequest extends Message<QueryParamsRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.transfer.v1.QueryParamsRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ibc.applications.transfer.v1.QueryParamsRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryParamsRequest {
     return new QueryParamsRequest().fromBinary(bytes, options);
@@ -34,11 +40,17 @@ export class QueryParamsRequest extends Message<QueryParamsRequest> {
     return new QueryParamsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryParamsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryParamsRequest {
     return new QueryParamsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined, b: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined): boolean {
+  static equals(
+    a: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined,
+    b: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryParamsRequest, a, b);
   }
 }
@@ -62,9 +74,9 @@ export class QueryParamsResponse extends Message<QueryParamsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.transfer.v1.QueryParamsResponse";
+  static readonly typeName = 'ibc.applications.transfer.v1.QueryParamsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "params", kind: "message", T: Params },
+    { no: 1, name: 'params', kind: 'message', T: Params },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryParamsResponse {
@@ -75,11 +87,17 @@ export class QueryParamsResponse extends Message<QueryParamsResponse> {
     return new QueryParamsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryParamsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryParamsResponse {
     return new QueryParamsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined, b: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined): boolean {
+  static equals(
+    a: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined,
+    b: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryParamsResponse, a, b);
   }
 }
@@ -96,7 +114,7 @@ export class QueryDenomRequest extends Message<QueryDenomRequest> {
    *
    * @generated from field: string hash = 1;
    */
-  hash = "";
+  hash = '';
 
   constructor(data?: PartialMessage<QueryDenomRequest>) {
     super();
@@ -104,9 +122,9 @@ export class QueryDenomRequest extends Message<QueryDenomRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.transfer.v1.QueryDenomRequest";
+  static readonly typeName = 'ibc.applications.transfer.v1.QueryDenomRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryDenomRequest {
@@ -121,7 +139,10 @@ export class QueryDenomRequest extends Message<QueryDenomRequest> {
     return new QueryDenomRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryDenomRequest | PlainMessage<QueryDenomRequest> | undefined, b: QueryDenomRequest | PlainMessage<QueryDenomRequest> | undefined): boolean {
+  static equals(
+    a: QueryDenomRequest | PlainMessage<QueryDenomRequest> | undefined,
+    b: QueryDenomRequest | PlainMessage<QueryDenomRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryDenomRequest, a, b);
   }
 }
@@ -146,9 +167,9 @@ export class QueryDenomResponse extends Message<QueryDenomResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.transfer.v1.QueryDenomResponse";
+  static readonly typeName = 'ibc.applications.transfer.v1.QueryDenomResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "denom", kind: "message", T: Denom },
+    { no: 1, name: 'denom', kind: 'message', T: Denom },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryDenomResponse {
@@ -159,11 +180,17 @@ export class QueryDenomResponse extends Message<QueryDenomResponse> {
     return new QueryDenomResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryDenomResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryDenomResponse {
     return new QueryDenomResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryDenomResponse | PlainMessage<QueryDenomResponse> | undefined, b: QueryDenomResponse | PlainMessage<QueryDenomResponse> | undefined): boolean {
+  static equals(
+    a: QueryDenomResponse | PlainMessage<QueryDenomResponse> | undefined,
+    b: QueryDenomResponse | PlainMessage<QueryDenomResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryDenomResponse, a, b);
   }
 }
@@ -188,9 +215,9 @@ export class QueryDenomsRequest extends Message<QueryDenomsRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.transfer.v1.QueryDenomsRequest";
+  static readonly typeName = 'ibc.applications.transfer.v1.QueryDenomsRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pagination", kind: "message", T: PageRequest },
+    { no: 1, name: 'pagination', kind: 'message', T: PageRequest },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryDenomsRequest {
@@ -201,11 +228,17 @@ export class QueryDenomsRequest extends Message<QueryDenomsRequest> {
     return new QueryDenomsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryDenomsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryDenomsRequest {
     return new QueryDenomsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryDenomsRequest | PlainMessage<QueryDenomsRequest> | undefined, b: QueryDenomsRequest | PlainMessage<QueryDenomsRequest> | undefined): boolean {
+  static equals(
+    a: QueryDenomsRequest | PlainMessage<QueryDenomsRequest> | undefined,
+    b: QueryDenomsRequest | PlainMessage<QueryDenomsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryDenomsRequest, a, b);
   }
 }
@@ -237,10 +270,10 @@ export class QueryDenomsResponse extends Message<QueryDenomsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.transfer.v1.QueryDenomsResponse";
+  static readonly typeName = 'ibc.applications.transfer.v1.QueryDenomsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "denoms", kind: "message", T: Denom, repeated: true },
-    { no: 2, name: "pagination", kind: "message", T: PageResponse },
+    { no: 1, name: 'denoms', kind: 'message', T: Denom, repeated: true },
+    { no: 2, name: 'pagination', kind: 'message', T: PageResponse },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryDenomsResponse {
@@ -251,11 +284,17 @@ export class QueryDenomsResponse extends Message<QueryDenomsResponse> {
     return new QueryDenomsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryDenomsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryDenomsResponse {
     return new QueryDenomsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryDenomsResponse | PlainMessage<QueryDenomsResponse> | undefined, b: QueryDenomsResponse | PlainMessage<QueryDenomsResponse> | undefined): boolean {
+  static equals(
+    a: QueryDenomsResponse | PlainMessage<QueryDenomsResponse> | undefined,
+    b: QueryDenomsResponse | PlainMessage<QueryDenomsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryDenomsResponse, a, b);
   }
 }
@@ -272,7 +311,7 @@ export class QueryDenomHashRequest extends Message<QueryDenomHashRequest> {
    *
    * @generated from field: string trace = 1;
    */
-  trace = "";
+  trace = '';
 
   constructor(data?: PartialMessage<QueryDenomHashRequest>) {
     super();
@@ -280,12 +319,15 @@ export class QueryDenomHashRequest extends Message<QueryDenomHashRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.transfer.v1.QueryDenomHashRequest";
+  static readonly typeName = 'ibc.applications.transfer.v1.QueryDenomHashRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "trace", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'trace', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryDenomHashRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryDenomHashRequest {
     return new QueryDenomHashRequest().fromBinary(bytes, options);
   }
 
@@ -293,11 +335,17 @@ export class QueryDenomHashRequest extends Message<QueryDenomHashRequest> {
     return new QueryDenomHashRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryDenomHashRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryDenomHashRequest {
     return new QueryDenomHashRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryDenomHashRequest | PlainMessage<QueryDenomHashRequest> | undefined, b: QueryDenomHashRequest | PlainMessage<QueryDenomHashRequest> | undefined): boolean {
+  static equals(
+    a: QueryDenomHashRequest | PlainMessage<QueryDenomHashRequest> | undefined,
+    b: QueryDenomHashRequest | PlainMessage<QueryDenomHashRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryDenomHashRequest, a, b);
   }
 }
@@ -314,7 +362,7 @@ export class QueryDenomHashResponse extends Message<QueryDenomHashResponse> {
    *
    * @generated from field: string hash = 1;
    */
-  hash = "";
+  hash = '';
 
   constructor(data?: PartialMessage<QueryDenomHashResponse>) {
     super();
@@ -322,24 +370,36 @@ export class QueryDenomHashResponse extends Message<QueryDenomHashResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.transfer.v1.QueryDenomHashResponse";
+  static readonly typeName = 'ibc.applications.transfer.v1.QueryDenomHashResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "hash", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'hash', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryDenomHashResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryDenomHashResponse {
     return new QueryDenomHashResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryDenomHashResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryDenomHashResponse {
     return new QueryDenomHashResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryDenomHashResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryDenomHashResponse {
     return new QueryDenomHashResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryDenomHashResponse | PlainMessage<QueryDenomHashResponse> | undefined, b: QueryDenomHashResponse | PlainMessage<QueryDenomHashResponse> | undefined): boolean {
+  static equals(
+    a: QueryDenomHashResponse | PlainMessage<QueryDenomHashResponse> | undefined,
+    b: QueryDenomHashResponse | PlainMessage<QueryDenomHashResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryDenomHashResponse, a, b);
   }
 }
@@ -355,14 +415,14 @@ export class QueryEscrowAddressRequest extends Message<QueryEscrowAddressRequest
    *
    * @generated from field: string port_id = 1;
    */
-  portId = "";
+  portId = '';
 
   /**
    * unique channel identifier
    *
    * @generated from field: string channel_id = 2;
    */
-  channelId = "";
+  channelId = '';
 
   constructor(data?: PartialMessage<QueryEscrowAddressRequest>) {
     super();
@@ -370,25 +430,37 @@ export class QueryEscrowAddressRequest extends Message<QueryEscrowAddressRequest
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.transfer.v1.QueryEscrowAddressRequest";
+  static readonly typeName = 'ibc.applications.transfer.v1.QueryEscrowAddressRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryEscrowAddressRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryEscrowAddressRequest {
     return new QueryEscrowAddressRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryEscrowAddressRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryEscrowAddressRequest {
     return new QueryEscrowAddressRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryEscrowAddressRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryEscrowAddressRequest {
     return new QueryEscrowAddressRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryEscrowAddressRequest | PlainMessage<QueryEscrowAddressRequest> | undefined, b: QueryEscrowAddressRequest | PlainMessage<QueryEscrowAddressRequest> | undefined): boolean {
+  static equals(
+    a: QueryEscrowAddressRequest | PlainMessage<QueryEscrowAddressRequest> | undefined,
+    b: QueryEscrowAddressRequest | PlainMessage<QueryEscrowAddressRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryEscrowAddressRequest, a, b);
   }
 }
@@ -404,7 +476,7 @@ export class QueryEscrowAddressResponse extends Message<QueryEscrowAddressRespon
    *
    * @generated from field: string escrow_address = 1;
    */
-  escrowAddress = "";
+  escrowAddress = '';
 
   constructor(data?: PartialMessage<QueryEscrowAddressResponse>) {
     super();
@@ -412,24 +484,36 @@ export class QueryEscrowAddressResponse extends Message<QueryEscrowAddressRespon
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.transfer.v1.QueryEscrowAddressResponse";
+  static readonly typeName = 'ibc.applications.transfer.v1.QueryEscrowAddressResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "escrow_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'escrow_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryEscrowAddressResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryEscrowAddressResponse {
     return new QueryEscrowAddressResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryEscrowAddressResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryEscrowAddressResponse {
     return new QueryEscrowAddressResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryEscrowAddressResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryEscrowAddressResponse {
     return new QueryEscrowAddressResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryEscrowAddressResponse | PlainMessage<QueryEscrowAddressResponse> | undefined, b: QueryEscrowAddressResponse | PlainMessage<QueryEscrowAddressResponse> | undefined): boolean {
+  static equals(
+    a: QueryEscrowAddressResponse | PlainMessage<QueryEscrowAddressResponse> | undefined,
+    b: QueryEscrowAddressResponse | PlainMessage<QueryEscrowAddressResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryEscrowAddressResponse, a, b);
   }
 }
@@ -443,7 +527,7 @@ export class QueryTotalEscrowForDenomRequest extends Message<QueryTotalEscrowFor
   /**
    * @generated from field: string denom = 1;
    */
-  denom = "";
+  denom = '';
 
   constructor(data?: PartialMessage<QueryTotalEscrowForDenomRequest>) {
     super();
@@ -451,24 +535,36 @@ export class QueryTotalEscrowForDenomRequest extends Message<QueryTotalEscrowFor
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.transfer.v1.QueryTotalEscrowForDenomRequest";
+  static readonly typeName = 'ibc.applications.transfer.v1.QueryTotalEscrowForDenomRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryTotalEscrowForDenomRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryTotalEscrowForDenomRequest {
     return new QueryTotalEscrowForDenomRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryTotalEscrowForDenomRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryTotalEscrowForDenomRequest {
     return new QueryTotalEscrowForDenomRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryTotalEscrowForDenomRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryTotalEscrowForDenomRequest {
     return new QueryTotalEscrowForDenomRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryTotalEscrowForDenomRequest | PlainMessage<QueryTotalEscrowForDenomRequest> | undefined, b: QueryTotalEscrowForDenomRequest | PlainMessage<QueryTotalEscrowForDenomRequest> | undefined): boolean {
+  static equals(
+    a: QueryTotalEscrowForDenomRequest | PlainMessage<QueryTotalEscrowForDenomRequest> | undefined,
+    b: QueryTotalEscrowForDenomRequest | PlainMessage<QueryTotalEscrowForDenomRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryTotalEscrowForDenomRequest, a, b);
   }
 }
@@ -490,25 +586,39 @@ export class QueryTotalEscrowForDenomResponse extends Message<QueryTotalEscrowFo
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.transfer.v1.QueryTotalEscrowForDenomResponse";
+  static readonly typeName = 'ibc.applications.transfer.v1.QueryTotalEscrowForDenomResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "amount", kind: "message", T: Coin },
+    { no: 1, name: 'amount', kind: 'message', T: Coin },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryTotalEscrowForDenomResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryTotalEscrowForDenomResponse {
     return new QueryTotalEscrowForDenomResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryTotalEscrowForDenomResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryTotalEscrowForDenomResponse {
     return new QueryTotalEscrowForDenomResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryTotalEscrowForDenomResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryTotalEscrowForDenomResponse {
     return new QueryTotalEscrowForDenomResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryTotalEscrowForDenomResponse | PlainMessage<QueryTotalEscrowForDenomResponse> | undefined, b: QueryTotalEscrowForDenomResponse | PlainMessage<QueryTotalEscrowForDenomResponse> | undefined): boolean {
+  static equals(
+    a:
+      | QueryTotalEscrowForDenomResponse
+      | PlainMessage<QueryTotalEscrowForDenomResponse>
+      | undefined,
+    b: QueryTotalEscrowForDenomResponse | PlainMessage<QueryTotalEscrowForDenomResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryTotalEscrowForDenomResponse, a, b);
   }
 }
-

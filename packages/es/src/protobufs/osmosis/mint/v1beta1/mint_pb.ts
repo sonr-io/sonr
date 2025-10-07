@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * Minter represents the minting state.
@@ -17,7 +24,7 @@ export class Minter extends Message<Minter> {
    *
    * @generated from field: string epoch_provisions = 1;
    */
-  epochProvisions = "";
+  epochProvisions = '';
 
   constructor(data?: PartialMessage<Minter>) {
     super();
@@ -25,9 +32,9 @@ export class Minter extends Message<Minter> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.mint.v1beta1.Minter";
+  static readonly typeName = 'osmosis.mint.v1beta1.Minter';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "epoch_provisions", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'epoch_provisions', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Minter {
@@ -42,7 +49,10 @@ export class Minter extends Message<Minter> {
     return new Minter().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Minter | PlainMessage<Minter> | undefined, b: Minter | PlainMessage<Minter> | undefined): boolean {
+  static equals(
+    a: Minter | PlainMessage<Minter> | undefined,
+    b: Minter | PlainMessage<Minter> | undefined
+  ): boolean {
     return proto3.util.equals(Minter, a, b);
   }
 }
@@ -58,12 +68,12 @@ export class WeightedAddress extends Message<WeightedAddress> {
   /**
    * @generated from field: string address = 1;
    */
-  address = "";
+  address = '';
 
   /**
    * @generated from field: string weight = 2;
    */
-  weight = "";
+  weight = '';
 
   constructor(data?: PartialMessage<WeightedAddress>) {
     super();
@@ -71,10 +81,10 @@ export class WeightedAddress extends Message<WeightedAddress> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.mint.v1beta1.WeightedAddress";
+  static readonly typeName = 'osmosis.mint.v1beta1.WeightedAddress';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "weight", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'weight', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): WeightedAddress {
@@ -89,7 +99,10 @@ export class WeightedAddress extends Message<WeightedAddress> {
     return new WeightedAddress().fromJsonString(jsonString, options);
   }
 
-  static equals(a: WeightedAddress | PlainMessage<WeightedAddress> | undefined, b: WeightedAddress | PlainMessage<WeightedAddress> | undefined): boolean {
+  static equals(
+    a: WeightedAddress | PlainMessage<WeightedAddress> | undefined,
+    b: WeightedAddress | PlainMessage<WeightedAddress> | undefined
+  ): boolean {
     return proto3.util.equals(WeightedAddress, a, b);
   }
 }
@@ -108,7 +121,7 @@ export class DistributionProportions extends Message<DistributionProportions> {
    *
    * @generated from field: string staking = 1;
    */
-  staking = "";
+  staking = '';
 
   /**
    * pool_incentives defines the proportion of the minted mint_denom that is
@@ -116,7 +129,7 @@ export class DistributionProportions extends Message<DistributionProportions> {
    *
    * @generated from field: string pool_incentives = 2;
    */
-  poolIncentives = "";
+  poolIncentives = '';
 
   /**
    * developer_rewards defines the proportion of the minted mint_denom that is
@@ -124,7 +137,7 @@ export class DistributionProportions extends Message<DistributionProportions> {
    *
    * @generated from field: string developer_rewards = 3;
    */
-  developerRewards = "";
+  developerRewards = '';
 
   /**
    * community_pool defines the proportion of the minted mint_denom that is
@@ -132,7 +145,7 @@ export class DistributionProportions extends Message<DistributionProportions> {
    *
    * @generated from field: string community_pool = 4;
    */
-  communityPool = "";
+  communityPool = '';
 
   constructor(data?: PartialMessage<DistributionProportions>) {
     super();
@@ -140,27 +153,39 @@ export class DistributionProportions extends Message<DistributionProportions> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.mint.v1beta1.DistributionProportions";
+  static readonly typeName = 'osmosis.mint.v1beta1.DistributionProportions';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "staking", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "pool_incentives", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "developer_rewards", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "community_pool", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'staking', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'pool_incentives', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'developer_rewards', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'community_pool', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DistributionProportions {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): DistributionProportions {
     return new DistributionProportions().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DistributionProportions {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): DistributionProportions {
     return new DistributionProportions().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DistributionProportions {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): DistributionProportions {
     return new DistributionProportions().fromJsonString(jsonString, options);
   }
 
-  static equals(a: DistributionProportions | PlainMessage<DistributionProportions> | undefined, b: DistributionProportions | PlainMessage<DistributionProportions> | undefined): boolean {
+  static equals(
+    a: DistributionProportions | PlainMessage<DistributionProportions> | undefined,
+    b: DistributionProportions | PlainMessage<DistributionProportions> | undefined
+  ): boolean {
     return proto3.util.equals(DistributionProportions, a, b);
   }
 }
@@ -176,21 +201,21 @@ export class Params extends Message<Params> {
    *
    * @generated from field: string mint_denom = 1;
    */
-  mintDenom = "";
+  mintDenom = '';
 
   /**
    * genesis_epoch_provisions epoch provisions from the first epoch.
    *
    * @generated from field: string genesis_epoch_provisions = 2;
    */
-  genesisEpochProvisions = "";
+  genesisEpochProvisions = '';
 
   /**
    * epoch_identifier mint epoch identifier e.g. (day, week).
    *
    * @generated from field: string epoch_identifier = 3;
    */
-  epochIdentifier = "";
+  epochIdentifier = '';
 
   /**
    * reduction_period_in_epochs the number of epochs it takes
@@ -206,7 +231,7 @@ export class Params extends Message<Params> {
    *
    * @generated from field: string reduction_factor = 5;
    */
-  reductionFactor = "";
+  reductionFactor = '';
 
   /**
    * distribution_proportions defines the distribution proportions of the minted
@@ -241,16 +266,27 @@ export class Params extends Message<Params> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.mint.v1beta1.Params";
+  static readonly typeName = 'osmosis.mint.v1beta1.Params';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "mint_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "genesis_epoch_provisions", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "epoch_identifier", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "reduction_period_in_epochs", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 5, name: "reduction_factor", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "distribution_proportions", kind: "message", T: DistributionProportions },
-    { no: 7, name: "weighted_developer_rewards_receivers", kind: "message", T: WeightedAddress, repeated: true },
-    { no: 8, name: "minting_rewards_distribution_start_epoch", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: 'mint_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'genesis_epoch_provisions', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'epoch_identifier', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'reduction_period_in_epochs', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 5, name: 'reduction_factor', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'distribution_proportions', kind: 'message', T: DistributionProportions },
+    {
+      no: 7,
+      name: 'weighted_developer_rewards_receivers',
+      kind: 'message',
+      T: WeightedAddress,
+      repeated: true,
+    },
+    {
+      no: 8,
+      name: 'minting_rewards_distribution_start_epoch',
+      kind: 'scalar',
+      T: 3 /* ScalarType.INT64 */,
+    },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Params {
@@ -265,8 +301,10 @@ export class Params extends Message<Params> {
     return new Params().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Params | PlainMessage<Params> | undefined, b: Params | PlainMessage<Params> | undefined): boolean {
+  static equals(
+    a: Params | PlainMessage<Params> | undefined,
+    b: Params | PlainMessage<Params> | undefined
+  ): boolean {
     return proto3.util.equals(Params, a, b);
   }
 }
-

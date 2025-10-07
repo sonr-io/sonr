@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { BaseAccount } from "../../../../cosmos/auth/v1beta1/auth_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { BaseAccount } from '../../../../cosmos/auth/v1beta1/auth_pb.js';
 
 /**
  * An InterchainAccount is defined as a BaseAccount & the address of the account owner on the controller chain
@@ -21,7 +28,7 @@ export class InterchainAccount extends Message<InterchainAccount> {
   /**
    * @generated from field: string account_owner = 2;
    */
-  accountOwner = "";
+  accountOwner = '';
 
   constructor(data?: PartialMessage<InterchainAccount>) {
     super();
@@ -29,10 +36,10 @@ export class InterchainAccount extends Message<InterchainAccount> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.interchain_accounts.v1.InterchainAccount";
+  static readonly typeName = 'ibc.applications.interchain_accounts.v1.InterchainAccount';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "base_account", kind: "message", T: BaseAccount },
-    { no: 2, name: "account_owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'base_account', kind: 'message', T: BaseAccount },
+    { no: 2, name: 'account_owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InterchainAccount {
@@ -47,8 +54,10 @@ export class InterchainAccount extends Message<InterchainAccount> {
     return new InterchainAccount().fromJsonString(jsonString, options);
   }
 
-  static equals(a: InterchainAccount | PlainMessage<InterchainAccount> | undefined, b: InterchainAccount | PlainMessage<InterchainAccount> | undefined): boolean {
+  static equals(
+    a: InterchainAccount | PlainMessage<InterchainAccount> | undefined,
+    b: InterchainAccount | PlainMessage<InterchainAccount> | undefined
+  ): boolean {
     return proto3.util.equals(InterchainAccount, a, b);
   }
 }
-

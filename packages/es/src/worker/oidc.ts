@@ -1,6 +1,6 @@
 /**
  * OpenID Connect (OIDC) client for Motor Authorization Beacon
- * 
+ *
  * @packageDocumentation
  */
 
@@ -126,7 +126,7 @@ export class OIDCClient {
     const challenge = this.base64UrlEncode(
       crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier))
     );
-    
+
     return { verifier, challenge };
   }
 
@@ -146,15 +146,12 @@ export class OIDCClient {
     if (data instanceof Promise) {
       throw new Error('Cannot encode Promise directly');
     }
-    
+
     const bytes = data instanceof ArrayBuffer ? new Uint8Array(data) : data;
     let binary = '';
-    bytes.forEach(byte => binary += String.fromCharCode(byte));
-    
-    return btoa(binary)
-      .replace(/\+/g, '-')
-      .replace(/\//g, '_')
-      .replace(/=/g, '');
+    bytes.forEach((byte) => (binary += String.fromCharCode(byte)));
+
+    return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
   }
 
   /**
@@ -209,14 +206,12 @@ export class OIDCClient {
   /**
    * Open authorization in popup
    */
-  async authorizePopup(options: Partial<OIDCAuthorizationRequest> = {}): Promise<OIDCAuthorizationResponse> {
+  async authorizePopup(
+    options: Partial<OIDCAuthorizationRequest> = {}
+  ): Promise<OIDCAuthorizationResponse> {
     const authUrl = await this.buildAuthorizationUrl(options);
-    
-    const popup = window.open(
-      authUrl,
-      'oidc_auth',
-      'width=500,height=600,menubar=no,toolbar=no'
-    );
+
+    const popup = window.open(authUrl, 'oidc_auth', 'width=500,height=600,menubar=no,toolbar=no');
 
     if (!popup) {
       throw new Error('Failed to open authorization popup');
@@ -234,10 +229,10 @@ export class OIDCClient {
           // Check if redirected back
           if (popup.location.href.startsWith(this.config.redirect_uri)) {
             clearInterval(checkInterval);
-            
+
             const url = new URL(popup.location.href);
             const response = this.parseAuthorizationResponse(url);
-            
+
             popup.close();
             resolve(response);
           }
@@ -274,7 +269,9 @@ export class OIDCClient {
       token_type: hashParams.get('token_type') || undefined,
       id_token: hashParams.get('id_token') || undefined,
       state: state || undefined,
-      expires_in: hashParams.get('expires_in') ? parseInt(hashParams.get('expires_in')!) : undefined,
+      expires_in: hashParams.get('expires_in')
+        ? parseInt(hashParams.get('expires_in')!)
+        : undefined,
       scope: hashParams.get('scope') || undefined,
     };
   }
@@ -296,7 +293,7 @@ export class OIDCClient {
       if (response.expires_in) {
         this.tokenExpiresAt = Date.now() + response.expires_in * 1000;
       }
-      
+
       return {
         access_token: response.access_token,
         token_type: response.token_type || 'Bearer',
@@ -386,14 +383,9 @@ export class OIDCClient {
       await this.refreshAccessToken();
     }
 
-    return await this.request<OIDCUserInfo>(
-      'GET',
-      '/userinfo',
-      undefined,
-      {
-        'Authorization': `Bearer ${this.accessToken}`,
-      }
-    );
+    return await this.request<OIDCUserInfo>('GET', '/userinfo', undefined, {
+      Authorization: `Bearer ${this.accessToken}`,
+    });
   }
 
   /**
@@ -402,18 +394,18 @@ export class OIDCClient {
   async getJWKS(): Promise<JWKS> {
     const config = await this.getConfiguration();
     const jwksUrl = new URL(config.jwks_uri);
-    
+
     // If JWKS is on the same origin, use our request method
     if (jwksUrl.origin === window.location.origin) {
       return await this.request<JWKS>('GET', jwksUrl.pathname);
     }
-    
+
     // Otherwise fetch directly
     const response = await fetch(config.jwks_uri);
     if (!response.ok) {
       throw new Error(`Failed to fetch JWKS: ${response.status}`);
     }
-    
+
     return await response.json();
   }
 
@@ -426,11 +418,11 @@ export class OIDCClient {
     this.refreshToken = undefined;
     this.idToken = undefined;
     this.tokenExpiresAt = undefined;
-    
+
     // Clear session storage
     sessionStorage.removeItem('oidc_state');
     sessionStorage.removeItem('oidc_nonce');
-    
+
     // TODO: Call revocation endpoint if available
   }
 
@@ -496,8 +488,12 @@ export function createOIDCClient(config: OIDCClientConfig): OIDCClient {
  */
 export function isOIDCCallback(redirectUri: string): boolean {
   const currentUrl = window.location.href;
-  return currentUrl.startsWith(redirectUri) && 
-         (currentUrl.includes('code=') || currentUrl.includes('access_token=') || currentUrl.includes('error='));
+  return (
+    currentUrl.startsWith(redirectUri) &&
+    (currentUrl.includes('code=') ||
+      currentUrl.includes('access_token=') ||
+      currentUrl.includes('error='))
+  );
 }
 
 /**
@@ -518,7 +514,7 @@ export async function autoHandleOIDCCallback(
     if (onSuccess) {
       onSuccess(tokens);
     }
-    
+
     // Clean up URL
     window.history.replaceState({}, document.title, redirectUri);
   } catch (error) {

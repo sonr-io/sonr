@@ -3,9 +3,22 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryDenomHashRequest, QueryDenomHashResponse, QueryDenomRequest, QueryDenomResponse, QueryDenomsRequest, QueryDenomsResponse, QueryEscrowAddressRequest, QueryEscrowAddressResponse, QueryParamsRequest, QueryParamsResponse, QueryTotalEscrowForDenomRequest, QueryTotalEscrowForDenomResponse } from "./query_pb.js";
+import {
+  QueryDenomHashRequest,
+  QueryDenomHashResponse,
+  QueryDenomRequest,
+  QueryDenomResponse,
+  QueryDenomsRequest,
+  QueryDenomsResponse,
+  QueryEscrowAddressRequest,
+  QueryEscrowAddressResponse,
+  QueryParamsRequest,
+  QueryParamsResponse,
+  QueryTotalEscrowForDenomRequest,
+  QueryTotalEscrowForDenomResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "ibc.applications.transfer.v1.Query";
+const TYPE_NAME = 'ibc.applications.transfer.v1.Query';
 
 /**
  * Params queries all parameters of the ibc-transfer module.
@@ -14,7 +27,7 @@ const TYPE_NAME = "ibc.applications.transfer.v1.Query";
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: QueryParamsRequest,
   Response: QueryParamsResponse,
 } as const;
@@ -26,7 +39,7 @@ export const QueryParamsService = {
  */
 export const QueryDenomsService = {
   typeName: TYPE_NAME,
-  method: "Denoms",
+  method: 'Denoms',
   Request: QueryDenomsRequest,
   Response: QueryDenomsResponse,
 } as const;
@@ -38,7 +51,7 @@ export const QueryDenomsService = {
  */
 export const QueryDenomService = {
   typeName: TYPE_NAME,
-  method: "Denom",
+  method: 'Denom',
   Request: QueryDenomRequest,
   Response: QueryDenomResponse,
 } as const;
@@ -50,7 +63,7 @@ export const QueryDenomService = {
  */
 export const QueryDenomHashService = {
   typeName: TYPE_NAME,
-  method: "DenomHash",
+  method: 'DenomHash',
   Request: QueryDenomHashRequest,
   Response: QueryDenomHashResponse,
 } as const;
@@ -62,7 +75,7 @@ export const QueryDenomHashService = {
  */
 export const QueryEscrowAddressService = {
   typeName: TYPE_NAME,
-  method: "EscrowAddress",
+  method: 'EscrowAddress',
   Request: QueryEscrowAddressRequest,
   Response: QueryEscrowAddressResponse,
 } as const;
@@ -74,8 +87,7 @@ export const QueryEscrowAddressService = {
  */
 export const QueryTotalEscrowForDenomService = {
   typeName: TYPE_NAME,
-  method: "TotalEscrowForDenom",
+  method: 'TotalEscrowForDenom',
   Request: QueryTotalEscrowForDenomRequest,
   Response: QueryTotalEscrowForDenomResponse,
 } as const;
-

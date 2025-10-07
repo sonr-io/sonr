@@ -3,9 +3,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryInterchainAccountRequest, QueryInterchainAccountResponse, QueryParamsRequest, QueryParamsResponse } from "./query_pb.js";
+import {
+  QueryInterchainAccountRequest,
+  QueryInterchainAccountResponse,
+  QueryParamsRequest,
+  QueryParamsResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "ibc.applications.interchain_accounts.controller.v1.Query";
+const TYPE_NAME = 'ibc.applications.interchain_accounts.controller.v1.Query';
 
 /**
  * InterchainAccount returns the interchain account address for a given owner address on a given connection
@@ -14,7 +19,7 @@ const TYPE_NAME = "ibc.applications.interchain_accounts.controller.v1.Query";
  */
 export const QueryInterchainAccountService = {
   typeName: TYPE_NAME,
-  method: "InterchainAccount",
+  method: 'InterchainAccount',
   Request: QueryInterchainAccountRequest,
   Response: QueryInterchainAccountResponse,
 } as const;
@@ -26,8 +31,7 @@ export const QueryInterchainAccountService = {
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: QueryParamsRequest,
   Response: QueryParamsResponse,
 } as const;
-

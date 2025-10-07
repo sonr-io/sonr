@@ -3,10 +3,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Coin } from "../../cosmos/base/v1beta1/coin_pb.js";
-import { PeriodLock } from "./lock_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Duration, Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { Coin } from '../../cosmos/base/v1beta1/coin_pb.js';
+import { PeriodLock } from './lock_pb.js';
 
 /**
  * @generated from message osmosis.lockup.MsgLockTokens
@@ -15,7 +22,7 @@ export class MsgLockTokens extends Message<MsgLockTokens> {
   /**
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   /**
    * @generated from field: google.protobuf.Duration duration = 2;
@@ -33,11 +40,11 @@ export class MsgLockTokens extends Message<MsgLockTokens> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.MsgLockTokens";
+  static readonly typeName = 'osmosis.lockup.MsgLockTokens';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "duration", kind: "message", T: Duration },
-    { no: 3, name: "coins", kind: "message", T: Coin, repeated: true },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'duration', kind: 'message', T: Duration },
+    { no: 3, name: 'coins', kind: 'message', T: Coin, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgLockTokens {
@@ -52,7 +59,10 @@ export class MsgLockTokens extends Message<MsgLockTokens> {
     return new MsgLockTokens().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgLockTokens | PlainMessage<MsgLockTokens> | undefined, b: MsgLockTokens | PlainMessage<MsgLockTokens> | undefined): boolean {
+  static equals(
+    a: MsgLockTokens | PlainMessage<MsgLockTokens> | undefined,
+    b: MsgLockTokens | PlainMessage<MsgLockTokens> | undefined
+  ): boolean {
     return proto3.util.equals(MsgLockTokens, a, b);
   }
 }
@@ -72,12 +82,15 @@ export class MsgLockTokensResponse extends Message<MsgLockTokensResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.MsgLockTokensResponse";
+  static readonly typeName = 'osmosis.lockup.MsgLockTokensResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "ID", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'ID', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgLockTokensResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgLockTokensResponse {
     return new MsgLockTokensResponse().fromBinary(bytes, options);
   }
 
@@ -85,11 +98,17 @@ export class MsgLockTokensResponse extends Message<MsgLockTokensResponse> {
     return new MsgLockTokensResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgLockTokensResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgLockTokensResponse {
     return new MsgLockTokensResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgLockTokensResponse | PlainMessage<MsgLockTokensResponse> | undefined, b: MsgLockTokensResponse | PlainMessage<MsgLockTokensResponse> | undefined): boolean {
+  static equals(
+    a: MsgLockTokensResponse | PlainMessage<MsgLockTokensResponse> | undefined,
+    b: MsgLockTokensResponse | PlainMessage<MsgLockTokensResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgLockTokensResponse, a, b);
   }
 }
@@ -101,7 +120,7 @@ export class MsgBeginUnlockingAll extends Message<MsgBeginUnlockingAll> {
   /**
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   constructor(data?: PartialMessage<MsgBeginUnlockingAll>) {
     super();
@@ -109,9 +128,9 @@ export class MsgBeginUnlockingAll extends Message<MsgBeginUnlockingAll> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.MsgBeginUnlockingAll";
+  static readonly typeName = 'osmosis.lockup.MsgBeginUnlockingAll';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgBeginUnlockingAll {
@@ -122,11 +141,17 @@ export class MsgBeginUnlockingAll extends Message<MsgBeginUnlockingAll> {
     return new MsgBeginUnlockingAll().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgBeginUnlockingAll {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgBeginUnlockingAll {
     return new MsgBeginUnlockingAll().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgBeginUnlockingAll | PlainMessage<MsgBeginUnlockingAll> | undefined, b: MsgBeginUnlockingAll | PlainMessage<MsgBeginUnlockingAll> | undefined): boolean {
+  static equals(
+    a: MsgBeginUnlockingAll | PlainMessage<MsgBeginUnlockingAll> | undefined,
+    b: MsgBeginUnlockingAll | PlainMessage<MsgBeginUnlockingAll> | undefined
+  ): boolean {
     return proto3.util.equals(MsgBeginUnlockingAll, a, b);
   }
 }
@@ -146,24 +171,36 @@ export class MsgBeginUnlockingAllResponse extends Message<MsgBeginUnlockingAllRe
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.MsgBeginUnlockingAllResponse";
+  static readonly typeName = 'osmosis.lockup.MsgBeginUnlockingAllResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "unlocks", kind: "message", T: PeriodLock, repeated: true },
+    { no: 1, name: 'unlocks', kind: 'message', T: PeriodLock, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgBeginUnlockingAllResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgBeginUnlockingAllResponse {
     return new MsgBeginUnlockingAllResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgBeginUnlockingAllResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgBeginUnlockingAllResponse {
     return new MsgBeginUnlockingAllResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgBeginUnlockingAllResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgBeginUnlockingAllResponse {
     return new MsgBeginUnlockingAllResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgBeginUnlockingAllResponse | PlainMessage<MsgBeginUnlockingAllResponse> | undefined, b: MsgBeginUnlockingAllResponse | PlainMessage<MsgBeginUnlockingAllResponse> | undefined): boolean {
+  static equals(
+    a: MsgBeginUnlockingAllResponse | PlainMessage<MsgBeginUnlockingAllResponse> | undefined,
+    b: MsgBeginUnlockingAllResponse | PlainMessage<MsgBeginUnlockingAllResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgBeginUnlockingAllResponse, a, b);
   }
 }
@@ -175,7 +212,7 @@ export class MsgBeginUnlocking extends Message<MsgBeginUnlocking> {
   /**
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   /**
    * @generated from field: uint64 ID = 2;
@@ -195,11 +232,11 @@ export class MsgBeginUnlocking extends Message<MsgBeginUnlocking> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.MsgBeginUnlocking";
+  static readonly typeName = 'osmosis.lockup.MsgBeginUnlocking';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "ID", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "coins", kind: "message", T: Coin, repeated: true },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'ID', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'coins', kind: 'message', T: Coin, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgBeginUnlocking {
@@ -214,7 +251,10 @@ export class MsgBeginUnlocking extends Message<MsgBeginUnlocking> {
     return new MsgBeginUnlocking().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgBeginUnlocking | PlainMessage<MsgBeginUnlocking> | undefined, b: MsgBeginUnlocking | PlainMessage<MsgBeginUnlocking> | undefined): boolean {
+  static equals(
+    a: MsgBeginUnlocking | PlainMessage<MsgBeginUnlocking> | undefined,
+    b: MsgBeginUnlocking | PlainMessage<MsgBeginUnlocking> | undefined
+  ): boolean {
     return proto3.util.equals(MsgBeginUnlocking, a, b);
   }
 }
@@ -239,25 +279,37 @@ export class MsgBeginUnlockingResponse extends Message<MsgBeginUnlockingResponse
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.MsgBeginUnlockingResponse";
+  static readonly typeName = 'osmosis.lockup.MsgBeginUnlockingResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 2, name: "unlockingLockID", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'success', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: 'unlockingLockID', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgBeginUnlockingResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgBeginUnlockingResponse {
     return new MsgBeginUnlockingResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgBeginUnlockingResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgBeginUnlockingResponse {
     return new MsgBeginUnlockingResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgBeginUnlockingResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgBeginUnlockingResponse {
     return new MsgBeginUnlockingResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgBeginUnlockingResponse | PlainMessage<MsgBeginUnlockingResponse> | undefined, b: MsgBeginUnlockingResponse | PlainMessage<MsgBeginUnlockingResponse> | undefined): boolean {
+  static equals(
+    a: MsgBeginUnlockingResponse | PlainMessage<MsgBeginUnlockingResponse> | undefined,
+    b: MsgBeginUnlockingResponse | PlainMessage<MsgBeginUnlockingResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgBeginUnlockingResponse, a, b);
   }
 }
@@ -272,7 +324,7 @@ export class MsgExtendLockup extends Message<MsgExtendLockup> {
   /**
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   /**
    * @generated from field: uint64 ID = 2;
@@ -293,11 +345,11 @@ export class MsgExtendLockup extends Message<MsgExtendLockup> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.MsgExtendLockup";
+  static readonly typeName = 'osmosis.lockup.MsgExtendLockup';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "ID", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "duration", kind: "message", T: Duration },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'ID', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'duration', kind: 'message', T: Duration },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgExtendLockup {
@@ -312,7 +364,10 @@ export class MsgExtendLockup extends Message<MsgExtendLockup> {
     return new MsgExtendLockup().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgExtendLockup | PlainMessage<MsgExtendLockup> | undefined, b: MsgExtendLockup | PlainMessage<MsgExtendLockup> | undefined): boolean {
+  static equals(
+    a: MsgExtendLockup | PlainMessage<MsgExtendLockup> | undefined,
+    b: MsgExtendLockup | PlainMessage<MsgExtendLockup> | undefined
+  ): boolean {
     return proto3.util.equals(MsgExtendLockup, a, b);
   }
 }
@@ -332,24 +387,36 @@ export class MsgExtendLockupResponse extends Message<MsgExtendLockupResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.MsgExtendLockupResponse";
+  static readonly typeName = 'osmosis.lockup.MsgExtendLockupResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'success', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgExtendLockupResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgExtendLockupResponse {
     return new MsgExtendLockupResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgExtendLockupResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgExtendLockupResponse {
     return new MsgExtendLockupResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgExtendLockupResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgExtendLockupResponse {
     return new MsgExtendLockupResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgExtendLockupResponse | PlainMessage<MsgExtendLockupResponse> | undefined, b: MsgExtendLockupResponse | PlainMessage<MsgExtendLockupResponse> | undefined): boolean {
+  static equals(
+    a: MsgExtendLockupResponse | PlainMessage<MsgExtendLockupResponse> | undefined,
+    b: MsgExtendLockupResponse | PlainMessage<MsgExtendLockupResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgExtendLockupResponse, a, b);
   }
 }
@@ -364,7 +431,7 @@ export class MsgForceUnlock extends Message<MsgForceUnlock> {
   /**
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   /**
    * @generated from field: uint64 ID = 2;
@@ -384,11 +451,11 @@ export class MsgForceUnlock extends Message<MsgForceUnlock> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.MsgForceUnlock";
+  static readonly typeName = 'osmosis.lockup.MsgForceUnlock';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "ID", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "coins", kind: "message", T: Coin, repeated: true },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'ID', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'coins', kind: 'message', T: Coin, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgForceUnlock {
@@ -403,7 +470,10 @@ export class MsgForceUnlock extends Message<MsgForceUnlock> {
     return new MsgForceUnlock().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgForceUnlock | PlainMessage<MsgForceUnlock> | undefined, b: MsgForceUnlock | PlainMessage<MsgForceUnlock> | undefined): boolean {
+  static equals(
+    a: MsgForceUnlock | PlainMessage<MsgForceUnlock> | undefined,
+    b: MsgForceUnlock | PlainMessage<MsgForceUnlock> | undefined
+  ): boolean {
     return proto3.util.equals(MsgForceUnlock, a, b);
   }
 }
@@ -423,24 +493,36 @@ export class MsgForceUnlockResponse extends Message<MsgForceUnlockResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.MsgForceUnlockResponse";
+  static readonly typeName = 'osmosis.lockup.MsgForceUnlockResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'success', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgForceUnlockResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgForceUnlockResponse {
     return new MsgForceUnlockResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgForceUnlockResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgForceUnlockResponse {
     return new MsgForceUnlockResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgForceUnlockResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgForceUnlockResponse {
     return new MsgForceUnlockResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgForceUnlockResponse | PlainMessage<MsgForceUnlockResponse> | undefined, b: MsgForceUnlockResponse | PlainMessage<MsgForceUnlockResponse> | undefined): boolean {
+  static equals(
+    a: MsgForceUnlockResponse | PlainMessage<MsgForceUnlockResponse> | undefined,
+    b: MsgForceUnlockResponse | PlainMessage<MsgForceUnlockResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgForceUnlockResponse, a, b);
   }
 }
@@ -452,7 +534,7 @@ export class MsgSetRewardReceiverAddress extends Message<MsgSetRewardReceiverAdd
   /**
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   /**
    * @generated from field: uint64 lockID = 2;
@@ -462,7 +544,7 @@ export class MsgSetRewardReceiverAddress extends Message<MsgSetRewardReceiverAdd
   /**
    * @generated from field: string reward_receiver = 3;
    */
-  rewardReceiver = "";
+  rewardReceiver = '';
 
   constructor(data?: PartialMessage<MsgSetRewardReceiverAddress>) {
     super();
@@ -470,26 +552,38 @@ export class MsgSetRewardReceiverAddress extends Message<MsgSetRewardReceiverAdd
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.MsgSetRewardReceiverAddress";
+  static readonly typeName = 'osmosis.lockup.MsgSetRewardReceiverAddress';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "lockID", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "reward_receiver", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'lockID', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'reward_receiver', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetRewardReceiverAddress {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetRewardReceiverAddress {
     return new MsgSetRewardReceiverAddress().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetRewardReceiverAddress {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetRewardReceiverAddress {
     return new MsgSetRewardReceiverAddress().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetRewardReceiverAddress {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetRewardReceiverAddress {
     return new MsgSetRewardReceiverAddress().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetRewardReceiverAddress | PlainMessage<MsgSetRewardReceiverAddress> | undefined, b: MsgSetRewardReceiverAddress | PlainMessage<MsgSetRewardReceiverAddress> | undefined): boolean {
+  static equals(
+    a: MsgSetRewardReceiverAddress | PlainMessage<MsgSetRewardReceiverAddress> | undefined,
+    b: MsgSetRewardReceiverAddress | PlainMessage<MsgSetRewardReceiverAddress> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetRewardReceiverAddress, a, b);
   }
 }
@@ -509,24 +603,42 @@ export class MsgSetRewardReceiverAddressResponse extends Message<MsgSetRewardRec
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.MsgSetRewardReceiverAddressResponse";
+  static readonly typeName = 'osmosis.lockup.MsgSetRewardReceiverAddressResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'success', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetRewardReceiverAddressResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetRewardReceiverAddressResponse {
     return new MsgSetRewardReceiverAddressResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetRewardReceiverAddressResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetRewardReceiverAddressResponse {
     return new MsgSetRewardReceiverAddressResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetRewardReceiverAddressResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetRewardReceiverAddressResponse {
     return new MsgSetRewardReceiverAddressResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetRewardReceiverAddressResponse | PlainMessage<MsgSetRewardReceiverAddressResponse> | undefined, b: MsgSetRewardReceiverAddressResponse | PlainMessage<MsgSetRewardReceiverAddressResponse> | undefined): boolean {
+  static equals(
+    a:
+      | MsgSetRewardReceiverAddressResponse
+      | PlainMessage<MsgSetRewardReceiverAddressResponse>
+      | undefined,
+    b:
+      | MsgSetRewardReceiverAddressResponse
+      | PlainMessage<MsgSetRewardReceiverAddressResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetRewardReceiverAddressResponse, a, b);
   }
 }
@@ -541,7 +653,7 @@ export class MsgUnlockPeriodLock extends Message<MsgUnlockPeriodLock> {
   /**
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   /**
    * @generated from field: uint64 ID = 2;
@@ -554,10 +666,10 @@ export class MsgUnlockPeriodLock extends Message<MsgUnlockPeriodLock> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.MsgUnlockPeriodLock";
+  static readonly typeName = 'osmosis.lockup.MsgUnlockPeriodLock';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "ID", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'ID', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUnlockPeriodLock {
@@ -568,11 +680,17 @@ export class MsgUnlockPeriodLock extends Message<MsgUnlockPeriodLock> {
     return new MsgUnlockPeriodLock().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgUnlockPeriodLock {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgUnlockPeriodLock {
     return new MsgUnlockPeriodLock().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgUnlockPeriodLock | PlainMessage<MsgUnlockPeriodLock> | undefined, b: MsgUnlockPeriodLock | PlainMessage<MsgUnlockPeriodLock> | undefined): boolean {
+  static equals(
+    a: MsgUnlockPeriodLock | PlainMessage<MsgUnlockPeriodLock> | undefined,
+    b: MsgUnlockPeriodLock | PlainMessage<MsgUnlockPeriodLock> | undefined
+  ): boolean {
     return proto3.util.equals(MsgUnlockPeriodLock, a, b);
   }
 }
@@ -584,7 +702,7 @@ export class MsgUnlockTokens extends Message<MsgUnlockTokens> {
   /**
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   constructor(data?: PartialMessage<MsgUnlockTokens>) {
     super();
@@ -592,9 +710,9 @@ export class MsgUnlockTokens extends Message<MsgUnlockTokens> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.MsgUnlockTokens";
+  static readonly typeName = 'osmosis.lockup.MsgUnlockTokens';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUnlockTokens {
@@ -609,8 +727,10 @@ export class MsgUnlockTokens extends Message<MsgUnlockTokens> {
     return new MsgUnlockTokens().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgUnlockTokens | PlainMessage<MsgUnlockTokens> | undefined, b: MsgUnlockTokens | PlainMessage<MsgUnlockTokens> | undefined): boolean {
+  static equals(
+    a: MsgUnlockTokens | PlainMessage<MsgUnlockTokens> | undefined,
+    b: MsgUnlockTokens | PlainMessage<MsgUnlockTokens> | undefined
+  ): boolean {
     return proto3.util.equals(MsgUnlockTokens, a, b);
   }
 }
-

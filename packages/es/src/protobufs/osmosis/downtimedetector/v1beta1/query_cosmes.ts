@@ -3,17 +3,19 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { RecoveredSinceDowntimeOfLengthRequest, RecoveredSinceDowntimeOfLengthResponse } from "./query_pb.js";
+import {
+  RecoveredSinceDowntimeOfLengthRequest,
+  RecoveredSinceDowntimeOfLengthResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "osmosis.downtimedetector.v1beta1.Query";
+const TYPE_NAME = 'osmosis.downtimedetector.v1beta1.Query';
 
 /**
  * @generated from rpc osmosis.downtimedetector.v1beta1.Query.RecoveredSinceDowntimeOfLength
  */
 export const QueryRecoveredSinceDowntimeOfLengthService = {
   typeName: TYPE_NAME,
-  method: "RecoveredSinceDowntimeOfLength",
+  method: 'RecoveredSinceDowntimeOfLength',
   Request: RecoveredSinceDowntimeOfLengthRequest,
   Response: RecoveredSinceDowntimeOfLengthResponse,
 } as const;
-

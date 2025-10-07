@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Params, QueryRequest } from "./host_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { Params, QueryRequest } from './host_pb.js';
 
 /**
  * MsgUpdateParams defines the payload for Msg/UpdateParams
@@ -18,7 +25,7 @@ export class MsgUpdateParams extends Message<MsgUpdateParams> {
    *
    * @generated from field: string signer = 1;
    */
-  signer = "";
+  signer = '';
 
   /**
    * params defines the 27-interchain-accounts/host parameters to update.
@@ -35,10 +42,10 @@ export class MsgUpdateParams extends Message<MsgUpdateParams> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.interchain_accounts.host.v1.MsgUpdateParams";
+  static readonly typeName = 'ibc.applications.interchain_accounts.host.v1.MsgUpdateParams';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "params", kind: "message", T: Params },
+    { no: 1, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'params', kind: 'message', T: Params },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUpdateParams {
@@ -53,7 +60,10 @@ export class MsgUpdateParams extends Message<MsgUpdateParams> {
     return new MsgUpdateParams().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined, b: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined): boolean {
+  static equals(
+    a: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined,
+    b: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined
+  ): boolean {
     return proto3.util.equals(MsgUpdateParams, a, b);
   }
 }
@@ -70,23 +80,34 @@ export class MsgUpdateParamsResponse extends Message<MsgUpdateParamsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.interchain_accounts.host.v1.MsgUpdateParamsResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'ibc.applications.interchain_accounts.host.v1.MsgUpdateParamsResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUpdateParamsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgUpdateParamsResponse {
     return new MsgUpdateParamsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgUpdateParamsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgUpdateParamsResponse {
     return new MsgUpdateParamsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgUpdateParamsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgUpdateParamsResponse {
     return new MsgUpdateParamsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined, b: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined): boolean {
+  static equals(
+    a: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined,
+    b: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgUpdateParamsResponse, a, b);
   }
 }
@@ -102,7 +123,7 @@ export class MsgModuleQuerySafe extends Message<MsgModuleQuerySafe> {
    *
    * @generated from field: string signer = 1;
    */
-  signer = "";
+  signer = '';
 
   /**
    * requests defines the module safe queries to execute.
@@ -117,10 +138,10 @@ export class MsgModuleQuerySafe extends Message<MsgModuleQuerySafe> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.interchain_accounts.host.v1.MsgModuleQuerySafe";
+  static readonly typeName = 'ibc.applications.interchain_accounts.host.v1.MsgModuleQuerySafe';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "signer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "requests", kind: "message", T: QueryRequest, repeated: true },
+    { no: 1, name: 'signer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'requests', kind: 'message', T: QueryRequest, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgModuleQuerySafe {
@@ -131,11 +152,17 @@ export class MsgModuleQuerySafe extends Message<MsgModuleQuerySafe> {
     return new MsgModuleQuerySafe().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgModuleQuerySafe {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgModuleQuerySafe {
     return new MsgModuleQuerySafe().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgModuleQuerySafe | PlainMessage<MsgModuleQuerySafe> | undefined, b: MsgModuleQuerySafe | PlainMessage<MsgModuleQuerySafe> | undefined): boolean {
+  static equals(
+    a: MsgModuleQuerySafe | PlainMessage<MsgModuleQuerySafe> | undefined,
+    b: MsgModuleQuerySafe | PlainMessage<MsgModuleQuerySafe> | undefined
+  ): boolean {
     return proto3.util.equals(MsgModuleQuerySafe, a, b);
   }
 }
@@ -166,26 +193,38 @@ export class MsgModuleQuerySafeResponse extends Message<MsgModuleQuerySafeRespon
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.interchain_accounts.host.v1.MsgModuleQuerySafeResponse";
+  static readonly typeName =
+    'ibc.applications.interchain_accounts.host.v1.MsgModuleQuerySafeResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "responses", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
+    { no: 1, name: 'height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'responses', kind: 'scalar', T: 12 /* ScalarType.BYTES */, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgModuleQuerySafeResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgModuleQuerySafeResponse {
     return new MsgModuleQuerySafeResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgModuleQuerySafeResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgModuleQuerySafeResponse {
     return new MsgModuleQuerySafeResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgModuleQuerySafeResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgModuleQuerySafeResponse {
     return new MsgModuleQuerySafeResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgModuleQuerySafeResponse | PlainMessage<MsgModuleQuerySafeResponse> | undefined, b: MsgModuleQuerySafeResponse | PlainMessage<MsgModuleQuerySafeResponse> | undefined): boolean {
+  static equals(
+    a: MsgModuleQuerySafeResponse | PlainMessage<MsgModuleQuerySafeResponse> | undefined,
+    b: MsgModuleQuerySafeResponse | PlainMessage<MsgModuleQuerySafeResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgModuleQuerySafeResponse, a, b);
   }
 }
-

@@ -8,9 +8,16 @@
 // until clear steps for migration logic and the unknowns for state breaking are
 // investigated for changing proto package.
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
-import { Coin } from "../../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Duration, Message, proto3, protoInt64, Timestamp } from '@bufbuild/protobuf';
+import { Coin } from '../../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * Parameters for changing the weights in a balancer pool smoothly from
@@ -79,27 +86,39 @@ export class SmoothWeightChangeParams extends Message<SmoothWeightChangeParams> 
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.gamm.v1beta1.SmoothWeightChangeParams";
+  static readonly typeName = 'osmosis.gamm.v1beta1.SmoothWeightChangeParams';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "start_time", kind: "message", T: Timestamp },
-    { no: 2, name: "duration", kind: "message", T: Duration },
-    { no: 3, name: "initial_pool_weights", kind: "message", T: PoolAsset, repeated: true },
-    { no: 4, name: "target_pool_weights", kind: "message", T: PoolAsset, repeated: true },
+    { no: 1, name: 'start_time', kind: 'message', T: Timestamp },
+    { no: 2, name: 'duration', kind: 'message', T: Duration },
+    { no: 3, name: 'initial_pool_weights', kind: 'message', T: PoolAsset, repeated: true },
+    { no: 4, name: 'target_pool_weights', kind: 'message', T: PoolAsset, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SmoothWeightChangeParams {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): SmoothWeightChangeParams {
     return new SmoothWeightChangeParams().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SmoothWeightChangeParams {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): SmoothWeightChangeParams {
     return new SmoothWeightChangeParams().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SmoothWeightChangeParams {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): SmoothWeightChangeParams {
     return new SmoothWeightChangeParams().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SmoothWeightChangeParams | PlainMessage<SmoothWeightChangeParams> | undefined, b: SmoothWeightChangeParams | PlainMessage<SmoothWeightChangeParams> | undefined): boolean {
+  static equals(
+    a: SmoothWeightChangeParams | PlainMessage<SmoothWeightChangeParams> | undefined,
+    b: SmoothWeightChangeParams | PlainMessage<SmoothWeightChangeParams> | undefined
+  ): boolean {
     return proto3.util.equals(SmoothWeightChangeParams, a, b);
   }
 }
@@ -116,7 +135,7 @@ export class PoolParams extends Message<PoolParams> {
   /**
    * @generated from field: string swap_fee = 1;
    */
-  swapFee = "";
+  swapFee = '';
 
   /**
    * N.B.: exit fee is disabled during pool creation in x/poolmanager. While old
@@ -125,7 +144,7 @@ export class PoolParams extends Message<PoolParams> {
    *
    * @generated from field: string exit_fee = 2;
    */
-  exitFee = "";
+  exitFee = '';
 
   /**
    * @generated from field: osmosis.gamm.v1beta1.SmoothWeightChangeParams smooth_weight_change_params = 3;
@@ -138,11 +157,11 @@ export class PoolParams extends Message<PoolParams> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.gamm.v1beta1.PoolParams";
+  static readonly typeName = 'osmosis.gamm.v1beta1.PoolParams';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "swap_fee", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "exit_fee", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "smooth_weight_change_params", kind: "message", T: SmoothWeightChangeParams },
+    { no: 1, name: 'swap_fee', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'exit_fee', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'smooth_weight_change_params', kind: 'message', T: SmoothWeightChangeParams },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PoolParams {
@@ -157,7 +176,10 @@ export class PoolParams extends Message<PoolParams> {
     return new PoolParams().fromJsonString(jsonString, options);
   }
 
-  static equals(a: PoolParams | PlainMessage<PoolParams> | undefined, b: PoolParams | PlainMessage<PoolParams> | undefined): boolean {
+  static equals(
+    a: PoolParams | PlainMessage<PoolParams> | undefined,
+    b: PoolParams | PlainMessage<PoolParams> | undefined
+  ): boolean {
     return proto3.util.equals(PoolParams, a, b);
   }
 }
@@ -184,7 +206,7 @@ export class PoolAsset extends Message<PoolAsset> {
    *
    * @generated from field: string weight = 2;
    */
-  weight = "";
+  weight = '';
 
   constructor(data?: PartialMessage<PoolAsset>) {
     super();
@@ -192,10 +214,10 @@ export class PoolAsset extends Message<PoolAsset> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.gamm.v1beta1.PoolAsset";
+  static readonly typeName = 'osmosis.gamm.v1beta1.PoolAsset';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "token", kind: "message", T: Coin },
-    { no: 2, name: "weight", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'token', kind: 'message', T: Coin },
+    { no: 2, name: 'weight', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PoolAsset {
@@ -210,7 +232,10 @@ export class PoolAsset extends Message<PoolAsset> {
     return new PoolAsset().fromJsonString(jsonString, options);
   }
 
-  static equals(a: PoolAsset | PlainMessage<PoolAsset> | undefined, b: PoolAsset | PlainMessage<PoolAsset> | undefined): boolean {
+  static equals(
+    a: PoolAsset | PlainMessage<PoolAsset> | undefined,
+    b: PoolAsset | PlainMessage<PoolAsset> | undefined
+  ): boolean {
     return proto3.util.equals(PoolAsset, a, b);
   }
 }
@@ -222,7 +247,7 @@ export class Pool extends Message<Pool> {
   /**
    * @generated from field: string address = 1;
    */
-  address = "";
+  address = '';
 
   /**
    * @generated from field: uint64 id = 2;
@@ -247,7 +272,7 @@ export class Pool extends Message<Pool> {
    *
    * @generated from field: string future_pool_governor = 4;
    */
-  futurePoolGovernor = "";
+  futurePoolGovernor = '';
 
   /**
    * sum of all LP tokens sent out
@@ -269,7 +294,7 @@ export class Pool extends Message<Pool> {
    *
    * @generated from field: string total_weight = 7;
    */
-  totalWeight = "";
+  totalWeight = '';
 
   constructor(data?: PartialMessage<Pool>) {
     super();
@@ -277,15 +302,15 @@ export class Pool extends Message<Pool> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.gamm.v1beta1.Pool";
+  static readonly typeName = 'osmosis.gamm.v1beta1.Pool';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "pool_params", kind: "message", T: PoolParams },
-    { no: 4, name: "future_pool_governor", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "total_shares", kind: "message", T: Coin },
-    { no: 6, name: "pool_assets", kind: "message", T: PoolAsset, repeated: true },
-    { no: 7, name: "total_weight", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'pool_params', kind: 'message', T: PoolParams },
+    { no: 4, name: 'future_pool_governor', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'total_shares', kind: 'message', T: Coin },
+    { no: 6, name: 'pool_assets', kind: 'message', T: PoolAsset, repeated: true },
+    { no: 7, name: 'total_weight', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Pool {
@@ -300,8 +325,10 @@ export class Pool extends Message<Pool> {
     return new Pool().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Pool | PlainMessage<Pool> | undefined, b: Pool | PlainMessage<Pool> | undefined): boolean {
+  static equals(
+    a: Pool | PlainMessage<Pool> | undefined,
+    b: Pool | PlainMessage<Pool> | undefined
+  ): boolean {
     return proto3.util.equals(Pool, a, b);
   }
 }
-

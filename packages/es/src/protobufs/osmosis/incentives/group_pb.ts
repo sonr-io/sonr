@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Gauge } from "./gauge_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { Gauge } from './gauge_pb.js';
 
 /**
  * SplittingPolicy determines the way we want to split incentives in groupGauges
@@ -19,8 +26,8 @@ export enum SplittingPolicy {
   ByVolume = 0,
 }
 // Retrieve enum metadata with: proto3.getEnumType(SplittingPolicy)
-proto3.util.setEnumType(SplittingPolicy, "osmosis.incentives.SplittingPolicy", [
-  { no: 0, name: "ByVolume" },
+proto3.util.setEnumType(SplittingPolicy, 'osmosis.incentives.SplittingPolicy', [
+  { no: 0, name: 'ByVolume' },
 ]);
 
 /**
@@ -37,7 +44,7 @@ export class InternalGaugeInfo extends Message<InternalGaugeInfo> {
   /**
    * @generated from field: string total_weight = 1;
    */
-  totalWeight = "";
+  totalWeight = '';
 
   /**
    * @generated from field: repeated osmosis.incentives.InternalGaugeRecord gauge_records = 2;
@@ -50,10 +57,10 @@ export class InternalGaugeInfo extends Message<InternalGaugeInfo> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.incentives.InternalGaugeInfo";
+  static readonly typeName = 'osmosis.incentives.InternalGaugeInfo';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "total_weight", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "gauge_records", kind: "message", T: InternalGaugeRecord, repeated: true },
+    { no: 1, name: 'total_weight', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'gauge_records', kind: 'message', T: InternalGaugeRecord, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InternalGaugeInfo {
@@ -68,7 +75,10 @@ export class InternalGaugeInfo extends Message<InternalGaugeInfo> {
     return new InternalGaugeInfo().fromJsonString(jsonString, options);
   }
 
-  static equals(a: InternalGaugeInfo | PlainMessage<InternalGaugeInfo> | undefined, b: InternalGaugeInfo | PlainMessage<InternalGaugeInfo> | undefined): boolean {
+  static equals(
+    a: InternalGaugeInfo | PlainMessage<InternalGaugeInfo> | undefined,
+    b: InternalGaugeInfo | PlainMessage<InternalGaugeInfo> | undefined
+  ): boolean {
     return proto3.util.equals(InternalGaugeInfo, a, b);
   }
 }
@@ -89,7 +99,7 @@ export class InternalGaugeRecord extends Message<InternalGaugeRecord> {
    *
    * @generated from field: string current_weight = 2;
    */
-  currentWeight = "";
+  currentWeight = '';
 
   /**
    * CumulativeWeight serves as a snapshot of the accumulator being tracked
@@ -98,7 +108,7 @@ export class InternalGaugeRecord extends Message<InternalGaugeRecord> {
    *
    * @generated from field: string cumulative_weight = 3;
    */
-  cumulativeWeight = "";
+  cumulativeWeight = '';
 
   constructor(data?: PartialMessage<InternalGaugeRecord>) {
     super();
@@ -106,11 +116,11 @@ export class InternalGaugeRecord extends Message<InternalGaugeRecord> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.incentives.InternalGaugeRecord";
+  static readonly typeName = 'osmosis.incentives.InternalGaugeRecord';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "gauge_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "current_weight", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "cumulative_weight", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'gauge_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'current_weight', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'cumulative_weight', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InternalGaugeRecord {
@@ -121,11 +131,17 @@ export class InternalGaugeRecord extends Message<InternalGaugeRecord> {
     return new InternalGaugeRecord().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InternalGaugeRecord {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): InternalGaugeRecord {
     return new InternalGaugeRecord().fromJsonString(jsonString, options);
   }
 
-  static equals(a: InternalGaugeRecord | PlainMessage<InternalGaugeRecord> | undefined, b: InternalGaugeRecord | PlainMessage<InternalGaugeRecord> | undefined): boolean {
+  static equals(
+    a: InternalGaugeRecord | PlainMessage<InternalGaugeRecord> | undefined,
+    b: InternalGaugeRecord | PlainMessage<InternalGaugeRecord> | undefined
+  ): boolean {
     return proto3.util.equals(InternalGaugeRecord, a, b);
   }
 }
@@ -160,11 +176,11 @@ export class Group extends Message<Group> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.incentives.Group";
+  static readonly typeName = 'osmosis.incentives.Group';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "group_gauge_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "internal_gauge_info", kind: "message", T: InternalGaugeInfo },
-    { no: 3, name: "splitting_policy", kind: "enum", T: proto3.getEnumType(SplittingPolicy) },
+    { no: 1, name: 'group_gauge_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'internal_gauge_info', kind: 'message', T: InternalGaugeInfo },
+    { no: 3, name: 'splitting_policy', kind: 'enum', T: proto3.getEnumType(SplittingPolicy) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Group {
@@ -179,7 +195,10 @@ export class Group extends Message<Group> {
     return new Group().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Group | PlainMessage<Group> | undefined, b: Group | PlainMessage<Group> | undefined): boolean {
+  static equals(
+    a: Group | PlainMessage<Group> | undefined,
+    b: Group | PlainMessage<Group> | undefined
+  ): boolean {
     return proto3.util.equals(Group, a, b);
   }
 }
@@ -202,9 +221,9 @@ export class CreateGroup extends Message<CreateGroup> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.incentives.CreateGroup";
+  static readonly typeName = 'osmosis.incentives.CreateGroup';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_ids", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
+    { no: 1, name: 'pool_ids', kind: 'scalar', T: 4 /* ScalarType.UINT64 */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateGroup {
@@ -219,7 +238,10 @@ export class CreateGroup extends Message<CreateGroup> {
     return new CreateGroup().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CreateGroup | PlainMessage<CreateGroup> | undefined, b: CreateGroup | PlainMessage<CreateGroup> | undefined): boolean {
+  static equals(
+    a: CreateGroup | PlainMessage<CreateGroup> | undefined,
+    b: CreateGroup | PlainMessage<CreateGroup> | undefined
+  ): boolean {
     return proto3.util.equals(CreateGroup, a, b);
   }
 }
@@ -247,10 +269,10 @@ export class GroupsWithGauge extends Message<GroupsWithGauge> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.incentives.GroupsWithGauge";
+  static readonly typeName = 'osmosis.incentives.GroupsWithGauge';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "group", kind: "message", T: Group },
-    { no: 2, name: "gauge", kind: "message", T: Gauge },
+    { no: 1, name: 'group', kind: 'message', T: Group },
+    { no: 2, name: 'gauge', kind: 'message', T: Gauge },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GroupsWithGauge {
@@ -265,8 +287,10 @@ export class GroupsWithGauge extends Message<GroupsWithGauge> {
     return new GroupsWithGauge().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GroupsWithGauge | PlainMessage<GroupsWithGauge> | undefined, b: GroupsWithGauge | PlainMessage<GroupsWithGauge> | undefined): boolean {
+  static equals(
+    a: GroupsWithGauge | PlainMessage<GroupsWithGauge> | undefined,
+    b: GroupsWithGauge | PlainMessage<GroupsWithGauge> | undefined
+  ): boolean {
     return proto3.util.equals(GroupsWithGauge, a, b);
   }
 }
-

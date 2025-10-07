@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3 } from "@bufbuild/protobuf";
-import { TwapRecord } from "./twap_record_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Duration, Message, proto3 } from '@bufbuild/protobuf';
+import { TwapRecord } from './twap_record_pb.js';
 
 /**
  * Params holds parameters for the twap module
@@ -16,7 +23,7 @@ export class Params extends Message<Params> {
   /**
    * @generated from field: string prune_epoch_identifier = 1;
    */
-  pruneEpochIdentifier = "";
+  pruneEpochIdentifier = '';
 
   /**
    * @generated from field: google.protobuf.Duration record_history_keep_period = 2;
@@ -29,10 +36,10 @@ export class Params extends Message<Params> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.twap.v1beta1.Params";
+  static readonly typeName = 'osmosis.twap.v1beta1.Params';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "prune_epoch_identifier", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "record_history_keep_period", kind: "message", T: Duration },
+    { no: 1, name: 'prune_epoch_identifier', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'record_history_keep_period', kind: 'message', T: Duration },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Params {
@@ -47,7 +54,10 @@ export class Params extends Message<Params> {
     return new Params().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Params | PlainMessage<Params> | undefined, b: Params | PlainMessage<Params> | undefined): boolean {
+  static equals(
+    a: Params | PlainMessage<Params> | undefined,
+    b: Params | PlainMessage<Params> | undefined
+  ): boolean {
     return proto3.util.equals(Params, a, b);
   }
 }
@@ -78,10 +88,10 @@ export class GenesisState extends Message<GenesisState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.twap.v1beta1.GenesisState";
+  static readonly typeName = 'osmosis.twap.v1beta1.GenesisState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "twaps", kind: "message", T: TwapRecord, repeated: true },
-    { no: 2, name: "params", kind: "message", T: Params },
+    { no: 1, name: 'twaps', kind: 'message', T: TwapRecord, repeated: true },
+    { no: 2, name: 'params', kind: 'message', T: Params },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {
@@ -96,8 +106,10 @@ export class GenesisState extends Message<GenesisState> {
     return new GenesisState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisState | PlainMessage<GenesisState> | undefined, b: GenesisState | PlainMessage<GenesisState> | undefined): boolean {
+  static equals(
+    a: GenesisState | PlainMessage<GenesisState> | undefined,
+    b: GenesisState | PlainMessage<GenesisState> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisState, a, b);
   }
 }
-

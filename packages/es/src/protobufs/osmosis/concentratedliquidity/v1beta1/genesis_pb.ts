@@ -3,13 +3,20 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Any, Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { TickInfo } from "./tick_info_pb.js";
-import { IncentiveRecord } from "./incentive_record_pb.js";
-import { Position } from "./position_pb.js";
-import { AccumulatorContent, Record } from "../../accum/v1beta1/accum_pb.js";
-import { Params } from "../params_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Any, Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { TickInfo } from './tick_info_pb.js';
+import { IncentiveRecord } from './incentive_record_pb.js';
+import { Position } from './position_pb.js';
+import { AccumulatorContent, Record } from '../../accum/v1beta1/accum_pb.js';
+import { Params } from '../params_pb.js';
 
 /**
  * FullTick contains tick index and pool id along with other tick model
@@ -45,11 +52,11 @@ export class FullTick extends Message<FullTick> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.concentratedliquidity.v1beta1.FullTick";
+  static readonly typeName = 'osmosis.concentratedliquidity.v1beta1.FullTick';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "tick_index", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 3, name: "info", kind: "message", T: TickInfo },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'tick_index', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 3, name: 'info', kind: 'message', T: TickInfo },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FullTick {
@@ -64,7 +71,10 @@ export class FullTick extends Message<FullTick> {
     return new FullTick().fromJsonString(jsonString, options);
   }
 
-  static equals(a: FullTick | PlainMessage<FullTick> | undefined, b: FullTick | PlainMessage<FullTick> | undefined): boolean {
+  static equals(
+    a: FullTick | PlainMessage<FullTick> | undefined,
+    b: FullTick | PlainMessage<FullTick> | undefined
+  ): boolean {
     return proto3.util.equals(FullTick, a, b);
   }
 }
@@ -113,13 +123,13 @@ export class PoolData extends Message<PoolData> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.concentratedliquidity.v1beta1.PoolData";
+  static readonly typeName = 'osmosis.concentratedliquidity.v1beta1.PoolData';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool", kind: "message", T: Any },
-    { no: 2, name: "ticks", kind: "message", T: FullTick, repeated: true },
-    { no: 3, name: "spread_reward_accumulator", kind: "message", T: AccumObject },
-    { no: 4, name: "incentives_accumulators", kind: "message", T: AccumObject, repeated: true },
-    { no: 5, name: "incentive_records", kind: "message", T: IncentiveRecord, repeated: true },
+    { no: 1, name: 'pool', kind: 'message', T: Any },
+    { no: 2, name: 'ticks', kind: 'message', T: FullTick, repeated: true },
+    { no: 3, name: 'spread_reward_accumulator', kind: 'message', T: AccumObject },
+    { no: 4, name: 'incentives_accumulators', kind: 'message', T: AccumObject, repeated: true },
+    { no: 5, name: 'incentive_records', kind: 'message', T: IncentiveRecord, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PoolData {
@@ -134,7 +144,10 @@ export class PoolData extends Message<PoolData> {
     return new PoolData().fromJsonString(jsonString, options);
   }
 
-  static equals(a: PoolData | PlainMessage<PoolData> | undefined, b: PoolData | PlainMessage<PoolData> | undefined): boolean {
+  static equals(
+    a: PoolData | PlainMessage<PoolData> | undefined,
+    b: PoolData | PlainMessage<PoolData> | undefined
+  ): boolean {
     return proto3.util.equals(PoolData, a, b);
   }
 }
@@ -169,12 +182,12 @@ export class PositionData extends Message<PositionData> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.concentratedliquidity.v1beta1.PositionData";
+  static readonly typeName = 'osmosis.concentratedliquidity.v1beta1.PositionData';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "position", kind: "message", T: Position },
-    { no: 2, name: "lock_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "spread_reward_accum_record", kind: "message", T: Record },
-    { no: 4, name: "uptime_accum_records", kind: "message", T: Record, repeated: true },
+    { no: 1, name: 'position', kind: 'message', T: Position },
+    { no: 2, name: 'lock_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'spread_reward_accum_record', kind: 'message', T: Record },
+    { no: 4, name: 'uptime_accum_records', kind: 'message', T: Record, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PositionData {
@@ -189,7 +202,10 @@ export class PositionData extends Message<PositionData> {
     return new PositionData().fromJsonString(jsonString, options);
   }
 
-  static equals(a: PositionData | PlainMessage<PositionData> | undefined, b: PositionData | PlainMessage<PositionData> | undefined): boolean {
+  static equals(
+    a: PositionData | PlainMessage<PositionData> | undefined,
+    b: PositionData | PlainMessage<PositionData> | undefined
+  ): boolean {
     return proto3.util.equals(PositionData, a, b);
   }
 }
@@ -245,15 +261,25 @@ export class GenesisState extends Message<GenesisState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.concentratedliquidity.v1beta1.GenesisState";
+  static readonly typeName = 'osmosis.concentratedliquidity.v1beta1.GenesisState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "params", kind: "message", T: Params },
-    { no: 2, name: "pool_data", kind: "message", T: PoolData, repeated: true },
-    { no: 3, name: "position_data", kind: "message", T: PositionData, repeated: true },
-    { no: 4, name: "next_position_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 5, name: "next_incentive_record_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 6, name: "incentives_accumulator_pool_id_migration_threshold", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 7, name: "spread_factor_pool_id_migration_threshold", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'params', kind: 'message', T: Params },
+    { no: 2, name: 'pool_data', kind: 'message', T: PoolData, repeated: true },
+    { no: 3, name: 'position_data', kind: 'message', T: PositionData, repeated: true },
+    { no: 4, name: 'next_position_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 5, name: 'next_incentive_record_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    {
+      no: 6,
+      name: 'incentives_accumulator_pool_id_migration_threshold',
+      kind: 'scalar',
+      T: 4 /* ScalarType.UINT64 */,
+    },
+    {
+      no: 7,
+      name: 'spread_factor_pool_id_migration_threshold',
+      kind: 'scalar',
+      T: 4 /* ScalarType.UINT64 */,
+    },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {
@@ -268,7 +294,10 @@ export class GenesisState extends Message<GenesisState> {
     return new GenesisState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisState | PlainMessage<GenesisState> | undefined, b: GenesisState | PlainMessage<GenesisState> | undefined): boolean {
+  static equals(
+    a: GenesisState | PlainMessage<GenesisState> | undefined,
+    b: GenesisState | PlainMessage<GenesisState> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisState, a, b);
   }
 }
@@ -286,7 +315,7 @@ export class AccumObject extends Message<AccumObject> {
    *
    * @generated from field: string name = 1;
    */
-  name = "";
+  name = '';
 
   /**
    * @generated from field: osmosis.accum.v1beta1.AccumulatorContent accum_content = 2;
@@ -299,10 +328,10 @@ export class AccumObject extends Message<AccumObject> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.concentratedliquidity.v1beta1.AccumObject";
+  static readonly typeName = 'osmosis.concentratedliquidity.v1beta1.AccumObject';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "accum_content", kind: "message", T: AccumulatorContent },
+    { no: 1, name: 'name', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'accum_content', kind: 'message', T: AccumulatorContent },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AccumObject {
@@ -317,8 +346,10 @@ export class AccumObject extends Message<AccumObject> {
     return new AccumObject().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AccumObject | PlainMessage<AccumObject> | undefined, b: AccumObject | PlainMessage<AccumObject> | undefined): boolean {
+  static equals(
+    a: AccumObject | PlainMessage<AccumObject> | undefined,
+    b: AccumObject | PlainMessage<AccumObject> | undefined
+  ): boolean {
     return proto3.util.equals(AccumObject, a, b);
   }
 }
-

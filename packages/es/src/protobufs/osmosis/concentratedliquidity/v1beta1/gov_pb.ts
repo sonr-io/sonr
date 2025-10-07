@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * CreateConcentratedLiquidityPoolsProposal is a gov Content type for creating
@@ -17,12 +24,12 @@ export class CreateConcentratedLiquidityPoolsProposal extends Message<CreateConc
   /**
    * @generated from field: string title = 1;
    */
-  title = "";
+  title = '';
 
   /**
    * @generated from field: string description = 2;
    */
-  description = "";
+  description = '';
 
   /**
    * @generated from field: repeated osmosis.concentratedliquidity.v1beta1.PoolRecord pool_records = 3;
@@ -35,26 +42,45 @@ export class CreateConcentratedLiquidityPoolsProposal extends Message<CreateConc
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.concentratedliquidity.v1beta1.CreateConcentratedLiquidityPoolsProposal";
+  static readonly typeName =
+    'osmosis.concentratedliquidity.v1beta1.CreateConcentratedLiquidityPoolsProposal';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "pool_records", kind: "message", T: PoolRecord, repeated: true },
+    { no: 1, name: 'title', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'description', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'pool_records', kind: 'message', T: PoolRecord, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateConcentratedLiquidityPoolsProposal {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): CreateConcentratedLiquidityPoolsProposal {
     return new CreateConcentratedLiquidityPoolsProposal().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateConcentratedLiquidityPoolsProposal {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): CreateConcentratedLiquidityPoolsProposal {
     return new CreateConcentratedLiquidityPoolsProposal().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateConcentratedLiquidityPoolsProposal {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): CreateConcentratedLiquidityPoolsProposal {
     return new CreateConcentratedLiquidityPoolsProposal().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CreateConcentratedLiquidityPoolsProposal | PlainMessage<CreateConcentratedLiquidityPoolsProposal> | undefined, b: CreateConcentratedLiquidityPoolsProposal | PlainMessage<CreateConcentratedLiquidityPoolsProposal> | undefined): boolean {
+  static equals(
+    a:
+      | CreateConcentratedLiquidityPoolsProposal
+      | PlainMessage<CreateConcentratedLiquidityPoolsProposal>
+      | undefined,
+    b:
+      | CreateConcentratedLiquidityPoolsProposal
+      | PlainMessage<CreateConcentratedLiquidityPoolsProposal>
+      | undefined
+  ): boolean {
     return proto3.util.equals(CreateConcentratedLiquidityPoolsProposal, a, b);
   }
 }
@@ -71,12 +97,12 @@ export class TickSpacingDecreaseProposal extends Message<TickSpacingDecreaseProp
   /**
    * @generated from field: string title = 1;
    */
-  title = "";
+  title = '';
 
   /**
    * @generated from field: string description = 2;
    */
-  description = "";
+  description = '';
 
   /**
    * @generated from field: repeated osmosis.concentratedliquidity.v1beta1.PoolIdToTickSpacingRecord pool_id_to_tick_spacing_records = 3;
@@ -89,26 +115,44 @@ export class TickSpacingDecreaseProposal extends Message<TickSpacingDecreaseProp
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.concentratedliquidity.v1beta1.TickSpacingDecreaseProposal";
+  static readonly typeName = 'osmosis.concentratedliquidity.v1beta1.TickSpacingDecreaseProposal';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "pool_id_to_tick_spacing_records", kind: "message", T: PoolIdToTickSpacingRecord, repeated: true },
+    { no: 1, name: 'title', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'description', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    {
+      no: 3,
+      name: 'pool_id_to_tick_spacing_records',
+      kind: 'message',
+      T: PoolIdToTickSpacingRecord,
+      repeated: true,
+    },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TickSpacingDecreaseProposal {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): TickSpacingDecreaseProposal {
     return new TickSpacingDecreaseProposal().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TickSpacingDecreaseProposal {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): TickSpacingDecreaseProposal {
     return new TickSpacingDecreaseProposal().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TickSpacingDecreaseProposal {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): TickSpacingDecreaseProposal {
     return new TickSpacingDecreaseProposal().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TickSpacingDecreaseProposal | PlainMessage<TickSpacingDecreaseProposal> | undefined, b: TickSpacingDecreaseProposal | PlainMessage<TickSpacingDecreaseProposal> | undefined): boolean {
+  static equals(
+    a: TickSpacingDecreaseProposal | PlainMessage<TickSpacingDecreaseProposal> | undefined,
+    b: TickSpacingDecreaseProposal | PlainMessage<TickSpacingDecreaseProposal> | undefined
+  ): boolean {
     return proto3.util.equals(TickSpacingDecreaseProposal, a, b);
   }
 }
@@ -136,25 +180,37 @@ export class PoolIdToTickSpacingRecord extends Message<PoolIdToTickSpacingRecord
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.concentratedliquidity.v1beta1.PoolIdToTickSpacingRecord";
+  static readonly typeName = 'osmosis.concentratedliquidity.v1beta1.PoolIdToTickSpacingRecord';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "new_tick_spacing", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'new_tick_spacing', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PoolIdToTickSpacingRecord {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): PoolIdToTickSpacingRecord {
     return new PoolIdToTickSpacingRecord().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PoolIdToTickSpacingRecord {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): PoolIdToTickSpacingRecord {
     return new PoolIdToTickSpacingRecord().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PoolIdToTickSpacingRecord {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): PoolIdToTickSpacingRecord {
     return new PoolIdToTickSpacingRecord().fromJsonString(jsonString, options);
   }
 
-  static equals(a: PoolIdToTickSpacingRecord | PlainMessage<PoolIdToTickSpacingRecord> | undefined, b: PoolIdToTickSpacingRecord | PlainMessage<PoolIdToTickSpacingRecord> | undefined): boolean {
+  static equals(
+    a: PoolIdToTickSpacingRecord | PlainMessage<PoolIdToTickSpacingRecord> | undefined,
+    b: PoolIdToTickSpacingRecord | PlainMessage<PoolIdToTickSpacingRecord> | undefined
+  ): boolean {
     return proto3.util.equals(PoolIdToTickSpacingRecord, a, b);
   }
 }
@@ -166,12 +222,12 @@ export class PoolRecord extends Message<PoolRecord> {
   /**
    * @generated from field: string denom0 = 1;
    */
-  denom0 = "";
+  denom0 = '';
 
   /**
    * @generated from field: string denom1 = 2;
    */
-  denom1 = "";
+  denom1 = '';
 
   /**
    * @generated from field: uint64 tick_spacing = 3;
@@ -181,7 +237,7 @@ export class PoolRecord extends Message<PoolRecord> {
   /**
    * @generated from field: string spread_factor = 5;
    */
-  spreadFactor = "";
+  spreadFactor = '';
 
   constructor(data?: PartialMessage<PoolRecord>) {
     super();
@@ -189,12 +245,12 @@ export class PoolRecord extends Message<PoolRecord> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.concentratedliquidity.v1beta1.PoolRecord";
+  static readonly typeName = 'osmosis.concentratedliquidity.v1beta1.PoolRecord';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "denom0", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "denom1", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "tick_spacing", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 5, name: "spread_factor", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'denom0', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'denom1', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'tick_spacing', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 5, name: 'spread_factor', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PoolRecord {
@@ -209,8 +265,10 @@ export class PoolRecord extends Message<PoolRecord> {
     return new PoolRecord().fromJsonString(jsonString, options);
   }
 
-  static equals(a: PoolRecord | PlainMessage<PoolRecord> | undefined, b: PoolRecord | PlainMessage<PoolRecord> | undefined): boolean {
+  static equals(
+    a: PoolRecord | PlainMessage<PoolRecord> | undefined,
+    b: PoolRecord | PlainMessage<PoolRecord> | undefined
+  ): boolean {
     return proto3.util.equals(PoolRecord, a, b);
   }
 }
-

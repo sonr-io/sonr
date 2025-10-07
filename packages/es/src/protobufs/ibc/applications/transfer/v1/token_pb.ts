@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
 
 /**
  * Token defines a struct which represents a token to be transferred.
@@ -24,7 +31,7 @@ export class Token extends Message<Token> {
    *
    * @generated from field: string amount = 2;
    */
-  amount = "";
+  amount = '';
 
   constructor(data?: PartialMessage<Token>) {
     super();
@@ -32,10 +39,10 @@ export class Token extends Message<Token> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.transfer.v1.Token";
+  static readonly typeName = 'ibc.applications.transfer.v1.Token';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "denom", kind: "message", T: Denom },
-    { no: 2, name: "amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'denom', kind: 'message', T: Denom },
+    { no: 2, name: 'amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Token {
@@ -50,7 +57,10 @@ export class Token extends Message<Token> {
     return new Token().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Token | PlainMessage<Token> | undefined, b: Token | PlainMessage<Token> | undefined): boolean {
+  static equals(
+    a: Token | PlainMessage<Token> | undefined,
+    b: Token | PlainMessage<Token> | undefined
+  ): boolean {
     return proto3.util.equals(Token, a, b);
   }
 }
@@ -66,7 +76,7 @@ export class Denom extends Message<Denom> {
    *
    * @generated from field: string base = 1;
    */
-  base = "";
+  base = '';
 
   /**
    * the trace of the token
@@ -81,10 +91,10 @@ export class Denom extends Message<Denom> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.transfer.v1.Denom";
+  static readonly typeName = 'ibc.applications.transfer.v1.Denom';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "base", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "trace", kind: "message", T: Hop, repeated: true },
+    { no: 1, name: 'base', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'trace', kind: 'message', T: Hop, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Denom {
@@ -99,7 +109,10 @@ export class Denom extends Message<Denom> {
     return new Denom().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Denom | PlainMessage<Denom> | undefined, b: Denom | PlainMessage<Denom> | undefined): boolean {
+  static equals(
+    a: Denom | PlainMessage<Denom> | undefined,
+    b: Denom | PlainMessage<Denom> | undefined
+  ): boolean {
     return proto3.util.equals(Denom, a, b);
   }
 }
@@ -113,12 +126,12 @@ export class Hop extends Message<Hop> {
   /**
    * @generated from field: string port_id = 1;
    */
-  portId = "";
+  portId = '';
 
   /**
    * @generated from field: string channel_id = 2;
    */
-  channelId = "";
+  channelId = '';
 
   constructor(data?: PartialMessage<Hop>) {
     super();
@@ -126,10 +139,10 @@ export class Hop extends Message<Hop> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.transfer.v1.Hop";
+  static readonly typeName = 'ibc.applications.transfer.v1.Hop';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "port_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "channel_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'port_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'channel_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Hop {
@@ -144,8 +157,10 @@ export class Hop extends Message<Hop> {
     return new Hop().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Hop | PlainMessage<Hop> | undefined, b: Hop | PlainMessage<Hop> | undefined): boolean {
+  static equals(
+    a: Hop | PlainMessage<Hop> | undefined,
+    b: Hop | PlainMessage<Hop> | undefined
+  ): boolean {
     return proto3.util.equals(Hop, a, b);
   }
 }
-

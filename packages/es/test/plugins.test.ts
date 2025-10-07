@@ -86,7 +86,7 @@ describe.skip('VaultClient Storage Integration', () => {
   it('should create vault client with storage enabled', () => {
     const client = plugins.createVaultClient({
       enablePersistence: true,
-      autoCleanup: false
+      autoCleanup: false,
     });
     expect(client).toBeDefined();
     expect(client).toBeInstanceOf(plugins.VaultClient);
@@ -94,7 +94,7 @@ describe.skip('VaultClient Storage Integration', () => {
 
   it('should have storage management methods', () => {
     const client = plugins.createVaultClient({
-      enablePersistence: true
+      enablePersistence: true,
     });
 
     // Check that all storage methods exist

@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
 
 /**
  * GenesisState defines 08-wasm's keeper genesis state
@@ -25,9 +32,9 @@ export class GenesisState extends Message<GenesisState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.lightclients.wasm.v1.GenesisState";
+  static readonly typeName = 'ibc.lightclients.wasm.v1.GenesisState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "contracts", kind: "message", T: Contract, repeated: true },
+    { no: 1, name: 'contracts', kind: 'message', T: Contract, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {
@@ -42,7 +49,10 @@ export class GenesisState extends Message<GenesisState> {
     return new GenesisState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisState | PlainMessage<GenesisState> | undefined, b: GenesisState | PlainMessage<GenesisState> | undefined): boolean {
+  static equals(
+    a: GenesisState | PlainMessage<GenesisState> | undefined,
+    b: GenesisState | PlainMessage<GenesisState> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisState, a, b);
   }
 }
@@ -66,9 +76,9 @@ export class Contract extends Message<Contract> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.lightclients.wasm.v1.Contract";
+  static readonly typeName = 'ibc.lightclients.wasm.v1.Contract';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "code_bytes", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'code_bytes', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Contract {
@@ -83,8 +93,10 @@ export class Contract extends Message<Contract> {
     return new Contract().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Contract | PlainMessage<Contract> | undefined, b: Contract | PlainMessage<Contract> | undefined): boolean {
+  static equals(
+    a: Contract | PlainMessage<Contract> | undefined,
+    b: Contract | PlainMessage<Contract> | undefined
+  ): boolean {
     return proto3.util.equals(Contract, a, b);
   }
 }
-

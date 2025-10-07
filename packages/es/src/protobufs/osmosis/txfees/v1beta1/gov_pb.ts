@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { FeeToken } from "./feetoken_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { FeeToken } from './feetoken_pb.js';
 
 /**
  * UpdateFeeTokenProposal is a gov Content type for adding new whitelisted fee
@@ -20,12 +27,12 @@ export class UpdateFeeTokenProposal extends Message<UpdateFeeTokenProposal> {
   /**
    * @generated from field: string title = 1;
    */
-  title = "";
+  title = '';
 
   /**
    * @generated from field: string description = 2;
    */
-  description = "";
+  description = '';
 
   /**
    * @generated from field: repeated osmosis.txfees.v1beta1.FeeToken feetokens = 3;
@@ -38,27 +45,38 @@ export class UpdateFeeTokenProposal extends Message<UpdateFeeTokenProposal> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.txfees.v1beta1.UpdateFeeTokenProposal";
+  static readonly typeName = 'osmosis.txfees.v1beta1.UpdateFeeTokenProposal';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "feetokens", kind: "message", T: FeeToken, repeated: true },
+    { no: 1, name: 'title', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'description', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'feetokens', kind: 'message', T: FeeToken, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateFeeTokenProposal {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): UpdateFeeTokenProposal {
     return new UpdateFeeTokenProposal().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpdateFeeTokenProposal {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): UpdateFeeTokenProposal {
     return new UpdateFeeTokenProposal().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdateFeeTokenProposal {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): UpdateFeeTokenProposal {
     return new UpdateFeeTokenProposal().fromJsonString(jsonString, options);
   }
 
-  static equals(a: UpdateFeeTokenProposal | PlainMessage<UpdateFeeTokenProposal> | undefined, b: UpdateFeeTokenProposal | PlainMessage<UpdateFeeTokenProposal> | undefined): boolean {
+  static equals(
+    a: UpdateFeeTokenProposal | PlainMessage<UpdateFeeTokenProposal> | undefined,
+    b: UpdateFeeTokenProposal | PlainMessage<UpdateFeeTokenProposal> | undefined
+  ): boolean {
     return proto3.util.equals(UpdateFeeTokenProposal, a, b);
   }
 }
-

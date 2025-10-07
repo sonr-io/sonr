@@ -105,20 +105,14 @@ async function mpcEnclaveExample() {
     const encryptedPayload = new TextEncoder().encode(payload);
 
     // Store enclave data
-    const result = await enclaveManager.storeEnclaveData(
-      enclaveData,
-      encryptedPayload
-    );
+    const result = await enclaveManager.storeEnclaveData(enclaveData, encryptedPayload);
     console.log(`✅ Stored enclave with CID: ${result.cid}`);
     console.log(`   - Size: ${result.size} bytes`);
     console.log(`   - Pinned: ${result.isPinned}`);
 
     // Retrieve and verify
     const retrieved = await enclaveManager.retrieveEnclaveData(result.cid);
-    const isValid = await enclaveManager.verifyEnclaveDataIntegrity(
-      result.cid,
-      encryptedPayload
-    );
+    const isValid = await enclaveManager.verifyEnclaveDataIntegrity(result.cid, encryptedPayload);
     console.log(`✅ Retrieved enclave data (integrity: ${isValid})`);
 
     // Check status
@@ -149,10 +143,7 @@ async function vaultWithIPFSExample() {
 
   try {
     // Initialize vault with IPFS
-    await vaultClient.initializeWithIPFS(
-      '/path/to/vault.wasm',
-      'sonr1abc...xyz'
-    );
+    await vaultClient.initializeWithIPFS('/path/to/vault.wasm', 'sonr1abc...xyz');
 
     // Store vault enclave
     const cid = await vaultClient.storeVaultEnclave([
@@ -214,10 +205,7 @@ async function cachingExample() {
 
     // Preload into cache
     console.log('📥 Preloading data into cache...');
-    await cache.preload(
-      [cid1, cid2, cid3],
-      async (cid) => await ipfsClient.getEnclaveData(cid)
-    );
+    await cache.preload([cid1, cid2, cid3], async (cid) => await ipfsClient.getEnclaveData(cid));
 
     // Measure cache performance
     console.time('Cache retrieval');
@@ -284,10 +272,7 @@ async function dwnQueryServiceExample() {
 
     // Store new enclave data via backend
     const newEnclaveData = new TextEncoder().encode('New enclave data');
-    const storeResult = await queryService.storeEnclaveData(
-      'did:sonr:newvault',
-      newEnclaveData
-    );
+    const storeResult = await queryService.storeEnclaveData('did:sonr:newvault', newEnclaveData);
     console.log(`✅ Stored via backend: ${storeResult.cid}`);
   } finally {
     await queryService.cleanup();
@@ -332,10 +317,7 @@ async function errorHandlingExample() {
         parties: 1,
         // Missing encryptionMetadata when encryptionRequired is true
       };
-      await enclaveManager.storeEnclaveData(
-        invalidEnclave,
-        new Uint8Array()
-      );
+      await enclaveManager.storeEnclaveData(invalidEnclave, new Uint8Array());
     } catch (error) {
       console.log('✅ Caught missing encryption metadata:', error.message);
     }
@@ -355,10 +337,7 @@ async function errorHandlingExample() {
       },
     };
 
-    const result = await enclaveManager.storeEnclaveData(
-      enclaveData,
-      new Uint8Array([1, 2, 3])
-    );
+    const result = await enclaveManager.storeEnclaveData(enclaveData, new Uint8Array([1, 2, 3]));
     console.log('✅ Succeeded with retry logic');
   } finally {
     await ipfsClient.cleanup();
@@ -418,9 +397,7 @@ async function performanceExample() {
     // Preload frequently accessed data
     const cids = results.map((r) => r.cid);
     console.time('Preload cache');
-    await cache.preload(cids.slice(0, 5), async (cid) =>
-      enclaveManager.retrieveEnclaveData(cid)
-    );
+    await cache.preload(cids.slice(0, 5), async (cid) => enclaveManager.retrieveEnclaveData(cid));
     console.timeEnd('Preload cache');
 
     // Use cache for fast retrieval

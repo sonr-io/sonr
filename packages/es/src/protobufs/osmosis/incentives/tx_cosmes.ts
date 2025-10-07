@@ -3,16 +3,23 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgAddToGauge, MsgAddToGaugeResponse, MsgCreateGauge, MsgCreateGaugeResponse, MsgCreateGroup, MsgCreateGroupResponse } from "./tx_pb.js";
+import {
+  MsgAddToGauge,
+  MsgAddToGaugeResponse,
+  MsgCreateGauge,
+  MsgCreateGaugeResponse,
+  MsgCreateGroup,
+  MsgCreateGroupResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "osmosis.incentives.Msg";
+const TYPE_NAME = 'osmosis.incentives.Msg';
 
 /**
  * @generated from rpc osmosis.incentives.Msg.CreateGauge
  */
 export const MsgCreateGaugeService = {
   typeName: TYPE_NAME,
-  method: "CreateGauge",
+  method: 'CreateGauge',
   Request: MsgCreateGauge,
   Response: MsgCreateGaugeResponse,
 } as const;
@@ -22,7 +29,7 @@ export const MsgCreateGaugeService = {
  */
 export const MsgAddToGaugeService = {
   typeName: TYPE_NAME,
-  method: "AddToGauge",
+  method: 'AddToGauge',
   Request: MsgAddToGauge,
   Response: MsgAddToGaugeResponse,
 } as const;
@@ -32,8 +39,7 @@ export const MsgAddToGaugeService = {
  */
 export const MsgCreateGroupService = {
   typeName: TYPE_NAME,
-  method: "CreateGroup",
+  method: 'CreateGroup',
   Request: MsgCreateGroup,
   Response: MsgCreateGroupResponse,
 } as const;
-

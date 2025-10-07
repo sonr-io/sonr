@@ -3,10 +3,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Any, Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { AccessConfig } from "./types_pb.js";
-import { Coin } from "../../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Any, Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { AccessConfig } from './types_pb.js';
+import { Coin } from '../../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * StoreCodeAuthorization defines authorization for wasm code upload.
@@ -28,24 +35,36 @@ export class StoreCodeAuthorization extends Message<StoreCodeAuthorization> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "cosmwasm.wasm.v1.StoreCodeAuthorization";
+  static readonly typeName = 'cosmwasm.wasm.v1.StoreCodeAuthorization';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "grants", kind: "message", T: CodeGrant, repeated: true },
+    { no: 1, name: 'grants', kind: 'message', T: CodeGrant, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StoreCodeAuthorization {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): StoreCodeAuthorization {
     return new StoreCodeAuthorization().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): StoreCodeAuthorization {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): StoreCodeAuthorization {
     return new StoreCodeAuthorization().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): StoreCodeAuthorization {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): StoreCodeAuthorization {
     return new StoreCodeAuthorization().fromJsonString(jsonString, options);
   }
 
-  static equals(a: StoreCodeAuthorization | PlainMessage<StoreCodeAuthorization> | undefined, b: StoreCodeAuthorization | PlainMessage<StoreCodeAuthorization> | undefined): boolean {
+  static equals(
+    a: StoreCodeAuthorization | PlainMessage<StoreCodeAuthorization> | undefined,
+    b: StoreCodeAuthorization | PlainMessage<StoreCodeAuthorization> | undefined
+  ): boolean {
     return proto3.util.equals(StoreCodeAuthorization, a, b);
   }
 }
@@ -70,24 +89,36 @@ export class ContractExecutionAuthorization extends Message<ContractExecutionAut
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "cosmwasm.wasm.v1.ContractExecutionAuthorization";
+  static readonly typeName = 'cosmwasm.wasm.v1.ContractExecutionAuthorization';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "grants", kind: "message", T: ContractGrant, repeated: true },
+    { no: 1, name: 'grants', kind: 'message', T: ContractGrant, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ContractExecutionAuthorization {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): ContractExecutionAuthorization {
     return new ContractExecutionAuthorization().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ContractExecutionAuthorization {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): ContractExecutionAuthorization {
     return new ContractExecutionAuthorization().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ContractExecutionAuthorization {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ContractExecutionAuthorization {
     return new ContractExecutionAuthorization().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ContractExecutionAuthorization | PlainMessage<ContractExecutionAuthorization> | undefined, b: ContractExecutionAuthorization | PlainMessage<ContractExecutionAuthorization> | undefined): boolean {
+  static equals(
+    a: ContractExecutionAuthorization | PlainMessage<ContractExecutionAuthorization> | undefined,
+    b: ContractExecutionAuthorization | PlainMessage<ContractExecutionAuthorization> | undefined
+  ): boolean {
     return proto3.util.equals(ContractExecutionAuthorization, a, b);
   }
 }
@@ -112,24 +143,36 @@ export class ContractMigrationAuthorization extends Message<ContractMigrationAut
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "cosmwasm.wasm.v1.ContractMigrationAuthorization";
+  static readonly typeName = 'cosmwasm.wasm.v1.ContractMigrationAuthorization';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "grants", kind: "message", T: ContractGrant, repeated: true },
+    { no: 1, name: 'grants', kind: 'message', T: ContractGrant, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ContractMigrationAuthorization {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): ContractMigrationAuthorization {
     return new ContractMigrationAuthorization().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ContractMigrationAuthorization {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): ContractMigrationAuthorization {
     return new ContractMigrationAuthorization().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ContractMigrationAuthorization {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ContractMigrationAuthorization {
     return new ContractMigrationAuthorization().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ContractMigrationAuthorization | PlainMessage<ContractMigrationAuthorization> | undefined, b: ContractMigrationAuthorization | PlainMessage<ContractMigrationAuthorization> | undefined): boolean {
+  static equals(
+    a: ContractMigrationAuthorization | PlainMessage<ContractMigrationAuthorization> | undefined,
+    b: ContractMigrationAuthorization | PlainMessage<ContractMigrationAuthorization> | undefined
+  ): boolean {
     return proto3.util.equals(ContractMigrationAuthorization, a, b);
   }
 }
@@ -163,10 +206,10 @@ export class CodeGrant extends Message<CodeGrant> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "cosmwasm.wasm.v1.CodeGrant";
+  static readonly typeName = 'cosmwasm.wasm.v1.CodeGrant';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "code_hash", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 2, name: "instantiate_permission", kind: "message", T: AccessConfig },
+    { no: 1, name: 'code_hash', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: 'instantiate_permission', kind: 'message', T: AccessConfig },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CodeGrant {
@@ -181,7 +224,10 @@ export class CodeGrant extends Message<CodeGrant> {
     return new CodeGrant().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CodeGrant | PlainMessage<CodeGrant> | undefined, b: CodeGrant | PlainMessage<CodeGrant> | undefined): boolean {
+  static equals(
+    a: CodeGrant | PlainMessage<CodeGrant> | undefined,
+    b: CodeGrant | PlainMessage<CodeGrant> | undefined
+  ): boolean {
     return proto3.util.equals(CodeGrant, a, b);
   }
 }
@@ -198,7 +244,7 @@ export class ContractGrant extends Message<ContractGrant> {
    *
    * @generated from field: string contract = 1;
    */
-  contract = "";
+  contract = '';
 
   /**
    * Limit defines execution limits that are enforced and updated when the grant
@@ -223,11 +269,11 @@ export class ContractGrant extends Message<ContractGrant> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "cosmwasm.wasm.v1.ContractGrant";
+  static readonly typeName = 'cosmwasm.wasm.v1.ContractGrant';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "contract", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "limit", kind: "message", T: Any },
-    { no: 3, name: "filter", kind: "message", T: Any },
+    { no: 1, name: 'contract', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'limit', kind: 'message', T: Any },
+    { no: 3, name: 'filter', kind: 'message', T: Any },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ContractGrant {
@@ -242,7 +288,10 @@ export class ContractGrant extends Message<ContractGrant> {
     return new ContractGrant().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ContractGrant | PlainMessage<ContractGrant> | undefined, b: ContractGrant | PlainMessage<ContractGrant> | undefined): boolean {
+  static equals(
+    a: ContractGrant | PlainMessage<ContractGrant> | undefined,
+    b: ContractGrant | PlainMessage<ContractGrant> | undefined
+  ): boolean {
     return proto3.util.equals(ContractGrant, a, b);
   }
 }
@@ -267,9 +316,9 @@ export class MaxCallsLimit extends Message<MaxCallsLimit> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "cosmwasm.wasm.v1.MaxCallsLimit";
+  static readonly typeName = 'cosmwasm.wasm.v1.MaxCallsLimit';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "remaining", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'remaining', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MaxCallsLimit {
@@ -284,7 +333,10 @@ export class MaxCallsLimit extends Message<MaxCallsLimit> {
     return new MaxCallsLimit().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MaxCallsLimit | PlainMessage<MaxCallsLimit> | undefined, b: MaxCallsLimit | PlainMessage<MaxCallsLimit> | undefined): boolean {
+  static equals(
+    a: MaxCallsLimit | PlainMessage<MaxCallsLimit> | undefined,
+    b: MaxCallsLimit | PlainMessage<MaxCallsLimit> | undefined
+  ): boolean {
     return proto3.util.equals(MaxCallsLimit, a, b);
   }
 }
@@ -309,9 +361,9 @@ export class MaxFundsLimit extends Message<MaxFundsLimit> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "cosmwasm.wasm.v1.MaxFundsLimit";
+  static readonly typeName = 'cosmwasm.wasm.v1.MaxFundsLimit';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "amounts", kind: "message", T: Coin, repeated: true },
+    { no: 1, name: 'amounts', kind: 'message', T: Coin, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MaxFundsLimit {
@@ -326,7 +378,10 @@ export class MaxFundsLimit extends Message<MaxFundsLimit> {
     return new MaxFundsLimit().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MaxFundsLimit | PlainMessage<MaxFundsLimit> | undefined, b: MaxFundsLimit | PlainMessage<MaxFundsLimit> | undefined): boolean {
+  static equals(
+    a: MaxFundsLimit | PlainMessage<MaxFundsLimit> | undefined,
+    b: MaxFundsLimit | PlainMessage<MaxFundsLimit> | undefined
+  ): boolean {
     return proto3.util.equals(MaxFundsLimit, a, b);
   }
 }
@@ -359,10 +414,10 @@ export class CombinedLimit extends Message<CombinedLimit> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "cosmwasm.wasm.v1.CombinedLimit";
+  static readonly typeName = 'cosmwasm.wasm.v1.CombinedLimit';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "calls_remaining", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "amounts", kind: "message", T: Coin, repeated: true },
+    { no: 1, name: 'calls_remaining', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'amounts', kind: 'message', T: Coin, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CombinedLimit {
@@ -377,7 +432,10 @@ export class CombinedLimit extends Message<CombinedLimit> {
     return new CombinedLimit().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CombinedLimit | PlainMessage<CombinedLimit> | undefined, b: CombinedLimit | PlainMessage<CombinedLimit> | undefined): boolean {
+  static equals(
+    a: CombinedLimit | PlainMessage<CombinedLimit> | undefined,
+    b: CombinedLimit | PlainMessage<CombinedLimit> | undefined
+  ): boolean {
     return proto3.util.equals(CombinedLimit, a, b);
   }
 }
@@ -396,23 +454,34 @@ export class AllowAllMessagesFilter extends Message<AllowAllMessagesFilter> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "cosmwasm.wasm.v1.AllowAllMessagesFilter";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'cosmwasm.wasm.v1.AllowAllMessagesFilter';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AllowAllMessagesFilter {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AllowAllMessagesFilter {
     return new AllowAllMessagesFilter().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AllowAllMessagesFilter {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AllowAllMessagesFilter {
     return new AllowAllMessagesFilter().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AllowAllMessagesFilter {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AllowAllMessagesFilter {
     return new AllowAllMessagesFilter().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AllowAllMessagesFilter | PlainMessage<AllowAllMessagesFilter> | undefined, b: AllowAllMessagesFilter | PlainMessage<AllowAllMessagesFilter> | undefined): boolean {
+  static equals(
+    a: AllowAllMessagesFilter | PlainMessage<AllowAllMessagesFilter> | undefined,
+    b: AllowAllMessagesFilter | PlainMessage<AllowAllMessagesFilter> | undefined
+  ): boolean {
     return proto3.util.equals(AllowAllMessagesFilter, a, b);
   }
 }
@@ -438,24 +507,36 @@ export class AcceptedMessageKeysFilter extends Message<AcceptedMessageKeysFilter
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "cosmwasm.wasm.v1.AcceptedMessageKeysFilter";
+  static readonly typeName = 'cosmwasm.wasm.v1.AcceptedMessageKeysFilter';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "keys", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 1, name: 'keys', kind: 'scalar', T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AcceptedMessageKeysFilter {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AcceptedMessageKeysFilter {
     return new AcceptedMessageKeysFilter().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AcceptedMessageKeysFilter {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AcceptedMessageKeysFilter {
     return new AcceptedMessageKeysFilter().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AcceptedMessageKeysFilter {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AcceptedMessageKeysFilter {
     return new AcceptedMessageKeysFilter().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AcceptedMessageKeysFilter | PlainMessage<AcceptedMessageKeysFilter> | undefined, b: AcceptedMessageKeysFilter | PlainMessage<AcceptedMessageKeysFilter> | undefined): boolean {
+  static equals(
+    a: AcceptedMessageKeysFilter | PlainMessage<AcceptedMessageKeysFilter> | undefined,
+    b: AcceptedMessageKeysFilter | PlainMessage<AcceptedMessageKeysFilter> | undefined
+  ): boolean {
     return proto3.util.equals(AcceptedMessageKeysFilter, a, b);
   }
 }
@@ -481,25 +562,36 @@ export class AcceptedMessagesFilter extends Message<AcceptedMessagesFilter> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "cosmwasm.wasm.v1.AcceptedMessagesFilter";
+  static readonly typeName = 'cosmwasm.wasm.v1.AcceptedMessagesFilter';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "messages", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
+    { no: 1, name: 'messages', kind: 'scalar', T: 12 /* ScalarType.BYTES */, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AcceptedMessagesFilter {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AcceptedMessagesFilter {
     return new AcceptedMessagesFilter().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AcceptedMessagesFilter {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AcceptedMessagesFilter {
     return new AcceptedMessagesFilter().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AcceptedMessagesFilter {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AcceptedMessagesFilter {
     return new AcceptedMessagesFilter().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AcceptedMessagesFilter | PlainMessage<AcceptedMessagesFilter> | undefined, b: AcceptedMessagesFilter | PlainMessage<AcceptedMessagesFilter> | undefined): boolean {
+  static equals(
+    a: AcceptedMessagesFilter | PlainMessage<AcceptedMessagesFilter> | undefined,
+    b: AcceptedMessagesFilter | PlainMessage<AcceptedMessagesFilter> | undefined
+  ): boolean {
     return proto3.util.equals(AcceptedMessagesFilter, a, b);
   }
 }
-

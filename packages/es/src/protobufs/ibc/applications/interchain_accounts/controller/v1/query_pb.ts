@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { Params } from "./controller_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { Params } from './controller_pb.js';
 
 /**
  * QueryInterchainAccountRequest is the request type for the Query/InterchainAccount RPC method.
@@ -16,12 +23,12 @@ export class QueryInterchainAccountRequest extends Message<QueryInterchainAccoun
   /**
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   /**
    * @generated from field: string connection_id = 2;
    */
-  connectionId = "";
+  connectionId = '';
 
   constructor(data?: PartialMessage<QueryInterchainAccountRequest>) {
     super();
@@ -29,25 +36,38 @@ export class QueryInterchainAccountRequest extends Message<QueryInterchainAccoun
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.interchain_accounts.controller.v1.QueryInterchainAccountRequest";
+  static readonly typeName =
+    'ibc.applications.interchain_accounts.controller.v1.QueryInterchainAccountRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "connection_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'connection_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryInterchainAccountRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryInterchainAccountRequest {
     return new QueryInterchainAccountRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryInterchainAccountRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryInterchainAccountRequest {
     return new QueryInterchainAccountRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryInterchainAccountRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryInterchainAccountRequest {
     return new QueryInterchainAccountRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryInterchainAccountRequest | PlainMessage<QueryInterchainAccountRequest> | undefined, b: QueryInterchainAccountRequest | PlainMessage<QueryInterchainAccountRequest> | undefined): boolean {
+  static equals(
+    a: QueryInterchainAccountRequest | PlainMessage<QueryInterchainAccountRequest> | undefined,
+    b: QueryInterchainAccountRequest | PlainMessage<QueryInterchainAccountRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryInterchainAccountRequest, a, b);
   }
 }
@@ -61,7 +81,7 @@ export class QueryInterchainAccountResponse extends Message<QueryInterchainAccou
   /**
    * @generated from field: string address = 1;
    */
-  address = "";
+  address = '';
 
   constructor(data?: PartialMessage<QueryInterchainAccountResponse>) {
     super();
@@ -69,24 +89,37 @@ export class QueryInterchainAccountResponse extends Message<QueryInterchainAccou
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.interchain_accounts.controller.v1.QueryInterchainAccountResponse";
+  static readonly typeName =
+    'ibc.applications.interchain_accounts.controller.v1.QueryInterchainAccountResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryInterchainAccountResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryInterchainAccountResponse {
     return new QueryInterchainAccountResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryInterchainAccountResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryInterchainAccountResponse {
     return new QueryInterchainAccountResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryInterchainAccountResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryInterchainAccountResponse {
     return new QueryInterchainAccountResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryInterchainAccountResponse | PlainMessage<QueryInterchainAccountResponse> | undefined, b: QueryInterchainAccountResponse | PlainMessage<QueryInterchainAccountResponse> | undefined): boolean {
+  static equals(
+    a: QueryInterchainAccountResponse | PlainMessage<QueryInterchainAccountResponse> | undefined,
+    b: QueryInterchainAccountResponse | PlainMessage<QueryInterchainAccountResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryInterchainAccountResponse, a, b);
   }
 }
@@ -103,9 +136,9 @@ export class QueryParamsRequest extends Message<QueryParamsRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.interchain_accounts.controller.v1.QueryParamsRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName =
+    'ibc.applications.interchain_accounts.controller.v1.QueryParamsRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryParamsRequest {
     return new QueryParamsRequest().fromBinary(bytes, options);
@@ -115,11 +148,17 @@ export class QueryParamsRequest extends Message<QueryParamsRequest> {
     return new QueryParamsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryParamsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryParamsRequest {
     return new QueryParamsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined, b: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined): boolean {
+  static equals(
+    a: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined,
+    b: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryParamsRequest, a, b);
   }
 }
@@ -143,9 +182,10 @@ export class QueryParamsResponse extends Message<QueryParamsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.interchain_accounts.controller.v1.QueryParamsResponse";
+  static readonly typeName =
+    'ibc.applications.interchain_accounts.controller.v1.QueryParamsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "params", kind: "message", T: Params },
+    { no: 1, name: 'params', kind: 'message', T: Params },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryParamsResponse {
@@ -156,12 +196,17 @@ export class QueryParamsResponse extends Message<QueryParamsResponse> {
     return new QueryParamsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryParamsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryParamsResponse {
     return new QueryParamsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined, b: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined): boolean {
+  static equals(
+    a: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined,
+    b: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryParamsResponse, a, b);
   }
 }
-

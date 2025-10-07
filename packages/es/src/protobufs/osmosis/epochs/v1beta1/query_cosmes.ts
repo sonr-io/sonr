@@ -3,9 +3,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryCurrentEpochRequest, QueryCurrentEpochResponse, QueryEpochsInfoRequest, QueryEpochsInfoResponse } from "./query_pb.js";
+import {
+  QueryCurrentEpochRequest,
+  QueryCurrentEpochResponse,
+  QueryEpochsInfoRequest,
+  QueryEpochsInfoResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "osmosis.epochs.v1beta1.Query";
+const TYPE_NAME = 'osmosis.epochs.v1beta1.Query';
 
 /**
  * EpochInfos provide running epochInfos
@@ -14,7 +19,7 @@ const TYPE_NAME = "osmosis.epochs.v1beta1.Query";
  */
 export const QueryEpochInfosService = {
   typeName: TYPE_NAME,
-  method: "EpochInfos",
+  method: 'EpochInfos',
   Request: QueryEpochsInfoRequest,
   Response: QueryEpochsInfoResponse,
 } as const;
@@ -26,8 +31,7 @@ export const QueryEpochInfosService = {
  */
 export const QueryCurrentEpochService = {
   typeName: TYPE_NAME,
-  method: "CurrentEpoch",
+  method: 'CurrentEpoch',
   Request: QueryCurrentEpochRequest,
   Response: QueryCurrentEpochResponse,
 } as const;
-

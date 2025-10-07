@@ -3,9 +3,18 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgInitiateDomainVerification, MsgInitiateDomainVerificationResponse, MsgRegisterService, MsgRegisterServiceResponse, MsgUpdateParams, MsgUpdateParamsResponse, MsgVerifyDomain, MsgVerifyDomainResponse } from "./tx_pb.js";
+import {
+  MsgInitiateDomainVerification,
+  MsgInitiateDomainVerificationResponse,
+  MsgRegisterService,
+  MsgRegisterServiceResponse,
+  MsgUpdateParams,
+  MsgUpdateParamsResponse,
+  MsgVerifyDomain,
+  MsgVerifyDomainResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "svc.v1.Msg";
+const TYPE_NAME = 'svc.v1.Msg';
 
 /**
  * UpdateParams defines a governance operation for updating the parameters.
@@ -16,7 +25,7 @@ const TYPE_NAME = "svc.v1.Msg";
  */
 export const MsgUpdateParamsService = {
   typeName: TYPE_NAME,
-  method: "UpdateParams",
+  method: 'UpdateParams',
   Request: MsgUpdateParams,
   Response: MsgUpdateParamsResponse,
 } as const;
@@ -33,7 +42,7 @@ export const MsgUpdateParamsService = {
  */
 export const MsgInitiateDomainVerificationService = {
   typeName: TYPE_NAME,
-  method: "InitiateDomainVerification",
+  method: 'InitiateDomainVerification',
   Request: MsgInitiateDomainVerification,
   Response: MsgInitiateDomainVerificationResponse,
 } as const;
@@ -45,7 +54,7 @@ export const MsgInitiateDomainVerificationService = {
  */
 export const MsgVerifyDomainService = {
   typeName: TYPE_NAME,
-  method: "VerifyDomain",
+  method: 'VerifyDomain',
   Request: MsgVerifyDomain,
   Response: MsgVerifyDomainResponse,
 } as const;
@@ -57,8 +66,7 @@ export const MsgVerifyDomainService = {
  */
 export const MsgRegisterServiceService = {
   typeName: TYPE_NAME,
-  method: "RegisterService",
+  method: 'RegisterService',
   Request: MsgRegisterService,
   Response: MsgRegisterServiceResponse,
 } as const;
-

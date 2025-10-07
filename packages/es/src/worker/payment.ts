@@ -1,6 +1,6 @@
 /**
  * W3C Payment Handler API client for Motor Payment Gateway
- * 
+ *
  * @packageDocumentation
  */
 
@@ -44,11 +44,7 @@ export class PaymentGatewayClient {
   /**
    * Make an API request to the payment gateway
    */
-  private async request<T>(
-    method: string,
-    endpoint: string,
-    data?: unknown
-  ): Promise<T> {
+  private async request<T>(method: string, endpoint: string, data?: unknown): Promise<T> {
     const url = `${this.baseUrl}${endpoint}`;
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), this.config.timeout || 30000);
@@ -111,7 +107,9 @@ export class PaymentGatewayClient {
   /**
    * Validate a payment method
    */
-  async validatePaymentMethod(request: ValidatePaymentMethodRequest): Promise<ValidatePaymentMethodResponse> {
+  async validatePaymentMethod(
+    request: ValidatePaymentMethodRequest
+  ): Promise<ValidatePaymentMethodResponse> {
     return this.request<ValidatePaymentMethodResponse>('POST', '/payment/validate', request);
   }
 
@@ -150,7 +148,7 @@ export class MotorPaymentHandler {
     }
 
     const registration = await navigator.serviceWorker.ready;
-    
+
     if (!registration.paymentManager) {
       throw new Error('Payment Manager not available in service worker');
     }
@@ -163,7 +161,9 @@ export class MotorPaymentHandler {
       if (instrument.enabled) {
         await registration.paymentManager.instruments.set(instrument.id, {
           name: instrument.name,
-          icons: instrument.iconUrl ? [{ src: instrument.iconUrl, sizes: '32x32', type: 'image/png' }] : undefined,
+          icons: instrument.iconUrl
+            ? [{ src: instrument.iconUrl, sizes: '32x32', type: 'image/png' }]
+            : undefined,
           method: instrument.type,
         });
       }
@@ -181,7 +181,7 @@ export class MotorPaymentHandler {
     }
 
     const registration = await navigator.serviceWorker.ready;
-    
+
     if (!registration.paymentManager) {
       return;
     }
@@ -254,7 +254,7 @@ export class MotorPaymentRequest {
     }
 
     const request = new PaymentRequest(this.methods, this.details, this.options);
-    
+
     // Check if payment can be made
     const canMake = await request.canMakePayment();
     if (!canMake) {
@@ -275,9 +275,9 @@ export class MotorPaymentRequest {
     methods: PaymentMethod[] = [{ supportedMethods: 'basic-card' }]
   ): MotorPaymentRequest {
     const request = new MotorPaymentRequest();
-    
-    methods.forEach(method => request.addMethod(method));
-    
+
+    methods.forEach((method) => request.addMethod(method));
+
     request.setDetails({
       total: {
         label,
@@ -295,7 +295,9 @@ export class MotorPaymentRequest {
 /**
  * Create a payment gateway client
  */
-export function createPaymentGatewayClient(config?: MotorServiceWorkerConfig): PaymentGatewayClient {
+export function createPaymentGatewayClient(
+  config?: MotorServiceWorkerConfig
+): PaymentGatewayClient {
   return new PaymentGatewayClient(config);
 }
 
@@ -310,9 +312,9 @@ export function createPaymentHandler(config?: MotorServiceWorkerConfig): MotorPa
  * Check if Payment Handler API is supported
  */
 export function isPaymentHandlerSupported(): boolean {
-  return typeof window !== 'undefined' && 
-         'serviceWorker' in navigator && 
-         'PaymentManager' in window;
+  return (
+    typeof window !== 'undefined' && 'serviceWorker' in navigator && 'PaymentManager' in window
+  );
 }
 
 /**

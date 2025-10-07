@@ -3,9 +3,20 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryBaseDenomRequest, QueryBaseDenomResponse, QueryDenomPoolIdRequest, QueryDenomPoolIdResponse, QueryDenomSpotPriceRequest, QueryDenomSpotPriceResponse, QueryEipBaseFeeRequest, QueryEipBaseFeeResponse, QueryFeeTokensRequest, QueryFeeTokensResponse } from "./query_pb.js";
+import {
+  QueryBaseDenomRequest,
+  QueryBaseDenomResponse,
+  QueryDenomPoolIdRequest,
+  QueryDenomPoolIdResponse,
+  QueryDenomSpotPriceRequest,
+  QueryDenomSpotPriceResponse,
+  QueryEipBaseFeeRequest,
+  QueryEipBaseFeeResponse,
+  QueryFeeTokensRequest,
+  QueryFeeTokensResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "osmosis.txfees.v1beta1.Query";
+const TYPE_NAME = 'osmosis.txfees.v1beta1.Query';
 
 /**
  * FeeTokens returns a list of all the whitelisted fee tokens and their
@@ -16,7 +27,7 @@ const TYPE_NAME = "osmosis.txfees.v1beta1.Query";
  */
 export const QueryFeeTokensService = {
   typeName: TYPE_NAME,
-  method: "FeeTokens",
+  method: 'FeeTokens',
   Request: QueryFeeTokensRequest,
   Response: QueryFeeTokensResponse,
 } as const;
@@ -28,7 +39,7 @@ export const QueryFeeTokensService = {
  */
 export const QueryDenomSpotPriceService = {
   typeName: TYPE_NAME,
-  method: "DenomSpotPrice",
+  method: 'DenomSpotPrice',
   Request: QueryDenomSpotPriceRequest,
   Response: QueryDenomSpotPriceResponse,
 } as const;
@@ -40,7 +51,7 @@ export const QueryDenomSpotPriceService = {
  */
 export const QueryDenomPoolIdService = {
   typeName: TYPE_NAME,
-  method: "DenomPoolId",
+  method: 'DenomPoolId',
   Request: QueryDenomPoolIdRequest,
   Response: QueryDenomPoolIdResponse,
 } as const;
@@ -52,7 +63,7 @@ export const QueryDenomPoolIdService = {
  */
 export const QueryBaseDenomService = {
   typeName: TYPE_NAME,
-  method: "BaseDenom",
+  method: 'BaseDenom',
   Request: QueryBaseDenomRequest,
   Response: QueryBaseDenomResponse,
 } as const;
@@ -64,8 +75,7 @@ export const QueryBaseDenomService = {
  */
 export const QueryGetEipBaseFeeService = {
   typeName: TYPE_NAME,
-  method: "GetEipBaseFee",
+  method: 'GetEipBaseFee',
   Request: QueryEipBaseFeeRequest,
   Response: QueryEipBaseFeeResponse,
 } as const;
-

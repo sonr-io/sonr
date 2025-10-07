@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
 
 /**
  * ===================== JoinPoolExecuteMsg
@@ -18,9 +25,8 @@ export class EmptyRequest extends Message<EmptyRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.cosmwasmpool.v1beta1.EmptyRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.cosmwasmpool.v1beta1.EmptyRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EmptyRequest {
     return new EmptyRequest().fromBinary(bytes, options);
@@ -34,7 +40,10 @@ export class EmptyRequest extends Message<EmptyRequest> {
     return new EmptyRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EmptyRequest | PlainMessage<EmptyRequest> | undefined, b: EmptyRequest | PlainMessage<EmptyRequest> | undefined): boolean {
+  static equals(
+    a: EmptyRequest | PlainMessage<EmptyRequest> | undefined,
+    b: EmptyRequest | PlainMessage<EmptyRequest> | undefined
+  ): boolean {
     return proto3.util.equals(EmptyRequest, a, b);
   }
 }
@@ -57,24 +66,36 @@ export class JoinPoolExecuteMsgRequest extends Message<JoinPoolExecuteMsgRequest
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.cosmwasmpool.v1beta1.JoinPoolExecuteMsgRequest";
+  static readonly typeName = 'osmosis.cosmwasmpool.v1beta1.JoinPoolExecuteMsgRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "join_pool", kind: "message", T: EmptyRequest },
+    { no: 1, name: 'join_pool', kind: 'message', T: EmptyRequest },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): JoinPoolExecuteMsgRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): JoinPoolExecuteMsgRequest {
     return new JoinPoolExecuteMsgRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): JoinPoolExecuteMsgRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): JoinPoolExecuteMsgRequest {
     return new JoinPoolExecuteMsgRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): JoinPoolExecuteMsgRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): JoinPoolExecuteMsgRequest {
     return new JoinPoolExecuteMsgRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: JoinPoolExecuteMsgRequest | PlainMessage<JoinPoolExecuteMsgRequest> | undefined, b: JoinPoolExecuteMsgRequest | PlainMessage<JoinPoolExecuteMsgRequest> | undefined): boolean {
+  static equals(
+    a: JoinPoolExecuteMsgRequest | PlainMessage<JoinPoolExecuteMsgRequest> | undefined,
+    b: JoinPoolExecuteMsgRequest | PlainMessage<JoinPoolExecuteMsgRequest> | undefined
+  ): boolean {
     return proto3.util.equals(JoinPoolExecuteMsgRequest, a, b);
   }
 }
@@ -89,23 +110,34 @@ export class JoinPoolExecuteMsgResponse extends Message<JoinPoolExecuteMsgRespon
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.cosmwasmpool.v1beta1.JoinPoolExecuteMsgResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.cosmwasmpool.v1beta1.JoinPoolExecuteMsgResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): JoinPoolExecuteMsgResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): JoinPoolExecuteMsgResponse {
     return new JoinPoolExecuteMsgResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): JoinPoolExecuteMsgResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): JoinPoolExecuteMsgResponse {
     return new JoinPoolExecuteMsgResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): JoinPoolExecuteMsgResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): JoinPoolExecuteMsgResponse {
     return new JoinPoolExecuteMsgResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: JoinPoolExecuteMsgResponse | PlainMessage<JoinPoolExecuteMsgResponse> | undefined, b: JoinPoolExecuteMsgResponse | PlainMessage<JoinPoolExecuteMsgResponse> | undefined): boolean {
+  static equals(
+    a: JoinPoolExecuteMsgResponse | PlainMessage<JoinPoolExecuteMsgResponse> | undefined,
+    b: JoinPoolExecuteMsgResponse | PlainMessage<JoinPoolExecuteMsgResponse> | undefined
+  ): boolean {
     return proto3.util.equals(JoinPoolExecuteMsgResponse, a, b);
   }
 }
@@ -130,24 +162,36 @@ export class ExitPoolExecuteMsgRequest extends Message<ExitPoolExecuteMsgRequest
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.cosmwasmpool.v1beta1.ExitPoolExecuteMsgRequest";
+  static readonly typeName = 'osmosis.cosmwasmpool.v1beta1.ExitPoolExecuteMsgRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "exit_pool", kind: "message", T: EmptyRequest },
+    { no: 1, name: 'exit_pool', kind: 'message', T: EmptyRequest },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExitPoolExecuteMsgRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): ExitPoolExecuteMsgRequest {
     return new ExitPoolExecuteMsgRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExitPoolExecuteMsgRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): ExitPoolExecuteMsgRequest {
     return new ExitPoolExecuteMsgRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExitPoolExecuteMsgRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ExitPoolExecuteMsgRequest {
     return new ExitPoolExecuteMsgRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ExitPoolExecuteMsgRequest | PlainMessage<ExitPoolExecuteMsgRequest> | undefined, b: ExitPoolExecuteMsgRequest | PlainMessage<ExitPoolExecuteMsgRequest> | undefined): boolean {
+  static equals(
+    a: ExitPoolExecuteMsgRequest | PlainMessage<ExitPoolExecuteMsgRequest> | undefined,
+    b: ExitPoolExecuteMsgRequest | PlainMessage<ExitPoolExecuteMsgRequest> | undefined
+  ): boolean {
     return proto3.util.equals(ExitPoolExecuteMsgRequest, a, b);
   }
 }
@@ -162,24 +206,34 @@ export class ExitPoolExecuteMsgResponse extends Message<ExitPoolExecuteMsgRespon
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.cosmwasmpool.v1beta1.ExitPoolExecuteMsgResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.cosmwasmpool.v1beta1.ExitPoolExecuteMsgResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExitPoolExecuteMsgResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): ExitPoolExecuteMsgResponse {
     return new ExitPoolExecuteMsgResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExitPoolExecuteMsgResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): ExitPoolExecuteMsgResponse {
     return new ExitPoolExecuteMsgResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExitPoolExecuteMsgResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ExitPoolExecuteMsgResponse {
     return new ExitPoolExecuteMsgResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ExitPoolExecuteMsgResponse | PlainMessage<ExitPoolExecuteMsgResponse> | undefined, b: ExitPoolExecuteMsgResponse | PlainMessage<ExitPoolExecuteMsgResponse> | undefined): boolean {
+  static equals(
+    a: ExitPoolExecuteMsgResponse | PlainMessage<ExitPoolExecuteMsgResponse> | undefined,
+    b: ExitPoolExecuteMsgResponse | PlainMessage<ExitPoolExecuteMsgResponse> | undefined
+  ): boolean {
     return proto3.util.equals(ExitPoolExecuteMsgResponse, a, b);
   }
 }
-

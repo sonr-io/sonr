@@ -8,8 +8,15 @@
 // until clear steps for migration logic and the unknowns for state breaking are
 // investigated for changing proto package.
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64, Timestamp } from '@bufbuild/protobuf';
 
 /**
  * @generated from message osmosis.concentratedliquidity.v1beta1.Pool
@@ -20,21 +27,21 @@ export class Pool extends Message<Pool> {
    *
    * @generated from field: string address = 1;
    */
-  address = "";
+  address = '';
 
   /**
    * address holding the incentives liquidity.
    *
    * @generated from field: string incentives_address = 2;
    */
-  incentivesAddress = "";
+  incentivesAddress = '';
 
   /**
    * address holding spread rewards from swaps.
    *
    * @generated from field: string spread_rewards_address = 3;
    */
-  spreadRewardsAddress = "";
+  spreadRewardsAddress = '';
 
   /**
    * @generated from field: uint64 id = 4;
@@ -46,22 +53,22 @@ export class Pool extends Message<Pool> {
    *
    * @generated from field: string current_tick_liquidity = 5;
    */
-  currentTickLiquidity = "";
+  currentTickLiquidity = '';
 
   /**
    * @generated from field: string token0 = 6;
    */
-  token0 = "";
+  token0 = '';
 
   /**
    * @generated from field: string token1 = 7;
    */
-  token1 = "";
+  token1 = '';
 
   /**
    * @generated from field: string current_sqrt_price = 8;
    */
-  currentSqrtPrice = "";
+  currentSqrtPrice = '';
 
   /**
    * @generated from field: int64 current_tick = 9;
@@ -86,7 +93,7 @@ export class Pool extends Message<Pool> {
    *
    * @generated from field: string spread_factor = 12;
    */
-  spreadFactor = "";
+  spreadFactor = '';
 
   /**
    * last_liquidity_update is the last time either the pool liquidity or the
@@ -102,21 +109,21 @@ export class Pool extends Message<Pool> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.concentratedliquidity.v1beta1.Pool";
+  static readonly typeName = 'osmosis.concentratedliquidity.v1beta1.Pool';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "incentives_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "spread_rewards_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 5, name: "current_tick_liquidity", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "token0", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "token1", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 8, name: "current_sqrt_price", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 9, name: "current_tick", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 10, name: "tick_spacing", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 11, name: "exponent_at_price_one", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 12, name: "spread_factor", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 13, name: "last_liquidity_update", kind: "message", T: Timestamp },
+    { no: 1, name: 'address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'incentives_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'spread_rewards_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 5, name: 'current_tick_liquidity', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'token0', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: 'token1', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: 'current_sqrt_price', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: 'current_tick', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 10, name: 'tick_spacing', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 11, name: 'exponent_at_price_one', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 12, name: 'spread_factor', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 13, name: 'last_liquidity_update', kind: 'message', T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Pool {
@@ -131,8 +138,10 @@ export class Pool extends Message<Pool> {
     return new Pool().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Pool | PlainMessage<Pool> | undefined, b: Pool | PlainMessage<Pool> | undefined): boolean {
+  static equals(
+    a: Pool | PlainMessage<Pool> | undefined,
+    b: Pool | PlainMessage<Pool> | undefined
+  ): boolean {
     return proto3.util.equals(Pool, a, b);
   }
 }
-

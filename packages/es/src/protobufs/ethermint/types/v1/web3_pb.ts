@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * ExtensionOptionsWeb3Tx is an extension option that specifies the typed chain id,
@@ -27,7 +34,7 @@ export class ExtensionOptionsWeb3Tx extends Message<ExtensionOptionsWeb3Tx> {
    *
    * @generated from field: string fee_payer = 2;
    */
-  feePayer = "";
+  feePayer = '';
 
   /**
    * fee_payer_sig is a signature data from the fee paying account,
@@ -43,27 +50,38 @@ export class ExtensionOptionsWeb3Tx extends Message<ExtensionOptionsWeb3Tx> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.types.v1.ExtensionOptionsWeb3Tx";
+  static readonly typeName = 'ethermint.types.v1.ExtensionOptionsWeb3Tx';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "typed_data_chain_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "fee_payer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "fee_payer_sig", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'typed_data_chain_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'fee_payer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'fee_payer_sig', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExtensionOptionsWeb3Tx {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): ExtensionOptionsWeb3Tx {
     return new ExtensionOptionsWeb3Tx().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExtensionOptionsWeb3Tx {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): ExtensionOptionsWeb3Tx {
     return new ExtensionOptionsWeb3Tx().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExtensionOptionsWeb3Tx {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ExtensionOptionsWeb3Tx {
     return new ExtensionOptionsWeb3Tx().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ExtensionOptionsWeb3Tx | PlainMessage<ExtensionOptionsWeb3Tx> | undefined, b: ExtensionOptionsWeb3Tx | PlainMessage<ExtensionOptionsWeb3Tx> | undefined): boolean {
+  static equals(
+    a: ExtensionOptionsWeb3Tx | PlainMessage<ExtensionOptionsWeb3Tx> | undefined,
+    b: ExtensionOptionsWeb3Tx | PlainMessage<ExtensionOptionsWeb3Tx> | undefined
+  ): boolean {
     return proto3.util.equals(ExtensionOptionsWeb3Tx, a, b);
   }
 }
-

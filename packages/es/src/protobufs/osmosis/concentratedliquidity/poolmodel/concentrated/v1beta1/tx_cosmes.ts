@@ -3,17 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgCreateConcentratedPool, MsgCreateConcentratedPoolResponse } from "./tx_pb.js";
+import { MsgCreateConcentratedPool, MsgCreateConcentratedPoolResponse } from './tx_pb.js';
 
-const TYPE_NAME = "osmosis.concentratedliquidity.poolmodel.concentrated.v1beta1.Msg";
+const TYPE_NAME = 'osmosis.concentratedliquidity.poolmodel.concentrated.v1beta1.Msg';
 
 /**
  * @generated from rpc osmosis.concentratedliquidity.poolmodel.concentrated.v1beta1.Msg.CreateConcentratedPool
  */
 export const MsgCreateConcentratedPoolService = {
   typeName: TYPE_NAME,
-  method: "CreateConcentratedPool",
+  method: 'CreateConcentratedPool',
   Request: MsgCreateConcentratedPool,
   Response: MsgCreateConcentratedPoolResponse,
 } as const;
-

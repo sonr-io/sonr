@@ -3,9 +3,22 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryClientConnectionsRequest, QueryClientConnectionsResponse, QueryConnectionClientStateRequest, QueryConnectionClientStateResponse, QueryConnectionConsensusStateRequest, QueryConnectionConsensusStateResponse, QueryConnectionParamsRequest, QueryConnectionParamsResponse, QueryConnectionRequest, QueryConnectionResponse, QueryConnectionsRequest, QueryConnectionsResponse } from "./query_pb.js";
+import {
+  QueryClientConnectionsRequest,
+  QueryClientConnectionsResponse,
+  QueryConnectionClientStateRequest,
+  QueryConnectionClientStateResponse,
+  QueryConnectionConsensusStateRequest,
+  QueryConnectionConsensusStateResponse,
+  QueryConnectionParamsRequest,
+  QueryConnectionParamsResponse,
+  QueryConnectionRequest,
+  QueryConnectionResponse,
+  QueryConnectionsRequest,
+  QueryConnectionsResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "ibc.core.connection.v1.Query";
+const TYPE_NAME = 'ibc.core.connection.v1.Query';
 
 /**
  * Connection queries an IBC connection end.
@@ -14,7 +27,7 @@ const TYPE_NAME = "ibc.core.connection.v1.Query";
  */
 export const QueryConnectionService = {
   typeName: TYPE_NAME,
-  method: "Connection",
+  method: 'Connection',
   Request: QueryConnectionRequest,
   Response: QueryConnectionResponse,
 } as const;
@@ -26,7 +39,7 @@ export const QueryConnectionService = {
  */
 export const QueryConnectionsService = {
   typeName: TYPE_NAME,
-  method: "Connections",
+  method: 'Connections',
   Request: QueryConnectionsRequest,
   Response: QueryConnectionsResponse,
 } as const;
@@ -39,7 +52,7 @@ export const QueryConnectionsService = {
  */
 export const QueryClientConnectionsService = {
   typeName: TYPE_NAME,
-  method: "ClientConnections",
+  method: 'ClientConnections',
   Request: QueryClientConnectionsRequest,
   Response: QueryClientConnectionsResponse,
 } as const;
@@ -52,7 +65,7 @@ export const QueryClientConnectionsService = {
  */
 export const QueryConnectionClientStateService = {
   typeName: TYPE_NAME,
-  method: "ConnectionClientState",
+  method: 'ConnectionClientState',
   Request: QueryConnectionClientStateRequest,
   Response: QueryConnectionClientStateResponse,
 } as const;
@@ -65,7 +78,7 @@ export const QueryConnectionClientStateService = {
  */
 export const QueryConnectionConsensusStateService = {
   typeName: TYPE_NAME,
-  method: "ConnectionConsensusState",
+  method: 'ConnectionConsensusState',
   Request: QueryConnectionConsensusStateRequest,
   Response: QueryConnectionConsensusStateResponse,
 } as const;
@@ -77,8 +90,7 @@ export const QueryConnectionConsensusStateService = {
  */
 export const QueryConnectionParamsService = {
   typeName: TYPE_NAME,
-  method: "ConnectionParams",
+  method: 'ConnectionParams',
   Request: QueryConnectionParamsRequest,
   Response: QueryConnectionParamsResponse,
 } as const;
-

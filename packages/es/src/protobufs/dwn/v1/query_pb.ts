@@ -3,11 +3,26 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { IPFSStatus, Params } from "./genesis_pb.js";
-import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination_pb.js";
-import { DWNPermission, DWNProtocol, DWNRecord, EncryptionMetadata, VaultState, VRFConsensusRound, VRFContribution } from "./state_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { IPFSStatus, Params } from './genesis_pb.js';
+import { PageRequest, PageResponse } from '../../cosmos/base/query/v1beta1/pagination_pb.js';
+import {
+  DWNPermission,
+  DWNProtocol,
+  DWNRecord,
+  EncryptionMetadata,
+  VaultState,
+  VRFConsensusRound,
+  VRFContribution,
+} from './state_pb.js';
 
 /**
  * QueryParamsRequest is the request type for the Query/Params RPC method.
@@ -21,9 +36,8 @@ export class QueryParamsRequest extends Message<QueryParamsRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryParamsRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'dwn.v1.QueryParamsRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryParamsRequest {
     return new QueryParamsRequest().fromBinary(bytes, options);
@@ -33,11 +47,17 @@ export class QueryParamsRequest extends Message<QueryParamsRequest> {
     return new QueryParamsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryParamsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryParamsRequest {
     return new QueryParamsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined, b: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined): boolean {
+  static equals(
+    a: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined,
+    b: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryParamsRequest, a, b);
   }
 }
@@ -61,9 +81,9 @@ export class QueryParamsResponse extends Message<QueryParamsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryParamsResponse";
+  static readonly typeName = 'dwn.v1.QueryParamsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "params", kind: "message", T: Params },
+    { no: 1, name: 'params', kind: 'message', T: Params },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryParamsResponse {
@@ -74,11 +94,17 @@ export class QueryParamsResponse extends Message<QueryParamsResponse> {
     return new QueryParamsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryParamsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryParamsResponse {
     return new QueryParamsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined, b: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined): boolean {
+  static equals(
+    a: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined,
+    b: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryParamsResponse, a, b);
   }
 }
@@ -95,9 +121,8 @@ export class QueryIPFSRequest extends Message<QueryIPFSRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryIPFSRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'dwn.v1.QueryIPFSRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryIPFSRequest {
     return new QueryIPFSRequest().fromBinary(bytes, options);
@@ -111,7 +136,10 @@ export class QueryIPFSRequest extends Message<QueryIPFSRequest> {
     return new QueryIPFSRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryIPFSRequest | PlainMessage<QueryIPFSRequest> | undefined, b: QueryIPFSRequest | PlainMessage<QueryIPFSRequest> | undefined): boolean {
+  static equals(
+    a: QueryIPFSRequest | PlainMessage<QueryIPFSRequest> | undefined,
+    b: QueryIPFSRequest | PlainMessage<QueryIPFSRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryIPFSRequest, a, b);
   }
 }
@@ -135,9 +163,9 @@ export class QueryIPFSResponse extends Message<QueryIPFSResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryIPFSResponse";
+  static readonly typeName = 'dwn.v1.QueryIPFSResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "status", kind: "message", T: IPFSStatus },
+    { no: 1, name: 'status', kind: 'message', T: IPFSStatus },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryIPFSResponse {
@@ -152,7 +180,10 @@ export class QueryIPFSResponse extends Message<QueryIPFSResponse> {
     return new QueryIPFSResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryIPFSResponse | PlainMessage<QueryIPFSResponse> | undefined, b: QueryIPFSResponse | PlainMessage<QueryIPFSResponse> | undefined): boolean {
+  static equals(
+    a: QueryIPFSResponse | PlainMessage<QueryIPFSResponse> | undefined,
+    b: QueryIPFSResponse | PlainMessage<QueryIPFSResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryIPFSResponse, a, b);
   }
 }
@@ -168,7 +199,7 @@ export class QueryCIDRequest extends Message<QueryCIDRequest> {
    *
    * @generated from field: string cid = 1;
    */
-  cid = "";
+  cid = '';
 
   constructor(data?: PartialMessage<QueryCIDRequest>) {
     super();
@@ -176,9 +207,9 @@ export class QueryCIDRequest extends Message<QueryCIDRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryCIDRequest";
+  static readonly typeName = 'dwn.v1.QueryCIDRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "cid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'cid', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryCIDRequest {
@@ -193,7 +224,10 @@ export class QueryCIDRequest extends Message<QueryCIDRequest> {
     return new QueryCIDRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryCIDRequest | PlainMessage<QueryCIDRequest> | undefined, b: QueryCIDRequest | PlainMessage<QueryCIDRequest> | undefined): boolean {
+  static equals(
+    a: QueryCIDRequest | PlainMessage<QueryCIDRequest> | undefined,
+    b: QueryCIDRequest | PlainMessage<QueryCIDRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryCIDRequest, a, b);
   }
 }
@@ -224,10 +258,10 @@ export class QueryCIDResponse extends Message<QueryCIDResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryCIDResponse";
+  static readonly typeName = 'dwn.v1.QueryCIDResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "status_code", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 2, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'status_code', kind: 'scalar', T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: 'data', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryCIDResponse {
@@ -242,7 +276,10 @@ export class QueryCIDResponse extends Message<QueryCIDResponse> {
     return new QueryCIDResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryCIDResponse | PlainMessage<QueryCIDResponse> | undefined, b: QueryCIDResponse | PlainMessage<QueryCIDResponse> | undefined): boolean {
+  static equals(
+    a: QueryCIDResponse | PlainMessage<QueryCIDResponse> | undefined,
+    b: QueryCIDResponse | PlainMessage<QueryCIDResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryCIDResponse, a, b);
   }
 }
@@ -258,28 +295,28 @@ export class QueryRecordsRequest extends Message<QueryRecordsRequest> {
    *
    * @generated from field: string target = 1;
    */
-  target = "";
+  target = '';
 
   /**
    * Optional protocol filter
    *
    * @generated from field: string protocol = 2;
    */
-  protocol = "";
+  protocol = '';
 
   /**
    * Optional schema filter
    *
    * @generated from field: string schema = 3;
    */
-  schema = "";
+  schema = '';
 
   /**
    * Optional parent ID filter
    *
    * @generated from field: string parent_id = 4;
    */
-  parentId = "";
+  parentId = '';
 
   /**
    * Filter by published status
@@ -301,14 +338,14 @@ export class QueryRecordsRequest extends Message<QueryRecordsRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryRecordsRequest";
+  static readonly typeName = 'dwn.v1.QueryRecordsRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "target", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "protocol", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "schema", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "parent_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "published_only", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 6, name: "pagination", kind: "message", T: PageRequest },
+    { no: 1, name: 'target', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'protocol', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'schema', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'parent_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'published_only', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 6, name: 'pagination', kind: 'message', T: PageRequest },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryRecordsRequest {
@@ -319,11 +356,17 @@ export class QueryRecordsRequest extends Message<QueryRecordsRequest> {
     return new QueryRecordsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryRecordsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryRecordsRequest {
     return new QueryRecordsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryRecordsRequest | PlainMessage<QueryRecordsRequest> | undefined, b: QueryRecordsRequest | PlainMessage<QueryRecordsRequest> | undefined): boolean {
+  static equals(
+    a: QueryRecordsRequest | PlainMessage<QueryRecordsRequest> | undefined,
+    b: QueryRecordsRequest | PlainMessage<QueryRecordsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryRecordsRequest, a, b);
   }
 }
@@ -354,10 +397,10 @@ export class QueryRecordsResponse extends Message<QueryRecordsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryRecordsResponse";
+  static readonly typeName = 'dwn.v1.QueryRecordsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "records", kind: "message", T: DWNRecord, repeated: true },
-    { no: 2, name: "pagination", kind: "message", T: PageResponse },
+    { no: 1, name: 'records', kind: 'message', T: DWNRecord, repeated: true },
+    { no: 2, name: 'pagination', kind: 'message', T: PageResponse },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryRecordsResponse {
@@ -368,11 +411,17 @@ export class QueryRecordsResponse extends Message<QueryRecordsResponse> {
     return new QueryRecordsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryRecordsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryRecordsResponse {
     return new QueryRecordsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryRecordsResponse | PlainMessage<QueryRecordsResponse> | undefined, b: QueryRecordsResponse | PlainMessage<QueryRecordsResponse> | undefined): boolean {
+  static equals(
+    a: QueryRecordsResponse | PlainMessage<QueryRecordsResponse> | undefined,
+    b: QueryRecordsResponse | PlainMessage<QueryRecordsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryRecordsResponse, a, b);
   }
 }
@@ -388,14 +437,14 @@ export class QueryRecordRequest extends Message<QueryRecordRequest> {
    *
    * @generated from field: string target = 1;
    */
-  target = "";
+  target = '';
 
   /**
    * Record ID
    *
    * @generated from field: string record_id = 2;
    */
-  recordId = "";
+  recordId = '';
 
   constructor(data?: PartialMessage<QueryRecordRequest>) {
     super();
@@ -403,10 +452,10 @@ export class QueryRecordRequest extends Message<QueryRecordRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryRecordRequest";
+  static readonly typeName = 'dwn.v1.QueryRecordRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "target", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "record_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'target', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'record_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryRecordRequest {
@@ -417,11 +466,17 @@ export class QueryRecordRequest extends Message<QueryRecordRequest> {
     return new QueryRecordRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryRecordRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryRecordRequest {
     return new QueryRecordRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryRecordRequest | PlainMessage<QueryRecordRequest> | undefined, b: QueryRecordRequest | PlainMessage<QueryRecordRequest> | undefined): boolean {
+  static equals(
+    a: QueryRecordRequest | PlainMessage<QueryRecordRequest> | undefined,
+    b: QueryRecordRequest | PlainMessage<QueryRecordRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryRecordRequest, a, b);
   }
 }
@@ -445,9 +500,9 @@ export class QueryRecordResponse extends Message<QueryRecordResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryRecordResponse";
+  static readonly typeName = 'dwn.v1.QueryRecordResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "record", kind: "message", T: DWNRecord },
+    { no: 1, name: 'record', kind: 'message', T: DWNRecord },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryRecordResponse {
@@ -458,11 +513,17 @@ export class QueryRecordResponse extends Message<QueryRecordResponse> {
     return new QueryRecordResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryRecordResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryRecordResponse {
     return new QueryRecordResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryRecordResponse | PlainMessage<QueryRecordResponse> | undefined, b: QueryRecordResponse | PlainMessage<QueryRecordResponse> | undefined): boolean {
+  static equals(
+    a: QueryRecordResponse | PlainMessage<QueryRecordResponse> | undefined,
+    b: QueryRecordResponse | PlainMessage<QueryRecordResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryRecordResponse, a, b);
   }
 }
@@ -478,7 +539,7 @@ export class QueryProtocolsRequest extends Message<QueryProtocolsRequest> {
    *
    * @generated from field: string target = 1;
    */
-  target = "";
+  target = '';
 
   /**
    * Filter by published status
@@ -500,14 +561,17 @@ export class QueryProtocolsRequest extends Message<QueryProtocolsRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryProtocolsRequest";
+  static readonly typeName = 'dwn.v1.QueryProtocolsRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "target", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "published_only", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 3, name: "pagination", kind: "message", T: PageRequest },
+    { no: 1, name: 'target', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'published_only', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: 'pagination', kind: 'message', T: PageRequest },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryProtocolsRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryProtocolsRequest {
     return new QueryProtocolsRequest().fromBinary(bytes, options);
   }
 
@@ -515,11 +579,17 @@ export class QueryProtocolsRequest extends Message<QueryProtocolsRequest> {
     return new QueryProtocolsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryProtocolsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryProtocolsRequest {
     return new QueryProtocolsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryProtocolsRequest | PlainMessage<QueryProtocolsRequest> | undefined, b: QueryProtocolsRequest | PlainMessage<QueryProtocolsRequest> | undefined): boolean {
+  static equals(
+    a: QueryProtocolsRequest | PlainMessage<QueryProtocolsRequest> | undefined,
+    b: QueryProtocolsRequest | PlainMessage<QueryProtocolsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryProtocolsRequest, a, b);
   }
 }
@@ -550,25 +620,37 @@ export class QueryProtocolsResponse extends Message<QueryProtocolsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryProtocolsResponse";
+  static readonly typeName = 'dwn.v1.QueryProtocolsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "protocols", kind: "message", T: DWNProtocol, repeated: true },
-    { no: 2, name: "pagination", kind: "message", T: PageResponse },
+    { no: 1, name: 'protocols', kind: 'message', T: DWNProtocol, repeated: true },
+    { no: 2, name: 'pagination', kind: 'message', T: PageResponse },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryProtocolsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryProtocolsResponse {
     return new QueryProtocolsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryProtocolsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryProtocolsResponse {
     return new QueryProtocolsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryProtocolsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryProtocolsResponse {
     return new QueryProtocolsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryProtocolsResponse | PlainMessage<QueryProtocolsResponse> | undefined, b: QueryProtocolsResponse | PlainMessage<QueryProtocolsResponse> | undefined): boolean {
+  static equals(
+    a: QueryProtocolsResponse | PlainMessage<QueryProtocolsResponse> | undefined,
+    b: QueryProtocolsResponse | PlainMessage<QueryProtocolsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryProtocolsResponse, a, b);
   }
 }
@@ -584,14 +666,14 @@ export class QueryProtocolRequest extends Message<QueryProtocolRequest> {
    *
    * @generated from field: string target = 1;
    */
-  target = "";
+  target = '';
 
   /**
    * Protocol URI
    *
    * @generated from field: string protocol_uri = 2;
    */
-  protocolUri = "";
+  protocolUri = '';
 
   constructor(data?: PartialMessage<QueryProtocolRequest>) {
     super();
@@ -599,10 +681,10 @@ export class QueryProtocolRequest extends Message<QueryProtocolRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryProtocolRequest";
+  static readonly typeName = 'dwn.v1.QueryProtocolRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "target", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "protocol_uri", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'target', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'protocol_uri', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryProtocolRequest {
@@ -613,11 +695,17 @@ export class QueryProtocolRequest extends Message<QueryProtocolRequest> {
     return new QueryProtocolRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryProtocolRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryProtocolRequest {
     return new QueryProtocolRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryProtocolRequest | PlainMessage<QueryProtocolRequest> | undefined, b: QueryProtocolRequest | PlainMessage<QueryProtocolRequest> | undefined): boolean {
+  static equals(
+    a: QueryProtocolRequest | PlainMessage<QueryProtocolRequest> | undefined,
+    b: QueryProtocolRequest | PlainMessage<QueryProtocolRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryProtocolRequest, a, b);
   }
 }
@@ -641,12 +729,15 @@ export class QueryProtocolResponse extends Message<QueryProtocolResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryProtocolResponse";
+  static readonly typeName = 'dwn.v1.QueryProtocolResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "protocol", kind: "message", T: DWNProtocol },
+    { no: 1, name: 'protocol', kind: 'message', T: DWNProtocol },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryProtocolResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryProtocolResponse {
     return new QueryProtocolResponse().fromBinary(bytes, options);
   }
 
@@ -654,11 +745,17 @@ export class QueryProtocolResponse extends Message<QueryProtocolResponse> {
     return new QueryProtocolResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryProtocolResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryProtocolResponse {
     return new QueryProtocolResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryProtocolResponse | PlainMessage<QueryProtocolResponse> | undefined, b: QueryProtocolResponse | PlainMessage<QueryProtocolResponse> | undefined): boolean {
+  static equals(
+    a: QueryProtocolResponse | PlainMessage<QueryProtocolResponse> | undefined,
+    b: QueryProtocolResponse | PlainMessage<QueryProtocolResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryProtocolResponse, a, b);
   }
 }
@@ -674,35 +771,35 @@ export class QueryPermissionsRequest extends Message<QueryPermissionsRequest> {
    *
    * @generated from field: string target = 1;
    */
-  target = "";
+  target = '';
 
   /**
    * Optional grantor filter
    *
    * @generated from field: string grantor = 2;
    */
-  grantor = "";
+  grantor = '';
 
   /**
    * Optional grantee filter
    *
    * @generated from field: string grantee = 3;
    */
-  grantee = "";
+  grantee = '';
 
   /**
    * Optional interface filter
    *
    * @generated from field: string interface_name = 4;
    */
-  interfaceName = "";
+  interfaceName = '';
 
   /**
    * Optional method filter
    *
    * @generated from field: string method = 5;
    */
-  method = "";
+  method = '';
 
   /**
    * Include revoked permissions
@@ -724,30 +821,42 @@ export class QueryPermissionsRequest extends Message<QueryPermissionsRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryPermissionsRequest";
+  static readonly typeName = 'dwn.v1.QueryPermissionsRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "target", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "grantor", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "grantee", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "interface_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "method", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "include_revoked", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 7, name: "pagination", kind: "message", T: PageRequest },
+    { no: 1, name: 'target', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'grantor', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'grantee', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'interface_name', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'method', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'include_revoked', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 7, name: 'pagination', kind: 'message', T: PageRequest },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryPermissionsRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryPermissionsRequest {
     return new QueryPermissionsRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryPermissionsRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryPermissionsRequest {
     return new QueryPermissionsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryPermissionsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryPermissionsRequest {
     return new QueryPermissionsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryPermissionsRequest | PlainMessage<QueryPermissionsRequest> | undefined, b: QueryPermissionsRequest | PlainMessage<QueryPermissionsRequest> | undefined): boolean {
+  static equals(
+    a: QueryPermissionsRequest | PlainMessage<QueryPermissionsRequest> | undefined,
+    b: QueryPermissionsRequest | PlainMessage<QueryPermissionsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryPermissionsRequest, a, b);
   }
 }
@@ -778,25 +887,37 @@ export class QueryPermissionsResponse extends Message<QueryPermissionsResponse> 
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryPermissionsResponse";
+  static readonly typeName = 'dwn.v1.QueryPermissionsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "permissions", kind: "message", T: DWNPermission, repeated: true },
-    { no: 2, name: "pagination", kind: "message", T: PageResponse },
+    { no: 1, name: 'permissions', kind: 'message', T: DWNPermission, repeated: true },
+    { no: 2, name: 'pagination', kind: 'message', T: PageResponse },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryPermissionsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryPermissionsResponse {
     return new QueryPermissionsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryPermissionsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryPermissionsResponse {
     return new QueryPermissionsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryPermissionsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryPermissionsResponse {
     return new QueryPermissionsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryPermissionsResponse | PlainMessage<QueryPermissionsResponse> | undefined, b: QueryPermissionsResponse | PlainMessage<QueryPermissionsResponse> | undefined): boolean {
+  static equals(
+    a: QueryPermissionsResponse | PlainMessage<QueryPermissionsResponse> | undefined,
+    b: QueryPermissionsResponse | PlainMessage<QueryPermissionsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryPermissionsResponse, a, b);
   }
 }
@@ -812,7 +933,7 @@ export class QueryVaultRequest extends Message<QueryVaultRequest> {
    *
    * @generated from field: string vault_id = 1;
    */
-  vaultId = "";
+  vaultId = '';
 
   constructor(data?: PartialMessage<QueryVaultRequest>) {
     super();
@@ -820,9 +941,9 @@ export class QueryVaultRequest extends Message<QueryVaultRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryVaultRequest";
+  static readonly typeName = 'dwn.v1.QueryVaultRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "vault_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'vault_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryVaultRequest {
@@ -837,7 +958,10 @@ export class QueryVaultRequest extends Message<QueryVaultRequest> {
     return new QueryVaultRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryVaultRequest | PlainMessage<QueryVaultRequest> | undefined, b: QueryVaultRequest | PlainMessage<QueryVaultRequest> | undefined): boolean {
+  static equals(
+    a: QueryVaultRequest | PlainMessage<QueryVaultRequest> | undefined,
+    b: QueryVaultRequest | PlainMessage<QueryVaultRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryVaultRequest, a, b);
   }
 }
@@ -861,9 +985,9 @@ export class QueryVaultResponse extends Message<QueryVaultResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryVaultResponse";
+  static readonly typeName = 'dwn.v1.QueryVaultResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "vault", kind: "message", T: VaultState },
+    { no: 1, name: 'vault', kind: 'message', T: VaultState },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryVaultResponse {
@@ -874,11 +998,17 @@ export class QueryVaultResponse extends Message<QueryVaultResponse> {
     return new QueryVaultResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryVaultResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryVaultResponse {
     return new QueryVaultResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryVaultResponse | PlainMessage<QueryVaultResponse> | undefined, b: QueryVaultResponse | PlainMessage<QueryVaultResponse> | undefined): boolean {
+  static equals(
+    a: QueryVaultResponse | PlainMessage<QueryVaultResponse> | undefined,
+    b: QueryVaultResponse | PlainMessage<QueryVaultResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryVaultResponse, a, b);
   }
 }
@@ -894,7 +1024,7 @@ export class QueryVaultsRequest extends Message<QueryVaultsRequest> {
    *
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   /**
    * Pagination
@@ -909,10 +1039,10 @@ export class QueryVaultsRequest extends Message<QueryVaultsRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryVaultsRequest";
+  static readonly typeName = 'dwn.v1.QueryVaultsRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "pagination", kind: "message", T: PageRequest },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'pagination', kind: 'message', T: PageRequest },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryVaultsRequest {
@@ -923,11 +1053,17 @@ export class QueryVaultsRequest extends Message<QueryVaultsRequest> {
     return new QueryVaultsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryVaultsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryVaultsRequest {
     return new QueryVaultsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryVaultsRequest | PlainMessage<QueryVaultsRequest> | undefined, b: QueryVaultsRequest | PlainMessage<QueryVaultsRequest> | undefined): boolean {
+  static equals(
+    a: QueryVaultsRequest | PlainMessage<QueryVaultsRequest> | undefined,
+    b: QueryVaultsRequest | PlainMessage<QueryVaultsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryVaultsRequest, a, b);
   }
 }
@@ -958,10 +1094,10 @@ export class QueryVaultsResponse extends Message<QueryVaultsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryVaultsResponse";
+  static readonly typeName = 'dwn.v1.QueryVaultsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "vaults", kind: "message", T: VaultState, repeated: true },
-    { no: 2, name: "pagination", kind: "message", T: PageResponse },
+    { no: 1, name: 'vaults', kind: 'message', T: VaultState, repeated: true },
+    { no: 2, name: 'pagination', kind: 'message', T: PageResponse },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryVaultsResponse {
@@ -972,11 +1108,17 @@ export class QueryVaultsResponse extends Message<QueryVaultsResponse> {
     return new QueryVaultsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryVaultsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryVaultsResponse {
     return new QueryVaultsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryVaultsResponse | PlainMessage<QueryVaultsResponse> | undefined, b: QueryVaultsResponse | PlainMessage<QueryVaultsResponse> | undefined): boolean {
+  static equals(
+    a: QueryVaultsResponse | PlainMessage<QueryVaultsResponse> | undefined,
+    b: QueryVaultsResponse | PlainMessage<QueryVaultsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryVaultsResponse, a, b);
   }
 }
@@ -992,14 +1134,14 @@ export class QueryEncryptedRecordRequest extends Message<QueryEncryptedRecordReq
    *
    * @generated from field: string target = 1;
    */
-  target = "";
+  target = '';
 
   /**
    * Record ID
    *
    * @generated from field: string record_id = 2;
    */
-  recordId = "";
+  recordId = '';
 
   /**
    * Optional: return encrypted data instead of decrypting
@@ -1014,26 +1156,38 @@ export class QueryEncryptedRecordRequest extends Message<QueryEncryptedRecordReq
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryEncryptedRecordRequest";
+  static readonly typeName = 'dwn.v1.QueryEncryptedRecordRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "target", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "record_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "return_encrypted", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'target', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'record_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'return_encrypted', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryEncryptedRecordRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryEncryptedRecordRequest {
     return new QueryEncryptedRecordRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryEncryptedRecordRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryEncryptedRecordRequest {
     return new QueryEncryptedRecordRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryEncryptedRecordRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryEncryptedRecordRequest {
     return new QueryEncryptedRecordRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryEncryptedRecordRequest | PlainMessage<QueryEncryptedRecordRequest> | undefined, b: QueryEncryptedRecordRequest | PlainMessage<QueryEncryptedRecordRequest> | undefined): boolean {
+  static equals(
+    a: QueryEncryptedRecordRequest | PlainMessage<QueryEncryptedRecordRequest> | undefined,
+    b: QueryEncryptedRecordRequest | PlainMessage<QueryEncryptedRecordRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryEncryptedRecordRequest, a, b);
   }
 }
@@ -1071,26 +1225,38 @@ export class QueryEncryptedRecordResponse extends Message<QueryEncryptedRecordRe
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryEncryptedRecordResponse";
+  static readonly typeName = 'dwn.v1.QueryEncryptedRecordResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "record", kind: "message", T: DWNRecord },
-    { no: 2, name: "encryption_metadata", kind: "message", T: EncryptionMetadata },
-    { no: 3, name: "was_decrypted", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'record', kind: 'message', T: DWNRecord },
+    { no: 2, name: 'encryption_metadata', kind: 'message', T: EncryptionMetadata },
+    { no: 3, name: 'was_decrypted', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryEncryptedRecordResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryEncryptedRecordResponse {
     return new QueryEncryptedRecordResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryEncryptedRecordResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryEncryptedRecordResponse {
     return new QueryEncryptedRecordResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryEncryptedRecordResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryEncryptedRecordResponse {
     return new QueryEncryptedRecordResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryEncryptedRecordResponse | PlainMessage<QueryEncryptedRecordResponse> | undefined, b: QueryEncryptedRecordResponse | PlainMessage<QueryEncryptedRecordResponse> | undefined): boolean {
+  static equals(
+    a: QueryEncryptedRecordResponse | PlainMessage<QueryEncryptedRecordResponse> | undefined,
+    b: QueryEncryptedRecordResponse | PlainMessage<QueryEncryptedRecordResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryEncryptedRecordResponse, a, b);
   }
 }
@@ -1107,23 +1273,34 @@ export class QueryEncryptionStatusRequest extends Message<QueryEncryptionStatusR
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryEncryptionStatusRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'dwn.v1.QueryEncryptionStatusRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryEncryptionStatusRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryEncryptionStatusRequest {
     return new QueryEncryptionStatusRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryEncryptionStatusRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryEncryptionStatusRequest {
     return new QueryEncryptionStatusRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryEncryptionStatusRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryEncryptionStatusRequest {
     return new QueryEncryptionStatusRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryEncryptionStatusRequest | PlainMessage<QueryEncryptionStatusRequest> | undefined, b: QueryEncryptionStatusRequest | PlainMessage<QueryEncryptionStatusRequest> | undefined): boolean {
+  static equals(
+    a: QueryEncryptionStatusRequest | PlainMessage<QueryEncryptionStatusRequest> | undefined,
+    b: QueryEncryptionStatusRequest | PlainMessage<QueryEncryptionStatusRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryEncryptionStatusRequest, a, b);
   }
 }
@@ -1182,29 +1359,41 @@ export class QueryEncryptionStatusResponse extends Message<QueryEncryptionStatus
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryEncryptionStatusResponse";
+  static readonly typeName = 'dwn.v1.QueryEncryptionStatusResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "current_key_version", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "validator_set", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 3, name: "single_node_mode", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 4, name: "last_rotation", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 5, name: "next_rotation", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 6, name: "total_encrypted_records", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'current_key_version', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'validator_set', kind: 'scalar', T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 3, name: 'single_node_mode', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 4, name: 'last_rotation', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 5, name: 'next_rotation', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 6, name: 'total_encrypted_records', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryEncryptionStatusResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryEncryptionStatusResponse {
     return new QueryEncryptionStatusResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryEncryptionStatusResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryEncryptionStatusResponse {
     return new QueryEncryptionStatusResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryEncryptionStatusResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryEncryptionStatusResponse {
     return new QueryEncryptionStatusResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryEncryptionStatusResponse | PlainMessage<QueryEncryptionStatusResponse> | undefined, b: QueryEncryptionStatusResponse | PlainMessage<QueryEncryptionStatusResponse> | undefined): boolean {
+  static equals(
+    a: QueryEncryptionStatusResponse | PlainMessage<QueryEncryptionStatusResponse> | undefined,
+    b: QueryEncryptionStatusResponse | PlainMessage<QueryEncryptionStatusResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryEncryptionStatusResponse, a, b);
   }
 }
@@ -1220,7 +1409,7 @@ export class QueryVRFContributionsRequest extends Message<QueryVRFContributionsR
    *
    * @generated from field: string validator_address = 1;
    */
-  validatorAddress = "";
+  validatorAddress = '';
 
   /**
    * Optional: filter by block height
@@ -1242,26 +1431,38 @@ export class QueryVRFContributionsRequest extends Message<QueryVRFContributionsR
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryVRFContributionsRequest";
+  static readonly typeName = 'dwn.v1.QueryVRFContributionsRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "validator_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "block_height", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 3, name: "pagination", kind: "message", T: PageRequest },
+    { no: 1, name: 'validator_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'block_height', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 3, name: 'pagination', kind: 'message', T: PageRequest },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryVRFContributionsRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryVRFContributionsRequest {
     return new QueryVRFContributionsRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryVRFContributionsRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryVRFContributionsRequest {
     return new QueryVRFContributionsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryVRFContributionsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryVRFContributionsRequest {
     return new QueryVRFContributionsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryVRFContributionsRequest | PlainMessage<QueryVRFContributionsRequest> | undefined, b: QueryVRFContributionsRequest | PlainMessage<QueryVRFContributionsRequest> | undefined): boolean {
+  static equals(
+    a: QueryVRFContributionsRequest | PlainMessage<QueryVRFContributionsRequest> | undefined,
+    b: QueryVRFContributionsRequest | PlainMessage<QueryVRFContributionsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryVRFContributionsRequest, a, b);
   }
 }
@@ -1299,27 +1500,38 @@ export class QueryVRFContributionsResponse extends Message<QueryVRFContributions
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.QueryVRFContributionsResponse";
+  static readonly typeName = 'dwn.v1.QueryVRFContributionsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "contributions", kind: "message", T: VRFContribution, repeated: true },
-    { no: 2, name: "current_round", kind: "message", T: VRFConsensusRound },
-    { no: 3, name: "pagination", kind: "message", T: PageResponse },
+    { no: 1, name: 'contributions', kind: 'message', T: VRFContribution, repeated: true },
+    { no: 2, name: 'current_round', kind: 'message', T: VRFConsensusRound },
+    { no: 3, name: 'pagination', kind: 'message', T: PageResponse },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryVRFContributionsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryVRFContributionsResponse {
     return new QueryVRFContributionsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryVRFContributionsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryVRFContributionsResponse {
     return new QueryVRFContributionsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryVRFContributionsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryVRFContributionsResponse {
     return new QueryVRFContributionsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryVRFContributionsResponse | PlainMessage<QueryVRFContributionsResponse> | undefined, b: QueryVRFContributionsResponse | PlainMessage<QueryVRFContributionsResponse> | undefined): boolean {
+  static equals(
+    a: QueryVRFContributionsResponse | PlainMessage<QueryVRFContributionsResponse> | undefined,
+    b: QueryVRFContributionsResponse | PlainMessage<QueryVRFContributionsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryVRFContributionsResponse, a, b);
   }
 }
-

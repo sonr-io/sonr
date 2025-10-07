@@ -3,10 +3,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { CounterpartyInfo } from "./counterparty_pb.js";
-import { Config } from "./config_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { CounterpartyInfo } from './counterparty_pb.js';
+import { Config } from './config_pb.js';
 
 /**
  * QueryCounterpartyInfoRequest is the request type for the Query/CounterpartyInfo RPC
@@ -20,7 +27,7 @@ export class QueryCounterpartyInfoRequest extends Message<QueryCounterpartyInfoR
    *
    * @generated from field: string client_id = 1;
    */
-  clientId = "";
+  clientId = '';
 
   constructor(data?: PartialMessage<QueryCounterpartyInfoRequest>) {
     super();
@@ -28,24 +35,36 @@ export class QueryCounterpartyInfoRequest extends Message<QueryCounterpartyInfoR
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.client.v2.QueryCounterpartyInfoRequest";
+  static readonly typeName = 'ibc.core.client.v2.QueryCounterpartyInfoRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'client_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryCounterpartyInfoRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryCounterpartyInfoRequest {
     return new QueryCounterpartyInfoRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryCounterpartyInfoRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryCounterpartyInfoRequest {
     return new QueryCounterpartyInfoRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryCounterpartyInfoRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryCounterpartyInfoRequest {
     return new QueryCounterpartyInfoRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryCounterpartyInfoRequest | PlainMessage<QueryCounterpartyInfoRequest> | undefined, b: QueryCounterpartyInfoRequest | PlainMessage<QueryCounterpartyInfoRequest> | undefined): boolean {
+  static equals(
+    a: QueryCounterpartyInfoRequest | PlainMessage<QueryCounterpartyInfoRequest> | undefined,
+    b: QueryCounterpartyInfoRequest | PlainMessage<QueryCounterpartyInfoRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryCounterpartyInfoRequest, a, b);
   }
 }
@@ -68,24 +87,36 @@ export class QueryCounterpartyInfoResponse extends Message<QueryCounterpartyInfo
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.client.v2.QueryCounterpartyInfoResponse";
+  static readonly typeName = 'ibc.core.client.v2.QueryCounterpartyInfoResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "counterparty_info", kind: "message", T: CounterpartyInfo },
+    { no: 1, name: 'counterparty_info', kind: 'message', T: CounterpartyInfo },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryCounterpartyInfoResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryCounterpartyInfoResponse {
     return new QueryCounterpartyInfoResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryCounterpartyInfoResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryCounterpartyInfoResponse {
     return new QueryCounterpartyInfoResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryCounterpartyInfoResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryCounterpartyInfoResponse {
     return new QueryCounterpartyInfoResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryCounterpartyInfoResponse | PlainMessage<QueryCounterpartyInfoResponse> | undefined, b: QueryCounterpartyInfoResponse | PlainMessage<QueryCounterpartyInfoResponse> | undefined): boolean {
+  static equals(
+    a: QueryCounterpartyInfoResponse | PlainMessage<QueryCounterpartyInfoResponse> | undefined,
+    b: QueryCounterpartyInfoResponse | PlainMessage<QueryCounterpartyInfoResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryCounterpartyInfoResponse, a, b);
   }
 }
@@ -101,7 +132,7 @@ export class QueryConfigRequest extends Message<QueryConfigRequest> {
    *
    * @generated from field: string client_id = 1;
    */
-  clientId = "";
+  clientId = '';
 
   constructor(data?: PartialMessage<QueryConfigRequest>) {
     super();
@@ -109,9 +140,9 @@ export class QueryConfigRequest extends Message<QueryConfigRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.client.v2.QueryConfigRequest";
+  static readonly typeName = 'ibc.core.client.v2.QueryConfigRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'client_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryConfigRequest {
@@ -122,11 +153,17 @@ export class QueryConfigRequest extends Message<QueryConfigRequest> {
     return new QueryConfigRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryConfigRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryConfigRequest {
     return new QueryConfigRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryConfigRequest | PlainMessage<QueryConfigRequest> | undefined, b: QueryConfigRequest | PlainMessage<QueryConfigRequest> | undefined): boolean {
+  static equals(
+    a: QueryConfigRequest | PlainMessage<QueryConfigRequest> | undefined,
+    b: QueryConfigRequest | PlainMessage<QueryConfigRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryConfigRequest, a, b);
   }
 }
@@ -148,9 +185,9 @@ export class QueryConfigResponse extends Message<QueryConfigResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.client.v2.QueryConfigResponse";
+  static readonly typeName = 'ibc.core.client.v2.QueryConfigResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "config", kind: "message", T: Config },
+    { no: 1, name: 'config', kind: 'message', T: Config },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryConfigResponse {
@@ -161,12 +198,17 @@ export class QueryConfigResponse extends Message<QueryConfigResponse> {
     return new QueryConfigResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryConfigResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryConfigResponse {
     return new QueryConfigResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryConfigResponse | PlainMessage<QueryConfigResponse> | undefined, b: QueryConfigResponse | PlainMessage<QueryConfigResponse> | undefined): boolean {
+  static equals(
+    a: QueryConfigResponse | PlainMessage<QueryConfigResponse> | undefined,
+    b: QueryConfigResponse | PlainMessage<QueryConfigResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryConfigResponse, a, b);
   }
 }
-

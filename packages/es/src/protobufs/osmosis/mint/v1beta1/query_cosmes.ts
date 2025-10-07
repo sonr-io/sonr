@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryEpochProvisionsRequest, QueryEpochProvisionsResponse, QueryInflationRequest, QueryInflationResponse, QueryParamsRequest, QueryParamsResponse } from "./query_pb.js";
+import {
+  QueryEpochProvisionsRequest,
+  QueryEpochProvisionsResponse,
+  QueryInflationRequest,
+  QueryInflationResponse,
+  QueryParamsRequest,
+  QueryParamsResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "osmosis.mint.v1beta1.Query";
+const TYPE_NAME = 'osmosis.mint.v1beta1.Query';
 
 /**
  * Params returns the total set of minting parameters.
@@ -14,7 +21,7 @@ const TYPE_NAME = "osmosis.mint.v1beta1.Query";
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: QueryParamsRequest,
   Response: QueryParamsResponse,
 } as const;
@@ -26,7 +33,7 @@ export const QueryParamsService = {
  */
 export const QueryEpochProvisionsService = {
   typeName: TYPE_NAME,
-  method: "EpochProvisions",
+  method: 'EpochProvisions',
   Request: QueryEpochProvisionsRequest,
   Response: QueryEpochProvisionsResponse,
 } as const;
@@ -38,8 +45,7 @@ export const QueryEpochProvisionsService = {
  */
 export const QueryInflationService = {
   typeName: TYPE_NAME,
-  method: "Inflation",
+  method: 'Inflation',
   Request: QueryInflationRequest,
   Response: QueryInflationResponse,
 } as const;
-

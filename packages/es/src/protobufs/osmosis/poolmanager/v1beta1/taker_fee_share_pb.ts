@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { Coin } from "../../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { Coin } from '../../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * TakerFeeShareAgreement represents the agreement between the Osmosis protocol
@@ -25,7 +32,7 @@ export class TakerFeeShareAgreement extends Message<TakerFeeShareAgreement> {
    *
    * @generated from field: string denom = 1;
    */
-  denom = "";
+  denom = '';
 
   /**
    * skim_percent is the percentage of taker fees that will be skimmed for the
@@ -33,7 +40,7 @@ export class TakerFeeShareAgreement extends Message<TakerFeeShareAgreement> {
    *
    * @generated from field: string skim_percent = 2;
    */
-  skimPercent = "";
+  skimPercent = '';
 
   /**
    * skim_address is the address belonging to the respective denom
@@ -41,7 +48,7 @@ export class TakerFeeShareAgreement extends Message<TakerFeeShareAgreement> {
    *
    * @generated from field: string skim_address = 3;
    */
-  skimAddress = "";
+  skimAddress = '';
 
   constructor(data?: PartialMessage<TakerFeeShareAgreement>) {
     super();
@@ -49,26 +56,38 @@ export class TakerFeeShareAgreement extends Message<TakerFeeShareAgreement> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.TakerFeeShareAgreement";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.TakerFeeShareAgreement';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "skim_percent", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "skim_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'skim_percent', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'skim_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TakerFeeShareAgreement {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): TakerFeeShareAgreement {
     return new TakerFeeShareAgreement().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TakerFeeShareAgreement {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): TakerFeeShareAgreement {
     return new TakerFeeShareAgreement().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TakerFeeShareAgreement {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): TakerFeeShareAgreement {
     return new TakerFeeShareAgreement().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TakerFeeShareAgreement | PlainMessage<TakerFeeShareAgreement> | undefined, b: TakerFeeShareAgreement | PlainMessage<TakerFeeShareAgreement> | undefined): boolean {
+  static equals(
+    a: TakerFeeShareAgreement | PlainMessage<TakerFeeShareAgreement> | undefined,
+    b: TakerFeeShareAgreement | PlainMessage<TakerFeeShareAgreement> | undefined
+  ): boolean {
     return proto3.util.equals(TakerFeeShareAgreement, a, b);
   }
 }
@@ -85,7 +104,7 @@ export class TakerFeeSkimAccumulator extends Message<TakerFeeSkimAccumulator> {
    *
    * @generated from field: string denom = 1;
    */
-  denom = "";
+  denom = '';
 
   /**
    * skimmed_taker_fees is the total skimmed taker fees for the denom.
@@ -100,25 +119,37 @@ export class TakerFeeSkimAccumulator extends Message<TakerFeeSkimAccumulator> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.TakerFeeSkimAccumulator";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.TakerFeeSkimAccumulator';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "skimmed_taker_fees", kind: "message", T: Coin, repeated: true },
+    { no: 1, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'skimmed_taker_fees', kind: 'message', T: Coin, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TakerFeeSkimAccumulator {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): TakerFeeSkimAccumulator {
     return new TakerFeeSkimAccumulator().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TakerFeeSkimAccumulator {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): TakerFeeSkimAccumulator {
     return new TakerFeeSkimAccumulator().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TakerFeeSkimAccumulator {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): TakerFeeSkimAccumulator {
     return new TakerFeeSkimAccumulator().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TakerFeeSkimAccumulator | PlainMessage<TakerFeeSkimAccumulator> | undefined, b: TakerFeeSkimAccumulator | PlainMessage<TakerFeeSkimAccumulator> | undefined): boolean {
+  static equals(
+    a: TakerFeeSkimAccumulator | PlainMessage<TakerFeeSkimAccumulator> | undefined,
+    b: TakerFeeSkimAccumulator | PlainMessage<TakerFeeSkimAccumulator> | undefined
+  ): boolean {
     return proto3.util.equals(TakerFeeSkimAccumulator, a, b);
   }
 }
@@ -140,7 +171,7 @@ export class AlloyContractTakerFeeShareState extends Message<AlloyContractTakerF
    *
    * @generated from field: string contract_address = 1;
    */
-  contractAddress = "";
+  contractAddress = '';
 
   /**
    * taker_fee_share_agreements is the adjusted taker fee share agreements for
@@ -157,26 +188,43 @@ export class AlloyContractTakerFeeShareState extends Message<AlloyContractTakerF
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.AlloyContractTakerFeeShareState";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.AlloyContractTakerFeeShareState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "contract_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "taker_fee_share_agreements", kind: "message", T: TakerFeeShareAgreement, repeated: true },
+    { no: 1, name: 'contract_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    {
+      no: 2,
+      name: 'taker_fee_share_agreements',
+      kind: 'message',
+      T: TakerFeeShareAgreement,
+      repeated: true,
+    },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AlloyContractTakerFeeShareState {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AlloyContractTakerFeeShareState {
     return new AlloyContractTakerFeeShareState().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AlloyContractTakerFeeShareState {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AlloyContractTakerFeeShareState {
     return new AlloyContractTakerFeeShareState().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AlloyContractTakerFeeShareState {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AlloyContractTakerFeeShareState {
     return new AlloyContractTakerFeeShareState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AlloyContractTakerFeeShareState | PlainMessage<AlloyContractTakerFeeShareState> | undefined, b: AlloyContractTakerFeeShareState | PlainMessage<AlloyContractTakerFeeShareState> | undefined): boolean {
+  static equals(
+    a: AlloyContractTakerFeeShareState | PlainMessage<AlloyContractTakerFeeShareState> | undefined,
+    b: AlloyContractTakerFeeShareState | PlainMessage<AlloyContractTakerFeeShareState> | undefined
+  ): boolean {
     return proto3.util.equals(AlloyContractTakerFeeShareState, a, b);
   }
 }
-

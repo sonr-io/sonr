@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { BalancerToConcentratedPoolLink } from "./shared_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { BalancerToConcentratedPoolLink } from './shared_pb.js';
 
 /**
  * ReplaceMigrationRecordsProposal is a gov Content type for updating the
@@ -20,12 +27,12 @@ export class ReplaceMigrationRecordsProposal extends Message<ReplaceMigrationRec
   /**
    * @generated from field: string title = 1;
    */
-  title = "";
+  title = '';
 
   /**
    * @generated from field: string description = 2;
    */
-  description = "";
+  description = '';
 
   /**
    * @generated from field: repeated osmosis.gamm.v1beta1.BalancerToConcentratedPoolLink records = 3;
@@ -38,26 +45,38 @@ export class ReplaceMigrationRecordsProposal extends Message<ReplaceMigrationRec
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.gamm.v1beta1.ReplaceMigrationRecordsProposal";
+  static readonly typeName = 'osmosis.gamm.v1beta1.ReplaceMigrationRecordsProposal';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "records", kind: "message", T: BalancerToConcentratedPoolLink, repeated: true },
+    { no: 1, name: 'title', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'description', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'records', kind: 'message', T: BalancerToConcentratedPoolLink, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ReplaceMigrationRecordsProposal {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): ReplaceMigrationRecordsProposal {
     return new ReplaceMigrationRecordsProposal().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ReplaceMigrationRecordsProposal {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): ReplaceMigrationRecordsProposal {
     return new ReplaceMigrationRecordsProposal().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ReplaceMigrationRecordsProposal {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ReplaceMigrationRecordsProposal {
     return new ReplaceMigrationRecordsProposal().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ReplaceMigrationRecordsProposal | PlainMessage<ReplaceMigrationRecordsProposal> | undefined, b: ReplaceMigrationRecordsProposal | PlainMessage<ReplaceMigrationRecordsProposal> | undefined): boolean {
+  static equals(
+    a: ReplaceMigrationRecordsProposal | PlainMessage<ReplaceMigrationRecordsProposal> | undefined,
+    b: ReplaceMigrationRecordsProposal | PlainMessage<ReplaceMigrationRecordsProposal> | undefined
+  ): boolean {
     return proto3.util.equals(ReplaceMigrationRecordsProposal, a, b);
   }
 }
@@ -78,12 +97,12 @@ export class UpdateMigrationRecordsProposal extends Message<UpdateMigrationRecor
   /**
    * @generated from field: string title = 1;
    */
-  title = "";
+  title = '';
 
   /**
    * @generated from field: string description = 2;
    */
-  description = "";
+  description = '';
 
   /**
    * @generated from field: repeated osmosis.gamm.v1beta1.BalancerToConcentratedPoolLink records = 3;
@@ -96,26 +115,38 @@ export class UpdateMigrationRecordsProposal extends Message<UpdateMigrationRecor
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.gamm.v1beta1.UpdateMigrationRecordsProposal";
+  static readonly typeName = 'osmosis.gamm.v1beta1.UpdateMigrationRecordsProposal';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "records", kind: "message", T: BalancerToConcentratedPoolLink, repeated: true },
+    { no: 1, name: 'title', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'description', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'records', kind: 'message', T: BalancerToConcentratedPoolLink, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateMigrationRecordsProposal {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): UpdateMigrationRecordsProposal {
     return new UpdateMigrationRecordsProposal().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpdateMigrationRecordsProposal {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): UpdateMigrationRecordsProposal {
     return new UpdateMigrationRecordsProposal().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdateMigrationRecordsProposal {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): UpdateMigrationRecordsProposal {
     return new UpdateMigrationRecordsProposal().fromJsonString(jsonString, options);
   }
 
-  static equals(a: UpdateMigrationRecordsProposal | PlainMessage<UpdateMigrationRecordsProposal> | undefined, b: UpdateMigrationRecordsProposal | PlainMessage<UpdateMigrationRecordsProposal> | undefined): boolean {
+  static equals(
+    a: UpdateMigrationRecordsProposal | PlainMessage<UpdateMigrationRecordsProposal> | undefined,
+    b: UpdateMigrationRecordsProposal | PlainMessage<UpdateMigrationRecordsProposal> | undefined
+  ): boolean {
     return proto3.util.equals(UpdateMigrationRecordsProposal, a, b);
   }
 }
@@ -127,12 +158,12 @@ export class PoolRecordWithCFMMLink extends Message<PoolRecordWithCFMMLink> {
   /**
    * @generated from field: string denom0 = 1;
    */
-  denom0 = "";
+  denom0 = '';
 
   /**
    * @generated from field: string denom1 = 2;
    */
-  denom1 = "";
+  denom1 = '';
 
   /**
    * @generated from field: uint64 tick_spacing = 3;
@@ -142,12 +173,12 @@ export class PoolRecordWithCFMMLink extends Message<PoolRecordWithCFMMLink> {
   /**
    * @generated from field: string exponent_at_price_one = 4;
    */
-  exponentAtPriceOne = "";
+  exponentAtPriceOne = '';
 
   /**
    * @generated from field: string spread_factor = 5;
    */
-  spreadFactor = "";
+  spreadFactor = '';
 
   /**
    * @generated from field: uint64 balancer_pool_id = 6;
@@ -160,29 +191,41 @@ export class PoolRecordWithCFMMLink extends Message<PoolRecordWithCFMMLink> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.gamm.v1beta1.PoolRecordWithCFMMLink";
+  static readonly typeName = 'osmosis.gamm.v1beta1.PoolRecordWithCFMMLink';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "denom0", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "denom1", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "tick_spacing", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 4, name: "exponent_at_price_one", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "spread_factor", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "balancer_pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'denom0', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'denom1', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'tick_spacing', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 4, name: 'exponent_at_price_one', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'spread_factor', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'balancer_pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PoolRecordWithCFMMLink {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): PoolRecordWithCFMMLink {
     return new PoolRecordWithCFMMLink().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PoolRecordWithCFMMLink {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): PoolRecordWithCFMMLink {
     return new PoolRecordWithCFMMLink().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PoolRecordWithCFMMLink {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): PoolRecordWithCFMMLink {
     return new PoolRecordWithCFMMLink().fromJsonString(jsonString, options);
   }
 
-  static equals(a: PoolRecordWithCFMMLink | PlainMessage<PoolRecordWithCFMMLink> | undefined, b: PoolRecordWithCFMMLink | PlainMessage<PoolRecordWithCFMMLink> | undefined): boolean {
+  static equals(
+    a: PoolRecordWithCFMMLink | PlainMessage<PoolRecordWithCFMMLink> | undefined,
+    b: PoolRecordWithCFMMLink | PlainMessage<PoolRecordWithCFMMLink> | undefined
+  ): boolean {
     return proto3.util.equals(PoolRecordWithCFMMLink, a, b);
   }
 }
@@ -197,12 +240,12 @@ export class CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal extends Messa
   /**
    * @generated from field: string title = 1;
    */
-  title = "";
+  title = '';
 
   /**
    * @generated from field: string description = 2;
    */
-  description = "";
+  description = '';
 
   /**
    * @generated from field: repeated osmosis.gamm.v1beta1.PoolRecordWithCFMMLink pool_records_with_cfmm_link = 3;
@@ -215,26 +258,54 @@ export class CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal extends Messa
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.gamm.v1beta1.CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal";
+  static readonly typeName =
+    'osmosis.gamm.v1beta1.CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "pool_records_with_cfmm_link", kind: "message", T: PoolRecordWithCFMMLink, repeated: true },
+    { no: 1, name: 'title', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'description', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    {
+      no: 3,
+      name: 'pool_records_with_cfmm_link',
+      kind: 'message',
+      T: PoolRecordWithCFMMLink,
+      repeated: true,
+    },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal {
     return new CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal {
     return new CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal {
-    return new CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal().fromJsonString(jsonString, options);
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal {
+    return new CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal().fromJsonString(
+      jsonString,
+      options
+    );
   }
 
-  static equals(a: CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal | PlainMessage<CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal> | undefined, b: CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal | PlainMessage<CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal> | undefined): boolean {
+  static equals(
+    a:
+      | CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal
+      | PlainMessage<CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal>
+      | undefined,
+    b:
+      | CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal
+      | PlainMessage<CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal>
+      | undefined
+  ): boolean {
     return proto3.util.equals(CreateConcentratedLiquidityPoolsAndLinktoCFMMProposal, a, b);
   }
 }
@@ -249,12 +320,12 @@ export class SetScalingFactorControllerProposal extends Message<SetScalingFactor
   /**
    * @generated from field: string title = 1;
    */
-  title = "";
+  title = '';
 
   /**
    * @generated from field: string description = 2;
    */
-  description = "";
+  description = '';
 
   /**
    * @generated from field: uint64 pool_id = 3;
@@ -264,7 +335,7 @@ export class SetScalingFactorControllerProposal extends Message<SetScalingFactor
   /**
    * @generated from field: string controller_address = 4;
    */
-  controllerAddress = "";
+  controllerAddress = '';
 
   constructor(data?: PartialMessage<SetScalingFactorControllerProposal>) {
     super();
@@ -272,28 +343,45 @@ export class SetScalingFactorControllerProposal extends Message<SetScalingFactor
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.gamm.v1beta1.SetScalingFactorControllerProposal";
+  static readonly typeName = 'osmosis.gamm.v1beta1.SetScalingFactorControllerProposal';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 4, name: "controller_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'title', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'description', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 4, name: 'controller_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SetScalingFactorControllerProposal {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): SetScalingFactorControllerProposal {
     return new SetScalingFactorControllerProposal().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SetScalingFactorControllerProposal {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): SetScalingFactorControllerProposal {
     return new SetScalingFactorControllerProposal().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SetScalingFactorControllerProposal {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): SetScalingFactorControllerProposal {
     return new SetScalingFactorControllerProposal().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SetScalingFactorControllerProposal | PlainMessage<SetScalingFactorControllerProposal> | undefined, b: SetScalingFactorControllerProposal | PlainMessage<SetScalingFactorControllerProposal> | undefined): boolean {
+  static equals(
+    a:
+      | SetScalingFactorControllerProposal
+      | PlainMessage<SetScalingFactorControllerProposal>
+      | undefined,
+    b:
+      | SetScalingFactorControllerProposal
+      | PlainMessage<SetScalingFactorControllerProposal>
+      | undefined
+  ): boolean {
     return proto3.util.equals(SetScalingFactorControllerProposal, a, b);
   }
 }
-

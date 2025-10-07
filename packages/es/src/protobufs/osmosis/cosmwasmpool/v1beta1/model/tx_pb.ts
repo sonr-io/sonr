@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * ===================== MsgCreateCosmwasmPool
@@ -25,7 +32,7 @@ export class MsgCreateCosmWasmPool extends Message<MsgCreateCosmWasmPool> {
   /**
    * @generated from field: string sender = 3;
    */
-  sender = "";
+  sender = '';
 
   constructor(data?: PartialMessage<MsgCreateCosmWasmPool>) {
     super();
@@ -33,14 +40,17 @@ export class MsgCreateCosmWasmPool extends Message<MsgCreateCosmWasmPool> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.cosmwasmpool.v1beta1.MsgCreateCosmWasmPool";
+  static readonly typeName = 'osmosis.cosmwasmpool.v1beta1.MsgCreateCosmWasmPool';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "code_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "instantiate_msg", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'code_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'instantiate_msg', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgCreateCosmWasmPool {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgCreateCosmWasmPool {
     return new MsgCreateCosmWasmPool().fromBinary(bytes, options);
   }
 
@@ -48,11 +58,17 @@ export class MsgCreateCosmWasmPool extends Message<MsgCreateCosmWasmPool> {
     return new MsgCreateCosmWasmPool().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgCreateCosmWasmPool {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgCreateCosmWasmPool {
     return new MsgCreateCosmWasmPool().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgCreateCosmWasmPool | PlainMessage<MsgCreateCosmWasmPool> | undefined, b: MsgCreateCosmWasmPool | PlainMessage<MsgCreateCosmWasmPool> | undefined): boolean {
+  static equals(
+    a: MsgCreateCosmWasmPool | PlainMessage<MsgCreateCosmWasmPool> | undefined,
+    b: MsgCreateCosmWasmPool | PlainMessage<MsgCreateCosmWasmPool> | undefined
+  ): boolean {
     return proto3.util.equals(MsgCreateCosmWasmPool, a, b);
   }
 }
@@ -74,25 +90,36 @@ export class MsgCreateCosmWasmPoolResponse extends Message<MsgCreateCosmWasmPool
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.cosmwasmpool.v1beta1.MsgCreateCosmWasmPoolResponse";
+  static readonly typeName = 'osmosis.cosmwasmpool.v1beta1.MsgCreateCosmWasmPoolResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgCreateCosmWasmPoolResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgCreateCosmWasmPoolResponse {
     return new MsgCreateCosmWasmPoolResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgCreateCosmWasmPoolResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgCreateCosmWasmPoolResponse {
     return new MsgCreateCosmWasmPoolResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgCreateCosmWasmPoolResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgCreateCosmWasmPoolResponse {
     return new MsgCreateCosmWasmPoolResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgCreateCosmWasmPoolResponse | PlainMessage<MsgCreateCosmWasmPoolResponse> | undefined, b: MsgCreateCosmWasmPoolResponse | PlainMessage<MsgCreateCosmWasmPoolResponse> | undefined): boolean {
+  static equals(
+    a: MsgCreateCosmWasmPoolResponse | PlainMessage<MsgCreateCosmWasmPoolResponse> | undefined,
+    b: MsgCreateCosmWasmPoolResponse | PlainMessage<MsgCreateCosmWasmPoolResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgCreateCosmWasmPoolResponse, a, b);
   }
 }
-

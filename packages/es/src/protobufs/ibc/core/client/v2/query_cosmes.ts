@@ -3,9 +3,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryConfigRequest, QueryConfigResponse, QueryCounterpartyInfoRequest, QueryCounterpartyInfoResponse } from "./query_pb.js";
+import {
+  QueryConfigRequest,
+  QueryConfigResponse,
+  QueryCounterpartyInfoRequest,
+  QueryCounterpartyInfoResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "ibc.core.client.v2.Query";
+const TYPE_NAME = 'ibc.core.client.v2.Query';
 
 /**
  * CounterpartyInfo queries an IBC light counter party info.
@@ -14,7 +19,7 @@ const TYPE_NAME = "ibc.core.client.v2.Query";
  */
 export const QueryCounterpartyInfoService = {
   typeName: TYPE_NAME,
-  method: "CounterpartyInfo",
+  method: 'CounterpartyInfo',
   Request: QueryCounterpartyInfoRequest,
   Response: QueryCounterpartyInfoResponse,
 } as const;
@@ -26,8 +31,7 @@ export const QueryCounterpartyInfoService = {
  */
 export const QueryConfigService = {
   typeName: TYPE_NAME,
-  method: "Config",
+  method: 'Config',
   Request: QueryConfigRequest,
   Response: QueryConfigResponse,
 } as const;
-

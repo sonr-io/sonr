@@ -3,9 +3,42 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryGetAllProtocolRevenueRequest, QueryGetAllProtocolRevenueResponse, QueryGetProtoRevAdminAccountRequest, QueryGetProtoRevAdminAccountResponse, QueryGetProtoRevAllProfitsRequest, QueryGetProtoRevAllProfitsResponse, QueryGetProtoRevAllRouteStatisticsRequest, QueryGetProtoRevAllRouteStatisticsResponse, QueryGetProtoRevBaseDenomsRequest, QueryGetProtoRevBaseDenomsResponse, QueryGetProtoRevDeveloperAccountRequest, QueryGetProtoRevDeveloperAccountResponse, QueryGetProtoRevEnabledRequest, QueryGetProtoRevEnabledResponse, QueryGetProtoRevInfoByPoolTypeRequest, QueryGetProtoRevInfoByPoolTypeResponse, QueryGetProtoRevMaxPoolPointsPerBlockRequest, QueryGetProtoRevMaxPoolPointsPerBlockResponse, QueryGetProtoRevMaxPoolPointsPerTxRequest, QueryGetProtoRevMaxPoolPointsPerTxResponse, QueryGetProtoRevNumberOfTradesRequest, QueryGetProtoRevNumberOfTradesResponse, QueryGetProtoRevPoolRequest, QueryGetProtoRevPoolResponse, QueryGetProtoRevProfitsByDenomRequest, QueryGetProtoRevProfitsByDenomResponse, QueryGetProtoRevStatisticsByRouteRequest, QueryGetProtoRevStatisticsByRouteResponse, QueryGetProtoRevTokenPairArbRoutesRequest, QueryGetProtoRevTokenPairArbRoutesResponse, QueryParamsRequest, QueryParamsResponse } from "./query_pb.js";
+import {
+  QueryGetAllProtocolRevenueRequest,
+  QueryGetAllProtocolRevenueResponse,
+  QueryGetProtoRevAdminAccountRequest,
+  QueryGetProtoRevAdminAccountResponse,
+  QueryGetProtoRevAllProfitsRequest,
+  QueryGetProtoRevAllProfitsResponse,
+  QueryGetProtoRevAllRouteStatisticsRequest,
+  QueryGetProtoRevAllRouteStatisticsResponse,
+  QueryGetProtoRevBaseDenomsRequest,
+  QueryGetProtoRevBaseDenomsResponse,
+  QueryGetProtoRevDeveloperAccountRequest,
+  QueryGetProtoRevDeveloperAccountResponse,
+  QueryGetProtoRevEnabledRequest,
+  QueryGetProtoRevEnabledResponse,
+  QueryGetProtoRevInfoByPoolTypeRequest,
+  QueryGetProtoRevInfoByPoolTypeResponse,
+  QueryGetProtoRevMaxPoolPointsPerBlockRequest,
+  QueryGetProtoRevMaxPoolPointsPerBlockResponse,
+  QueryGetProtoRevMaxPoolPointsPerTxRequest,
+  QueryGetProtoRevMaxPoolPointsPerTxResponse,
+  QueryGetProtoRevNumberOfTradesRequest,
+  QueryGetProtoRevNumberOfTradesResponse,
+  QueryGetProtoRevPoolRequest,
+  QueryGetProtoRevPoolResponse,
+  QueryGetProtoRevProfitsByDenomRequest,
+  QueryGetProtoRevProfitsByDenomResponse,
+  QueryGetProtoRevStatisticsByRouteRequest,
+  QueryGetProtoRevStatisticsByRouteResponse,
+  QueryGetProtoRevTokenPairArbRoutesRequest,
+  QueryGetProtoRevTokenPairArbRoutesResponse,
+  QueryParamsRequest,
+  QueryParamsResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "osmosis.protorev.v1beta1.Query";
+const TYPE_NAME = 'osmosis.protorev.v1beta1.Query';
 
 /**
  * Params queries the parameters of the module.
@@ -14,7 +47,7 @@ const TYPE_NAME = "osmosis.protorev.v1beta1.Query";
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: QueryParamsRequest,
   Response: QueryParamsResponse,
 } as const;
@@ -27,7 +60,7 @@ export const QueryParamsService = {
  */
 export const QueryGetProtoRevNumberOfTradesService = {
   typeName: TYPE_NAME,
-  method: "GetProtoRevNumberOfTrades",
+  method: 'GetProtoRevNumberOfTrades',
   Request: QueryGetProtoRevNumberOfTradesRequest,
   Response: QueryGetProtoRevNumberOfTradesResponse,
 } as const;
@@ -39,7 +72,7 @@ export const QueryGetProtoRevNumberOfTradesService = {
  */
 export const QueryGetProtoRevProfitsByDenomService = {
   typeName: TYPE_NAME,
-  method: "GetProtoRevProfitsByDenom",
+  method: 'GetProtoRevProfitsByDenom',
   Request: QueryGetProtoRevProfitsByDenomRequest,
   Response: QueryGetProtoRevProfitsByDenomResponse,
 } as const;
@@ -51,7 +84,7 @@ export const QueryGetProtoRevProfitsByDenomService = {
  */
 export const QueryGetProtoRevAllProfitsService = {
   typeName: TYPE_NAME,
-  method: "GetProtoRevAllProfits",
+  method: 'GetProtoRevAllProfits',
   Request: QueryGetProtoRevAllProfitsRequest,
   Response: QueryGetProtoRevAllProfitsResponse,
 } as const;
@@ -64,7 +97,7 @@ export const QueryGetProtoRevAllProfitsService = {
  */
 export const QueryGetProtoRevStatisticsByRouteService = {
   typeName: TYPE_NAME,
-  method: "GetProtoRevStatisticsByRoute",
+  method: 'GetProtoRevStatisticsByRoute',
   Request: QueryGetProtoRevStatisticsByRouteRequest,
   Response: QueryGetProtoRevStatisticsByRouteResponse,
 } as const;
@@ -78,7 +111,7 @@ export const QueryGetProtoRevStatisticsByRouteService = {
  */
 export const QueryGetProtoRevAllRouteStatisticsService = {
   typeName: TYPE_NAME,
-  method: "GetProtoRevAllRouteStatistics",
+  method: 'GetProtoRevAllRouteStatistics',
   Request: QueryGetProtoRevAllRouteStatisticsRequest,
   Response: QueryGetProtoRevAllRouteStatisticsResponse,
 } as const;
@@ -91,7 +124,7 @@ export const QueryGetProtoRevAllRouteStatisticsService = {
  */
 export const QueryGetProtoRevTokenPairArbRoutesService = {
   typeName: TYPE_NAME,
-  method: "GetProtoRevTokenPairArbRoutes",
+  method: 'GetProtoRevTokenPairArbRoutes',
   Request: QueryGetProtoRevTokenPairArbRoutesRequest,
   Response: QueryGetProtoRevTokenPairArbRoutesResponse,
 } as const;
@@ -103,7 +136,7 @@ export const QueryGetProtoRevTokenPairArbRoutesService = {
  */
 export const QueryGetProtoRevAdminAccountService = {
   typeName: TYPE_NAME,
-  method: "GetProtoRevAdminAccount",
+  method: 'GetProtoRevAdminAccount',
   Request: QueryGetProtoRevAdminAccountRequest,
   Response: QueryGetProtoRevAdminAccountResponse,
 } as const;
@@ -115,7 +148,7 @@ export const QueryGetProtoRevAdminAccountService = {
  */
 export const QueryGetProtoRevDeveloperAccountService = {
   typeName: TYPE_NAME,
-  method: "GetProtoRevDeveloperAccount",
+  method: 'GetProtoRevDeveloperAccount',
   Request: QueryGetProtoRevDeveloperAccountRequest,
   Response: QueryGetProtoRevDeveloperAccountResponse,
 } as const;
@@ -128,7 +161,7 @@ export const QueryGetProtoRevDeveloperAccountService = {
  */
 export const QueryGetProtoRevInfoByPoolTypeService = {
   typeName: TYPE_NAME,
-  method: "GetProtoRevInfoByPoolType",
+  method: 'GetProtoRevInfoByPoolType',
   Request: QueryGetProtoRevInfoByPoolTypeRequest,
   Response: QueryGetProtoRevInfoByPoolTypeResponse,
 } as const;
@@ -141,7 +174,7 @@ export const QueryGetProtoRevInfoByPoolTypeService = {
  */
 export const QueryGetProtoRevMaxPoolPointsPerTxService = {
   typeName: TYPE_NAME,
-  method: "GetProtoRevMaxPoolPointsPerTx",
+  method: 'GetProtoRevMaxPoolPointsPerTx',
   Request: QueryGetProtoRevMaxPoolPointsPerTxRequest,
   Response: QueryGetProtoRevMaxPoolPointsPerTxResponse,
 } as const;
@@ -154,7 +187,7 @@ export const QueryGetProtoRevMaxPoolPointsPerTxService = {
  */
 export const QueryGetProtoRevMaxPoolPointsPerBlockService = {
   typeName: TYPE_NAME,
-  method: "GetProtoRevMaxPoolPointsPerBlock",
+  method: 'GetProtoRevMaxPoolPointsPerBlock',
   Request: QueryGetProtoRevMaxPoolPointsPerBlockRequest,
   Response: QueryGetProtoRevMaxPoolPointsPerBlockResponse,
 } as const;
@@ -167,7 +200,7 @@ export const QueryGetProtoRevMaxPoolPointsPerBlockService = {
  */
 export const QueryGetProtoRevBaseDenomsService = {
   typeName: TYPE_NAME,
-  method: "GetProtoRevBaseDenoms",
+  method: 'GetProtoRevBaseDenoms',
   Request: QueryGetProtoRevBaseDenomsRequest,
   Response: QueryGetProtoRevBaseDenomsResponse,
 } as const;
@@ -179,7 +212,7 @@ export const QueryGetProtoRevBaseDenomsService = {
  */
 export const QueryGetProtoRevEnabledService = {
   typeName: TYPE_NAME,
-  method: "GetProtoRevEnabled",
+  method: 'GetProtoRevEnabled',
   Request: QueryGetProtoRevEnabledRequest,
   Response: QueryGetProtoRevEnabledResponse,
 } as const;
@@ -192,7 +225,7 @@ export const QueryGetProtoRevEnabledService = {
  */
 export const QueryGetProtoRevPoolService = {
   typeName: TYPE_NAME,
-  method: "GetProtoRevPool",
+  method: 'GetProtoRevPool',
   Request: QueryGetProtoRevPoolRequest,
   Response: QueryGetProtoRevPoolResponse,
 } as const;
@@ -205,8 +238,7 @@ export const QueryGetProtoRevPoolService = {
  */
 export const QueryGetAllProtocolRevenueService = {
   typeName: TYPE_NAME,
-  method: "GetAllProtocolRevenue",
+  method: 'GetAllProtocolRevenue',
   Request: QueryGetAllProtocolRevenueRequest,
   Response: QueryGetAllProtocolRevenueResponse,
 } as const;
-

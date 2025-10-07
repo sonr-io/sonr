@@ -3,9 +3,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgModuleQuerySafe, MsgModuleQuerySafeResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx_pb.js";
+import {
+  MsgModuleQuerySafe,
+  MsgModuleQuerySafeResponse,
+  MsgUpdateParams,
+  MsgUpdateParamsResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "ibc.applications.interchain_accounts.host.v1.Msg";
+const TYPE_NAME = 'ibc.applications.interchain_accounts.host.v1.Msg';
 
 /**
  * UpdateParams defines a rpc handler for MsgUpdateParams.
@@ -14,7 +19,7 @@ const TYPE_NAME = "ibc.applications.interchain_accounts.host.v1.Msg";
  */
 export const MsgUpdateParamsService = {
   typeName: TYPE_NAME,
-  method: "UpdateParams",
+  method: 'UpdateParams',
   Request: MsgUpdateParams,
   Response: MsgUpdateParamsResponse,
 } as const;
@@ -26,8 +31,7 @@ export const MsgUpdateParamsService = {
  */
 export const MsgModuleQuerySafeService = {
   typeName: TYPE_NAME,
-  method: "ModuleQuerySafe",
+  method: 'ModuleQuerySafe',
   Request: MsgModuleQuerySafe,
   Response: MsgModuleQuerySafeResponse,
 } as const;
-

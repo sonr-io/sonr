@@ -3,9 +3,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ProcessBlockReply, ProcessBlockRequest } from "./ingest_pb.js";
+import { ProcessBlockReply, ProcessBlockRequest } from './ingest_pb.js';
 
-const TYPE_NAME = "osmosis.ingest.v1beta1.SQSIngester";
+const TYPE_NAME = 'osmosis.ingest.v1beta1.SQSIngester';
 
 /**
  * ProcessBlock processes a block from the Osmosis node.
@@ -14,8 +14,7 @@ const TYPE_NAME = "osmosis.ingest.v1beta1.SQSIngester";
  */
 export const SQSIngesterProcessBlockService = {
   typeName: TYPE_NAME,
-  method: "ProcessBlock",
+  method: 'ProcessBlock',
   Request: ProcessBlockRequest,
   Response: ProcessBlockReply,
 } as const;
-

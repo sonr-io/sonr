@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64, Timestamp } from '@bufbuild/protobuf';
 
 /**
  * A TWAP record should be indexed in state by pool_id, (asset pair), timestamp
@@ -28,14 +35,14 @@ export class TwapRecord extends Message<TwapRecord> {
    *
    * @generated from field: string asset0_denom = 2;
    */
-  asset0Denom = "";
+  asset0Denom = '';
 
   /**
    * Lexicographically larger denom of the pair
    *
    * @generated from field: string asset1_denom = 3;
    */
-  asset1Denom = "";
+  asset1Denom = '';
 
   /**
    * height this record corresponds to, for debugging purposes
@@ -58,27 +65,27 @@ export class TwapRecord extends Message<TwapRecord> {
    *
    * @generated from field: string p0_last_spot_price = 6;
    */
-  p0LastSpotPrice = "";
+  p0LastSpotPrice = '';
 
   /**
    * @generated from field: string p1_last_spot_price = 7;
    */
-  p1LastSpotPrice = "";
+  p1LastSpotPrice = '';
 
   /**
    * @generated from field: string p0_arithmetic_twap_accumulator = 8;
    */
-  p0ArithmeticTwapAccumulator = "";
+  p0ArithmeticTwapAccumulator = '';
 
   /**
    * @generated from field: string p1_arithmetic_twap_accumulator = 9;
    */
-  p1ArithmeticTwapAccumulator = "";
+  p1ArithmeticTwapAccumulator = '';
 
   /**
    * @generated from field: string geometric_twap_accumulator = 10;
    */
-  geometricTwapAccumulator = "";
+  geometricTwapAccumulator = '';
 
   /**
    * This field contains the time in which the last spot price error occurred.
@@ -95,19 +102,19 @@ export class TwapRecord extends Message<TwapRecord> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.twap.v1beta1.TwapRecord";
+  static readonly typeName = 'osmosis.twap.v1beta1.TwapRecord';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "asset0_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "asset1_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "height", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 5, name: "time", kind: "message", T: Timestamp },
-    { no: 6, name: "p0_last_spot_price", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "p1_last_spot_price", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 8, name: "p0_arithmetic_twap_accumulator", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 9, name: "p1_arithmetic_twap_accumulator", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 10, name: "geometric_twap_accumulator", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 11, name: "last_error_time", kind: "message", T: Timestamp },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'asset0_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'asset1_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'height', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 5, name: 'time', kind: 'message', T: Timestamp },
+    { no: 6, name: 'p0_last_spot_price', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: 'p1_last_spot_price', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: 'p0_arithmetic_twap_accumulator', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: 'p1_arithmetic_twap_accumulator', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 10, name: 'geometric_twap_accumulator', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 11, name: 'last_error_time', kind: 'message', T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TwapRecord {
@@ -122,7 +129,10 @@ export class TwapRecord extends Message<TwapRecord> {
     return new TwapRecord().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TwapRecord | PlainMessage<TwapRecord> | undefined, b: TwapRecord | PlainMessage<TwapRecord> | undefined): boolean {
+  static equals(
+    a: TwapRecord | PlainMessage<TwapRecord> | undefined,
+    b: TwapRecord | PlainMessage<TwapRecord> | undefined
+  ): boolean {
     return proto3.util.equals(TwapRecord, a, b);
   }
 }
@@ -176,12 +186,12 @@ export class PruningState extends Message<PruningState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.twap.v1beta1.PruningState";
+  static readonly typeName = 'osmosis.twap.v1beta1.PruningState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "is_pruning", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 2, name: "last_kept_time", kind: "message", T: Timestamp },
-    { no: 3, name: "last_key_seen", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 4, name: "last_seen_pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'is_pruning', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: 'last_kept_time', kind: 'message', T: Timestamp },
+    { no: 3, name: 'last_key_seen', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 4, name: 'last_seen_pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PruningState {
@@ -196,8 +206,10 @@ export class PruningState extends Message<PruningState> {
     return new PruningState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: PruningState | PlainMessage<PruningState> | undefined, b: PruningState | PlainMessage<PruningState> | undefined): boolean {
+  static equals(
+    a: PruningState | PlainMessage<PruningState> | undefined,
+    b: PruningState | PlainMessage<PruningState> | undefined
+  ): boolean {
     return proto3.util.equals(PruningState, a, b);
   }
 }
-

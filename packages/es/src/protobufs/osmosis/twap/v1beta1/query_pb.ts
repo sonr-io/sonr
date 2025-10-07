@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
-import { Params } from "./genesis_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64, Timestamp } from '@bufbuild/protobuf';
+import { Params } from './genesis_pb.js';
 
 /**
  * @generated from message osmosis.twap.v1beta1.ArithmeticTwapRequest
@@ -19,12 +26,12 @@ export class ArithmeticTwapRequest extends Message<ArithmeticTwapRequest> {
   /**
    * @generated from field: string base_asset = 2;
    */
-  baseAsset = "";
+  baseAsset = '';
 
   /**
    * @generated from field: string quote_asset = 3;
    */
-  quoteAsset = "";
+  quoteAsset = '';
 
   /**
    * @generated from field: google.protobuf.Timestamp start_time = 4;
@@ -42,16 +49,19 @@ export class ArithmeticTwapRequest extends Message<ArithmeticTwapRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.twap.v1beta1.ArithmeticTwapRequest";
+  static readonly typeName = 'osmosis.twap.v1beta1.ArithmeticTwapRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "base_asset", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "quote_asset", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "start_time", kind: "message", T: Timestamp },
-    { no: 5, name: "end_time", kind: "message", T: Timestamp },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'base_asset', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'quote_asset', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'start_time', kind: 'message', T: Timestamp },
+    { no: 5, name: 'end_time', kind: 'message', T: Timestamp },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ArithmeticTwapRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): ArithmeticTwapRequest {
     return new ArithmeticTwapRequest().fromBinary(bytes, options);
   }
 
@@ -59,11 +69,17 @@ export class ArithmeticTwapRequest extends Message<ArithmeticTwapRequest> {
     return new ArithmeticTwapRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ArithmeticTwapRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ArithmeticTwapRequest {
     return new ArithmeticTwapRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ArithmeticTwapRequest | PlainMessage<ArithmeticTwapRequest> | undefined, b: ArithmeticTwapRequest | PlainMessage<ArithmeticTwapRequest> | undefined): boolean {
+  static equals(
+    a: ArithmeticTwapRequest | PlainMessage<ArithmeticTwapRequest> | undefined,
+    b: ArithmeticTwapRequest | PlainMessage<ArithmeticTwapRequest> | undefined
+  ): boolean {
     return proto3.util.equals(ArithmeticTwapRequest, a, b);
   }
 }
@@ -75,7 +91,7 @@ export class ArithmeticTwapResponse extends Message<ArithmeticTwapResponse> {
   /**
    * @generated from field: string arithmetic_twap = 1;
    */
-  arithmeticTwap = "";
+  arithmeticTwap = '';
 
   constructor(data?: PartialMessage<ArithmeticTwapResponse>) {
     super();
@@ -83,24 +99,36 @@ export class ArithmeticTwapResponse extends Message<ArithmeticTwapResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.twap.v1beta1.ArithmeticTwapResponse";
+  static readonly typeName = 'osmosis.twap.v1beta1.ArithmeticTwapResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "arithmetic_twap", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'arithmetic_twap', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ArithmeticTwapResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): ArithmeticTwapResponse {
     return new ArithmeticTwapResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ArithmeticTwapResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): ArithmeticTwapResponse {
     return new ArithmeticTwapResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ArithmeticTwapResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ArithmeticTwapResponse {
     return new ArithmeticTwapResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ArithmeticTwapResponse | PlainMessage<ArithmeticTwapResponse> | undefined, b: ArithmeticTwapResponse | PlainMessage<ArithmeticTwapResponse> | undefined): boolean {
+  static equals(
+    a: ArithmeticTwapResponse | PlainMessage<ArithmeticTwapResponse> | undefined,
+    b: ArithmeticTwapResponse | PlainMessage<ArithmeticTwapResponse> | undefined
+  ): boolean {
     return proto3.util.equals(ArithmeticTwapResponse, a, b);
   }
 }
@@ -117,12 +145,12 @@ export class ArithmeticTwapToNowRequest extends Message<ArithmeticTwapToNowReque
   /**
    * @generated from field: string base_asset = 2;
    */
-  baseAsset = "";
+  baseAsset = '';
 
   /**
    * @generated from field: string quote_asset = 3;
    */
-  quoteAsset = "";
+  quoteAsset = '';
 
   /**
    * @generated from field: google.protobuf.Timestamp start_time = 4;
@@ -135,27 +163,39 @@ export class ArithmeticTwapToNowRequest extends Message<ArithmeticTwapToNowReque
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.twap.v1beta1.ArithmeticTwapToNowRequest";
+  static readonly typeName = 'osmosis.twap.v1beta1.ArithmeticTwapToNowRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "base_asset", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "quote_asset", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "start_time", kind: "message", T: Timestamp },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'base_asset', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'quote_asset', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'start_time', kind: 'message', T: Timestamp },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ArithmeticTwapToNowRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): ArithmeticTwapToNowRequest {
     return new ArithmeticTwapToNowRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ArithmeticTwapToNowRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): ArithmeticTwapToNowRequest {
     return new ArithmeticTwapToNowRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ArithmeticTwapToNowRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ArithmeticTwapToNowRequest {
     return new ArithmeticTwapToNowRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ArithmeticTwapToNowRequest | PlainMessage<ArithmeticTwapToNowRequest> | undefined, b: ArithmeticTwapToNowRequest | PlainMessage<ArithmeticTwapToNowRequest> | undefined): boolean {
+  static equals(
+    a: ArithmeticTwapToNowRequest | PlainMessage<ArithmeticTwapToNowRequest> | undefined,
+    b: ArithmeticTwapToNowRequest | PlainMessage<ArithmeticTwapToNowRequest> | undefined
+  ): boolean {
     return proto3.util.equals(ArithmeticTwapToNowRequest, a, b);
   }
 }
@@ -167,7 +207,7 @@ export class ArithmeticTwapToNowResponse extends Message<ArithmeticTwapToNowResp
   /**
    * @generated from field: string arithmetic_twap = 1;
    */
-  arithmeticTwap = "";
+  arithmeticTwap = '';
 
   constructor(data?: PartialMessage<ArithmeticTwapToNowResponse>) {
     super();
@@ -175,24 +215,36 @@ export class ArithmeticTwapToNowResponse extends Message<ArithmeticTwapToNowResp
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.twap.v1beta1.ArithmeticTwapToNowResponse";
+  static readonly typeName = 'osmosis.twap.v1beta1.ArithmeticTwapToNowResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "arithmetic_twap", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'arithmetic_twap', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ArithmeticTwapToNowResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): ArithmeticTwapToNowResponse {
     return new ArithmeticTwapToNowResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ArithmeticTwapToNowResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): ArithmeticTwapToNowResponse {
     return new ArithmeticTwapToNowResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ArithmeticTwapToNowResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ArithmeticTwapToNowResponse {
     return new ArithmeticTwapToNowResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ArithmeticTwapToNowResponse | PlainMessage<ArithmeticTwapToNowResponse> | undefined, b: ArithmeticTwapToNowResponse | PlainMessage<ArithmeticTwapToNowResponse> | undefined): boolean {
+  static equals(
+    a: ArithmeticTwapToNowResponse | PlainMessage<ArithmeticTwapToNowResponse> | undefined,
+    b: ArithmeticTwapToNowResponse | PlainMessage<ArithmeticTwapToNowResponse> | undefined
+  ): boolean {
     return proto3.util.equals(ArithmeticTwapToNowResponse, a, b);
   }
 }
@@ -209,12 +261,12 @@ export class GeometricTwapRequest extends Message<GeometricTwapRequest> {
   /**
    * @generated from field: string base_asset = 2;
    */
-  baseAsset = "";
+  baseAsset = '';
 
   /**
    * @generated from field: string quote_asset = 3;
    */
-  quoteAsset = "";
+  quoteAsset = '';
 
   /**
    * @generated from field: google.protobuf.Timestamp start_time = 4;
@@ -232,13 +284,13 @@ export class GeometricTwapRequest extends Message<GeometricTwapRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.twap.v1beta1.GeometricTwapRequest";
+  static readonly typeName = 'osmosis.twap.v1beta1.GeometricTwapRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "base_asset", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "quote_asset", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "start_time", kind: "message", T: Timestamp },
-    { no: 5, name: "end_time", kind: "message", T: Timestamp },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'base_asset', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'quote_asset', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'start_time', kind: 'message', T: Timestamp },
+    { no: 5, name: 'end_time', kind: 'message', T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GeometricTwapRequest {
@@ -249,11 +301,17 @@ export class GeometricTwapRequest extends Message<GeometricTwapRequest> {
     return new GeometricTwapRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GeometricTwapRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): GeometricTwapRequest {
     return new GeometricTwapRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GeometricTwapRequest | PlainMessage<GeometricTwapRequest> | undefined, b: GeometricTwapRequest | PlainMessage<GeometricTwapRequest> | undefined): boolean {
+  static equals(
+    a: GeometricTwapRequest | PlainMessage<GeometricTwapRequest> | undefined,
+    b: GeometricTwapRequest | PlainMessage<GeometricTwapRequest> | undefined
+  ): boolean {
     return proto3.util.equals(GeometricTwapRequest, a, b);
   }
 }
@@ -265,7 +323,7 @@ export class GeometricTwapResponse extends Message<GeometricTwapResponse> {
   /**
    * @generated from field: string geometric_twap = 1;
    */
-  geometricTwap = "";
+  geometricTwap = '';
 
   constructor(data?: PartialMessage<GeometricTwapResponse>) {
     super();
@@ -273,12 +331,15 @@ export class GeometricTwapResponse extends Message<GeometricTwapResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.twap.v1beta1.GeometricTwapResponse";
+  static readonly typeName = 'osmosis.twap.v1beta1.GeometricTwapResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "geometric_twap", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'geometric_twap', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GeometricTwapResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): GeometricTwapResponse {
     return new GeometricTwapResponse().fromBinary(bytes, options);
   }
 
@@ -286,11 +347,17 @@ export class GeometricTwapResponse extends Message<GeometricTwapResponse> {
     return new GeometricTwapResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GeometricTwapResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): GeometricTwapResponse {
     return new GeometricTwapResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GeometricTwapResponse | PlainMessage<GeometricTwapResponse> | undefined, b: GeometricTwapResponse | PlainMessage<GeometricTwapResponse> | undefined): boolean {
+  static equals(
+    a: GeometricTwapResponse | PlainMessage<GeometricTwapResponse> | undefined,
+    b: GeometricTwapResponse | PlainMessage<GeometricTwapResponse> | undefined
+  ): boolean {
     return proto3.util.equals(GeometricTwapResponse, a, b);
   }
 }
@@ -307,12 +374,12 @@ export class GeometricTwapToNowRequest extends Message<GeometricTwapToNowRequest
   /**
    * @generated from field: string base_asset = 2;
    */
-  baseAsset = "";
+  baseAsset = '';
 
   /**
    * @generated from field: string quote_asset = 3;
    */
-  quoteAsset = "";
+  quoteAsset = '';
 
   /**
    * @generated from field: google.protobuf.Timestamp start_time = 4;
@@ -325,27 +392,39 @@ export class GeometricTwapToNowRequest extends Message<GeometricTwapToNowRequest
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.twap.v1beta1.GeometricTwapToNowRequest";
+  static readonly typeName = 'osmosis.twap.v1beta1.GeometricTwapToNowRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "base_asset", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "quote_asset", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "start_time", kind: "message", T: Timestamp },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'base_asset', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'quote_asset', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'start_time', kind: 'message', T: Timestamp },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GeometricTwapToNowRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): GeometricTwapToNowRequest {
     return new GeometricTwapToNowRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GeometricTwapToNowRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): GeometricTwapToNowRequest {
     return new GeometricTwapToNowRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GeometricTwapToNowRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): GeometricTwapToNowRequest {
     return new GeometricTwapToNowRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GeometricTwapToNowRequest | PlainMessage<GeometricTwapToNowRequest> | undefined, b: GeometricTwapToNowRequest | PlainMessage<GeometricTwapToNowRequest> | undefined): boolean {
+  static equals(
+    a: GeometricTwapToNowRequest | PlainMessage<GeometricTwapToNowRequest> | undefined,
+    b: GeometricTwapToNowRequest | PlainMessage<GeometricTwapToNowRequest> | undefined
+  ): boolean {
     return proto3.util.equals(GeometricTwapToNowRequest, a, b);
   }
 }
@@ -357,7 +436,7 @@ export class GeometricTwapToNowResponse extends Message<GeometricTwapToNowRespon
   /**
    * @generated from field: string geometric_twap = 1;
    */
-  geometricTwap = "";
+  geometricTwap = '';
 
   constructor(data?: PartialMessage<GeometricTwapToNowResponse>) {
     super();
@@ -365,24 +444,36 @@ export class GeometricTwapToNowResponse extends Message<GeometricTwapToNowRespon
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.twap.v1beta1.GeometricTwapToNowResponse";
+  static readonly typeName = 'osmosis.twap.v1beta1.GeometricTwapToNowResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "geometric_twap", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'geometric_twap', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GeometricTwapToNowResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): GeometricTwapToNowResponse {
     return new GeometricTwapToNowResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GeometricTwapToNowResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): GeometricTwapToNowResponse {
     return new GeometricTwapToNowResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GeometricTwapToNowResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): GeometricTwapToNowResponse {
     return new GeometricTwapToNowResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GeometricTwapToNowResponse | PlainMessage<GeometricTwapToNowResponse> | undefined, b: GeometricTwapToNowResponse | PlainMessage<GeometricTwapToNowResponse> | undefined): boolean {
+  static equals(
+    a: GeometricTwapToNowResponse | PlainMessage<GeometricTwapToNowResponse> | undefined,
+    b: GeometricTwapToNowResponse | PlainMessage<GeometricTwapToNowResponse> | undefined
+  ): boolean {
     return proto3.util.equals(GeometricTwapToNowResponse, a, b);
   }
 }
@@ -397,9 +488,8 @@ export class ParamsRequest extends Message<ParamsRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.twap.v1beta1.ParamsRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.twap.v1beta1.ParamsRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ParamsRequest {
     return new ParamsRequest().fromBinary(bytes, options);
@@ -413,7 +503,10 @@ export class ParamsRequest extends Message<ParamsRequest> {
     return new ParamsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ParamsRequest | PlainMessage<ParamsRequest> | undefined, b: ParamsRequest | PlainMessage<ParamsRequest> | undefined): boolean {
+  static equals(
+    a: ParamsRequest | PlainMessage<ParamsRequest> | undefined,
+    b: ParamsRequest | PlainMessage<ParamsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(ParamsRequest, a, b);
   }
 }
@@ -433,9 +526,9 @@ export class ParamsResponse extends Message<ParamsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.twap.v1beta1.ParamsResponse";
+  static readonly typeName = 'osmosis.twap.v1beta1.ParamsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "params", kind: "message", T: Params },
+    { no: 1, name: 'params', kind: 'message', T: Params },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ParamsResponse {
@@ -450,8 +543,10 @@ export class ParamsResponse extends Message<ParamsResponse> {
     return new ParamsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ParamsResponse | PlainMessage<ParamsResponse> | undefined, b: ParamsResponse | PlainMessage<ParamsResponse> | undefined): boolean {
+  static equals(
+    a: ParamsResponse | PlainMessage<ParamsResponse> | undefined,
+    b: ParamsResponse | PlainMessage<ParamsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(ParamsResponse, a, b);
   }
 }
-

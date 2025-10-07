@@ -3,9 +3,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgUpdateParams, MsgUpdateParamsResponse } from "./tx_pb.js";
+import { MsgUpdateParams, MsgUpdateParamsResponse } from './tx_pb.js';
 
-const TYPE_NAME = "ethermint.feemarket.v1.Msg";
+const TYPE_NAME = 'ethermint.feemarket.v1.Msg';
 
 /**
  * UpdateParams defined a governance operation for updating the x/feemarket module parameters.
@@ -15,8 +15,7 @@ const TYPE_NAME = "ethermint.feemarket.v1.Msg";
  */
 export const MsgUpdateParamsService = {
   typeName: TYPE_NAME,
-  method: "UpdateParams",
+  method: 'UpdateParams',
   Request: MsgUpdateParams,
   Response: MsgUpdateParamsResponse,
 } as const;
-

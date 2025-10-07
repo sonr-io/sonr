@@ -3,9 +3,20 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgConnectionOpenAck, MsgConnectionOpenAckResponse, MsgConnectionOpenConfirm, MsgConnectionOpenConfirmResponse, MsgConnectionOpenInit, MsgConnectionOpenInitResponse, MsgConnectionOpenTry, MsgConnectionOpenTryResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx_pb.js";
+import {
+  MsgConnectionOpenAck,
+  MsgConnectionOpenAckResponse,
+  MsgConnectionOpenConfirm,
+  MsgConnectionOpenConfirmResponse,
+  MsgConnectionOpenInit,
+  MsgConnectionOpenInitResponse,
+  MsgConnectionOpenTry,
+  MsgConnectionOpenTryResponse,
+  MsgUpdateParams,
+  MsgUpdateParamsResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "ibc.core.connection.v1.Msg";
+const TYPE_NAME = 'ibc.core.connection.v1.Msg';
 
 /**
  * ConnectionOpenInit defines a rpc handler method for MsgConnectionOpenInit.
@@ -14,7 +25,7 @@ const TYPE_NAME = "ibc.core.connection.v1.Msg";
  */
 export const MsgConnectionOpenInitService = {
   typeName: TYPE_NAME,
-  method: "ConnectionOpenInit",
+  method: 'ConnectionOpenInit',
   Request: MsgConnectionOpenInit,
   Response: MsgConnectionOpenInitResponse,
 } as const;
@@ -26,7 +37,7 @@ export const MsgConnectionOpenInitService = {
  */
 export const MsgConnectionOpenTryService = {
   typeName: TYPE_NAME,
-  method: "ConnectionOpenTry",
+  method: 'ConnectionOpenTry',
   Request: MsgConnectionOpenTry,
   Response: MsgConnectionOpenTryResponse,
 } as const;
@@ -38,7 +49,7 @@ export const MsgConnectionOpenTryService = {
  */
 export const MsgConnectionOpenAckService = {
   typeName: TYPE_NAME,
-  method: "ConnectionOpenAck",
+  method: 'ConnectionOpenAck',
   Request: MsgConnectionOpenAck,
   Response: MsgConnectionOpenAckResponse,
 } as const;
@@ -51,7 +62,7 @@ export const MsgConnectionOpenAckService = {
  */
 export const MsgConnectionOpenConfirmService = {
   typeName: TYPE_NAME,
-  method: "ConnectionOpenConfirm",
+  method: 'ConnectionOpenConfirm',
   Request: MsgConnectionOpenConfirm,
   Response: MsgConnectionOpenConfirmResponse,
 } as const;
@@ -64,8 +75,7 @@ export const MsgConnectionOpenConfirmService = {
  */
 export const MsgUpdateConnectionParamsService = {
   typeName: TYPE_NAME,
-  method: "UpdateConnectionParams",
+  method: 'UpdateConnectionParams',
   Request: MsgUpdateParams,
   Response: MsgUpdateParamsResponse,
 } as const;
-

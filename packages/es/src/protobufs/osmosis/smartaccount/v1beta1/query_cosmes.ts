@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetAuthenticatorRequest, GetAuthenticatorResponse, GetAuthenticatorsRequest, GetAuthenticatorsResponse, QueryParamsRequest, QueryParamsResponse } from "./query_pb.js";
+import {
+  GetAuthenticatorRequest,
+  GetAuthenticatorResponse,
+  GetAuthenticatorsRequest,
+  GetAuthenticatorsResponse,
+  QueryParamsRequest,
+  QueryParamsResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "osmosis.smartaccount.v1beta1.Query";
+const TYPE_NAME = 'osmosis.smartaccount.v1beta1.Query';
 
 /**
  * Parameters queries the parameters of the module.
@@ -14,7 +21,7 @@ const TYPE_NAME = "osmosis.smartaccount.v1beta1.Query";
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: QueryParamsRequest,
   Response: QueryParamsResponse,
 } as const;
@@ -24,7 +31,7 @@ export const QueryParamsService = {
  */
 export const QueryGetAuthenticatorService = {
   typeName: TYPE_NAME,
-  method: "GetAuthenticator",
+  method: 'GetAuthenticator',
   Request: GetAuthenticatorRequest,
   Response: GetAuthenticatorResponse,
 } as const;
@@ -34,8 +41,7 @@ export const QueryGetAuthenticatorService = {
  */
 export const QueryGetAuthenticatorsService = {
   typeName: TYPE_NAME,
-  method: "GetAuthenticators",
+  method: 'GetAuthenticators',
   Request: GetAuthenticatorsRequest,
   Response: GetAuthenticatorsResponse,
 } as const;
-

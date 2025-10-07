@@ -3,10 +3,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { ValidatorPreference } from "./state_pb.js";
-import { Coin } from "../../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { ValidatorPreference } from './state_pb.js';
+import { Coin } from '../../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * MsgCreateValidatorSetPreference is a list that holds validator-set.
@@ -19,7 +26,7 @@ export class MsgSetValidatorSetPreference extends Message<MsgSetValidatorSetPref
    *
    * @generated from field: string delegator = 1;
    */
-  delegator = "";
+  delegator = '';
 
   /**
    * list of {valAddr, weight} to delegate to
@@ -34,25 +41,37 @@ export class MsgSetValidatorSetPreference extends Message<MsgSetValidatorSetPref
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.valsetpref.v1beta1.MsgSetValidatorSetPreference";
+  static readonly typeName = 'osmosis.valsetpref.v1beta1.MsgSetValidatorSetPreference';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "delegator", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "preferences", kind: "message", T: ValidatorPreference, repeated: true },
+    { no: 1, name: 'delegator', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'preferences', kind: 'message', T: ValidatorPreference, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetValidatorSetPreference {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetValidatorSetPreference {
     return new MsgSetValidatorSetPreference().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetValidatorSetPreference {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetValidatorSetPreference {
     return new MsgSetValidatorSetPreference().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetValidatorSetPreference {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetValidatorSetPreference {
     return new MsgSetValidatorSetPreference().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetValidatorSetPreference | PlainMessage<MsgSetValidatorSetPreference> | undefined, b: MsgSetValidatorSetPreference | PlainMessage<MsgSetValidatorSetPreference> | undefined): boolean {
+  static equals(
+    a: MsgSetValidatorSetPreference | PlainMessage<MsgSetValidatorSetPreference> | undefined,
+    b: MsgSetValidatorSetPreference | PlainMessage<MsgSetValidatorSetPreference> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetValidatorSetPreference, a, b);
   }
 }
@@ -67,23 +86,40 @@ export class MsgSetValidatorSetPreferenceResponse extends Message<MsgSetValidato
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.valsetpref.v1beta1.MsgSetValidatorSetPreferenceResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.valsetpref.v1beta1.MsgSetValidatorSetPreferenceResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetValidatorSetPreferenceResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetValidatorSetPreferenceResponse {
     return new MsgSetValidatorSetPreferenceResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetValidatorSetPreferenceResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetValidatorSetPreferenceResponse {
     return new MsgSetValidatorSetPreferenceResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetValidatorSetPreferenceResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetValidatorSetPreferenceResponse {
     return new MsgSetValidatorSetPreferenceResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetValidatorSetPreferenceResponse | PlainMessage<MsgSetValidatorSetPreferenceResponse> | undefined, b: MsgSetValidatorSetPreferenceResponse | PlainMessage<MsgSetValidatorSetPreferenceResponse> | undefined): boolean {
+  static equals(
+    a:
+      | MsgSetValidatorSetPreferenceResponse
+      | PlainMessage<MsgSetValidatorSetPreferenceResponse>
+      | undefined,
+    b:
+      | MsgSetValidatorSetPreferenceResponse
+      | PlainMessage<MsgSetValidatorSetPreferenceResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetValidatorSetPreferenceResponse, a, b);
   }
 }
@@ -100,7 +136,7 @@ export class MsgDelegateToValidatorSet extends Message<MsgDelegateToValidatorSet
    *
    * @generated from field: string delegator = 1;
    */
-  delegator = "";
+  delegator = '';
 
   /**
    * the amount of tokens the user is trying to delegate.
@@ -118,25 +154,37 @@ export class MsgDelegateToValidatorSet extends Message<MsgDelegateToValidatorSet
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.valsetpref.v1beta1.MsgDelegateToValidatorSet";
+  static readonly typeName = 'osmosis.valsetpref.v1beta1.MsgDelegateToValidatorSet';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "delegator", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "coin", kind: "message", T: Coin },
+    { no: 1, name: 'delegator', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'coin', kind: 'message', T: Coin },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgDelegateToValidatorSet {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgDelegateToValidatorSet {
     return new MsgDelegateToValidatorSet().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgDelegateToValidatorSet {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgDelegateToValidatorSet {
     return new MsgDelegateToValidatorSet().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgDelegateToValidatorSet {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgDelegateToValidatorSet {
     return new MsgDelegateToValidatorSet().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgDelegateToValidatorSet | PlainMessage<MsgDelegateToValidatorSet> | undefined, b: MsgDelegateToValidatorSet | PlainMessage<MsgDelegateToValidatorSet> | undefined): boolean {
+  static equals(
+    a: MsgDelegateToValidatorSet | PlainMessage<MsgDelegateToValidatorSet> | undefined,
+    b: MsgDelegateToValidatorSet | PlainMessage<MsgDelegateToValidatorSet> | undefined
+  ): boolean {
     return proto3.util.equals(MsgDelegateToValidatorSet, a, b);
   }
 }
@@ -151,23 +199,40 @@ export class MsgDelegateToValidatorSetResponse extends Message<MsgDelegateToVali
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.valsetpref.v1beta1.MsgDelegateToValidatorSetResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.valsetpref.v1beta1.MsgDelegateToValidatorSetResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgDelegateToValidatorSetResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgDelegateToValidatorSetResponse {
     return new MsgDelegateToValidatorSetResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgDelegateToValidatorSetResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgDelegateToValidatorSetResponse {
     return new MsgDelegateToValidatorSetResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgDelegateToValidatorSetResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgDelegateToValidatorSetResponse {
     return new MsgDelegateToValidatorSetResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgDelegateToValidatorSetResponse | PlainMessage<MsgDelegateToValidatorSetResponse> | undefined, b: MsgDelegateToValidatorSetResponse | PlainMessage<MsgDelegateToValidatorSetResponse> | undefined): boolean {
+  static equals(
+    a:
+      | MsgDelegateToValidatorSetResponse
+      | PlainMessage<MsgDelegateToValidatorSetResponse>
+      | undefined,
+    b:
+      | MsgDelegateToValidatorSetResponse
+      | PlainMessage<MsgDelegateToValidatorSetResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(MsgDelegateToValidatorSetResponse, a, b);
   }
 }
@@ -181,7 +246,7 @@ export class MsgUndelegateFromValidatorSet extends Message<MsgUndelegateFromVali
    *
    * @generated from field: string delegator = 1;
    */
-  delegator = "";
+  delegator = '';
 
   /**
    * the amount the user wants to undelegate
@@ -200,25 +265,37 @@ export class MsgUndelegateFromValidatorSet extends Message<MsgUndelegateFromVali
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.valsetpref.v1beta1.MsgUndelegateFromValidatorSet";
+  static readonly typeName = 'osmosis.valsetpref.v1beta1.MsgUndelegateFromValidatorSet';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "delegator", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "coin", kind: "message", T: Coin },
+    { no: 1, name: 'delegator', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'coin', kind: 'message', T: Coin },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUndelegateFromValidatorSet {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgUndelegateFromValidatorSet {
     return new MsgUndelegateFromValidatorSet().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgUndelegateFromValidatorSet {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgUndelegateFromValidatorSet {
     return new MsgUndelegateFromValidatorSet().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgUndelegateFromValidatorSet {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgUndelegateFromValidatorSet {
     return new MsgUndelegateFromValidatorSet().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgUndelegateFromValidatorSet | PlainMessage<MsgUndelegateFromValidatorSet> | undefined, b: MsgUndelegateFromValidatorSet | PlainMessage<MsgUndelegateFromValidatorSet> | undefined): boolean {
+  static equals(
+    a: MsgUndelegateFromValidatorSet | PlainMessage<MsgUndelegateFromValidatorSet> | undefined,
+    b: MsgUndelegateFromValidatorSet | PlainMessage<MsgUndelegateFromValidatorSet> | undefined
+  ): boolean {
     return proto3.util.equals(MsgUndelegateFromValidatorSet, a, b);
   }
 }
@@ -233,23 +310,40 @@ export class MsgUndelegateFromValidatorSetResponse extends Message<MsgUndelegate
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.valsetpref.v1beta1.MsgUndelegateFromValidatorSetResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.valsetpref.v1beta1.MsgUndelegateFromValidatorSetResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUndelegateFromValidatorSetResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgUndelegateFromValidatorSetResponse {
     return new MsgUndelegateFromValidatorSetResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgUndelegateFromValidatorSetResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgUndelegateFromValidatorSetResponse {
     return new MsgUndelegateFromValidatorSetResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgUndelegateFromValidatorSetResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgUndelegateFromValidatorSetResponse {
     return new MsgUndelegateFromValidatorSetResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgUndelegateFromValidatorSetResponse | PlainMessage<MsgUndelegateFromValidatorSetResponse> | undefined, b: MsgUndelegateFromValidatorSetResponse | PlainMessage<MsgUndelegateFromValidatorSetResponse> | undefined): boolean {
+  static equals(
+    a:
+      | MsgUndelegateFromValidatorSetResponse
+      | PlainMessage<MsgUndelegateFromValidatorSetResponse>
+      | undefined,
+    b:
+      | MsgUndelegateFromValidatorSetResponse
+      | PlainMessage<MsgUndelegateFromValidatorSetResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(MsgUndelegateFromValidatorSetResponse, a, b);
   }
 }
@@ -263,7 +357,7 @@ export class MsgUndelegateFromRebalancedValidatorSet extends Message<MsgUndelega
    *
    * @generated from field: string delegator = 1;
    */
-  delegator = "";
+  delegator = '';
 
   /**
    * the amount the user wants to undelegate
@@ -284,25 +378,43 @@ export class MsgUndelegateFromRebalancedValidatorSet extends Message<MsgUndelega
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.valsetpref.v1beta1.MsgUndelegateFromRebalancedValidatorSet";
+  static readonly typeName = 'osmosis.valsetpref.v1beta1.MsgUndelegateFromRebalancedValidatorSet';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "delegator", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "coin", kind: "message", T: Coin },
+    { no: 1, name: 'delegator', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'coin', kind: 'message', T: Coin },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUndelegateFromRebalancedValidatorSet {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgUndelegateFromRebalancedValidatorSet {
     return new MsgUndelegateFromRebalancedValidatorSet().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgUndelegateFromRebalancedValidatorSet {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgUndelegateFromRebalancedValidatorSet {
     return new MsgUndelegateFromRebalancedValidatorSet().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgUndelegateFromRebalancedValidatorSet {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgUndelegateFromRebalancedValidatorSet {
     return new MsgUndelegateFromRebalancedValidatorSet().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgUndelegateFromRebalancedValidatorSet | PlainMessage<MsgUndelegateFromRebalancedValidatorSet> | undefined, b: MsgUndelegateFromRebalancedValidatorSet | PlainMessage<MsgUndelegateFromRebalancedValidatorSet> | undefined): boolean {
+  static equals(
+    a:
+      | MsgUndelegateFromRebalancedValidatorSet
+      | PlainMessage<MsgUndelegateFromRebalancedValidatorSet>
+      | undefined,
+    b:
+      | MsgUndelegateFromRebalancedValidatorSet
+      | PlainMessage<MsgUndelegateFromRebalancedValidatorSet>
+      | undefined
+  ): boolean {
     return proto3.util.equals(MsgUndelegateFromRebalancedValidatorSet, a, b);
   }
 }
@@ -317,23 +429,44 @@ export class MsgUndelegateFromRebalancedValidatorSetResponse extends Message<Msg
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.valsetpref.v1beta1.MsgUndelegateFromRebalancedValidatorSetResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName =
+    'osmosis.valsetpref.v1beta1.MsgUndelegateFromRebalancedValidatorSetResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUndelegateFromRebalancedValidatorSetResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgUndelegateFromRebalancedValidatorSetResponse {
     return new MsgUndelegateFromRebalancedValidatorSetResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgUndelegateFromRebalancedValidatorSetResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgUndelegateFromRebalancedValidatorSetResponse {
     return new MsgUndelegateFromRebalancedValidatorSetResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgUndelegateFromRebalancedValidatorSetResponse {
-    return new MsgUndelegateFromRebalancedValidatorSetResponse().fromJsonString(jsonString, options);
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgUndelegateFromRebalancedValidatorSetResponse {
+    return new MsgUndelegateFromRebalancedValidatorSetResponse().fromJsonString(
+      jsonString,
+      options
+    );
   }
 
-  static equals(a: MsgUndelegateFromRebalancedValidatorSetResponse | PlainMessage<MsgUndelegateFromRebalancedValidatorSetResponse> | undefined, b: MsgUndelegateFromRebalancedValidatorSetResponse | PlainMessage<MsgUndelegateFromRebalancedValidatorSetResponse> | undefined): boolean {
+  static equals(
+    a:
+      | MsgUndelegateFromRebalancedValidatorSetResponse
+      | PlainMessage<MsgUndelegateFromRebalancedValidatorSetResponse>
+      | undefined,
+    b:
+      | MsgUndelegateFromRebalancedValidatorSetResponse
+      | PlainMessage<MsgUndelegateFromRebalancedValidatorSetResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(MsgUndelegateFromRebalancedValidatorSetResponse, a, b);
   }
 }
@@ -347,7 +480,7 @@ export class MsgRedelegateValidatorSet extends Message<MsgRedelegateValidatorSet
    *
    * @generated from field: string delegator = 1;
    */
-  delegator = "";
+  delegator = '';
 
   /**
    * list of {valAddr, weight} to delegate to
@@ -362,25 +495,37 @@ export class MsgRedelegateValidatorSet extends Message<MsgRedelegateValidatorSet
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.valsetpref.v1beta1.MsgRedelegateValidatorSet";
+  static readonly typeName = 'osmosis.valsetpref.v1beta1.MsgRedelegateValidatorSet';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "delegator", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "preferences", kind: "message", T: ValidatorPreference, repeated: true },
+    { no: 1, name: 'delegator', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'preferences', kind: 'message', T: ValidatorPreference, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRedelegateValidatorSet {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgRedelegateValidatorSet {
     return new MsgRedelegateValidatorSet().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgRedelegateValidatorSet {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgRedelegateValidatorSet {
     return new MsgRedelegateValidatorSet().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgRedelegateValidatorSet {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgRedelegateValidatorSet {
     return new MsgRedelegateValidatorSet().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRedelegateValidatorSet | PlainMessage<MsgRedelegateValidatorSet> | undefined, b: MsgRedelegateValidatorSet | PlainMessage<MsgRedelegateValidatorSet> | undefined): boolean {
+  static equals(
+    a: MsgRedelegateValidatorSet | PlainMessage<MsgRedelegateValidatorSet> | undefined,
+    b: MsgRedelegateValidatorSet | PlainMessage<MsgRedelegateValidatorSet> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRedelegateValidatorSet, a, b);
   }
 }
@@ -395,23 +540,40 @@ export class MsgRedelegateValidatorSetResponse extends Message<MsgRedelegateVali
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.valsetpref.v1beta1.MsgRedelegateValidatorSetResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.valsetpref.v1beta1.MsgRedelegateValidatorSetResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRedelegateValidatorSetResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgRedelegateValidatorSetResponse {
     return new MsgRedelegateValidatorSetResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgRedelegateValidatorSetResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgRedelegateValidatorSetResponse {
     return new MsgRedelegateValidatorSetResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgRedelegateValidatorSetResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgRedelegateValidatorSetResponse {
     return new MsgRedelegateValidatorSetResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRedelegateValidatorSetResponse | PlainMessage<MsgRedelegateValidatorSetResponse> | undefined, b: MsgRedelegateValidatorSetResponse | PlainMessage<MsgRedelegateValidatorSetResponse> | undefined): boolean {
+  static equals(
+    a:
+      | MsgRedelegateValidatorSetResponse
+      | PlainMessage<MsgRedelegateValidatorSetResponse>
+      | undefined,
+    b:
+      | MsgRedelegateValidatorSetResponse
+      | PlainMessage<MsgRedelegateValidatorSetResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(MsgRedelegateValidatorSetResponse, a, b);
   }
 }
@@ -428,7 +590,7 @@ export class MsgWithdrawDelegationRewards extends Message<MsgWithdrawDelegationR
    *
    * @generated from field: string delegator = 1;
    */
-  delegator = "";
+  delegator = '';
 
   constructor(data?: PartialMessage<MsgWithdrawDelegationRewards>) {
     super();
@@ -436,24 +598,36 @@ export class MsgWithdrawDelegationRewards extends Message<MsgWithdrawDelegationR
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.valsetpref.v1beta1.MsgWithdrawDelegationRewards";
+  static readonly typeName = 'osmosis.valsetpref.v1beta1.MsgWithdrawDelegationRewards';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "delegator", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'delegator', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgWithdrawDelegationRewards {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgWithdrawDelegationRewards {
     return new MsgWithdrawDelegationRewards().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgWithdrawDelegationRewards {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgWithdrawDelegationRewards {
     return new MsgWithdrawDelegationRewards().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgWithdrawDelegationRewards {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgWithdrawDelegationRewards {
     return new MsgWithdrawDelegationRewards().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgWithdrawDelegationRewards | PlainMessage<MsgWithdrawDelegationRewards> | undefined, b: MsgWithdrawDelegationRewards | PlainMessage<MsgWithdrawDelegationRewards> | undefined): boolean {
+  static equals(
+    a: MsgWithdrawDelegationRewards | PlainMessage<MsgWithdrawDelegationRewards> | undefined,
+    b: MsgWithdrawDelegationRewards | PlainMessage<MsgWithdrawDelegationRewards> | undefined
+  ): boolean {
     return proto3.util.equals(MsgWithdrawDelegationRewards, a, b);
   }
 }
@@ -468,23 +642,40 @@ export class MsgWithdrawDelegationRewardsResponse extends Message<MsgWithdrawDel
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.valsetpref.v1beta1.MsgWithdrawDelegationRewardsResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.valsetpref.v1beta1.MsgWithdrawDelegationRewardsResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgWithdrawDelegationRewardsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgWithdrawDelegationRewardsResponse {
     return new MsgWithdrawDelegationRewardsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgWithdrawDelegationRewardsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgWithdrawDelegationRewardsResponse {
     return new MsgWithdrawDelegationRewardsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgWithdrawDelegationRewardsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgWithdrawDelegationRewardsResponse {
     return new MsgWithdrawDelegationRewardsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgWithdrawDelegationRewardsResponse | PlainMessage<MsgWithdrawDelegationRewardsResponse> | undefined, b: MsgWithdrawDelegationRewardsResponse | PlainMessage<MsgWithdrawDelegationRewardsResponse> | undefined): boolean {
+  static equals(
+    a:
+      | MsgWithdrawDelegationRewardsResponse
+      | PlainMessage<MsgWithdrawDelegationRewardsResponse>
+      | undefined,
+    b:
+      | MsgWithdrawDelegationRewardsResponse
+      | PlainMessage<MsgWithdrawDelegationRewardsResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(MsgWithdrawDelegationRewardsResponse, a, b);
   }
 }
@@ -502,7 +693,7 @@ export class MsgDelegateBondedTokens extends Message<MsgDelegateBondedTokens> {
    *
    * @generated from field: string delegator = 1;
    */
-  delegator = "";
+  delegator = '';
 
   /**
    * lockup id of osmo in the pool
@@ -517,25 +708,37 @@ export class MsgDelegateBondedTokens extends Message<MsgDelegateBondedTokens> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.valsetpref.v1beta1.MsgDelegateBondedTokens";
+  static readonly typeName = 'osmosis.valsetpref.v1beta1.MsgDelegateBondedTokens';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "delegator", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "lockID", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'delegator', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'lockID', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgDelegateBondedTokens {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgDelegateBondedTokens {
     return new MsgDelegateBondedTokens().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgDelegateBondedTokens {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgDelegateBondedTokens {
     return new MsgDelegateBondedTokens().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgDelegateBondedTokens {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgDelegateBondedTokens {
     return new MsgDelegateBondedTokens().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgDelegateBondedTokens | PlainMessage<MsgDelegateBondedTokens> | undefined, b: MsgDelegateBondedTokens | PlainMessage<MsgDelegateBondedTokens> | undefined): boolean {
+  static equals(
+    a: MsgDelegateBondedTokens | PlainMessage<MsgDelegateBondedTokens> | undefined,
+    b: MsgDelegateBondedTokens | PlainMessage<MsgDelegateBondedTokens> | undefined
+  ): boolean {
     return proto3.util.equals(MsgDelegateBondedTokens, a, b);
   }
 }
@@ -550,24 +753,34 @@ export class MsgDelegateBondedTokensResponse extends Message<MsgDelegateBondedTo
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.valsetpref.v1beta1.MsgDelegateBondedTokensResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.valsetpref.v1beta1.MsgDelegateBondedTokensResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgDelegateBondedTokensResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgDelegateBondedTokensResponse {
     return new MsgDelegateBondedTokensResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgDelegateBondedTokensResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgDelegateBondedTokensResponse {
     return new MsgDelegateBondedTokensResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgDelegateBondedTokensResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgDelegateBondedTokensResponse {
     return new MsgDelegateBondedTokensResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgDelegateBondedTokensResponse | PlainMessage<MsgDelegateBondedTokensResponse> | undefined, b: MsgDelegateBondedTokensResponse | PlainMessage<MsgDelegateBondedTokensResponse> | undefined): boolean {
+  static equals(
+    a: MsgDelegateBondedTokensResponse | PlainMessage<MsgDelegateBondedTokensResponse> | undefined,
+    b: MsgDelegateBondedTokensResponse | PlainMessage<MsgDelegateBondedTokensResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgDelegateBondedTokensResponse, a, b);
   }
 }
-

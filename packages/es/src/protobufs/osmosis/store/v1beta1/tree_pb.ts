@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
 
 /**
  * @generated from message osmosis.store.v1beta1.Node
@@ -21,9 +28,9 @@ export class Node extends Message<Node> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.store.v1beta1.Node";
+  static readonly typeName = 'osmosis.store.v1beta1.Node';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "children", kind: "message", T: Child, repeated: true },
+    { no: 1, name: 'children', kind: 'message', T: Child, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Node {
@@ -38,7 +45,10 @@ export class Node extends Message<Node> {
     return new Node().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Node | PlainMessage<Node> | undefined, b: Node | PlainMessage<Node> | undefined): boolean {
+  static equals(
+    a: Node | PlainMessage<Node> | undefined,
+    b: Node | PlainMessage<Node> | undefined
+  ): boolean {
     return proto3.util.equals(Node, a, b);
   }
 }
@@ -55,7 +65,7 @@ export class Child extends Message<Child> {
   /**
    * @generated from field: string accumulation = 2;
    */
-  accumulation = "";
+  accumulation = '';
 
   constructor(data?: PartialMessage<Child>) {
     super();
@@ -63,10 +73,10 @@ export class Child extends Message<Child> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.store.v1beta1.Child";
+  static readonly typeName = 'osmosis.store.v1beta1.Child';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "index", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 2, name: "accumulation", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'index', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: 'accumulation', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Child {
@@ -81,7 +91,10 @@ export class Child extends Message<Child> {
     return new Child().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Child | PlainMessage<Child> | undefined, b: Child | PlainMessage<Child> | undefined): boolean {
+  static equals(
+    a: Child | PlainMessage<Child> | undefined,
+    b: Child | PlainMessage<Child> | undefined
+  ): boolean {
     return proto3.util.equals(Child, a, b);
   }
 }
@@ -101,9 +114,9 @@ export class Leaf extends Message<Leaf> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.store.v1beta1.Leaf";
+  static readonly typeName = 'osmosis.store.v1beta1.Leaf';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "leaf", kind: "message", T: Child },
+    { no: 1, name: 'leaf', kind: 'message', T: Child },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Leaf {
@@ -118,8 +131,10 @@ export class Leaf extends Message<Leaf> {
     return new Leaf().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Leaf | PlainMessage<Leaf> | undefined, b: Leaf | PlainMessage<Leaf> | undefined): boolean {
+  static equals(
+    a: Leaf | PlainMessage<Leaf> | undefined,
+    b: Leaf | PlainMessage<Leaf> | undefined
+  ): boolean {
     return proto3.util.equals(Leaf, a, b);
   }
 }
-

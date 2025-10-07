@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
 
 /**
  * Config is a **per-client** configuration struct that sets which relayers are allowed to relay v2 IBC messages
@@ -28,9 +35,15 @@ export class Config extends Message<Config> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.client.v2.Config";
+  static readonly typeName = 'ibc.core.client.v2.Config';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "allowed_relayers", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    {
+      no: 1,
+      name: 'allowed_relayers',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Config {
@@ -45,8 +58,10 @@ export class Config extends Message<Config> {
     return new Config().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Config | PlainMessage<Config> | undefined, b: Config | PlainMessage<Config> | undefined): boolean {
+  static equals(
+    a: Config | PlainMessage<Config> | undefined,
+    b: Config | PlainMessage<Config> | undefined
+  ): boolean {
     return proto3.util.equals(Config, a, b);
   }
 }
-

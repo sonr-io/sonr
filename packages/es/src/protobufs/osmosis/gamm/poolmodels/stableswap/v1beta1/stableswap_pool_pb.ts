@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Coin } from "../../../../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { Coin } from '../../../../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * PoolParams defined the parameters that will be managed by the pool
@@ -19,7 +26,7 @@ export class PoolParams extends Message<PoolParams> {
   /**
    * @generated from field: string swap_fee = 1;
    */
-  swapFee = "";
+  swapFee = '';
 
   /**
    * N.B.: exit fee is disabled during pool creation in x/poolmanager. While old
@@ -28,7 +35,7 @@ export class PoolParams extends Message<PoolParams> {
    *
    * @generated from field: string exit_fee = 2;
    */
-  exitFee = "";
+  exitFee = '';
 
   constructor(data?: PartialMessage<PoolParams>) {
     super();
@@ -36,10 +43,10 @@ export class PoolParams extends Message<PoolParams> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.gamm.poolmodels.stableswap.v1beta1.PoolParams";
+  static readonly typeName = 'osmosis.gamm.poolmodels.stableswap.v1beta1.PoolParams';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "swap_fee", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "exit_fee", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'swap_fee', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'exit_fee', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PoolParams {
@@ -54,7 +61,10 @@ export class PoolParams extends Message<PoolParams> {
     return new PoolParams().fromJsonString(jsonString, options);
   }
 
-  static equals(a: PoolParams | PlainMessage<PoolParams> | undefined, b: PoolParams | PlainMessage<PoolParams> | undefined): boolean {
+  static equals(
+    a: PoolParams | PlainMessage<PoolParams> | undefined,
+    b: PoolParams | PlainMessage<PoolParams> | undefined
+  ): boolean {
     return proto3.util.equals(PoolParams, a, b);
   }
 }
@@ -68,7 +78,7 @@ export class Pool extends Message<Pool> {
   /**
    * @generated from field: string address = 1;
    */
-  address = "";
+  address = '';
 
   /**
    * @generated from field: uint64 id = 2;
@@ -92,7 +102,7 @@ export class Pool extends Message<Pool> {
    *
    * @generated from field: string future_pool_governor = 4;
    */
-  futurePoolGovernor = "";
+  futurePoolGovernor = '';
 
   /**
    * sum of all LP shares
@@ -120,7 +130,7 @@ export class Pool extends Message<Pool> {
    *
    * @generated from field: string scaling_factor_controller = 8;
    */
-  scalingFactorController = "";
+  scalingFactorController = '';
 
   constructor(data?: PartialMessage<Pool>) {
     super();
@@ -128,16 +138,22 @@ export class Pool extends Message<Pool> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.gamm.poolmodels.stableswap.v1beta1.Pool";
+  static readonly typeName = 'osmosis.gamm.poolmodels.stableswap.v1beta1.Pool';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "pool_params", kind: "message", T: PoolParams },
-    { no: 4, name: "future_pool_governor", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "total_shares", kind: "message", T: Coin },
-    { no: 6, name: "pool_liquidity", kind: "message", T: Coin, repeated: true },
-    { no: 7, name: "scaling_factors", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
-    { no: 8, name: "scaling_factor_controller", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'pool_params', kind: 'message', T: PoolParams },
+    { no: 4, name: 'future_pool_governor', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'total_shares', kind: 'message', T: Coin },
+    { no: 6, name: 'pool_liquidity', kind: 'message', T: Coin, repeated: true },
+    {
+      no: 7,
+      name: 'scaling_factors',
+      kind: 'scalar',
+      T: 4 /* ScalarType.UINT64 */,
+      repeated: true,
+    },
+    { no: 8, name: 'scaling_factor_controller', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Pool {
@@ -152,8 +168,10 @@ export class Pool extends Message<Pool> {
     return new Pool().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Pool | PlainMessage<Pool> | undefined, b: Pool | PlainMessage<Pool> | undefined): boolean {
+  static equals(
+    a: Pool | PlainMessage<Pool> | undefined,
+    b: Pool | PlainMessage<Pool> | undefined
+  ): boolean {
     return proto3.util.equals(Pool, a, b);
   }
 }
-

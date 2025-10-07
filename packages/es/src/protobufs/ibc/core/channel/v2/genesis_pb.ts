@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * GenesisState defines the ibc channel/v2 submodule's genesis state.
@@ -43,13 +50,13 @@ export class GenesisState extends Message<GenesisState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v2.GenesisState";
+  static readonly typeName = 'ibc.core.channel.v2.GenesisState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 2, name: "acknowledgements", kind: "message", T: PacketState, repeated: true },
-    { no: 3, name: "commitments", kind: "message", T: PacketState, repeated: true },
-    { no: 4, name: "receipts", kind: "message", T: PacketState, repeated: true },
-    { no: 5, name: "async_packets", kind: "message", T: PacketState, repeated: true },
-    { no: 6, name: "send_sequences", kind: "message", T: PacketSequence, repeated: true },
+    { no: 2, name: 'acknowledgements', kind: 'message', T: PacketState, repeated: true },
+    { no: 3, name: 'commitments', kind: 'message', T: PacketState, repeated: true },
+    { no: 4, name: 'receipts', kind: 'message', T: PacketState, repeated: true },
+    { no: 5, name: 'async_packets', kind: 'message', T: PacketState, repeated: true },
+    { no: 6, name: 'send_sequences', kind: 'message', T: PacketSequence, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {
@@ -64,7 +71,10 @@ export class GenesisState extends Message<GenesisState> {
     return new GenesisState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisState | PlainMessage<GenesisState> | undefined, b: GenesisState | PlainMessage<GenesisState> | undefined): boolean {
+  static equals(
+    a: GenesisState | PlainMessage<GenesisState> | undefined,
+    b: GenesisState | PlainMessage<GenesisState> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisState, a, b);
   }
 }
@@ -83,7 +93,7 @@ export class PacketState extends Message<PacketState> {
    *
    * @generated from field: string client_id = 1;
    */
-  clientId = "";
+  clientId = '';
 
   /**
    * packet sequence.
@@ -105,11 +115,11 @@ export class PacketState extends Message<PacketState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v2.PacketState";
+  static readonly typeName = 'ibc.core.channel.v2.PacketState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'client_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'sequence', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'data', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PacketState {
@@ -124,7 +134,10 @@ export class PacketState extends Message<PacketState> {
     return new PacketState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: PacketState | PlainMessage<PacketState> | undefined, b: PacketState | PlainMessage<PacketState> | undefined): boolean {
+  static equals(
+    a: PacketState | PlainMessage<PacketState> | undefined,
+    b: PacketState | PlainMessage<PacketState> | undefined
+  ): boolean {
     return proto3.util.equals(PacketState, a, b);
   }
 }
@@ -140,7 +153,7 @@ export class PacketSequence extends Message<PacketSequence> {
    *
    * @generated from field: string client_id = 1;
    */
-  clientId = "";
+  clientId = '';
 
   /**
    * packet sequence
@@ -155,10 +168,10 @@ export class PacketSequence extends Message<PacketSequence> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.channel.v2.PacketSequence";
+  static readonly typeName = 'ibc.core.channel.v2.PacketSequence';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "sequence", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'client_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'sequence', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PacketSequence {
@@ -173,8 +186,10 @@ export class PacketSequence extends Message<PacketSequence> {
     return new PacketSequence().fromJsonString(jsonString, options);
   }
 
-  static equals(a: PacketSequence | PlainMessage<PacketSequence> | undefined, b: PacketSequence | PlainMessage<PacketSequence> | undefined): boolean {
+  static equals(
+    a: PacketSequence | PlainMessage<PacketSequence> | undefined,
+    b: PacketSequence | PlainMessage<PacketSequence> | undefined
+  ): boolean {
     return proto3.util.equals(PacketSequence, a, b);
   }
 }
-

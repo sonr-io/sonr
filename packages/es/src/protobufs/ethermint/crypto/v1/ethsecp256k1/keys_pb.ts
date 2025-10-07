@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
 
 /**
  * PubKey defines a type alias for an ecdsa.PublicKey that implements
@@ -27,9 +34,9 @@ export class PubKey extends Message<PubKey> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.crypto.v1.ethsecp256k1.PubKey";
+  static readonly typeName = 'ethermint.crypto.v1.ethsecp256k1.PubKey';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "key", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'key', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PubKey {
@@ -44,7 +51,10 @@ export class PubKey extends Message<PubKey> {
     return new PubKey().fromJsonString(jsonString, options);
   }
 
-  static equals(a: PubKey | PlainMessage<PubKey> | undefined, b: PubKey | PlainMessage<PubKey> | undefined): boolean {
+  static equals(
+    a: PubKey | PlainMessage<PubKey> | undefined,
+    b: PubKey | PlainMessage<PubKey> | undefined
+  ): boolean {
     return proto3.util.equals(PubKey, a, b);
   }
 }
@@ -69,9 +79,9 @@ export class PrivKey extends Message<PrivKey> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ethermint.crypto.v1.ethsecp256k1.PrivKey";
+  static readonly typeName = 'ethermint.crypto.v1.ethsecp256k1.PrivKey';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "key", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'key', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PrivKey {
@@ -86,8 +96,10 @@ export class PrivKey extends Message<PrivKey> {
     return new PrivKey().fromJsonString(jsonString, options);
   }
 
-  static equals(a: PrivKey | PlainMessage<PrivKey> | undefined, b: PrivKey | PlainMessage<PrivKey> | undefined): boolean {
+  static equals(
+    a: PrivKey | PlainMessage<PrivKey> | undefined,
+    b: PrivKey | PlainMessage<PrivKey> | undefined
+  ): boolean {
     return proto3.util.equals(PrivKey, a, b);
   }
 }
-

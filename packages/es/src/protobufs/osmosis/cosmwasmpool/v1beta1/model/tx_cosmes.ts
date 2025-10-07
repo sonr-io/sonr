@@ -3,17 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgCreateCosmWasmPool, MsgCreateCosmWasmPoolResponse } from "./tx_pb.js";
+import { MsgCreateCosmWasmPool, MsgCreateCosmWasmPoolResponse } from './tx_pb.js';
 
-const TYPE_NAME = "osmosis.cosmwasmpool.v1beta1.MsgCreator";
+const TYPE_NAME = 'osmosis.cosmwasmpool.v1beta1.MsgCreator';
 
 /**
  * @generated from rpc osmosis.cosmwasmpool.v1beta1.MsgCreator.CreateCosmWasmPool
  */
 export const MsgCreatorCreateCosmWasmPoolService = {
   typeName: TYPE_NAME,
-  method: "CreateCosmWasmPool",
+  method: 'CreateCosmWasmPool',
   Request: MsgCreateCosmWasmPool,
   Response: MsgCreateCosmWasmPoolResponse,
 } as const;
-

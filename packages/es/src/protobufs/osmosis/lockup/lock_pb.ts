@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
-import { Coin } from "../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Duration, Message, proto3, protoInt64, Timestamp } from '@bufbuild/protobuf';
+import { Coin } from '../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * LockQueryType defines the type of the lock query that can
@@ -35,11 +42,11 @@ export enum LockQueryType {
   ByGroup = 3,
 }
 // Retrieve enum metadata with: proto3.getEnumType(LockQueryType)
-proto3.util.setEnumType(LockQueryType, "osmosis.lockup.LockQueryType", [
-  { no: 0, name: "ByDuration" },
-  { no: 1, name: "ByTime" },
-  { no: 2, name: "NoLock" },
-  { no: 3, name: "ByGroup" },
+proto3.util.setEnumType(LockQueryType, 'osmosis.lockup.LockQueryType', [
+  { no: 0, name: 'ByDuration' },
+  { no: 1, name: 'ByTime' },
+  { no: 2, name: 'NoLock' },
+  { no: 3, name: 'ByGroup' },
 ]);
 
 /**
@@ -67,7 +74,7 @@ export class PeriodLock extends Message<PeriodLock> {
    *
    * @generated from field: string owner = 2;
    */
-  owner = "";
+  owner = '';
 
   /**
    * Duration is the time needed for a lock to mature after unlocking has
@@ -100,7 +107,7 @@ export class PeriodLock extends Message<PeriodLock> {
    *
    * @generated from field: string reward_receiver_address = 6;
    */
-  rewardReceiverAddress = "";
+  rewardReceiverAddress = '';
 
   constructor(data?: PartialMessage<PeriodLock>) {
     super();
@@ -108,14 +115,14 @@ export class PeriodLock extends Message<PeriodLock> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.PeriodLock";
+  static readonly typeName = 'osmosis.lockup.PeriodLock';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "ID", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "duration", kind: "message", T: Duration },
-    { no: 4, name: "end_time", kind: "message", T: Timestamp },
-    { no: 5, name: "coins", kind: "message", T: Coin, repeated: true },
-    { no: 6, name: "reward_receiver_address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'ID', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'duration', kind: 'message', T: Duration },
+    { no: 4, name: 'end_time', kind: 'message', T: Timestamp },
+    { no: 5, name: 'coins', kind: 'message', T: Coin, repeated: true },
+    { no: 6, name: 'reward_receiver_address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PeriodLock {
@@ -130,7 +137,10 @@ export class PeriodLock extends Message<PeriodLock> {
     return new PeriodLock().fromJsonString(jsonString, options);
   }
 
-  static equals(a: PeriodLock | PlainMessage<PeriodLock> | undefined, b: PeriodLock | PlainMessage<PeriodLock> | undefined): boolean {
+  static equals(
+    a: PeriodLock | PlainMessage<PeriodLock> | undefined,
+    b: PeriodLock | PlainMessage<PeriodLock> | undefined
+  ): boolean {
     return proto3.util.equals(PeriodLock, a, b);
   }
 }
@@ -155,7 +165,7 @@ export class QueryCondition extends Message<QueryCondition> {
    *
    * @generated from field: string denom = 2;
    */
-  denom = "";
+  denom = '';
 
   /**
    * Duration is used to query locks with longer duration than the specified
@@ -181,12 +191,12 @@ export class QueryCondition extends Message<QueryCondition> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.QueryCondition";
+  static readonly typeName = 'osmosis.lockup.QueryCondition';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "lock_query_type", kind: "enum", T: proto3.getEnumType(LockQueryType) },
-    { no: 2, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "duration", kind: "message", T: Duration },
-    { no: 4, name: "timestamp", kind: "message", T: Timestamp },
+    { no: 1, name: 'lock_query_type', kind: 'enum', T: proto3.getEnumType(LockQueryType) },
+    { no: 2, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'duration', kind: 'message', T: Duration },
+    { no: 4, name: 'timestamp', kind: 'message', T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryCondition {
@@ -201,7 +211,10 @@ export class QueryCondition extends Message<QueryCondition> {
     return new QueryCondition().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryCondition | PlainMessage<QueryCondition> | undefined, b: QueryCondition | PlainMessage<QueryCondition> | undefined): boolean {
+  static equals(
+    a: QueryCondition | PlainMessage<QueryCondition> | undefined,
+    b: QueryCondition | PlainMessage<QueryCondition> | undefined
+  ): boolean {
     return proto3.util.equals(QueryCondition, a, b);
   }
 }
@@ -229,7 +242,7 @@ export class SyntheticLock extends Message<SyntheticLock> {
    *
    * @generated from field: string synth_denom = 2;
    */
-  synthDenom = "";
+  synthDenom = '';
 
   /**
    * used for unbonding synthetic lockups, for active synthetic lockups, this
@@ -253,12 +266,12 @@ export class SyntheticLock extends Message<SyntheticLock> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.lockup.SyntheticLock";
+  static readonly typeName = 'osmosis.lockup.SyntheticLock';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "underlying_lock_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "synth_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "end_time", kind: "message", T: Timestamp },
-    { no: 4, name: "duration", kind: "message", T: Duration },
+    { no: 1, name: 'underlying_lock_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'synth_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'end_time', kind: 'message', T: Timestamp },
+    { no: 4, name: 'duration', kind: 'message', T: Duration },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SyntheticLock {
@@ -273,8 +286,10 @@ export class SyntheticLock extends Message<SyntheticLock> {
     return new SyntheticLock().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SyntheticLock | PlainMessage<SyntheticLock> | undefined, b: SyntheticLock | PlainMessage<SyntheticLock> | undefined): boolean {
+  static equals(
+    a: SyntheticLock | PlainMessage<SyntheticLock> | undefined,
+    b: SyntheticLock | PlainMessage<SyntheticLock> | undefined
+  ): boolean {
     return proto3.util.equals(SyntheticLock, a, b);
   }
 }
-

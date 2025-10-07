@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
-import { Downtime } from "./downtime_duration_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, Timestamp } from '@bufbuild/protobuf';
+import { Downtime } from './downtime_duration_pb.js';
 
 /**
  * @generated from message osmosis.downtimedetector.v1beta1.GenesisDowntimeEntry
@@ -27,10 +34,10 @@ export class GenesisDowntimeEntry extends Message<GenesisDowntimeEntry> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.downtimedetector.v1beta1.GenesisDowntimeEntry";
+  static readonly typeName = 'osmosis.downtimedetector.v1beta1.GenesisDowntimeEntry';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "duration", kind: "enum", T: proto3.getEnumType(Downtime) },
-    { no: 2, name: "last_downtime", kind: "message", T: Timestamp },
+    { no: 1, name: 'duration', kind: 'enum', T: proto3.getEnumType(Downtime) },
+    { no: 2, name: 'last_downtime', kind: 'message', T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisDowntimeEntry {
@@ -41,11 +48,17 @@ export class GenesisDowntimeEntry extends Message<GenesisDowntimeEntry> {
     return new GenesisDowntimeEntry().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GenesisDowntimeEntry {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): GenesisDowntimeEntry {
     return new GenesisDowntimeEntry().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisDowntimeEntry | PlainMessage<GenesisDowntimeEntry> | undefined, b: GenesisDowntimeEntry | PlainMessage<GenesisDowntimeEntry> | undefined): boolean {
+  static equals(
+    a: GenesisDowntimeEntry | PlainMessage<GenesisDowntimeEntry> | undefined,
+    b: GenesisDowntimeEntry | PlainMessage<GenesisDowntimeEntry> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisDowntimeEntry, a, b);
   }
 }
@@ -72,10 +85,10 @@ export class GenesisState extends Message<GenesisState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.downtimedetector.v1beta1.GenesisState";
+  static readonly typeName = 'osmosis.downtimedetector.v1beta1.GenesisState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "downtimes", kind: "message", T: GenesisDowntimeEntry, repeated: true },
-    { no: 2, name: "last_block_time", kind: "message", T: Timestamp },
+    { no: 1, name: 'downtimes', kind: 'message', T: GenesisDowntimeEntry, repeated: true },
+    { no: 2, name: 'last_block_time', kind: 'message', T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {
@@ -90,8 +103,10 @@ export class GenesisState extends Message<GenesisState> {
     return new GenesisState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisState | PlainMessage<GenesisState> | undefined, b: GenesisState | PlainMessage<GenesisState> | undefined): boolean {
+  static equals(
+    a: GenesisState | PlainMessage<GenesisState> | undefined,
+    b: GenesisState | PlainMessage<GenesisState> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisState, a, b);
   }
 }
-

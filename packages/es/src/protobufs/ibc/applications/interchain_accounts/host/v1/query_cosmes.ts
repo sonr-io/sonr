@@ -3,9 +3,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryParamsRequest, QueryParamsResponse } from "./query_pb.js";
+import { QueryParamsRequest, QueryParamsResponse } from './query_pb.js';
 
-const TYPE_NAME = "ibc.applications.interchain_accounts.host.v1.Query";
+const TYPE_NAME = 'ibc.applications.interchain_accounts.host.v1.Query';
 
 /**
  * Params queries all parameters of the ICA host submodule.
@@ -14,8 +14,7 @@ const TYPE_NAME = "ibc.applications.interchain_accounts.host.v1.Query";
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: QueryParamsRequest,
   Response: QueryParamsResponse,
 } as const;
-

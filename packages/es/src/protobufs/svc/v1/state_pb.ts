@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * DomainVerificationStatus represents the current state of domain verification
@@ -41,11 +48,11 @@ export enum DomainVerificationStatus {
   FAILED = 3,
 }
 // Retrieve enum metadata with: proto3.getEnumType(DomainVerificationStatus)
-proto3.util.setEnumType(DomainVerificationStatus, "svc.v1.DomainVerificationStatus", [
-  { no: 0, name: "DOMAIN_VERIFICATION_STATUS_PENDING" },
-  { no: 1, name: "DOMAIN_VERIFICATION_STATUS_VERIFIED" },
-  { no: 2, name: "DOMAIN_VERIFICATION_STATUS_EXPIRED" },
-  { no: 3, name: "DOMAIN_VERIFICATION_STATUS_FAILED" },
+proto3.util.setEnumType(DomainVerificationStatus, 'svc.v1.DomainVerificationStatus', [
+  { no: 0, name: 'DOMAIN_VERIFICATION_STATUS_PENDING' },
+  { no: 1, name: 'DOMAIN_VERIFICATION_STATUS_VERIFIED' },
+  { no: 2, name: 'DOMAIN_VERIFICATION_STATUS_EXPIRED' },
+  { no: 3, name: 'DOMAIN_VERIFICATION_STATUS_FAILED' },
 ]);
 
 /**
@@ -76,10 +83,10 @@ export enum ServiceStatus {
   REVOKED = 2,
 }
 // Retrieve enum metadata with: proto3.getEnumType(ServiceStatus)
-proto3.util.setEnumType(ServiceStatus, "svc.v1.ServiceStatus", [
-  { no: 0, name: "SERVICE_STATUS_ACTIVE" },
-  { no: 1, name: "SERVICE_STATUS_SUSPENDED" },
-  { no: 2, name: "SERVICE_STATUS_REVOKED" },
+proto3.util.setEnumType(ServiceStatus, 'svc.v1.ServiceStatus', [
+  { no: 0, name: 'SERVICE_STATUS_ACTIVE' },
+  { no: 1, name: 'SERVICE_STATUS_SUSPENDED' },
+  { no: 2, name: 'SERVICE_STATUS_REVOKED' },
 ]);
 
 /**
@@ -94,28 +101,28 @@ export class Service extends Message<Service> {
    *
    * @generated from field: string id = 1;
    */
-  id = "";
+  id = '';
 
   /**
    * DNS-verified domain bound to this service
    *
    * @generated from field: string domain = 2;
    */
-  domain = "";
+  domain = '';
 
   /**
    * Owner address who registered the service
    *
    * @generated from field: string owner = 3;
    */
-  owner = "";
+  owner = '';
 
   /**
    * IPFS CID of the UCAN root capability for this service
    *
    * @generated from field: string root_capability_cid = 4;
    */
-  rootCapabilityCid = "";
+  rootCapabilityCid = '';
 
   /**
    * List of permissions granted to this service
@@ -151,16 +158,16 @@ export class Service extends Message<Service> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.Service";
+  static readonly typeName = 'svc.v1.Service';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "domain", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "root_capability_cid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "permissions", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 6, name: "status", kind: "enum", T: proto3.getEnumType(ServiceStatus) },
-    { no: 7, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 8, name: "updated_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: 'id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'domain', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'root_capability_cid', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'permissions', kind: 'scalar', T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 6, name: 'status', kind: 'enum', T: proto3.getEnumType(ServiceStatus) },
+    { no: 7, name: 'created_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 8, name: 'updated_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Service {
@@ -175,7 +182,10 @@ export class Service extends Message<Service> {
     return new Service().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Service | PlainMessage<Service> | undefined, b: Service | PlainMessage<Service> | undefined): boolean {
+  static equals(
+    a: Service | PlainMessage<Service> | undefined,
+    b: Service | PlainMessage<Service> | undefined
+  ): boolean {
     return proto3.util.equals(Service, a, b);
   }
 }
@@ -191,21 +201,21 @@ export class DomainVerification extends Message<DomainVerification> {
    *
    * @generated from field: string domain = 1;
    */
-  domain = "";
+  domain = '';
 
   /**
    * The owner's address who initiated the verification
    *
    * @generated from field: string owner = 2;
    */
-  owner = "";
+  owner = '';
 
   /**
    * Unique verification token to be placed in DNS TXT record
    *
    * @generated from field: string verification_token = 3;
    */
-  verificationToken = "";
+  verificationToken = '';
 
   /**
    * Current status of domain verification
@@ -234,14 +244,14 @@ export class DomainVerification extends Message<DomainVerification> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.DomainVerification";
+  static readonly typeName = 'svc.v1.DomainVerification';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "domain", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "verification_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "status", kind: "enum", T: proto3.getEnumType(DomainVerificationStatus) },
-    { no: 5, name: "expires_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 6, name: "verified_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: 'domain', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'verification_token', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'status', kind: 'enum', T: proto3.getEnumType(DomainVerificationStatus) },
+    { no: 5, name: 'expires_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 6, name: 'verified_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DomainVerification {
@@ -252,11 +262,17 @@ export class DomainVerification extends Message<DomainVerification> {
     return new DomainVerification().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DomainVerification {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): DomainVerification {
     return new DomainVerification().fromJsonString(jsonString, options);
   }
 
-  static equals(a: DomainVerification | PlainMessage<DomainVerification> | undefined, b: DomainVerification | PlainMessage<DomainVerification> | undefined): boolean {
+  static equals(
+    a: DomainVerification | PlainMessage<DomainVerification> | undefined,
+    b: DomainVerification | PlainMessage<DomainVerification> | undefined
+  ): boolean {
     return proto3.util.equals(DomainVerification, a, b);
   }
 }
@@ -272,21 +288,21 @@ export class ServiceCapability extends Message<ServiceCapability> {
    *
    * @generated from field: string capability_id = 1;
    */
-  capabilityId = "";
+  capabilityId = '';
 
   /**
    * Service ID this capability belongs to
    *
    * @generated from field: string service_id = 2;
    */
-  serviceId = "";
+  serviceId = '';
 
   /**
    * DNS domain associated with the capability
    *
    * @generated from field: string domain = 3;
    */
-  domain = "";
+  domain = '';
 
   /**
    * List of abilities/actions granted by this capability
@@ -300,7 +316,7 @@ export class ServiceCapability extends Message<ServiceCapability> {
    *
    * @generated from field: string owner = 5;
    */
-  owner = "";
+  owner = '';
 
   /**
    * Unix timestamp when the capability was created
@@ -329,16 +345,16 @@ export class ServiceCapability extends Message<ServiceCapability> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.ServiceCapability";
+  static readonly typeName = 'svc.v1.ServiceCapability';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "capability_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "service_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "domain", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "abilities", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 5, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 7, name: "expires_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 8, name: "revoked", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'capability_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'service_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'domain', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'abilities', kind: 'scalar', T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 5, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'created_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 7, name: 'expires_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 8, name: 'revoked', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ServiceCapability {
@@ -353,7 +369,10 @@ export class ServiceCapability extends Message<ServiceCapability> {
     return new ServiceCapability().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ServiceCapability | PlainMessage<ServiceCapability> | undefined, b: ServiceCapability | PlainMessage<ServiceCapability> | undefined): boolean {
+  static equals(
+    a: ServiceCapability | PlainMessage<ServiceCapability> | undefined,
+    b: ServiceCapability | PlainMessage<ServiceCapability> | undefined
+  ): boolean {
     return proto3.util.equals(ServiceCapability, a, b);
   }
 }
@@ -369,21 +388,21 @@ export class ServiceResource extends Message<ServiceResource> {
    *
    * @generated from field: string resource_id = 1;
    */
-  resourceId = "";
+  resourceId = '';
 
   /**
    * Service ID this resource belongs to
    *
    * @generated from field: string service_id = 2;
    */
-  serviceId = "";
+  serviceId = '';
 
   /**
    * Type of resource (e.g., "api", "data", "file")
    *
    * @generated from field: string resource_type = 3;
    */
-  resourceType = "";
+  resourceType = '';
 
   /**
    * List of abilities that can be performed on this resource
@@ -405,13 +424,25 @@ export class ServiceResource extends Message<ServiceResource> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.ServiceResource";
+  static readonly typeName = 'svc.v1.ServiceResource';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "resource_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "service_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "resource_type", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "allowed_abilities", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 5, name: "metadata", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 1, name: 'resource_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'service_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'resource_type', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    {
+      no: 4,
+      name: 'allowed_abilities',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 5,
+      name: 'metadata',
+      kind: 'map',
+      K: 9 /* ScalarType.STRING */,
+      V: { kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ServiceResource {
@@ -426,7 +457,10 @@ export class ServiceResource extends Message<ServiceResource> {
     return new ServiceResource().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ServiceResource | PlainMessage<ServiceResource> | undefined, b: ServiceResource | PlainMessage<ServiceResource> | undefined): boolean {
+  static equals(
+    a: ServiceResource | PlainMessage<ServiceResource> | undefined,
+    b: ServiceResource | PlainMessage<ServiceResource> | undefined
+  ): boolean {
     return proto3.util.equals(ServiceResource, a, b);
   }
 }
@@ -442,42 +476,42 @@ export class ServiceOIDCConfig extends Message<ServiceOIDCConfig> {
    *
    * @generated from field: string service_id = 1;
    */
-  serviceId = "";
+  serviceId = '';
 
   /**
    * OIDC issuer URL (must match the service's verified domain)
    *
    * @generated from field: string issuer = 2;
    */
-  issuer = "";
+  issuer = '';
 
   /**
    * Authorization endpoint URL
    *
    * @generated from field: string authorization_endpoint = 3;
    */
-  authorizationEndpoint = "";
+  authorizationEndpoint = '';
 
   /**
    * Token endpoint URL
    *
    * @generated from field: string token_endpoint = 4;
    */
-  tokenEndpoint = "";
+  tokenEndpoint = '';
 
   /**
    * JWKS URI for public key retrieval
    *
    * @generated from field: string jwks_uri = 5;
    */
-  jwksUri = "";
+  jwksUri = '';
 
   /**
    * UserInfo endpoint URL
    *
    * @generated from field: string userinfo_endpoint = 6;
    */
-  userinfoEndpoint = "";
+  userinfoEndpoint = '';
 
   /**
    * Supported OIDC scopes for this service
@@ -562,25 +596,79 @@ export class ServiceOIDCConfig extends Message<ServiceOIDCConfig> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.ServiceOIDCConfig";
+  static readonly typeName = 'svc.v1.ServiceOIDCConfig';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "service_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "issuer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "authorization_endpoint", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "token_endpoint", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "jwks_uri", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "userinfo_endpoint", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "scopes_supported", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 8, name: "response_types_supported", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 9, name: "grant_types_supported", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 10, name: "id_token_signing_alg_values_supported", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 11, name: "subject_types_supported", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 12, name: "token_endpoint_auth_methods_supported", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 13, name: "claims_supported", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 14, name: "response_modes_supported", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 15, name: "metadata", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
-    { no: 16, name: "created_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 17, name: "updated_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: 'service_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'issuer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'authorization_endpoint', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'token_endpoint', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'jwks_uri', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'userinfo_endpoint', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    {
+      no: 7,
+      name: 'scopes_supported',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 8,
+      name: 'response_types_supported',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 9,
+      name: 'grant_types_supported',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 10,
+      name: 'id_token_signing_alg_values_supported',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 11,
+      name: 'subject_types_supported',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 12,
+      name: 'token_endpoint_auth_methods_supported',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 13,
+      name: 'claims_supported',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 14,
+      name: 'response_modes_supported',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 15,
+      name: 'metadata',
+      kind: 'map',
+      K: 9 /* ScalarType.STRING */,
+      V: { kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    },
+    { no: 16, name: 'created_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 17, name: 'updated_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ServiceOIDCConfig {
@@ -595,7 +683,10 @@ export class ServiceOIDCConfig extends Message<ServiceOIDCConfig> {
     return new ServiceOIDCConfig().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ServiceOIDCConfig | PlainMessage<ServiceOIDCConfig> | undefined, b: ServiceOIDCConfig | PlainMessage<ServiceOIDCConfig> | undefined): boolean {
+  static equals(
+    a: ServiceOIDCConfig | PlainMessage<ServiceOIDCConfig> | undefined,
+    b: ServiceOIDCConfig | PlainMessage<ServiceOIDCConfig> | undefined
+  ): boolean {
     return proto3.util.equals(ServiceOIDCConfig, a, b);
   }
 }
@@ -611,63 +702,63 @@ export class JWK extends Message<JWK> {
    *
    * @generated from field: string kty = 1;
    */
-  kty = "";
+  kty = '';
 
   /**
    * Key use (e.g., "sig", "enc")
    *
    * @generated from field: string use = 2;
    */
-  use = "";
+  use = '';
 
   /**
    * Key ID
    *
    * @generated from field: string kid = 3;
    */
-  kid = "";
+  kid = '';
 
   /**
    * Algorithm (e.g., "RS256", "ES256")
    *
    * @generated from field: string alg = 4;
    */
-  alg = "";
+  alg = '';
 
   /**
    * RSA modulus (for RSA keys)
    *
    * @generated from field: string n = 5;
    */
-  n = "";
+  n = '';
 
   /**
    * RSA exponent (for RSA keys)
    *
    * @generated from field: string e = 6;
    */
-  e = "";
+  e = '';
 
   /**
    * Elliptic curve (for EC keys)
    *
    * @generated from field: string crv = 7;
    */
-  crv = "";
+  crv = '';
 
   /**
    * X coordinate (for EC keys)
    *
    * @generated from field: string x = 8;
    */
-  x = "";
+  x = '';
 
   /**
    * Y coordinate (for EC keys)
    *
    * @generated from field: string y = 9;
    */
-  y = "";
+  y = '';
 
   constructor(data?: PartialMessage<JWK>) {
     super();
@@ -675,17 +766,17 @@ export class JWK extends Message<JWK> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.JWK";
+  static readonly typeName = 'svc.v1.JWK';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "kty", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "use", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "kid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "alg", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "n", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "e", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "crv", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 8, name: "x", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 9, name: "y", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'kty', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'use', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'kid', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'alg', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'n', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'e', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: 'crv', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: 'x', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: 'y', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): JWK {
@@ -700,7 +791,10 @@ export class JWK extends Message<JWK> {
     return new JWK().fromJsonString(jsonString, options);
   }
 
-  static equals(a: JWK | PlainMessage<JWK> | undefined, b: JWK | PlainMessage<JWK> | undefined): boolean {
+  static equals(
+    a: JWK | PlainMessage<JWK> | undefined,
+    b: JWK | PlainMessage<JWK> | undefined
+  ): boolean {
     return proto3.util.equals(JWK, a, b);
   }
 }
@@ -716,7 +810,7 @@ export class ServiceJWKS extends Message<ServiceJWKS> {
    *
    * @generated from field: string service_id = 1;
    */
-  serviceId = "";
+  serviceId = '';
 
   /**
    * List of public keys
@@ -738,11 +832,11 @@ export class ServiceJWKS extends Message<ServiceJWKS> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.ServiceJWKS";
+  static readonly typeName = 'svc.v1.ServiceJWKS';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "service_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "keys", kind: "message", T: JWK, repeated: true },
-    { no: 3, name: "rotated_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: 'service_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'keys', kind: 'message', T: JWK, repeated: true },
+    { no: 3, name: 'rotated_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ServiceJWKS {
@@ -757,8 +851,10 @@ export class ServiceJWKS extends Message<ServiceJWKS> {
     return new ServiceJWKS().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ServiceJWKS | PlainMessage<ServiceJWKS> | undefined, b: ServiceJWKS | PlainMessage<ServiceJWKS> | undefined): boolean {
+  static equals(
+    a: ServiceJWKS | PlainMessage<ServiceJWKS> | undefined,
+    b: ServiceJWKS | PlainMessage<ServiceJWKS> | undefined
+  ): boolean {
     return proto3.util.equals(ServiceJWKS, a, b);
   }
 }
-

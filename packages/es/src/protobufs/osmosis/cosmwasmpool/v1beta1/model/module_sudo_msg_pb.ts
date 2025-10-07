@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { Coin } from "../../../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { Coin } from '../../../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * ===================== SwapExactAmountIn
@@ -16,7 +23,7 @@ export class SwapExactAmountIn extends Message<SwapExactAmountIn> {
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * token_in is the token to be sent to the pool.
@@ -30,7 +37,7 @@ export class SwapExactAmountIn extends Message<SwapExactAmountIn> {
    *
    * @generated from field: string token_out_denom = 3;
    */
-  tokenOutDenom = "";
+  tokenOutDenom = '';
 
   /**
    * token_out_min_amount is the minimum amount of token_out to be received from
@@ -38,14 +45,14 @@ export class SwapExactAmountIn extends Message<SwapExactAmountIn> {
    *
    * @generated from field: string token_out_min_amount = 4;
    */
-  tokenOutMinAmount = "";
+  tokenOutMinAmount = '';
 
   /**
    * swap_fee is the swap fee for this swap estimate.
    *
    * @generated from field: string swap_fee = 5;
    */
-  swapFee = "";
+  swapFee = '';
 
   constructor(data?: PartialMessage<SwapExactAmountIn>) {
     super();
@@ -53,13 +60,13 @@ export class SwapExactAmountIn extends Message<SwapExactAmountIn> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.cosmwasmpool.v1beta1.SwapExactAmountIn";
+  static readonly typeName = 'osmosis.cosmwasmpool.v1beta1.SwapExactAmountIn';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "token_in", kind: "message", T: Coin },
-    { no: 3, name: "token_out_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "token_out_min_amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "swap_fee", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'token_in', kind: 'message', T: Coin },
+    { no: 3, name: 'token_out_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'token_out_min_amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'swap_fee', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SwapExactAmountIn {
@@ -74,7 +81,10 @@ export class SwapExactAmountIn extends Message<SwapExactAmountIn> {
     return new SwapExactAmountIn().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SwapExactAmountIn | PlainMessage<SwapExactAmountIn> | undefined, b: SwapExactAmountIn | PlainMessage<SwapExactAmountIn> | undefined): boolean {
+  static equals(
+    a: SwapExactAmountIn | PlainMessage<SwapExactAmountIn> | undefined,
+    b: SwapExactAmountIn | PlainMessage<SwapExactAmountIn> | undefined
+  ): boolean {
     return proto3.util.equals(SwapExactAmountIn, a, b);
   }
 }
@@ -97,24 +107,36 @@ export class SwapExactAmountInSudoMsg extends Message<SwapExactAmountInSudoMsg> 
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.cosmwasmpool.v1beta1.SwapExactAmountInSudoMsg";
+  static readonly typeName = 'osmosis.cosmwasmpool.v1beta1.SwapExactAmountInSudoMsg';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "swap_exact_amount_in", kind: "message", T: SwapExactAmountIn },
+    { no: 1, name: 'swap_exact_amount_in', kind: 'message', T: SwapExactAmountIn },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SwapExactAmountInSudoMsg {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): SwapExactAmountInSudoMsg {
     return new SwapExactAmountInSudoMsg().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SwapExactAmountInSudoMsg {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): SwapExactAmountInSudoMsg {
     return new SwapExactAmountInSudoMsg().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SwapExactAmountInSudoMsg {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): SwapExactAmountInSudoMsg {
     return new SwapExactAmountInSudoMsg().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SwapExactAmountInSudoMsg | PlainMessage<SwapExactAmountInSudoMsg> | undefined, b: SwapExactAmountInSudoMsg | PlainMessage<SwapExactAmountInSudoMsg> | undefined): boolean {
+  static equals(
+    a: SwapExactAmountInSudoMsg | PlainMessage<SwapExactAmountInSudoMsg> | undefined,
+    b: SwapExactAmountInSudoMsg | PlainMessage<SwapExactAmountInSudoMsg> | undefined
+  ): boolean {
     return proto3.util.equals(SwapExactAmountInSudoMsg, a, b);
   }
 }
@@ -128,7 +150,7 @@ export class SwapExactAmountInSudoMsgResponse extends Message<SwapExactAmountInS
    *
    * @generated from field: string token_out_amount = 1;
    */
-  tokenOutAmount = "";
+  tokenOutAmount = '';
 
   constructor(data?: PartialMessage<SwapExactAmountInSudoMsgResponse>) {
     super();
@@ -136,24 +158,39 @@ export class SwapExactAmountInSudoMsgResponse extends Message<SwapExactAmountInS
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.cosmwasmpool.v1beta1.SwapExactAmountInSudoMsgResponse";
+  static readonly typeName = 'osmosis.cosmwasmpool.v1beta1.SwapExactAmountInSudoMsgResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "token_out_amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'token_out_amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SwapExactAmountInSudoMsgResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): SwapExactAmountInSudoMsgResponse {
     return new SwapExactAmountInSudoMsgResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SwapExactAmountInSudoMsgResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): SwapExactAmountInSudoMsgResponse {
     return new SwapExactAmountInSudoMsgResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SwapExactAmountInSudoMsgResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): SwapExactAmountInSudoMsgResponse {
     return new SwapExactAmountInSudoMsgResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SwapExactAmountInSudoMsgResponse | PlainMessage<SwapExactAmountInSudoMsgResponse> | undefined, b: SwapExactAmountInSudoMsgResponse | PlainMessage<SwapExactAmountInSudoMsgResponse> | undefined): boolean {
+  static equals(
+    a:
+      | SwapExactAmountInSudoMsgResponse
+      | PlainMessage<SwapExactAmountInSudoMsgResponse>
+      | undefined,
+    b: SwapExactAmountInSudoMsgResponse | PlainMessage<SwapExactAmountInSudoMsgResponse> | undefined
+  ): boolean {
     return proto3.util.equals(SwapExactAmountInSudoMsgResponse, a, b);
   }
 }
@@ -167,7 +204,7 @@ export class SwapExactAmountOut extends Message<SwapExactAmountOut> {
   /**
    * @generated from field: string sender = 1;
    */
-  sender = "";
+  sender = '';
 
   /**
    * token_out is the token to be sent out of the pool.
@@ -181,7 +218,7 @@ export class SwapExactAmountOut extends Message<SwapExactAmountOut> {
    *
    * @generated from field: string token_in_denom = 3;
    */
-  tokenInDenom = "";
+  tokenInDenom = '';
 
   /**
    * token_in_max_amount is the maximum amount of token_in to be sent to the
@@ -189,14 +226,14 @@ export class SwapExactAmountOut extends Message<SwapExactAmountOut> {
    *
    * @generated from field: string token_in_max_amount = 4;
    */
-  tokenInMaxAmount = "";
+  tokenInMaxAmount = '';
 
   /**
    * swap_fee is the swap fee for this swap estimate.
    *
    * @generated from field: string swap_fee = 5;
    */
-  swapFee = "";
+  swapFee = '';
 
   constructor(data?: PartialMessage<SwapExactAmountOut>) {
     super();
@@ -204,13 +241,13 @@ export class SwapExactAmountOut extends Message<SwapExactAmountOut> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.cosmwasmpool.v1beta1.SwapExactAmountOut";
+  static readonly typeName = 'osmosis.cosmwasmpool.v1beta1.SwapExactAmountOut';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "token_out", kind: "message", T: Coin },
-    { no: 3, name: "token_in_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "token_in_max_amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "swap_fee", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'token_out', kind: 'message', T: Coin },
+    { no: 3, name: 'token_in_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'token_in_max_amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'swap_fee', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SwapExactAmountOut {
@@ -221,11 +258,17 @@ export class SwapExactAmountOut extends Message<SwapExactAmountOut> {
     return new SwapExactAmountOut().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SwapExactAmountOut {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): SwapExactAmountOut {
     return new SwapExactAmountOut().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SwapExactAmountOut | PlainMessage<SwapExactAmountOut> | undefined, b: SwapExactAmountOut | PlainMessage<SwapExactAmountOut> | undefined): boolean {
+  static equals(
+    a: SwapExactAmountOut | PlainMessage<SwapExactAmountOut> | undefined,
+    b: SwapExactAmountOut | PlainMessage<SwapExactAmountOut> | undefined
+  ): boolean {
     return proto3.util.equals(SwapExactAmountOut, a, b);
   }
 }
@@ -248,24 +291,36 @@ export class SwapExactAmountOutSudoMsg extends Message<SwapExactAmountOutSudoMsg
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.cosmwasmpool.v1beta1.SwapExactAmountOutSudoMsg";
+  static readonly typeName = 'osmosis.cosmwasmpool.v1beta1.SwapExactAmountOutSudoMsg';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "swap_exact_amount_out", kind: "message", T: SwapExactAmountOut },
+    { no: 1, name: 'swap_exact_amount_out', kind: 'message', T: SwapExactAmountOut },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SwapExactAmountOutSudoMsg {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): SwapExactAmountOutSudoMsg {
     return new SwapExactAmountOutSudoMsg().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SwapExactAmountOutSudoMsg {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): SwapExactAmountOutSudoMsg {
     return new SwapExactAmountOutSudoMsg().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SwapExactAmountOutSudoMsg {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): SwapExactAmountOutSudoMsg {
     return new SwapExactAmountOutSudoMsg().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SwapExactAmountOutSudoMsg | PlainMessage<SwapExactAmountOutSudoMsg> | undefined, b: SwapExactAmountOutSudoMsg | PlainMessage<SwapExactAmountOutSudoMsg> | undefined): boolean {
+  static equals(
+    a: SwapExactAmountOutSudoMsg | PlainMessage<SwapExactAmountOutSudoMsg> | undefined,
+    b: SwapExactAmountOutSudoMsg | PlainMessage<SwapExactAmountOutSudoMsg> | undefined
+  ): boolean {
     return proto3.util.equals(SwapExactAmountOutSudoMsg, a, b);
   }
 }
@@ -279,7 +334,7 @@ export class SwapExactAmountOutSudoMsgResponse extends Message<SwapExactAmountOu
    *
    * @generated from field: string token_in_amount = 1;
    */
-  tokenInAmount = "";
+  tokenInAmount = '';
 
   constructor(data?: PartialMessage<SwapExactAmountOutSudoMsgResponse>) {
     super();
@@ -287,25 +342,42 @@ export class SwapExactAmountOutSudoMsgResponse extends Message<SwapExactAmountOu
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.cosmwasmpool.v1beta1.SwapExactAmountOutSudoMsgResponse";
+  static readonly typeName = 'osmosis.cosmwasmpool.v1beta1.SwapExactAmountOutSudoMsgResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "token_in_amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'token_in_amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SwapExactAmountOutSudoMsgResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): SwapExactAmountOutSudoMsgResponse {
     return new SwapExactAmountOutSudoMsgResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SwapExactAmountOutSudoMsgResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): SwapExactAmountOutSudoMsgResponse {
     return new SwapExactAmountOutSudoMsgResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SwapExactAmountOutSudoMsgResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): SwapExactAmountOutSudoMsgResponse {
     return new SwapExactAmountOutSudoMsgResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SwapExactAmountOutSudoMsgResponse | PlainMessage<SwapExactAmountOutSudoMsgResponse> | undefined, b: SwapExactAmountOutSudoMsgResponse | PlainMessage<SwapExactAmountOutSudoMsgResponse> | undefined): boolean {
+  static equals(
+    a:
+      | SwapExactAmountOutSudoMsgResponse
+      | PlainMessage<SwapExactAmountOutSudoMsgResponse>
+      | undefined,
+    b:
+      | SwapExactAmountOutSudoMsgResponse
+      | PlainMessage<SwapExactAmountOutSudoMsgResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(SwapExactAmountOutSudoMsgResponse, a, b);
   }
 }
-

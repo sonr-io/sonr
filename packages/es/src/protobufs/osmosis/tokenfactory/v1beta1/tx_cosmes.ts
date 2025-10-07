@@ -3,16 +3,31 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgBurn, MsgBurnResponse, MsgChangeAdmin, MsgChangeAdminResponse, MsgCreateDenom, MsgCreateDenomResponse, MsgForceTransfer, MsgForceTransferResponse, MsgMint, MsgMintResponse, MsgSetBeforeSendHook, MsgSetBeforeSendHookResponse, MsgSetDenomMetadata, MsgSetDenomMetadataResponse } from "./tx_pb.js";
+import {
+  MsgBurn,
+  MsgBurnResponse,
+  MsgChangeAdmin,
+  MsgChangeAdminResponse,
+  MsgCreateDenom,
+  MsgCreateDenomResponse,
+  MsgForceTransfer,
+  MsgForceTransferResponse,
+  MsgMint,
+  MsgMintResponse,
+  MsgSetBeforeSendHook,
+  MsgSetBeforeSendHookResponse,
+  MsgSetDenomMetadata,
+  MsgSetDenomMetadataResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "osmosis.tokenfactory.v1beta1.Msg";
+const TYPE_NAME = 'osmosis.tokenfactory.v1beta1.Msg';
 
 /**
  * @generated from rpc osmosis.tokenfactory.v1beta1.Msg.CreateDenom
  */
 export const MsgCreateDenomService = {
   typeName: TYPE_NAME,
-  method: "CreateDenom",
+  method: 'CreateDenom',
   Request: MsgCreateDenom,
   Response: MsgCreateDenomResponse,
 } as const;
@@ -22,7 +37,7 @@ export const MsgCreateDenomService = {
  */
 export const MsgMintService = {
   typeName: TYPE_NAME,
-  method: "Mint",
+  method: 'Mint',
   Request: MsgMint,
   Response: MsgMintResponse,
 } as const;
@@ -32,7 +47,7 @@ export const MsgMintService = {
  */
 export const MsgBurnService = {
   typeName: TYPE_NAME,
-  method: "Burn",
+  method: 'Burn',
   Request: MsgBurn,
   Response: MsgBurnResponse,
 } as const;
@@ -42,7 +57,7 @@ export const MsgBurnService = {
  */
 export const MsgChangeAdminService = {
   typeName: TYPE_NAME,
-  method: "ChangeAdmin",
+  method: 'ChangeAdmin',
   Request: MsgChangeAdmin,
   Response: MsgChangeAdminResponse,
 } as const;
@@ -52,7 +67,7 @@ export const MsgChangeAdminService = {
  */
 export const MsgSetDenomMetadataService = {
   typeName: TYPE_NAME,
-  method: "SetDenomMetadata",
+  method: 'SetDenomMetadata',
   Request: MsgSetDenomMetadata,
   Response: MsgSetDenomMetadataResponse,
 } as const;
@@ -62,7 +77,7 @@ export const MsgSetDenomMetadataService = {
  */
 export const MsgSetBeforeSendHookService = {
   typeName: TYPE_NAME,
-  method: "SetBeforeSendHook",
+  method: 'SetBeforeSendHook',
   Request: MsgSetBeforeSendHook,
   Response: MsgSetBeforeSendHookResponse,
 } as const;
@@ -72,8 +87,7 @@ export const MsgSetBeforeSendHookService = {
  */
 export const MsgForceTransferService = {
   typeName: TYPE_NAME,
-  method: "ForceTransfer",
+  method: 'ForceTransfer',
   Request: MsgForceTransfer,
   Response: MsgForceTransferResponse,
 } as const;
-

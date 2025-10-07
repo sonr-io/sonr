@@ -3,9 +3,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgEthereumTx, MsgEthereumTxResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx_pb.js";
+import {
+  MsgEthereumTx,
+  MsgEthereumTxResponse,
+  MsgUpdateParams,
+  MsgUpdateParamsResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "ethermint.evm.v1.Msg";
+const TYPE_NAME = 'ethermint.evm.v1.Msg';
 
 /**
  * EthereumTx defines a method submitting Ethereum transactions.
@@ -14,7 +19,7 @@ const TYPE_NAME = "ethermint.evm.v1.Msg";
  */
 export const MsgEthereumTxService = {
   typeName: TYPE_NAME,
-  method: "EthereumTx",
+  method: 'EthereumTx',
   Request: MsgEthereumTx,
   Response: MsgEthereumTxResponse,
 } as const;
@@ -27,8 +32,7 @@ export const MsgEthereumTxService = {
  */
 export const MsgUpdateParamsService = {
   typeName: TYPE_NAME,
-  method: "UpdateParams",
+  method: 'UpdateParams',
   Request: MsgUpdateParams,
   Response: MsgUpdateParamsResponse,
 } as const;
-

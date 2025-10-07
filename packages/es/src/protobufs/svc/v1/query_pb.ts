@@ -3,10 +3,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { Params } from "./genesis_pb.js";
-import { DomainVerification, JWK, Service, ServiceOIDCConfig, ServiceStatus } from "./state_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { Params } from './genesis_pb.js';
+import { DomainVerification, JWK, Service, ServiceOIDCConfig, ServiceStatus } from './state_pb.js';
 
 /**
  * QueryParamsRequest is the request type for the Query/Params RPC method.
@@ -20,9 +27,8 @@ export class QueryParamsRequest extends Message<QueryParamsRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.QueryParamsRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'svc.v1.QueryParamsRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryParamsRequest {
     return new QueryParamsRequest().fromBinary(bytes, options);
@@ -32,11 +38,17 @@ export class QueryParamsRequest extends Message<QueryParamsRequest> {
     return new QueryParamsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryParamsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryParamsRequest {
     return new QueryParamsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined, b: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined): boolean {
+  static equals(
+    a: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined,
+    b: QueryParamsRequest | PlainMessage<QueryParamsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryParamsRequest, a, b);
   }
 }
@@ -60,9 +72,9 @@ export class QueryParamsResponse extends Message<QueryParamsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.QueryParamsResponse";
+  static readonly typeName = 'svc.v1.QueryParamsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "params", kind: "message", T: Params },
+    { no: 1, name: 'params', kind: 'message', T: Params },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryParamsResponse {
@@ -73,11 +85,17 @@ export class QueryParamsResponse extends Message<QueryParamsResponse> {
     return new QueryParamsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryParamsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryParamsResponse {
     return new QueryParamsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined, b: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined): boolean {
+  static equals(
+    a: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined,
+    b: QueryParamsResponse | PlainMessage<QueryParamsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryParamsResponse, a, b);
   }
 }
@@ -92,7 +110,7 @@ export class QueryDomainVerificationRequest extends Message<QueryDomainVerificat
   /**
    * @generated from field: string domain = 1;
    */
-  domain = "";
+  domain = '';
 
   constructor(data?: PartialMessage<QueryDomainVerificationRequest>) {
     super();
@@ -100,24 +118,36 @@ export class QueryDomainVerificationRequest extends Message<QueryDomainVerificat
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.QueryDomainVerificationRequest";
+  static readonly typeName = 'svc.v1.QueryDomainVerificationRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "domain", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'domain', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryDomainVerificationRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryDomainVerificationRequest {
     return new QueryDomainVerificationRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryDomainVerificationRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryDomainVerificationRequest {
     return new QueryDomainVerificationRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryDomainVerificationRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryDomainVerificationRequest {
     return new QueryDomainVerificationRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryDomainVerificationRequest | PlainMessage<QueryDomainVerificationRequest> | undefined, b: QueryDomainVerificationRequest | PlainMessage<QueryDomainVerificationRequest> | undefined): boolean {
+  static equals(
+    a: QueryDomainVerificationRequest | PlainMessage<QueryDomainVerificationRequest> | undefined,
+    b: QueryDomainVerificationRequest | PlainMessage<QueryDomainVerificationRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryDomainVerificationRequest, a, b);
   }
 }
@@ -140,24 +170,36 @@ export class QueryDomainVerificationResponse extends Message<QueryDomainVerifica
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.QueryDomainVerificationResponse";
+  static readonly typeName = 'svc.v1.QueryDomainVerificationResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "domain_verification", kind: "message", T: DomainVerification },
+    { no: 1, name: 'domain_verification', kind: 'message', T: DomainVerification },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryDomainVerificationResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryDomainVerificationResponse {
     return new QueryDomainVerificationResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryDomainVerificationResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryDomainVerificationResponse {
     return new QueryDomainVerificationResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryDomainVerificationResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryDomainVerificationResponse {
     return new QueryDomainVerificationResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryDomainVerificationResponse | PlainMessage<QueryDomainVerificationResponse> | undefined, b: QueryDomainVerificationResponse | PlainMessage<QueryDomainVerificationResponse> | undefined): boolean {
+  static equals(
+    a: QueryDomainVerificationResponse | PlainMessage<QueryDomainVerificationResponse> | undefined,
+    b: QueryDomainVerificationResponse | PlainMessage<QueryDomainVerificationResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryDomainVerificationResponse, a, b);
   }
 }
@@ -171,7 +213,7 @@ export class QueryServiceRequest extends Message<QueryServiceRequest> {
   /**
    * @generated from field: string service_id = 1;
    */
-  serviceId = "";
+  serviceId = '';
 
   constructor(data?: PartialMessage<QueryServiceRequest>) {
     super();
@@ -179,9 +221,9 @@ export class QueryServiceRequest extends Message<QueryServiceRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.QueryServiceRequest";
+  static readonly typeName = 'svc.v1.QueryServiceRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "service_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'service_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryServiceRequest {
@@ -192,11 +234,17 @@ export class QueryServiceRequest extends Message<QueryServiceRequest> {
     return new QueryServiceRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryServiceRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryServiceRequest {
     return new QueryServiceRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryServiceRequest | PlainMessage<QueryServiceRequest> | undefined, b: QueryServiceRequest | PlainMessage<QueryServiceRequest> | undefined): boolean {
+  static equals(
+    a: QueryServiceRequest | PlainMessage<QueryServiceRequest> | undefined,
+    b: QueryServiceRequest | PlainMessage<QueryServiceRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryServiceRequest, a, b);
   }
 }
@@ -218,9 +266,9 @@ export class QueryServiceResponse extends Message<QueryServiceResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.QueryServiceResponse";
+  static readonly typeName = 'svc.v1.QueryServiceResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "service", kind: "message", T: Service },
+    { no: 1, name: 'service', kind: 'message', T: Service },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryServiceResponse {
@@ -231,11 +279,17 @@ export class QueryServiceResponse extends Message<QueryServiceResponse> {
     return new QueryServiceResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryServiceResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryServiceResponse {
     return new QueryServiceResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryServiceResponse | PlainMessage<QueryServiceResponse> | undefined, b: QueryServiceResponse | PlainMessage<QueryServiceResponse> | undefined): boolean {
+  static equals(
+    a: QueryServiceResponse | PlainMessage<QueryServiceResponse> | undefined,
+    b: QueryServiceResponse | PlainMessage<QueryServiceResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryServiceResponse, a, b);
   }
 }
@@ -250,7 +304,7 @@ export class QueryServicesByOwnerRequest extends Message<QueryServicesByOwnerReq
   /**
    * @generated from field: string owner = 1;
    */
-  owner = "";
+  owner = '';
 
   constructor(data?: PartialMessage<QueryServicesByOwnerRequest>) {
     super();
@@ -258,24 +312,36 @@ export class QueryServicesByOwnerRequest extends Message<QueryServicesByOwnerReq
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.QueryServicesByOwnerRequest";
+  static readonly typeName = 'svc.v1.QueryServicesByOwnerRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryServicesByOwnerRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryServicesByOwnerRequest {
     return new QueryServicesByOwnerRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryServicesByOwnerRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryServicesByOwnerRequest {
     return new QueryServicesByOwnerRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryServicesByOwnerRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryServicesByOwnerRequest {
     return new QueryServicesByOwnerRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryServicesByOwnerRequest | PlainMessage<QueryServicesByOwnerRequest> | undefined, b: QueryServicesByOwnerRequest | PlainMessage<QueryServicesByOwnerRequest> | undefined): boolean {
+  static equals(
+    a: QueryServicesByOwnerRequest | PlainMessage<QueryServicesByOwnerRequest> | undefined,
+    b: QueryServicesByOwnerRequest | PlainMessage<QueryServicesByOwnerRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryServicesByOwnerRequest, a, b);
   }
 }
@@ -298,24 +364,36 @@ export class QueryServicesByOwnerResponse extends Message<QueryServicesByOwnerRe
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.QueryServicesByOwnerResponse";
+  static readonly typeName = 'svc.v1.QueryServicesByOwnerResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "services", kind: "message", T: Service, repeated: true },
+    { no: 1, name: 'services', kind: 'message', T: Service, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryServicesByOwnerResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryServicesByOwnerResponse {
     return new QueryServicesByOwnerResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryServicesByOwnerResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryServicesByOwnerResponse {
     return new QueryServicesByOwnerResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryServicesByOwnerResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryServicesByOwnerResponse {
     return new QueryServicesByOwnerResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryServicesByOwnerResponse | PlainMessage<QueryServicesByOwnerResponse> | undefined, b: QueryServicesByOwnerResponse | PlainMessage<QueryServicesByOwnerResponse> | undefined): boolean {
+  static equals(
+    a: QueryServicesByOwnerResponse | PlainMessage<QueryServicesByOwnerResponse> | undefined,
+    b: QueryServicesByOwnerResponse | PlainMessage<QueryServicesByOwnerResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryServicesByOwnerResponse, a, b);
   }
 }
@@ -330,7 +408,7 @@ export class QueryServicesByDomainRequest extends Message<QueryServicesByDomainR
   /**
    * @generated from field: string domain = 1;
    */
-  domain = "";
+  domain = '';
 
   constructor(data?: PartialMessage<QueryServicesByDomainRequest>) {
     super();
@@ -338,24 +416,36 @@ export class QueryServicesByDomainRequest extends Message<QueryServicesByDomainR
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.QueryServicesByDomainRequest";
+  static readonly typeName = 'svc.v1.QueryServicesByDomainRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "domain", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'domain', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryServicesByDomainRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryServicesByDomainRequest {
     return new QueryServicesByDomainRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryServicesByDomainRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryServicesByDomainRequest {
     return new QueryServicesByDomainRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryServicesByDomainRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryServicesByDomainRequest {
     return new QueryServicesByDomainRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryServicesByDomainRequest | PlainMessage<QueryServicesByDomainRequest> | undefined, b: QueryServicesByDomainRequest | PlainMessage<QueryServicesByDomainRequest> | undefined): boolean {
+  static equals(
+    a: QueryServicesByDomainRequest | PlainMessage<QueryServicesByDomainRequest> | undefined,
+    b: QueryServicesByDomainRequest | PlainMessage<QueryServicesByDomainRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryServicesByDomainRequest, a, b);
   }
 }
@@ -378,24 +468,36 @@ export class QueryServicesByDomainResponse extends Message<QueryServicesByDomain
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.QueryServicesByDomainResponse";
+  static readonly typeName = 'svc.v1.QueryServicesByDomainResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "services", kind: "message", T: Service, repeated: true },
+    { no: 1, name: 'services', kind: 'message', T: Service, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryServicesByDomainResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryServicesByDomainResponse {
     return new QueryServicesByDomainResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryServicesByDomainResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryServicesByDomainResponse {
     return new QueryServicesByDomainResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryServicesByDomainResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryServicesByDomainResponse {
     return new QueryServicesByDomainResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryServicesByDomainResponse | PlainMessage<QueryServicesByDomainResponse> | undefined, b: QueryServicesByDomainResponse | PlainMessage<QueryServicesByDomainResponse> | undefined): boolean {
+  static equals(
+    a: QueryServicesByDomainResponse | PlainMessage<QueryServicesByDomainResponse> | undefined,
+    b: QueryServicesByDomainResponse | PlainMessage<QueryServicesByDomainResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryServicesByDomainResponse, a, b);
   }
 }
@@ -410,7 +512,7 @@ export class QueryServiceOIDCDiscoveryRequest extends Message<QueryServiceOIDCDi
   /**
    * @generated from field: string service_id = 1;
    */
-  serviceId = "";
+  serviceId = '';
 
   constructor(data?: PartialMessage<QueryServiceOIDCDiscoveryRequest>) {
     super();
@@ -418,24 +520,39 @@ export class QueryServiceOIDCDiscoveryRequest extends Message<QueryServiceOIDCDi
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.QueryServiceOIDCDiscoveryRequest";
+  static readonly typeName = 'svc.v1.QueryServiceOIDCDiscoveryRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "service_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'service_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryServiceOIDCDiscoveryRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryServiceOIDCDiscoveryRequest {
     return new QueryServiceOIDCDiscoveryRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryServiceOIDCDiscoveryRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryServiceOIDCDiscoveryRequest {
     return new QueryServiceOIDCDiscoveryRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryServiceOIDCDiscoveryRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryServiceOIDCDiscoveryRequest {
     return new QueryServiceOIDCDiscoveryRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryServiceOIDCDiscoveryRequest | PlainMessage<QueryServiceOIDCDiscoveryRequest> | undefined, b: QueryServiceOIDCDiscoveryRequest | PlainMessage<QueryServiceOIDCDiscoveryRequest> | undefined): boolean {
+  static equals(
+    a:
+      | QueryServiceOIDCDiscoveryRequest
+      | PlainMessage<QueryServiceOIDCDiscoveryRequest>
+      | undefined,
+    b: QueryServiceOIDCDiscoveryRequest | PlainMessage<QueryServiceOIDCDiscoveryRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryServiceOIDCDiscoveryRequest, a, b);
   }
 }
@@ -453,42 +570,42 @@ export class QueryServiceOIDCDiscoveryResponse extends Message<QueryServiceOIDCD
    *
    * @generated from field: string issuer = 1;
    */
-  issuer = "";
+  issuer = '';
 
   /**
    * URL of the authorization endpoint
    *
    * @generated from field: string authorization_endpoint = 2;
    */
-  authorizationEndpoint = "";
+  authorizationEndpoint = '';
 
   /**
    * URL of the token endpoint
    *
    * @generated from field: string token_endpoint = 3;
    */
-  tokenEndpoint = "";
+  tokenEndpoint = '';
 
   /**
    * URL of the JSON Web Key Set
    *
    * @generated from field: string jwks_uri = 4;
    */
-  jwksUri = "";
+  jwksUri = '';
 
   /**
    * URL of the UserInfo endpoint
    *
    * @generated from field: string userinfo_endpoint = 5;
    */
-  userinfoEndpoint = "";
+  userinfoEndpoint = '';
 
   /**
    * URL for the registration endpoint
    *
    * @generated from field: string registration_endpoint = 6;
    */
-  registrationEndpoint = "";
+  registrationEndpoint = '';
 
   /**
    * JSON array containing a list of the OAuth 2.0 scope values
@@ -551,7 +668,7 @@ export class QueryServiceOIDCDiscoveryResponse extends Message<QueryServiceOIDCD
    *
    * @generated from field: string service_documentation = 15;
    */
-  serviceDocumentation = "";
+  serviceDocumentation = '';
 
   /**
    * Languages supported for the UI
@@ -593,14 +710,14 @@ export class QueryServiceOIDCDiscoveryResponse extends Message<QueryServiceOIDCD
    *
    * @generated from field: string op_policy_uri = 21;
    */
-  opPolicyUri = "";
+  opPolicyUri = '';
 
   /**
    * URL that the OP provides to the person registering the Client
    *
    * @generated from field: string op_tos_uri = 22;
    */
-  opTosUri = "";
+  opTosUri = '';
 
   constructor(data?: PartialMessage<QueryServiceOIDCDiscoveryResponse>) {
     super();
@@ -608,45 +725,128 @@ export class QueryServiceOIDCDiscoveryResponse extends Message<QueryServiceOIDCD
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.QueryServiceOIDCDiscoveryResponse";
+  static readonly typeName = 'svc.v1.QueryServiceOIDCDiscoveryResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "issuer", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "authorization_endpoint", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "token_endpoint", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "jwks_uri", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "userinfo_endpoint", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "registration_endpoint", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "scopes_supported", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 8, name: "response_types_supported", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 9, name: "grant_types_supported", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 10, name: "id_token_signing_alg_values_supported", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 11, name: "subject_types_supported", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 12, name: "token_endpoint_auth_methods_supported", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 13, name: "claims_supported", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 14, name: "response_modes_supported", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 15, name: "service_documentation", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 16, name: "ui_locales_supported", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 17, name: "claims_locales_supported", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 18, name: "request_parameter_supported", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 19, name: "request_uri_parameter_supported", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 20, name: "require_request_uri_registration", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 21, name: "op_policy_uri", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 22, name: "op_tos_uri", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'issuer', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'authorization_endpoint', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'token_endpoint', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'jwks_uri', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'userinfo_endpoint', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'registration_endpoint', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    {
+      no: 7,
+      name: 'scopes_supported',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 8,
+      name: 'response_types_supported',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 9,
+      name: 'grant_types_supported',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 10,
+      name: 'id_token_signing_alg_values_supported',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 11,
+      name: 'subject_types_supported',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 12,
+      name: 'token_endpoint_auth_methods_supported',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 13,
+      name: 'claims_supported',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 14,
+      name: 'response_modes_supported',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    { no: 15, name: 'service_documentation', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    {
+      no: 16,
+      name: 'ui_locales_supported',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 17,
+      name: 'claims_locales_supported',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    { no: 18, name: 'request_parameter_supported', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 19, name: 'request_uri_parameter_supported', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    {
+      no: 20,
+      name: 'require_request_uri_registration',
+      kind: 'scalar',
+      T: 8 /* ScalarType.BOOL */,
+    },
+    { no: 21, name: 'op_policy_uri', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 22, name: 'op_tos_uri', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryServiceOIDCDiscoveryResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryServiceOIDCDiscoveryResponse {
     return new QueryServiceOIDCDiscoveryResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryServiceOIDCDiscoveryResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryServiceOIDCDiscoveryResponse {
     return new QueryServiceOIDCDiscoveryResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryServiceOIDCDiscoveryResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryServiceOIDCDiscoveryResponse {
     return new QueryServiceOIDCDiscoveryResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryServiceOIDCDiscoveryResponse | PlainMessage<QueryServiceOIDCDiscoveryResponse> | undefined, b: QueryServiceOIDCDiscoveryResponse | PlainMessage<QueryServiceOIDCDiscoveryResponse> | undefined): boolean {
+  static equals(
+    a:
+      | QueryServiceOIDCDiscoveryResponse
+      | PlainMessage<QueryServiceOIDCDiscoveryResponse>
+      | undefined,
+    b:
+      | QueryServiceOIDCDiscoveryResponse
+      | PlainMessage<QueryServiceOIDCDiscoveryResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(QueryServiceOIDCDiscoveryResponse, a, b);
   }
 }
@@ -661,7 +861,7 @@ export class QueryServiceOIDCJWKSRequest extends Message<QueryServiceOIDCJWKSReq
   /**
    * @generated from field: string service_id = 1;
    */
-  serviceId = "";
+  serviceId = '';
 
   constructor(data?: PartialMessage<QueryServiceOIDCJWKSRequest>) {
     super();
@@ -669,24 +869,36 @@ export class QueryServiceOIDCJWKSRequest extends Message<QueryServiceOIDCJWKSReq
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.QueryServiceOIDCJWKSRequest";
+  static readonly typeName = 'svc.v1.QueryServiceOIDCJWKSRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "service_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'service_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryServiceOIDCJWKSRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryServiceOIDCJWKSRequest {
     return new QueryServiceOIDCJWKSRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryServiceOIDCJWKSRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryServiceOIDCJWKSRequest {
     return new QueryServiceOIDCJWKSRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryServiceOIDCJWKSRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryServiceOIDCJWKSRequest {
     return new QueryServiceOIDCJWKSRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryServiceOIDCJWKSRequest | PlainMessage<QueryServiceOIDCJWKSRequest> | undefined, b: QueryServiceOIDCJWKSRequest | PlainMessage<QueryServiceOIDCJWKSRequest> | undefined): boolean {
+  static equals(
+    a: QueryServiceOIDCJWKSRequest | PlainMessage<QueryServiceOIDCJWKSRequest> | undefined,
+    b: QueryServiceOIDCJWKSRequest | PlainMessage<QueryServiceOIDCJWKSRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryServiceOIDCJWKSRequest, a, b);
   }
 }
@@ -712,24 +924,36 @@ export class QueryServiceOIDCJWKSResponse extends Message<QueryServiceOIDCJWKSRe
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.QueryServiceOIDCJWKSResponse";
+  static readonly typeName = 'svc.v1.QueryServiceOIDCJWKSResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "keys", kind: "message", T: JWK, repeated: true },
+    { no: 1, name: 'keys', kind: 'message', T: JWK, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryServiceOIDCJWKSResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryServiceOIDCJWKSResponse {
     return new QueryServiceOIDCJWKSResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryServiceOIDCJWKSResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryServiceOIDCJWKSResponse {
     return new QueryServiceOIDCJWKSResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryServiceOIDCJWKSResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryServiceOIDCJWKSResponse {
     return new QueryServiceOIDCJWKSResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryServiceOIDCJWKSResponse | PlainMessage<QueryServiceOIDCJWKSResponse> | undefined, b: QueryServiceOIDCJWKSResponse | PlainMessage<QueryServiceOIDCJWKSResponse> | undefined): boolean {
+  static equals(
+    a: QueryServiceOIDCJWKSResponse | PlainMessage<QueryServiceOIDCJWKSResponse> | undefined,
+    b: QueryServiceOIDCJWKSResponse | PlainMessage<QueryServiceOIDCJWKSResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryServiceOIDCJWKSResponse, a, b);
   }
 }
@@ -744,7 +968,7 @@ export class QueryServiceOIDCMetadataRequest extends Message<QueryServiceOIDCMet
   /**
    * @generated from field: string service_id = 1;
    */
-  serviceId = "";
+  serviceId = '';
 
   constructor(data?: PartialMessage<QueryServiceOIDCMetadataRequest>) {
     super();
@@ -752,24 +976,36 @@ export class QueryServiceOIDCMetadataRequest extends Message<QueryServiceOIDCMet
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.QueryServiceOIDCMetadataRequest";
+  static readonly typeName = 'svc.v1.QueryServiceOIDCMetadataRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "service_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'service_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryServiceOIDCMetadataRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryServiceOIDCMetadataRequest {
     return new QueryServiceOIDCMetadataRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryServiceOIDCMetadataRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryServiceOIDCMetadataRequest {
     return new QueryServiceOIDCMetadataRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryServiceOIDCMetadataRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryServiceOIDCMetadataRequest {
     return new QueryServiceOIDCMetadataRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryServiceOIDCMetadataRequest | PlainMessage<QueryServiceOIDCMetadataRequest> | undefined, b: QueryServiceOIDCMetadataRequest | PlainMessage<QueryServiceOIDCMetadataRequest> | undefined): boolean {
+  static equals(
+    a: QueryServiceOIDCMetadataRequest | PlainMessage<QueryServiceOIDCMetadataRequest> | undefined,
+    b: QueryServiceOIDCMetadataRequest | PlainMessage<QueryServiceOIDCMetadataRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QueryServiceOIDCMetadataRequest, a, b);
   }
 }
@@ -793,7 +1029,7 @@ export class QueryServiceOIDCMetadataResponse extends Message<QueryServiceOIDCMe
    *
    * @generated from field: string verified_domain = 2;
    */
-  verifiedDomain = "";
+  verifiedDomain = '';
 
   /**
    * Service status
@@ -815,28 +1051,48 @@ export class QueryServiceOIDCMetadataResponse extends Message<QueryServiceOIDCMe
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.QueryServiceOIDCMetadataResponse";
+  static readonly typeName = 'svc.v1.QueryServiceOIDCMetadataResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "config", kind: "message", T: ServiceOIDCConfig },
-    { no: 2, name: "verified_domain", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "service_status", kind: "enum", T: proto3.getEnumType(ServiceStatus) },
-    { no: 4, name: "metadata", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "scalar", T: 9 /* ScalarType.STRING */} },
+    { no: 1, name: 'config', kind: 'message', T: ServiceOIDCConfig },
+    { no: 2, name: 'verified_domain', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'service_status', kind: 'enum', T: proto3.getEnumType(ServiceStatus) },
+    {
+      no: 4,
+      name: 'metadata',
+      kind: 'map',
+      K: 9 /* ScalarType.STRING */,
+      V: { kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryServiceOIDCMetadataResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QueryServiceOIDCMetadataResponse {
     return new QueryServiceOIDCMetadataResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryServiceOIDCMetadataResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QueryServiceOIDCMetadataResponse {
     return new QueryServiceOIDCMetadataResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryServiceOIDCMetadataResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QueryServiceOIDCMetadataResponse {
     return new QueryServiceOIDCMetadataResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QueryServiceOIDCMetadataResponse | PlainMessage<QueryServiceOIDCMetadataResponse> | undefined, b: QueryServiceOIDCMetadataResponse | PlainMessage<QueryServiceOIDCMetadataResponse> | undefined): boolean {
+  static equals(
+    a:
+      | QueryServiceOIDCMetadataResponse
+      | PlainMessage<QueryServiceOIDCMetadataResponse>
+      | undefined,
+    b: QueryServiceOIDCMetadataResponse | PlainMessage<QueryServiceOIDCMetadataResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QueryServiceOIDCMetadataResponse, a, b);
   }
 }
-

@@ -3,9 +3,24 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryAccountRequest, QueryAccountResponse, QueryAccountsRequest, QueryAccountsResponse, QueryBalanceRequest, QueryBalanceResponse, QueryHistoryRequest, QueryHistoryResponse, QueryOrdersRequest, QueryOrdersResponse, QueryParamsRequest, QueryParamsResponse, QueryPoolRequest, QueryPoolResponse } from "./query_pb.js";
+import {
+  QueryAccountRequest,
+  QueryAccountResponse,
+  QueryAccountsRequest,
+  QueryAccountsResponse,
+  QueryBalanceRequest,
+  QueryBalanceResponse,
+  QueryHistoryRequest,
+  QueryHistoryResponse,
+  QueryOrdersRequest,
+  QueryOrdersResponse,
+  QueryParamsRequest,
+  QueryParamsResponse,
+  QueryPoolRequest,
+  QueryPoolResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "dex.v1.Query";
+const TYPE_NAME = 'dex.v1.Query';
 
 /**
  * Params queries the parameters of the module
@@ -19,7 +34,7 @@ const TYPE_NAME = "dex.v1.Query";
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: QueryParamsRequest,
   Response: QueryParamsResponse,
 } as const;
@@ -36,7 +51,7 @@ export const QueryParamsService = {
  */
 export const QueryAccountService = {
   typeName: TYPE_NAME,
-  method: "Account",
+  method: 'Account',
   Request: QueryAccountRequest,
   Response: QueryAccountResponse,
 } as const;
@@ -53,7 +68,7 @@ export const QueryAccountService = {
  */
 export const QueryAccountsService = {
   typeName: TYPE_NAME,
-  method: "Accounts",
+  method: 'Accounts',
   Request: QueryAccountsRequest,
   Response: QueryAccountsResponse,
 } as const;
@@ -70,7 +85,7 @@ export const QueryAccountsService = {
  */
 export const QueryBalanceService = {
   typeName: TYPE_NAME,
-  method: "Balance",
+  method: 'Balance',
   Request: QueryBalanceRequest,
   Response: QueryBalanceResponse,
 } as const;
@@ -87,7 +102,7 @@ export const QueryBalanceService = {
  */
 export const QueryPoolService = {
   typeName: TYPE_NAME,
-  method: "Pool",
+  method: 'Pool',
   Request: QueryPoolRequest,
   Response: QueryPoolResponse,
 } as const;
@@ -104,7 +119,7 @@ export const QueryPoolService = {
  */
 export const QueryOrdersService = {
   typeName: TYPE_NAME,
-  method: "Orders",
+  method: 'Orders',
   Request: QueryOrdersRequest,
   Response: QueryOrdersResponse,
 } as const;
@@ -121,8 +136,7 @@ export const QueryOrdersService = {
  */
 export const QueryHistoryService = {
   typeName: TYPE_NAME,
-  method: "History",
+  method: 'History',
   Request: QueryHistoryRequest,
   Response: QueryHistoryResponse,
 } as const;
-

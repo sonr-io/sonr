@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * @generated from message osmosis.poolmanager.v1beta1.SwapAmountInRoute
@@ -18,7 +25,7 @@ export class SwapAmountInRoute extends Message<SwapAmountInRoute> {
   /**
    * @generated from field: string token_out_denom = 2;
    */
-  tokenOutDenom = "";
+  tokenOutDenom = '';
 
   constructor(data?: PartialMessage<SwapAmountInRoute>) {
     super();
@@ -26,10 +33,10 @@ export class SwapAmountInRoute extends Message<SwapAmountInRoute> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.SwapAmountInRoute";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.SwapAmountInRoute';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "token_out_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'token_out_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SwapAmountInRoute {
@@ -44,7 +51,10 @@ export class SwapAmountInRoute extends Message<SwapAmountInRoute> {
     return new SwapAmountInRoute().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SwapAmountInRoute | PlainMessage<SwapAmountInRoute> | undefined, b: SwapAmountInRoute | PlainMessage<SwapAmountInRoute> | undefined): boolean {
+  static equals(
+    a: SwapAmountInRoute | PlainMessage<SwapAmountInRoute> | undefined,
+    b: SwapAmountInRoute | PlainMessage<SwapAmountInRoute> | undefined
+  ): boolean {
     return proto3.util.equals(SwapAmountInRoute, a, b);
   }
 }
@@ -61,7 +71,7 @@ export class SwapAmountOutRoute extends Message<SwapAmountOutRoute> {
   /**
    * @generated from field: string token_in_denom = 2;
    */
-  tokenInDenom = "";
+  tokenInDenom = '';
 
   constructor(data?: PartialMessage<SwapAmountOutRoute>) {
     super();
@@ -69,10 +79,10 @@ export class SwapAmountOutRoute extends Message<SwapAmountOutRoute> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.SwapAmountOutRoute";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.SwapAmountOutRoute';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "token_in_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'token_in_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SwapAmountOutRoute {
@@ -83,11 +93,17 @@ export class SwapAmountOutRoute extends Message<SwapAmountOutRoute> {
     return new SwapAmountOutRoute().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SwapAmountOutRoute {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): SwapAmountOutRoute {
     return new SwapAmountOutRoute().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SwapAmountOutRoute | PlainMessage<SwapAmountOutRoute> | undefined, b: SwapAmountOutRoute | PlainMessage<SwapAmountOutRoute> | undefined): boolean {
+  static equals(
+    a: SwapAmountOutRoute | PlainMessage<SwapAmountOutRoute> | undefined,
+    b: SwapAmountOutRoute | PlainMessage<SwapAmountOutRoute> | undefined
+  ): boolean {
     return proto3.util.equals(SwapAmountOutRoute, a, b);
   }
 }
@@ -104,7 +120,7 @@ export class SwapAmountInSplitRoute extends Message<SwapAmountInSplitRoute> {
   /**
    * @generated from field: string token_in_amount = 2;
    */
-  tokenInAmount = "";
+  tokenInAmount = '';
 
   constructor(data?: PartialMessage<SwapAmountInSplitRoute>) {
     super();
@@ -112,25 +128,37 @@ export class SwapAmountInSplitRoute extends Message<SwapAmountInSplitRoute> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.SwapAmountInSplitRoute";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.SwapAmountInSplitRoute';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pools", kind: "message", T: SwapAmountInRoute, repeated: true },
-    { no: 2, name: "token_in_amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'pools', kind: 'message', T: SwapAmountInRoute, repeated: true },
+    { no: 2, name: 'token_in_amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SwapAmountInSplitRoute {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): SwapAmountInSplitRoute {
     return new SwapAmountInSplitRoute().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SwapAmountInSplitRoute {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): SwapAmountInSplitRoute {
     return new SwapAmountInSplitRoute().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SwapAmountInSplitRoute {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): SwapAmountInSplitRoute {
     return new SwapAmountInSplitRoute().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SwapAmountInSplitRoute | PlainMessage<SwapAmountInSplitRoute> | undefined, b: SwapAmountInSplitRoute | PlainMessage<SwapAmountInSplitRoute> | undefined): boolean {
+  static equals(
+    a: SwapAmountInSplitRoute | PlainMessage<SwapAmountInSplitRoute> | undefined,
+    b: SwapAmountInSplitRoute | PlainMessage<SwapAmountInSplitRoute> | undefined
+  ): boolean {
     return proto3.util.equals(SwapAmountInSplitRoute, a, b);
   }
 }
@@ -147,7 +175,7 @@ export class SwapAmountOutSplitRoute extends Message<SwapAmountOutSplitRoute> {
   /**
    * @generated from field: string token_out_amount = 2;
    */
-  tokenOutAmount = "";
+  tokenOutAmount = '';
 
   constructor(data?: PartialMessage<SwapAmountOutSplitRoute>) {
     super();
@@ -155,26 +183,37 @@ export class SwapAmountOutSplitRoute extends Message<SwapAmountOutSplitRoute> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.SwapAmountOutSplitRoute";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.SwapAmountOutSplitRoute';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pools", kind: "message", T: SwapAmountOutRoute, repeated: true },
-    { no: 2, name: "token_out_amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'pools', kind: 'message', T: SwapAmountOutRoute, repeated: true },
+    { no: 2, name: 'token_out_amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SwapAmountOutSplitRoute {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): SwapAmountOutSplitRoute {
     return new SwapAmountOutSplitRoute().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SwapAmountOutSplitRoute {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): SwapAmountOutSplitRoute {
     return new SwapAmountOutSplitRoute().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SwapAmountOutSplitRoute {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): SwapAmountOutSplitRoute {
     return new SwapAmountOutSplitRoute().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SwapAmountOutSplitRoute | PlainMessage<SwapAmountOutSplitRoute> | undefined, b: SwapAmountOutSplitRoute | PlainMessage<SwapAmountOutSplitRoute> | undefined): boolean {
+  static equals(
+    a: SwapAmountOutSplitRoute | PlainMessage<SwapAmountOutSplitRoute> | undefined,
+    b: SwapAmountOutSplitRoute | PlainMessage<SwapAmountOutSplitRoute> | undefined
+  ): boolean {
     return proto3.util.equals(SwapAmountOutSplitRoute, a, b);
   }
 }
-

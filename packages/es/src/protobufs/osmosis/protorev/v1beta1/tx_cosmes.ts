@@ -3,9 +3,22 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgSetBaseDenoms, MsgSetBaseDenomsResponse, MsgSetDeveloperAccount, MsgSetDeveloperAccountResponse, MsgSetHotRoutes, MsgSetHotRoutesResponse, MsgSetInfoByPoolType, MsgSetInfoByPoolTypeResponse, MsgSetMaxPoolPointsPerBlock, MsgSetMaxPoolPointsPerBlockResponse, MsgSetMaxPoolPointsPerTx, MsgSetMaxPoolPointsPerTxResponse } from "./tx_pb.js";
+import {
+  MsgSetBaseDenoms,
+  MsgSetBaseDenomsResponse,
+  MsgSetDeveloperAccount,
+  MsgSetDeveloperAccountResponse,
+  MsgSetHotRoutes,
+  MsgSetHotRoutesResponse,
+  MsgSetInfoByPoolType,
+  MsgSetInfoByPoolTypeResponse,
+  MsgSetMaxPoolPointsPerBlock,
+  MsgSetMaxPoolPointsPerBlockResponse,
+  MsgSetMaxPoolPointsPerTx,
+  MsgSetMaxPoolPointsPerTxResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "osmosis.protorev.v1beta1.Msg";
+const TYPE_NAME = 'osmosis.protorev.v1beta1.Msg';
 
 /**
  * SetHotRoutes sets the hot routes that will be explored when creating
@@ -15,7 +28,7 @@ const TYPE_NAME = "osmosis.protorev.v1beta1.Msg";
  */
 export const MsgSetHotRoutesService = {
   typeName: TYPE_NAME,
-  method: "SetHotRoutes",
+  method: 'SetHotRoutes',
   Request: MsgSetHotRoutes,
   Response: MsgSetHotRoutesResponse,
 } as const;
@@ -28,7 +41,7 @@ export const MsgSetHotRoutesService = {
  */
 export const MsgSetDeveloperAccountService = {
   typeName: TYPE_NAME,
-  method: "SetDeveloperAccount",
+  method: 'SetDeveloperAccount',
   Request: MsgSetDeveloperAccount,
   Response: MsgSetDeveloperAccountResponse,
 } as const;
@@ -41,7 +54,7 @@ export const MsgSetDeveloperAccountService = {
  */
 export const MsgSetMaxPoolPointsPerTxService = {
   typeName: TYPE_NAME,
-  method: "SetMaxPoolPointsPerTx",
+  method: 'SetMaxPoolPointsPerTx',
   Request: MsgSetMaxPoolPointsPerTx,
   Response: MsgSetMaxPoolPointsPerTxResponse,
 } as const;
@@ -54,7 +67,7 @@ export const MsgSetMaxPoolPointsPerTxService = {
  */
 export const MsgSetMaxPoolPointsPerBlockService = {
   typeName: TYPE_NAME,
-  method: "SetMaxPoolPointsPerBlock",
+  method: 'SetMaxPoolPointsPerBlock',
   Request: MsgSetMaxPoolPointsPerBlock,
   Response: MsgSetMaxPoolPointsPerBlockResponse,
 } as const;
@@ -67,7 +80,7 @@ export const MsgSetMaxPoolPointsPerBlockService = {
  */
 export const MsgSetInfoByPoolTypeService = {
   typeName: TYPE_NAME,
-  method: "SetInfoByPoolType",
+  method: 'SetInfoByPoolType',
   Request: MsgSetInfoByPoolType,
   Response: MsgSetInfoByPoolTypeResponse,
 } as const;
@@ -80,8 +93,7 @@ export const MsgSetInfoByPoolTypeService = {
  */
 export const MsgSetBaseDenomsService = {
   typeName: TYPE_NAME,
-  method: "SetBaseDenoms",
+  method: 'SetBaseDenoms',
   Request: MsgSetBaseDenoms,
   Response: MsgSetBaseDenomsResponse,
 } as const;
-

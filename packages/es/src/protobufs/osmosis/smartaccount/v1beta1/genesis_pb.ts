@@ -3,10 +3,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { AccountAuthenticator } from "./models_pb.js";
-import { Params } from "./params_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { AccountAuthenticator } from './models_pb.js';
+import { Params } from './params_pb.js';
 
 /**
  * AuthenticatorData represents a genesis exported account with Authenticators.
@@ -21,7 +28,7 @@ export class AuthenticatorData extends Message<AuthenticatorData> {
    *
    * @generated from field: string address = 1;
    */
-  address = "";
+  address = '';
 
   /**
    * authenticators are the account's authenticators, these can be multiple
@@ -37,10 +44,10 @@ export class AuthenticatorData extends Message<AuthenticatorData> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.smartaccount.v1beta1.AuthenticatorData";
+  static readonly typeName = 'osmosis.smartaccount.v1beta1.AuthenticatorData';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "address", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "authenticators", kind: "message", T: AccountAuthenticator, repeated: true },
+    { no: 1, name: 'address', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'authenticators', kind: 'message', T: AccountAuthenticator, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AuthenticatorData {
@@ -55,7 +62,10 @@ export class AuthenticatorData extends Message<AuthenticatorData> {
     return new AuthenticatorData().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AuthenticatorData | PlainMessage<AuthenticatorData> | undefined, b: AuthenticatorData | PlainMessage<AuthenticatorData> | undefined): boolean {
+  static equals(
+    a: AuthenticatorData | PlainMessage<AuthenticatorData> | undefined,
+    b: AuthenticatorData | PlainMessage<AuthenticatorData> | undefined
+  ): boolean {
     return proto3.util.equals(AuthenticatorData, a, b);
   }
 }
@@ -94,11 +104,11 @@ export class GenesisState extends Message<GenesisState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.smartaccount.v1beta1.GenesisState";
+  static readonly typeName = 'osmosis.smartaccount.v1beta1.GenesisState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "params", kind: "message", T: Params },
-    { no: 2, name: "next_authenticator_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "authenticator_data", kind: "message", T: AuthenticatorData, repeated: true },
+    { no: 1, name: 'params', kind: 'message', T: Params },
+    { no: 2, name: 'next_authenticator_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'authenticator_data', kind: 'message', T: AuthenticatorData, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {
@@ -113,8 +123,10 @@ export class GenesisState extends Message<GenesisState> {
     return new GenesisState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisState | PlainMessage<GenesisState> | undefined, b: GenesisState | PlainMessage<GenesisState> | undefined): boolean {
+  static equals(
+    a: GenesisState | PlainMessage<GenesisState> | undefined,
+    b: GenesisState | PlainMessage<GenesisState> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisState, a, b);
   }
 }
-

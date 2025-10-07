@@ -3,16 +3,31 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgSetDenomPairTakerFee, MsgSetDenomPairTakerFeeResponse, MsgSetRegisteredAlloyedPool, MsgSetRegisteredAlloyedPoolResponse, MsgSetTakerFeeShareAgreementForDenom, MsgSetTakerFeeShareAgreementForDenomResponse, MsgSplitRouteSwapExactAmountIn, MsgSplitRouteSwapExactAmountInResponse, MsgSplitRouteSwapExactAmountOut, MsgSplitRouteSwapExactAmountOutResponse, MsgSwapExactAmountIn, MsgSwapExactAmountInResponse, MsgSwapExactAmountOut, MsgSwapExactAmountOutResponse } from "./tx_pb.js";
+import {
+  MsgSetDenomPairTakerFee,
+  MsgSetDenomPairTakerFeeResponse,
+  MsgSetRegisteredAlloyedPool,
+  MsgSetRegisteredAlloyedPoolResponse,
+  MsgSetTakerFeeShareAgreementForDenom,
+  MsgSetTakerFeeShareAgreementForDenomResponse,
+  MsgSplitRouteSwapExactAmountIn,
+  MsgSplitRouteSwapExactAmountInResponse,
+  MsgSplitRouteSwapExactAmountOut,
+  MsgSplitRouteSwapExactAmountOutResponse,
+  MsgSwapExactAmountIn,
+  MsgSwapExactAmountInResponse,
+  MsgSwapExactAmountOut,
+  MsgSwapExactAmountOutResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "osmosis.poolmanager.v1beta1.Msg";
+const TYPE_NAME = 'osmosis.poolmanager.v1beta1.Msg';
 
 /**
  * @generated from rpc osmosis.poolmanager.v1beta1.Msg.SwapExactAmountIn
  */
 export const MsgSwapExactAmountInService = {
   typeName: TYPE_NAME,
-  method: "SwapExactAmountIn",
+  method: 'SwapExactAmountIn',
   Request: MsgSwapExactAmountIn,
   Response: MsgSwapExactAmountInResponse,
 } as const;
@@ -22,7 +37,7 @@ export const MsgSwapExactAmountInService = {
  */
 export const MsgSwapExactAmountOutService = {
   typeName: TYPE_NAME,
-  method: "SwapExactAmountOut",
+  method: 'SwapExactAmountOut',
   Request: MsgSwapExactAmountOut,
   Response: MsgSwapExactAmountOutResponse,
 } as const;
@@ -32,7 +47,7 @@ export const MsgSwapExactAmountOutService = {
  */
 export const MsgSplitRouteSwapExactAmountInService = {
   typeName: TYPE_NAME,
-  method: "SplitRouteSwapExactAmountIn",
+  method: 'SplitRouteSwapExactAmountIn',
   Request: MsgSplitRouteSwapExactAmountIn,
   Response: MsgSplitRouteSwapExactAmountInResponse,
 } as const;
@@ -42,7 +57,7 @@ export const MsgSplitRouteSwapExactAmountInService = {
  */
 export const MsgSplitRouteSwapExactAmountOutService = {
   typeName: TYPE_NAME,
-  method: "SplitRouteSwapExactAmountOut",
+  method: 'SplitRouteSwapExactAmountOut',
   Request: MsgSplitRouteSwapExactAmountOut,
   Response: MsgSplitRouteSwapExactAmountOutResponse,
 } as const;
@@ -52,7 +67,7 @@ export const MsgSplitRouteSwapExactAmountOutService = {
  */
 export const MsgSetDenomPairTakerFeeService = {
   typeName: TYPE_NAME,
-  method: "SetDenomPairTakerFee",
+  method: 'SetDenomPairTakerFee',
   Request: MsgSetDenomPairTakerFee,
   Response: MsgSetDenomPairTakerFeeResponse,
 } as const;
@@ -62,7 +77,7 @@ export const MsgSetDenomPairTakerFeeService = {
  */
 export const MsgSetTakerFeeShareAgreementForDenomService = {
   typeName: TYPE_NAME,
-  method: "SetTakerFeeShareAgreementForDenom",
+  method: 'SetTakerFeeShareAgreementForDenom',
   Request: MsgSetTakerFeeShareAgreementForDenom,
   Response: MsgSetTakerFeeShareAgreementForDenomResponse,
 } as const;
@@ -72,8 +87,7 @@ export const MsgSetTakerFeeShareAgreementForDenomService = {
  */
 export const MsgSetRegisteredAlloyedPoolService = {
   typeName: TYPE_NAME,
-  method: "SetRegisteredAlloyedPool",
+  method: 'SetRegisteredAlloyedPool',
   Request: MsgSetRegisteredAlloyedPool,
   Response: MsgSetRegisteredAlloyedPoolResponse,
 } as const;
-

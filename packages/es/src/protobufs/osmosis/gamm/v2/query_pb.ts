@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * Deprecated: please use alternate in x/poolmanager
@@ -21,12 +28,12 @@ export class QuerySpotPriceRequest extends Message<QuerySpotPriceRequest> {
   /**
    * @generated from field: string base_asset_denom = 2;
    */
-  baseAssetDenom = "";
+  baseAssetDenom = '';
 
   /**
    * @generated from field: string quote_asset_denom = 3;
    */
-  quoteAssetDenom = "";
+  quoteAssetDenom = '';
 
   /**
    * DEPRECATED
@@ -42,15 +49,18 @@ export class QuerySpotPriceRequest extends Message<QuerySpotPriceRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.gamm.v2.QuerySpotPriceRequest";
+  static readonly typeName = 'osmosis.gamm.v2.QuerySpotPriceRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "base_asset_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "quote_asset_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "withSwapFee", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'base_asset_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'quote_asset_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'withSwapFee', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QuerySpotPriceRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QuerySpotPriceRequest {
     return new QuerySpotPriceRequest().fromBinary(bytes, options);
   }
 
@@ -58,11 +68,17 @@ export class QuerySpotPriceRequest extends Message<QuerySpotPriceRequest> {
     return new QuerySpotPriceRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QuerySpotPriceRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QuerySpotPriceRequest {
     return new QuerySpotPriceRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QuerySpotPriceRequest | PlainMessage<QuerySpotPriceRequest> | undefined, b: QuerySpotPriceRequest | PlainMessage<QuerySpotPriceRequest> | undefined): boolean {
+  static equals(
+    a: QuerySpotPriceRequest | PlainMessage<QuerySpotPriceRequest> | undefined,
+    b: QuerySpotPriceRequest | PlainMessage<QuerySpotPriceRequest> | undefined
+  ): boolean {
     return proto3.util.equals(QuerySpotPriceRequest, a, b);
   }
 }
@@ -79,7 +95,7 @@ export class QuerySpotPriceResponse extends Message<QuerySpotPriceResponse> {
    *
    * @generated from field: string spot_price = 1;
    */
-  spotPrice = "";
+  spotPrice = '';
 
   constructor(data?: PartialMessage<QuerySpotPriceResponse>) {
     super();
@@ -87,25 +103,36 @@ export class QuerySpotPriceResponse extends Message<QuerySpotPriceResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.gamm.v2.QuerySpotPriceResponse";
+  static readonly typeName = 'osmosis.gamm.v2.QuerySpotPriceResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "spot_price", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'spot_price', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QuerySpotPriceResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): QuerySpotPriceResponse {
     return new QuerySpotPriceResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QuerySpotPriceResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): QuerySpotPriceResponse {
     return new QuerySpotPriceResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QuerySpotPriceResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): QuerySpotPriceResponse {
     return new QuerySpotPriceResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: QuerySpotPriceResponse | PlainMessage<QuerySpotPriceResponse> | undefined, b: QuerySpotPriceResponse | PlainMessage<QuerySpotPriceResponse> | undefined): boolean {
+  static equals(
+    a: QuerySpotPriceResponse | PlainMessage<QuerySpotPriceResponse> | undefined,
+    b: QuerySpotPriceResponse | PlainMessage<QuerySpotPriceResponse> | undefined
+  ): boolean {
     return proto3.util.equals(QuerySpotPriceResponse, a, b);
   }
 }
-

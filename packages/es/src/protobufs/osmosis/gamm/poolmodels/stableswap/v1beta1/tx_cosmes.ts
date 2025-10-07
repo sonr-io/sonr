@@ -3,16 +3,21 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgCreateStableswapPool, MsgCreateStableswapPoolResponse, MsgStableSwapAdjustScalingFactors, MsgStableSwapAdjustScalingFactorsResponse } from "./tx_pb.js";
+import {
+  MsgCreateStableswapPool,
+  MsgCreateStableswapPoolResponse,
+  MsgStableSwapAdjustScalingFactors,
+  MsgStableSwapAdjustScalingFactorsResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "osmosis.gamm.poolmodels.stableswap.v1beta1.Msg";
+const TYPE_NAME = 'osmosis.gamm.poolmodels.stableswap.v1beta1.Msg';
 
 /**
  * @generated from rpc osmosis.gamm.poolmodels.stableswap.v1beta1.Msg.CreateStableswapPool
  */
 export const MsgCreateStableswapPoolService = {
   typeName: TYPE_NAME,
-  method: "CreateStableswapPool",
+  method: 'CreateStableswapPool',
   Request: MsgCreateStableswapPool,
   Response: MsgCreateStableswapPoolResponse,
 } as const;
@@ -22,8 +27,7 @@ export const MsgCreateStableswapPoolService = {
  */
 export const MsgStableSwapAdjustScalingFactorsService = {
   typeName: TYPE_NAME,
-  method: "StableSwapAdjustScalingFactors",
+  method: 'StableSwapAdjustScalingFactors',
   Request: MsgStableSwapAdjustScalingFactors,
   Response: MsgStableSwapAdjustScalingFactorsResponse,
 } as const;
-

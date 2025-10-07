@@ -3,9 +3,32 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryClientCreatorRequest, QueryClientCreatorResponse, QueryClientParamsRequest, QueryClientParamsResponse, QueryClientStateRequest, QueryClientStateResponse, QueryClientStatesRequest, QueryClientStatesResponse, QueryClientStatusRequest, QueryClientStatusResponse, QueryConsensusStateHeightsRequest, QueryConsensusStateHeightsResponse, QueryConsensusStateRequest, QueryConsensusStateResponse, QueryConsensusStatesRequest, QueryConsensusStatesResponse, QueryUpgradedClientStateRequest, QueryUpgradedClientStateResponse, QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponse, QueryVerifyMembershipRequest, QueryVerifyMembershipResponse } from "./query_pb.js";
+import {
+  QueryClientCreatorRequest,
+  QueryClientCreatorResponse,
+  QueryClientParamsRequest,
+  QueryClientParamsResponse,
+  QueryClientStateRequest,
+  QueryClientStateResponse,
+  QueryClientStatesRequest,
+  QueryClientStatesResponse,
+  QueryClientStatusRequest,
+  QueryClientStatusResponse,
+  QueryConsensusStateHeightsRequest,
+  QueryConsensusStateHeightsResponse,
+  QueryConsensusStateRequest,
+  QueryConsensusStateResponse,
+  QueryConsensusStatesRequest,
+  QueryConsensusStatesResponse,
+  QueryUpgradedClientStateRequest,
+  QueryUpgradedClientStateResponse,
+  QueryUpgradedConsensusStateRequest,
+  QueryUpgradedConsensusStateResponse,
+  QueryVerifyMembershipRequest,
+  QueryVerifyMembershipResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "ibc.core.client.v1.Query";
+const TYPE_NAME = 'ibc.core.client.v1.Query';
 
 /**
  * ClientState queries an IBC light client.
@@ -14,7 +37,7 @@ const TYPE_NAME = "ibc.core.client.v1.Query";
  */
 export const QueryClientStateService = {
   typeName: TYPE_NAME,
-  method: "ClientState",
+  method: 'ClientState',
   Request: QueryClientStateRequest,
   Response: QueryClientStateResponse,
 } as const;
@@ -26,7 +49,7 @@ export const QueryClientStateService = {
  */
 export const QueryClientStatesService = {
   typeName: TYPE_NAME,
-  method: "ClientStates",
+  method: 'ClientStates',
   Request: QueryClientStatesRequest,
   Response: QueryClientStatesResponse,
 } as const;
@@ -39,7 +62,7 @@ export const QueryClientStatesService = {
  */
 export const QueryConsensusStateService = {
   typeName: TYPE_NAME,
-  method: "ConsensusState",
+  method: 'ConsensusState',
   Request: QueryConsensusStateRequest,
   Response: QueryConsensusStateResponse,
 } as const;
@@ -52,7 +75,7 @@ export const QueryConsensusStateService = {
  */
 export const QueryConsensusStatesService = {
   typeName: TYPE_NAME,
-  method: "ConsensusStates",
+  method: 'ConsensusStates',
   Request: QueryConsensusStatesRequest,
   Response: QueryConsensusStatesResponse,
 } as const;
@@ -64,7 +87,7 @@ export const QueryConsensusStatesService = {
  */
 export const QueryConsensusStateHeightsService = {
   typeName: TYPE_NAME,
-  method: "ConsensusStateHeights",
+  method: 'ConsensusStateHeights',
   Request: QueryConsensusStateHeightsRequest,
   Response: QueryConsensusStateHeightsResponse,
 } as const;
@@ -76,7 +99,7 @@ export const QueryConsensusStateHeightsService = {
  */
 export const QueryClientStatusService = {
   typeName: TYPE_NAME,
-  method: "ClientStatus",
+  method: 'ClientStatus',
   Request: QueryClientStatusRequest,
   Response: QueryClientStatusResponse,
 } as const;
@@ -88,7 +111,7 @@ export const QueryClientStatusService = {
  */
 export const QueryClientParamsService = {
   typeName: TYPE_NAME,
-  method: "ClientParams",
+  method: 'ClientParams',
   Request: QueryClientParamsRequest,
   Response: QueryClientParamsResponse,
 } as const;
@@ -100,7 +123,7 @@ export const QueryClientParamsService = {
  */
 export const QueryClientCreatorService = {
   typeName: TYPE_NAME,
-  method: "ClientCreator",
+  method: 'ClientCreator',
   Request: QueryClientCreatorRequest,
   Response: QueryClientCreatorResponse,
 } as const;
@@ -112,7 +135,7 @@ export const QueryClientCreatorService = {
  */
 export const QueryUpgradedClientStateService = {
   typeName: TYPE_NAME,
-  method: "UpgradedClientState",
+  method: 'UpgradedClientState',
   Request: QueryUpgradedClientStateRequest,
   Response: QueryUpgradedClientStateResponse,
 } as const;
@@ -124,7 +147,7 @@ export const QueryUpgradedClientStateService = {
  */
 export const QueryUpgradedConsensusStateService = {
   typeName: TYPE_NAME,
-  method: "UpgradedConsensusState",
+  method: 'UpgradedConsensusState',
   Request: QueryUpgradedConsensusStateRequest,
   Response: QueryUpgradedConsensusStateResponse,
 } as const;
@@ -136,8 +159,7 @@ export const QueryUpgradedConsensusStateService = {
  */
 export const QueryVerifyMembershipService = {
   typeName: TYPE_NAME,
-  method: "VerifyMembership",
+  method: 'VerifyMembership',
   Request: QueryVerifyMembershipRequest,
   Response: QueryVerifyMembershipResponse,
 } as const;
-

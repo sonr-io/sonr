@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * FeeToken is a struct that specifies a coin denom, and pool ID pair.
@@ -18,7 +25,7 @@ export class FeeToken extends Message<FeeToken> {
   /**
    * @generated from field: string denom = 1;
    */
-  denom = "";
+  denom = '';
 
   /**
    * @generated from field: uint64 poolID = 2;
@@ -31,10 +38,10 @@ export class FeeToken extends Message<FeeToken> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.txfees.v1beta1.FeeToken";
+  static readonly typeName = 'osmosis.txfees.v1beta1.FeeToken';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "poolID", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'poolID', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FeeToken {
@@ -49,8 +56,10 @@ export class FeeToken extends Message<FeeToken> {
     return new FeeToken().fromJsonString(jsonString, options);
   }
 
-  static equals(a: FeeToken | PlainMessage<FeeToken> | undefined, b: FeeToken | PlainMessage<FeeToken> | undefined): boolean {
+  static equals(
+    a: FeeToken | PlainMessage<FeeToken> | undefined,
+    b: FeeToken | PlainMessage<FeeToken> | undefined
+  ): boolean {
     return proto3.util.equals(FeeToken, a, b);
   }
 }
-

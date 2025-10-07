@@ -3,9 +3,18 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgAcknowledgement, MsgAcknowledgementResponse, MsgRecvPacket, MsgRecvPacketResponse, MsgSendPacket, MsgSendPacketResponse, MsgTimeout, MsgTimeoutResponse } from "./tx_pb.js";
+import {
+  MsgAcknowledgement,
+  MsgAcknowledgementResponse,
+  MsgRecvPacket,
+  MsgRecvPacketResponse,
+  MsgSendPacket,
+  MsgSendPacketResponse,
+  MsgTimeout,
+  MsgTimeoutResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "ibc.core.channel.v2.Msg";
+const TYPE_NAME = 'ibc.core.channel.v2.Msg';
 
 /**
  * SendPacket defines a rpc handler method for MsgSendPacket.
@@ -14,7 +23,7 @@ const TYPE_NAME = "ibc.core.channel.v2.Msg";
  */
 export const MsgSendPacketService = {
   typeName: TYPE_NAME,
-  method: "SendPacket",
+  method: 'SendPacket',
   Request: MsgSendPacket,
   Response: MsgSendPacketResponse,
 } as const;
@@ -26,7 +35,7 @@ export const MsgSendPacketService = {
  */
 export const MsgRecvPacketService = {
   typeName: TYPE_NAME,
-  method: "RecvPacket",
+  method: 'RecvPacket',
   Request: MsgRecvPacket,
   Response: MsgRecvPacketResponse,
 } as const;
@@ -38,7 +47,7 @@ export const MsgRecvPacketService = {
  */
 export const MsgTimeoutService = {
   typeName: TYPE_NAME,
-  method: "Timeout",
+  method: 'Timeout',
   Request: MsgTimeout,
   Response: MsgTimeoutResponse,
 } as const;
@@ -50,8 +59,7 @@ export const MsgTimeoutService = {
  */
 export const MsgAcknowledgementService = {
   typeName: TYPE_NAME,
-  method: "Acknowledgement",
+  method: 'Acknowledgement',
   Request: MsgAcknowledgement,
   Response: MsgAcknowledgementResponse,
 } as const;
-

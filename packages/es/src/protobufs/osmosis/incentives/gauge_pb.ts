@@ -3,10 +3,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
-import { QueryCondition } from "../lockup/lock_pb.js";
-import { Coin } from "../../cosmos/base/v1beta1/coin_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Duration, Message, proto3, protoInt64, Timestamp } from '@bufbuild/protobuf';
+import { QueryCondition } from '../lockup/lock_pb.js';
+import { Coin } from '../../cosmos/base/v1beta1/coin_pb.js';
 
 /**
  * Gauge is an object that stores and distributes yields to recipients who
@@ -86,16 +93,16 @@ export class Gauge extends Message<Gauge> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.incentives.Gauge";
+  static readonly typeName = 'osmosis.incentives.Gauge';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "is_perpetual", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 3, name: "distribute_to", kind: "message", T: QueryCondition },
-    { no: 4, name: "coins", kind: "message", T: Coin, repeated: true },
-    { no: 5, name: "start_time", kind: "message", T: Timestamp },
-    { no: 6, name: "num_epochs_paid_over", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 7, name: "filled_epochs", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 8, name: "distributed_coins", kind: "message", T: Coin, repeated: true },
+    { no: 1, name: 'id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'is_perpetual', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 3, name: 'distribute_to', kind: 'message', T: QueryCondition },
+    { no: 4, name: 'coins', kind: 'message', T: Coin, repeated: true },
+    { no: 5, name: 'start_time', kind: 'message', T: Timestamp },
+    { no: 6, name: 'num_epochs_paid_over', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 7, name: 'filled_epochs', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 8, name: 'distributed_coins', kind: 'message', T: Coin, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Gauge {
@@ -110,7 +117,10 @@ export class Gauge extends Message<Gauge> {
     return new Gauge().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Gauge | PlainMessage<Gauge> | undefined, b: Gauge | PlainMessage<Gauge> | undefined): boolean {
+  static equals(
+    a: Gauge | PlainMessage<Gauge> | undefined,
+    b: Gauge | PlainMessage<Gauge> | undefined
+  ): boolean {
     return proto3.util.equals(Gauge, a, b);
   }
 }
@@ -132,12 +142,15 @@ export class LockableDurationsInfo extends Message<LockableDurationsInfo> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.incentives.LockableDurationsInfo";
+  static readonly typeName = 'osmosis.incentives.LockableDurationsInfo';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "lockable_durations", kind: "message", T: Duration, repeated: true },
+    { no: 1, name: 'lockable_durations', kind: 'message', T: Duration, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LockableDurationsInfo {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): LockableDurationsInfo {
     return new LockableDurationsInfo().fromBinary(bytes, options);
   }
 
@@ -145,12 +158,17 @@ export class LockableDurationsInfo extends Message<LockableDurationsInfo> {
     return new LockableDurationsInfo().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): LockableDurationsInfo {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): LockableDurationsInfo {
     return new LockableDurationsInfo().fromJsonString(jsonString, options);
   }
 
-  static equals(a: LockableDurationsInfo | PlainMessage<LockableDurationsInfo> | undefined, b: LockableDurationsInfo | PlainMessage<LockableDurationsInfo> | undefined): boolean {
+  static equals(
+    a: LockableDurationsInfo | PlainMessage<LockableDurationsInfo> | undefined,
+    b: LockableDurationsInfo | PlainMessage<LockableDurationsInfo> | undefined
+  ): boolean {
     return proto3.util.equals(LockableDurationsInfo, a, b);
   }
 }
-

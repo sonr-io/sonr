@@ -3,9 +3,38 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryAllContractStateRequest, QueryAllContractStateResponse, QueryBuildAddressRequest, QueryBuildAddressResponse, QueryCodeInfoRequest, QueryCodeInfoResponse, QueryCodeRequest, QueryCodeResponse, QueryCodesRequest, QueryCodesResponse, QueryContractHistoryRequest, QueryContractHistoryResponse, QueryContractInfoRequest, QueryContractInfoResponse, QueryContractsByCodeRequest, QueryContractsByCodeResponse, QueryContractsByCreatorRequest, QueryContractsByCreatorResponse, QueryParamsRequest, QueryParamsResponse, QueryPinnedCodesRequest, QueryPinnedCodesResponse, QueryRawContractStateRequest, QueryRawContractStateResponse, QuerySmartContractStateRequest, QuerySmartContractStateResponse, QueryWasmLimitsConfigRequest, QueryWasmLimitsConfigResponse } from "./query_pb.js";
+import {
+  QueryAllContractStateRequest,
+  QueryAllContractStateResponse,
+  QueryBuildAddressRequest,
+  QueryBuildAddressResponse,
+  QueryCodeInfoRequest,
+  QueryCodeInfoResponse,
+  QueryCodeRequest,
+  QueryCodeResponse,
+  QueryCodesRequest,
+  QueryCodesResponse,
+  QueryContractHistoryRequest,
+  QueryContractHistoryResponse,
+  QueryContractInfoRequest,
+  QueryContractInfoResponse,
+  QueryContractsByCodeRequest,
+  QueryContractsByCodeResponse,
+  QueryContractsByCreatorRequest,
+  QueryContractsByCreatorResponse,
+  QueryParamsRequest,
+  QueryParamsResponse,
+  QueryPinnedCodesRequest,
+  QueryPinnedCodesResponse,
+  QueryRawContractStateRequest,
+  QueryRawContractStateResponse,
+  QuerySmartContractStateRequest,
+  QuerySmartContractStateResponse,
+  QueryWasmLimitsConfigRequest,
+  QueryWasmLimitsConfigResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "cosmwasm.wasm.v1.Query";
+const TYPE_NAME = 'cosmwasm.wasm.v1.Query';
 
 /**
  * ContractInfo gets the contract meta data
@@ -14,7 +43,7 @@ const TYPE_NAME = "cosmwasm.wasm.v1.Query";
  */
 export const QueryContractInfoService = {
   typeName: TYPE_NAME,
-  method: "ContractInfo",
+  method: 'ContractInfo',
   Request: QueryContractInfoRequest,
   Response: QueryContractInfoResponse,
 } as const;
@@ -26,7 +55,7 @@ export const QueryContractInfoService = {
  */
 export const QueryContractHistoryService = {
   typeName: TYPE_NAME,
-  method: "ContractHistory",
+  method: 'ContractHistory',
   Request: QueryContractHistoryRequest,
   Response: QueryContractHistoryResponse,
 } as const;
@@ -38,7 +67,7 @@ export const QueryContractHistoryService = {
  */
 export const QueryContractsByCodeService = {
   typeName: TYPE_NAME,
-  method: "ContractsByCode",
+  method: 'ContractsByCode',
   Request: QueryContractsByCodeRequest,
   Response: QueryContractsByCodeResponse,
 } as const;
@@ -50,7 +79,7 @@ export const QueryContractsByCodeService = {
  */
 export const QueryAllContractStateService = {
   typeName: TYPE_NAME,
-  method: "AllContractState",
+  method: 'AllContractState',
   Request: QueryAllContractStateRequest,
   Response: QueryAllContractStateResponse,
 } as const;
@@ -62,7 +91,7 @@ export const QueryAllContractStateService = {
  */
 export const QueryRawContractStateService = {
   typeName: TYPE_NAME,
-  method: "RawContractState",
+  method: 'RawContractState',
   Request: QueryRawContractStateRequest,
   Response: QueryRawContractStateResponse,
 } as const;
@@ -74,7 +103,7 @@ export const QueryRawContractStateService = {
  */
 export const QuerySmartContractStateService = {
   typeName: TYPE_NAME,
-  method: "SmartContractState",
+  method: 'SmartContractState',
   Request: QuerySmartContractStateRequest,
   Response: QuerySmartContractStateResponse,
 } as const;
@@ -86,7 +115,7 @@ export const QuerySmartContractStateService = {
  */
 export const QueryCodeService = {
   typeName: TYPE_NAME,
-  method: "Code",
+  method: 'Code',
   Request: QueryCodeRequest,
   Response: QueryCodeResponse,
 } as const;
@@ -98,7 +127,7 @@ export const QueryCodeService = {
  */
 export const QueryCodesService = {
   typeName: TYPE_NAME,
-  method: "Codes",
+  method: 'Codes',
   Request: QueryCodesRequest,
   Response: QueryCodesResponse,
 } as const;
@@ -110,7 +139,7 @@ export const QueryCodesService = {
  */
 export const QueryCodeInfoService = {
   typeName: TYPE_NAME,
-  method: "CodeInfo",
+  method: 'CodeInfo',
   Request: QueryCodeInfoRequest,
   Response: QueryCodeInfoResponse,
 } as const;
@@ -122,7 +151,7 @@ export const QueryCodeInfoService = {
  */
 export const QueryPinnedCodesService = {
   typeName: TYPE_NAME,
-  method: "PinnedCodes",
+  method: 'PinnedCodes',
   Request: QueryPinnedCodesRequest,
   Response: QueryPinnedCodesResponse,
 } as const;
@@ -134,7 +163,7 @@ export const QueryPinnedCodesService = {
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: QueryParamsRequest,
   Response: QueryParamsResponse,
 } as const;
@@ -146,7 +175,7 @@ export const QueryParamsService = {
  */
 export const QueryContractsByCreatorService = {
   typeName: TYPE_NAME,
-  method: "ContractsByCreator",
+  method: 'ContractsByCreator',
   Request: QueryContractsByCreatorRequest,
   Response: QueryContractsByCreatorResponse,
 } as const;
@@ -159,7 +188,7 @@ export const QueryContractsByCreatorService = {
  */
 export const QueryWasmLimitsConfigService = {
   typeName: TYPE_NAME,
-  method: "WasmLimitsConfig",
+  method: 'WasmLimitsConfig',
   Request: QueryWasmLimitsConfigRequest,
   Response: QueryWasmLimitsConfigResponse,
 } as const;
@@ -171,8 +200,7 @@ export const QueryWasmLimitsConfigService = {
  */
 export const QueryBuildAddressService = {
   typeName: TYPE_NAME,
-  method: "BuildAddress",
+  method: 'BuildAddress',
   Request: QueryBuildAddressRequest,
   Response: QueryBuildAddressResponse,
 } as const;
-

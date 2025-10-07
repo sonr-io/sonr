@@ -3,13 +3,20 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
-import { Height } from "../../../core/client/v1/client_pb.js";
-import { ProofSpec } from "../../../../cosmos/ics23/v1/proofs_pb.js";
-import { MerkleRoot } from "../../../core/commitment/v1/commitment_pb.js";
-import { SignedHeader } from "../../../../tendermint/types/types_pb.js";
-import { ValidatorSet } from "../../../../tendermint/types/validator_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Duration, Message, proto3, protoInt64, Timestamp } from '@bufbuild/protobuf';
+import { Height } from '../../../core/client/v1/client_pb.js';
+import { ProofSpec } from '../../../../cosmos/ics23/v1/proofs_pb.js';
+import { MerkleRoot } from '../../../core/commitment/v1/commitment_pb.js';
+import { SignedHeader } from '../../../../tendermint/types/types_pb.js';
+import { ValidatorSet } from '../../../../tendermint/types/validator_pb.js';
 
 /**
  * ClientState from Tendermint tracks the current validator set, latest height,
@@ -21,7 +28,7 @@ export class ClientState extends Message<ClientState> {
   /**
    * @generated from field: string chain_id = 1;
    */
-  chainId = "";
+  chainId = '';
 
   /**
    * @generated from field: ibc.lightclients.tendermint.v1.Fraction trust_level = 2;
@@ -106,19 +113,19 @@ export class ClientState extends Message<ClientState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.lightclients.tendermint.v1.ClientState";
+  static readonly typeName = 'ibc.lightclients.tendermint.v1.ClientState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "chain_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "trust_level", kind: "message", T: Fraction },
-    { no: 3, name: "trusting_period", kind: "message", T: Duration },
-    { no: 4, name: "unbonding_period", kind: "message", T: Duration },
-    { no: 5, name: "max_clock_drift", kind: "message", T: Duration },
-    { no: 6, name: "frozen_height", kind: "message", T: Height },
-    { no: 7, name: "latest_height", kind: "message", T: Height },
-    { no: 8, name: "proof_specs", kind: "message", T: ProofSpec, repeated: true },
-    { no: 9, name: "upgrade_path", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 10, name: "allow_update_after_expiry", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 11, name: "allow_update_after_misbehaviour", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'chain_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'trust_level', kind: 'message', T: Fraction },
+    { no: 3, name: 'trusting_period', kind: 'message', T: Duration },
+    { no: 4, name: 'unbonding_period', kind: 'message', T: Duration },
+    { no: 5, name: 'max_clock_drift', kind: 'message', T: Duration },
+    { no: 6, name: 'frozen_height', kind: 'message', T: Height },
+    { no: 7, name: 'latest_height', kind: 'message', T: Height },
+    { no: 8, name: 'proof_specs', kind: 'message', T: ProofSpec, repeated: true },
+    { no: 9, name: 'upgrade_path', kind: 'scalar', T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 10, name: 'allow_update_after_expiry', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 11, name: 'allow_update_after_misbehaviour', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ClientState {
@@ -133,7 +140,10 @@ export class ClientState extends Message<ClientState> {
     return new ClientState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ClientState | PlainMessage<ClientState> | undefined, b: ClientState | PlainMessage<ClientState> | undefined): boolean {
+  static equals(
+    a: ClientState | PlainMessage<ClientState> | undefined,
+    b: ClientState | PlainMessage<ClientState> | undefined
+  ): boolean {
     return proto3.util.equals(ClientState, a, b);
   }
 }
@@ -170,11 +180,11 @@ export class ConsensusState extends Message<ConsensusState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.lightclients.tendermint.v1.ConsensusState";
+  static readonly typeName = 'ibc.lightclients.tendermint.v1.ConsensusState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "timestamp", kind: "message", T: Timestamp },
-    { no: 2, name: "root", kind: "message", T: MerkleRoot },
-    { no: 3, name: "next_validators_hash", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 1, name: 'timestamp', kind: 'message', T: Timestamp },
+    { no: 2, name: 'root', kind: 'message', T: MerkleRoot },
+    { no: 3, name: 'next_validators_hash', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ConsensusState {
@@ -189,7 +199,10 @@ export class ConsensusState extends Message<ConsensusState> {
     return new ConsensusState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ConsensusState | PlainMessage<ConsensusState> | undefined, b: ConsensusState | PlainMessage<ConsensusState> | undefined): boolean {
+  static equals(
+    a: ConsensusState | PlainMessage<ConsensusState> | undefined,
+    b: ConsensusState | PlainMessage<ConsensusState> | undefined
+  ): boolean {
     return proto3.util.equals(ConsensusState, a, b);
   }
 }
@@ -207,7 +220,7 @@ export class Misbehaviour extends Message<Misbehaviour> {
    * @generated from field: string client_id = 1 [deprecated = true];
    * @deprecated
    */
-  clientId = "";
+  clientId = '';
 
   /**
    * @generated from field: ibc.lightclients.tendermint.v1.Header header_1 = 2;
@@ -225,11 +238,11 @@ export class Misbehaviour extends Message<Misbehaviour> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.lightclients.tendermint.v1.Misbehaviour";
+  static readonly typeName = 'ibc.lightclients.tendermint.v1.Misbehaviour';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "client_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "header_1", kind: "message", T: Header },
-    { no: 3, name: "header_2", kind: "message", T: Header },
+    { no: 1, name: 'client_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'header_1', kind: 'message', T: Header },
+    { no: 3, name: 'header_2', kind: 'message', T: Header },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Misbehaviour {
@@ -244,7 +257,10 @@ export class Misbehaviour extends Message<Misbehaviour> {
     return new Misbehaviour().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Misbehaviour | PlainMessage<Misbehaviour> | undefined, b: Misbehaviour | PlainMessage<Misbehaviour> | undefined): boolean {
+  static equals(
+    a: Misbehaviour | PlainMessage<Misbehaviour> | undefined,
+    b: Misbehaviour | PlainMessage<Misbehaviour> | undefined
+  ): boolean {
     return proto3.util.equals(Misbehaviour, a, b);
   }
 }
@@ -292,12 +308,12 @@ export class Header extends Message<Header> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.lightclients.tendermint.v1.Header";
+  static readonly typeName = 'ibc.lightclients.tendermint.v1.Header';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "signed_header", kind: "message", T: SignedHeader },
-    { no: 2, name: "validator_set", kind: "message", T: ValidatorSet },
-    { no: 3, name: "trusted_height", kind: "message", T: Height },
-    { no: 4, name: "trusted_validators", kind: "message", T: ValidatorSet },
+    { no: 1, name: 'signed_header', kind: 'message', T: SignedHeader },
+    { no: 2, name: 'validator_set', kind: 'message', T: ValidatorSet },
+    { no: 3, name: 'trusted_height', kind: 'message', T: Height },
+    { no: 4, name: 'trusted_validators', kind: 'message', T: ValidatorSet },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Header {
@@ -312,7 +328,10 @@ export class Header extends Message<Header> {
     return new Header().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Header | PlainMessage<Header> | undefined, b: Header | PlainMessage<Header> | undefined): boolean {
+  static equals(
+    a: Header | PlainMessage<Header> | undefined,
+    b: Header | PlainMessage<Header> | undefined
+  ): boolean {
     return proto3.util.equals(Header, a, b);
   }
 }
@@ -340,10 +359,10 @@ export class Fraction extends Message<Fraction> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.lightclients.tendermint.v1.Fraction";
+  static readonly typeName = 'ibc.lightclients.tendermint.v1.Fraction';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "numerator", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "denominator", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'numerator', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'denominator', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Fraction {
@@ -358,8 +377,10 @@ export class Fraction extends Message<Fraction> {
     return new Fraction().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Fraction | PlainMessage<Fraction> | undefined, b: Fraction | PlainMessage<Fraction> | undefined): boolean {
+  static equals(
+    a: Fraction | PlainMessage<Fraction> | undefined,
+    b: Fraction | PlainMessage<Fraction> | undefined
+  ): boolean {
     return proto3.util.equals(Fraction, a, b);
   }
 }
-

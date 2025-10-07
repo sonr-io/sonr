@@ -3,9 +3,26 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryDomainVerificationRequest, QueryDomainVerificationResponse, QueryParamsRequest, QueryParamsResponse, QueryServiceOIDCDiscoveryRequest, QueryServiceOIDCDiscoveryResponse, QueryServiceOIDCJWKSRequest, QueryServiceOIDCJWKSResponse, QueryServiceOIDCMetadataRequest, QueryServiceOIDCMetadataResponse, QueryServiceRequest, QueryServiceResponse, QueryServicesByDomainRequest, QueryServicesByDomainResponse, QueryServicesByOwnerRequest, QueryServicesByOwnerResponse } from "./query_pb.js";
+import {
+  QueryDomainVerificationRequest,
+  QueryDomainVerificationResponse,
+  QueryParamsRequest,
+  QueryParamsResponse,
+  QueryServiceOIDCDiscoveryRequest,
+  QueryServiceOIDCDiscoveryResponse,
+  QueryServiceOIDCJWKSRequest,
+  QueryServiceOIDCJWKSResponse,
+  QueryServiceOIDCMetadataRequest,
+  QueryServiceOIDCMetadataResponse,
+  QueryServiceRequest,
+  QueryServiceResponse,
+  QueryServicesByDomainRequest,
+  QueryServicesByDomainResponse,
+  QueryServicesByOwnerRequest,
+  QueryServicesByOwnerResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "svc.v1.Query";
+const TYPE_NAME = 'svc.v1.Query';
 
 /**
  * Params queries all parameters of the module.
@@ -14,7 +31,7 @@ const TYPE_NAME = "svc.v1.Query";
  */
 export const QueryParamsService = {
   typeName: TYPE_NAME,
-  method: "Params",
+  method: 'Params',
   Request: QueryParamsRequest,
   Response: QueryParamsResponse,
 } as const;
@@ -31,7 +48,7 @@ export const QueryParamsService = {
  */
 export const QueryDomainVerificationService = {
   typeName: TYPE_NAME,
-  method: "DomainVerification",
+  method: 'DomainVerification',
   Request: QueryDomainVerificationRequest,
   Response: QueryDomainVerificationResponse,
 } as const;
@@ -43,7 +60,7 @@ export const QueryDomainVerificationService = {
  */
 export const QueryServiceService = {
   typeName: TYPE_NAME,
-  method: "Service",
+  method: 'Service',
   Request: QueryServiceRequest,
   Response: QueryServiceResponse,
 } as const;
@@ -55,7 +72,7 @@ export const QueryServiceService = {
  */
 export const QueryServicesByOwnerService = {
   typeName: TYPE_NAME,
-  method: "ServicesByOwner",
+  method: 'ServicesByOwner',
   Request: QueryServicesByOwnerRequest,
   Response: QueryServicesByOwnerResponse,
 } as const;
@@ -67,7 +84,7 @@ export const QueryServicesByOwnerService = {
  */
 export const QueryServicesByDomainService = {
   typeName: TYPE_NAME,
-  method: "ServicesByDomain",
+  method: 'ServicesByDomain',
   Request: QueryServicesByDomainRequest,
   Response: QueryServicesByDomainResponse,
 } as const;
@@ -79,7 +96,7 @@ export const QueryServicesByDomainService = {
  */
 export const QueryServiceOIDCDiscoveryService = {
   typeName: TYPE_NAME,
-  method: "ServiceOIDCDiscovery",
+  method: 'ServiceOIDCDiscovery',
   Request: QueryServiceOIDCDiscoveryRequest,
   Response: QueryServiceOIDCDiscoveryResponse,
 } as const;
@@ -91,7 +108,7 @@ export const QueryServiceOIDCDiscoveryService = {
  */
 export const QueryServiceOIDCJWKSService = {
   typeName: TYPE_NAME,
-  method: "ServiceOIDCJWKS",
+  method: 'ServiceOIDCJWKS',
   Request: QueryServiceOIDCJWKSRequest,
   Response: QueryServiceOIDCJWKSResponse,
 } as const;
@@ -103,8 +120,7 @@ export const QueryServiceOIDCJWKSService = {
  */
 export const QueryServiceOIDCMetadataService = {
   typeName: TYPE_NAME,
-  method: "ServiceOIDCMetadata",
+  method: 'ServiceOIDCMetadata',
   Request: QueryServiceOIDCMetadataRequest,
   Response: QueryServiceOIDCMetadataResponse,
 } as const;
-

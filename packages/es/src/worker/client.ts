@@ -1,6 +1,6 @@
 /**
  * HTTP client for Motor Payment Gateway and OIDC Authorization
- * 
+ *
  * @packageDocumentation
  */
 
@@ -54,9 +54,9 @@ export class MotorClient {
   constructor(config: Partial<MotorServiceWorkerConfig> = {}) {
     this.config = { ...DEFAULT_CONFIG, ...config };
     this.baseUrl = this.config.worker_url;
-    
+
     this.detectServiceWorker();
-    
+
     if (this.config.debug) {
       console.debug('[MotorClient] Initialized with config:', this.config);
     }
@@ -67,16 +67,18 @@ export class MotorClient {
    */
   private detectServiceWorker(): void {
     if (typeof navigator !== 'undefined' && 'serviceWorker' in navigator) {
-      this.serviceWorkerReady = navigator.serviceWorker.ready.then(registration => {
-        if (registration.active?.scriptURL.includes('motor')) {
-          this.useServiceWorker = true;
-          if (this.config.debug) {
-            console.debug('[MotorClient] Motor service worker detected');
+      this.serviceWorkerReady = navigator.serviceWorker.ready
+        .then((registration) => {
+          if (registration.active?.scriptURL.includes('motor')) {
+            this.useServiceWorker = true;
+            if (this.config.debug) {
+              console.debug('[MotorClient] Motor service worker detected');
+            }
+            return true;
           }
-          return true;
-        }
-        return false;
-      }).catch(() => false);
+          return false;
+        })
+        .catch(() => false);
     }
   }
 
@@ -85,11 +87,7 @@ export class MotorClient {
   /**
    * Makes an HTTP request with automatic retries
    */
-  private async request<T>(
-    method: string,
-    endpoint: string,
-    data?: unknown
-  ): Promise<T> {
+  private async request<T>(method: string, endpoint: string, data?: unknown): Promise<T> {
     const url = `${this.baseUrl}${endpoint}`;
     let lastError: Error | null = null;
 
@@ -100,7 +98,7 @@ export class MotorClient {
         }
 
         const response = await this.performRequest(method, url, data);
-        
+
         if (!response.ok) {
           const errorData = await this.parseErrorResponse(response);
           throw new Error(`HTTP ${response.status}: ${errorData.error || response.statusText}`);
@@ -109,7 +107,7 @@ export class MotorClient {
         return await this.parseResponse<T>(response);
       } catch (error) {
         lastError = error instanceof Error ? error : new Error(String(error));
-        
+
         if (this.config.debug) {
           console.debug(`[MotorClient] Attempt ${attempt} failed:`, lastError.message);
         }
@@ -131,11 +129,7 @@ export class MotorClient {
   /**
    * Performs the actual HTTP request
    */
-  private async performRequest(
-    method: string,
-    url: string,
-    data?: unknown
-  ): Promise<Response> {
+  private async performRequest(method: string, url: string, data?: unknown): Promise<Response> {
     if (this.useServiceWorker && this.serviceWorkerReady) {
       const swReady = await this.serviceWorkerReady;
       if (swReady) {
@@ -188,17 +182,14 @@ export class MotorClient {
 
       messageChannel.port1.onmessage = (event) => {
         clearTimeout(timeout);
-        
+
         if (event.data.error) {
           reject(new Error(event.data.error));
         } else {
-          const response = new Response(
-            JSON.stringify(event.data),
-            {
-              status: event.data.error ? 500 : 200,
-              headers: { 'Content-Type': 'application/json' },
-            }
-          );
+          const response = new Response(JSON.stringify(event.data), {
+            status: event.data.error ? 500 : 200,
+            headers: { 'Content-Type': 'application/json' },
+          });
           resolve(response);
         }
       };
@@ -220,7 +211,7 @@ export class MotorClient {
    */
   private async parseResponse<T>(response: Response): Promise<T> {
     const text = await response.text();
-    
+
     if (!text) {
       return {} as T;
     }
@@ -245,7 +236,7 @@ export class MotorClient {
     } catch {
       // Ignore parsing errors
     }
-    
+
     return { error: response.statusText || 'Unknown error' };
   }
 
@@ -256,7 +247,7 @@ export class MotorClient {
     if (data instanceof Uint8Array) {
       return Array.from(data);
     }
-    
+
     if (data && typeof data === 'object') {
       const result: Record<string, unknown> = {};
       for (const [key, value] of Object.entries(data)) {
@@ -264,7 +255,7 @@ export class MotorClient {
       }
       return result;
     }
-    
+
     return data;
   }
 
@@ -272,10 +263,10 @@ export class MotorClient {
    * Deserializes received data
    */
   private deserializeData<T>(data: unknown): T {
-    if (Array.isArray(data) && data.every(item => typeof item === 'number')) {
+    if (Array.isArray(data) && data.every((item) => typeof item === 'number')) {
       return new Uint8Array(data) as unknown as T;
     }
-    
+
     if (data && typeof data === 'object') {
       const result: Record<string, unknown> = {};
       for (const [key, value] of Object.entries(data)) {
@@ -283,7 +274,7 @@ export class MotorClient {
       }
       return result as T;
     }
-    
+
     return data as T;
   }
 
@@ -291,7 +282,7 @@ export class MotorClient {
    * Sleep utility
    */
   private sleep(ms: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   // Health & Status
@@ -343,7 +334,9 @@ export class MotorClient {
   /**
    * Validate payment method
    */
-  async validatePaymentMethod(request: ValidatePaymentMethodRequest): Promise<ValidatePaymentMethodResponse> {
+  async validatePaymentMethod(
+    request: ValidatePaymentMethodRequest
+  ): Promise<ValidatePaymentMethodResponse> {
     return this.request<ValidatePaymentMethodResponse>('POST', '/api/payment/validate', request);
   }
 
@@ -388,11 +381,7 @@ export class MotorClient {
    * Get user info
    */
   async getUserInfo(accessToken: string): Promise<OIDCUserInfo> {
-    return this.request<OIDCUserInfo>(
-      'GET',
-      '/userinfo',
-      undefined
-    );
+    return this.request<OIDCUserInfo>('GET', '/userinfo', undefined);
   }
 
   /**
@@ -428,7 +417,7 @@ export class MotorClient {
    */
   updateConfig(newConfig: Partial<MotorServiceWorkerConfig>): void {
     Object.assign(this.config, newConfig);
-    
+
     if (this.config.debug) {
       console.debug('[MotorClient] Updated config:', this.config);
     }
@@ -450,7 +439,7 @@ export class MotorClient {
 
       messageChannel.port1.onmessage = (event) => {
         clearTimeout(timeout);
-        
+
         if (event.data.error) {
           reject(new Error(event.data.error));
         } else {
@@ -458,10 +447,7 @@ export class MotorClient {
         }
       };
 
-      navigator.serviceWorker.controller.postMessage(
-        { type, data },
-        [messageChannel.port2]
-      );
+      navigator.serviceWorker.controller.postMessage({ type, data }, [messageChannel.port2]);
     });
   }
 

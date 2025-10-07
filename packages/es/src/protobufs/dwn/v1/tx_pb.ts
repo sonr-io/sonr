@@ -3,10 +3,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Params } from "./genesis_pb.js";
-import { DWNMessageDescriptor } from "./state_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { Params } from './genesis_pb.js';
+import { DWNMessageDescriptor } from './state_pb.js';
 
 /**
  * MsgUpdateParams is the Msg/UpdateParams request type.
@@ -19,7 +26,7 @@ export class MsgUpdateParams extends Message<MsgUpdateParams> {
    *
    * @generated from field: string authority = 1;
    */
-  authority = "";
+  authority = '';
 
   /**
    * params defines the parameters to update.
@@ -34,10 +41,10 @@ export class MsgUpdateParams extends Message<MsgUpdateParams> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.MsgUpdateParams";
+  static readonly typeName = 'dwn.v1.MsgUpdateParams';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "authority", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "params", kind: "message", T: Params },
+    { no: 1, name: 'authority', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'params', kind: 'message', T: Params },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUpdateParams {
@@ -52,7 +59,10 @@ export class MsgUpdateParams extends Message<MsgUpdateParams> {
     return new MsgUpdateParams().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined, b: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined): boolean {
+  static equals(
+    a: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined,
+    b: MsgUpdateParams | PlainMessage<MsgUpdateParams> | undefined
+  ): boolean {
     return proto3.util.equals(MsgUpdateParams, a, b);
   }
 }
@@ -70,23 +80,34 @@ export class MsgUpdateParamsResponse extends Message<MsgUpdateParamsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.MsgUpdateParamsResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'dwn.v1.MsgUpdateParamsResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgUpdateParamsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgUpdateParamsResponse {
     return new MsgUpdateParamsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgUpdateParamsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgUpdateParamsResponse {
     return new MsgUpdateParamsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgUpdateParamsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgUpdateParamsResponse {
     return new MsgUpdateParamsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined, b: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined): boolean {
+  static equals(
+    a: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined,
+    b: MsgUpdateParamsResponse | PlainMessage<MsgUpdateParamsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgUpdateParamsResponse, a, b);
   }
 }
@@ -102,14 +123,14 @@ export class MsgRecordsWrite extends Message<MsgRecordsWrite> {
    *
    * @generated from field: string author = 1;
    */
-  author = "";
+  author = '';
 
   /**
    * Target DWN (DID)
    *
    * @generated from field: string target = 2;
    */
-  target = "";
+  target = '';
 
   /**
    * Message descriptor
@@ -123,7 +144,7 @@ export class MsgRecordsWrite extends Message<MsgRecordsWrite> {
    *
    * @generated from field: string authorization = 4;
    */
-  authorization = "";
+  authorization = '';
 
   /**
    * Record data
@@ -137,28 +158,28 @@ export class MsgRecordsWrite extends Message<MsgRecordsWrite> {
    *
    * @generated from field: string protocol = 6;
    */
-  protocol = "";
+  protocol = '';
 
   /**
    * Optional protocol path
    *
    * @generated from field: string protocol_path = 7;
    */
-  protocolPath = "";
+  protocolPath = '';
 
   /**
    * Optional schema URI
    *
    * @generated from field: string schema = 8;
    */
-  schema = "";
+  schema = '';
 
   /**
    * Optional parent record ID
    *
    * @generated from field: string parent_id = 9;
    */
-  parentId = "";
+  parentId = '';
 
   /**
    * Published flag
@@ -172,14 +193,14 @@ export class MsgRecordsWrite extends Message<MsgRecordsWrite> {
    *
    * @generated from field: string encryption = 11;
    */
-  encryption = "";
+  encryption = '';
 
   /**
    * Optional attestation
    *
    * @generated from field: string attestation = 12;
    */
-  attestation = "";
+  attestation = '';
 
   constructor(data?: PartialMessage<MsgRecordsWrite>) {
     super();
@@ -187,20 +208,20 @@ export class MsgRecordsWrite extends Message<MsgRecordsWrite> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.MsgRecordsWrite";
+  static readonly typeName = 'dwn.v1.MsgRecordsWrite';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "author", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "target", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "descriptor", kind: "message", T: DWNMessageDescriptor },
-    { no: 4, name: "authorization", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 6, name: "protocol", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "protocol_path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 8, name: "schema", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 9, name: "parent_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 10, name: "published", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 11, name: "encryption", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 12, name: "attestation", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'author', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'target', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'descriptor', kind: 'message', T: DWNMessageDescriptor },
+    { no: 4, name: 'authorization', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'data', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 6, name: 'protocol', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: 'protocol_path', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: 'schema', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: 'parent_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 10, name: 'published', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 11, name: 'encryption', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 12, name: 'attestation', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRecordsWrite {
@@ -215,7 +236,10 @@ export class MsgRecordsWrite extends Message<MsgRecordsWrite> {
     return new MsgRecordsWrite().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRecordsWrite | PlainMessage<MsgRecordsWrite> | undefined, b: MsgRecordsWrite | PlainMessage<MsgRecordsWrite> | undefined): boolean {
+  static equals(
+    a: MsgRecordsWrite | PlainMessage<MsgRecordsWrite> | undefined,
+    b: MsgRecordsWrite | PlainMessage<MsgRecordsWrite> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRecordsWrite, a, b);
   }
 }
@@ -231,14 +255,14 @@ export class MsgRecordsWriteResponse extends Message<MsgRecordsWriteResponse> {
    *
    * @generated from field: string record_id = 1;
    */
-  recordId = "";
+  recordId = '';
 
   /**
    * CID of the data
    *
    * @generated from field: string data_cid = 2;
    */
-  dataCid = "";
+  dataCid = '';
 
   constructor(data?: PartialMessage<MsgRecordsWriteResponse>) {
     super();
@@ -246,25 +270,37 @@ export class MsgRecordsWriteResponse extends Message<MsgRecordsWriteResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.MsgRecordsWriteResponse";
+  static readonly typeName = 'dwn.v1.MsgRecordsWriteResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "record_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "data_cid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'record_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'data_cid', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRecordsWriteResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgRecordsWriteResponse {
     return new MsgRecordsWriteResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgRecordsWriteResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgRecordsWriteResponse {
     return new MsgRecordsWriteResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgRecordsWriteResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgRecordsWriteResponse {
     return new MsgRecordsWriteResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRecordsWriteResponse | PlainMessage<MsgRecordsWriteResponse> | undefined, b: MsgRecordsWriteResponse | PlainMessage<MsgRecordsWriteResponse> | undefined): boolean {
+  static equals(
+    a: MsgRecordsWriteResponse | PlainMessage<MsgRecordsWriteResponse> | undefined,
+    b: MsgRecordsWriteResponse | PlainMessage<MsgRecordsWriteResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRecordsWriteResponse, a, b);
   }
 }
@@ -280,21 +316,21 @@ export class MsgRecordsDelete extends Message<MsgRecordsDelete> {
    *
    * @generated from field: string author = 1;
    */
-  author = "";
+  author = '';
 
   /**
    * Target DWN (DID)
    *
    * @generated from field: string target = 2;
    */
-  target = "";
+  target = '';
 
   /**
    * Record ID to delete
    *
    * @generated from field: string record_id = 3;
    */
-  recordId = "";
+  recordId = '';
 
   /**
    * Message descriptor
@@ -308,7 +344,7 @@ export class MsgRecordsDelete extends Message<MsgRecordsDelete> {
    *
    * @generated from field: string authorization = 5;
    */
-  authorization = "";
+  authorization = '';
 
   /**
    * Prune descendants flag
@@ -323,14 +359,14 @@ export class MsgRecordsDelete extends Message<MsgRecordsDelete> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.MsgRecordsDelete";
+  static readonly typeName = 'dwn.v1.MsgRecordsDelete';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "author", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "target", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "record_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "descriptor", kind: "message", T: DWNMessageDescriptor },
-    { no: 5, name: "authorization", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "prune", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'author', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'target', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'record_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'descriptor', kind: 'message', T: DWNMessageDescriptor },
+    { no: 5, name: 'authorization', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'prune', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRecordsDelete {
@@ -345,7 +381,10 @@ export class MsgRecordsDelete extends Message<MsgRecordsDelete> {
     return new MsgRecordsDelete().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRecordsDelete | PlainMessage<MsgRecordsDelete> | undefined, b: MsgRecordsDelete | PlainMessage<MsgRecordsDelete> | undefined): boolean {
+  static equals(
+    a: MsgRecordsDelete | PlainMessage<MsgRecordsDelete> | undefined,
+    b: MsgRecordsDelete | PlainMessage<MsgRecordsDelete> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRecordsDelete, a, b);
   }
 }
@@ -376,25 +415,37 @@ export class MsgRecordsDeleteResponse extends Message<MsgRecordsDeleteResponse> 
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.MsgRecordsDeleteResponse";
+  static readonly typeName = 'dwn.v1.MsgRecordsDeleteResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 2, name: "deleted_count", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 1, name: 'success', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: 'deleted_count', kind: 'scalar', T: 5 /* ScalarType.INT32 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRecordsDeleteResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgRecordsDeleteResponse {
     return new MsgRecordsDeleteResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgRecordsDeleteResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgRecordsDeleteResponse {
     return new MsgRecordsDeleteResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgRecordsDeleteResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgRecordsDeleteResponse {
     return new MsgRecordsDeleteResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRecordsDeleteResponse | PlainMessage<MsgRecordsDeleteResponse> | undefined, b: MsgRecordsDeleteResponse | PlainMessage<MsgRecordsDeleteResponse> | undefined): boolean {
+  static equals(
+    a: MsgRecordsDeleteResponse | PlainMessage<MsgRecordsDeleteResponse> | undefined,
+    b: MsgRecordsDeleteResponse | PlainMessage<MsgRecordsDeleteResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRecordsDeleteResponse, a, b);
   }
 }
@@ -410,14 +461,14 @@ export class MsgProtocolsConfigure extends Message<MsgProtocolsConfigure> {
    *
    * @generated from field: string author = 1;
    */
-  author = "";
+  author = '';
 
   /**
    * Target DWN (DID)
    *
    * @generated from field: string target = 2;
    */
-  target = "";
+  target = '';
 
   /**
    * Message descriptor
@@ -431,14 +482,14 @@ export class MsgProtocolsConfigure extends Message<MsgProtocolsConfigure> {
    *
    * @generated from field: string authorization = 4;
    */
-  authorization = "";
+  authorization = '';
 
   /**
    * Protocol URI
    *
    * @generated from field: string protocol_uri = 5;
    */
-  protocolUri = "";
+  protocolUri = '';
 
   /**
    * Protocol definition JSON
@@ -460,18 +511,21 @@ export class MsgProtocolsConfigure extends Message<MsgProtocolsConfigure> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.MsgProtocolsConfigure";
+  static readonly typeName = 'dwn.v1.MsgProtocolsConfigure';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "author", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "target", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "descriptor", kind: "message", T: DWNMessageDescriptor },
-    { no: 4, name: "authorization", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "protocol_uri", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "definition", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 7, name: "published", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'author', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'target', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'descriptor', kind: 'message', T: DWNMessageDescriptor },
+    { no: 4, name: 'authorization', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'protocol_uri', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'definition', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 7, name: 'published', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgProtocolsConfigure {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgProtocolsConfigure {
     return new MsgProtocolsConfigure().fromBinary(bytes, options);
   }
 
@@ -479,11 +533,17 @@ export class MsgProtocolsConfigure extends Message<MsgProtocolsConfigure> {
     return new MsgProtocolsConfigure().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgProtocolsConfigure {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgProtocolsConfigure {
     return new MsgProtocolsConfigure().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgProtocolsConfigure | PlainMessage<MsgProtocolsConfigure> | undefined, b: MsgProtocolsConfigure | PlainMessage<MsgProtocolsConfigure> | undefined): boolean {
+  static equals(
+    a: MsgProtocolsConfigure | PlainMessage<MsgProtocolsConfigure> | undefined,
+    b: MsgProtocolsConfigure | PlainMessage<MsgProtocolsConfigure> | undefined
+  ): boolean {
     return proto3.util.equals(MsgProtocolsConfigure, a, b);
   }
 }
@@ -499,7 +559,7 @@ export class MsgProtocolsConfigureResponse extends Message<MsgProtocolsConfigure
    *
    * @generated from field: string protocol_uri = 1;
    */
-  protocolUri = "";
+  protocolUri = '';
 
   /**
    * Success flag
@@ -514,25 +574,37 @@ export class MsgProtocolsConfigureResponse extends Message<MsgProtocolsConfigure
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.MsgProtocolsConfigureResponse";
+  static readonly typeName = 'dwn.v1.MsgProtocolsConfigureResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "protocol_uri", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'protocol_uri', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'success', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgProtocolsConfigureResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgProtocolsConfigureResponse {
     return new MsgProtocolsConfigureResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgProtocolsConfigureResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgProtocolsConfigureResponse {
     return new MsgProtocolsConfigureResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgProtocolsConfigureResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgProtocolsConfigureResponse {
     return new MsgProtocolsConfigureResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgProtocolsConfigureResponse | PlainMessage<MsgProtocolsConfigureResponse> | undefined, b: MsgProtocolsConfigureResponse | PlainMessage<MsgProtocolsConfigureResponse> | undefined): boolean {
+  static equals(
+    a: MsgProtocolsConfigureResponse | PlainMessage<MsgProtocolsConfigureResponse> | undefined,
+    b: MsgProtocolsConfigureResponse | PlainMessage<MsgProtocolsConfigureResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgProtocolsConfigureResponse, a, b);
   }
 }
@@ -548,21 +620,21 @@ export class MsgPermissionsGrant extends Message<MsgPermissionsGrant> {
    *
    * @generated from field: string grantor = 1;
    */
-  grantor = "";
+  grantor = '';
 
   /**
    * Grantee receiving the permission (DID)
    *
    * @generated from field: string grantee = 2;
    */
-  grantee = "";
+  grantee = '';
 
   /**
    * Target DWN (DID)
    *
    * @generated from field: string target = 3;
    */
-  target = "";
+  target = '';
 
   /**
    * Message descriptor
@@ -576,35 +648,35 @@ export class MsgPermissionsGrant extends Message<MsgPermissionsGrant> {
    *
    * @generated from field: string authorization = 5;
    */
-  authorization = "";
+  authorization = '';
 
   /**
    * Interface scope
    *
    * @generated from field: string interface_name = 6;
    */
-  interfaceName = "";
+  interfaceName = '';
 
   /**
    * Method scope
    *
    * @generated from field: string method = 7;
    */
-  method = "";
+  method = '';
 
   /**
    * Optional protocol scope
    *
    * @generated from field: string protocol = 8;
    */
-  protocol = "";
+  protocol = '';
 
   /**
    * Optional record scope
    *
    * @generated from field: string record_id = 9;
    */
-  recordId = "";
+  recordId = '';
 
   /**
    * Permission conditions JSON
@@ -626,19 +698,19 @@ export class MsgPermissionsGrant extends Message<MsgPermissionsGrant> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.MsgPermissionsGrant";
+  static readonly typeName = 'dwn.v1.MsgPermissionsGrant';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "grantor", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "grantee", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "target", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "descriptor", kind: "message", T: DWNMessageDescriptor },
-    { no: 5, name: "authorization", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "interface_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "method", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 8, name: "protocol", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 9, name: "record_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 10, name: "conditions", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 11, name: "expires_at", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: 'grantor', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'grantee', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'target', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'descriptor', kind: 'message', T: DWNMessageDescriptor },
+    { no: 5, name: 'authorization', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'interface_name', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: 'method', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 8, name: 'protocol', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: 'record_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 10, name: 'conditions', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 11, name: 'expires_at', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgPermissionsGrant {
@@ -649,11 +721,17 @@ export class MsgPermissionsGrant extends Message<MsgPermissionsGrant> {
     return new MsgPermissionsGrant().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgPermissionsGrant {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgPermissionsGrant {
     return new MsgPermissionsGrant().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgPermissionsGrant | PlainMessage<MsgPermissionsGrant> | undefined, b: MsgPermissionsGrant | PlainMessage<MsgPermissionsGrant> | undefined): boolean {
+  static equals(
+    a: MsgPermissionsGrant | PlainMessage<MsgPermissionsGrant> | undefined,
+    b: MsgPermissionsGrant | PlainMessage<MsgPermissionsGrant> | undefined
+  ): boolean {
     return proto3.util.equals(MsgPermissionsGrant, a, b);
   }
 }
@@ -669,7 +747,7 @@ export class MsgPermissionsGrantResponse extends Message<MsgPermissionsGrantResp
    *
    * @generated from field: string permission_id = 1;
    */
-  permissionId = "";
+  permissionId = '';
 
   constructor(data?: PartialMessage<MsgPermissionsGrantResponse>) {
     super();
@@ -677,24 +755,36 @@ export class MsgPermissionsGrantResponse extends Message<MsgPermissionsGrantResp
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.MsgPermissionsGrantResponse";
+  static readonly typeName = 'dwn.v1.MsgPermissionsGrantResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "permission_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'permission_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgPermissionsGrantResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgPermissionsGrantResponse {
     return new MsgPermissionsGrantResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgPermissionsGrantResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgPermissionsGrantResponse {
     return new MsgPermissionsGrantResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgPermissionsGrantResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgPermissionsGrantResponse {
     return new MsgPermissionsGrantResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgPermissionsGrantResponse | PlainMessage<MsgPermissionsGrantResponse> | undefined, b: MsgPermissionsGrantResponse | PlainMessage<MsgPermissionsGrantResponse> | undefined): boolean {
+  static equals(
+    a: MsgPermissionsGrantResponse | PlainMessage<MsgPermissionsGrantResponse> | undefined,
+    b: MsgPermissionsGrantResponse | PlainMessage<MsgPermissionsGrantResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgPermissionsGrantResponse, a, b);
   }
 }
@@ -710,14 +800,14 @@ export class MsgPermissionsRevoke extends Message<MsgPermissionsRevoke> {
    *
    * @generated from field: string grantor = 1;
    */
-  grantor = "";
+  grantor = '';
 
   /**
    * Permission ID to revoke
    *
    * @generated from field: string permission_id = 2;
    */
-  permissionId = "";
+  permissionId = '';
 
   /**
    * Message descriptor
@@ -731,7 +821,7 @@ export class MsgPermissionsRevoke extends Message<MsgPermissionsRevoke> {
    *
    * @generated from field: string authorization = 4;
    */
-  authorization = "";
+  authorization = '';
 
   constructor(data?: PartialMessage<MsgPermissionsRevoke>) {
     super();
@@ -739,12 +829,12 @@ export class MsgPermissionsRevoke extends Message<MsgPermissionsRevoke> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.MsgPermissionsRevoke";
+  static readonly typeName = 'dwn.v1.MsgPermissionsRevoke';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "grantor", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "permission_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "descriptor", kind: "message", T: DWNMessageDescriptor },
-    { no: 4, name: "authorization", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'grantor', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'permission_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'descriptor', kind: 'message', T: DWNMessageDescriptor },
+    { no: 4, name: 'authorization', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgPermissionsRevoke {
@@ -755,11 +845,17 @@ export class MsgPermissionsRevoke extends Message<MsgPermissionsRevoke> {
     return new MsgPermissionsRevoke().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgPermissionsRevoke {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgPermissionsRevoke {
     return new MsgPermissionsRevoke().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgPermissionsRevoke | PlainMessage<MsgPermissionsRevoke> | undefined, b: MsgPermissionsRevoke | PlainMessage<MsgPermissionsRevoke> | undefined): boolean {
+  static equals(
+    a: MsgPermissionsRevoke | PlainMessage<MsgPermissionsRevoke> | undefined,
+    b: MsgPermissionsRevoke | PlainMessage<MsgPermissionsRevoke> | undefined
+  ): boolean {
     return proto3.util.equals(MsgPermissionsRevoke, a, b);
   }
 }
@@ -783,24 +879,36 @@ export class MsgPermissionsRevokeResponse extends Message<MsgPermissionsRevokeRe
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.MsgPermissionsRevokeResponse";
+  static readonly typeName = 'dwn.v1.MsgPermissionsRevokeResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'success', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgPermissionsRevokeResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgPermissionsRevokeResponse {
     return new MsgPermissionsRevokeResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgPermissionsRevokeResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgPermissionsRevokeResponse {
     return new MsgPermissionsRevokeResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgPermissionsRevokeResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgPermissionsRevokeResponse {
     return new MsgPermissionsRevokeResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgPermissionsRevokeResponse | PlainMessage<MsgPermissionsRevokeResponse> | undefined, b: MsgPermissionsRevokeResponse | PlainMessage<MsgPermissionsRevokeResponse> | undefined): boolean {
+  static equals(
+    a: MsgPermissionsRevokeResponse | PlainMessage<MsgPermissionsRevokeResponse> | undefined,
+    b: MsgPermissionsRevokeResponse | PlainMessage<MsgPermissionsRevokeResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgPermissionsRevokeResponse, a, b);
   }
 }
@@ -816,21 +924,21 @@ export class MsgRotateVaultKeys extends Message<MsgRotateVaultKeys> {
    *
    * @generated from field: string authority = 1;
    */
-  authority = "";
+  authority = '';
 
   /**
    * Vault ID to rotate keys for (empty means all vaults)
    *
    * @generated from field: string vault_id = 2;
    */
-  vaultId = "";
+  vaultId = '';
 
   /**
    * Reason for rotation
    *
    * @generated from field: string reason = 3;
    */
-  reason = "";
+  reason = '';
 
   /**
    * Force rotation even if not due
@@ -845,12 +953,12 @@ export class MsgRotateVaultKeys extends Message<MsgRotateVaultKeys> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.MsgRotateVaultKeys";
+  static readonly typeName = 'dwn.v1.MsgRotateVaultKeys';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "authority", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "vault_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "reason", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "force", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'authority', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'vault_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'reason', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'force', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRotateVaultKeys {
@@ -861,11 +969,17 @@ export class MsgRotateVaultKeys extends Message<MsgRotateVaultKeys> {
     return new MsgRotateVaultKeys().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgRotateVaultKeys {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgRotateVaultKeys {
     return new MsgRotateVaultKeys().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRotateVaultKeys | PlainMessage<MsgRotateVaultKeys> | undefined, b: MsgRotateVaultKeys | PlainMessage<MsgRotateVaultKeys> | undefined): boolean {
+  static equals(
+    a: MsgRotateVaultKeys | PlainMessage<MsgRotateVaultKeys> | undefined,
+    b: MsgRotateVaultKeys | PlainMessage<MsgRotateVaultKeys> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRotateVaultKeys, a, b);
   }
 }
@@ -903,27 +1017,38 @@ export class MsgRotateVaultKeysResponse extends Message<MsgRotateVaultKeysRespon
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "dwn.v1.MsgRotateVaultKeysResponse";
+  static readonly typeName = 'dwn.v1.MsgRotateVaultKeysResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "vaults_rotated", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
-    { no: 2, name: "new_key_version", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "success", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: 'vaults_rotated', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
+    { no: 2, name: 'new_key_version', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'success', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgRotateVaultKeysResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgRotateVaultKeysResponse {
     return new MsgRotateVaultKeysResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgRotateVaultKeysResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgRotateVaultKeysResponse {
     return new MsgRotateVaultKeysResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgRotateVaultKeysResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgRotateVaultKeysResponse {
     return new MsgRotateVaultKeysResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgRotateVaultKeysResponse | PlainMessage<MsgRotateVaultKeysResponse> | undefined, b: MsgRotateVaultKeysResponse | PlainMessage<MsgRotateVaultKeysResponse> | undefined): boolean {
+  static equals(
+    a: MsgRotateVaultKeysResponse | PlainMessage<MsgRotateVaultKeysResponse> | undefined,
+    b: MsgRotateVaultKeysResponse | PlainMessage<MsgRotateVaultKeysResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgRotateVaultKeysResponse, a, b);
   }
 }
-

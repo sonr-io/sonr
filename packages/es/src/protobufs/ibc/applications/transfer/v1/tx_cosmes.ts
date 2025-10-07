@@ -3,9 +3,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgTransfer, MsgTransferResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx_pb.js";
+import {
+  MsgTransfer,
+  MsgTransferResponse,
+  MsgUpdateParams,
+  MsgUpdateParamsResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "ibc.applications.transfer.v1.Msg";
+const TYPE_NAME = 'ibc.applications.transfer.v1.Msg';
 
 /**
  * Transfer defines a rpc handler method for MsgTransfer.
@@ -14,7 +19,7 @@ const TYPE_NAME = "ibc.applications.transfer.v1.Msg";
  */
 export const MsgTransferService = {
   typeName: TYPE_NAME,
-  method: "Transfer",
+  method: 'Transfer',
   Request: MsgTransfer,
   Response: MsgTransferResponse,
 } as const;
@@ -26,8 +31,7 @@ export const MsgTransferService = {
  */
 export const MsgUpdateParamsService = {
   typeName: TYPE_NAME,
-  method: "UpdateParams",
+  method: 'UpdateParams',
   Request: MsgUpdateParams,
   Response: MsgUpdateParamsResponse,
 } as const;
-

@@ -3,12 +3,23 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Any, Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Params } from "./genesis_pb.js";
-import { SwapAmountInRoute, SwapAmountOutRoute } from "./swap_route_pb.js";
-import { Coin } from "../../../cosmos/base/v1beta1/coin_pb.js";
-import { AlloyContractTakerFeeShareState, TakerFeeShareAgreement, TakerFeeSkimAccumulator } from "./taker_fee_share_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Any, Message, proto3, protoInt64 } from '@bufbuild/protobuf';
+import { Params } from './genesis_pb.js';
+import { SwapAmountInRoute, SwapAmountOutRoute } from './swap_route_pb.js';
+import { Coin } from '../../../cosmos/base/v1beta1/coin_pb.js';
+import {
+  AlloyContractTakerFeeShareState,
+  TakerFeeShareAgreement,
+  TakerFeeSkimAccumulator,
+} from './taker_fee_share_pb.js';
 
 /**
  * =============================== Params
@@ -22,9 +33,8 @@ export class ParamsRequest extends Message<ParamsRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.ParamsRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.ParamsRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ParamsRequest {
     return new ParamsRequest().fromBinary(bytes, options);
@@ -38,7 +48,10 @@ export class ParamsRequest extends Message<ParamsRequest> {
     return new ParamsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ParamsRequest | PlainMessage<ParamsRequest> | undefined, b: ParamsRequest | PlainMessage<ParamsRequest> | undefined): boolean {
+  static equals(
+    a: ParamsRequest | PlainMessage<ParamsRequest> | undefined,
+    b: ParamsRequest | PlainMessage<ParamsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(ParamsRequest, a, b);
   }
 }
@@ -58,9 +71,9 @@ export class ParamsResponse extends Message<ParamsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.ParamsResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.ParamsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "params", kind: "message", T: Params },
+    { no: 1, name: 'params', kind: 'message', T: Params },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ParamsResponse {
@@ -75,7 +88,10 @@ export class ParamsResponse extends Message<ParamsResponse> {
     return new ParamsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ParamsResponse | PlainMessage<ParamsResponse> | undefined, b: ParamsResponse | PlainMessage<ParamsResponse> | undefined): boolean {
+  static equals(
+    a: ParamsResponse | PlainMessage<ParamsResponse> | undefined,
+    b: ParamsResponse | PlainMessage<ParamsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(ParamsResponse, a, b);
   }
 }
@@ -92,7 +108,7 @@ export class EstimateSwapExactAmountInRequest extends Message<EstimateSwapExactA
    * @generated from field: string sender = 1 [deprecated = true];
    * @deprecated
    */
-  sender = "";
+  sender = '';
 
   /**
    * @generated from field: uint64 pool_id = 2 [deprecated = true];
@@ -103,7 +119,7 @@ export class EstimateSwapExactAmountInRequest extends Message<EstimateSwapExactA
   /**
    * @generated from field: string token_in = 3;
    */
-  tokenIn = "";
+  tokenIn = '';
 
   /**
    * @generated from field: repeated osmosis.poolmanager.v1beta1.SwapAmountInRoute routes = 4;
@@ -116,27 +132,42 @@ export class EstimateSwapExactAmountInRequest extends Message<EstimateSwapExactA
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.EstimateSwapExactAmountInRequest";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.EstimateSwapExactAmountInRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "token_in", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "routes", kind: "message", T: SwapAmountInRoute, repeated: true },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'token_in', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'routes', kind: 'message', T: SwapAmountInRoute, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EstimateSwapExactAmountInRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EstimateSwapExactAmountInRequest {
     return new EstimateSwapExactAmountInRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EstimateSwapExactAmountInRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EstimateSwapExactAmountInRequest {
     return new EstimateSwapExactAmountInRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EstimateSwapExactAmountInRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EstimateSwapExactAmountInRequest {
     return new EstimateSwapExactAmountInRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EstimateSwapExactAmountInRequest | PlainMessage<EstimateSwapExactAmountInRequest> | undefined, b: EstimateSwapExactAmountInRequest | PlainMessage<EstimateSwapExactAmountInRequest> | undefined): boolean {
+  static equals(
+    a:
+      | EstimateSwapExactAmountInRequest
+      | PlainMessage<EstimateSwapExactAmountInRequest>
+      | undefined,
+    b: EstimateSwapExactAmountInRequest | PlainMessage<EstimateSwapExactAmountInRequest> | undefined
+  ): boolean {
     return proto3.util.equals(EstimateSwapExactAmountInRequest, a, b);
   }
 }
@@ -154,7 +185,7 @@ export class EstimateSwapExactAmountInWithPrimitiveTypesRequest extends Message<
   /**
    * @generated from field: string token_in = 2;
    */
-  tokenIn = "";
+  tokenIn = '';
 
   /**
    * @generated from field: repeated uint64 routes_pool_id = 3;
@@ -172,27 +203,55 @@ export class EstimateSwapExactAmountInWithPrimitiveTypesRequest extends Message<
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.EstimateSwapExactAmountInWithPrimitiveTypesRequest";
+  static readonly typeName =
+    'osmosis.poolmanager.v1beta1.EstimateSwapExactAmountInWithPrimitiveTypesRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "token_in", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "routes_pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
-    { no: 4, name: "routes_token_out_denom", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'token_in', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'routes_pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */, repeated: true },
+    {
+      no: 4,
+      name: 'routes_token_out_denom',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EstimateSwapExactAmountInWithPrimitiveTypesRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EstimateSwapExactAmountInWithPrimitiveTypesRequest {
     return new EstimateSwapExactAmountInWithPrimitiveTypesRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EstimateSwapExactAmountInWithPrimitiveTypesRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EstimateSwapExactAmountInWithPrimitiveTypesRequest {
     return new EstimateSwapExactAmountInWithPrimitiveTypesRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EstimateSwapExactAmountInWithPrimitiveTypesRequest {
-    return new EstimateSwapExactAmountInWithPrimitiveTypesRequest().fromJsonString(jsonString, options);
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EstimateSwapExactAmountInWithPrimitiveTypesRequest {
+    return new EstimateSwapExactAmountInWithPrimitiveTypesRequest().fromJsonString(
+      jsonString,
+      options
+    );
   }
 
-  static equals(a: EstimateSwapExactAmountInWithPrimitiveTypesRequest | PlainMessage<EstimateSwapExactAmountInWithPrimitiveTypesRequest> | undefined, b: EstimateSwapExactAmountInWithPrimitiveTypesRequest | PlainMessage<EstimateSwapExactAmountInWithPrimitiveTypesRequest> | undefined): boolean {
+  static equals(
+    a:
+      | EstimateSwapExactAmountInWithPrimitiveTypesRequest
+      | PlainMessage<EstimateSwapExactAmountInWithPrimitiveTypesRequest>
+      | undefined,
+    b:
+      | EstimateSwapExactAmountInWithPrimitiveTypesRequest
+      | PlainMessage<EstimateSwapExactAmountInWithPrimitiveTypesRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(EstimateSwapExactAmountInWithPrimitiveTypesRequest, a, b);
   }
 }
@@ -209,12 +268,12 @@ export class EstimateSinglePoolSwapExactAmountInRequest extends Message<Estimate
   /**
    * @generated from field: string token_in = 2;
    */
-  tokenIn = "";
+  tokenIn = '';
 
   /**
    * @generated from field: string token_out_denom = 3;
    */
-  tokenOutDenom = "";
+  tokenOutDenom = '';
 
   constructor(data?: PartialMessage<EstimateSinglePoolSwapExactAmountInRequest>) {
     super();
@@ -222,26 +281,45 @@ export class EstimateSinglePoolSwapExactAmountInRequest extends Message<Estimate
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.EstimateSinglePoolSwapExactAmountInRequest";
+  static readonly typeName =
+    'osmosis.poolmanager.v1beta1.EstimateSinglePoolSwapExactAmountInRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "token_in", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "token_out_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'token_in', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'token_out_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EstimateSinglePoolSwapExactAmountInRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EstimateSinglePoolSwapExactAmountInRequest {
     return new EstimateSinglePoolSwapExactAmountInRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EstimateSinglePoolSwapExactAmountInRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EstimateSinglePoolSwapExactAmountInRequest {
     return new EstimateSinglePoolSwapExactAmountInRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EstimateSinglePoolSwapExactAmountInRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EstimateSinglePoolSwapExactAmountInRequest {
     return new EstimateSinglePoolSwapExactAmountInRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EstimateSinglePoolSwapExactAmountInRequest | PlainMessage<EstimateSinglePoolSwapExactAmountInRequest> | undefined, b: EstimateSinglePoolSwapExactAmountInRequest | PlainMessage<EstimateSinglePoolSwapExactAmountInRequest> | undefined): boolean {
+  static equals(
+    a:
+      | EstimateSinglePoolSwapExactAmountInRequest
+      | PlainMessage<EstimateSinglePoolSwapExactAmountInRequest>
+      | undefined,
+    b:
+      | EstimateSinglePoolSwapExactAmountInRequest
+      | PlainMessage<EstimateSinglePoolSwapExactAmountInRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(EstimateSinglePoolSwapExactAmountInRequest, a, b);
   }
 }
@@ -253,7 +331,7 @@ export class EstimateSwapExactAmountInResponse extends Message<EstimateSwapExact
   /**
    * @generated from field: string token_out_amount = 1;
    */
-  tokenOutAmount = "";
+  tokenOutAmount = '';
 
   constructor(data?: PartialMessage<EstimateSwapExactAmountInResponse>) {
     super();
@@ -261,24 +339,42 @@ export class EstimateSwapExactAmountInResponse extends Message<EstimateSwapExact
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.EstimateSwapExactAmountInResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.EstimateSwapExactAmountInResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "token_out_amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'token_out_amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EstimateSwapExactAmountInResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EstimateSwapExactAmountInResponse {
     return new EstimateSwapExactAmountInResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EstimateSwapExactAmountInResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EstimateSwapExactAmountInResponse {
     return new EstimateSwapExactAmountInResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EstimateSwapExactAmountInResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EstimateSwapExactAmountInResponse {
     return new EstimateSwapExactAmountInResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EstimateSwapExactAmountInResponse | PlainMessage<EstimateSwapExactAmountInResponse> | undefined, b: EstimateSwapExactAmountInResponse | PlainMessage<EstimateSwapExactAmountInResponse> | undefined): boolean {
+  static equals(
+    a:
+      | EstimateSwapExactAmountInResponse
+      | PlainMessage<EstimateSwapExactAmountInResponse>
+      | undefined,
+    b:
+      | EstimateSwapExactAmountInResponse
+      | PlainMessage<EstimateSwapExactAmountInResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(EstimateSwapExactAmountInResponse, a, b);
   }
 }
@@ -295,7 +391,7 @@ export class EstimateSwapExactAmountOutRequest extends Message<EstimateSwapExact
    * @generated from field: string sender = 1 [deprecated = true];
    * @deprecated
    */
-  sender = "";
+  sender = '';
 
   /**
    * @generated from field: uint64 pool_id = 2 [deprecated = true];
@@ -311,7 +407,7 @@ export class EstimateSwapExactAmountOutRequest extends Message<EstimateSwapExact
   /**
    * @generated from field: string token_out = 4;
    */
-  tokenOut = "";
+  tokenOut = '';
 
   constructor(data?: PartialMessage<EstimateSwapExactAmountOutRequest>) {
     super();
@@ -319,27 +415,45 @@ export class EstimateSwapExactAmountOutRequest extends Message<EstimateSwapExact
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.EstimateSwapExactAmountOutRequest";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.EstimateSwapExactAmountOutRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 3, name: "routes", kind: "message", T: SwapAmountOutRoute, repeated: true },
-    { no: 4, name: "token_out", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 3, name: 'routes', kind: 'message', T: SwapAmountOutRoute, repeated: true },
+    { no: 4, name: 'token_out', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EstimateSwapExactAmountOutRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EstimateSwapExactAmountOutRequest {
     return new EstimateSwapExactAmountOutRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EstimateSwapExactAmountOutRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EstimateSwapExactAmountOutRequest {
     return new EstimateSwapExactAmountOutRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EstimateSwapExactAmountOutRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EstimateSwapExactAmountOutRequest {
     return new EstimateSwapExactAmountOutRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EstimateSwapExactAmountOutRequest | PlainMessage<EstimateSwapExactAmountOutRequest> | undefined, b: EstimateSwapExactAmountOutRequest | PlainMessage<EstimateSwapExactAmountOutRequest> | undefined): boolean {
+  static equals(
+    a:
+      | EstimateSwapExactAmountOutRequest
+      | PlainMessage<EstimateSwapExactAmountOutRequest>
+      | undefined,
+    b:
+      | EstimateSwapExactAmountOutRequest
+      | PlainMessage<EstimateSwapExactAmountOutRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(EstimateSwapExactAmountOutRequest, a, b);
   }
 }
@@ -367,7 +481,7 @@ export class EstimateSwapExactAmountOutWithPrimitiveTypesRequest extends Message
   /**
    * @generated from field: string token_out = 4;
    */
-  tokenOut = "";
+  tokenOut = '';
 
   constructor(data?: PartialMessage<EstimateSwapExactAmountOutWithPrimitiveTypesRequest>) {
     super();
@@ -375,27 +489,55 @@ export class EstimateSwapExactAmountOutWithPrimitiveTypesRequest extends Message
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.EstimateSwapExactAmountOutWithPrimitiveTypesRequest";
+  static readonly typeName =
+    'osmosis.poolmanager.v1beta1.EstimateSwapExactAmountOutWithPrimitiveTypesRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "routes_pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */, repeated: true },
-    { no: 3, name: "routes_token_in_denom", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 4, name: "token_out", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'routes_pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */, repeated: true },
+    {
+      no: 3,
+      name: 'routes_token_in_denom',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    { no: 4, name: 'token_out', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EstimateSwapExactAmountOutWithPrimitiveTypesRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EstimateSwapExactAmountOutWithPrimitiveTypesRequest {
     return new EstimateSwapExactAmountOutWithPrimitiveTypesRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EstimateSwapExactAmountOutWithPrimitiveTypesRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EstimateSwapExactAmountOutWithPrimitiveTypesRequest {
     return new EstimateSwapExactAmountOutWithPrimitiveTypesRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EstimateSwapExactAmountOutWithPrimitiveTypesRequest {
-    return new EstimateSwapExactAmountOutWithPrimitiveTypesRequest().fromJsonString(jsonString, options);
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EstimateSwapExactAmountOutWithPrimitiveTypesRequest {
+    return new EstimateSwapExactAmountOutWithPrimitiveTypesRequest().fromJsonString(
+      jsonString,
+      options
+    );
   }
 
-  static equals(a: EstimateSwapExactAmountOutWithPrimitiveTypesRequest | PlainMessage<EstimateSwapExactAmountOutWithPrimitiveTypesRequest> | undefined, b: EstimateSwapExactAmountOutWithPrimitiveTypesRequest | PlainMessage<EstimateSwapExactAmountOutWithPrimitiveTypesRequest> | undefined): boolean {
+  static equals(
+    a:
+      | EstimateSwapExactAmountOutWithPrimitiveTypesRequest
+      | PlainMessage<EstimateSwapExactAmountOutWithPrimitiveTypesRequest>
+      | undefined,
+    b:
+      | EstimateSwapExactAmountOutWithPrimitiveTypesRequest
+      | PlainMessage<EstimateSwapExactAmountOutWithPrimitiveTypesRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(EstimateSwapExactAmountOutWithPrimitiveTypesRequest, a, b);
   }
 }
@@ -412,12 +554,12 @@ export class EstimateSinglePoolSwapExactAmountOutRequest extends Message<Estimat
   /**
    * @generated from field: string token_in_denom = 2;
    */
-  tokenInDenom = "";
+  tokenInDenom = '';
 
   /**
    * @generated from field: string token_out = 3;
    */
-  tokenOut = "";
+  tokenOut = '';
 
   constructor(data?: PartialMessage<EstimateSinglePoolSwapExactAmountOutRequest>) {
     super();
@@ -425,26 +567,45 @@ export class EstimateSinglePoolSwapExactAmountOutRequest extends Message<Estimat
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.EstimateSinglePoolSwapExactAmountOutRequest";
+  static readonly typeName =
+    'osmosis.poolmanager.v1beta1.EstimateSinglePoolSwapExactAmountOutRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "token_in_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "token_out", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'token_in_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'token_out', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EstimateSinglePoolSwapExactAmountOutRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EstimateSinglePoolSwapExactAmountOutRequest {
     return new EstimateSinglePoolSwapExactAmountOutRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EstimateSinglePoolSwapExactAmountOutRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EstimateSinglePoolSwapExactAmountOutRequest {
     return new EstimateSinglePoolSwapExactAmountOutRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EstimateSinglePoolSwapExactAmountOutRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EstimateSinglePoolSwapExactAmountOutRequest {
     return new EstimateSinglePoolSwapExactAmountOutRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EstimateSinglePoolSwapExactAmountOutRequest | PlainMessage<EstimateSinglePoolSwapExactAmountOutRequest> | undefined, b: EstimateSinglePoolSwapExactAmountOutRequest | PlainMessage<EstimateSinglePoolSwapExactAmountOutRequest> | undefined): boolean {
+  static equals(
+    a:
+      | EstimateSinglePoolSwapExactAmountOutRequest
+      | PlainMessage<EstimateSinglePoolSwapExactAmountOutRequest>
+      | undefined,
+    b:
+      | EstimateSinglePoolSwapExactAmountOutRequest
+      | PlainMessage<EstimateSinglePoolSwapExactAmountOutRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(EstimateSinglePoolSwapExactAmountOutRequest, a, b);
   }
 }
@@ -456,7 +617,7 @@ export class EstimateSwapExactAmountOutResponse extends Message<EstimateSwapExac
   /**
    * @generated from field: string token_in_amount = 1;
    */
-  tokenInAmount = "";
+  tokenInAmount = '';
 
   constructor(data?: PartialMessage<EstimateSwapExactAmountOutResponse>) {
     super();
@@ -464,24 +625,42 @@ export class EstimateSwapExactAmountOutResponse extends Message<EstimateSwapExac
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.EstimateSwapExactAmountOutResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.EstimateSwapExactAmountOutResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "token_in_amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'token_in_amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EstimateSwapExactAmountOutResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EstimateSwapExactAmountOutResponse {
     return new EstimateSwapExactAmountOutResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EstimateSwapExactAmountOutResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EstimateSwapExactAmountOutResponse {
     return new EstimateSwapExactAmountOutResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EstimateSwapExactAmountOutResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EstimateSwapExactAmountOutResponse {
     return new EstimateSwapExactAmountOutResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EstimateSwapExactAmountOutResponse | PlainMessage<EstimateSwapExactAmountOutResponse> | undefined, b: EstimateSwapExactAmountOutResponse | PlainMessage<EstimateSwapExactAmountOutResponse> | undefined): boolean {
+  static equals(
+    a:
+      | EstimateSwapExactAmountOutResponse
+      | PlainMessage<EstimateSwapExactAmountOutResponse>
+      | undefined,
+    b:
+      | EstimateSwapExactAmountOutResponse
+      | PlainMessage<EstimateSwapExactAmountOutResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(EstimateSwapExactAmountOutResponse, a, b);
   }
 }
@@ -498,9 +677,8 @@ export class NumPoolsRequest extends Message<NumPoolsRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.NumPoolsRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.NumPoolsRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NumPoolsRequest {
     return new NumPoolsRequest().fromBinary(bytes, options);
@@ -514,7 +692,10 @@ export class NumPoolsRequest extends Message<NumPoolsRequest> {
     return new NumPoolsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: NumPoolsRequest | PlainMessage<NumPoolsRequest> | undefined, b: NumPoolsRequest | PlainMessage<NumPoolsRequest> | undefined): boolean {
+  static equals(
+    a: NumPoolsRequest | PlainMessage<NumPoolsRequest> | undefined,
+    b: NumPoolsRequest | PlainMessage<NumPoolsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(NumPoolsRequest, a, b);
   }
 }
@@ -534,9 +715,9 @@ export class NumPoolsResponse extends Message<NumPoolsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.NumPoolsResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.NumPoolsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "num_pools", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'num_pools', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): NumPoolsResponse {
@@ -551,7 +732,10 @@ export class NumPoolsResponse extends Message<NumPoolsResponse> {
     return new NumPoolsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: NumPoolsResponse | PlainMessage<NumPoolsResponse> | undefined, b: NumPoolsResponse | PlainMessage<NumPoolsResponse> | undefined): boolean {
+  static equals(
+    a: NumPoolsResponse | PlainMessage<NumPoolsResponse> | undefined,
+    b: NumPoolsResponse | PlainMessage<NumPoolsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(NumPoolsResponse, a, b);
   }
 }
@@ -573,9 +757,9 @@ export class PoolRequest extends Message<PoolRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.PoolRequest";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.PoolRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PoolRequest {
@@ -590,7 +774,10 @@ export class PoolRequest extends Message<PoolRequest> {
     return new PoolRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: PoolRequest | PlainMessage<PoolRequest> | undefined, b: PoolRequest | PlainMessage<PoolRequest> | undefined): boolean {
+  static equals(
+    a: PoolRequest | PlainMessage<PoolRequest> | undefined,
+    b: PoolRequest | PlainMessage<PoolRequest> | undefined
+  ): boolean {
     return proto3.util.equals(PoolRequest, a, b);
   }
 }
@@ -610,9 +797,9 @@ export class PoolResponse extends Message<PoolResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.PoolResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.PoolResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool", kind: "message", T: Any },
+    { no: 1, name: 'pool', kind: 'message', T: Any },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PoolResponse {
@@ -627,7 +814,10 @@ export class PoolResponse extends Message<PoolResponse> {
     return new PoolResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: PoolResponse | PlainMessage<PoolResponse> | undefined, b: PoolResponse | PlainMessage<PoolResponse> | undefined): boolean {
+  static equals(
+    a: PoolResponse | PlainMessage<PoolResponse> | undefined,
+    b: PoolResponse | PlainMessage<PoolResponse> | undefined
+  ): boolean {
     return proto3.util.equals(PoolResponse, a, b);
   }
 }
@@ -644,9 +834,8 @@ export class AllPoolsRequest extends Message<AllPoolsRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.AllPoolsRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.AllPoolsRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AllPoolsRequest {
     return new AllPoolsRequest().fromBinary(bytes, options);
@@ -660,7 +849,10 @@ export class AllPoolsRequest extends Message<AllPoolsRequest> {
     return new AllPoolsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AllPoolsRequest | PlainMessage<AllPoolsRequest> | undefined, b: AllPoolsRequest | PlainMessage<AllPoolsRequest> | undefined): boolean {
+  static equals(
+    a: AllPoolsRequest | PlainMessage<AllPoolsRequest> | undefined,
+    b: AllPoolsRequest | PlainMessage<AllPoolsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(AllPoolsRequest, a, b);
   }
 }
@@ -680,9 +872,9 @@ export class AllPoolsResponse extends Message<AllPoolsResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.AllPoolsResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.AllPoolsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pools", kind: "message", T: Any, repeated: true },
+    { no: 1, name: 'pools', kind: 'message', T: Any, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AllPoolsResponse {
@@ -697,7 +889,10 @@ export class AllPoolsResponse extends Message<AllPoolsResponse> {
     return new AllPoolsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AllPoolsResponse | PlainMessage<AllPoolsResponse> | undefined, b: AllPoolsResponse | PlainMessage<AllPoolsResponse> | undefined): boolean {
+  static equals(
+    a: AllPoolsResponse | PlainMessage<AllPoolsResponse> | undefined,
+    b: AllPoolsResponse | PlainMessage<AllPoolsResponse> | undefined
+  ): boolean {
     return proto3.util.equals(AllPoolsResponse, a, b);
   }
 }
@@ -712,7 +907,7 @@ export class ListPoolsByDenomRequest extends Message<ListPoolsByDenomRequest> {
   /**
    * @generated from field: string denom = 1;
    */
-  denom = "";
+  denom = '';
 
   constructor(data?: PartialMessage<ListPoolsByDenomRequest>) {
     super();
@@ -720,24 +915,36 @@ export class ListPoolsByDenomRequest extends Message<ListPoolsByDenomRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.ListPoolsByDenomRequest";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.ListPoolsByDenomRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListPoolsByDenomRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): ListPoolsByDenomRequest {
     return new ListPoolsByDenomRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListPoolsByDenomRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): ListPoolsByDenomRequest {
     return new ListPoolsByDenomRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListPoolsByDenomRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ListPoolsByDenomRequest {
     return new ListPoolsByDenomRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ListPoolsByDenomRequest | PlainMessage<ListPoolsByDenomRequest> | undefined, b: ListPoolsByDenomRequest | PlainMessage<ListPoolsByDenomRequest> | undefined): boolean {
+  static equals(
+    a: ListPoolsByDenomRequest | PlainMessage<ListPoolsByDenomRequest> | undefined,
+    b: ListPoolsByDenomRequest | PlainMessage<ListPoolsByDenomRequest> | undefined
+  ): boolean {
     return proto3.util.equals(ListPoolsByDenomRequest, a, b);
   }
 }
@@ -757,24 +964,36 @@ export class ListPoolsByDenomResponse extends Message<ListPoolsByDenomResponse> 
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.ListPoolsByDenomResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.ListPoolsByDenomResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pools", kind: "message", T: Any, repeated: true },
+    { no: 1, name: 'pools', kind: 'message', T: Any, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListPoolsByDenomResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): ListPoolsByDenomResponse {
     return new ListPoolsByDenomResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListPoolsByDenomResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): ListPoolsByDenomResponse {
     return new ListPoolsByDenomResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListPoolsByDenomResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ListPoolsByDenomResponse {
     return new ListPoolsByDenomResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ListPoolsByDenomResponse | PlainMessage<ListPoolsByDenomResponse> | undefined, b: ListPoolsByDenomResponse | PlainMessage<ListPoolsByDenomResponse> | undefined): boolean {
+  static equals(
+    a: ListPoolsByDenomResponse | PlainMessage<ListPoolsByDenomResponse> | undefined,
+    b: ListPoolsByDenomResponse | PlainMessage<ListPoolsByDenomResponse> | undefined
+  ): boolean {
     return proto3.util.equals(ListPoolsByDenomResponse, a, b);
   }
 }
@@ -795,12 +1014,12 @@ export class SpotPriceRequest extends Message<SpotPriceRequest> {
   /**
    * @generated from field: string base_asset_denom = 2;
    */
-  baseAssetDenom = "";
+  baseAssetDenom = '';
 
   /**
    * @generated from field: string quote_asset_denom = 3;
    */
-  quoteAssetDenom = "";
+  quoteAssetDenom = '';
 
   constructor(data?: PartialMessage<SpotPriceRequest>) {
     super();
@@ -808,11 +1027,11 @@ export class SpotPriceRequest extends Message<SpotPriceRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.SpotPriceRequest";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.SpotPriceRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "base_asset_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "quote_asset_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: 'base_asset_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'quote_asset_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SpotPriceRequest {
@@ -827,7 +1046,10 @@ export class SpotPriceRequest extends Message<SpotPriceRequest> {
     return new SpotPriceRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SpotPriceRequest | PlainMessage<SpotPriceRequest> | undefined, b: SpotPriceRequest | PlainMessage<SpotPriceRequest> | undefined): boolean {
+  static equals(
+    a: SpotPriceRequest | PlainMessage<SpotPriceRequest> | undefined,
+    b: SpotPriceRequest | PlainMessage<SpotPriceRequest> | undefined
+  ): boolean {
     return proto3.util.equals(SpotPriceRequest, a, b);
   }
 }
@@ -844,7 +1066,7 @@ export class SpotPriceResponse extends Message<SpotPriceResponse> {
    *
    * @generated from field: string spot_price = 1;
    */
-  spotPrice = "";
+  spotPrice = '';
 
   constructor(data?: PartialMessage<SpotPriceResponse>) {
     super();
@@ -852,9 +1074,9 @@ export class SpotPriceResponse extends Message<SpotPriceResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.SpotPriceResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.SpotPriceResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "spot_price", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'spot_price', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SpotPriceResponse {
@@ -869,7 +1091,10 @@ export class SpotPriceResponse extends Message<SpotPriceResponse> {
     return new SpotPriceResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SpotPriceResponse | PlainMessage<SpotPriceResponse> | undefined, b: SpotPriceResponse | PlainMessage<SpotPriceResponse> | undefined): boolean {
+  static equals(
+    a: SpotPriceResponse | PlainMessage<SpotPriceResponse> | undefined,
+    b: SpotPriceResponse | PlainMessage<SpotPriceResponse> | undefined
+  ): boolean {
     return proto3.util.equals(SpotPriceResponse, a, b);
   }
 }
@@ -891,24 +1116,36 @@ export class TotalPoolLiquidityRequest extends Message<TotalPoolLiquidityRequest
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.TotalPoolLiquidityRequest";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.TotalPoolLiquidityRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TotalPoolLiquidityRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): TotalPoolLiquidityRequest {
     return new TotalPoolLiquidityRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TotalPoolLiquidityRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): TotalPoolLiquidityRequest {
     return new TotalPoolLiquidityRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TotalPoolLiquidityRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): TotalPoolLiquidityRequest {
     return new TotalPoolLiquidityRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TotalPoolLiquidityRequest | PlainMessage<TotalPoolLiquidityRequest> | undefined, b: TotalPoolLiquidityRequest | PlainMessage<TotalPoolLiquidityRequest> | undefined): boolean {
+  static equals(
+    a: TotalPoolLiquidityRequest | PlainMessage<TotalPoolLiquidityRequest> | undefined,
+    b: TotalPoolLiquidityRequest | PlainMessage<TotalPoolLiquidityRequest> | undefined
+  ): boolean {
     return proto3.util.equals(TotalPoolLiquidityRequest, a, b);
   }
 }
@@ -928,24 +1165,36 @@ export class TotalPoolLiquidityResponse extends Message<TotalPoolLiquidityRespon
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.TotalPoolLiquidityResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.TotalPoolLiquidityResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "liquidity", kind: "message", T: Coin, repeated: true },
+    { no: 1, name: 'liquidity', kind: 'message', T: Coin, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TotalPoolLiquidityResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): TotalPoolLiquidityResponse {
     return new TotalPoolLiquidityResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TotalPoolLiquidityResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): TotalPoolLiquidityResponse {
     return new TotalPoolLiquidityResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TotalPoolLiquidityResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): TotalPoolLiquidityResponse {
     return new TotalPoolLiquidityResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TotalPoolLiquidityResponse | PlainMessage<TotalPoolLiquidityResponse> | undefined, b: TotalPoolLiquidityResponse | PlainMessage<TotalPoolLiquidityResponse> | undefined): boolean {
+  static equals(
+    a: TotalPoolLiquidityResponse | PlainMessage<TotalPoolLiquidityResponse> | undefined,
+    b: TotalPoolLiquidityResponse | PlainMessage<TotalPoolLiquidityResponse> | undefined
+  ): boolean {
     return proto3.util.equals(TotalPoolLiquidityResponse, a, b);
   }
 }
@@ -962,11 +1211,13 @@ export class TotalLiquidityRequest extends Message<TotalLiquidityRequest> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.TotalLiquidityRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.TotalLiquidityRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TotalLiquidityRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): TotalLiquidityRequest {
     return new TotalLiquidityRequest().fromBinary(bytes, options);
   }
 
@@ -974,11 +1225,17 @@ export class TotalLiquidityRequest extends Message<TotalLiquidityRequest> {
     return new TotalLiquidityRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TotalLiquidityRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): TotalLiquidityRequest {
     return new TotalLiquidityRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TotalLiquidityRequest | PlainMessage<TotalLiquidityRequest> | undefined, b: TotalLiquidityRequest | PlainMessage<TotalLiquidityRequest> | undefined): boolean {
+  static equals(
+    a: TotalLiquidityRequest | PlainMessage<TotalLiquidityRequest> | undefined,
+    b: TotalLiquidityRequest | PlainMessage<TotalLiquidityRequest> | undefined
+  ): boolean {
     return proto3.util.equals(TotalLiquidityRequest, a, b);
   }
 }
@@ -998,24 +1255,36 @@ export class TotalLiquidityResponse extends Message<TotalLiquidityResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.TotalLiquidityResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.TotalLiquidityResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "liquidity", kind: "message", T: Coin, repeated: true },
+    { no: 1, name: 'liquidity', kind: 'message', T: Coin, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TotalLiquidityResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): TotalLiquidityResponse {
     return new TotalLiquidityResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TotalLiquidityResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): TotalLiquidityResponse {
     return new TotalLiquidityResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TotalLiquidityResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): TotalLiquidityResponse {
     return new TotalLiquidityResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TotalLiquidityResponse | PlainMessage<TotalLiquidityResponse> | undefined, b: TotalLiquidityResponse | PlainMessage<TotalLiquidityResponse> | undefined): boolean {
+  static equals(
+    a: TotalLiquidityResponse | PlainMessage<TotalLiquidityResponse> | undefined,
+    b: TotalLiquidityResponse | PlainMessage<TotalLiquidityResponse> | undefined
+  ): boolean {
     return proto3.util.equals(TotalLiquidityResponse, a, b);
   }
 }
@@ -1037,24 +1306,36 @@ export class TotalVolumeForPoolRequest extends Message<TotalVolumeForPoolRequest
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.TotalVolumeForPoolRequest";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.TotalVolumeForPoolRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TotalVolumeForPoolRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): TotalVolumeForPoolRequest {
     return new TotalVolumeForPoolRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TotalVolumeForPoolRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): TotalVolumeForPoolRequest {
     return new TotalVolumeForPoolRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TotalVolumeForPoolRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): TotalVolumeForPoolRequest {
     return new TotalVolumeForPoolRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TotalVolumeForPoolRequest | PlainMessage<TotalVolumeForPoolRequest> | undefined, b: TotalVolumeForPoolRequest | PlainMessage<TotalVolumeForPoolRequest> | undefined): boolean {
+  static equals(
+    a: TotalVolumeForPoolRequest | PlainMessage<TotalVolumeForPoolRequest> | undefined,
+    b: TotalVolumeForPoolRequest | PlainMessage<TotalVolumeForPoolRequest> | undefined
+  ): boolean {
     return proto3.util.equals(TotalVolumeForPoolRequest, a, b);
   }
 }
@@ -1074,24 +1355,36 @@ export class TotalVolumeForPoolResponse extends Message<TotalVolumeForPoolRespon
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.TotalVolumeForPoolResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.TotalVolumeForPoolResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "volume", kind: "message", T: Coin, repeated: true },
+    { no: 1, name: 'volume', kind: 'message', T: Coin, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TotalVolumeForPoolResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): TotalVolumeForPoolResponse {
     return new TotalVolumeForPoolResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TotalVolumeForPoolResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): TotalVolumeForPoolResponse {
     return new TotalVolumeForPoolResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TotalVolumeForPoolResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): TotalVolumeForPoolResponse {
     return new TotalVolumeForPoolResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TotalVolumeForPoolResponse | PlainMessage<TotalVolumeForPoolResponse> | undefined, b: TotalVolumeForPoolResponse | PlainMessage<TotalVolumeForPoolResponse> | undefined): boolean {
+  static equals(
+    a: TotalVolumeForPoolResponse | PlainMessage<TotalVolumeForPoolResponse> | undefined,
+    b: TotalVolumeForPoolResponse | PlainMessage<TotalVolumeForPoolResponse> | undefined
+  ): boolean {
     return proto3.util.equals(TotalVolumeForPoolResponse, a, b);
   }
 }
@@ -1105,12 +1398,12 @@ export class TradingPairTakerFeeRequest extends Message<TradingPairTakerFeeReque
   /**
    * @generated from field: string denom_0 = 1;
    */
-  denom0 = "";
+  denom0 = '';
 
   /**
    * @generated from field: string denom_1 = 2;
    */
-  denom1 = "";
+  denom1 = '';
 
   constructor(data?: PartialMessage<TradingPairTakerFeeRequest>) {
     super();
@@ -1118,25 +1411,37 @@ export class TradingPairTakerFeeRequest extends Message<TradingPairTakerFeeReque
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.TradingPairTakerFeeRequest";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.TradingPairTakerFeeRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "denom_0", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "denom_1", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'denom_0', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'denom_1', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TradingPairTakerFeeRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): TradingPairTakerFeeRequest {
     return new TradingPairTakerFeeRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TradingPairTakerFeeRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): TradingPairTakerFeeRequest {
     return new TradingPairTakerFeeRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TradingPairTakerFeeRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): TradingPairTakerFeeRequest {
     return new TradingPairTakerFeeRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TradingPairTakerFeeRequest | PlainMessage<TradingPairTakerFeeRequest> | undefined, b: TradingPairTakerFeeRequest | PlainMessage<TradingPairTakerFeeRequest> | undefined): boolean {
+  static equals(
+    a: TradingPairTakerFeeRequest | PlainMessage<TradingPairTakerFeeRequest> | undefined,
+    b: TradingPairTakerFeeRequest | PlainMessage<TradingPairTakerFeeRequest> | undefined
+  ): boolean {
     return proto3.util.equals(TradingPairTakerFeeRequest, a, b);
   }
 }
@@ -1148,7 +1453,7 @@ export class TradingPairTakerFeeResponse extends Message<TradingPairTakerFeeResp
   /**
    * @generated from field: string taker_fee = 1;
    */
-  takerFee = "";
+  takerFee = '';
 
   constructor(data?: PartialMessage<TradingPairTakerFeeResponse>) {
     super();
@@ -1156,24 +1461,36 @@ export class TradingPairTakerFeeResponse extends Message<TradingPairTakerFeeResp
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.TradingPairTakerFeeResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.TradingPairTakerFeeResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "taker_fee", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'taker_fee', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TradingPairTakerFeeResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): TradingPairTakerFeeResponse {
     return new TradingPairTakerFeeResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TradingPairTakerFeeResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): TradingPairTakerFeeResponse {
     return new TradingPairTakerFeeResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TradingPairTakerFeeResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): TradingPairTakerFeeResponse {
     return new TradingPairTakerFeeResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TradingPairTakerFeeResponse | PlainMessage<TradingPairTakerFeeResponse> | undefined, b: TradingPairTakerFeeResponse | PlainMessage<TradingPairTakerFeeResponse> | undefined): boolean {
+  static equals(
+    a: TradingPairTakerFeeResponse | PlainMessage<TradingPairTakerFeeResponse> | undefined,
+    b: TradingPairTakerFeeResponse | PlainMessage<TradingPairTakerFeeResponse> | undefined
+  ): boolean {
     return proto3.util.equals(TradingPairTakerFeeResponse, a, b);
   }
 }
@@ -1199,7 +1516,7 @@ export class EstimateTradeBasedOnPriceImpactRequest extends Message<EstimateTrad
    *
    * @generated from field: string to_coin_denom = 2;
    */
-  toCoinDenom = "";
+  toCoinDenom = '';
 
   /**
    * pool_id is the identifier of the liquidity pool that the trade will occur
@@ -1215,7 +1532,7 @@ export class EstimateTradeBasedOnPriceImpactRequest extends Message<EstimateTrad
    *
    * @generated from field: string max_price_impact = 4;
    */
-  maxPriceImpact = "";
+  maxPriceImpact = '';
 
   /**
    * external_price is an optional external price that the user can enter.
@@ -1224,7 +1541,7 @@ export class EstimateTradeBasedOnPriceImpactRequest extends Message<EstimateTrad
    *
    * @generated from field: string external_price = 5;
    */
-  externalPrice = "";
+  externalPrice = '';
 
   constructor(data?: PartialMessage<EstimateTradeBasedOnPriceImpactRequest>) {
     super();
@@ -1232,28 +1549,46 @@ export class EstimateTradeBasedOnPriceImpactRequest extends Message<EstimateTrad
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.EstimateTradeBasedOnPriceImpactRequest";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.EstimateTradeBasedOnPriceImpactRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "from_coin", kind: "message", T: Coin },
-    { no: 2, name: "to_coin_denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 4, name: "max_price_impact", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "external_price", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'from_coin', kind: 'message', T: Coin },
+    { no: 2, name: 'to_coin_denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
+    { no: 4, name: 'max_price_impact', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'external_price', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EstimateTradeBasedOnPriceImpactRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EstimateTradeBasedOnPriceImpactRequest {
     return new EstimateTradeBasedOnPriceImpactRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EstimateTradeBasedOnPriceImpactRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EstimateTradeBasedOnPriceImpactRequest {
     return new EstimateTradeBasedOnPriceImpactRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EstimateTradeBasedOnPriceImpactRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EstimateTradeBasedOnPriceImpactRequest {
     return new EstimateTradeBasedOnPriceImpactRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EstimateTradeBasedOnPriceImpactRequest | PlainMessage<EstimateTradeBasedOnPriceImpactRequest> | undefined, b: EstimateTradeBasedOnPriceImpactRequest | PlainMessage<EstimateTradeBasedOnPriceImpactRequest> | undefined): boolean {
+  static equals(
+    a:
+      | EstimateTradeBasedOnPriceImpactRequest
+      | PlainMessage<EstimateTradeBasedOnPriceImpactRequest>
+      | undefined,
+    b:
+      | EstimateTradeBasedOnPriceImpactRequest
+      | PlainMessage<EstimateTradeBasedOnPriceImpactRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(EstimateTradeBasedOnPriceImpactRequest, a, b);
   }
 }
@@ -1289,25 +1624,43 @@ export class EstimateTradeBasedOnPriceImpactResponse extends Message<EstimateTra
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.EstimateTradeBasedOnPriceImpactResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.EstimateTradeBasedOnPriceImpactResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "input_coin", kind: "message", T: Coin },
-    { no: 2, name: "output_coin", kind: "message", T: Coin },
+    { no: 1, name: 'input_coin', kind: 'message', T: Coin },
+    { no: 2, name: 'output_coin', kind: 'message', T: Coin },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EstimateTradeBasedOnPriceImpactResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EstimateTradeBasedOnPriceImpactResponse {
     return new EstimateTradeBasedOnPriceImpactResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EstimateTradeBasedOnPriceImpactResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EstimateTradeBasedOnPriceImpactResponse {
     return new EstimateTradeBasedOnPriceImpactResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EstimateTradeBasedOnPriceImpactResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EstimateTradeBasedOnPriceImpactResponse {
     return new EstimateTradeBasedOnPriceImpactResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EstimateTradeBasedOnPriceImpactResponse | PlainMessage<EstimateTradeBasedOnPriceImpactResponse> | undefined, b: EstimateTradeBasedOnPriceImpactResponse | PlainMessage<EstimateTradeBasedOnPriceImpactResponse> | undefined): boolean {
+  static equals(
+    a:
+      | EstimateTradeBasedOnPriceImpactResponse
+      | PlainMessage<EstimateTradeBasedOnPriceImpactResponse>
+      | undefined,
+    b:
+      | EstimateTradeBasedOnPriceImpactResponse
+      | PlainMessage<EstimateTradeBasedOnPriceImpactResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(EstimateTradeBasedOnPriceImpactResponse, a, b);
   }
 }
@@ -1322,23 +1675,40 @@ export class AllTakerFeeShareAgreementsRequest extends Message<AllTakerFeeShareA
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.AllTakerFeeShareAgreementsRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.AllTakerFeeShareAgreementsRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AllTakerFeeShareAgreementsRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AllTakerFeeShareAgreementsRequest {
     return new AllTakerFeeShareAgreementsRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AllTakerFeeShareAgreementsRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AllTakerFeeShareAgreementsRequest {
     return new AllTakerFeeShareAgreementsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AllTakerFeeShareAgreementsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AllTakerFeeShareAgreementsRequest {
     return new AllTakerFeeShareAgreementsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AllTakerFeeShareAgreementsRequest | PlainMessage<AllTakerFeeShareAgreementsRequest> | undefined, b: AllTakerFeeShareAgreementsRequest | PlainMessage<AllTakerFeeShareAgreementsRequest> | undefined): boolean {
+  static equals(
+    a:
+      | AllTakerFeeShareAgreementsRequest
+      | PlainMessage<AllTakerFeeShareAgreementsRequest>
+      | undefined,
+    b:
+      | AllTakerFeeShareAgreementsRequest
+      | PlainMessage<AllTakerFeeShareAgreementsRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(AllTakerFeeShareAgreementsRequest, a, b);
   }
 }
@@ -1358,24 +1728,48 @@ export class AllTakerFeeShareAgreementsResponse extends Message<AllTakerFeeShare
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.AllTakerFeeShareAgreementsResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.AllTakerFeeShareAgreementsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "taker_fee_share_agreements", kind: "message", T: TakerFeeShareAgreement, repeated: true },
+    {
+      no: 1,
+      name: 'taker_fee_share_agreements',
+      kind: 'message',
+      T: TakerFeeShareAgreement,
+      repeated: true,
+    },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AllTakerFeeShareAgreementsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AllTakerFeeShareAgreementsResponse {
     return new AllTakerFeeShareAgreementsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AllTakerFeeShareAgreementsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AllTakerFeeShareAgreementsResponse {
     return new AllTakerFeeShareAgreementsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AllTakerFeeShareAgreementsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AllTakerFeeShareAgreementsResponse {
     return new AllTakerFeeShareAgreementsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AllTakerFeeShareAgreementsResponse | PlainMessage<AllTakerFeeShareAgreementsResponse> | undefined, b: AllTakerFeeShareAgreementsResponse | PlainMessage<AllTakerFeeShareAgreementsResponse> | undefined): boolean {
+  static equals(
+    a:
+      | AllTakerFeeShareAgreementsResponse
+      | PlainMessage<AllTakerFeeShareAgreementsResponse>
+      | undefined,
+    b:
+      | AllTakerFeeShareAgreementsResponse
+      | PlainMessage<AllTakerFeeShareAgreementsResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(AllTakerFeeShareAgreementsResponse, a, b);
   }
 }
@@ -1387,7 +1781,7 @@ export class TakerFeeShareAgreementFromDenomRequest extends Message<TakerFeeShar
   /**
    * @generated from field: string denom = 1;
    */
-  denom = "";
+  denom = '';
 
   constructor(data?: PartialMessage<TakerFeeShareAgreementFromDenomRequest>) {
     super();
@@ -1395,24 +1789,42 @@ export class TakerFeeShareAgreementFromDenomRequest extends Message<TakerFeeShar
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.TakerFeeShareAgreementFromDenomRequest";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.TakerFeeShareAgreementFromDenomRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TakerFeeShareAgreementFromDenomRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): TakerFeeShareAgreementFromDenomRequest {
     return new TakerFeeShareAgreementFromDenomRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TakerFeeShareAgreementFromDenomRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): TakerFeeShareAgreementFromDenomRequest {
     return new TakerFeeShareAgreementFromDenomRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TakerFeeShareAgreementFromDenomRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): TakerFeeShareAgreementFromDenomRequest {
     return new TakerFeeShareAgreementFromDenomRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TakerFeeShareAgreementFromDenomRequest | PlainMessage<TakerFeeShareAgreementFromDenomRequest> | undefined, b: TakerFeeShareAgreementFromDenomRequest | PlainMessage<TakerFeeShareAgreementFromDenomRequest> | undefined): boolean {
+  static equals(
+    a:
+      | TakerFeeShareAgreementFromDenomRequest
+      | PlainMessage<TakerFeeShareAgreementFromDenomRequest>
+      | undefined,
+    b:
+      | TakerFeeShareAgreementFromDenomRequest
+      | PlainMessage<TakerFeeShareAgreementFromDenomRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(TakerFeeShareAgreementFromDenomRequest, a, b);
   }
 }
@@ -1432,24 +1844,42 @@ export class TakerFeeShareAgreementFromDenomResponse extends Message<TakerFeeSha
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.TakerFeeShareAgreementFromDenomResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.TakerFeeShareAgreementFromDenomResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "taker_fee_share_agreement", kind: "message", T: TakerFeeShareAgreement },
+    { no: 1, name: 'taker_fee_share_agreement', kind: 'message', T: TakerFeeShareAgreement },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TakerFeeShareAgreementFromDenomResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): TakerFeeShareAgreementFromDenomResponse {
     return new TakerFeeShareAgreementFromDenomResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TakerFeeShareAgreementFromDenomResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): TakerFeeShareAgreementFromDenomResponse {
     return new TakerFeeShareAgreementFromDenomResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TakerFeeShareAgreementFromDenomResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): TakerFeeShareAgreementFromDenomResponse {
     return new TakerFeeShareAgreementFromDenomResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TakerFeeShareAgreementFromDenomResponse | PlainMessage<TakerFeeShareAgreementFromDenomResponse> | undefined, b: TakerFeeShareAgreementFromDenomResponse | PlainMessage<TakerFeeShareAgreementFromDenomResponse> | undefined): boolean {
+  static equals(
+    a:
+      | TakerFeeShareAgreementFromDenomResponse
+      | PlainMessage<TakerFeeShareAgreementFromDenomResponse>
+      | undefined,
+    b:
+      | TakerFeeShareAgreementFromDenomResponse
+      | PlainMessage<TakerFeeShareAgreementFromDenomResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(TakerFeeShareAgreementFromDenomResponse, a, b);
   }
 }
@@ -1461,12 +1891,12 @@ export class TakerFeeShareDenomsToAccruedValueRequest extends Message<TakerFeeSh
   /**
    * @generated from field: string denom = 1;
    */
-  denom = "";
+  denom = '';
 
   /**
    * @generated from field: string takerFeeDenom = 2;
    */
-  takerFeeDenom = "";
+  takerFeeDenom = '';
 
   constructor(data?: PartialMessage<TakerFeeShareDenomsToAccruedValueRequest>) {
     super();
@@ -1474,25 +1904,43 @@ export class TakerFeeShareDenomsToAccruedValueRequest extends Message<TakerFeeSh
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.TakerFeeShareDenomsToAccruedValueRequest";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.TakerFeeShareDenomsToAccruedValueRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "takerFeeDenom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'takerFeeDenom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TakerFeeShareDenomsToAccruedValueRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): TakerFeeShareDenomsToAccruedValueRequest {
     return new TakerFeeShareDenomsToAccruedValueRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TakerFeeShareDenomsToAccruedValueRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): TakerFeeShareDenomsToAccruedValueRequest {
     return new TakerFeeShareDenomsToAccruedValueRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TakerFeeShareDenomsToAccruedValueRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): TakerFeeShareDenomsToAccruedValueRequest {
     return new TakerFeeShareDenomsToAccruedValueRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TakerFeeShareDenomsToAccruedValueRequest | PlainMessage<TakerFeeShareDenomsToAccruedValueRequest> | undefined, b: TakerFeeShareDenomsToAccruedValueRequest | PlainMessage<TakerFeeShareDenomsToAccruedValueRequest> | undefined): boolean {
+  static equals(
+    a:
+      | TakerFeeShareDenomsToAccruedValueRequest
+      | PlainMessage<TakerFeeShareDenomsToAccruedValueRequest>
+      | undefined,
+    b:
+      | TakerFeeShareDenomsToAccruedValueRequest
+      | PlainMessage<TakerFeeShareDenomsToAccruedValueRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(TakerFeeShareDenomsToAccruedValueRequest, a, b);
   }
 }
@@ -1504,7 +1952,7 @@ export class TakerFeeShareDenomsToAccruedValueResponse extends Message<TakerFeeS
   /**
    * @generated from field: string amount = 1;
    */
-  amount = "";
+  amount = '';
 
   constructor(data?: PartialMessage<TakerFeeShareDenomsToAccruedValueResponse>) {
     super();
@@ -1512,24 +1960,43 @@ export class TakerFeeShareDenomsToAccruedValueResponse extends Message<TakerFeeS
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.TakerFeeShareDenomsToAccruedValueResponse";
+  static readonly typeName =
+    'osmosis.poolmanager.v1beta1.TakerFeeShareDenomsToAccruedValueResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "amount", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'amount', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TakerFeeShareDenomsToAccruedValueResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): TakerFeeShareDenomsToAccruedValueResponse {
     return new TakerFeeShareDenomsToAccruedValueResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TakerFeeShareDenomsToAccruedValueResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): TakerFeeShareDenomsToAccruedValueResponse {
     return new TakerFeeShareDenomsToAccruedValueResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TakerFeeShareDenomsToAccruedValueResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): TakerFeeShareDenomsToAccruedValueResponse {
     return new TakerFeeShareDenomsToAccruedValueResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TakerFeeShareDenomsToAccruedValueResponse | PlainMessage<TakerFeeShareDenomsToAccruedValueResponse> | undefined, b: TakerFeeShareDenomsToAccruedValueResponse | PlainMessage<TakerFeeShareDenomsToAccruedValueResponse> | undefined): boolean {
+  static equals(
+    a:
+      | TakerFeeShareDenomsToAccruedValueResponse
+      | PlainMessage<TakerFeeShareDenomsToAccruedValueResponse>
+      | undefined,
+    b:
+      | TakerFeeShareDenomsToAccruedValueResponse
+      | PlainMessage<TakerFeeShareDenomsToAccruedValueResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(TakerFeeShareDenomsToAccruedValueResponse, a, b);
   }
 }
@@ -1544,23 +2011,40 @@ export class AllTakerFeeShareAccumulatorsRequest extends Message<AllTakerFeeShar
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.AllTakerFeeShareAccumulatorsRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.AllTakerFeeShareAccumulatorsRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AllTakerFeeShareAccumulatorsRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AllTakerFeeShareAccumulatorsRequest {
     return new AllTakerFeeShareAccumulatorsRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AllTakerFeeShareAccumulatorsRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AllTakerFeeShareAccumulatorsRequest {
     return new AllTakerFeeShareAccumulatorsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AllTakerFeeShareAccumulatorsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AllTakerFeeShareAccumulatorsRequest {
     return new AllTakerFeeShareAccumulatorsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AllTakerFeeShareAccumulatorsRequest | PlainMessage<AllTakerFeeShareAccumulatorsRequest> | undefined, b: AllTakerFeeShareAccumulatorsRequest | PlainMessage<AllTakerFeeShareAccumulatorsRequest> | undefined): boolean {
+  static equals(
+    a:
+      | AllTakerFeeShareAccumulatorsRequest
+      | PlainMessage<AllTakerFeeShareAccumulatorsRequest>
+      | undefined,
+    b:
+      | AllTakerFeeShareAccumulatorsRequest
+      | PlainMessage<AllTakerFeeShareAccumulatorsRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(AllTakerFeeShareAccumulatorsRequest, a, b);
   }
 }
@@ -1580,24 +2064,48 @@ export class AllTakerFeeShareAccumulatorsResponse extends Message<AllTakerFeeSha
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.AllTakerFeeShareAccumulatorsResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.AllTakerFeeShareAccumulatorsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "taker_fee_skim_accumulators", kind: "message", T: TakerFeeSkimAccumulator, repeated: true },
+    {
+      no: 1,
+      name: 'taker_fee_skim_accumulators',
+      kind: 'message',
+      T: TakerFeeSkimAccumulator,
+      repeated: true,
+    },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AllTakerFeeShareAccumulatorsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AllTakerFeeShareAccumulatorsResponse {
     return new AllTakerFeeShareAccumulatorsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AllTakerFeeShareAccumulatorsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AllTakerFeeShareAccumulatorsResponse {
     return new AllTakerFeeShareAccumulatorsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AllTakerFeeShareAccumulatorsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AllTakerFeeShareAccumulatorsResponse {
     return new AllTakerFeeShareAccumulatorsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AllTakerFeeShareAccumulatorsResponse | PlainMessage<AllTakerFeeShareAccumulatorsResponse> | undefined, b: AllTakerFeeShareAccumulatorsResponse | PlainMessage<AllTakerFeeShareAccumulatorsResponse> | undefined): boolean {
+  static equals(
+    a:
+      | AllTakerFeeShareAccumulatorsResponse
+      | PlainMessage<AllTakerFeeShareAccumulatorsResponse>
+      | undefined,
+    b:
+      | AllTakerFeeShareAccumulatorsResponse
+      | PlainMessage<AllTakerFeeShareAccumulatorsResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(AllTakerFeeShareAccumulatorsResponse, a, b);
   }
 }
@@ -1609,7 +2117,7 @@ export class RegisteredAlloyedPoolFromDenomRequest extends Message<RegisteredAll
   /**
    * @generated from field: string denom = 1;
    */
-  denom = "";
+  denom = '';
 
   constructor(data?: PartialMessage<RegisteredAlloyedPoolFromDenomRequest>) {
     super();
@@ -1617,24 +2125,42 @@ export class RegisteredAlloyedPoolFromDenomRequest extends Message<RegisteredAll
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.RegisteredAlloyedPoolFromDenomRequest";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.RegisteredAlloyedPoolFromDenomRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "denom", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'denom', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RegisteredAlloyedPoolFromDenomRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): RegisteredAlloyedPoolFromDenomRequest {
     return new RegisteredAlloyedPoolFromDenomRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RegisteredAlloyedPoolFromDenomRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): RegisteredAlloyedPoolFromDenomRequest {
     return new RegisteredAlloyedPoolFromDenomRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RegisteredAlloyedPoolFromDenomRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): RegisteredAlloyedPoolFromDenomRequest {
     return new RegisteredAlloyedPoolFromDenomRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: RegisteredAlloyedPoolFromDenomRequest | PlainMessage<RegisteredAlloyedPoolFromDenomRequest> | undefined, b: RegisteredAlloyedPoolFromDenomRequest | PlainMessage<RegisteredAlloyedPoolFromDenomRequest> | undefined): boolean {
+  static equals(
+    a:
+      | RegisteredAlloyedPoolFromDenomRequest
+      | PlainMessage<RegisteredAlloyedPoolFromDenomRequest>
+      | undefined,
+    b:
+      | RegisteredAlloyedPoolFromDenomRequest
+      | PlainMessage<RegisteredAlloyedPoolFromDenomRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(RegisteredAlloyedPoolFromDenomRequest, a, b);
   }
 }
@@ -1654,24 +2180,42 @@ export class RegisteredAlloyedPoolFromDenomResponse extends Message<RegisteredAl
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.RegisteredAlloyedPoolFromDenomResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.RegisteredAlloyedPoolFromDenomResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "contract_state", kind: "message", T: AlloyContractTakerFeeShareState },
+    { no: 1, name: 'contract_state', kind: 'message', T: AlloyContractTakerFeeShareState },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RegisteredAlloyedPoolFromDenomResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): RegisteredAlloyedPoolFromDenomResponse {
     return new RegisteredAlloyedPoolFromDenomResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RegisteredAlloyedPoolFromDenomResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): RegisteredAlloyedPoolFromDenomResponse {
     return new RegisteredAlloyedPoolFromDenomResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RegisteredAlloyedPoolFromDenomResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): RegisteredAlloyedPoolFromDenomResponse {
     return new RegisteredAlloyedPoolFromDenomResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: RegisteredAlloyedPoolFromDenomResponse | PlainMessage<RegisteredAlloyedPoolFromDenomResponse> | undefined, b: RegisteredAlloyedPoolFromDenomResponse | PlainMessage<RegisteredAlloyedPoolFromDenomResponse> | undefined): boolean {
+  static equals(
+    a:
+      | RegisteredAlloyedPoolFromDenomResponse
+      | PlainMessage<RegisteredAlloyedPoolFromDenomResponse>
+      | undefined,
+    b:
+      | RegisteredAlloyedPoolFromDenomResponse
+      | PlainMessage<RegisteredAlloyedPoolFromDenomResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(RegisteredAlloyedPoolFromDenomResponse, a, b);
   }
 }
@@ -1691,24 +2235,42 @@ export class RegisteredAlloyedPoolFromPoolIdRequest extends Message<RegisteredAl
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.RegisteredAlloyedPoolFromPoolIdRequest";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.RegisteredAlloyedPoolFromPoolIdRequest';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pool_id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'pool_id', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RegisteredAlloyedPoolFromPoolIdRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): RegisteredAlloyedPoolFromPoolIdRequest {
     return new RegisteredAlloyedPoolFromPoolIdRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RegisteredAlloyedPoolFromPoolIdRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): RegisteredAlloyedPoolFromPoolIdRequest {
     return new RegisteredAlloyedPoolFromPoolIdRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RegisteredAlloyedPoolFromPoolIdRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): RegisteredAlloyedPoolFromPoolIdRequest {
     return new RegisteredAlloyedPoolFromPoolIdRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: RegisteredAlloyedPoolFromPoolIdRequest | PlainMessage<RegisteredAlloyedPoolFromPoolIdRequest> | undefined, b: RegisteredAlloyedPoolFromPoolIdRequest | PlainMessage<RegisteredAlloyedPoolFromPoolIdRequest> | undefined): boolean {
+  static equals(
+    a:
+      | RegisteredAlloyedPoolFromPoolIdRequest
+      | PlainMessage<RegisteredAlloyedPoolFromPoolIdRequest>
+      | undefined,
+    b:
+      | RegisteredAlloyedPoolFromPoolIdRequest
+      | PlainMessage<RegisteredAlloyedPoolFromPoolIdRequest>
+      | undefined
+  ): boolean {
     return proto3.util.equals(RegisteredAlloyedPoolFromPoolIdRequest, a, b);
   }
 }
@@ -1728,24 +2290,42 @@ export class RegisteredAlloyedPoolFromPoolIdResponse extends Message<RegisteredA
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.RegisteredAlloyedPoolFromPoolIdResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.RegisteredAlloyedPoolFromPoolIdResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "contract_state", kind: "message", T: AlloyContractTakerFeeShareState },
+    { no: 1, name: 'contract_state', kind: 'message', T: AlloyContractTakerFeeShareState },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RegisteredAlloyedPoolFromPoolIdResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): RegisteredAlloyedPoolFromPoolIdResponse {
     return new RegisteredAlloyedPoolFromPoolIdResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RegisteredAlloyedPoolFromPoolIdResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): RegisteredAlloyedPoolFromPoolIdResponse {
     return new RegisteredAlloyedPoolFromPoolIdResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RegisteredAlloyedPoolFromPoolIdResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): RegisteredAlloyedPoolFromPoolIdResponse {
     return new RegisteredAlloyedPoolFromPoolIdResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: RegisteredAlloyedPoolFromPoolIdResponse | PlainMessage<RegisteredAlloyedPoolFromPoolIdResponse> | undefined, b: RegisteredAlloyedPoolFromPoolIdResponse | PlainMessage<RegisteredAlloyedPoolFromPoolIdResponse> | undefined): boolean {
+  static equals(
+    a:
+      | RegisteredAlloyedPoolFromPoolIdResponse
+      | PlainMessage<RegisteredAlloyedPoolFromPoolIdResponse>
+      | undefined,
+    b:
+      | RegisteredAlloyedPoolFromPoolIdResponse
+      | PlainMessage<RegisteredAlloyedPoolFromPoolIdResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(RegisteredAlloyedPoolFromPoolIdResponse, a, b);
   }
 }
@@ -1760,23 +2340,37 @@ export class AllRegisteredAlloyedPoolsRequest extends Message<AllRegisteredAlloy
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.AllRegisteredAlloyedPoolsRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.AllRegisteredAlloyedPoolsRequest';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AllRegisteredAlloyedPoolsRequest {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AllRegisteredAlloyedPoolsRequest {
     return new AllRegisteredAlloyedPoolsRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AllRegisteredAlloyedPoolsRequest {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AllRegisteredAlloyedPoolsRequest {
     return new AllRegisteredAlloyedPoolsRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AllRegisteredAlloyedPoolsRequest {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AllRegisteredAlloyedPoolsRequest {
     return new AllRegisteredAlloyedPoolsRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AllRegisteredAlloyedPoolsRequest | PlainMessage<AllRegisteredAlloyedPoolsRequest> | undefined, b: AllRegisteredAlloyedPoolsRequest | PlainMessage<AllRegisteredAlloyedPoolsRequest> | undefined): boolean {
+  static equals(
+    a:
+      | AllRegisteredAlloyedPoolsRequest
+      | PlainMessage<AllRegisteredAlloyedPoolsRequest>
+      | undefined,
+    b: AllRegisteredAlloyedPoolsRequest | PlainMessage<AllRegisteredAlloyedPoolsRequest> | undefined
+  ): boolean {
     return proto3.util.equals(AllRegisteredAlloyedPoolsRequest, a, b);
   }
 }
@@ -1796,25 +2390,48 @@ export class AllRegisteredAlloyedPoolsResponse extends Message<AllRegisteredAllo
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolmanager.v1beta1.AllRegisteredAlloyedPoolsResponse";
+  static readonly typeName = 'osmosis.poolmanager.v1beta1.AllRegisteredAlloyedPoolsResponse';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "contract_states", kind: "message", T: AlloyContractTakerFeeShareState, repeated: true },
+    {
+      no: 1,
+      name: 'contract_states',
+      kind: 'message',
+      T: AlloyContractTakerFeeShareState,
+      repeated: true,
+    },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AllRegisteredAlloyedPoolsResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): AllRegisteredAlloyedPoolsResponse {
     return new AllRegisteredAlloyedPoolsResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AllRegisteredAlloyedPoolsResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): AllRegisteredAlloyedPoolsResponse {
     return new AllRegisteredAlloyedPoolsResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AllRegisteredAlloyedPoolsResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): AllRegisteredAlloyedPoolsResponse {
     return new AllRegisteredAlloyedPoolsResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: AllRegisteredAlloyedPoolsResponse | PlainMessage<AllRegisteredAlloyedPoolsResponse> | undefined, b: AllRegisteredAlloyedPoolsResponse | PlainMessage<AllRegisteredAlloyedPoolsResponse> | undefined): boolean {
+  static equals(
+    a:
+      | AllRegisteredAlloyedPoolsResponse
+      | PlainMessage<AllRegisteredAlloyedPoolsResponse>
+      | undefined,
+    b:
+      | AllRegisteredAlloyedPoolsResponse
+      | PlainMessage<AllRegisteredAlloyedPoolsResponse>
+      | undefined
+  ): boolean {
     return proto3.util.equals(AllRegisteredAlloyedPoolsResponse, a, b);
   }
 }
-

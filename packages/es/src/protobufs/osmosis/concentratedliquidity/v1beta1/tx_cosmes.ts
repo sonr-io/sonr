@@ -3,16 +3,29 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MsgAddToPosition, MsgAddToPositionResponse, MsgCollectIncentives, MsgCollectIncentivesResponse, MsgCollectSpreadRewards, MsgCollectSpreadRewardsResponse, MsgCreatePosition, MsgCreatePositionResponse, MsgTransferPositions, MsgTransferPositionsResponse, MsgWithdrawPosition, MsgWithdrawPositionResponse } from "./tx_pb.js";
+import {
+  MsgAddToPosition,
+  MsgAddToPositionResponse,
+  MsgCollectIncentives,
+  MsgCollectIncentivesResponse,
+  MsgCollectSpreadRewards,
+  MsgCollectSpreadRewardsResponse,
+  MsgCreatePosition,
+  MsgCreatePositionResponse,
+  MsgTransferPositions,
+  MsgTransferPositionsResponse,
+  MsgWithdrawPosition,
+  MsgWithdrawPositionResponse,
+} from './tx_pb.js';
 
-const TYPE_NAME = "osmosis.concentratedliquidity.v1beta1.Msg";
+const TYPE_NAME = 'osmosis.concentratedliquidity.v1beta1.Msg';
 
 /**
  * @generated from rpc osmosis.concentratedliquidity.v1beta1.Msg.CreatePosition
  */
 export const MsgCreatePositionService = {
   typeName: TYPE_NAME,
-  method: "CreatePosition",
+  method: 'CreatePosition',
   Request: MsgCreatePosition,
   Response: MsgCreatePositionResponse,
 } as const;
@@ -22,7 +35,7 @@ export const MsgCreatePositionService = {
  */
 export const MsgWithdrawPositionService = {
   typeName: TYPE_NAME,
-  method: "WithdrawPosition",
+  method: 'WithdrawPosition',
   Request: MsgWithdrawPosition,
   Response: MsgWithdrawPositionResponse,
 } as const;
@@ -38,7 +51,7 @@ export const MsgWithdrawPositionService = {
  */
 export const MsgAddToPositionService = {
   typeName: TYPE_NAME,
-  method: "AddToPosition",
+  method: 'AddToPosition',
   Request: MsgAddToPosition,
   Response: MsgAddToPositionResponse,
 } as const;
@@ -48,7 +61,7 @@ export const MsgAddToPositionService = {
  */
 export const MsgCollectSpreadRewardsService = {
   typeName: TYPE_NAME,
-  method: "CollectSpreadRewards",
+  method: 'CollectSpreadRewards',
   Request: MsgCollectSpreadRewards,
   Response: MsgCollectSpreadRewardsResponse,
 } as const;
@@ -58,7 +71,7 @@ export const MsgCollectSpreadRewardsService = {
  */
 export const MsgCollectIncentivesService = {
   typeName: TYPE_NAME,
-  method: "CollectIncentives",
+  method: 'CollectIncentives',
   Request: MsgCollectIncentives,
   Response: MsgCollectIncentivesResponse,
 } as const;
@@ -71,8 +84,7 @@ export const MsgCollectIncentivesService = {
  */
 export const MsgTransferPositionsService = {
   typeName: TYPE_NAME,
-  method: "TransferPositions",
+  method: 'TransferPositions',
   Request: MsgTransferPositions,
   Response: MsgTransferPositionsResponse,
 } as const;
-

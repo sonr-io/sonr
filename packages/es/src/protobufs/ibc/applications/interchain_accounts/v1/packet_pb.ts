@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Any, Message, proto3 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Any, Message, proto3 } from '@bufbuild/protobuf';
 
 /**
  * Type defines a classification of message issued from a controller chain to its associated interchain accounts
@@ -28,9 +35,9 @@ export enum Type {
   EXECUTE_TX = 1,
 }
 // Retrieve enum metadata with: proto3.getEnumType(Type)
-proto3.util.setEnumType(Type, "ibc.applications.interchain_accounts.v1.Type", [
-  { no: 0, name: "TYPE_UNSPECIFIED" },
-  { no: 1, name: "TYPE_EXECUTE_TX" },
+proto3.util.setEnumType(Type, 'ibc.applications.interchain_accounts.v1.Type', [
+  { no: 0, name: 'TYPE_UNSPECIFIED' },
+  { no: 1, name: 'TYPE_EXECUTE_TX' },
 ]);
 
 /**
@@ -52,7 +59,7 @@ export class InterchainAccountPacketData extends Message<InterchainAccountPacket
   /**
    * @generated from field: string memo = 3;
    */
-  memo = "";
+  memo = '';
 
   constructor(data?: PartialMessage<InterchainAccountPacketData>) {
     super();
@@ -60,26 +67,38 @@ export class InterchainAccountPacketData extends Message<InterchainAccountPacket
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.interchain_accounts.v1.InterchainAccountPacketData";
+  static readonly typeName = 'ibc.applications.interchain_accounts.v1.InterchainAccountPacketData';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "type", kind: "enum", T: proto3.getEnumType(Type) },
-    { no: 2, name: "data", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
-    { no: 3, name: "memo", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'type', kind: 'enum', T: proto3.getEnumType(Type) },
+    { no: 2, name: 'data', kind: 'scalar', T: 12 /* ScalarType.BYTES */ },
+    { no: 3, name: 'memo', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InterchainAccountPacketData {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): InterchainAccountPacketData {
     return new InterchainAccountPacketData().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): InterchainAccountPacketData {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): InterchainAccountPacketData {
     return new InterchainAccountPacketData().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): InterchainAccountPacketData {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): InterchainAccountPacketData {
     return new InterchainAccountPacketData().fromJsonString(jsonString, options);
   }
 
-  static equals(a: InterchainAccountPacketData | PlainMessage<InterchainAccountPacketData> | undefined, b: InterchainAccountPacketData | PlainMessage<InterchainAccountPacketData> | undefined): boolean {
+  static equals(
+    a: InterchainAccountPacketData | PlainMessage<InterchainAccountPacketData> | undefined,
+    b: InterchainAccountPacketData | PlainMessage<InterchainAccountPacketData> | undefined
+  ): boolean {
     return proto3.util.equals(InterchainAccountPacketData, a, b);
   }
 }
@@ -101,9 +120,9 @@ export class CosmosTx extends Message<CosmosTx> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.applications.interchain_accounts.v1.CosmosTx";
+  static readonly typeName = 'ibc.applications.interchain_accounts.v1.CosmosTx';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "messages", kind: "message", T: Any, repeated: true },
+    { no: 1, name: 'messages', kind: 'message', T: Any, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CosmosTx {
@@ -118,8 +137,10 @@ export class CosmosTx extends Message<CosmosTx> {
     return new CosmosTx().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CosmosTx | PlainMessage<CosmosTx> | undefined, b: CosmosTx | PlainMessage<CosmosTx> | undefined): boolean {
+  static equals(
+    a: CosmosTx | PlainMessage<CosmosTx> | undefined,
+    b: CosmosTx | PlainMessage<CosmosTx> | undefined
+  ): boolean {
     return proto3.util.equals(CosmosTx, a, b);
   }
 }
-

@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
 
 /**
  * MerklePath is the path used to verify commitment proofs, which can be an
@@ -53,9 +60,9 @@ export class MerklePath extends Message<MerklePath> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "ibc.core.commitment.v2.MerklePath";
+  static readonly typeName = 'ibc.core.commitment.v2.MerklePath';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "key_path", kind: "scalar", T: 12 /* ScalarType.BYTES */, repeated: true },
+    { no: 1, name: 'key_path', kind: 'scalar', T: 12 /* ScalarType.BYTES */, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MerklePath {
@@ -70,8 +77,10 @@ export class MerklePath extends Message<MerklePath> {
     return new MerklePath().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MerklePath | PlainMessage<MerklePath> | undefined, b: MerklePath | PlainMessage<MerklePath> | undefined): boolean {
+  static equals(
+    a: MerklePath | PlainMessage<MerklePath> | undefined,
+    b: MerklePath | PlainMessage<MerklePath> | undefined
+  ): boolean {
     return proto3.util.equals(MerklePath, a, b);
   }
 }
-

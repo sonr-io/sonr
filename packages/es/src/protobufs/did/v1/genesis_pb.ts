@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64 } from '@bufbuild/protobuf';
 
 /**
  * GenesisState defines the module genesis state
@@ -32,10 +39,10 @@ export class GenesisState extends Message<GenesisState> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.GenesisState";
+  static readonly typeName = 'did.v1.GenesisState';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "params", kind: "message", T: Params },
-    { no: 2, name: "export_version", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 1, name: 'params', kind: 'message', T: Params },
+    { no: 2, name: 'export_version', kind: 'scalar', T: 13 /* ScalarType.UINT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenesisState {
@@ -50,7 +57,10 @@ export class GenesisState extends Message<GenesisState> {
     return new GenesisState().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenesisState | PlainMessage<GenesisState> | undefined, b: GenesisState | PlainMessage<GenesisState> | undefined): boolean {
+  static equals(
+    a: GenesisState | PlainMessage<GenesisState> | undefined,
+    b: GenesisState | PlainMessage<GenesisState> | undefined
+  ): boolean {
     return proto3.util.equals(GenesisState, a, b);
   }
 }
@@ -77,10 +87,10 @@ export class Params extends Message<Params> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.Params";
+  static readonly typeName = 'did.v1.Params';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "document", kind: "message", T: DocumentParams },
-    { no: 2, name: "webauthn", kind: "message", T: WebauthnParams },
+    { no: 1, name: 'document', kind: 'message', T: DocumentParams },
+    { no: 2, name: 'webauthn', kind: 'message', T: WebauthnParams },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Params {
@@ -95,7 +105,10 @@ export class Params extends Message<Params> {
     return new Params().fromJsonString(jsonString, options);
   }
 
-  static equals(a: Params | PlainMessage<Params> | undefined, b: Params | PlainMessage<Params> | undefined): boolean {
+  static equals(
+    a: Params | PlainMessage<Params> | undefined,
+    b: Params | PlainMessage<Params> | undefined
+  ): boolean {
     return proto3.util.equals(Params, a, b);
   }
 }
@@ -196,20 +209,44 @@ export class DocumentParams extends Message<DocumentParams> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.DocumentParams";
+  static readonly typeName = 'did.v1.DocumentParams';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "auto_create_vault", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 2, name: "max_verification_methods", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 3, name: "max_service_endpoints", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 4, name: "max_controllers", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 5, name: "did_document_max_size", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 6, name: "did_resolution_timeout", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 7, name: "key_rotation_interval", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 8, name: "credential_lifetime", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 9, name: "supported_assertion_methods", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 10, name: "supported_authentication_methods", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 11, name: "supported_invocation_methods", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 12, name: "supported_delegation_methods", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 1, name: 'auto_create_vault', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: 'max_verification_methods', kind: 'scalar', T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: 'max_service_endpoints', kind: 'scalar', T: 5 /* ScalarType.INT32 */ },
+    { no: 4, name: 'max_controllers', kind: 'scalar', T: 5 /* ScalarType.INT32 */ },
+    { no: 5, name: 'did_document_max_size', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 6, name: 'did_resolution_timeout', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 7, name: 'key_rotation_interval', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    { no: 8, name: 'credential_lifetime', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    {
+      no: 9,
+      name: 'supported_assertion_methods',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 10,
+      name: 'supported_authentication_methods',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 11,
+      name: 'supported_invocation_methods',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 12,
+      name: 'supported_delegation_methods',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DocumentParams {
@@ -224,7 +261,10 @@ export class DocumentParams extends Message<DocumentParams> {
     return new DocumentParams().fromJsonString(jsonString, options);
   }
 
-  static equals(a: DocumentParams | PlainMessage<DocumentParams> | undefined, b: DocumentParams | PlainMessage<DocumentParams> | undefined): boolean {
+  static equals(
+    a: DocumentParams | PlainMessage<DocumentParams> | undefined,
+    b: DocumentParams | PlainMessage<DocumentParams> | undefined
+  ): boolean {
     return proto3.util.equals(DocumentParams, a, b);
   }
 }
@@ -275,14 +315,14 @@ export class WebauthnParams extends Message<WebauthnParams> {
    *
    * @generated from field: string default_rp_id = 6;
    */
-  defaultRpId = "";
+  defaultRpId = '';
 
   /**
    * DefaultRPName is the default Relying Party name for WebAuthn operations
    *
    * @generated from field: string default_rp_name = 7;
    */
-  defaultRpName = "";
+  defaultRpName = '';
 
   constructor(data?: PartialMessage<WebauthnParams>) {
     super();
@@ -290,15 +330,27 @@ export class WebauthnParams extends Message<WebauthnParams> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "did.v1.WebauthnParams";
+  static readonly typeName = 'did.v1.WebauthnParams';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "challenge_timeout", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 2, name: "allowed_origins", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 3, name: "supported_algorithms", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 4, name: "require_user_verification", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 5, name: "max_credentials_per_did", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 6, name: "default_rp_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "default_rp_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'challenge_timeout', kind: 'scalar', T: 3 /* ScalarType.INT64 */ },
+    {
+      no: 2,
+      name: 'allowed_origins',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    {
+      no: 3,
+      name: 'supported_algorithms',
+      kind: 'scalar',
+      T: 9 /* ScalarType.STRING */,
+      repeated: true,
+    },
+    { no: 4, name: 'require_user_verification', kind: 'scalar', T: 8 /* ScalarType.BOOL */ },
+    { no: 5, name: 'max_credentials_per_did', kind: 'scalar', T: 5 /* ScalarType.INT32 */ },
+    { no: 6, name: 'default_rp_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: 'default_rp_name', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): WebauthnParams {
@@ -313,8 +365,10 @@ export class WebauthnParams extends Message<WebauthnParams> {
     return new WebauthnParams().fromJsonString(jsonString, options);
   }
 
-  static equals(a: WebauthnParams | PlainMessage<WebauthnParams> | undefined, b: WebauthnParams | PlainMessage<WebauthnParams> | undefined): boolean {
+  static equals(
+    a: WebauthnParams | PlainMessage<WebauthnParams> | undefined,
+    b: WebauthnParams | PlainMessage<WebauthnParams> | undefined
+  ): boolean {
     return proto3.util.equals(WebauthnParams, a, b);
   }
 }
-

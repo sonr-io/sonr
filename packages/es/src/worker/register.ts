@@ -44,7 +44,7 @@ export async function registerMotorServiceWorker(
   options: RegistrationOptions = {}
 ): Promise<ServiceWorkerRegistration | null> {
   const config = { ...DEFAULT_OPTIONS, ...options };
-  
+
   // Check browser support
   if (!('serviceWorker' in navigator)) {
     const error = new Error('Service workers are not supported in this browser');
@@ -122,7 +122,7 @@ function setupEventListeners(
     if (config.debug) {
       console.log('[Motor Register] New service worker update found');
     }
-    
+
     const newWorker = registration.installing;
     if (newWorker) {
       newWorker.addEventListener('statechange', () => {
@@ -133,7 +133,7 @@ function setupEventListeners(
         if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
           // New update available
           config.onUpdateFound(registration);
-          
+
           if (config.skipWaiting) {
             // Tell the new worker to skip waiting
             newWorker.postMessage({ type: 'SKIP_WAITING' });
@@ -167,7 +167,7 @@ async function waitForActivation(
 ): Promise<void> {
   return new Promise((resolve) => {
     const worker = registration.installing || registration.waiting;
-    
+
     if (!worker) {
       resolve();
       return;
@@ -201,13 +201,13 @@ export async function unregisterMotorServiceWorker(): Promise<boolean> {
 
   try {
     const registrations = await navigator.serviceWorker.getRegistrations();
-    
+
     const unregistrations = registrations
-      .filter(reg => reg.active?.scriptURL.includes('motor'))
-      .map(reg => reg.unregister());
-    
+      .filter((reg) => reg.active?.scriptURL.includes('motor'))
+      .map((reg) => reg.unregister());
+
     const results = await Promise.all(unregistrations);
-    return results.some(result => result === true);
+    return results.some((result) => result === true);
   } catch (error) {
     console.error('[Motor Register] Failed to unregister:', error);
     return false;
@@ -236,10 +236,11 @@ export async function getMotorServiceWorkerStatus(): Promise<{
 
   try {
     const registrations = await navigator.serviceWorker.getRegistrations();
-    const motorRegistration = registrations.find(reg => 
-      reg.active?.scriptURL.includes('motor') ||
-      reg.waiting?.scriptURL.includes('motor') ||
-      reg.installing?.scriptURL.includes('motor')
+    const motorRegistration = registrations.find(
+      (reg) =>
+        reg.active?.scriptURL.includes('motor') ||
+        reg.waiting?.scriptURL.includes('motor') ||
+        reg.installing?.scriptURL.includes('motor')
     );
 
     if (!motorRegistration) {
@@ -275,21 +276,21 @@ export async function getMotorServiceWorkerStatus(): Promise<{
  */
 export async function updateMotorServiceWorker(): Promise<boolean> {
   const status = await getMotorServiceWorkerStatus();
-  
+
   if (!status.registered || !status.registration) {
     return false;
   }
 
   try {
     await status.registration.update();
-    
+
     // Check if there's a waiting worker
     if (status.registration.waiting) {
       // Tell the waiting worker to skip waiting
       status.registration.waiting.postMessage({ type: 'SKIP_WAITING' });
       return true;
     }
-    
+
     return false;
   } catch (error) {
     console.error('[Motor Register] Failed to update:', error);
@@ -316,7 +317,7 @@ export function useMotorServiceWorker(options: RegistrationOptions = {}) {
   // Check if React is available
   let useState: any;
   let useEffect: any;
-  
+
   try {
     // Try to get React from the global scope if it exists
     const globalReact = (globalThis as any).React || (window as any).React;
@@ -334,10 +335,10 @@ export function useMotorServiceWorker(options: RegistrationOptions = {}) {
       isActive: false,
       error: null,
     };
-    
+
     // Still attempt registration but without React state management
     registerMotorServiceWorker(options).catch(() => {});
-    
+
     return staticState;
   }
 
@@ -405,13 +406,15 @@ export function useMotorServiceWorker(options: RegistrationOptions = {}) {
  * @param options Prompt options
  * @returns Update prompt handler
  */
-export function createUpdatePrompt(options: {
-  message?: string;
-  confirmText?: string;
-  cancelText?: string;
-  onUpdate?: () => void;
-  onCancel?: () => void;
-} = {}) {
+export function createUpdatePrompt(
+  options: {
+    message?: string;
+    confirmText?: string;
+    cancelText?: string;
+    onUpdate?: () => void;
+    onCancel?: () => void;
+  } = {}
+) {
   const {
     message = 'A new version of Motor is available. Would you like to update?',
     confirmText = 'Update',
@@ -431,7 +434,7 @@ export function createUpdatePrompt(options: {
 
     if (shouldUpdate) {
       registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-      
+
       // Listen for the controller change
       navigator.serviceWorker.addEventListener('controllerchange', () => {
         onUpdate();

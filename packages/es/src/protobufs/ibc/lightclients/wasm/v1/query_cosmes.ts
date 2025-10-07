@@ -3,9 +3,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { QueryChecksumsRequest, QueryChecksumsResponse, QueryCodeRequest, QueryCodeResponse } from "./query_pb.js";
+import {
+  QueryChecksumsRequest,
+  QueryChecksumsResponse,
+  QueryCodeRequest,
+  QueryCodeResponse,
+} from './query_pb.js';
 
-const TYPE_NAME = "ibc.lightclients.wasm.v1.Query";
+const TYPE_NAME = 'ibc.lightclients.wasm.v1.Query';
 
 /**
  * Get all Wasm checksums
@@ -14,7 +19,7 @@ const TYPE_NAME = "ibc.lightclients.wasm.v1.Query";
  */
 export const QueryChecksumsService = {
   typeName: TYPE_NAME,
-  method: "Checksums",
+  method: 'Checksums',
   Request: QueryChecksumsRequest,
   Response: QueryChecksumsResponse,
 } as const;
@@ -26,8 +31,7 @@ export const QueryChecksumsService = {
  */
 export const QueryCodeService = {
   typeName: TYPE_NAME,
-  method: "Code",
+  method: 'Code',
   Request: QueryCodeRequest,
   Response: QueryCodeResponse,
 } as const;
-

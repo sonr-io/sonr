@@ -3,8 +3,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3, protoInt64, Timestamp } from '@bufbuild/protobuf';
 
 /**
  * EventDomainVerificationInitiated is emitted when domain verification is initiated
@@ -17,28 +24,28 @@ export class EventDomainVerificationInitiated extends Message<EventDomainVerific
    *
    * @generated from field: string domain = 1;
    */
-  domain = "";
+  domain = '';
 
   /**
    * Verification ID
    *
    * @generated from field: string verification_id = 2;
    */
-  verificationId = "";
+  verificationId = '';
 
   /**
    * Verification challenge
    *
    * @generated from field: string challenge = 3;
    */
-  challenge = "";
+  challenge = '';
 
   /**
    * Initiator address
    *
    * @generated from field: string initiator = 4;
    */
-  initiator = "";
+  initiator = '';
 
   /**
    * Block height
@@ -53,28 +60,43 @@ export class EventDomainVerificationInitiated extends Message<EventDomainVerific
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.EventDomainVerificationInitiated";
+  static readonly typeName = 'svc.v1.EventDomainVerificationInitiated';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "domain", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "verification_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "challenge", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "initiator", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'domain', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'verification_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'challenge', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'initiator', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventDomainVerificationInitiated {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EventDomainVerificationInitiated {
     return new EventDomainVerificationInitiated().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EventDomainVerificationInitiated {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EventDomainVerificationInitiated {
     return new EventDomainVerificationInitiated().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventDomainVerificationInitiated {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventDomainVerificationInitiated {
     return new EventDomainVerificationInitiated().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventDomainVerificationInitiated | PlainMessage<EventDomainVerificationInitiated> | undefined, b: EventDomainVerificationInitiated | PlainMessage<EventDomainVerificationInitiated> | undefined): boolean {
+  static equals(
+    a:
+      | EventDomainVerificationInitiated
+      | PlainMessage<EventDomainVerificationInitiated>
+      | undefined,
+    b: EventDomainVerificationInitiated | PlainMessage<EventDomainVerificationInitiated> | undefined
+  ): boolean {
     return proto3.util.equals(EventDomainVerificationInitiated, a, b);
   }
 }
@@ -90,21 +112,21 @@ export class EventDomainVerified extends Message<EventDomainVerified> {
    *
    * @generated from field: string domain = 1;
    */
-  domain = "";
+  domain = '';
 
   /**
    * Verification ID
    *
    * @generated from field: string verification_id = 2;
    */
-  verificationId = "";
+  verificationId = '';
 
   /**
    * Verifier address
    *
    * @generated from field: string verifier = 3;
    */
-  verifier = "";
+  verifier = '';
 
   /**
    * Verification timestamp
@@ -126,13 +148,13 @@ export class EventDomainVerified extends Message<EventDomainVerified> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.EventDomainVerified";
+  static readonly typeName = 'svc.v1.EventDomainVerified';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "domain", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "verification_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "verifier", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "verified_at", kind: "message", T: Timestamp },
-    { no: 5, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'domain', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'verification_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'verifier', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'verified_at', kind: 'message', T: Timestamp },
+    { no: 5, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventDomainVerified {
@@ -143,11 +165,17 @@ export class EventDomainVerified extends Message<EventDomainVerified> {
     return new EventDomainVerified().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventDomainVerified {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventDomainVerified {
     return new EventDomainVerified().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventDomainVerified | PlainMessage<EventDomainVerified> | undefined, b: EventDomainVerified | PlainMessage<EventDomainVerified> | undefined): boolean {
+  static equals(
+    a: EventDomainVerified | PlainMessage<EventDomainVerified> | undefined,
+    b: EventDomainVerified | PlainMessage<EventDomainVerified> | undefined
+  ): boolean {
     return proto3.util.equals(EventDomainVerified, a, b);
   }
 }
@@ -163,21 +191,21 @@ export class EventServiceRegistered extends Message<EventServiceRegistered> {
    *
    * @generated from field: string service_id = 1;
    */
-  serviceId = "";
+  serviceId = '';
 
   /**
    * Associated domain
    *
    * @generated from field: string domain = 2;
    */
-  domain = "";
+  domain = '';
 
   /**
    * Owner DID
    *
    * @generated from field: string owner = 3;
    */
-  owner = "";
+  owner = '';
 
   /**
    * Service endpoints
@@ -191,7 +219,7 @@ export class EventServiceRegistered extends Message<EventServiceRegistered> {
    *
    * @generated from field: string metadata = 5;
    */
-  metadata = "";
+  metadata = '';
 
   /**
    * Block height
@@ -206,30 +234,41 @@ export class EventServiceRegistered extends Message<EventServiceRegistered> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.v1.EventServiceRegistered";
+  static readonly typeName = 'svc.v1.EventServiceRegistered';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "service_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "domain", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "owner", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "endpoints", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
-    { no: 5, name: "metadata", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "block_height", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: 'service_id', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'domain', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'owner', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: 'endpoints', kind: 'scalar', T: 9 /* ScalarType.STRING */, repeated: true },
+    { no: 5, name: 'metadata', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: 'block_height', kind: 'scalar', T: 4 /* ScalarType.UINT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): EventServiceRegistered {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): EventServiceRegistered {
     return new EventServiceRegistered().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): EventServiceRegistered {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): EventServiceRegistered {
     return new EventServiceRegistered().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): EventServiceRegistered {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): EventServiceRegistered {
     return new EventServiceRegistered().fromJsonString(jsonString, options);
   }
 
-  static equals(a: EventServiceRegistered | PlainMessage<EventServiceRegistered> | undefined, b: EventServiceRegistered | PlainMessage<EventServiceRegistered> | undefined): boolean {
+  static equals(
+    a: EventServiceRegistered | PlainMessage<EventServiceRegistered> | undefined,
+    b: EventServiceRegistered | PlainMessage<EventServiceRegistered> | undefined
+  ): boolean {
     return proto3.util.equals(EventServiceRegistered, a, b);
   }
 }
-

@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { FeeToken } from "./feetoken_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { FeeToken } from './feetoken_pb.js';
 
 /**
  * ===================== MsgSetFeeTokens
@@ -21,7 +28,7 @@ export class MsgSetFeeTokens extends Message<MsgSetFeeTokens> {
   /**
    * @generated from field: string sender = 2;
    */
-  sender = "";
+  sender = '';
 
   constructor(data?: PartialMessage<MsgSetFeeTokens>) {
     super();
@@ -29,10 +36,10 @@ export class MsgSetFeeTokens extends Message<MsgSetFeeTokens> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.txfees.v1beta1.MsgSetFeeTokens";
+  static readonly typeName = 'osmosis.txfees.v1beta1.MsgSetFeeTokens';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "fee_tokens", kind: "message", T: FeeToken, repeated: true },
-    { no: 2, name: "sender", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: 'fee_tokens', kind: 'message', T: FeeToken, repeated: true },
+    { no: 2, name: 'sender', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetFeeTokens {
@@ -47,7 +54,10 @@ export class MsgSetFeeTokens extends Message<MsgSetFeeTokens> {
     return new MsgSetFeeTokens().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetFeeTokens | PlainMessage<MsgSetFeeTokens> | undefined, b: MsgSetFeeTokens | PlainMessage<MsgSetFeeTokens> | undefined): boolean {
+  static equals(
+    a: MsgSetFeeTokens | PlainMessage<MsgSetFeeTokens> | undefined,
+    b: MsgSetFeeTokens | PlainMessage<MsgSetFeeTokens> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetFeeTokens, a, b);
   }
 }
@@ -62,24 +72,34 @@ export class MsgSetFeeTokensResponse extends Message<MsgSetFeeTokensResponse> {
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.txfees.v1beta1.MsgSetFeeTokensResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
+  static readonly typeName = 'osmosis.txfees.v1beta1.MsgSetFeeTokensResponse';
+  static readonly fields: FieldList = proto3.util.newFieldList(() => []);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MsgSetFeeTokensResponse {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): MsgSetFeeTokensResponse {
     return new MsgSetFeeTokensResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MsgSetFeeTokensResponse {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetFeeTokensResponse {
     return new MsgSetFeeTokensResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MsgSetFeeTokensResponse {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): MsgSetFeeTokensResponse {
     return new MsgSetFeeTokensResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MsgSetFeeTokensResponse | PlainMessage<MsgSetFeeTokensResponse> | undefined, b: MsgSetFeeTokensResponse | PlainMessage<MsgSetFeeTokensResponse> | undefined): boolean {
+  static equals(
+    a: MsgSetFeeTokensResponse | PlainMessage<MsgSetFeeTokensResponse> | undefined,
+    b: MsgSetFeeTokensResponse | PlainMessage<MsgSetFeeTokensResponse> | undefined
+  ): boolean {
     return proto3.util.equals(MsgSetFeeTokensResponse, a, b);
   }
 }
-

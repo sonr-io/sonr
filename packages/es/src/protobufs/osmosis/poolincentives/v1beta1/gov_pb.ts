@@ -3,9 +3,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
-import { DistrRecord } from "./incentives_pb.js";
+import type {
+  BinaryReadOptions,
+  FieldList,
+  JsonReadOptions,
+  JsonValue,
+  PartialMessage,
+  PlainMessage,
+} from '@bufbuild/protobuf';
+import { Message, proto3 } from '@bufbuild/protobuf';
+import { DistrRecord } from './incentives_pb.js';
 
 /**
  * ReplacePoolIncentivesProposal is a gov Content type for updating the pool
@@ -22,12 +29,12 @@ export class ReplacePoolIncentivesProposal extends Message<ReplacePoolIncentives
   /**
    * @generated from field: string title = 1;
    */
-  title = "";
+  title = '';
 
   /**
    * @generated from field: string description = 2;
    */
-  description = "";
+  description = '';
 
   /**
    * @generated from field: repeated osmosis.poolincentives.v1beta1.DistrRecord records = 3;
@@ -40,26 +47,38 @@ export class ReplacePoolIncentivesProposal extends Message<ReplacePoolIncentives
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolincentives.v1beta1.ReplacePoolIncentivesProposal";
+  static readonly typeName = 'osmosis.poolincentives.v1beta1.ReplacePoolIncentivesProposal';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "records", kind: "message", T: DistrRecord, repeated: true },
+    { no: 1, name: 'title', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'description', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'records', kind: 'message', T: DistrRecord, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ReplacePoolIncentivesProposal {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): ReplacePoolIncentivesProposal {
     return new ReplacePoolIncentivesProposal().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ReplacePoolIncentivesProposal {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): ReplacePoolIncentivesProposal {
     return new ReplacePoolIncentivesProposal().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ReplacePoolIncentivesProposal {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): ReplacePoolIncentivesProposal {
     return new ReplacePoolIncentivesProposal().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ReplacePoolIncentivesProposal | PlainMessage<ReplacePoolIncentivesProposal> | undefined, b: ReplacePoolIncentivesProposal | PlainMessage<ReplacePoolIncentivesProposal> | undefined): boolean {
+  static equals(
+    a: ReplacePoolIncentivesProposal | PlainMessage<ReplacePoolIncentivesProposal> | undefined,
+    b: ReplacePoolIncentivesProposal | PlainMessage<ReplacePoolIncentivesProposal> | undefined
+  ): boolean {
     return proto3.util.equals(ReplacePoolIncentivesProposal, a, b);
   }
 }
@@ -79,12 +98,12 @@ export class UpdatePoolIncentivesProposal extends Message<UpdatePoolIncentivesPr
   /**
    * @generated from field: string title = 1;
    */
-  title = "";
+  title = '';
 
   /**
    * @generated from field: string description = 2;
    */
-  description = "";
+  description = '';
 
   /**
    * @generated from field: repeated osmosis.poolincentives.v1beta1.DistrRecord records = 3;
@@ -97,27 +116,38 @@ export class UpdatePoolIncentivesProposal extends Message<UpdatePoolIncentivesPr
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "osmosis.poolincentives.v1beta1.UpdatePoolIncentivesProposal";
+  static readonly typeName = 'osmosis.poolincentives.v1beta1.UpdatePoolIncentivesProposal';
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "title", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "records", kind: "message", T: DistrRecord, repeated: true },
+    { no: 1, name: 'title', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: 'description', kind: 'scalar', T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: 'records', kind: 'message', T: DistrRecord, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdatePoolIncentivesProposal {
+  static fromBinary(
+    bytes: Uint8Array,
+    options?: Partial<BinaryReadOptions>
+  ): UpdatePoolIncentivesProposal {
     return new UpdatePoolIncentivesProposal().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpdatePoolIncentivesProposal {
+  static fromJson(
+    jsonValue: JsonValue,
+    options?: Partial<JsonReadOptions>
+  ): UpdatePoolIncentivesProposal {
     return new UpdatePoolIncentivesProposal().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdatePoolIncentivesProposal {
+  static fromJsonString(
+    jsonString: string,
+    options?: Partial<JsonReadOptions>
+  ): UpdatePoolIncentivesProposal {
     return new UpdatePoolIncentivesProposal().fromJsonString(jsonString, options);
   }
 
-  static equals(a: UpdatePoolIncentivesProposal | PlainMessage<UpdatePoolIncentivesProposal> | undefined, b: UpdatePoolIncentivesProposal | PlainMessage<UpdatePoolIncentivesProposal> | undefined): boolean {
+  static equals(
+    a: UpdatePoolIncentivesProposal | PlainMessage<UpdatePoolIncentivesProposal> | undefined,
+    b: UpdatePoolIncentivesProposal | PlainMessage<UpdatePoolIncentivesProposal> | undefined
+  ): boolean {
     return proto3.util.equals(UpdatePoolIncentivesProposal, a, b);
   }
 }
-
