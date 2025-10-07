@@ -23,11 +23,11 @@ const MOCK_DIDS = {
   THIRD_PARTY: 'did:key:z6Mkw1nNDPqFXZ2D4CQCCkWMqTJPRvBL8QrQsMvHGMhxr',
 };
 
-// Mock crypto functions (would be replaced with real implementations)
-const mockSignature = {
-  EdDSA: 'mock-signature-eddsa',
-  ES256: 'mock-signature-es256',
-  RS256: 'mock-signature-rs256',
+// Mock crypto functions - create proper Uint8Array signatures
+const createMockSignature = (algorithm: UCANAlgorithm): Uint8Array => {
+  // EdDSA/ES256 typically uses 64 bytes, RS256 uses 256 bytes
+  const length = algorithm === 'RS256' ? 256 : 64;
+  return new Uint8Array(length).fill(0);
 };
 
 describe('UCAN Integration Tests', () => {
@@ -44,36 +44,36 @@ describe('UCAN Integration Tests', () => {
       }
     ];
 
-    it('should create, format, parse, and validate a complete token', () => {
-      // Create token
-      const builder = new UCANBuilder({
-        issuer: MOCK_DIDS.ISSUER,
-        audience: MOCK_DIDS.AUDIENCE,
-        capabilities: validCapabilities,
-      });
+    it('should create, format, parse, and validate a complete token', async () => {
+      // Create token using builder pattern
+      const builder = new UCANBuilder();
 
-      // Set default options
-      const token = builder
-        .setExpiration(Math.floor(Date.now() / 1000) + 3600) // 1 hour from now
-        .setNotBefore(Math.floor(Date.now() / 1000)) // now
-        .build();
+      const jwtString = builder
+        .issuer(MOCK_DIDS.ISSUER)
+        .audience(MOCK_DIDS.AUDIENCE)
+        .expiration(Math.floor(Date.now() / 1000) + 3600) // 1 hour from now
+        .notBefore(Math.floor(Date.now() / 1000)) // now
+        .addCapability(validCapabilities[0])
+        .addCapability(validCapabilities[1])
+        .build(createMockSignature('EdDSA'));
 
-      // Format token
-      const formattedToken = formatToken(token);
-      expect(formattedToken).toMatch(/^[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+$/);
+      // Verify JWT format
+      expect(jwtString).toMatch(/^[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+$/);
 
       // Parse token
-      const parsedToken = parseToken(formattedToken);
+      const parsedToken = parseToken(jwtString);
       expect(parsedToken).toBeDefined();
+      expect(parsedToken.payload.iss).toBe(MOCK_DIDS.ISSUER);
+      expect(parsedToken.payload.aud).toBe(MOCK_DIDS.AUDIENCE);
 
-      // Validate token
+      // Validate token (skip signature check for mock)
       const validationOptions: ValidationOptions = {
         now: Math.floor(Date.now() / 1000),
-        checkTimestamps: true,
-        checkSignature: false, // Skip signature check for mock
+        clockDriftTolerance: 60,
+        verifySignature: false, // Skip signature check for mock
       };
-      const validationResult = validateToken(parsedToken, validationOptions);
-      expect(validationResult.ok).toBe(true);
+      const validationResult = await validateToken(parsedToken, validationOptions);
+      expect(validationResult.valid).toBe(true);
     });
   });
 
@@ -103,65 +103,63 @@ describe('UCAN Integration Tests', () => {
 
     it('should validate proper capability attenuation', () => {
       // Create parent token
-      const parentBuilder = new UCANBuilder({
-        issuer: MOCK_DIDS.ISSUER,
-        audience: MOCK_DIDS.AUDIENCE,
-        capabilities: parentCapabilities,
-      });
+      const parentBuilder = new UCANBuilder();
+      const parentJwt = parentBuilder
+        .issuer(MOCK_DIDS.ISSUER)
+        .audience(MOCK_DIDS.AUDIENCE)
+        .expiration(Math.floor(Date.now() / 1000) + 3600)
+        .addCapability(parentCapabilities[0])
+        .addCapability(parentCapabilities[1])
+        .addCapability(parentCapabilities[2])
+        .build(createMockSignature('EdDSA'));
 
-      const parentToken = parentBuilder.build();
+      const parentToken = parseToken(parentJwt);
 
       // Create child token with attenuated capabilities
-      const childBuilder = new UCANBuilder({
-        issuer: MOCK_DIDS.AUDIENCE,
-        audience: MOCK_DIDS.THIRD_PARTY,
-        capabilities: childCapabilities,
-        proofs: [parentToken],
-      });
+      const childBuilder = new UCANBuilder();
+      const childJwt = childBuilder
+        .issuer(MOCK_DIDS.AUDIENCE)
+        .audience(MOCK_DIDS.THIRD_PARTY)
+        .expiration(Math.floor(Date.now() / 1000) + 3600)
+        .addCapability(childCapabilities[0])
+        .addProof(parentJwt)
+        .build(createMockSignature('EdDSA'));
 
-      const childToken = childBuilder.build();
+      const childToken = parseToken(childJwt);
 
       // Validate capability attenuation
       const attenuationResult = validateCapabilityAttenuation(
-        childToken.payload.caps,
-        parentToken.payload.caps
+        childToken.payload.att[0],
+        parentToken.payload.att[0]
       );
-      expect(attenuationResult).toBe(true);
+      expect(attenuationResult.valid).toBe(true);
     });
 
     it('should reject invalid capability attenuation', () => {
-      const invalidChildCapabilities: Capability[] = [
-        {
-          with: 'storage://example.com/data',
-          can: 'delete', // Not in parent token
-        }
-      ];
+      const invalidChildCapability: Capability = {
+        with: 'storage://example.com/data',
+        can: 'delete', // Not in parent token
+      };
 
       // Create parent token
-      const parentBuilder = new UCANBuilder({
-        issuer: MOCK_DIDS.ISSUER,
-        audience: MOCK_DIDS.AUDIENCE,
-        capabilities: parentCapabilities,
-      });
+      const parentBuilder = new UCANBuilder();
+      const parentJwt = parentBuilder
+        .issuer(MOCK_DIDS.ISSUER)
+        .audience(MOCK_DIDS.AUDIENCE)
+        .expiration(Math.floor(Date.now() / 1000) + 3600)
+        .addCapability(parentCapabilities[0])
+        .addCapability(parentCapabilities[1])
+        .addCapability(parentCapabilities[2])
+        .build(createMockSignature('EdDSA'));
 
-      const parentToken = parentBuilder.build();
-
-      // Try to create child token with broader capabilities
-      const childBuilder = new UCANBuilder({
-        issuer: MOCK_DIDS.AUDIENCE,
-        audience: MOCK_DIDS.THIRD_PARTY,
-        capabilities: invalidChildCapabilities,
-        proofs: [parentToken],
-      });
-
-      const childToken = childBuilder.build();
+      const parentToken = parseToken(parentJwt);
 
       // Validate capability attenuation (should fail)
       const attenuationResult = validateCapabilityAttenuation(
-        childToken.payload.caps,
-        parentToken.payload.caps
+        invalidChildCapability,
+        parentToken.payload.att[0]
       );
-      expect(attenuationResult).toBe(false);
+      expect(attenuationResult.valid).toBe(false);
     });
   });
 
@@ -175,18 +173,17 @@ describe('UCAN Integration Tests', () => {
 
     algorithms.forEach(algorithm => {
       it(`should create and validate token with ${algorithm} algorithm`, () => {
-        const builder = new UCANBuilder({
-          issuer: MOCK_DIDS.ISSUER,
-          audience: MOCK_DIDS.AUDIENCE,
-          capabilities,
-          algorithm, // Specify algorithm
-        });
+        const builder = new UCANBuilder({ algorithm });
 
-        const token = builder
-          .setExpiration(Math.floor(Date.now() / 1000) + 3600)
-          .build();
+        const jwtString = builder
+          .issuer(MOCK_DIDS.ISSUER)
+          .audience(MOCK_DIDS.AUDIENCE)
+          .expiration(Math.floor(Date.now() / 1000) + 3600)
+          .addCapability(capabilities[0])
+          .build(createMockSignature(algorithm));
 
-        // Validate token with algorithm-specific logic
+        // Parse and validate token with algorithm-specific logic
+        const token = parseToken(jwtString);
         expect(token.header.alg).toBe(algorithm);
       });
     });
@@ -201,51 +198,56 @@ describe('UCAN Integration Tests', () => {
 
     it('should handle tokens with future start time', () => {
       const futureStart = Math.floor(Date.now() / 1000) + 3600; // 1 hour in future
-      const builder = new UCANBuilder({
-        issuer: MOCK_DIDS.ISSUER,
-        audience: MOCK_DIDS.AUDIENCE,
-        capabilities: baseCapabilities,
-      });
+      const builder = new UCANBuilder();
 
-      const token = builder
-        .setNotBefore(futureStart)
-        .setExpiration(futureStart + 3600)
-        .build();
+      const jwtString = builder
+        .issuer(MOCK_DIDS.ISSUER)
+        .audience(MOCK_DIDS.AUDIENCE)
+        .notBefore(futureStart)
+        .expiration(futureStart + 3600)
+        .addCapability(baseCapabilities[0])
+        .build(createMockSignature('EdDSA'));
+
+      const token = parseToken(jwtString);
 
       // Check not yet valid
       const currentTime = Math.floor(Date.now() / 1000);
-      expect(isTokenNotYetValid(token, currentTime)).toBe(true);
+      expect(isTokenNotYetValid(token.payload, { now: currentTime })).toBe(true);
     });
 
     it('should handle expired tokens', () => {
       const pastExpiration = Math.floor(Date.now() / 1000) - 3600; // 1 hour in past
-      const builder = new UCANBuilder({
-        issuer: MOCK_DIDS.ISSUER,
-        audience: MOCK_DIDS.AUDIENCE,
-        capabilities: baseCapabilities,
-      });
+      const builder = new UCANBuilder();
 
-      const token = builder
-        .setExpiration(pastExpiration)
-        .build();
+      const jwtString = builder
+        .issuer(MOCK_DIDS.ISSUER)
+        .audience(MOCK_DIDS.AUDIENCE)
+        .expiration(pastExpiration)
+        .addCapability(baseCapabilities[0])
+        .build(createMockSignature('EdDSA'));
+
+      const token = parseToken(jwtString);
 
       // Check expired
       const currentTime = Math.floor(Date.now() / 1000);
-      expect(isTokenExpired(token, currentTime)).toBe(true);
+      expect(isTokenExpired(token.payload, { now: currentTime })).toBe(true);
     });
 
     it('should support tokens without explicit expiration', () => {
-      const builder = new UCANBuilder({
-        issuer: MOCK_DIDS.ISSUER,
-        audience: MOCK_DIDS.AUDIENCE,
-        capabilities: baseCapabilities,
-      });
+      const builder = new UCANBuilder();
 
-      const token = builder.build();
+      const jwtString = builder
+        .issuer(MOCK_DIDS.ISSUER)
+        .audience(MOCK_DIDS.AUDIENCE)
+        .expiration(null) // Explicitly set null for never-expiring
+        .addCapability(baseCapabilities[0])
+        .build(createMockSignature('EdDSA'));
+
+      const token = parseToken(jwtString);
 
       // Ensure no expiration or nbf by default
       expect(token.payload.exp).toBeNull();
-      expect(token.payload.nbf).toBeNull();
+      expect(token.payload.nbf).toBeUndefined();
     });
   });
 
@@ -259,16 +261,19 @@ describe('UCAN Integration Tests', () => {
 
     didFormats.forEach(did => {
       it(`should handle DID format: ${did}`, () => {
-        const builder = new UCANBuilder({
-          issuer: did,
-          audience: MOCK_DIDS.AUDIENCE,
-          capabilities: [{
+        const builder = new UCANBuilder();
+
+        const jwtString = builder
+          .issuer(did)
+          .audience(MOCK_DIDS.AUDIENCE)
+          .expiration(Math.floor(Date.now() / 1000) + 3600)
+          .addCapability({
             with: 'storage://example.com/data',
             can: 'read',
-          }],
-        });
+          })
+          .build(createMockSignature('EdDSA'));
 
-        const token = builder.build();
+        const token = parseToken(jwtString);
         expect(token.payload.iss).toBe(did);
       });
     });
@@ -278,30 +283,35 @@ describe('UCAN Integration Tests', () => {
   describe('Proof Chain Delegation', () => {
     it('should create and validate a multi-level delegation chain', () => {
       // Create first token (root)
-      const rootBuilder = new UCANBuilder({
-        issuer: MOCK_DIDS.ISSUER,
-        audience: MOCK_DIDS.AUDIENCE,
-        capabilities: [{
+      const rootBuilder = new UCANBuilder();
+      const rootJwt = rootBuilder
+        .issuer(MOCK_DIDS.ISSUER)
+        .audience(MOCK_DIDS.AUDIENCE)
+        .expiration(Math.floor(Date.now() / 1000) + 3600)
+        .addCapability({
           with: 'storage://example.com/data',
           can: 'read',
-        }],
-      });
-      const rootToken = rootBuilder.build();
+        })
+        .build(createMockSignature('EdDSA'));
 
       // Create second token (delegation)
-      const secondBuilder = new UCANBuilder({
-        issuer: MOCK_DIDS.AUDIENCE,
-        audience: MOCK_DIDS.THIRD_PARTY,
-        capabilities: [{
+      const secondBuilder = new UCANBuilder();
+      const secondJwt = secondBuilder
+        .issuer(MOCK_DIDS.AUDIENCE)
+        .audience(MOCK_DIDS.THIRD_PARTY)
+        .expiration(Math.floor(Date.now() / 1000) + 3600)
+        .addCapability({
           with: 'storage://example.com/data',
           can: 'read',
-        }],
-        proofs: [rootToken],
-      });
-      const secondToken = secondBuilder.build();
+        })
+        .addProof(rootJwt)
+        .build(createMockSignature('EdDSA'));
+
+      const secondToken = parseToken(secondJwt);
 
       // Validate token chain
-      expect(secondToken.payload.prf).toContain(formatToken(rootToken));
+      expect(secondToken.payload.prf).toBeDefined();
+      expect(secondToken.payload.prf).toContain(rootJwt);
     });
   });
 
@@ -329,15 +339,19 @@ describe('UCAN Integration Tests', () => {
         can: 'read',
       }));
 
-      const builder = new UCANBuilder({
-        issuer: MOCK_DIDS.ISSUER,
-        audience: MOCK_DIDS.AUDIENCE,
-        capabilities: largeCaps,
-      });
+      const builder = new UCANBuilder();
+      builder
+        .issuer(MOCK_DIDS.ISSUER)
+        .audience(MOCK_DIDS.AUDIENCE)
+        .expiration(Math.floor(Date.now() / 1000) + 3600);
 
-      const token = builder.build();
+      // Add all capabilities
+      largeCaps.forEach(cap => builder.addCapability(cap));
 
-      expect(token.payload.caps.length).toBe(100);
+      const jwtString = builder.build(createMockSignature('EdDSA'));
+      const token = parseToken(jwtString);
+
+      expect(token.payload.att.length).toBe(100);
     });
   });
 });
