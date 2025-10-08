@@ -297,7 +297,7 @@ test-tdd:
 	go test -json ./... 2>&1 | tdd-guard-go -project-root ${GIT_ROOT}
 
 test-app:
-	@VERSION=$(VERSION) go test -C . -mod=readonly -tags='ledger test_ledger_mock test' github.com/sonr-io/sonr/app/... github.com/sonr-io/sonr/x/... github.com/sonr-io/sonr/types/... github.com/sonr-io/sonr/internal/...
+	@VERSION=$(VERSION) CGO_LDFLAGS="-lm" go test -C . -mod=readonly -tags='ledger test_ledger_mock test' github.com/sonr-io/sonr/app/... github.com/sonr-io/sonr/x/... github.com/sonr-io/sonr/types/... github.com/sonr-io/sonr/internal/...
 
 test-devops:
 	@echo "No devops tests"
