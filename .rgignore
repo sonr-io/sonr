@@ -1,9 +1,6 @@
 .dockerignore
 .goreleaser.yml
 api
-contracts
-chains
-crypto
 proto
 test
 **/_test.go

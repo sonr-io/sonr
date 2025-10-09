@@ -31,13 +31,7 @@ out/
 
 # Go binaries (but allow docs references)
 snrd
-hway
-motr
-!cmd/motr/
-!cmd/hway/
 !cmd/snrd/
-!docs/**/motr
-!docs/**/hway
 
 # Allow specific CLI binaries
 !cli/join-testnet/bin/
@@ -73,21 +67,8 @@ artifacts/
 **/target/
 **/Cargo.lock
 
-# Contract-specific
-contracts/DAO/deployment_ids.env
-contracts/DAO/deployment_report_*.md
-contracts/DAO/relayer.pid
-contracts/DAO/*.mnemonic
-contracts/DAO/tx_*.json
-contracts/DAO/signed_*.json
-contracts/DAO/init_*.json
-contracts/DAO/MAINNET_DEPLOYMENT_INSTRUCTIONS.md
-contracts/DAO/backups/
-contracts/wSNR/remappings.txt
-
 # ===== Blockchain & Cosmos SDK =====
 .snrd/
-.hway/
 keyring-test/
 mytestnet/
 docker/testnet/testnet-data
