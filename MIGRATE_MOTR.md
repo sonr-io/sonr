@@ -1,7 +1,8 @@
 # Motor (motr) Migration Context
 
 > **Repository Migration**: `sonr-io/sonr` → `sonr-io/motr`
-> **Components Moved**: `cmd/motr/`, `cmd/vault/`, `crypto/`, `packages/`, `web/`
+> **Components Moved**: `cmd/motr/`, `cmd/vault/`, `packages/`, `web/`
+> **Note**: The `crypto/` library was moved to its own repository at `sonr-io/crypto`
 
 ## Overview
 
@@ -20,8 +21,7 @@ sonr-io/motr/
 ├── worker/              # WASM vault operations (Go → WASM)
 │   ├── main.go         # Entrypoint with WASM exports
 │   ├── vault/          # Vault operation implementations
-│   ├── mpc/            # Multi-party computation
-│   └── crypto/         # Cryptographic utilities
+│   └── mpc/            # Multi-party computation
 │
 ├── server/             # HTTP server mode (Go)
 │   ├── main.go         # HTTP/Payment Gateway server
@@ -39,18 +39,14 @@ sonr-io/motr/
 │   ├── ui/            # @motr/ui - UI components
 │   └── com/           # @motr/com - Common utilities
 │
-├── web/               # Web applications
-│   ├── auth/          # Authentication app
-│   └── dash/          # Dashboard app
-│
-└── crypto/            # Cryptographic library (Go)
-    ├── core/          # Core primitives
-    ├── signatures/    # Digital signatures (BLS, BBS, Schnorr)
-    ├── sharing/       # Secret sharing (Shamir, Feldman)
-    ├── mpc/           # Multi-party computation
-    ├── tecdsa/        # Threshold ECDSA
-    └── zkp/           # Zero-knowledge proofs
+└── web/               # Web applications
+    ├── auth/          # Authentication app
+    └── dash/          # Dashboard app
 ```
+
+## Dependencies
+
+Motor depends on the **Sonr Cryptography Library** (`github.com/sonr-io/crypto`), which was moved to its own repository. See MIGRATE_CRYPTO.md for details on the crypto library.
 
 ## Component 1: Worker (WASM Vault)
 
@@ -212,66 +208,7 @@ type EnclaveData struct {
 }
 ```
 
-### Cryptographic Library (`crypto/`)
-
-Comprehensive cryptographic primitives supporting the vault operations:
-
-#### Core Curves (`crypto/core/curves/`)
-- **Ed25519**: EdDSA signatures, twisted Edwards curves
-- **Secp256k1** (K256): Bitcoin/Ethereum curve
-- **P-256** (Secp256r1): NIST standard curve
-- **BLS12-381**: Pairing-friendly curve for BLS signatures
-- **BLS12-377**: Alternative pairing curve
-- **Pallas/Vesta**: Pasta curves for zero-knowledge proofs
-
-#### Signature Schemes (`crypto/signatures/`)
-- **BLS Signatures**: `crypto/signatures/bls/`
-  - Aggregatable signatures
-  - Threshold signatures
-  - Multi-signatures
-
-- **BBS+ Signatures**: `crypto/signatures/bbs/`
-  - Zero-knowledge proofs of knowledge
-  - Selective disclosure credentials
-  - Blind signatures
-
-- **Schnorr Signatures**: `crypto/signatures/schnorr/`
-  - Mina protocol integration
-  - NEM (Symbol) support
-
-#### Secret Sharing (`crypto/sharing/`)
-- **Shamir Secret Sharing**: Basic threshold cryptography
-- **Feldman VSS**: Verifiable secret sharing with Ed25519
-- **Pedersen VSS**: Computationally binding secret sharing
-
-#### Multi-Party Computation (`crypto/mpc/`)
-- Enclave data structures
-- MPC protocol implementations
-- Secure computation primitives
-- UCAN integration for capabilities
-
-#### Threshold Cryptography
-- **TECDSA** (`crypto/tecdsa/dklsv1/`): Threshold ECDSA (2-party)
-- **TED25519** (`crypto/ted25519/frost/`): Threshold Ed25519 (FROST)
-
-#### Distributed Key Generation (`crypto/dkg/`)
-- **Gennaro DKG**: Standard DKG protocol
-- **FROST DKG**: FROST-specific DKG for Ed25519
-- **2-Party DKG**: Simplified 2-party key generation
-
-#### Advanced Cryptography
-- **Accumulators** (`crypto/accumulator/`): Cryptographic accumulators for set membership
-- **Bulletproofs** (`crypto/bulletproof/`): Range proofs without trusted setup
-- **Paillier** (`crypto/paillier/`): Homomorphic encryption
-- **Oblivious Transfer** (`crypto/ot/`): Base OT and KOS extension
-
-#### Utility Modules
-- **AEAD** (`crypto/aead/`): Authenticated encryption (AES-GCM)
-- **DAED** (`crypto/daed/`): Deterministic AEAD (AES-SIV)
-- **ECIES** (`crypto/ecies/`): Elliptic curve integrated encryption
-- **Argon2** (`crypto/argon2/`): Password hashing
-- **VRF** (`crypto/vrf/`): Verifiable random functions
-- **ZKP** (`crypto/zkp/`): Zero-knowledge proofs (Schnorr)
+**Note**: Motor relies on the Sonr Cryptography Library (`github.com/sonr-io/crypto`) for all cryptographic operations. The crypto library provides comprehensive primitives including Ed25519, ECDSA, BLS signatures, MPC, threshold cryptography, and more. See `MIGRATE_CRYPTO.md` for the complete crypto library documentation.
 
 ### Build Configuration
 
@@ -574,11 +511,11 @@ pnpm --filter @motr/auth start
 
 ## Testing Strategy
 
-### Go (Worker/Crypto)
+### Go (Worker)
 ```bash
 # Unit tests
 go test ./worker/...
-go test ./crypto/...
+go test ./server/...
 
 # With race detection
 go test -race ./...
@@ -657,11 +594,10 @@ NEXT_PUBLIC_IPFS_GATEWAY=https://ipfs.io/ipfs/
 
 When setting up the new `sonr-io/motr` repository:
 
-### Worker/Crypto
+### Worker
 - [ ] Copy `cmd/vault/` → `worker/`
-- [ ] Copy entire `crypto/` directory
-- [ ] Update import paths in all files
-- [ ] Create `worker/go.mod` with dependencies
+- [ ] Update import paths to use `github.com/sonr-io/crypto`
+- [ ] Create `worker/go.mod` with crypto dependency
 - [ ] Setup TinyGo build scripts
 - [ ] Add WASM optimization pipeline
 - [ ] Document export functions and types
