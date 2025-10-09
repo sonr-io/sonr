@@ -9,7 +9,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/sonr-io/sonr/crypto/ucan"
+	"github.com/sonr-io/crypto/ucan"
 )
 
 // TestUCANDecorator tests the UCAN decorator functionality

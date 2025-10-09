@@ -1,6 +1,0 @@
-github.com/go-sonr/wasm-http-server/v3 v3.0.0 h1:DY/XaJD0jfKlvpVlOTqyU5b+SRVOulR5+zOye0LK0o0=
-github.com/go-sonr/wasm-http-server/v3 v3.0.0/go.mod h1:97QCYR5OlAEWeKeeIKCMZqCOIHqJakyTIFu0sbwDSJ8=
-github.com/hack-pad/safejs v0.1.1 h1:d5qPO0iQ7h2oVtpzGnLExE+Wn9AtytxIfltcS2b9KD8=
-github.com/hack-pad/safejs v0.1.1/go.mod h1:HdS+bKF1NrE72VoXZeWzxFOVQVUSqZJAG0xNCnb+Tio=
-github.com/nlepage/go-js-promise v1.0.0 h1:K7OmJ3+0BgWJ2LfXchg2sI6RDr7AW/KWR8182epFwGQ=
-github.com/nlepage/go-js-promise v1.0.0/go.mod h1:bdOP0wObXu34euibyK39K1hoBCtlgTKXGc56AGflaRo=

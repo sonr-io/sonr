@@ -19,7 +19,7 @@ replace (
 	github.com/dgrijalva/jwt-go => github.com/golang-jwt/jwt/v4 v4.4.2
 	github.com/gin-gonic/gin => github.com/gin-gonic/gin v1.8.1
 	github.com/sonr-io/sonr => ../../
-	github.com/sonr-io/sonr/crypto => ../../crypto
+	github.com/sonr-io/crypto => ../../crypto
 	github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
 )
 
@@ -334,7 +334,7 @@ require (
 	github.com/sasha-s/go-deadlock v0.3.5 // indirect
 	github.com/shirou/gopsutil v3.21.4-0.20210419000835-c7a38de76ee5+incompatible // indirect
 	github.com/sonr-io/sonr v0.0.0-00010101000000-000000000000 // indirect
-	github.com/sonr-io/sonr/crypto v0.0.0-00010101000000-000000000000 // indirect
+	github.com/sonr-io/crypto v0.0.0-00010101000000-000000000000 // indirect
 	github.com/sourcegraph/conc v0.3.0 // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
 	github.com/spf13/afero v1.11.0 // indirect

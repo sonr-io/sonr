@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 
 	"github.com/sonr-io/sonr/app"
-	"github.com/sonr-io/sonr/crypto/vrf"
+	"github.com/sonr-io/crypto/vrf"
 	"github.com/spf13/cobra"
 )
 

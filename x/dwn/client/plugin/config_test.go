@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sonr-io/sonr/crypto/mpc"
+	"github.com/sonr-io/crypto/mpc"
 )
 
 // createTestEnclaveData creates mock enclave data for testing

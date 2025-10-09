@@ -6,8 +6,8 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/sonr-io/sonr/crypto/keys"
-	"github.com/sonr-io/sonr/crypto/ucan"
+	"github.com/sonr-io/crypto/keys"
+	"github.com/sonr-io/crypto/ucan"
 )
 
 // UCANDecorator validates UCAN tokens in transactions

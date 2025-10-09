@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sonr-io/sonr/crypto/wasm"
+	"github.com/sonr-io/crypto/wasm"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

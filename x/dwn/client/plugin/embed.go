@@ -11,7 +11,7 @@ import (
 	"time"
 
 	extism "github.com/extism/go-sdk"
-	"github.com/sonr-io/sonr/crypto/wasm"
+	"github.com/sonr-io/crypto/wasm"
 )
 
 // motrPluginBytes contains the embedded WebAssembly bytecode for the cryptographic enclave.

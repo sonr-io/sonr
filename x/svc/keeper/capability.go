@@ -6,7 +6,7 @@ import (
 	"time"
 
 	apiv1 "github.com/sonr-io/sonr/api/svc/v1"
-	"github.com/sonr-io/sonr/crypto/ucan"
+	"github.com/sonr-io/crypto/ucan"
 	"github.com/sonr-io/sonr/x/svc/types"
 )
 

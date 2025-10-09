@@ -8,7 +8,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/sonr-io/sonr/crypto/ucan"
+	"github.com/sonr-io/crypto/ucan"
 	"github.com/sonr-io/sonr/x/did/types"
 )
 

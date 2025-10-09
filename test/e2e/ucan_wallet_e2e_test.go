@@ -9,8 +9,8 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/sonr-io/sonr/crypto/mpc"
-	"github.com/sonr-io/sonr/crypto/ucan"
+	"github.com/sonr-io/crypto/mpc"
+	"github.com/sonr-io/crypto/ucan"
 	"github.com/sonr-io/sonr/x/dwn/client/plugin"
 )
 

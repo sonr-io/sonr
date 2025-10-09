@@ -3,7 +3,7 @@ package keeper
 import (
 	"fmt"
 
-	"github.com/sonr-io/sonr/crypto/ucan"
+	"github.com/sonr-io/crypto/ucan"
 	"github.com/sonr-io/sonr/x/dex/types"
 
 	"cosmossdk.io/collections"
