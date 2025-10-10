@@ -317,7 +317,7 @@ npms:
     format: tar.gz
 
 snapshot:
-  version_template: "{{ incpatch .Version }}-dev"
+  version_template: "{{ .Branch }}-{{ .ShortCommit }}-dev"
 
 # Changelog configuration
 changelog:

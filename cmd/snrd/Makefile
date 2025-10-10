@@ -109,13 +109,11 @@ test:
 
 release:
 	@echo "Creating snrd release..."
-	@cd $(GIT_ROOT) && cz --config cmd/snrd/.cz.toml --no-raise 6,21 bump --yes --increment PATCH
+	@cd $(GIT_ROOT) && goreleaser release --clean
 
 snapshot:
-	@echo "Dry-Run Bumping snrd version..."
-	@cd $(GIT_ROOT) && cz --config cmd/snrd/.cz.toml bump --yes --dry-run --no-verify --increment PATCH
 	@echo "Creating snrd snapshots for all platforms..."
-	@cd $(GIT_ROOT) && goreleaser release --snapshot --clean -f cmd/snrd/.goreleaser.yml
+	@cd $(GIT_ROOT) && goreleaser release --snapshot --clean
 
 # Docker build targets
 docker:
