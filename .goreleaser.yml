@@ -2,8 +2,6 @@
 ---
 version: 2
 dist: dist/snrd
-monorepo:
-  tag_prefix: snrd/
 
 project_name: snrd
 
@@ -289,7 +287,7 @@ release:
   github:
     owner: sonr-io
     name: sonr
-  name_template: "{{.ProjectName}}/{{ .Tag }}"
+  name_template: "{{ .Tag }}"
   draft: false
   replace_existing_draft: false # Don't replace drafts
   replace_existing_artifacts: false # Append, don't replace
