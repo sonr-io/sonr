@@ -8,7 +8,7 @@ import (
 	"cosmossdk.io/log"
 	"github.com/stretchr/testify/require"
 
-	"github.com/sonr-io/sonr/crypto/vrf"
+	"github.com/sonr-io/crypto/vrf"
 )
 
 // TestSonrContextInitialization tests SonrContext initialization with VRF keys

@@ -11,8 +11,8 @@ import (
 
 	"cosmossdk.io/collections"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	webauthn "github.com/sonr-io/sonr/types/webauthn"
-	"github.com/sonr-io/sonr/types/webauthn/webauthncbor"
+	webauthn "github.com/sonr-io/common/webauthn"
+	"github.com/sonr-io/common/webauthn/webauthncbor"
 	"github.com/sonr-io/sonr/x/did/types"
 )
 
@@ -51,8 +51,8 @@ func (k Keeper) ProcessWebAuthnRegistration(
 		CreatedAt:         sdkCtx.BlockTime().Unix(),
 	}
 
-	// Validate the WebAuthn credential using centralized validation
-	if err := webauthn.ValidateStructure(webAuthnCredential); err != nil {
+	// Validate the WebAuthn credential using local types validation
+	if err := types.ValidateStructure(webAuthnCredential); err != nil {
 		return nil, fmt.Errorf("WebAuthn credential validation failed: %w", err)
 	}
 
@@ -218,8 +218,8 @@ func (k Keeper) isValidLocalhost(origin string) bool {
 // extractPublicKeyFromAttestation extracts the public key from WebAuthn attestation object
 // Now leverages the full WebAuthn protocol implementation for proper CBOR parsing
 func (k Keeper) extractPublicKeyFromAttestation(attestationObject string) ([]byte, int32, error) {
-	// Use the centralized WebAuthn protocol validation to extract public key
-	if err := webauthn.ValidateAttestationObjectFormat(attestationObject); err != nil {
+	// Use the local types validation to extract public key
+	if err := types.ValidateAttestationObjectFormat(attestationObject); err != nil {
 		return nil, 0, fmt.Errorf("invalid attestation object format: %w", err)
 	}
 

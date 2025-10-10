@@ -13,7 +13,7 @@ import (
 	"lukechampine.com/blake3"
 
 	apiv1 "github.com/sonr-io/sonr/api/did/v1"
-	"github.com/sonr-io/sonr/types/webauthn"
+	"github.com/sonr-io/common/webauthn"
 	"github.com/sonr-io/sonr/x/did/types"
 )
 

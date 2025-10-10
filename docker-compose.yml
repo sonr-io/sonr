@@ -1,47 +1,6 @@
 name: sonr-core
 
 services:
-  # Redis service for Highway task queue
-  redis:
-    container_name: redis
-    image: redis:7-alpine
-    restart: unless-stopped
-    ports:
-      - "127.0.0.1:6379:6379"
-    volumes:
-      - redis-data:/data
-    command: redis-server --appendonly yes --appendfsync everysec
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 5s
-      timeout: 3s
-      retries: 5
-      start_period: 10s
-    networks:
-      - sonr-network
-
-  postgres:
-    image: ghcr.io/sonr-io/postgres:latest
-    restart: unless-stopped
-    environment:
-      POSTGRES_HOST_AUTH_METHOD: trust
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: hway
-      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C"
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-    ports:
-      - "127.0.0.1:5432:5432"
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d hway"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 10s
-    networks:
-      - sonr-network
-
   ipfs:
     container_name: ipfs
     image: ipfs/kubo:release
@@ -93,34 +52,6 @@ services:
     networks:
       - sonr-network
 
-  hway:
-    container_name: hway
-    image: onsonr/hway:latest
-    build:
-      context: .
-      dockerfile: cmd/hway/Dockerfile
-    restart: unless-stopped
-    depends_on:
-      redis:
-        condition: service_healthy
-      ipfs:
-        condition: service_started
-    environment:
-      REDIS_URL: redis://redis:6379
-      IPFS_API_URL: http://ipfs:5001
-      LOG_LEVEL: ${LOG_LEVEL:-debug}
-      HIGHWAY_PORT: 8090
-    ports:
-      - "127.0.0.1:8090:8090"
-    healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8090/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
-    networks:
-      - sonr-network
-
   snrd:
     container_name: snrd
     image: onsonr/snrd:latest
@@ -165,87 +96,6 @@ services:
     networks:
       - sonr-network
 
-  # Auth web application
-  auth:
-    container_name: auth
-    image: onsonr/auth:latest
-    build:
-      context: .
-      dockerfile: web/auth/Dockerfile
-    restart: unless-stopped
-    depends_on:
-      snrd:
-        condition: service_healthy
-      hway:
-        condition: service_healthy
-    environment:
-      NODE_ENV: ${NODE_ENV:-development}
-      PORT: 3100
-      NEXT_PUBLIC_API_URL: ${AUTH_NEXT_PUBLIC_API_URL:-http://localhost:8080}
-      OIDC_ISSUER: ${AUTH_OIDC_ISSUER:-http://localhost:3000}
-      OIDC_PUBLIC_URL: ${AUTH_OIDC_PUBLIC_URL:-http://localhost:3000}
-      WEBAUTHN_RP_ID: ${AUTH_WEBAUTHN_RP_ID:-localhost}
-      WEBAUTHN_RP_NAME: ${AUTH_WEBAUTHN_RP_NAME:-Sonr Identity Platform}
-      WEBAUTHN_TIMEOUT: ${AUTH_WEBAUTHN_TIMEOUT:-60000}
-      JWT_SECRET: ${AUTH_JWT_SECRET:-highway-ucan-secret-key}
-      REDIS_ADDR: redis:6379
-      OIDC_CLIENT_ID: ${AUTH_OIDC_CLIENT_ID:-sonr-auth}
-      LOG_LEVEL: ${AUTH_LOG_LEVEL:-info}
-      CORS_ENABLED: ${AUTH_CORS_ENABLED:-true}
-    ports:
-      - "127.0.0.1:3100:3100"
-    healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3100/"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
-    networks:
-      - sonr-network
-
-  # Dashboard web application
-  dash:
-    container_name: dash
-    image: onsonr/dash:latest
-    build:
-      context: .
-      dockerfile: web/dash/Dockerfile
-    restart: unless-stopped
-    depends_on:
-      snrd:
-        condition: service_healthy
-      hway:
-        condition: service_healthy
-      auth:
-        condition: service_healthy
-    environment:
-      NODE_ENV: ${NODE_ENV:-development}
-      PORT: 3200
-      NEXT_PUBLIC_CHAIN_ID: ${DASH_NEXT_PUBLIC_CHAIN_ID:-sonrtest_1-1}
-      NEXT_PUBLIC_CHAIN_ENDPOINT: http://snrd:26657
-      NEXT_PUBLIC_RPC_ENDPOINT: http://snrd:1317
-      NEXT_PUBLIC_GRPC_ENDPOINT: http://snrd:9090
-      NEXT_PUBLIC_WS_ENDPOINT: ws://snrd:26657/websocket
-      NEXT_PUBLIC_AUTH_URL: http://auth:3100
-      NEXT_PUBLIC_AUTH_DOMAIN: ${DASH_NEXT_PUBLIC_AUTH_DOMAIN:-localhost}
-      NEXT_PUBLIC_API_URL: ${DASH_NEXT_PUBLIC_API_URL:-http://localhost:3000}
-      NEXT_PUBLIC_SERVICE_NAME: ${DASH_NEXT_PUBLIC_SERVICE_NAME:-Sonr Dashboard}
-      NEXT_PUBLIC_IPFS_GATEWAY: ${DASH_NEXT_PUBLIC_IPFS_GATEWAY:-https://ipfs.io/ipfs/}
-      NEXT_PUBLIC_IPFS_API: http://ipfs:5001
-      NEXT_PUBLIC_WEBAUTHN_RP_NAME: ${DASH_NEXT_PUBLIC_WEBAUTHN_RP_NAME:-Sonr Dashboard}
-      NEXT_PUBLIC_WEBAUTHN_RP_ID: ${DASH_NEXT_PUBLIC_WEBAUTHN_RP_ID:-localhost}
-      NEXT_PUBLIC_LOG_LEVEL: ${DASH_NEXT_PUBLIC_LOG_LEVEL:-info}
-    ports:
-      - "127.0.0.1:3200:3200"
-    healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3200/"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
-    networks:
-      - sonr-network
-
 networks:
   sonr-network:
     driver: bridge
@@ -253,6 +103,4 @@ networks:
 
 volumes:
   caddy-config:
-  redis-data:
   caddy-data:
-  postgres-data:

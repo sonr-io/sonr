@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sonr-io/sonr/crypto/mpc"
+	"github.com/sonr-io/crypto/mpc"
 	"github.com/sonr-io/sonr/x/dwn/client/plugin"
 )
 

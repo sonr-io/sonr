@@ -13,7 +13,7 @@ import (
 	genutilcli "github.com/cosmos/cosmos-sdk/x/genutil/client/cli"
 	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
 	"github.com/sonr-io/sonr/app"
-	"github.com/sonr-io/sonr/crypto/vrf"
+	"github.com/sonr-io/crypto/vrf"
 	"github.com/spf13/cobra"
 )
 

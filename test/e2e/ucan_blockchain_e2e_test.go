@@ -12,8 +12,8 @@ import (
 	"github.com/stretchr/testify/suite"
 
 	"github.com/sonr-io/sonr/app"
-	"github.com/sonr-io/sonr/crypto/mpc"
-	"github.com/sonr-io/sonr/crypto/ucan"
+	"github.com/sonr-io/crypto/mpc"
+	"github.com/sonr-io/crypto/ucan"
 	didtypes "github.com/sonr-io/sonr/x/did/types"
 	"github.com/sonr-io/sonr/x/dwn/client/plugin"
 	dwntypes "github.com/sonr-io/sonr/x/dwn/types"

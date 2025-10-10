@@ -6,7 +6,7 @@ import (
 	"time"
 
 	extism "github.com/extism/go-sdk"
-	"github.com/sonr-io/sonr/crypto/mpc"
+	"github.com/sonr-io/crypto/mpc"
 )
 
 // EnclaveConfig represents the MPC enclave configuration for the Motor plugin.

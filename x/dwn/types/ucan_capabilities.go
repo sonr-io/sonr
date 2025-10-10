@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/sonr-io/sonr/crypto/ucan"
+	"github.com/sonr-io/crypto/ucan"
 )
 
 // UCAN Action Constants are defined in permissions.go

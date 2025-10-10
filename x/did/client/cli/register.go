@@ -16,7 +16,6 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/tx/signing"
 	authsigning "github.com/cosmos/cosmos-sdk/x/auth/signing"
-	webauthnutils "github.com/sonr-io/sonr/types/webauthn"
 	"github.com/sonr-io/sonr/x/did/client/server"
 	"github.com/sonr-io/sonr/x/did/types"
 )
@@ -525,10 +524,18 @@ func broadcastWebAuthnCredential(
 }
 
 // generateAddressFromWebAuthn generates a deterministic address from WebAuthn credential
-// using the centralized utility function from types/webauthn
 func generateAddressFromWebAuthn(credential *server.WebAuthnCredential) sdk.AccAddress {
-	// Use the centralized address generation to ensure consistency
-	return webauthnutils.GenerateAddressFromCredential(credential.CredentialID)
+	// Use the local types package for address generation
+	// It returns a hex string with 0x prefix
+	addrHex := types.GenerateAddressFromCredential(credential.CredentialID)
+	// Remove 0x prefix
+	addrHex = strings.TrimPrefix(addrHex, "0x")
+	// Decode hex to bytes
+	addrBytes := make([]byte, 20)
+	for i := 0; i < 20; i++ {
+		fmt.Sscanf(addrHex[i*2:i*2+2], "%02x", &addrBytes[i])
+	}
+	return sdk.AccAddress(addrBytes)
 }
 
 // promptForUsername prompts the user for a username using standard input

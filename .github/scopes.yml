@@ -7,9 +7,6 @@
     - app/**
     - go.mod
     - go.sum
-- name: crypto
-  include:
-    - crypto/**
 - name: devops
   include:
     - .github/**
@@ -22,52 +19,20 @@
 - name: docs
   include:
     - docs/**
-- name: hway
-  include:
-    - cmd/hway/**
-    - bridge/**
-    - types/**
 - name: dex
   include:
     - proto/dex/**
     - x/dex/**
 - name: did
   include:
-    - proto/dex/**
+    - proto/did/**
     - x/did/**
 - name: dwn
   include:
-    - proto/dex/**
+    - proto/dwn/**
     - x/dwn/**
 - name: svc
   include:
-    - proto/dex/**
+    - proto/svc/**
     - x/svc/**
-- name: motr
-  include:
-    - cmd/motr/**
-- name: vault
-  include:
-    - cmd/vault/**
-- name: com
-  include:
-    - packages/com/**
-- name: es
-  include:
-    - packages/es/**
-- name: pkl
-  include:
-    - packages/pkl/**
-- name: sdk
-  include:
-    - packages/sdk/**
-- name: ui
-  include:
-    - packages/ui/**
-- name: auth
-  include:
-    - web/auth/**
-- name: dash
-  include:
-    - web/dash/**
 

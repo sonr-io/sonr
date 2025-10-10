@@ -104,7 +104,7 @@ stop:
 ########################################
 ### Tools & dependencies
 ########################################
-format: go-format ts-format
+format: go-format
 go-format:
 	@gum log --level info "Formatting Go code with gofumpt and goimports..."
 	@if command -v gofumpt > /dev/null; then \
@@ -119,12 +119,7 @@ go-format:
 	fi
 	@gum log --level info "✅ Code formatted"
 
-ts-format:
-	@gum log --level info "Formatting all web applications..."
-	@pnpm biome format --config-path=$(PWD)/biome.json .
-
-
-lint: go-lint ts-lint
+lint: go-lint
 
 go-lint:
 	@gum log --level info "Running golangci-lint..."
@@ -137,11 +132,7 @@ go-lint:
 			golangci-lint run --timeout=10m; \
 	fi
 
-ts-lint:
-	@gum log --level info "Running Biome linter with auto-fix for TypeScript projects..."
-	@pnpm biome lint --config-path=./biome.json --write .
-
-.PHONY: lint go-lint ts-lint format
+.PHONY: lint go-lint format
 
 go-mod-cache: go.sum
 	@gum log --level info "Download go modules to local cache"
@@ -152,10 +143,6 @@ go.sum: go.mod
 	@go mod tidy
 	@go mod verify
 
-pnpm-install:
-	@gum log --level info "Installing pnpm dependencies"
-	@pnpm install
-
 draw-deps:
 	@# requires brew install graphviz or apt-get install graphviz
 	go install github.com/RobotsAndPencils/goviz@latest
@@ -165,18 +152,11 @@ draw-deps:
 tidy:
 	@go mod tidy
 	@make -C client tidy
-	@make -C crypto tidy
-	@make -C cmd/hway tidy
-	@make -C cmd/motr tidy
-	@make -C cmd/vault tidy
 
 clean: tidy
 	@gum log --level info "Cleaning build artifacts..."
 	rm -rf snapcraft-local.yaml build/ dist/
 	@$(MAKE) -C cmd/snrd clean
-	@$(MAKE) -C cmd/hway clean
-	@$(MAKE) -C cmd/vault clean
-	@$(MAKE) -C cmd/motr clean
 
 clean-docker:
 	@gum log --level info "Removing all Docker volumes and networks..."
@@ -197,28 +177,19 @@ build: go.sum
 
 build-snrd: build
 
-build-client: go.sum build-vault build-motr
+build-client: go.sum
 	@$(MAKE) -C client build
 	@cd /tmp && go mod init test || true
 	@cd /tmp && go get github.com/sonr-io/sonr/client@main || true
 	@cd /tmp && gum log --level info "Client SDK import successful"
 
-build-hway: go.sum build-vault build-motr
-	@$(MAKE) -C cmd/hway build
-
-build-vault:
-	@$(MAKE) -C cmd/vault build
-
-build-motr: ## Build Motor WASM service worker
-	@$(MAKE) -C cmd/motr build
-
 # Build all components in parallel
 build-all: go.sum
 	@gum log --level info "Building all components in parallel..."
-	@$(MAKE) -j5 build build-hway build-client build-motr build-vault
+	@$(MAKE) -j2 build build-client
 	@gum log --level info "✅ All components built successfully"
 
-.PHONY: install build build-client build-hway build-snrd build-vault build-motr build-all
+.PHONY: install build build-client build-snrd build-all
 
 ########################################
 ### Docker & Services
@@ -245,18 +216,12 @@ dockernet:
 ########################################
 # Smart component release detection and automation
 release:
-	@$(MAKE) -C cmd/hway release
-	@$(MAKE) -C cmd/motr release
 	@$(MAKE) -C cmd/snrd release
-	@$(MAKE) -C cmd/vault release
 
 # Snapshot builds for development
 snapshot:
 	@gum log --level info "📦 Preparing component snapshot..."
-	@$(MAKE) -C cmd/vault snapshot
-	@$(MAKE) -C cmd/motr snapshot
 	@$(MAKE) -C cmd/snrd snapshot
-	@$(MAKE) -C cmd/hway snapshot
 
 .PHONY: release snapshot
 
@@ -290,31 +255,22 @@ test-build-snrd: build
 	@chmod +x build/snrd
 	@./build/snrd version
 
-test-build-hway: build-hway
-	@ls -la build/hway
-
 test-tdd:
 	go test -json ./... 2>&1 | tdd-guard-go -project-root ${GIT_ROOT}
 
 test-app:
-	@VERSION=$(VERSION) go test -C . -mod=readonly -tags='ledger test_ledger_mock test' github.com/sonr-io/sonr/app/... github.com/sonr-io/sonr/x/... github.com/sonr-io/sonr/types/... github.com/sonr-io/sonr/internal/...
+	@VERSION=$(VERSION) CGO_LDFLAGS="-lm" go test -C . -mod=readonly -tags='ledger test_ledger_mock test' github.com/sonr-io/sonr/app/... github.com/sonr-io/sonr/x/... github.com/sonr-io/common/... github.com/sonr-io/sonr/internal/...
 
 test-devops:
 	@echo "No devops tests"
 
 test-client:
-	@$(MAKE) -C cmd/vault build
 	@$(MAKE) -C client test
 
-test-crypto:
-	@$(MAKE) -C crypto test
-
 test-dwn-ci:
-	@$(MAKE) -C cmd/vault build
 	@go test -mod=readonly -tags='ledger test_ledger_mock test' -run='!IPFS' ./x/dwn/...
 
 test-internal:
-	@$(MAKE) -C cmd/vault build
 	@VERSION=$(VERSION) go test -mod=readonly -tags='ledger test_ledger_mock test' ./internal/...
 
 # Module testing - Simplified
@@ -340,28 +296,14 @@ test-module:
 			VERSION=$(VERSION) go test -mod=readonly -tags='ledger test_ledger_mock test' ./x/$(MODULE)/...; \
 		fi \
 	fi
-
-# Specialized tests
-test-hway:
-	@gum log --level info "Testing Highway service..."
-	@VERSION=$(VERSION) go test -C . -mod=readonly -v github.com/sonr-io/sonr/bridge/...
-
 test-proto:
 	@$(MAKE) -C proto lint
 	@$(MAKE) -C proto check-breaking
 
-test-motr:
-	@gum log --level info "Testing Motor WASM service worker..."
-	@$(MAKE) -C cmd/motr test
-
-test-vault:
-	@gum log --level info "Testing Vault WASM plugin..."
-	@$(MAKE) -C cmd/vault test
-
 test-benchmark:
 	@go test -mod=readonly -bench=. ./...
 
-.PHONY: test test-all test-unit test-race test-cover test-tdd test-module test-hway test-motr test-vault test-benchmark
+.PHONY: test test-all test-unit test-race test-cover test-tdd test-module test-benchmark
 
 ###############################################################################
 ###                                Protobuf                                 ###
@@ -373,12 +315,6 @@ climd-gen:
 proto-gen:
 	@gum log --level info "Generating Go protobuf files..."
 	@$(MAKE) -C proto gen
-	@gum log --level info "Generating TypeScript protobuf files..."
-	@if [ -d "packages/es" ]; then \
-		cd packages/es && pnpm gen:protobufs || { gum log --level error "TypeScript protobuf generation failed"; exit 1; }; \
-	else \
-		gum log --level warn "Skipping TypeScript generation: packages/es not found"; \
-	fi
 	@gum log --level info "Auto-formatting generated protobuf files..."
 	@$(MAKE) format
 
@@ -400,8 +336,6 @@ swagger-gen:
 	done
 	@gum log --level info "Cleaning up empty source directories..."
 	@find docs/static/openapi -mindepth 1 -maxdepth 1 -type d -exec rm -rf {} +
-	@gum log --level info "Converting Swagger 2.0 to OpenAPI 3.0..."
-	@pnpm run convert-swagger
 	@gum log --level info "✅ API documentation processing complete."
 
 templ-gen:
@@ -444,13 +378,14 @@ help:
 	@gum log --level info ""
 	@gum log --level info "🛠️  Build & Install:"
 	@gum log --level info "  install             Install snrd binary"
-	@gum log --level info "  build               Build snrd binary with vault WASM"
+	@gum log --level info "  build               Build snrd binary"
 	@gum log --level info "  build-all           Build all components in parallel"
-	@gum log --level info "  build-hway          Build Highway service"
-	@gum log --level info "  build-vault         Build vault WASM module"
-	@gum log --level info "  build-motr          Build Motor WASM service worker"
 	@gum log --level info "  build-client        Build client SDK"
 	@gum log --level info "  docker              Build Docker images"
+	@gum log --level info ""
+	@gum log --level info "📦 Release & Distribution:"
+	@gum log --level info "  release             Create production release with GoReleaser"
+	@gum log --level info "  snapshot            Create development snapshot builds"
 	@gum log --level info ""
 	@gum log --level info "🚀 Local Development:"
 	@gum log --level info "  localnet            Start single-node testnet"
@@ -476,10 +411,6 @@ help:
 	@gum log --level info "  test-e2e            Run e2e tests"
 	@gum log --level info "  test-e2e-all        Run all e2e tests"
 	@gum log --level info "  test-module         Test specific module (MODULE=did|dwn|svc)"
-	@gum log --level info "  test-packages       Test all packages (lint + build)"
-	@gum log --level info "  test-ipfs           Test vault with IPFS export/import"
-	@gum log --level info "  test-vault          Test vault operations"
-	@gum log --level info "  test-web            Test all web apps (lint + build)"
 	@gum log --level info ""
 	@gum log --level info "📚 Module Testing Examples:"
 	@gum log --level info "  make test-module MODULE=did           # Test DID module"

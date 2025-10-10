@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/sonr-io/sonr/crypto/keys"
-	"github.com/sonr-io/sonr/crypto/ucan"
+	"github.com/sonr-io/crypto/keys"
+	"github.com/sonr-io/crypto/ucan"
 	"github.com/sonr-io/sonr/x/dwn/types"
 )
 

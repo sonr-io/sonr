@@ -8,8 +8,8 @@ import (
 	"time"
 
 	extism "github.com/extism/go-sdk"
-	"github.com/sonr-io/sonr/crypto/mpc"
-	"github.com/sonr-io/sonr/crypto/wasm"
+	"github.com/sonr-io/crypto/mpc"
+	"github.com/sonr-io/crypto/wasm"
 )
 
 // Manager handles the lifecycle of Motor plugin instances with health monitoring,

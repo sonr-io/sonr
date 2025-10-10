@@ -8,9 +8,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/bech32"
 	apiv1 "github.com/sonr-io/sonr/api/dwn/v1"
-	"github.com/sonr-io/sonr/crypto/keys"
-	"github.com/sonr-io/sonr/crypto/mpc"
-	"github.com/sonr-io/sonr/types/ipfs"
+	"github.com/sonr-io/crypto/keys"
+	"github.com/sonr-io/crypto/mpc"
+	"github.com/sonr-io/common/ipfs"
 	"github.com/sonr-io/sonr/x/dwn/types"
 )
 

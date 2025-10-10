@@ -11,7 +11,7 @@ replace (
 	cosmossdk.io/store => github.com/evmos/cosmos-sdk/store v0.0.0-20240718141609-414cbd051fbe
 	github.com/99designs/keyring => github.com/cosmos/keyring v1.2.0
 	github.com/cosmos/cosmos-sdk => github.com/strangelove-ventures/cosmos-sdk v0.0.0-20250317212103-0767f8c5b1e5
-	github.com/sonr-io/sonr/crypto => ../crypto
+	github.com/sonr-io/crypto => ../crypto
 	github.com/spf13/viper => github.com/spf13/viper v1.17.0
 	nhooyr.io/websocket => nhooyr.io/websocket v1.8.17
 )
@@ -172,7 +172,7 @@ require (
 	github.com/sagikazarmark/locafero v0.4.0 // indirect
 	github.com/sagikazarmark/slog-shim v0.1.0 // indirect
 	github.com/sasha-s/go-deadlock v0.3.5 // indirect
-	github.com/sonr-io/sonr/crypto v0.0.0-00010101000000-000000000000 // indirect
+	github.com/sonr-io/crypto v0.0.0-00010101000000-000000000000 // indirect
 	github.com/sourcegraph/conc v0.3.0 // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
 	github.com/spf13/afero v1.11.0 // indirect

@@ -3,7 +3,7 @@ package types
 import (
 	"fmt"
 
-	"github.com/sonr-io/sonr/crypto/ucan"
+	"github.com/sonr-io/crypto/ucan"
 )
 
 // UCAN Action Constants for DEX operations

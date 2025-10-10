@@ -4,7 +4,7 @@ import (
 	"context"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/sonr-io/sonr/crypto/mpc"
+	"github.com/sonr-io/crypto/mpc"
 )
 
 // AccountKeeper defines the expected account keeper interface

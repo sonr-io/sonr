@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/sonr-io/sonr/types/webauthn"
+	"github.com/sonr-io/common/webauthn"
 	"github.com/sonr-io/sonr/x/did/types"
 )
 
@@ -160,7 +160,7 @@ func (v *WebAuthnControllerVerifier) verifyWebAuthnAssertion(
 	// Additional Sonr-specific validations
 
 	// Verify the credential origin matches what's stored
-	clientData, err := webauthn.ValidateClientDataJSONFormat(assertion.ClientDataJSON)
+	clientData, err := types.ValidateClientDataJSONFormat(assertion.ClientDataJSON)
 	if err != nil {
 		return fmt.Errorf("failed to validate client data JSON: %w", err)
 	}
@@ -174,7 +174,7 @@ func (v *WebAuthnControllerVerifier) verifyWebAuthnAssertion(
 	}
 
 	// Verify the algorithm is supported
-	if err := webauthn.ValidateAlgorithmSupport(credential.Algorithm); err != nil {
+	if err := types.ValidateAlgorithmSupport(credential.Algorithm); err != nil {
 		return fmt.Errorf("algorithm validation failed: %w", err)
 	}
 

@@ -12,8 +12,9 @@ import (
 
 	"cosmossdk.io/log"
 	"github.com/labstack/echo/v4"
-	"github.com/sonr-io/sonr/types/webauthn"
-	"github.com/sonr-io/sonr/types/webauthn/webauthncbor"
+	"github.com/sonr-io/common/webauthn"
+	"github.com/sonr-io/common/webauthn/webauthncbor"
+	didtypes "github.com/sonr-io/sonr/x/did/types"
 )
 
 var logger = log.NewLogger(os.Stderr)
@@ -544,8 +545,8 @@ func generateChallenge() (string, error) {
 
 // verifyClientData verifies the client data JSON and challenge using centralized WebAuthn validation
 func verifyClientData(clientDataJSON, expectedChallenge string) error {
-	// Parse client data using the centralized WebAuthn protocol parser
-	clientData, err := webauthn.ValidateClientDataJSONFormat(clientDataJSON)
+	// Parse client data using the local types validation
+	clientData, err := didtypes.ValidateClientDataJSONFormat(clientDataJSON)
 	if err != nil {
 		return fmt.Errorf("failed to parse client data: %w", err)
 	}
@@ -581,8 +582,8 @@ func verifyClientData(clientDataJSON, expectedChallenge string) error {
 
 // verifyClientDataForAuthentication verifies the client data JSON and challenge for authentication
 func verifyClientDataForAuthentication(clientDataJSON, expectedChallenge string) error {
-	// Parse client data using the centralized WebAuthn protocol parser
-	clientData, err := webauthn.ValidateClientDataJSONFormat(clientDataJSON)
+	// Parse client data using the local types validation
+	clientData, err := didtypes.ValidateClientDataJSONFormat(clientDataJSON)
 	if err != nil {
 		return fmt.Errorf("failed to parse client data: %w", err)
 	}
@@ -673,8 +674,8 @@ func processWebAuthnRegistration(credential *WebAuthnCredential) error {
 
 // extractOriginFromClientData extracts the origin from client data JSON using centralized WebAuthn parsing
 func extractOriginFromClientData(clientDataJSON string) (string, error) {
-	// Use the centralized WebAuthn client data parser
-	clientData, err := webauthn.ValidateClientDataJSONFormat(clientDataJSON)
+	// Use the local types validation
+	clientData, err := didtypes.ValidateClientDataJSONFormat(clientDataJSON)
 	if err != nil {
 		return "", fmt.Errorf("failed to parse client data: %w", err)
 	}
@@ -688,8 +689,8 @@ func extractOriginFromClientData(clientDataJSON string) (string, error) {
 
 // extractPublicKeyFromAttestation extracts public key and algorithm from attestation object using centralized WebAuthn parsing
 func extractPublicKeyFromAttestation(attestationObject string) ([]byte, int32, error) {
-	// Use the centralized WebAuthn attestation validation first
-	if err := webauthn.ValidateAttestationObjectFormat(attestationObject); err != nil {
+	// Use the local types validation first
+	if err := didtypes.ValidateAttestationObjectFormat(attestationObject); err != nil {
 		return nil, 0, fmt.Errorf("invalid attestation object format: %w", err)
 	}
 

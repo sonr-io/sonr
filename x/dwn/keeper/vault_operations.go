@@ -14,7 +14,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/ipfs/go-cid"
 
-	"github.com/sonr-io/sonr/crypto/mpc"
+	"github.com/sonr-io/crypto/mpc"
 	didtypes "github.com/sonr-io/sonr/x/did/types"
 	"github.com/sonr-io/sonr/x/dwn/types"
 )

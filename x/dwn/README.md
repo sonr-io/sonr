@@ -663,7 +663,7 @@ The DWN module integrates with several core packages to provide enhanced functio
   - Integration with transaction builders for proper fee calculation
   - Support for multiple denomination formats and conversions
 
-- **github.com/sonr-io/sonr/crypto**: Enhanced cryptographic operations
+- **github.com/sonr-io/crypto**: Enhanced cryptographic operations
   - Address derivation from public keys, entropy, and MPC enclaves
   - Multi-party computation support for distributed key management
   - Secure key generation and cryptographic primitives

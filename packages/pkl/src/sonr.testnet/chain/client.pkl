@@ -1,7 +1,0 @@
-extends "https://mod.pkl.sh/cosmos.chain/Client.pkl"
-
-`chain-id` = "sonr-testnet-1"
-`keyring-backend` = "test"
-output = "text"
-node = "tcp://localhost:26657"
-`broadcast-mode` = "sync"

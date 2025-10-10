@@ -10,7 +10,7 @@ import (
 	"cosmossdk.io/log"
 	"github.com/cosmos/cosmos-sdk/client"
 
-	"github.com/sonr-io/sonr/crypto/vrf"
+	"github.com/sonr-io/crypto/vrf"
 )
 
 // SonrContext manages node-specific state and configuration

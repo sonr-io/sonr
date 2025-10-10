@@ -8,8 +8,8 @@ import (
 	"github.com/stretchr/testify/suite"
 
 	sonrcontext "github.com/sonr-io/sonr/app/context"
-	"github.com/sonr-io/sonr/crypto/mpc"
-	"github.com/sonr-io/sonr/types/ipfs"
+	"github.com/sonr-io/crypto/mpc"
+	"github.com/sonr-io/common/ipfs"
 	"github.com/sonr-io/sonr/x/dwn/types"
 )
 
