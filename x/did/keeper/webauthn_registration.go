@@ -11,8 +11,8 @@ import (
 
 	"cosmossdk.io/collections"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	webauthn "github.com/sonr-io/sonr/types/webauthn"
-	"github.com/sonr-io/sonr/types/webauthn/webauthncbor"
+	webauthn "github.com/sonr-io/common/webauthn"
+	"github.com/sonr-io/common/webauthn/webauthncbor"
 	"github.com/sonr-io/sonr/x/did/types"
 )
 

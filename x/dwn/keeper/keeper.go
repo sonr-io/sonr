@@ -28,7 +28,7 @@ import (
 	sonrcontext "github.com/sonr-io/sonr/app/context"
 	"github.com/sonr-io/crypto/mpc"
 	"github.com/sonr-io/crypto/vrf"
-	"github.com/sonr-io/sonr/types/ipfs"
+	"github.com/sonr-io/common/ipfs"
 	didtypes "github.com/sonr-io/sonr/x/did/types"
 	"github.com/sonr-io/sonr/x/dwn/types"
 )

@@ -10,7 +10,7 @@ import (
 	apiv1 "github.com/sonr-io/sonr/api/dwn/v1"
 	"github.com/sonr-io/crypto/keys"
 	"github.com/sonr-io/crypto/mpc"
-	"github.com/sonr-io/sonr/types/ipfs"
+	"github.com/sonr-io/common/ipfs"
 	"github.com/sonr-io/sonr/x/dwn/types"
 )
 

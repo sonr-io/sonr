@@ -6,7 +6,7 @@
 package types
 
 import (
-	webauthnvalidation "github.com/sonr-io/sonr/types/webauthn"
+	webauthnvalidation "github.com/sonr-io/common/webauthn"
 )
 
 // WebAuthnCredential automatically implements the WebAuthnCredential interface

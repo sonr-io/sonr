@@ -10,8 +10,8 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/sonr-io/sonr/types/webauthn"
-	"github.com/sonr-io/sonr/types/webauthn/webauthncose"
+	"github.com/sonr-io/common/webauthn"
+	"github.com/sonr-io/common/webauthn/webauthncose"
 )
 
 // WebAuthnFlowTestSuite tests the complete WebAuthn registration and authentication flow

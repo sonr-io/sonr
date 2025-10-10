@@ -12,8 +12,8 @@ import (
 
 	"cosmossdk.io/log"
 	"github.com/labstack/echo/v4"
-	"github.com/sonr-io/sonr/types/webauthn"
-	"github.com/sonr-io/sonr/types/webauthn/webauthncbor"
+	"github.com/sonr-io/common/webauthn"
+	"github.com/sonr-io/common/webauthn/webauthncbor"
 )
 
 var logger = log.NewLogger(os.Stderr)

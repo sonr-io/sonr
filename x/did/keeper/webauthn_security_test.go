@@ -10,9 +10,9 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/sonr-io/sonr/types/webauthn"
-	"github.com/sonr-io/sonr/types/webauthn/webauthncbor"
-	"github.com/sonr-io/sonr/types/webauthn/webauthncose"
+	"github.com/sonr-io/common/webauthn"
+	"github.com/sonr-io/common/webauthn/webauthncbor"
+	"github.com/sonr-io/common/webauthn/webauthncose"
 	"github.com/sonr-io/sonr/x/did/keeper"
 	"github.com/sonr-io/sonr/x/did/types"
 )

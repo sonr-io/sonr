@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/sonr-io/sonr/types/webauthn"
+	"github.com/sonr-io/common/webauthn"
 	"github.com/sonr-io/sonr/x/did/types"
 )
 

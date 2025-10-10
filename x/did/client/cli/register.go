@@ -16,7 +16,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/tx/signing"
 	authsigning "github.com/cosmos/cosmos-sdk/x/auth/signing"
-	webauthnutils "github.com/sonr-io/sonr/types/webauthn"
+	webauthnutils "github.com/sonr-io/common/webauthn"
 	"github.com/sonr-io/sonr/x/did/client/server"
 	"github.com/sonr-io/sonr/x/did/types"
 )

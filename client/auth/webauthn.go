@@ -13,9 +13,9 @@ import (
 
 	"github.com/sonr-io/sonr/client/errors"
 	"github.com/sonr-io/sonr/client/keys"
-	"github.com/sonr-io/sonr/types/webauthn"
-	"github.com/sonr-io/sonr/types/webauthn/webauthncbor"
-	"github.com/sonr-io/sonr/types/webauthn/webauthncose"
+	"github.com/sonr-io/common/webauthn"
+	"github.com/sonr-io/common/webauthn/webauthncbor"
+	"github.com/sonr-io/common/webauthn/webauthncose"
 )
 
 // WebAuthnClient provides an interface for WebAuthn operations with Sonr's Decentralized Abstracted Smart Wallets.
