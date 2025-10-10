@@ -17,7 +17,7 @@ replace (
 )
 
 require (
-	cosmossdk.io/errors v1.0.1
+	cosmossdk.io/errors v1.0.2
 	cosmossdk.io/math v1.5.0
 	github.com/cosmos/cosmos-sdk v0.53.4
 	github.com/sonr-io/sonr v0.0.0-00010101000000-000000000000
