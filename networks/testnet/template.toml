@@ -1,0 +1,107 @@
+[variables]
+# Naruto Sentry Domains
+naruto_rpc_domain = "${domain}"
+naruto_rest_domain = "${domain}"
+naruto_grpc_domain = "${domain}"
+naruto_evm_domain = "${domain}"
+
+# Senku Sentry Domains
+senku_rpc_domain = "${domain}"
+senku_rest_domain = "${domain}"
+senku_grpc_domain = "${domain}"
+senku_evm_domain = "${domain}"
+
+# Yaeger Sentry Domains
+yaeger_rpc_domain = "${domain}"
+yaeger_rest_domain = "${domain}"
+yaeger_grpc_domain = "${domain}"
+yaeger_evm_domain = "${domain}"
+
+# IPFS Domains
+ipfs_api_domain = "${domain}"
+ipfs_gateway_domain = "${domain}"
+
+[config]
+# Naruto Sentry RPC
+[[config.domains]]
+serviceName = "sentry-naruto"
+port = 26657
+host = "${naruto_rpc_domain}"
+
+# Naruto Sentry REST
+[[config.domains]]
+serviceName = "sentry-naruto"
+port = 1317
+host = "${naruto_rest_domain}"
+
+# Naruto Sentry gRPC
+[[config.domains]]
+serviceName = "sentry-naruto"
+port = 9090
+host = "${naruto_grpc_domain}"
+
+# Naruto Sentry EVM
+[[config.domains]]
+serviceName = "sentry-naruto"
+port = 8545
+host = "${naruto_evm_domain}"
+
+# Senku Sentry RPC
+[[config.domains]]
+serviceName = "sentry-senku"
+port = 26657
+host = "${senku_rpc_domain}"
+
+# Senku Sentry REST
+[[config.domains]]
+serviceName = "sentry-senku"
+port = 1317
+host = "${senku_rest_domain}"
+
+# Senku Sentry gRPC
+[[config.domains]]
+serviceName = "sentry-senku"
+port = 9090
+host = "${senku_grpc_domain}"
+
+# Senku Sentry EVM
+[[config.domains]]
+serviceName = "sentry-senku"
+port = 8545
+host = "${senku_evm_domain}"
+
+# Yaeger Sentry RPC
+[[config.domains]]
+serviceName = "sentry-yaeger"
+port = 26657
+host = "${yaeger_rpc_domain}"
+
+# Yaeger Sentry REST
+[[config.domains]]
+serviceName = "sentry-yaeger"
+port = 1317
+host = "${yaeger_rest_domain}"
+
+# Yaeger Sentry gRPC
+[[config.domains]]
+serviceName = "sentry-yaeger"
+port = 9090
+host = "${yaeger_grpc_domain}"
+
+# Yaeger Sentry EVM
+[[config.domains]]
+serviceName = "sentry-yaeger"
+port = 8545
+host = "${yaeger_evm_domain}"
+
+# IPFS API
+[[config.domains]]
+serviceName = "ipfsctl"
+port = 5001
+host = "${ipfs_api_domain}"
+
+# IPFS Gateway
+[[config.domains]]
+serviceName = "ipfsctl"
+port = 8080
+host = "${ipfs_gateway_domain}"
