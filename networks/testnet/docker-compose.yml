@@ -1,0 +1,200 @@
+name: sonr-testnet
+networks:
+  net-naruto:
+  net-senku:
+  net-yaeger:
+  net-public:
+  dokploy-network:
+    external: true
+
+services:
+   val-naruto:
+    image: onsonr/snrd:latest
+    container_name: val-naruto
+    command: sh -c "mkdir -p /root/.sonr && /usr/bin/testnet-setup.sh && snrd start --home /root/.sonr --pruning=nothing --minimum-gas-prices=0usnr --chain-id=sonrtest_1-1"
+    environment:
+      - CHAIN_ID=sonrtest_1-1
+      - MONIKER=val-naruto
+      - NODE_TYPE=validator
+      - VALIDATOR_NAME=val-naruto
+      - WAIT_FOR_SYNC=false
+    volumes:
+      - ../val-naruto:/root/.sonr
+    networks:
+      - net-naruto
+    restart: unless-stopped
+
+   sentry-naruto:
+     image: onsonr/snrd:latest
+     container_name: sentry-naruto
+     command: sh -c "/usr/bin/testnet-setup.sh && snrd start --home /root/.sonr --pruning=nothing --minimum-gas-prices=0usnr --rpc.laddr=tcp://0.0.0.0:26657 --json-rpc.api=eth,txpool,personal,net,debug,web3 --json-rpc.address=0.0.0.0:8545 --json-rpc.ws-address=0.0.0.0:8546 --chain-id=sonrtest_1-1"
+     environment:
+      - CHAIN_ID=sonrtest_1-1
+      - MONIKER=sentry-naruto
+      - NODE_TYPE=sentry
+      - VALIDATOR_NAME=sentry-naruto
+      - WAIT_FOR_SYNC=true
+     volumes:
+       - ../sentry-naruto:/root/.sonr
+     networks:
+      - net-naruto
+      - net-public
+      - dokploy-network
+     labels:
+      - traefik.enable=true
+      - traefik.http.routers.naruto-rpc.rule=Host(`${naruto_rpc_domain}`)
+      - traefik.http.routers.naruto-rpc.entrypoints=websecure
+      - traefik.http.routers.naruto-rpc.tls.certResolver=letsencrypt
+      - traefik.http.services.naruto-rpc.loadbalancer.server.port=26657
+      - traefik.http.routers.naruto-rest.rule=Host(`${naruto_rest_domain}`)
+      - traefik.http.routers.naruto-rest.entrypoints=websecure
+      - traefik.http.routers.naruto-rest.tls.certResolver=letsencrypt
+      - traefik.http.services.naruto-rest.loadbalancer.server.port=1317
+      - traefik.http.routers.naruto-grpc.rule=Host(`${naruto_grpc_domain}`)
+      - traefik.http.routers.naruto-grpc.entrypoints=websecure
+      - traefik.http.routers.naruto-grpc.tls.certResolver=letsencrypt
+      - traefik.http.services.naruto-grpc.loadbalancer.server.port=9090
+      - traefik.http.routers.naruto-evm.rule=Host(`${naruto_evm_domain}`)
+      - traefik.http.routers.naruto-evm.entrypoints=websecure
+      - traefik.http.routers.naruto-evm.tls.certResolver=letsencrypt
+      - traefik.http.services.naruto-evm.loadbalancer.server.port=8545
+     depends_on:
+      - val-naruto
+     restart: unless-stopped
+
+     # Senku's Validator
+   val-senku:
+    image: onsonr/snrd:latest
+    container_name: val-senku
+    command: sh -c "/usr/bin/testnet-setup.sh && snrd start --home /root/.sonr --pruning=nothing --minimum-gas-prices=0usnr --chain-id=sonrtest_1-1"
+    environment:
+      - CHAIN_ID=sonrtest_1-1
+      - MONIKER=val-senku
+      - NODE_TYPE=validator
+      - VALIDATOR_NAME=val-senku
+      - WAIT_FOR_SYNC=false
+    volumes:
+      - ../val-senku:/root/.sonr
+    networks:
+      - net-senku
+    restart: unless-stopped
+
+    # Senku's Sentry
+   sentry-senku:
+      image: onsonr/snrd:latest
+      container_name: sentry-senku
+      command: sh -c "/usr/bin/testnet-setup.sh && snrd start --home /root/.sonr --pruning=nothing --minimum-gas-prices=0usnr --rpc.laddr=tcp://0.0.0.0:26657 --json-rpc.api=eth,txpool,personal,net,debug,web3 --json-rpc.address=0.0.0.0:8545 --json-rpc.ws-address=0.0.0.0:8546 --chain-id=sonrtest_1-1"
+      environment:
+        - CHAIN_ID=sonrtest_1-1
+        - MONIKER=sentry-senku
+        - NODE_TYPE=sentry
+        - VALIDATOR_NAME=sentry-senku
+        - WAIT_FOR_SYNC=true
+      volumes:
+        - ../sentry-senku:/root/.sonr
+      networks:
+        - net-senku
+        - net-public
+        - dokploy-network
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.senku-rpc.rule=Host(`${senku_rpc_domain}`)
+        - traefik.http.routers.senku-rpc.entrypoints=websecure
+        - traefik.http.routers.senku-rpc.tls.certResolver=letsencrypt
+        - traefik.http.services.senku-rpc.loadbalancer.server.port=26657
+        - traefik.http.routers.senku-rest.rule=Host(`${senku_rest_domain}`)
+        - traefik.http.routers.senku-rest.entrypoints=websecure
+        - traefik.http.routers.senku-rest.tls.certResolver=letsencrypt
+        - traefik.http.services.senku-rest.loadbalancer.server.port=1317
+        - traefik.http.routers.senku-grpc.rule=Host(`${senku_grpc_domain}`)
+        - traefik.http.routers.senku-grpc.entrypoints=websecure
+        - traefik.http.routers.senku-grpc.tls.certResolver=letsencrypt
+        - traefik.http.services.senku-grpc.loadbalancer.server.port=9090
+        - traefik.http.routers.senku-evm.rule=Host(`${senku_evm_domain}`)
+        - traefik.http.routers.senku-evm.entrypoints=websecure
+        - traefik.http.routers.senku-evm.tls.certResolver=letsencrypt
+        - traefik.http.services.senku-evm.loadbalancer.server.port=8545
+      depends_on:
+        - val-senku
+      restart: unless-stopped
+
+    # Yaeger's Validator
+   val-yaeger:
+    image: onsonr/snrd:latest
+    container_name: val-yaeger
+    command: sh -c "/usr/bin/testnet-setup.sh && snrd start --home /root/.sonr --pruning=nothing --minimum-gas-prices=0usnr --chain-id=sonrtest_1-1"
+    environment:
+      - CHAIN_ID=sonrtest_1-1
+      - MONIKER=val-yaeger
+      - NODE_TYPE=validator
+      - VALIDATOR_NAME=val-yaeger
+      - WAIT_FOR_SYNC=false
+    volumes:
+      - ../val-yaeger:/root/.sonr
+    networks:
+      - net-yaeger
+    restart: unless-stopped
+
+     # Yaeger's Sentry (Public Node)
+   sentry-yaeger:
+    image: onsonr/snrd:latest
+    container_name: sentry-yaeger
+    command: sh -c "/usr/bin/testnet-setup.sh && snrd start --home /root/.sonr --pruning=nothing --minimum-gas-prices=0usnr --rpc.laddr=tcp://0.0.0.0:26657 --json-rpc.api=eth,txpool,personal,net,debug,web3 --json-rpc.address=0.0.0.0:8545 --json-rpc.ws-address=0.0.0.0:8546 --chain-id=sonrtest_1-1"
+    environment:
+      - CHAIN_ID=sonrtest_1-1
+      - MONIKER=sentry-yaeger
+      - NODE_TYPE=sentry
+      - VALIDATOR_NAME=sentry-yaeger
+      - WAIT_FOR_SYNC=true
+    volumes:
+      - ../sentry-yaeger:/root/.sonr
+    networks:
+      - net-yaeger
+      - net-public
+      - dokploy-network
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.yaeger-rpc.rule=Host(`${yaeger_rpc_domain}`)
+      - traefik.http.routers.yaeger-rpc.entrypoints=websecure
+      - traefik.http.routers.yaeger-rpc.tls.certResolver=letsencrypt
+      - traefik.http.services.yaeger-rpc.loadbalancer.server.port=26657
+      - traefik.http.routers.yaeger-rest.rule=Host(`${yaeger_rest_domain}`)
+      - traefik.http.routers.yaeger-rest.entrypoints=websecure
+      - traefik.http.routers.yaeger-rest.tls.certResolver=letsencrypt
+      - traefik.http.services.yaeger-rest.loadbalancer.server.port=1317
+      - traefik.http.routers.yaeger-grpc.rule=Host(`${yaeger_grpc_domain}`)
+      - traefik.http.routers.yaeger-grpc.entrypoints=websecure
+      - traefik.http.routers.yaeger-grpc.tls.certResolver=letsencrypt
+      - traefik.http.services.yaeger-grpc.loadbalancer.server.port=9090
+      - traefik.http.routers.yaeger-evm.rule=Host(`${yaeger_evm_domain}`)
+      - traefik.http.routers.yaeger-evm.entrypoints=websecure
+      - traefik.http.routers.yaeger-evm.tls.certResolver=letsencrypt
+      - traefik.http.services.yaeger-evm.loadbalancer.server.port=8545
+    depends_on:
+      - val-yaeger
+    restart: unless-stopped
+
+   ipfsctl:
+    image: ipfs/kubo:latest
+    container_name: ipfsctl
+    environment:
+      - IPFS_PROFILE=server
+    volumes:
+      - ipfs-data:/data/ipfs
+    networks:
+      - net-public
+      - dokploy-network
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.ipfs-api.rule=Host(`${ipfs_api_domain}`)
+      - traefik.http.routers.ipfs-api.entrypoints=websecure
+      - traefik.http.routers.ipfs-api.tls.certResolver=letsencrypt
+      - traefik.http.services.ipfs-api.loadbalancer.server.port=5001
+      - traefik.http.routers.ipfs-gateway.rule=Host(`${ipfs_gateway_domain}`)
+      - traefik.http.routers.ipfs-gateway.entrypoints=websecure
+      - traefik.http.routers.ipfs-gateway.tls.certResolver=letsencrypt
+      - traefik.http.services.ipfs-gateway.loadbalancer.server.port=8080
+    restart: unless-stopped
+
+volumes:
+  ipfs-data:

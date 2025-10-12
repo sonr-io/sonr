@@ -1,5 +1,5 @@
 {
-  "name": "snrd",
+  "name": "sonr",
   "version": "0.1.0",
   "description": "Plugin for Sonr PostgreSQL Docker image with pgsodium support and auto-start service",
   "packages": ["docker@latest"],
@@ -19,7 +19,7 @@
     "{{ .Virtenv }}/data": "",
     "{{ .Virtenv }}/logs": "",
     "{{ .Virtenv }}/process-compose.yaml": "etc/process-compose.yaml",
-    "{{ .DevboxDir }}/init.sh": "etc/init.sh"
+    "{{ .DevboxDir }}/init.sh": "scripts/test_node.sh"
   },
   "shell": {
     "init_hook": ["chmod +x {{ .DevboxDir }}/init.sh", "{{ .DevboxDir }}/init.sh"],

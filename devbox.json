@@ -2,17 +2,11 @@
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/main/.schema/devbox.schema.json",
   "packages": [
     "gum@latest",
-    "nodejs@latest",
     "docker@latest",
-    "pnpm@10.14.0",
     "go@1.24.4",
     "gcc@latest",
-    "tinygo@latest",
-    "templ@latest",
+    "jq@latest",
     "trunk@latest",
-    "wrkflw@latest",
-    "uv@latest",
-    "commitizen@latest",
     "mods@latest",
     "yq@latest"
   ],
@@ -42,24 +36,13 @@
       "alias pr-description='./scripts/github-env.sh pr-description'",
       "alias validate-default-branch='./scripts/github-env.sh validate-default-branch'",
       "alias commit-summary='./scripts/github-env.sh commit-summary'",
-      "sh ./scripts/devbox-env.sh install"
+      "go mod download"
     ],
     "scripts": {
       "build": "make build-all",
       "test": "make test-all",
       "snapshot": "make snapshot",
-      "release": "make release",
-      "build:client": "make build-client",
-      "build:core": "make -C cmd/snrd build",
-      "test:client": "make test-client",
-      "test:core": "make test-app",
-      "test:dex": "make test-module MODULE=dex",
-      "test:devops": "make test-devops",
-      "test:did": "make test-module MODULE=did",
-      "test:dwn": "make test-dwn-ci",
-      "test:svc": "make test-module MODULE=svc",
-      "snapshot:core": "make -C cmd/snrd snapshot",
-      "release:core": "make -C cmd/snrd release"
+      "release": "make release"
     }
   }
 }

@@ -1,5 +1,5 @@
 # Use build argument for base image to allow using pre-cached base
-ARG BASE_IMAGE=golang:1.24.7-alpine3.22
+ARG BASE_IMAGE=golang:1.25-alpine3.22
 
 FROM ${BASE_IMAGE} AS builder
 SHELL ["/bin/sh", "-ecuxo", "pipefail"]
@@ -26,7 +26,7 @@ RUN git config --global --add safe.directory /code
 RUN --mount=type=cache,target=/tmp/wasmvm \
     set -eux; \
     export ARCH=$(uname -m); \
-    WASM_VERSION=$(go list -m all | grep github.com/CosmWasm/wasmvm | head -1 || echo ""); \
+    WASM_VERSION=$(GOTOOLCHAIN=auto go list -m all | grep github.com/CosmWasm/wasmvm | head -1 || echo ""); \
     if [ ! -z "${WASM_VERSION}" ]; then \
         WASMVM_REPO=$(echo $WASM_VERSION | awk '{print $1}'); \
         WASMVM_VERS=$(echo $WASM_VERSION | awk '{print $2}'); \
@@ -40,7 +40,7 @@ RUN --mount=type=cache,target=/tmp/wasmvm \
 # Download Go modules
 RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/root/.cache/go-build \
-    go mod download
+    GOTOOLCHAIN=auto go mod download
 
 # Build binary with optimizations
 RUN --mount=type=cache,target=/go/pkg/mod \
@@ -50,7 +50,7 @@ RUN --mount=type=cache,target=/go/pkg/mod \
     COMMIT=$(git log -1 --format='%H' 2>/dev/null || echo "unknown"); \
     LEDGER_ENABLED=false BUILD_TAGS=muslc LINK_STATICALLY=true \
     CGO_ENABLED=1 GOOS=linux \
-    go build \
+    GOTOOLCHAIN=auto go build \
         -mod=readonly \
         -tags "netgo,ledger,muslc" \
         -ldflags "-X github.com/cosmos/cosmos-sdk/version.Name=sonr \
@@ -91,7 +91,7 @@ RUN git config --global --add safe.directory /code
 # Download Go modules
 RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/root/.cache/go-build \
-    go mod download
+    GOTOOLCHAIN=auto go mod download
 
 # Build Highway binary with optimizations
 RUN --mount=type=cache,target=/go/pkg/mod \
@@ -156,8 +156,12 @@ LABEL org.opencontainers.image.source="https://github.com/sonr-io/sonr"
 # Copy binary from build stage
 COPY --from=builder /code/build/snrd /usr/bin
 COPY --from=builder /lib/libwasmvm_muslc.a /lib/libwasmvm_muslc.a
-COPY --from=builder /code/scripts/test_node.sh /usr/bin/testnet
-RUN chmod +x /usr/bin/testnet
+
+# Copy runtime scripts and make them executable
+COPY --from=builder /code/scripts/test_node.sh /usr/bin/devnet
+COPY --from=builder /code/scripts/testnet-setup.sh /usr/bin/testnet-setup.sh
+COPY --from=builder /code/scripts/lib/ /usr/local/lib/sonr-scripts/
+RUN chmod +x /usr/bin/devnet /usr/bin/testnet-setup.sh /usr/local/lib/sonr-scripts/*.sh
 
 # Set up dependencies
 ENV PACKAGES="curl make bash jq sed"
