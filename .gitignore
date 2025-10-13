@@ -11,6 +11,7 @@ Thumbs.db
 .logs/
 .venv/
 services/
+Taskfile*
 
 # ===== IDE & Editor Files =====
 .vscode/
