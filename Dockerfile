@@ -159,9 +159,8 @@ COPY --from=builder /lib/libwasmvm_muslc.a /lib/libwasmvm_muslc.a
 
 # Copy runtime scripts and make them executable
 COPY --from=builder /code/scripts/test_node.sh /usr/bin/devnet
-COPY --from=builder /code/scripts/testnet-setup.sh /usr/bin/testnet-setup.sh
+COPY --from=builder /code/scripts/testnet-setup.sh /usr/bin/testnet
 COPY --from=builder /code/scripts/lib/ /usr/local/lib/sonr-scripts/
-RUN chmod +x /usr/bin/devnet /usr/bin/testnet-setup.sh /usr/local/lib/sonr-scripts/*.sh
 
 # Set up dependencies
 ENV PACKAGES="curl make bash jq sed"

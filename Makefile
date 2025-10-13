@@ -197,7 +197,7 @@ build-all: go.sum
 
 docker:
 	@gum log --level info "Building Docker images..."
-	@bash scripts/containers.sh build-all
+	@docker buildx build -t onsonr/snrd:latest -f Dockerfile .
 
 localnet: ## Cross-platform localnet (auto-detects best method for your system)
 	@bash scripts/cross_platform_localnet.sh
