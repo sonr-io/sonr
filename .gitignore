@@ -12,6 +12,8 @@ Thumbs.db
 .venv/
 services/
 Taskfile*
+mprocs*
+.claude*
 
 # ===== IDE & Editor Files =====
 .vscode/
