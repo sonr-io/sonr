@@ -122,3 +122,4 @@ data/
 compose/
 heighliner*
 **/*.swagger.yaml
+.mcp.json
