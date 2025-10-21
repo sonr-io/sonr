@@ -54,33 +54,23 @@ build_locally() {
 		exit 1
 	fi
 
-	# Build binaries
+	# Build binary
 	echo "Building snrd..."
 	make build || {
 		echo "Error: Failed to build snrd"
 		exit 1
 	}
 
-	echo "Building motr..."
-	make motr || {
-		echo "Error: Failed to build motr"
-		exit 1
-	}
-
-	# Copy binaries to install directory
+	# Copy binary to install directory
 	cp build/snrd "${INSTALL_DIR}/" || {
 		echo "Error: Failed to copy snrd"
 		exit 1
 	}
-	cp build/motr.wasm "${INSTALL_DIR}/" || {
-		echo "Error: Failed to copy motr.wasm"
-		exit 1
-	}
 
-	# Make binaries executable
+	# Make binary executable
 	chmod +x "${INSTALL_DIR}/snrd"
 
-	echo "Binaries built and installed successfully to ${INSTALL_DIR}"
+	echo "Binary built and installed successfully to ${INSTALL_DIR}"
 }
 
 # Function to get latest release version
@@ -144,31 +134,18 @@ install_binaries() {
 			fi
 		fi
 
-		# Download motr.wasm (platform independent)
-		echo "Downloading motr.wasm..."
-		if ! curl -L "${BASE_URL}/motr.wasm" -o "${INSTALL_DIR}/motr.wasm" -f; then
-			echo "Warning: Failed to download from CDN, trying GitHub releases..."
-			# Fallback to GitHub releases
-			GITHUB_URL="https://github.com/sonr-io/sonr/releases/download/v${LATEST_VERSION}"
-			if ! curl -L "${GITHUB_URL}/motr.wasm" -o "${INSTALL_DIR}/motr.wasm" -f; then
-				echo "Error: Failed to download motr.wasm from both CDN and GitHub"
-				exit 1
-			fi
-		fi
-
-		# Make binaries executable
+		# Make binary executable
 		chmod +x "${INSTALL_DIR}/snrd"
 
-		echo "Binaries installed successfully to ${INSTALL_DIR}"
+		echo "Binary installed successfully to ${INSTALL_DIR}"
 	else
 		# Fall back to local build
 		build_locally "${INSTALL_DIR}"
 	fi
 
 	echo
-	echo "Available commands:"
-	echo "  snrd       - Blockchain daemon"
-	echo "  motr.wasm  - WebAssembly enclave"
+	echo "Installed:"
+	echo "  snrd - Blockchain daemon"
 	echo
 	echo "Quick start:"
 	echo "  snrd --help   # Show available commands"

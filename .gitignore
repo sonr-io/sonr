@@ -40,18 +40,16 @@ snrd
 !cli/join-testnet/bin/
 !cli/install/bin/
 
-# ===== Node.js & Frontend =====
-node_modules/
-.pnpm-debug.log*
-pnpm-debug.log*
-package-lock.json
-yarn.lock
-*.tsbuildinfo
-
-# Next.js
-.next/
-.vercel/
-**/.open-next
+# ===== Removed: Node.js & Frontend (no longer needed for blockchain-only repo) =====
+# node_modules/
+# .pnpm-debug.log*
+# pnpm-debug.log*
+# package-lock.json
+# yarn.lock
+# *.tsbuildinfo
+# .next/
+# .vercel/
+# **/.open-next
 
 # ===== Go Development =====
 pkg/mod/
@@ -76,11 +74,7 @@ keyring-test/
 mytestnet/
 docker/testnet/testnet-data
 
-# ===== Monorepo & Build Tools =====
-.turbo/
-.gitwork/
-.changeset/.cli-state
-.biome/
+# ===== Build Tools =====
 .devbox/
 .task*
 Taskfile.yml
@@ -95,7 +89,7 @@ logs/
 configs/logs.json
 tmp/
 tmp*
-tmp-swagger-gen/
+tmp-openapi-gen/
 
 # ===== Environment & Secrets =====
 .env
@@ -122,8 +116,8 @@ COMPLETION_SUMMARY.md
 data/
 compose/
 heighliner*
-# Ignore individual module swagger files (generated in tmp directory)
-tmp-swagger-gen/**/*.swagger.json
-# Allow the final combined swagger.yaml
-!client/docs/swagger-ui/swagger.yaml
+# Ignore individual module OpenAPI files (generated in tmp directory)
+tmp-openapi-gen/**/*.json
+# Allow the final combined openapi.yml
+!docs/static/openapi.yml
 .mcp.json

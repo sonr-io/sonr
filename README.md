@@ -106,10 +106,8 @@ make testnet-stop
 ### Building from Source
 
 ```bash
-# Build all binaries
-make build        # snrd blockchain node
-make build-hway   # Highway service
-make build-vault  # Vault WASM plugin
+# Build blockchain node
+make build
 
 # Build Docker image
 make docker
@@ -162,38 +160,11 @@ make ipfs-status  # Check IPFS connectivity
 
 ## 🏗️ Architecture
 
-Sonr consists of three primary components and three custom modules:
-
-### Service Architecture
-
-```
-┌─────────┐     ┌─────────┐     ┌─────────┐
-│  Caddy  │────▶│  snrd   │     │  IPFS   │
-└─────────┘     └─────────┘     └─────────┘
-     │                │                │
-     │                ▼                ▼
-     │          ┌─────────┐     ┌─────────┐
-     └─────────▶│ Highway │────▶│  Redis  │
-                └─────────┘     └─────────┘
-```
-
-- **Caddy**: Reverse proxy with gRPC-Web support (port 80)
-- **Redis**: Task queue backend for Highway (port 6379)
-- **Highway**: UCAN-based task processor (port 8090)
-- **IPFS**: Distributed storage (API: 5001, Gateway: 8080)
-- **snrd**: Blockchain node (gRPC: 9090, REST: 1317)
-
-### Cross-Platform Support
-
-The `localnet` target now automatically detects and uses the best available method:
-1. Checks for local binary (built with `make install`)
-2. Falls back to Docker if available
-3. Handles permission issues on systems like Arch Linux
-4. Supports systemd service installation (see `etc/systemd/`)
+Sonr is a Cosmos SDK-based blockchain with integrated IPFS storage and three custom modules:
 
 ### Core Components
 
-#### 1. **Blockchain Node (`snrd`)**
+#### **Blockchain Node (`snrd`)**
 
 The main blockchain daemon built with Cosmos SDK v0.50.14, providing:
 
@@ -201,22 +172,15 @@ The main blockchain daemon built with Cosmos SDK v0.50.14, providing:
 - EVM compatibility via Evmos integration
 - IBC for cross-chain communication
 - CosmWasm smart contract support
+- IPFS integration for decentralized storage
 
-#### 2. **Highway Service (`hway`)**
+### Cross-Platform Support
 
-An Asynq-based task processing service for vault operations:
-
-- Redis-backed job queue with priority levels
-- Actor-based concurrency using Proto.Actor framework
-- Processes cryptographic operations through WebAssembly enclaves
-
-#### 3. **Motor Plugin (`motr`)**
-
-WebAssembly-based vault system providing:
-
-- Secure execution environment for sensitive operations
-- Hardware-backed key management
-- Multi-party computation capabilities
+The `localnet` target automatically detects and uses the best available method:
+1. Checks for local binary (built with `make install`)
+2. Falls back to Docker if available
+3. Handles permission issues on systems like Arch Linux
+4. Supports systemd service installation (see `etc/systemd/`)
 
 ## 📖 Module Documentation
 
@@ -301,44 +265,11 @@ export BLOCK_TIME="1000ms"
 # Network selection for Starship
 export NETWORK="devnet"  # or "testnet"
 
-# Redis configuration
-REDIS_URL=redis://redis:6379
-REDIS_DB=0
-
-# Highway service
-HIGHWAY_PORT=8090
-LOG_LEVEL=debug
-
 # IPFS configuration
 IPFS_API_URL=http://ipfs:5001
-
-# Caddy configuration
-CADDY_DOMAIN=localhost
 ```
 
 Environment variables can be set directly or via a `.env` file in the project root.
-
-### Docker Compose Services
-
-The project includes a comprehensive Docker Compose setup for running all backend services:
-
-```bash
-# Start all services (Redis, Highway, Caddy, IPFS)
-make docker-up
-
-# Stop all services
-make docker-down
-
-# View service logs
-make docker-logs           # All services
-make docker-logs-redis     # Specific service
-
-# Check service health
-make docker-status
-
-# Clean up Docker resources
-make docker-clean
-```
 
 ### Starship Configuration
 
@@ -353,146 +284,53 @@ chains:
     # ... additional configuration
 ```
 
-#### Troubleshooting
-
-**Services not starting:**
-```bash
-# Check service status
-make docker-status
-
-# View detailed logs
-make docker-logs
-
-# Ensure Docker network exists
-docker network ls | grep sonr-network
-```
-
-**Redis connection issues:**
-```bash
-# Test Redis connectivity
-docker exec redis redis-cli ping
-
-# Check Redis logs
-make docker-logs-redis
-```
+### Troubleshooting
 
 **IPFS not accessible:**
 ```bash
 # Verify IPFS is running
 curl http://127.0.0.1:5001/api/v0/version
 
-# Check IPFS logs
-docker compose -f etc/stack/compose.yml logs ipfs
+# Check IPFS status
+make ipfs-status
 ```
 
 **Port conflicts:**
-- Caddy: 80 (HTTP)
-- Redis: 6379
-- Highway: 8090
 - IPFS API: 5001
 - IPFS Gateway: 8080
+- Node gRPC: 9090
+- Node REST API: 1317
 
-Stop conflicting services or modify ports in `etc/stack/compose.yml`.
+Stop conflicting services or modify ports in configuration files.
 
 ## 🏗️ Project Structure
 
-Sonr uses a modern monorepo architecture with pnpm workspaces for JavaScript/TypeScript packages alongside the Go blockchain implementation:
-
-### Workspace Organization
+Sonr is a focused Cosmos SDK blockchain implementation:
 
 ```
 sonr/
 ├── app/              # Application setup and module wiring
 ├── cmd/              # Binary entry points
-│   ├── snrd/        # Blockchain node
-│   ├── hway/        # Highway service
-│   └── motr/        # Motor WASM plugin
-├── x/               # Custom chain modules
+│   └── snrd/        # Blockchain node daemon
+├── x/               # Custom Cosmos SDK modules
 │   ├── did/         # W3C DID implementation
 │   ├── dwn/         # Decentralized Web Nodes
 │   └── svc/         # Service management
-├── types/           # Internal packages
-│   ├── coins/       # Task processing
-│   └── ipfs/        # Authorization networks
+├── types/           # Internal Go packages
 ├── proto/           # Protobuf definitions
 ├── scripts/         # Utility scripts
 ├── test/            # Integration tests
-├── docs/            # Documentation site
-│
-# Monorepo Packages (pnpm workspaces)
-├── packages/         # Core JavaScript/TypeScript packages
-│   ├── es/          # @sonr.io/es - ES client library
-│   ├── sdk/         # @sonr.io/sdk - SDK package
-│   └── ui/          # @sonr.io/ui - Shared UI components
-├── cli/             # CLI tools
-│   ├── install/     # @sonr.io/install - Installation CLI
-│   └── join-testnet/# @sonr.io/join-testnet - Testnet CLI
-└── web/             # Web applications
-    ├── auth/        # Authentication app (Next.js)
-    └── dash/        # Dashboard app (Next.js)
-```
-
-### Working with the Monorepo
-
-#### Installation
-
-```bash
-# Install all dependencies for the monorepo
-pnpm install
-
-# Build all packages
-pnpm build
-
-# Run development mode for all packages
-pnpm dev
-```
-
-#### Package Management
-
-```bash
-# Run commands in specific packages
-pnpm --filter @sonr.io/es build
-pnpm --filter @sonr.io/sdk test
-
-# Add dependencies to specific packages
-pnpm --filter @sonr.io/ui add react
-
-# Run commands in all packages
-pnpm -r build  # Build all packages
-pnpm -r test   # Test all packages
-```
-
-#### Versioning & Publishing
-
-The monorepo uses [Changesets](https://github.com/changesets/changesets) for package versioning:
-
-```bash
-# Add a changeset for your changes
-pnpm changeset
-
-# Version packages based on changesets
-pnpm changeset version
-
-# Publish packages to npm
-pnpm changeset publish
+├── docs/            # Documentation
+└── client/          # Client libraries and tooling
 ```
 
 ### Key Technologies
 
-- **pnpm workspaces**: Efficient dependency management with single lockfile
-- **TypeScript project references**: Incremental builds and better IDE performance
-- **Turbo**: Build orchestration and caching for faster builds
-- **Changesets**: Automated versioning and changelog generation
-- **Biome**: Fast, unified linting and formatting (replaces ESLint/Prettier)
-
-### Package Dependencies
-
-- `@sonr.io/es`: Core ES client library with protobuf types
-- `@sonr.io/sdk`: High-level SDK (depends on @sonr.io/es)
-- `@sonr.io/ui`: Shared UI components for web applications
-- `@sonr.io/install`: CLI tool for installing Sonr
-- `@sonr.io/join-testnet`: CLI tool for joining testnet
-- Web apps use all three core packages (@sonr.io/es, @sonr.io/sdk, @sonr.io/ui)
+- **Cosmos SDK v0.50.14**: Blockchain framework
+- **CometBFT v0.38.17**: Byzantine fault-tolerant consensus
+- **IBC v8.7.0**: Inter-blockchain communication
+- **CosmWasm v1.5.8**: Smart contract support
+- **IPFS**: Decentralized storage integration
 
 ## 🤝 Community & Support
 

@@ -22,7 +22,7 @@ GIT_ROOT := $(shell git rev-parse --show-toplevel)
 ###############################################################################
 .DEFAULT_GOAL := help
 
-all: build gen swagger-gen push
+all: build gen openapi-gen push
 
 proto: gen
 generate: gen
@@ -53,20 +53,23 @@ test:
 ###############################################################################
 ###                                Documentation                            ###
 ###############################################################################
-swagger-gen:
+openapi-gen:
 	@gum log --level info "Generating OpenAPI documentation..."
 	@$(protoImage) buf generate --template proto/buf.gen.openapi.yaml
-	@gum log --level info "Combining swagger files into unified specification..."
-	@mkdir -p $(GIT_ROOT)/client/docs/swagger-ui
+	@gum log --level info "Combining OpenAPI files into unified specification..."
+	@mkdir -p $(GIT_ROOT)/docs/static
 	@npx swagger-combine $(GIT_ROOT)/client/docs/config.json \
-		-o $(GIT_ROOT)/client/docs/swagger-ui/swagger.yaml \
+		-o $(GIT_ROOT)/docs/static/openapi.yml \
 		-f yaml \
 		--continueOnConflictingPaths true \
 		--includeDefinitions true
 	@gum log --level info "Cleaning up temporary files..."
-	@rm -rf $(GIT_ROOT)/tmp-swagger-gen
+	@rm -rf $(GIT_ROOT)/tmp-openapi-gen
 	@gum log --level info "✅ OpenAPI documentation generated successfully"
-	@gum log --level info "✅ Unified API specification: client/docs/swagger-ui/swagger.yaml"
+	@gum log --level info "✅ Unified API specification: docs/static/openapi.yml"
+
+# Backwards compatibility alias
+swagger-gen: openapi-gen
 
 push:
 	@npx buf push	
@@ -86,15 +89,15 @@ help:
 	@gum log --level info ""
 	@gum log --level info "Available targets:"
 	@gum log --level info ""
-	@gum log --level info "  all             Run lint, gen, and swagger-gen targets"
+	@gum log --level info "  all             Run lint, gen, and openapi-gen targets"
 	@gum log --level info "  gen             Generate protobuf code and stubs"
 	@gum log --level info "  lint            Lint protobuf files"
 	@gum log --level info "  check-breaking  Check for breaking changes against main branch"
-	@gum log --level info "  swagger-gen     Generate OpenAPI documentation"
+	@gum log --level info "  openapi-gen     Generate OpenAPI documentation"
 	@gum log --level info "  help            Show this help message"
 	@gum log --level info ""
 	@gum log --level info "Environment:"
 	@gum log --level info "  Proto builder: $(protoImageName)"
 	@gum log --level info "  Spawn:         onsonr/spawn:latest"
 
-.PHONY: all gen lint check-breaking swagger-gen help
+.PHONY: all gen lint check-breaking openapi-gen swagger-gen help

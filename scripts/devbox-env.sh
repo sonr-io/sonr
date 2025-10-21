@@ -153,67 +153,32 @@ devbox_run() {
 
 install() {
   header "Install"
-  gum spin --show-error --spinner pulse --title "Installing pnpm..." -- pnpm install --frozen-lockfile
   gum spin --show-error --spinner pulse --title "Installing Go..." -- go mod download
-  info "pnpm(10.14.0)"
   info "go(1.24.7)"
   separator
 }
 
 build_all() {
   header "Build"
-  devbox_run "build:auth"
-  devbox_run "build:dash"
   devbox_run "build:core"
-  devbox_run "build:com"
-  devbox_run "build:es"
-  devbox_run "build:hway"
-  devbox_run "build:motr"
-  devbox_run "build:pkl"
-  devbox_run "build:sdk"
-  devbox_run "build:ui"
-  devbox_run "build:vault"
   separator
 }
 
 test_all() {
   header "Test"
-  devbox_run "test:auth"
-  devbox_run "test:dash"
   devbox_run "test:core"
-  devbox_run "test:com"
-  devbox_run "test:es"
-  devbox_run "test:hway"
-  devbox_run "test:motr"
-  devbox_run "test:pkl"
-  devbox_run "test:sdk"
-  devbox_run "test:ui"
-  devbox_run "test:vault"
   separator
 }
 
 release_all() {
   header "Release"
-  # devbox_run "release:auth"
-  # devbox_run "release:dash"
   devbox_run "release:core"
-  devbox_run "release:com"
-  devbox_run "release:es"
-  devbox_run "release:hway"
-  devbox_run "release:motr"
-  devbox_run "release:pkl"
-  devbox_run "release:sdk"
-  devbox_run "release:ui"
-  devbox_run "release:vault"
   separator
 }
 
 snapshot_all() {
   header "Snapshot"
   devbox_run "snapshot:core"
-  devbox_run "snapshot:hway"
-  devbox_run "snapshot:motr"
-  devbox_run "snapshot:vault"
   separator
 }
 
@@ -311,12 +276,6 @@ main() {
     ;;
   "snapshot-scopes")
     snapshot_scopes
-    ;;
-  "install-pnpm")
-    install_pnpm
-    ;;
-  "install-go")
-    install_go
     ;;
   "install")
     install

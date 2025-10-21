@@ -62,13 +62,10 @@ ldflags := $(strip $(ldflags))
 
 BUILD_FLAGS := -tags "$(build_tags_comma_sep)" -ldflags '$(ldflags)' -trimpath
 
-# Build vault WASM module (required dependency)
-VAULT_ROOT := $(GIT_ROOT)/cmd/vault
-VAULT_OUT := $(GIT_ROOT)/x/dwn/client/plugin/vault.wasm
 SNRD_OUT := $(GIT_ROOT)/build/snrd
 SNRD_EXE_OUT := $(GIT_ROOT)/build/snrd.exe
 
-.PHONY: all build install clean vault version help docker
+.PHONY: all build install clean version help docker
 
 all: build
 
@@ -82,7 +79,6 @@ else
 endif
 
 install:
-	@$(MAKE) -C $(VAULT_ROOT) build
 ifeq ($(OS),Windows_NT)
 	@echo "Building snrd.exe for Windows..."
 	GOOS=windows GOARCH=amd64 go build -mod=readonly $(BUILD_FLAGS) -o $(SNRD_EXE_OUT) .
@@ -95,7 +91,6 @@ endif
 clean:
 	@echo "Cleaning build artifacts..."
 	@rm -f $(SNRD_OUT) $(SNRD_EXE_OUT)
-	@$(MAKE) -C $(VAULT_ROOT) clean
 	@echo "Clean complete"
 
 version:
@@ -150,14 +145,13 @@ help:
 	@echo "==================="
 	@echo ""
 	@echo "Available targets:"
-	@echo "  build     - Build snrd binary (with vault WASM)"
-	@echo "  install   - Install snrd to GOPATH/bin"
-	@echo "  vault     - Build vault WASM module only"
-	@echo "  docker    - Build Docker image (onsonr/snrd:latest)"
-	@echo "  clean     - Remove build artifacts"
-	@echo "  version   - Display version information"
+	@echo "  build       - Build snrd binary"
+	@echo "  install     - Install snrd to GOPATH/bin"
+	@echo "  docker      - Build Docker image (onsonr/snrd:latest)"
+	@echo "  clean       - Remove build artifacts"
+	@echo "  version     - Display version information"
 	@echo "  link-wasmvm - Download WasmVM libraries for goreleaser"
-	@echo "  help      - Show this help message"
+	@echo "  help        - Show this help message"
 	@echo ""
 	@echo "Build options:"
 	@echo "  LEDGER_ENABLED=true|false  - Enable/disable ledger support (default: true)"

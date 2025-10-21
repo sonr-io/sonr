@@ -28,7 +28,7 @@ rm -rf github.com
 
 # Copy files over for dep injection
 rm -rf api && mkdir api
-custom_modules=$(find . -name 'module' -type d -not -path "./proto/*" -not -path "./.cache/*" -not -path "./node_modules/*" -not -path "./packages/*")
+custom_modules=$(find . -name 'module' -type d -not -path "./proto/*" -not -path "./.cache/*")
 
 # get the 1 up directory (so ./cosmos/mint/module becomes ./cosmos/mint)
 # remove the relative path starter from base namespaces. so ./cosmos/mint becomes cosmos/mint
