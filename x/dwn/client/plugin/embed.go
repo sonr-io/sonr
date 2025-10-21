@@ -17,7 +17,7 @@ import (
 // motrPluginBytes contains the embedded WebAssembly bytecode for the cryptographic enclave.
 // This is embedded at compile time and loaded into the WASM runtime for secure operations.
 //
-//go:embed vault.wasm
+//go:embed enclave.wasm
 var motrPluginBytes []byte
 
 // motrPluginHash is the SHA256 hash of the embedded WASM module
