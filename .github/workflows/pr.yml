@@ -26,9 +26,8 @@ jobs:
           path: |
             ~/go/pkg/mod
             ~/.cache/go-build
-            ~/.local/share/pnpm/store
             ~/.devbox
-          key: deps-builder-${{ hashFiles('go.sum', 'pnpm-lock.yaml', 'devbox.json') }}
+          key: deps-builder-${{ hashFiles('go.sum', 'devbox.json') }}
           restore-keys: deps-builder-
 
       - name: Install Dependencies

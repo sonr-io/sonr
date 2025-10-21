@@ -321,14 +321,17 @@ proto-gen:
 	@gum log --level info "Auto-formatting generated protobuf files..."
 	@$(MAKE) format
 
-swagger-gen:
-	@$(MAKE) -C proto swagger-gen
-	@gum log --level info "✅ Swagger generation complete. Output: client/docs/swagger-ui/swagger.yaml"
+openapi-gen:
+	@$(MAKE) -C proto openapi-gen
+	@gum log --level info "✅ OpenAPI generation complete. Output: docs/static/openapi.yml"
+
+# Backwards compatibility alias
+swagger-gen: openapi-gen
 
 templ-gen:
 	@docker run --rm -v `pwd`:/code -w=/code --user $(shell id -u):$(shell id -g) ghcr.io/a-h/templ:latest generate
 
-.PHONY: proto-gen proto-swagger-gen swagger-gen proto-lint proto-check-breaking proto-publish
+.PHONY: proto-gen proto-openapi-gen openapi-gen swagger-gen proto-lint proto-check-breaking proto-publish
 
 ###############################################################################
 ###                           Network Operations                            ###
@@ -383,7 +386,7 @@ help:
 	@gum log --level info ""
 	@gum log --level info "📦 Code Generation:"
 	@gum log --level info "  proto-gen           Generate protobuf code"
-	@gum log --level info "  swagger-gen         Generate OpenAPI docs"
+	@gum log --level info "  openapi-gen         Generate OpenAPI documentation"
 	@gum log --level info ""
 	@gum log --level info "🔧 Development Tools:"
 	@gum log --level info "  format              Format code (Go + TypeScript)"
