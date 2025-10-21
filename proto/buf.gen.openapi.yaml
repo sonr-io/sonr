@@ -1,15 +1,16 @@
 version: v1
 plugins:
   # Generate OpenAPI v2 (Swagger) documentation
+  # Follows Cosmos SDK standard approach: generate to tmp directory, then combine
   - name: openapiv2
-    out: ../docs/static/openapi
+    out: ../tmp-swagger-gen
     opt:
       - logtostderr=true
+      - fqn_for_swagger_name=true
       - simple_operation_ids=true
-      - openapi_naming_strategy=simple
       - json_names_for_fields=true
       - allow_merge=false
-      - output_format=yaml
+      - output_format=json
       # Generate methods without HTTP bindings
       - generate_unbound_methods=true
       # Include service tags

@@ -22,13 +22,21 @@ import_mnemonic() {
         return 1
     fi
 
-    # Use Docker wrapper if needed
-    if is_docker; then
+    # Use run_binary wrapper if available (for Docker mode), otherwise use CHAIN_BIN directly
+    if [ "$(type -t run_binary)" = "function" ]; then
+        # run_binary is available, use it (handles Docker automatically, including --home)
+        echo "$mnemonic" | run_binary keys add "$key_name" \
+            --keyring-backend "$KEYRING_BACKEND" \
+            --algo "$algo" \
+            --recover
+    elif is_docker; then
+        # We're inside Docker container
         echo "$mnemonic" | $CHAIN_BIN keys add "$key_name" \
             --keyring-backend "$KEYRING_BACKEND" \
             --algo "$algo" \
             --recover
     else
+        # Local execution
         echo "$mnemonic" | $CHAIN_BIN keys add "$key_name" \
             --keyring-backend "$KEYRING_BACKEND" \
             --algo "$algo" \

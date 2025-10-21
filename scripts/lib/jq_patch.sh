@@ -18,6 +18,24 @@ patch_json() {
 
     log_info "Patching $file with: $jq_expr"
 
+    # Check if we're using Docker and the file is owned by root
+    if [[ "${USE_DOCKER:-false}" == "true" ]] && [[ "$(stat -c %u "$file" 2>/dev/null || echo 0)" == "0" ]]; then
+        # Use Docker to patch the file to avoid permission issues
+        docker run --rm -i \
+            -v "$(dirname "$file"):$(dirname "$file")" \
+            --entrypoint sh \
+            onsonr/snrd:latest \
+            -c "jq -r '$jq_expr' '$file' > '${file}.tmp' && mv '${file}.tmp' '$file'"
+
+        if [ $? -eq 0 ]; then
+            log_success "Successfully patched $file"
+            return 0
+        else
+            log_error "Failed to patch JSON file: $file"
+            return 1
+        fi
+    fi
+
     # Create temp file in same directory to avoid cross-filesystem issues
     local temp_file
     temp_file="$(dirname "$file")/.tmp.$(basename "$file").$$"

@@ -51,21 +51,53 @@ generate_vrf_key() {
     local vrf_key_path="$chain_dir/vrf_secret.key"
 
     # Ensure directory exists
-    mkdir -p "$chain_dir"
+    mkdir -p "$chain_dir" 2>/dev/null || true
 
-    # Convert hex to binary and write to file
-    echo -n "$vrf_key_hex" | xxd -r -p > "$vrf_key_path"
+    # Check if we're using Docker and the directory is owned by root
+    if [[ "${USE_DOCKER:-false}" == "true" ]] && [[ "$(stat -c %u "$chain_dir" 2>/dev/null || echo 0)" == "0" ]]; then
+        # Use Docker to create the VRF key file
+        docker run --rm -i \
+            -v "$chain_dir:$chain_dir" \
+            --entrypoint sh \
+            onsonr/snrd:latest \
+            -c "echo -n '$vrf_key_hex' | xxd -r -p > '$vrf_key_path' && chmod 0600 '$vrf_key_path'"
 
-    # Set restrictive permissions (owner read/write only)
-    chmod 0600 "$vrf_key_path"
+        if [ $? -ne 0 ]; then
+            log_error "Failed to create VRF key using Docker"
+            return 1
+        fi
+    else
+        # Convert hex to binary and write to file
+        echo -n "$vrf_key_hex" | xxd -r -p > "$vrf_key_path"
+
+        # Set restrictive permissions (owner read/write only)
+        chmod 0600 "$vrf_key_path"
+    fi
 
     # Validate file was created with correct size (64 bytes)
     local file_size
-    file_size=$(wc -c < "$vrf_key_path")
+    if [[ "${USE_DOCKER:-false}" == "true" ]]; then
+        # Use Docker to check file size for root-owned files
+        file_size=$(docker run --rm -i \
+            -v "$chain_dir:$chain_dir" \
+            --entrypoint sh \
+            onsonr/snrd:latest \
+            -c "wc -c < '$vrf_key_path' 2>/dev/null || echo 0")
+    else
+        file_size=$(wc -c < "$vrf_key_path" 2>/dev/null || echo 0)
+    fi
 
     if [[ $file_size -ne 64 ]]; then
         log_error "VRF key file has incorrect size: ${file_size} bytes"
-        rm -f "$vrf_key_path"
+        if [[ "${USE_DOCKER:-false}" == "true" ]]; then
+            docker run --rm -i \
+                -v "$chain_dir:$chain_dir" \
+                --entrypoint sh \
+                onsonr/snrd:latest \
+                -c "rm -f '$vrf_key_path'"
+        else
+            rm -f "$vrf_key_path"
+        fi
         return 1
     fi
 
@@ -110,9 +142,10 @@ update_genesis_params() {
         set_json_string "$genesis_file" 'app_state.gov.params.max_deposit_period' "30s"
         set_json_string "$genesis_file" 'app_state.gov.params.min_deposit[0].amount' "10"
         set_json_string "$genesis_file" 'app_state.gov.params.voting_period' "30s"
-        set_json_string "$genesis_file" 'app_state.gov.params.quorum' "0.000000000000000000"
-        set_json_string "$genesis_file" 'app_state.gov.params.threshold' "0.000000000000000000"
-        set_json_string "$genesis_file" 'app_state.gov.params.veto_threshold' "0.000000000000000000"
+        set_json_string "$genesis_file" 'app_state.gov.params.expedited_voting_period' "15s"
+        set_json_string "$genesis_file" 'app_state.gov.params.quorum' "0.334000000000000000"
+        set_json_string "$genesis_file" 'app_state.gov.params.threshold' "0.500000000000000000"
+        set_json_string "$genesis_file" 'app_state.gov.params.veto_threshold' "0.334000000000000000"
     fi
 
     # Update EVM parameters if present

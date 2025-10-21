@@ -9,20 +9,28 @@ set -euo pipefail
 
 # Source helper libraries
 # Get the directory of this script reliably
-SCRIPT_DIR="/usr/local/lib/sonr-scripts"
+# Check if we're running in Docker (where scripts are installed to /usr/local/lib/sonr-scripts)
+# or locally (where scripts are in the repo's scripts/lib directory)
+if [ -d "/usr/local/lib/sonr-scripts" ]; then
+	SCRIPT_DIR="/usr/local/lib/sonr-scripts"
+else
+	# Get the directory where this script is located
+	SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/lib" && pwd)"
+fi
 source "${SCRIPT_DIR}/env.sh"
 source "${SCRIPT_DIR}/config.sh"
 source "${SCRIPT_DIR}/keys.sh"
 source "${SCRIPT_DIR}/genesis.sh"
 
-# Initialize environment
-init_env
+# Initialize environment (skip binary check as we'll handle Docker/binary detection later)
+init_env true
 
 # Set defaults for test node
 export KEY="${KEY:-acc0}"
 export KEY2="${KEY2:-acc1}"
 export MONIKER="${MONIKER:-localvalidator}"
 export KEYALGO="${KEYALGO:-eth_secp256k1}"
+export KEYRING="${KEYRING:-test}"
 
 # Configurable ports
 export RPC="${RPC:-26657}"
@@ -47,7 +55,7 @@ export CLEAN="${CLEAN:-false}"
 export DOCKER_DETACHED="${DOCKER_DETACHED:-false}"
 
 # Check if binary exists, if not use Docker (or force Docker if requested)
-USE_DOCKER=false
+export USE_DOCKER=false
 if [[ "${FORCE_DOCKER}" == "true" ]] || ! command -v "$CHAIN_BIN" >/dev/null 2>&1; then
 	# Check if Docker is available and use it
 	if command -v docker >/dev/null 2>&1; then
@@ -58,14 +66,14 @@ if [[ "${FORCE_DOCKER}" == "true" ]] || ! command -v "$CHAIN_BIN" >/dev/null 2>&
 		fi
 		if docker image inspect onsonr/snrd:latest >/dev/null 2>&1; then
 			log_info "Using Docker image onsonr/snrd:latest"
-			USE_DOCKER=true
+			export USE_DOCKER=true
 		else
 			log_info "Docker image onsonr/snrd:latest not found. Pulling image..."
 			docker pull onsonr/snrd:latest || {
 				log_error "Failed to pull onsonr/snrd:latest. Please ensure Docker is running and you have internet access."
 				exit 1
 			}
-			USE_DOCKER=true
+			export USE_DOCKER=true
 		fi
 	else
 		log_error "Binary $CHAIN_BIN not found. Please either:"
@@ -80,28 +88,32 @@ run_binary() {
 	if [[ "${USE_DOCKER}" == "true" ]]; then
 		# Ensure the directory exists on the host
 		mkdir -p "${HOME_DIR}"
-		# Determine if we're in a TTY
-		DOCKER_TTY_FLAG=""
-		if [ -t 0 ]; then
-			DOCKER_TTY_FLAG="-it"
-		fi
-		# Mount home directory to container's /root/.sonr
-		docker run --rm ${DOCKER_TTY_FLAG} \
+		# Use -i for interactive (stdin) only, not -t (tty)
+		# This allows piping to work properly
+		# Run as root in Docker, fix permissions after
+		docker run --rm -i \
 			-v "${HOME_DIR}:/root/.sonr" \
 			--network host \
 			onsonr/snrd:latest \
 			snrd --home /root/.sonr "$@"
+		# Fix permissions on files created by Docker
+		chmod -R u+rwX "${HOME_DIR}" 2>/dev/null || true
 	else
 		${CHAIN_BIN} "$@"
 	fi
 }
+export -f run_binary
 
 # Set client configuration
 set_config() {
+	# Skip if config directory doesn't exist yet (will be set later during initialization)
+	if [[ ! -d "${HOME_DIR}/config" ]]; then
+		return 0
+	fi
 	run_binary config set client chain-id "${CHAIN_ID}"
 	run_binary config set client keyring-backend "${KEYRING}"
 }
-set_config
+# Don't call set_config here - it will be called after chain init in from_scratch()
 
 from_scratch() {
 	# Fresh install on current branch (skip if using Docker or SKIP_INSTALL is true)
@@ -115,18 +127,34 @@ from_scratch() {
 		log_error "HOME_DIR must be more than 2 characters long"
 		return 1
 	fi
-	rm -rf "${HOME_DIR}"
+
+	# Handle permission issues from Docker-created files
+	if [ -d "${HOME_DIR}" ]; then
+		# Try to fix permissions first
+		chmod -R u+rwX "${HOME_DIR}" 2>/dev/null || true
+
+		# Now try to remove
+		if ! rm -rf "${HOME_DIR}" 2>/dev/null; then
+			log_warn "Could not remove ${HOME_DIR} due to permission issues"
+			log_info "Attempting cleanup with Docker..."
+			if command -v docker >/dev/null 2>&1; then
+				# Use a simple busybox container to clean up with proper permissions
+				docker run --rm -v "${HOME_DIR}:/data" --user root busybox sh -c "rm -rf /data/* /data/.[!.]* 2>/dev/null || true" 2>/dev/null || true
+				# Try to remove the directory again
+				rm -rf "${HOME_DIR}" 2>/dev/null || {
+					log_error "Failed to clean ${HOME_DIR}. Please run: sudo rm -rf ${HOME_DIR}"
+					log_error "Then run 'make localnet' again"
+					return 1
+				}
+			else
+				log_error "Failed to clean ${HOME_DIR}. Please run: sudo rm -rf ${HOME_DIR}"
+				return 1
+			fi
+		fi
+	fi
 	log_info "Removed existing chain directory: ${HOME_DIR}"
 
-	# Reset configuration
-	set_config
-
-	# Add test keys
-	log_info "Adding test keys..."
-	import_mnemonic "${KEY}" "${SONR_MNEMONIC_1}" "$KEYALGO"
-	import_mnemonic "${KEY2}" "${SONR_MNEMONIC_2}" "$KEYALGO"
-
-	# Initialize chain
+	# Initialize chain (must be done before adding keys)
 	log_info "Initializing chain with moniker: $MONIKER"
 	if [[ "${USE_DOCKER}" == "true" ]]; then
 		docker run --rm \
@@ -134,9 +162,19 @@ from_scratch() {
 			--network host \
 			onsonr/snrd:latest \
 			snrd --home /root/.sonr init "${MONIKER}" --chain-id "${CHAIN_ID}" --default-denom "${DENOM}"
+		# Fix permissions on files created by Docker
+		chmod -R u+rwX "${HOME_DIR}" 2>/dev/null || true
 	else
 		${CHAIN_BIN} init "${MONIKER}" --chain-id "${CHAIN_ID}" --default-denom "${DENOM}" --home "${HOME_DIR}"
 	fi
+
+	# Now that chain is initialized, set client configuration
+	set_config
+
+	# Add test keys (must be done after chain init)
+	log_info "Adding test keys..."
+	import_mnemonic "${KEY}" "${SONR_MNEMONIC_1}" "$KEYALGO"
+	import_mnemonic "${KEY2}" "${SONR_MNEMONIC_2}" "$KEYALGO"
 
 	# Update genesis parameters
 	log_info "Updating genesis parameters..."
@@ -209,7 +247,7 @@ configure_node "$HOME_DIR" \
 	--rest-port "$REST" \
 	--grpc-port "$GRPC" \
 	--grpc-web-port "$GRPC_WEB" \
-	--json-rpc-port "$JSON_RPC" \
+	--json-rpc-port "$JSON_RPC" "$JSON_RPC_WS" \
 	--rosetta-port "$ROSETTA" \
 	--min-gas-prices "0${DENOM}" \
 	--pruning nothing

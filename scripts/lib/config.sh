@@ -25,6 +25,36 @@ set_toml_value() {
 
     ensure_file "$file"
 
+    # Check if we're using Docker and the file is owned by root
+    if [[ "${USE_DOCKER:-false}" == "true" ]] && [[ "$(stat -c %u "$file" 2>/dev/null || echo 0)" == "0" ]]; then
+        # Use Docker to modify the file to avoid permission issues
+        # Escape special characters for sed
+        local escaped_value
+        escaped_value=$(printf '%s\n' "$value" | sed 's/[[\.*^$()+?{|]/\\&/g')
+
+        # Check if value is a JSON array/object (starts with [ or {) - don't quote it
+        local sed_replacement
+        if [[ "$value" =~ ^\[.*\]$ ]] || [[ "$value" =~ ^\{.*\}$ ]]; then
+            sed_replacement="$key = $escaped_value"
+        else
+            sed_replacement="$key = \"$escaped_value\""
+        fi
+
+        docker run --rm -i \
+            -v "$(dirname "$file"):$(dirname "$file")" \
+            --entrypoint sh \
+            onsonr/snrd:latest \
+            -c "sed -i 's|^\s*$key\s*=.*|$sed_replacement|g' '$file'"
+
+        if [ $? -eq 0 ]; then
+            log_success "Set $key = $value in $file (Docker sed)"
+            return 0
+        else
+            log_error "Failed to set $section.$key in $file"
+            return 1
+        fi
+    fi
+
     if [[ "$CRUDINI_AVAILABLE" == "true" ]]; then
         if crudini --set "$file" "$section" "$key" "$value" 2>/dev/null; then
             log_success "Set $section.$key = $value in $file"
@@ -39,8 +69,16 @@ set_toml_value() {
     local escaped_value
     escaped_value=$(printf '%s\n' "$value" | sed 's/[[\.*^$()+?{|]/\\&/g')
 
+    # Check if value is a JSON array/object (starts with [ or {) - don't quote it
+    local sed_replacement
+    if [[ "$value" =~ ^\[.*\]$ ]] || [[ "$value" =~ ^\{.*\}$ ]]; then
+        sed_replacement="$key = $escaped_value"
+    else
+        sed_replacement="$key = \"$escaped_value\""
+    fi
+
     # Try to find and replace the line
-    if sed -i "s|^\s*$key\s*=.*|$key = \"$escaped_value\"|g" "$file"; then
+    if sed -i "s|^\s*$key\s*=.*|$sed_replacement|g" "$file"; then
         log_success "Set $key = $value in $file (using sed)"
         return 0
     fi

@@ -95,6 +95,7 @@ logs/
 configs/logs.json
 tmp/
 tmp*
+tmp-swagger-gen/
 
 # ===== Environment & Secrets =====
 .env
@@ -121,5 +122,8 @@ COMPLETION_SUMMARY.md
 data/
 compose/
 heighliner*
-**/*.swagger.yaml
+# Ignore individual module swagger files (generated in tmp directory)
+tmp-swagger-gen/**/*.swagger.json
+# Allow the final combined swagger.yaml
+!client/docs/swagger-ui/swagger.yaml
 .mcp.json

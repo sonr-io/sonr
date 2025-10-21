@@ -120,8 +120,14 @@ retry() {
 
 # Initialize environment
 init_env() {
+    local skip_binary_check="${1:-false}"
+
     require_cmd jq
-    ensure_binary
+
+    # Only check for binary if not skipping (allows Docker mode to be decided later)
+    if [[ "$skip_binary_check" != "true" ]]; then
+        ensure_binary
+    fi
 
     # Set up cleanup trap
     trap cleanup EXIT

@@ -55,9 +55,18 @@ test:
 ###############################################################################
 swagger-gen:
 	@gum log --level info "Generating OpenAPI documentation..."
-	@buf generate --template buf.gen.openapi.yaml
-	@gum log --level info "✅ OpenAPI documentation generated in docs/static/openapi/"
-	@gum log --level info "✅ Merged API specification: docs/static/openapi/sonr.swagger.yaml"
+	@$(protoImage) buf generate --template proto/buf.gen.openapi.yaml
+	@gum log --level info "Combining swagger files into unified specification..."
+	@mkdir -p $(GIT_ROOT)/client/docs/swagger-ui
+	@npx swagger-combine $(GIT_ROOT)/client/docs/config.json \
+		-o $(GIT_ROOT)/client/docs/swagger-ui/swagger.yaml \
+		-f yaml \
+		--continueOnConflictingPaths true \
+		--includeDefinitions true
+	@gum log --level info "Cleaning up temporary files..."
+	@rm -rf $(GIT_ROOT)/tmp-swagger-gen
+	@gum log --level info "✅ OpenAPI documentation generated successfully"
+	@gum log --level info "✅ Unified API specification: client/docs/swagger-ui/swagger.yaml"
 
 push:
 	@npx buf push	
