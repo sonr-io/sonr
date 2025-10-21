@@ -94,7 +94,7 @@ The VaultKeeper provides a comprehensive interface for managing cryptographic va
 - **Multi-Chain Support**: Transaction building for both Cosmos SDK and EVM networks using pkg/txns
 - **Address Derivation**: BIP44 HD wallet address derivation for multiple blockchain networks
 
-The VaultKeeper integrates with the Motor plugin system (`motr.wasm`) to provide isolated, secure execution environments for cryptographic operations.
+The VaultKeeper provides isolated, secure execution environments for cryptographic operations.
 
 ##### VaultKeeper Interface Methods
 
@@ -608,20 +608,6 @@ tm.event='Tx' AND dwn.v1.EventProtocolConfigured.published=true
    - Vault states are immutably stored in blockchain state
 
 ## Building and Testing
-
-### Building the Motor Client
-
-The DWN module includes a WebAssembly-based motor client for secure vault operations:
-
-```bash
-# Build the motor WASM client
-make -C x/dwn motr
-
-# Or from the root directory
-make motr
-```
-
-The motor client will be built to `x/dwn/vaults/motr.wasm`.
 
 ### Running Tests
 
