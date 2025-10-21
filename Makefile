@@ -199,15 +199,18 @@ docker:
 	@gum log --level info "Building Docker images..."
 	@docker buildx build -t onsonr/snrd:latest -f Dockerfile .
 
-localnet: ## Cross-platform localnet (auto-detects best method for your system)
-	@bash scripts/cross_platform_localnet.sh
+localnet: ## Start single-node localnet with Docker (cleans HOME_DIR first)
+	@gum log --level info "Cleaning HOME_DIR (~/.sonr)..."
+	@chmod -R u+rwX $(HOME)/.sonr 2>/dev/null || true
+	@rm -rf $(HOME)/.sonr 2>/dev/null || true
+	@$(MAKE) dockernet
 
 dockernet:
 	@gum log --level info "Starting network with Docker in detached mode..."
 	@docker stop sonr-testnode 2>/dev/null || true
 	@docker rm sonr-testnode 2>/dev/null || true
 	@sleep 3
-	@CHAIN_ID="sonrtest_1-1" BLOCK_TIME="1000ms" CLEAN=true FORCE_DOCKER=true DOCKER_DETACHED=true bash scripts/test_node.sh
+	@HOME_DIR=$(HOME)/.sonr CHAIN_ID="sonrtest_1-1" BLOCK_TIME="1000ms" CLEAN=true FORCE_DOCKER=true DOCKER_DETACHED=true bash scripts/test_node.sh
 
 .PHONY: docker localnet dockernet
 
@@ -320,23 +323,7 @@ proto-gen:
 
 swagger-gen:
 	@$(MAKE) -C proto swagger-gen
-	@gum log --level info "Moving and renaming generated files..."
-	@find docs/static/openapi -type f \( -name "query.swagger.yaml" -o -name "tx.swagger.yaml" \) | while read -r filepath; do \
-		\
-		parent_dir=$$(dirname "$$filepath"); \
-		grandparent_dir=$$(dirname "$$parent_dir"); \
-		module=$$(basename "$$grandparent_dir"); \
-		filename=$$(basename "$$filepath"); \
-		\
-		new_filename="$$module.$$filename"; \
-		destination="docs/static/openapi/$$new_filename"; \
-		\
-		gum log --level debug "Moving $$filepath to $$destination"; \
-		mv "$$filepath" "$$destination"; \
-	done
-	@gum log --level info "Cleaning up empty source directories..."
-	@find docs/static/openapi -mindepth 1 -maxdepth 1 -type d -exec rm -rf {} +
-	@gum log --level info "✅ API documentation processing complete."
+	@gum log --level info "✅ Swagger generation complete. Output: client/docs/swagger-ui/swagger.yaml"
 
 templ-gen:
 	@docker run --rm -v `pwd`:/code -w=/code --user $(shell id -u):$(shell id -g) ghcr.io/a-h/templ:latest generate
