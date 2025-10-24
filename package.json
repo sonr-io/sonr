@@ -1,0 +1,23 @@
+{
+  "name": "sonrctl",
+  "version": "0.1.0",
+  "module": "src/index.ts",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "bin": {
+    "sonrctl": "./src/index.ts"
+  },
+  "description": "Sonr Network Control CLI - Manage Sonr blockchain nodes, validators, and networks",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "dependencies": {
+    "@iarna/toml": "^2.2.5"
+  }
+}
