@@ -4,6 +4,14 @@
     "path": "go.sum"
   },
   {
+    "scope": "cli",
+    "path": "src"
+  },
+  {
+    "scope": "cli",
+    "path": "package.json"
+  },
+  {
     "scope": "deps",
     "path": "go.mod"
   },
