@@ -121,3 +121,4 @@ tmp-openapi-gen/**/*.json
 # Allow the final combined openapi.yml
 !docs/static/openapi.yml
 .mcp.json
+node_modules
