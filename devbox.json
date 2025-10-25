@@ -8,7 +8,8 @@
     "jq@latest",
     "trunk@latest",
     "mods@latest",
-    "yq@latest"
+    "yq@latest",
+    "dasel@latest"
   ],
   "env": {},
   "shell": {
@@ -16,10 +17,10 @@
       "go mod download"
     ],
     "scripts": {
-      "build": "make build-all",
-      "test": "make test-all",
+      "build":    "make build-all",
+      "test":     "make test-all",
       "snapshot": "make snapshot",
-      "release": "make release"
+      "release":  "make release"
     }
   }
 }
