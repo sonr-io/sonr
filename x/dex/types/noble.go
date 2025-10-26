@@ -3,6 +3,7 @@ package types
 import (
 	"fmt"
 
+	"cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
@@ -69,35 +70,35 @@ func ValidateNobleConnection(connectionID string, allowedConnections []string) e
 
 // ConvertToUSDC converts an amount from base units to USDC representation
 // For example: 1000000 base units = 1.000000 USDC
-func ConvertToUSDC(amount sdk.Int) sdk.Dec {
+func ConvertToUSDC(amount math.Int) math.LegacyDec {
 	// Convert to decimal and divide by 10^6
-	return sdk.NewDecFromInt(amount).QuoInt64(1000000)
+	return math.LegacyNewDecFromInt(amount).QuoInt64(1000000)
 }
 
 // ConvertFromUSDC converts USDC amount to base units
 // For example: 1.5 USDC = 1500000 base units
-func ConvertFromUSDC(usdcAmount sdk.Dec) sdk.Int {
+func ConvertFromUSDC(usdcAmount math.LegacyDec) math.Int {
 	// Multiply by 10^6 and truncate to integer
 	return usdcAmount.MulInt64(1000000).TruncateInt()
 }
 
 // FormatUSDCAmount formats a USDC amount for display
 // For example: 1500000 -> "1.500000 USDC"
-func FormatUSDCAmount(amount sdk.Int) string {
+func FormatUSDCAmount(amount math.Int) string {
 	usdcDec := ConvertToUSDC(amount)
 	return fmt.Sprintf("%s USDC", usdcDec.String())
 }
 
 // ParseUSDCAmount parses a string USDC amount to base units
 // For example: "1.5" -> 1500000
-func ParseUSDCAmount(amountStr string) (sdk.Int, error) {
-	usdcDec, err := sdk.NewDecFromStr(amountStr)
+func ParseUSDCAmount(amountStr string) (math.Int, error) {
+	usdcDec, err := math.LegacyNewDecFromStr(amountStr)
 	if err != nil {
-		return sdk.ZeroInt(), fmt.Errorf("invalid USDC amount: %w", err)
+		return math.ZeroInt(), fmt.Errorf("invalid USDC amount: %w", err)
 	}
 
 	if usdcDec.IsNegative() {
-		return sdk.ZeroInt(), fmt.Errorf("USDC amount cannot be negative")
+		return math.ZeroInt(), fmt.Errorf("USDC amount cannot be negative")
 	}
 
 	return ConvertFromUSDC(usdcDec), nil
@@ -110,9 +111,9 @@ type NobleSwapParams struct {
 	// OutputDenom is the denomination being swapped to
 	OutputDenom string
 	// Amount is the input amount in base units
-	Amount sdk.Int
+	Amount math.Int
 	// MinOutput is the minimum output amount (slippage protection)
-	MinOutput sdk.Int
+	MinOutput math.Int
 	// Receiver is the address to receive the output tokens
 	Receiver string
 }
@@ -156,11 +157,11 @@ type NobleLiquidityParams struct {
 	// Token1 is the second token denomination
 	Token1 string
 	// Amount0 is the amount of first token
-	Amount0 sdk.Int
+	Amount0 math.Int
 	// Amount1 is the amount of second token
-	Amount1 sdk.Int
+	Amount1 math.Int
 	// MinShares is the minimum LP shares to receive
-	MinShares sdk.Int
+	MinShares math.Int
 }
 
 // Validate performs basic validation on NobleLiquidityParams
