@@ -32,26 +32,6 @@ services:
     networks:
       - sonr-network
 
-  caddy:
-    container_name: caddy
-    image: caddy:2-alpine
-    restart: unless-stopped
-    depends_on:
-      snrd:
-        condition: service_healthy
-    ports:
-      - "80:80"
-      - "443:443"
-      - "443:443/udp"
-    volumes:
-      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy-data:/data
-      - caddy-config:/config
-    environment:
-      CADDY_DOMAIN: ${CADDY_DOMAIN:-localhost}
-    networks:
-      - sonr-network
-
   snrd:
     container_name: snrd
     image: onsonr/snrd:latest
