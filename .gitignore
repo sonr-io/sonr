@@ -122,3 +122,4 @@ tmp-openapi-gen/**/*.json
 !docs/static/openapi.yml
 .mcp.json
 node_modules
+.claude
