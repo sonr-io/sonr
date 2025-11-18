@@ -11,7 +11,6 @@ import (
 )
 
 func main() {
-	fmt.Print(sonrLogo())
 	setupSDKConfig()
 
 	// Standard snrd execution
