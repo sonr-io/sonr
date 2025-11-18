@@ -253,6 +253,19 @@ test-e2e-all:
 	@gum log --level info "Running all e2e tests"
 	@cd test/e2e && go test -race -v ./tests/...
 
+e2e-usdc-swap-did:
+	@gum log --level info "Running USDC Swap E2E tests with DID integration"
+	@gum log --level warn "Note: These tests require manual setup. See test/e2e/usdc-swap-did/README.md"
+	@cd test/e2e/usdc-swap-did && make test
+
+e2e-usdc-swap-did-setup:
+	@gum log --level info "Running USDC Swap E2E test setup..."
+	@cd test/e2e/usdc-swap-did && bash setup.sh
+
+e2e-usdc-swap-did-verbose:
+	@gum log --level info "Running USDC Swap E2E tests (verbose mode)"
+	@cd test/e2e/usdc-swap-did && make test-verbose
+
 test-build-snrd: build
 	@ls -la build/snrd
 	@chmod +x build/snrd
@@ -306,7 +319,7 @@ test-proto:
 test-benchmark:
 	@go test -mod=readonly -bench=. ./...
 
-.PHONY: test test-all test-unit test-race test-cover test-tdd test-module test-benchmark
+.PHONY: test test-all test-unit test-race test-cover test-tdd test-module test-benchmark test-e2e test-e2e-all e2e-usdc-swap-did e2e-usdc-swap-did-setup e2e-usdc-swap-did-verbose
 
 ###############################################################################
 ###                                Protobuf                                 ###
@@ -401,6 +414,11 @@ help:
 	@gum log --level info "  test-e2e            Run e2e tests"
 	@gum log --level info "  test-e2e-all        Run all e2e tests"
 	@gum log --level info "  test-module         Test specific module (MODULE=did|dwn|svc)"
+	@gum log --level info ""
+	@gum log --level info "🔄 E2E Test Suites:"
+	@gum log --level info "  e2e-usdc-swap-did           Run USDC swap E2E tests"
+	@gum log --level info "  e2e-usdc-swap-did-setup     Interactive setup for USDC swap tests"
+	@gum log --level info "  e2e-usdc-swap-did-verbose   Run USDC swap tests with verbose output"
 	@gum log --level info ""
 	@gum log --level info "📚 Module Testing Examples:"
 	@gum log --level info "  make test-module MODULE=did           # Test DID module"

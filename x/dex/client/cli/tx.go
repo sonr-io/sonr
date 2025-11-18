@@ -75,9 +75,18 @@ func CmdRegisterDEXAccount() *cobra.Command {
 // CmdExecuteSwap returns a command to execute a swap
 func CmdExecuteSwap() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "swap [did] [connection-id] [token-in] [token-out-denom] [min-amount-out] [pool-id]",
-		Short: "Execute a token swap through ICA",
-		Args:  cobra.ExactArgs(6),
+		Use:   "swap [did] [connection-id] [token-in] [token-out-denom] [min-amount-out]",
+		Short: "Execute a token swap through ICA (supports Noble USDC)",
+		Long: `Execute a token swap on a remote chain via Interchain Accounts.
+
+Examples:
+  # Swap 1000000 uatom for USDC on Noble testnet
+  snrd tx dex swap did:snr:user1 connection-0 1000000uatom uusdc 950000 --ucan-token="..." --timeout=60s
+
+  # Swap USDC for ATOM on Osmosis
+  snrd tx dex swap did:snr:user1 connection-1 1000000uusdc uatom 950000 --route="pool:1"
+`,
+		Args: cobra.ExactArgs(5),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			clientCtx, err := client.GetClientTxContext(cmd)
 			if err != nil {
@@ -99,9 +108,18 @@ func CmdExecuteSwap() *cobra.Command {
 				return fmt.Errorf("invalid min-amount-out: %s", args[4])
 			}
 
-			poolID, err := strconv.ParseUint(args[5], 10, 64)
-			if err != nil {
-				return fmt.Errorf("invalid pool-id: %w", err)
+			// Parse optional flags
+			ucanToken, _ := cmd.Flags().GetString("ucan-token")
+			route, _ := cmd.Flags().GetString("route")
+			timeoutStr, _ := cmd.Flags().GetString("timeout")
+
+			// Parse timeout duration
+			timeoutDuration := 30 * time.Second // default
+			if timeoutStr != "" {
+				timeoutDuration, err = time.ParseDuration(timeoutStr)
+				if err != nil {
+					return fmt.Errorf("invalid timeout: %w", err)
+				}
 			}
 
 			msg := &types.MsgExecuteSwap{
@@ -111,7 +129,9 @@ func CmdExecuteSwap() *cobra.Command {
 				TargetDenom:  tokenOutDenom,
 				Amount:       tokenIn.Amount,
 				MinAmountOut: minAmountOut,
-				Route:        fmt.Sprintf("pool:%d", poolID),
+				Route:        route,
+				UcanToken:    ucanToken,
+				Timeout:      time.Now().Add(timeoutDuration),
 			}
 
 			if err := msg.ValidateBasic(); err != nil {
@@ -121,6 +141,10 @@ func CmdExecuteSwap() *cobra.Command {
 			return tx.GenerateOrBroadcastTxCLI(clientCtx, cmd.Flags(), msg)
 		},
 	}
+
+	cmd.Flags().String("ucan-token", "", "UCAN authorization token for permission delegation")
+	cmd.Flags().String("route", "", "Optional specific swap route (e.g., 'pool:1' or 'noble:channel-0')")
+	cmd.Flags().String("timeout", "30s", "Timeout duration for the swap (e.g., '30s', '1m')")
 
 	flags.AddTxFlagsToCmd(cmd)
 	return cmd

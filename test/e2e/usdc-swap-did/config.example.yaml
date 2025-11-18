@@ -1,0 +1,316 @@
+# USDC Swap E2E Test Configuration
+# Copy this file to config.yaml and customize for your environment
+
+# Sonr Testnet Configuration
+sonr:
+  chain_id: "sonrtest_1-1"
+  rpc_endpoint: "http://localhost:26657"
+  rest_endpoint: "http://localhost:1317"
+  grpc_endpoint: "localhost:9090"
+  faucet_endpoint: "http://localhost:8000"
+
+  # Native token configuration
+  staking_denom: "usnr"
+  display_denom: "snr"
+  decimals: 6
+
+  # Test account configuration
+  test_accounts:
+    - name: "test_user_1"
+      mnemonic: ""  # Optional: Provide existing mnemonic
+      initial_balance: "100000000usnr"  # 100 SNR
+
+    - name: "test_user_2"
+      mnemonic: ""
+      initial_balance: "50000000usnr"   # 50 SNR
+
+# Noble Testnet Configuration
+noble:
+  chain_id: "noble-grand-1"
+  rpc_endpoint: "https://noble-testnet-rpc.polkachu.com:443"
+  rest_endpoint: "https://noble-testnet-api.polkachu.com"
+  grpc_endpoint: "noble-testnet-grpc.polkachu.com:21590"
+
+  # USDC configuration
+  usdc_denom: "uusdc"
+  usdc_decimals: 6
+
+  # Circle attestation (for USDC)
+  attestation:
+    enabled: true
+    domain: 4  # Noble testnet domain
+
+# IBC Configuration
+ibc:
+  # Connection from Sonr to Noble
+  # Update this with your actual connection ID
+  noble_connection_id: "connection-0"
+
+  # IBC transfer channel
+  # Update with actual channel after connection
+  transfer_channel_id: "channel-0"
+
+  # Relayer configuration (optional)
+  relayer:
+    enabled: false
+    type: "hermes"  # or "rly"
+    path: "sonr-noble"
+
+# DEX Module Configuration
+dex:
+  # Features to enable for test accounts
+  default_features:
+    - "swap"
+    - "liquidity"
+    - "orders"
+
+  # ICA configuration
+  ica:
+    # Timeout for ICA operations
+    timeout: "300s"
+
+    # Retry configuration
+    max_retries: 3
+    retry_delay: "5s"
+
+    # Account creation
+    auto_register: true
+
+# Swap Test Configuration
+swap:
+  # Test amounts
+  amounts:
+    snr_to_usdc: "1000000"   # 1 SNR
+    usdc_to_snr: "5000000"   # 5 USDC
+    small_swap: "100000"     # 0.1 tokens
+    large_swap: "50000000"   # 50 tokens
+
+  # Slippage configuration
+  slippage:
+    default_percent: 5.0     # 5% default slippage
+    max_percent: 10.0        # 10% maximum allowed
+    min_percent: 0.1         # 0.1% minimum
+
+  # Timeout configuration
+  timeouts:
+    swap_tx: "60s"           # Individual swap timeout
+    multi_swap: "300s"       # Multiple swaps timeout
+    history_query: "30s"     # History query timeout
+
+  # Routing configuration
+  routing:
+    prefer_direct: true      # Prefer direct swaps when available
+    max_hops: 3              # Maximum routing hops
+    usdc_intermediary: true  # Use USDC as intermediary
+
+# Test Configuration
+test:
+  # Parallel execution
+  parallel: false
+
+  # Timeout configuration
+  timeout:
+    default: "10m"
+    extended: "30m"
+    quick: "5m"
+
+  # Retry configuration
+  retry:
+    enabled: true
+    max_attempts: 3
+    delay: "5s"
+
+  # Logging
+  logging:
+    level: "info"           # debug, info, warn, error
+    verbose: true
+    save_to_file: true
+    file_path: "test.log"
+
+  # Cleanup
+  cleanup:
+    # Clean up test accounts after tests
+    accounts: true
+
+    # Clean up test DIDs after tests
+    dids: false  # Keep for debugging
+
+    # Clean up test data
+    artifacts: true
+
+# DID Configuration
+did:
+  # DID prefix
+  prefix: "did:snr:test"
+
+  # Generate unique DIDs per test
+  unique_per_test: true
+
+  # DID document configuration
+  document:
+    verification_methods:
+      - type: "EcdsaSecp256k1VerificationKey2019"
+        purpose: ["authentication", "assertionMethod"]
+
+    services:
+      - type: "DEXSwapService"
+        endpoint: "https://dex.sonr.io"
+
+# Monitoring and Alerts
+monitoring:
+  # Enable transaction monitoring
+  enabled: true
+
+  # Check intervals
+  intervals:
+    balance: "5s"
+    status: "10s"
+    events: "3s"
+
+  # Alerts
+  alerts:
+    # Alert on test failure
+    on_failure: true
+
+    # Alert on slow tests
+    on_slow_test:
+      enabled: true
+      threshold: "5m"
+
+    # Alert on IBC timeout
+    on_ibc_timeout: true
+
+# Performance Configuration
+performance:
+  # Concurrent swaps limit
+  max_concurrent_swaps: 10
+
+  # Rate limiting
+  rate_limit:
+    enabled: true
+    requests_per_second: 5
+
+  # Resource limits
+  resources:
+    max_memory: "1GB"
+    max_goroutines: 100
+
+# Network Simulation
+simulation:
+  # Simulate network conditions
+  enabled: false
+
+  # Latency simulation
+  latency:
+    min: "10ms"
+    max: "500ms"
+
+  # Packet loss simulation
+  packet_loss:
+    rate: 0.01  # 1% packet loss
+
+  # Bandwidth limits
+  bandwidth:
+    upload: "100Mbps"
+    download: "100Mbps"
+
+# Debug Configuration
+debug:
+  # Enable debug mode
+  enabled: false
+
+  # Save transaction details
+  save_transactions: true
+  transactions_dir: "./transactions"
+
+  # Save state snapshots
+  save_snapshots: true
+  snapshots_dir: "./snapshots"
+
+  # Breakpoints
+  breakpoints:
+    before_swap: false
+    after_swap: false
+    on_error: true
+
+  # Profiling
+  profiling:
+    enabled: false
+    cpu: true
+    memory: true
+    output_dir: "./profiles"
+
+# CI/CD Configuration
+ci:
+  # GitHub Actions
+  github_actions:
+    enabled: true
+    secrets:
+      noble_rpc: "NOBLE_RPC_ENDPOINT"
+      test_mnemonic: "TEST_ACCOUNT_MNEMONIC"
+
+  # Report generation
+  reports:
+    format: "junit"  # junit, json, html
+    output_dir: "./test-reports"
+
+  # Artifacts
+  artifacts:
+    upload: true
+    retention_days: 30
+
+# Environment-specific overrides
+environments:
+  # Local development
+  local:
+    sonr:
+      rest_endpoint: "http://localhost:1317"
+    noble:
+      # Use local Noble node if available
+      rest_endpoint: "http://localhost:1318"
+    test:
+      timeout:
+        default: "5m"
+
+  # Staging environment
+  staging:
+    sonr:
+      rest_endpoint: "https://staging-api.sonr.io"
+    noble:
+      rest_endpoint: "https://noble-testnet-api.polkachu.com"
+    test:
+      timeout:
+        default: "15m"
+
+  # Production testing
+  production:
+    sonr:
+      rest_endpoint: "https://api.sonr.io"
+    noble:
+      rest_endpoint: "https://noble-api.polkachu.com"
+    test:
+      timeout:
+        default: "30m"
+      retry:
+        max_attempts: 5
+
+# Notes and Documentation Links
+documentation:
+  # Useful links
+  links:
+    noble_docs: "https://docs.noble.xyz"
+    sonr_docs: "https://docs.sonr.io"
+    ibc_docs: "https://ibc.cosmos.network"
+    dex_module: "https://github.com/sonr-io/sonr/tree/master/x/dex"
+
+  # Known issues
+  known_issues:
+    - "ICA channel handshake can take 1-2 minutes"
+    - "First swap may timeout if pools are not initialized"
+    - "USDC attestation required for Noble testnet"
+
+  # Troubleshooting
+  troubleshooting:
+    connection_failed: "Verify IBC connection is established: snrd query ibc connection end <connection-id>"
+    account_pending: "Wait for ICA channel handshake to complete (1-2 minutes)"
+    insufficient_funds: "Fund test account: snrd tx bank send validator <address> 100000000usnr"

@@ -14,4 +14,8 @@ var (
 	ErrInvalidLiquidityParams = sdkerrors.Register(ModuleName, 9, "invalid liquidity parameters")
 	ErrInvalidOrderParams     = sdkerrors.Register(ModuleName, 10, "invalid order parameters")
 	ErrICAOperationFailed     = sdkerrors.Register(ModuleName, 11, "ICA operation failed")
+	ErrInvalidConnection      = sdkerrors.Register(ModuleName, 12, "invalid IBC connection")
+	ErrSwapFailed             = sdkerrors.Register(ModuleName, 13, "swap operation failed")
+	ErrLiquidityFailed        = sdkerrors.Register(ModuleName, 14, "liquidity operation failed")
+	ErrOrderFailed            = sdkerrors.Register(ModuleName, 15, "order operation failed")
 )

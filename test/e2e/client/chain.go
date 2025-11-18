@@ -349,3 +349,50 @@ func GetEventAttribute(event struct {
 	}
 	return "", false
 }
+
+// DoRequest performs a public HTTP GET request (wrapper around private doRequest)
+// This is used by test helpers to query custom endpoints
+func (c *StarshipClient) DoRequest(ctx context.Context, url string, target any) error {
+	return c.doRequest(ctx, url, target)
+}
+
+// TxResponse represents a transaction response
+type TxResponse struct {
+	Height    string `json:"height"`
+	TxHash    string `json:"txhash"`
+	Codespace string `json:"codespace"`
+	Code      uint32 `json:"code"`
+	Data      string `json:"data"`
+	RawLog    string `json:"raw_log"`
+	Logs      []struct {
+		MsgIndex int    `json:"msg_index"`
+		Log      string `json:"log"`
+		Events   []struct {
+			Type       string `json:"type"`
+			Attributes []struct {
+				Key   string `json:"key"`
+				Value string `json:"value"`
+			} `json:"attributes"`
+		} `json:"events"`
+	} `json:"logs"`
+	Info      string `json:"info"`
+	GasWanted string `json:"gas_wanted"`
+	GasUsed   string `json:"gas_used"`
+	Tx        any    `json:"tx"`
+	Timestamp string `json:"timestamp"`
+}
+
+// SignAndBroadcastTx signs and broadcasts a transaction message
+// Note: This is a simplified implementation for E2E tests
+// In production, use proper keyring and transaction signing
+func (c *StarshipClient) SignAndBroadcastTx(ctx context.Context, from string, msgs ...sdk.Msg) (*TxResponse, error) {
+	// For E2E tests, we'll use the REST API to broadcast transactions
+	// In a real implementation, you would:
+	// 1. Sign the transaction with the account's private key
+	// 2. Encode the transaction
+	// 3. Broadcast via REST or gRPC
+
+	// This is a placeholder that needs proper implementation based on your keyring setup
+	// For now, return an error indicating this needs to be implemented
+	return nil, fmt.Errorf("SignAndBroadcastTx not yet implemented - use CLI or proper SDK client for transaction signing")
+}
