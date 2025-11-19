@@ -13,12 +13,12 @@ env:
 jobs:
   validate:
     name: Validate & Test
-    runs-on: builder  # Self-hosted runner
+    runs-on: tenki-standard-autoscale
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Required for github-env.sh comparisons
+          fetch-depth: 0 # Required for github-env.sh comparisons
       # Cache can be local on self-hosted runner for better performance
       - name: Cache Dependencies
         uses: actions/cache@v4
