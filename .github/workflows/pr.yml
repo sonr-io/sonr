@@ -16,7 +16,7 @@ jobs:
     runs-on: tenki-standard-autoscale
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0 # Required for github-env.sh comparisons
       # Cache can be local on self-hosted runner for better performance
