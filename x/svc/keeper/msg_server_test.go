@@ -38,7 +38,6 @@ func TestParams(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			_, err := f.msgServer.UpdateParams(f.ctx, tc.request)
 
@@ -103,7 +102,6 @@ func TestInitiateDomainVerification(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			msg := &types.MsgInitiateDomainVerification{
 				Creator: tc.creator,
@@ -198,7 +196,6 @@ func TestVerifyDomain(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			msg := &types.MsgVerifyDomain{
 				Creator: tc.creator,
@@ -299,7 +296,6 @@ func TestRegisterService(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			msg := &types.MsgRegisterService{
 				Creator:              tc.creator,
