@@ -1,0 +1,101 @@
+name: Docs
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "docs/**"
+      - "public/**"
+      - "blume.config.ts"
+      - "theme.css"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/docs.yml"
+  pull_request:
+    paths:
+      - "docs/**"
+      - "public/**"
+      - "blume.config.ts"
+      - "theme.css"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/docs.yml"
+  # Allow a manual redeploy without touching content.
+  workflow_dispatch:
+
+# `deploy-pages` needs id-token to mint its OIDC token and pages to publish.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never let two Pages deployments race. Queue pushes; cancel superseded PR runs.
+concurrency:
+  group: docs-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build:
+    name: Build docs
+    # GitHub-hosted on purpose: this job is pure Node, needs no Go toolchain,
+    # and `configure-pages` / `upload-pages-artifact` are supported here.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # `lastModified: true` in blume.config.ts derives each page's date from
+          # git history. A shallow clone drops those dates and Blume warns with
+          # BLUME_SHALLOW_GIT_HISTORY.
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          # Blume requires Node 22.12 or newer.
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Configure Pages
+        id: pages
+        # Only needed for a real deploy, but running it on PRs too means the
+        # preview build exercises the exact same base path as production.
+        uses: actions/configure-pages@v5
+
+      - name: Build
+        env:
+          # `origin` is the bare host (https://sonr-io.github.io); `base_path`
+          # is the subpath (/sonr). blume.config.ts maps them onto
+          # deployment.site and deployment.base.
+          BLUME_SITE: ${{ steps.pages.outputs.origin }}
+          BLUME_BASE: ${{ steps.pages.outputs.base_path }}
+        # --strict turns content diagnostics into failures. Without it a build
+        # exits 0 while silently dropping invalid pages.
+        run: npx blume build --strict
+
+      - name: Validate links, anchors, and assets
+        # The link checker lives in `validate`, not `build`.
+        run: npx blume validate --strict
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    # Never publish from a pull request — only from the default branch or a
+    # manual dispatch.
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
