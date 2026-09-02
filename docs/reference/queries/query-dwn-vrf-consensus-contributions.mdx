@@ -1,13 +1,13 @@
 ---
-openapi: get /dwn/v1/encryption/vrf-contributions
 title: Query VRF Contributions
 description: Monitor validator participation in consensus key generation
-og:title: DWN VRF Consensus Tracking
+seo:
+  title: "DWN VRF Consensus Tracking"
 ---
 
-<Info>
-  VRF contributions ensure distributed key generation where no single validator knows the complete key.
-</Info>
+:::info
+VRF contributions ensure distributed key generation where no single validator knows the complete key.
+:::
 
 ## VRF Consensus Process
 
@@ -28,9 +28,9 @@ og:title: DWN VRF Consensus Tracking
 
 ## Query Filters
 
-<Tip>
-  Filter by validator to track specific node participation.
-</Tip>
+:::tip
+Filter by validator to track specific node participation.
+:::
 
 ### By Validator
 ```bash
@@ -63,9 +63,9 @@ og:title: DWN VRF Consensus Tracking
 - **receivedContributions**: Current count
 - **expiryHeight**: Timeout block height
 
-<Warning>
-  Rounds expire if threshold isn't met. Monitor contribution progress.
-</Warning>
+:::warning
+Rounds expire if threshold isn't met. Monitor contribution progress.
+:::
 
 ## Validator Monitoring
 
@@ -112,9 +112,9 @@ CONTRIBUTIONS=$(snrd query dwn vrf-contributions -o json)
 - Prevents minority attacks
 - Ensures decentralization
 
-<Note>
-  VRF contributions are public but the derived key remains secure through threshold cryptography.
-</Note>
+:::note
+VRF contributions are public but the derived key remains secure through threshold cryptography.
+:::
 
 ## Troubleshooting
 

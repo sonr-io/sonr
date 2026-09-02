@@ -1,13 +1,13 @@
 ---
-openapi: post /dwn.v1.Msg/UpdateParams
 title: Update DWN Module Parameters
 description: Configure module-wide settings for data storage, protocols, and security policies
-og:title: DWN Module Governance
+seo:
+  title: "DWN Module Governance"
 ---
 
-<Warning>
-  This operation requires **governance approval** and is typically executed through on-chain proposals.
-</Warning>
+:::warning
+This operation requires **governance approval** and is typically executed through on-chain proposals.
+:::
 
 ## Parameter Categories
 
@@ -27,6 +27,6 @@ og:title: DWN Module Governance
 - **encryptedProtocols**: Protocol URIs requiring mandatory encryption
 - **encryptedSchemas**: Schema URIs requiring mandatory encryption
 
-<Note>
-  Changes to these parameters affect all DWN operations network-wide.
-</Note>
+:::note
+Changes to these parameters affect all DWN operations network-wide.
+:::

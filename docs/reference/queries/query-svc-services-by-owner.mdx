@@ -1,13 +1,13 @@
 ---
-openapi: get /svc/v1/services/owner/{owner}
 title: Query Services by Owner
 description: List all services registered by a specific account
-og:title: Owner Service Portfolio
+seo:
+  title: "Owner Service Portfolio"
 ---
 
-<Info>
-  This endpoint helps owners manage their service portfolio and monitor service health.
-</Info>
+:::info
+This endpoint helps owners manage their service portfolio and monitor service health.
+:::
 
 ## Use Cases
 
@@ -81,7 +81,8 @@ Returns array of services:
 ```bash
 # Check for non-active services
 SERVICES=$(snrd query svc services-by-owner $ADDR -o json)
-echo $SERVICES | jq '.services[] | select(.status != "ACTIVE")'          ```
+echo $SERVICES | jq '.services[] | select(.status != "ACTIVE")'
+```
 
 ### Permission Audit
 ```bash
@@ -96,9 +97,9 @@ echo $SERVICES | jq '.services[].permissions' |
 echo $SERVICES | jq -r '.services[].domain' | sort | uniq
 ```
 
-<Tip>
-  Regularly audit your services to ensure they're active and permissions are appropriate.
-</Tip>
+:::tip
+Regularly audit your services to ensure they're active and permissions are appropriate.
+:::
 
 ## Limits and Constraints
 
@@ -113,6 +114,6 @@ echo $SERVICES | jq -r '.services[].domain' | sort | uniq
 - **Regular Audits**: Review inactive services
 - **Clean Up**: Remove unused services
 
-<Warning>
-  Approaching the service limit? Consider consolidating services or requesting limit increase through governance.
-</Warning>
+:::warning
+Approaching the service limit? Consider consolidating services or requesting limit increase through governance.
+:::

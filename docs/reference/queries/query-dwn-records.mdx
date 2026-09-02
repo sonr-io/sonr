@@ -1,13 +1,13 @@
 ---
-openapi: get /dwn/v1/records/{target}
 title: Query DWN Records
 description: Search and retrieve data records with advanced filtering
-og:title: DWN Record Query
+seo:
+  title: "DWN Record Query"
 ---
 
-<Info>
-  This endpoint provides powerful querying capabilities for exploring DWN data with multiple filter options.
-</Info>
+:::info
+This endpoint provides powerful querying capabilities for exploring DWN data with multiple filter options.
+:::
 
 ## Query Filters
 
@@ -37,9 +37,9 @@ Show only public records:
 
 ## Pagination Strategy
 
-<Tip>
-  Use cursor-based pagination with `pagination.key` for optimal performance on large datasets.
-</Tip>
+:::tip
+Use cursor-based pagination with `pagination.key` for optimal performance on large datasets.
+:::
 
 ### Efficient Pagination
 ```bash
@@ -73,9 +73,9 @@ Show only public records:
 ?parentId=folder_root&pagination.limit=100
 ```
 
-<Warning>
-  Encrypted records will return encrypted data unless you have decryption permissions.
-</Warning>
+:::warning
+Encrypted records will return encrypted data unless you have decryption permissions.
+:::
 
 ## Response Handling
 
@@ -85,6 +85,6 @@ Show only public records:
 - **Encrypted**: Needs decryption keys
 - **Deleted**: Tombstone markers
 
-<Note>
-  Use `pagination.countTotal=true` sparingly as it impacts query performance.
-</Note>
+:::note
+Use `pagination.countTotal=true` sparingly as it impacts query performance.
+:::

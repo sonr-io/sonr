@@ -1,8 +1,9 @@
 ---
 title: Build with Sonr
 description: The peer-to-peer identity and asset management system that makes Web3 as easy as Web2 through DID documents, WebAuthn, and IPFS—providing users with secure, portable decentralized identity
-sidebarTitle: "Installation"
 icon: "download"
+sidebar:
+  label: "Installation"
 ---
 
 ## Summary
@@ -46,16 +47,16 @@ Sonr provides:
 ## Core Architecture
 
 <CardGroup>
-  <Card title="Decentralized Identity (DID)" href="/blockchain/modules/did/">
+  <Card title="Decentralized Identity (DID)" href="/reference/modules/did">
     W3C-compliant identity system using WebAuthn for passwordless authentication
   </Card>
-  <Card title="Decentralized Web Nodes (DWN)" href="/blockchain/modules/dwn/">
+  <Card title="Decentralized Web Nodes (DWN)" href="/reference/concepts/sonrmodules/dwn/">
     Personal Vaults acting as user-controlled agents for blockchain interactions
   </Card>
-  <Card title="UCAN Authorization" href="/blockchain/modules/svc/ucan">
+  <Card title="UCAN Authorization" href="/reference/modules/svc">
     Capability-based permissions replacing dangerous unlimited approve patterns
   </Card>
-  <Card title="Service Registry" href="/blockchain/modules/svc/">
+  <Card title="Service Registry" href="/reference/modules/svc">
     Stake-based trust system for service discovery and DNS verification
   </Card>
 </CardGroup>
@@ -92,7 +93,7 @@ Users approve with biometrics. Vaults handle transactions. No wallet connections
 ### Developer Resources
 
 <CardGroup>
-  <Card title="Browser Integration" href="/quickstart/browser">
+  <Card title="Browser Integration" href="/onboardingbrowser">
     Web browser integration patterns and examples
   </Card>
   <Card title="Highway Wallet" href="/highway/">
@@ -101,7 +102,7 @@ Users approve with biometrics. Vaults handle transactions. No wallet connections
   <Card title="Payment Integration" href="/highway/wallets/sending-payments">
     Payment integration guide
   </Card>
-  <Card title="Blockchain Modules" href="/blockchain/">
+  <Card title="Blockchain Modules" href="/reference/concepts/sonr">
     Core blockchain modules and architecture
   </Card>
 </CardGroup>
@@ -113,16 +114,16 @@ Users approve with biometrics. Vaults handle transactions. No wallet connections
 Validators secure four critical systems:
 
 <CardGroup>
-  <Card title="Blockchain Core" href="/blockchain/">
+  <Card title="Blockchain Core" href="/reference/concepts/sonr">
     Cosmos SDK with IBC for cross-chain operations
   </Card>
-  <Card title="Token Economics" href="/blockchain/token/">
+  <Card title="Token Economics" href="/reference/concepts/sonrtoken/">
     Tokenomics, staking, and governance
   </Card>
   <Card title="Highway Proxy" href="/highway/">
     HTTP bridge supporting WebAuthn authentication
   </Card>
-  <Card title="Validator Setup" href="/quickstart/validators">
+  <Card title="Validator Setup" href="/deployment">
     Validator node setup and operations
   </Card>
 </CardGroup>
@@ -149,10 +150,10 @@ Validators perform five key functions:
 ### Identity Management
 
 <CardGroup>
-  <Card title="Identity System" href="/blockchain/modules/did/">
+  <Card title="Identity System" href="/reference/modules/did">
     W3C DIDs with WebAuthn for digital sovereignty
   </Card>
-  <Card title="DID Module" href="/blockchain/modules/did/">
+  <Card title="DID Module" href="/reference/modules/did">
     Blockchain implementation of identity management
   </Card>
 </CardGroup>
@@ -160,10 +161,10 @@ Validators perform five key functions:
 ### Data Sovereignty
 
 <CardGroup>
-  <Card title="DWN Module" href="/blockchain/modules/dwn/">
+  <Card title="DWN Module" href="/reference/concepts/sonrmodules/dwn/">
     Personal Vaults for user-controlled data and agents
   </Card>
-  <Card title="Blockchain Network" href="/blockchain/network">
+  <Card title="Blockchain Network" href="/reference/concepts/sonrnetwork">
     Network architecture and specifications
   </Card>
 </CardGroup>
@@ -171,10 +172,10 @@ Validators perform five key functions:
 ### Authorization System
 
 <CardGroup>
-  <Card title="UCAN Module" href="/blockchain/modules/svc/ucan">
+  <Card title="UCAN Module" href="/reference/modules/svc">
     Capability-based permissions for secure delegation
   </Card>
-  <Card title="Service Module" href="/blockchain/modules/svc/">
+  <Card title="Service Module" href="/reference/modules/svc">
     Registration, verification, and trust management
   </Card>
 </CardGroup>
@@ -182,7 +183,7 @@ Validators perform five key functions:
 ### Cross-Chain Features
 
 <CardGroup>
-  <Card title="Blockchain Network" href="/blockchain/network">
+  <Card title="Blockchain Network" href="/reference/concepts/sonrnetwork">
     Network architecture and cross-chain features
   </Card>
   <Card title="Payment Handler" href="/highway/wallets/sending-payments">
@@ -197,13 +198,13 @@ Validators perform five key functions:
 Build Web3 applications without blockchain complexity:
 
 <CardGroup>
-  <Card title="Quick Start" href="/quickstart/">
+  <Card title="Quick Start" href="/onboarding">
     Create your first Sonr application in 10 minutes
   </Card>
-  <Card title="Browser Integration" href="/quickstart/browser">
+  <Card title="Browser Integration" href="/onboardingbrowser">
     Real-world integration patterns for web applications
   </Card>
-  <Card title="CLI Tools" href="/quickstart/cli">
+  <Card title="CLI Tools" href="/onboardingcli">
     Command line tools and utilities
   </Card>
 </CardGroup>
@@ -213,10 +214,10 @@ Build Web3 applications without blockchain complexity:
 Secure the future of digital sovereignty:
 
 <CardGroup>
-  <Card title="Node Setup" href="/quickstart/validators">
+  <Card title="Node Setup" href="/deployment">
     Complete validator installation guide
   </Card>
-  <Card title="Token Economics" href="/blockchain/token/">
+  <Card title="Token Economics" href="/reference/concepts/sonrtoken/">
     Token distribution, staking, and governance
   </Card>
   <Card title="Security" href="/reference/security/">
@@ -229,10 +230,10 @@ Secure the future of digital sovereignty:
 Experience true digital ownership:
 
 <CardGroup>
-  <Card title="Create Identity" href="/blockchain/modules/did/onboarding">
+  <Card title="Create Identity" href="/onboarding">
     30-second setup with biometric authentication
   </Card>
-  <Card title="Use Your Vault" href="/blockchain/modules/dwn/">
+  <Card title="Use Your Vault" href="/reference/concepts/sonrmodules/dwn/">
     Master your personal Web3 agent
   </Card>
   <Card title="Security Guide" href="/reference/security/">
@@ -242,13 +243,13 @@ Experience true digital ownership:
 
 ## Next Steps
 
-<Note title="Ready to Build?" type="success">
-**Developers**: Start with the [Quick Start Guide](/quickstart/) to build your first Sonr application.
+:::note[Ready to Build?]
+**Developers**: Start with the [Quick Start Guide](/onboarding) to build your first Sonr application.
 
-**Validators**: Follow the [Node Setup Guide](/quickstart/validators) to join the network.
+**Validators**: Follow the [Node Setup Guide](/deployment) to join the network.
 
-**Users**: [Create your identity](/blockchain/modules/did/onboarding) in under 30 seconds.
+**Users**: [Create your identity](/onboarding) in under 30 seconds.
 
-</Note>
+:::
 
 Explore the concepts above or dive into specific topics using the navigation menu. Join us in building the sovereign internet where identity belongs to individuals, not platforms.

@@ -1,13 +1,13 @@
 ---
-openapi: post /dwn.v1.Msg/RecordsDelete
 title: Delete DWN Record
 description: Remove records from your personal data vault with optional cascading deletion
-og:title: DWN Record Deletion
+seo:
+  title: "DWN Record Deletion"
 ---
 
-<Warning>
-  Record deletion is **permanent** and cannot be undone. Ensure you have backups if needed.
-</Warning>
+:::warning
+Record deletion is **permanent** and cannot be undone. Ensure you have backups if needed.
+:::
 
 ## Deletion Options
 
@@ -28,15 +28,15 @@ You must have one of the following:
 - **Permission**: Have explicit delete permission
 - **Protocol Authority**: Have protocol-level delete rights
 
-<Note>
-  The `deletedCount` in the response includes all pruned child records.
-</Note>
+:::note
+The `deletedCount` in the response includes all pruned child records.
+:::
 
 ## Safety Considerations
 
-<Tip>
-  Query child records before pruning to understand the impact:
-  ```bash
-  snrd query dwn records-query --parent-id <record_id>
-  ```
-</Tip>
+:::tip
+Query child records before pruning to understand the impact:
+```bash
+snrd query dwn records-query --parent-id <record_id>
+```
+:::

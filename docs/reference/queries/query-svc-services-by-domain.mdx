@@ -1,13 +1,13 @@
 ---
-openapi: get /svc/v1/services/domain/{domain}
 title: Query Services by Domain
 description: Discover all services registered under a specific domain
-og:title: Domain Service Discovery
+seo:
+  title: "Domain Service Discovery"
 ---
 
-<Info>
-  Domain-based discovery helps users find and trust services through verified domain ownership.
-</Info>
+:::info
+Domain-based discovery helps users find and trust services through verified domain ownership.
+:::
 
 ## Discovery Patterns
 
@@ -92,9 +92,9 @@ async function discoverServices(domain) {
 - `vault@secure.example.com` - Vault manager
 - `wallet@finance.example.com` - Wallet service
 
-<Tip>
-  Use subdomains to organize services by category or security level.
-</Tip>
+:::tip
+Use subdomains to organize services by category or security level.
+:::
 
 ## Trust Establishment
 
@@ -142,9 +142,9 @@ Test services on subdomains:
 - `staging@dev.example.com` - Staging service
 - `prod@example.com` - Production service
 
-<Warning>
-  Always verify domain ownership status before trusting services bound to that domain.
-</Warning>
+:::warning
+Always verify domain ownership status before trusting services bound to that domain.
+:::
 
 ## Usage Analytics
 
@@ -162,6 +162,6 @@ snrd query svc services-by-domain example.com -o json |
   jq '[.services[].permissions] | flatten | unique'
 ```
 
-<Note>
-  Domains can host multiple services, each with unique IDs and permission sets. Plan your service architecture accordingly.
-</Note>
+:::note
+Domains can host multiple services, each with unique IDs and permission sets. Plan your service architecture accordingly.
+:::

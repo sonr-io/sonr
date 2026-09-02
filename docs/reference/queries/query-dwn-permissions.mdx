@@ -1,13 +1,13 @@
 ---
-openapi: get /dwn/v1/permissions/{target}
 title: Query DWN Permissions
 description: Audit and manage access control for your data
-og:title: DWN Permission Management
+seo:
+  title: "DWN Permission Management"
 ---
 
-<Info>
-  Regular permission audits are essential for maintaining data security and compliance.
-</Info>
+:::info
+Regular permission audits are essential for maintaining data security and compliance.
+:::
 
 ## Permission Queries
 
@@ -36,9 +36,9 @@ og:title: DWN Permission Management
 
 ## Permission Auditing
 
-<Tip>
-  Schedule regular audits to review and revoke unnecessary permissions.
-</Tip>
+:::tip
+Schedule regular audits to review and revoke unnecessary permissions.
+:::
 
 ### Audit Checklist
 1. **Review Active Permissions**
@@ -47,7 +47,7 @@ og:title: DWN Permission Management
    ```
 
 2. **Check Expired Permissions**
-   - Filter by `expiresAt` < current time
+   - Filter by `expiresAt` &lt; current time
    - Revoke if still active
 
 3. **Verify Grantee Activity**
@@ -70,9 +70,9 @@ og:title: DWN Permission Management
 - Past expiration time
 - Conditions not met
 
-<Warning>
-  Permissions with no expiration should be reviewed more frequently.
-</Warning>
+:::warning
+Permissions with no expiration should be reviewed more frequently.
+:::
 
 ## Security Best Practices
 
@@ -93,6 +93,6 @@ og:title: DWN Permission Management
 ?interfaceName=Protocols
 ```
 
-<Note>
-  Use `pagination.countTotal=true` to track total permission growth over time.
-</Note>
+:::note
+Use `pagination.countTotal=true` to track total permission growth over time.
+:::

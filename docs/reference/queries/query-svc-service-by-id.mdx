@@ -1,13 +1,13 @@
 ---
-openapi: get /svc/v1/service/{serviceId}
 title: Query Service Details
 description: Get comprehensive information about a registered service
-og:title: Service Information
+seo:
+  title: "Service Information"
 ---
 
-<Info>
-  This endpoint provides complete service details needed for integration and trust verification.
-</Info>
+:::info
+This endpoint provides complete service details needed for integration and trust verification.
+:::
 
 ## Service Information
 
@@ -79,9 +79,9 @@ ipfs cat $CID
 
 ## Permission Verification
 
-<Tip>
-  Always verify service permissions match your security requirements before granting access.
-</Tip>
+:::tip
+Always verify service permissions match your security requirements before granting access.
+:::
 
 ### Common Permission Sets
 
@@ -122,6 +122,6 @@ if [ "$SERVICE_DOMAIN" = "$EXPECTED" ]; then
 fi
 ```
 
-<Warning>
-  Never trust a service without verifying its domain binding and active status.
-</Warning>
+:::warning
+Never trust a service without verifying its domain binding and active status.
+:::

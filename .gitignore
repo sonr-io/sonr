@@ -123,3 +123,4 @@ tmp-openapi-gen/**/*.json
 .mcp.json
 node_modules
 .claude
+.blume/

@@ -1,13 +1,13 @@
 ---
-openapi: post /svc.v1.Msg/UpdateParams
 title: Update SVC Module Parameters
 description: Configure service registration limits, domain verification, and UCAN settings
-og:title: SVC Module Governance
+seo:
+  title: "SVC Module Governance"
 ---
 
-<Warning>
-  This operation requires **governance approval** and is typically executed through on-chain proposals.
-</Warning>
+:::warning
+This operation requires **governance approval** and is typically executed through on-chain proposals.
+:::
 
 ## Parameter Categories
 
@@ -31,6 +31,6 @@ og:title: SVC Module Governance
 - **domainVerificationFee**: Fee for domain verification
 - **minServiceStake**: Minimum stake to maintain service
 
-<Note>
-  Changes affect all service operations network-wide. Plan parameter updates carefully.
-</Note>
+:::note
+Changes affect all service operations network-wide. Plan parameter updates carefully.
+:::

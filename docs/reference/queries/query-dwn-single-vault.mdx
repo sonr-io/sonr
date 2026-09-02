@@ -1,13 +1,13 @@
 ---
-openapi: get /dwn/v1/vaults/{vaultId}
 title: Query Vault Details
 description: Get comprehensive information about a secure vault instance
-og:title: DWN Vault Information
+seo:
+  title: "DWN Vault Information"
 ---
 
-<Info>
-  Vaults provide hardware-backed secure key management through WebAssembly enclaves.
-</Info>
+:::info
+Vaults provide hardware-backed secure key management through WebAssembly enclaves.
+:::
 
 ## Vault Components
 
@@ -30,9 +30,9 @@ og:title: DWN Vault Information
 
 ## Vault Health Check
 
-<Tip>
-  Monitor vault refresh intervals to ensure keys are rotated on schedule.
-</Tip>
+:::tip
+Monitor vault refresh intervals to ensure keys are rotated on schedule.
+:::
 
 ### Health Indicators
 ```javascript
@@ -58,9 +58,9 @@ const needsRotation = keyAge > keyRotationDays;
 - Secure enclave support
 - Hardware key storage
 
-<Warning>
-  Never expose or log vault private data. It's encrypted for a reason.
-</Warning>
+:::warning
+Never expose or log vault private data. It's encrypted for a reason.
+:::
 
 ## Vault Operations
 
@@ -82,6 +82,6 @@ snrd tx dwn vault-export vault_alice_123
 snrd tx dwn vault-import <ipfs_cid>
 ```
 
-<Note>
-  Vault queries return public metadata only. Private keys remain encrypted in the enclave.
-</Note>
+:::note
+Vault queries return public metadata only. Private keys remain encrypted in the enclave.
+:::

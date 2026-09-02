@@ -1,13 +1,13 @@
 ---
-openapi: post /dwn.v1.Msg/PermissionsGrant
 title: Grant DWN Access Permission
 description: Authorize other users to access your data with fine-grained control
-og:title: DWN Permission Management
+seo:
+  title: "DWN Permission Management"
 ---
 
-<Info>
-  DWN permissions enable secure data sharing with granular access control down to individual records.
-</Info>
+:::info
+DWN permissions enable secure data sharing with granular access control down to individual records.
+:::
 
 ## Permission Scopes
 
@@ -44,9 +44,9 @@ Grant access to specific records:
 
 ## Conditional Permissions
 
-<Tip>
-  Use conditions to create dynamic access rules that adapt to context.
-</Tip>
+:::tip
+Use conditions to create dynamic access rules that adapt to context.
+:::
 
 ### Time-Based Conditions
 ```json
@@ -77,9 +77,9 @@ Grant access to specific records:
 
 ## Security Best Practices
 
-<Warning>
-  Always set expiration times for permissions to limit exposure window.
-</Warning>
+:::warning
+Always set expiration times for permissions to limit exposure window.
+:::
 
 1. **Principle of Least Privilege**: Grant minimum necessary access
 2. **Time Limits**: Use `expiresAt` for temporary access

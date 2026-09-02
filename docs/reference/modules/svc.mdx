@@ -1,12 +1,11 @@
 ---
 title: "On-Chain Authorization (x/svc)"
-sidebarTitle: "Web Service Registry"
 description: "Service registration and management with domain verification and UCAN integration"
 icon: "factory"
-tag: "x/svc"
+sidebar:
+  label: "Web Service Registry"
+  badge: "x/svc"
 ---
-
-# Sonr Service (SVC) Module
 
 The Service (SVC) module manages the registration and operation of decentralized services within the Sonr ecosystem. It provides a comprehensive framework for services to register with verified domains, define their permission requirements, and integrate with the broader Sonr authorization system through UCAN capabilities.
 
@@ -20,20 +19,20 @@ The Service (SVC) module manages the registration and operation of decentralized
 
 ## System Architecture
 
-<Mermaid
-  chart={`graph TB
+```mermaid
+graph TB
     subgraph "Client Layer"
         U[User]
         B[Browser]
         WA[WebAuthn API]
     end
-    
+
     subgraph "Application Layer"
         APP[App Frontend]
         SDK[Sonr SDK]
         SVC_SDK[Service SDK]
     end
-    
+
     subgraph "Blockchain Layer"
         BC[Sonr Blockchain]
         subgraph "Modules"
@@ -43,12 +42,12 @@ The Service (SVC) module manages the registration and operation of decentralized
             SVC[x/svc]
         end
     end
-    
+
     subgraph "Storage Layer"
         IPFS[IPFS Network]
         VAULT[Vault Storage]
     end
-    
+
     U --> B
     B --> WA
     B --> APP
@@ -62,34 +61,33 @@ The Service (SVC) module manages the registration and operation of decentralized
     BC --> SVC
     DWN --> IPFS
     DWN --> VAULT
-`}
-/>
+```
 
 ## Trust Model
 
-<Mermaid
-  chart={`graph LR
+```mermaid
+graph LR
     subgraph "Trust Anchors"
         WA[WebAuthn<br/>Hardware]
         BC[Blockchain<br/>Consensus]
         DNS[DNS<br/>Domain Verification]
     end
-    
+
     subgraph "Identity Layer"
         DID[DID Documents]
         CRED[WebAuthn Credentials]
     end
-    
+
     subgraph "Authorization Layer"
         UCAN[UCAN Tokens]
         CAP[Capabilities]
     end
-    
+
     subgraph "Service Layer"
         SVC[Service Records]
         PERM[Permissions]
     end
-    
+
     WA --> CRED
     BC --> DID
     DNS --> SVC
@@ -98,8 +96,7 @@ The Service (SVC) module manages the registration and operation of decentralized
     UCAN --> CAP
     CAP --> PERM
     SVC --> PERM
-`}
-/>
+```
 
 ## Core Concepts
 

@@ -1,13 +1,13 @@
 ---
-openapi: get /dwn/v1/encryption/status
 title: Query Encryption Status
 description: Monitor the health and state of the consensus encryption system
-og:title: DWN Encryption System Status
+seo:
+  title: "DWN Encryption System Status"
 ---
 
-<Info>
-  The encryption system uses validator consensus to generate keys that no single party controls.
-</Info>
+:::info
+The encryption system uses validator consensus to generate keys that no single party controls.
+:::
 
 ## System Components
 
@@ -26,9 +26,9 @@ og:title: DWN Encryption System Status
 
 ## Health Monitoring
 
-<Tip>
-  Set up alerts for upcoming key rotations to ensure smooth operations.
-</Tip>
+:::tip
+Set up alerts for upcoming key rotations to ensure smooth operations.
+:::
 
 ### Health Checks
 
@@ -55,9 +55,9 @@ const recordGrowthRate = totalEncryptedRecords / daysSinceLaunch;
 - Security incidents
 - Validator changes
 
-<Warning>
-  Key rotation requires sufficient validator participation. Monitor validator set health.
-</Warning>
+:::warning
+Key rotation requires sufficient validator participation. Monitor validator set health.
+:::
 
 ## Development vs Production
 
@@ -73,9 +73,9 @@ const recordGrowthRate = totalEncryptedRecords / daysSinceLaunch;
 
 ## Monitoring Dashboard
 
-<Note>
-  Create monitoring dashboards using these metrics for operational visibility.
-</Note>
+:::note
+Create monitoring dashboards using these metrics for operational visibility.
+:::
 
 ### Key Metrics
 ```bash

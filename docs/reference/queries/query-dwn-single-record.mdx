@@ -1,13 +1,13 @@
 ---
-openapi: get /dwn/v1/records/{target}/{recordId}
 title: Query Specific Record
 description: Retrieve a single record by its unique identifier
-og:title: DWN Record Retrieval
+seo:
+  title: "DWN Record Retrieval"
 ---
 
-<Info>
-  Direct record access provides the most efficient way to retrieve known records.
-</Info>
+:::info
+Direct record access provides the most efficient way to retrieve known records.
+:::
 
 ## Record Components
 
@@ -30,9 +30,9 @@ og:title: DWN Record Retrieval
 
 ## Access Patterns
 
-<Tip>
-  Cache frequently accessed record IDs to avoid repeated queries.
-</Tip>
+:::tip
+Cache frequently accessed record IDs to avoid repeated queries.
+:::
 
 ### Public Records
 ```bash
@@ -52,6 +52,6 @@ snrd query dwn record did:sonr:alice record_private_456
 snrd query dwn encrypted-record did:sonr:alice record_encrypted_789
 ```
 
-<Warning>
-  404 errors may indicate either non-existence or lack of permissions.
-</Warning>
+:::warning
+404 errors may indicate either non-existence or lack of permissions.
+:::

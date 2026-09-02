@@ -1,13 +1,13 @@
 ---
-openapi: post /svc.v1.Msg/VerifyDomain
 title: Complete Domain Verification
 description: Validate DNS TXT record to prove domain ownership
-og:title: Finalize Domain Ownership
+seo:
+  title: "Finalize Domain Ownership"
 ---
 
-<Info>
-  This endpoint validates the DNS TXT record to permanently bind the domain to your address.
-</Info>
+:::info
+This endpoint validates the DNS TXT record to permanently bind the domain to your address.
+:::
 
 ## Prerequisites
 
@@ -32,12 +32,12 @@ The system performs these checks:
 ### Common Issues
 
 #### DNS Not Propagated
-<Tip>
-  Wait 5-30 minutes after adding the TXT record. Check propagation:
-  ```bash
-  dig TXT example.com +short
-  ```
-</Tip>
+:::tip
+Wait 5-30 minutes after adding the TXT record. Check propagation:
+```bash
+dig TXT example.com +short
+```
+:::
 
 #### Token Mismatch
 - Ensure exact token from initiation response
@@ -57,9 +57,9 @@ Once verified:
 - **Trust Established**: Domain ownership proven
 - **No Re-verification**: One-time process per domain
 
-<Warning>
-  Domain ownership is permanent. Ensure you're verifying with the correct address.
-</Warning>
+:::warning
+Domain ownership is permanent. Ensure you're verifying with the correct address.
+:::
 
 ## Next Steps
 

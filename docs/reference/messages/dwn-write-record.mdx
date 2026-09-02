@@ -1,13 +1,13 @@
 ---
-openapi: post /dwn.v1.Msg/RecordsWrite
 title: Write Data Record to DWN
 description: Store structured data in your personal data vault with encryption and access control
-og:title: DWN Record Storage
+seo:
+  title: "DWN Record Storage"
 ---
 
-<Info>
-  Records are the fundamental unit of data storage in DWN, supporting any data type with optional encryption.
-</Info>
+:::info
+Records are the fundamental unit of data storage in DWN, supporting any data type with optional encryption.
+:::
 
 ## Key Features
 
@@ -27,9 +27,9 @@ og:title: DWN Record Storage
 - **Social Content**: Share public posts or media
 - **Health Records**: Store sensitive medical data with encryption
 
-<Tip>
-  Use protocol definitions to ensure data interoperability across applications.
-</Tip>
+:::tip
+Use protocol definitions to ensure data interoperability across applications.
+:::
 
 ## Example Record Types
 
@@ -43,6 +43,6 @@ og:title: DWN Record Storage
 }
 ```
 
-<Warning>
-  Records exceeding `maxRecordSize` will be rejected. Large files should be stored in IPFS with only metadata on-chain.
-</Warning>
+:::warning
+Records exceeding `maxRecordSize` will be rejected. Large files should be stored in IPFS with only metadata on-chain.
+:::

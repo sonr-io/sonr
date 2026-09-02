@@ -1,13 +1,13 @@
 ---
-openapi: get /dwn/v1/ipfs
 title: Query IPFS Node Status
 description: Check connectivity and status of the distributed storage layer
-og:title: IPFS Node Information
+seo:
+  title: "IPFS Node Information"
 ---
 
-<Info>
-  IPFS provides distributed storage for large objects, vault exports, and encrypted backups.
-</Info>
+:::info
+IPFS provides distributed storage for large objects, vault exports, and encrypted backups.
+:::
 
 ## IPFS Integration
 
@@ -23,9 +23,9 @@ og:title: IPFS Node Information
 - **Protocol Assets**: Store protocol-related media
 - **Public Content**: Distribute public records efficiently
 
-<Tip>
-  Store only metadata and CIDs on-chain for gas efficiency, with actual data in IPFS.
-</Tip>
+:::tip
+Store only metadata and CIDs on-chain for gas efficiency, with actual data in IPFS.
+:::
 
 ## Common Patterns
 
@@ -36,6 +36,6 @@ ipfs add large_file.pdf
 snrd tx dwn records-write --data-cid <cid>
 ```
 
-<Warning>
-  Ensure IPFS node is running and accessible before storing large objects.
-</Warning>
+:::warning
+Ensure IPFS node is running and accessible before storing large objects.
+:::

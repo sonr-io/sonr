@@ -1,13 +1,13 @@
 ---
-openapi: post /dwn.v1.Msg/RotateVaultKeys
 title: Rotate Vault Encryption Keys
 description: Perform cryptographic key rotation for enhanced vault security
-og:title: DWN Vault Key Rotation
+seo:
+  title: "DWN Vault Key Rotation"
 ---
 
-<Warning>
-  Key rotation is a **critical security operation** that requires validator consensus or governance approval.
-</Warning>
+:::warning
+Key rotation is a **critical security operation** that requires validator consensus or governance approval.
+:::
 
 ## Key Rotation Architecture
 
@@ -43,9 +43,9 @@ og:title: DWN Vault Key Rotation
 
 ## Rotation Process
 
-<Info>
-  The rotation process is designed to be seamless with zero downtime for users.
-</Info>
+:::info
+The rotation process is designed to be seamless with zero downtime for users.
+:::
 
 ### Phase 1: Preparation
 1. Generate new key material in enclave
@@ -65,9 +65,9 @@ og:title: DWN Vault Key Rotation
 ## Security Considerations
 
 ### Single-Node Fallback
-<Note>
-  In development mode with `singleNodeFallback: true`, rotation uses local key generation.
-</Note>
+:::note
+In development mode with `singleNodeFallback: true`, rotation uses local key generation.
+:::
 
 ### Production Requirements
 - Minimum validator participation (67% default)
@@ -83,13 +83,13 @@ og:title: DWN Vault Key Rotation
 - New encryptions use latest keys
 
 ### Performance
-- Slight latency during rotation (< 1s)
+- Slight latency during rotation (&lt; 1s)
 - Background re-encryption process
 - No data availability impact
 
-<Tip>
-  Monitor rotation events via:
-  ```bash
-  snrd query dwn vault-status --vault-id <id>
-  ```
-</Tip>
+:::tip
+Monitor rotation events via:
+```bash
+snrd query dwn vault-status --vault-id <id>
+```
+:::

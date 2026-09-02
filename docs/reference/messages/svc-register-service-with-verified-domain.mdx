@@ -1,13 +1,13 @@
 ---
-openapi: post /svc.v1.Msg/RegisterService
 title: Register Decentralized Service
 description: Create a new service with domain binding and UCAN permissions
-og:title: Service Registration
+seo:
+  title: "Service Registration"
 ---
 
-<Info>
-  Services are the foundation of decentralized applications in Sonr, providing trusted interaction points through verified domains.
-</Info>
+:::info
+Services are the foundation of decentralized applications in Sonr, providing trusted interaction points through verified domains.
+:::
 
 ## Prerequisites
 
@@ -68,9 +68,9 @@ Services request permissions users must grant:
 }
 ```
 
-<Tip>
-  Request only necessary permissions. Users are more likely to grant minimal permission sets.
-</Tip>
+:::tip
+Request only necessary permissions. Users are more likely to grant minimal permission sets.
+:::
 
 ## UCAN Integration
 
@@ -116,9 +116,9 @@ Provide existing UCAN chain for pre-authorized capabilities.
 - **Clear Purpose**: Document why each permission
 - **Future Growth**: Design for expansion
 
-<Warning>
-  Service registration is permanent. Choose your service ID carefully as it cannot be changed.
-</Warning>
+:::warning
+Service registration is permanent. Choose your service ID carefully as it cannot be changed.
+:::
 
 ## Post-Registration
 
@@ -134,6 +134,6 @@ snrd query svc services-by-domain example.com
 ipfs cat <root_capability_cid>
 ```
 
-<Note>
-  Services become immediately discoverable after registration. Ensure your application is ready to handle user interactions.
-</Note>
+:::note
+Services become immediately discoverable after registration. Ensure your application is ready to handle user interactions.
+:::

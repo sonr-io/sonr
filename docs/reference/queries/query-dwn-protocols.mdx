@@ -1,13 +1,13 @@
 ---
-openapi: get /dwn/v1/protocols/{target}
 title: Query DWN Protocols
 description: Discover configured protocols and their data models
-og:title: DWN Protocol Discovery
+seo:
+  title: "DWN Protocol Discovery"
 ---
 
-<Info>
-  Protocols enable interoperable data structures across applications and users.
-</Info>
+:::info
+Protocols enable interoperable data structures across applications and users.
+:::
 
 ## Protocol Discovery
 
@@ -25,9 +25,9 @@ Common protocol namespaces:
 
 ## Protocol Adoption
 
-<Tip>
-  Browse published protocols to find existing standards before creating custom ones.
-</Tip>
+:::tip
+Browse published protocols to find existing standards before creating custom ones.
+:::
 
 ### Adopting a Protocol
 1. Query published protocols
@@ -50,15 +50,15 @@ snrd tx dwn protocols-configure --from <discovered_protocol>
 - **Semantic Versioning**: `1.0.0`, `2.0.0`
 - **Date Versioning**: `/2024`, `/2025`
 
-<Warning>
-  Breaking protocol changes should use new URIs to maintain backward compatibility.
-</Warning>
+:::warning
+Breaking protocol changes should use new URIs to maintain backward compatibility.
+:::
 
 ## Pagination
 
-<Note>
-  Large DWNs may have many protocols. Use pagination for efficient retrieval.
-</Note>
+:::note
+Large DWNs may have many protocols. Use pagination for efficient retrieval.
+:::
 
 ```bash
 ?pagination.limit=10&pagination.offset=0

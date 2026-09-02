@@ -1,13 +1,13 @@
 ---
-openapi: post /dwn.v1.Msg/ProtocolsConfigure
 title: Configure DWN Protocol
 description: Define structured data models and access patterns for interoperable applications
-og:title: DWN Protocol Configuration
+seo:
+  title: "DWN Protocol Configuration"
 ---
 
-<Info>
-  Protocols are the foundation of data interoperability in DWN, enabling applications to share and understand structured data.
-</Info>
+:::info
+Protocols are the foundation of data interoperability in DWN, enabling applications to share and understand structured data.
+:::
 
 ## Protocol Architecture
 
@@ -44,9 +44,9 @@ og:title: DWN Protocol Configuration
 
 ## Publishing Protocols
 
-<Tip>
-  Set `published: true` to make your protocol discoverable and reusable by the community.
-</Tip>
+:::tip
+Set `published: true` to make your protocol discoverable and reusable by the community.
+:::
 
 ### Benefits of Published Protocols
 - **Discoverability**: Others can find and adopt your protocol
@@ -70,6 +70,6 @@ og:title: DWN Protocol Configuration
 - Time-series organization
 - Aggregation rules
 
-<Warning>
-  Protocol URIs must be unique. Consider using versioned URIs (e.g., `/v1`, `/v2`) for upgrades.
-</Warning>
+:::warning
+Protocol URIs must be unique. Consider using versioned URIs (e.g., `/v1`, `/v2`) for upgrades.
+:::

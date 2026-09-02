@@ -1,15 +1,16 @@
 ---
-openapi: post /dex.v1.Msg/RegisterDEXAccount
 title: Register Interchain DEX Account
 description: Create a new ICA account for cross-chain trading operations
-og:title: Setup Cross-Chain Trading Account
-tag: x/dex
+sidebar:
+  badge: x/dex
+seo:
+  title: "Setup Cross-Chain Trading Account"
 ---
 
-<Note>
-  Account creation is asynchronous. Monitor the IBC packet acknowledgment to confirm the account address.
-</Note>
+:::note
+Account creation is asynchronous. Monitor the IBC packet acknowledgment to confirm the account address.
+:::
 
-<Warning>
-  Each DID is limited to a maximum number of DEX accounts as configured in module parameters.
-</Warning>
+:::warning
+Each DID is limited to a maximum number of DEX accounts as configured in module parameters.
+:::

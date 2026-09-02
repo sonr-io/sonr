@@ -1,13 +1,13 @@
 ---
-openapi: get /svc/v1/domain/{domain}
 title: Check Domain Verification Status
 description: Monitor domain ownership verification progress and status
-og:title: Domain Verification Status
+seo:
+  title: "Domain Verification Status"
 ---
 
-<Info>
-  Use this endpoint to track your domain verification progress and troubleshoot issues.
-</Info>
+:::info
+Use this endpoint to track your domain verification progress and troubleshoot issues.
+:::
 
 ## Verification States
 
@@ -81,9 +81,9 @@ while true; do
 done
 ```
 
-<Tip>
-  If status remains PENDING after adding DNS record, wait for propagation (5-30 minutes typical).
-</Tip>
+:::tip
+If status remains PENDING after adding DNS record, wait for propagation (5-30 minutes typical).
+:::
 
 ## Troubleshooting
 
@@ -98,6 +98,6 @@ done
 - Add new token to DNS
 - Complete within 7 days
 
-<Warning>
-  Verification tokens are single-use. Each verification attempt requires a new token.
-</Warning>
+:::warning
+Verification tokens are single-use. Each verification attempt requires a new token.
+:::

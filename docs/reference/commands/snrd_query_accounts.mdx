@@ -3,10 +3,6 @@ title: snrd query accounts
 description: Querying subcommands
 ---
 
-# snrd query accounts
-
-Querying subcommands
-
 ## Usage
 
 ```shell
@@ -60,63 +56,31 @@ snrd query [command]
 
 ## Flags
 
-<ParamField path="chain-id" type="string">
-  The network chain ID
-</ParamField>
-
-<ParamField path="help" type="string">
-  for query
-</ParamField>
+<TypeTable
+  type={{
+    "chain-id": { type: "string", description: "The network chain ID" },
+    "help": { type: "string", description: "for query" },
+  }}
+/>
 
 ## Global Flags
 
-<ParamField path="broadcast-mode" type="string" default="sync">
-  Transaction broadcasting mode (sync|async)
-</ParamField>
-
-<ParamField path="fees" type="string">
-  Fees to pay along with transaction; eg: 10aatom
-</ParamField>
-
-<ParamField path="from" type="string">
-  Name or address of private key with which to sign
-</ParamField>
-
-<ParamField path="gas-adjustment" type="float" default="1">
-  adjustment factor to be multiplied against the estimate returned by the tx simulation; if the gas limit is set manually this flag is ignored
-</ParamField>
-
-<ParamField path="gas-prices" type="string">
-  Gas prices to determine the transaction fee (e.g. 10aatom)
-</ParamField>
-
-<ParamField path="home" type="string" default="/Users/prad/.sonr">
-  directory for config and data
-</ParamField>
-
-<ParamField path="keyring-backend" type="string" default="os">
-  Select keyring's backend
-</ParamField>
-
-<ParamField path="log_format" type="string" default="plain">
-  The logging format (json|plain)
-</ParamField>
-
-<ParamField path="log_level" type="string" default="info">
-  The logging level (trace|debug|info|warn|error|fatal|panic|disabled or '*:&lt;level&gt;,&lt;key&gt;:&lt;level&gt;')
-</ParamField>
-
-<ParamField path="log_no_color" type="string">
-  colored logs
-</ParamField>
-
-<ParamField path="node" type="string" default="tcp://localhost:26657">
-  &lt;host&gt;:&lt;port&gt; to tendermint rpc interface for this chain
-</ParamField>
-
-<ParamField path="trace" type="string">
-  out full stack trace on errors
-</ParamField>
+<TypeTable
+  type={{
+    "broadcast-mode": { type: "string", default: "sync", description: "Transaction broadcasting mode (sync|async)" },
+    "fees": { type: "string", description: "Fees to pay along with transaction; eg: 10aatom" },
+    "from": { type: "string", description: "Name or address of private key with which to sign" },
+    "gas-adjustment": { type: "float", default: "1", description: "adjustment factor to be multiplied against the estimate returned by the tx simulation; if the gas limit is set manually this flag is ignored" },
+    "gas-prices": { type: "string", description: "Gas prices to determine the transaction fee (e.g. 10aatom)" },
+    "home": { type: "string", default: "/Users/prad/.sonr", description: "directory for config and data" },
+    "keyring-backend": { type: "string", default: "os", description: "Select keyring's backend" },
+    "log_format": { type: "string", default: "plain", description: "The logging format (json|plain)" },
+    "log_level": { type: "string", default: "info", description: "The logging level (trace|debug|info|warn|error|fatal|panic|disabled or '*:&lt;level&gt;,&lt;key&gt;:&lt;level&gt;')" },
+    "log_no_color": { type: "string", description: "colored logs" },
+    "node": { type: "string", default: "tcp://localhost:26657", description: "&lt;host&gt;:&lt;port&gt; to tendermint rpc interface for this chain" },
+    "trace": { type: "string", description: "out full stack trace on errors" },
+  }}
+/>
 
 ## Examples
 
@@ -128,4 +92,4 @@ snrd query accounts
 
 ## See Also
 
-- [snrd query](./snrd_query.mdx) - Parent command
+- [snrd query](./snrd_query) - Parent command

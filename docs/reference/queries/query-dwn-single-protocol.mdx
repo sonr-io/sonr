@@ -1,13 +1,13 @@
 ---
-openapi: get /dwn/v1/protocols/{target}/{protocolUri}
 title: Query Specific Protocol
 description: Get detailed protocol definition and configuration
-og:title: DWN Protocol Details
+seo:
+  title: "DWN Protocol Details"
 ---
 
-<Info>
-  Protocol definitions specify the complete data model and access rules for structured interactions.
-</Info>
+:::info
+Protocol definitions specify the complete data model and access rules for structured interactions.
+:::
 
 ## Protocol Structure
 
@@ -44,9 +44,9 @@ og:title: DWN Protocol Details
 
 ## Protocol Analysis
 
-<Tip>
-  Examine existing protocols to understand best practices before creating your own.
-</Tip>
+:::tip
+Examine existing protocols to understand best practices before creating your own.
+:::
 
 ### Understanding a Protocol
 1. **Review Types**: What data can be stored?
@@ -71,9 +71,9 @@ og:title: DWN Protocol Details
 - Time-series data structure
 - Rate-limited writes
 
-<Warning>
-  Protocol URIs must be URL-encoded when used as path parameters.
-</Warning>
+:::warning
+Protocol URIs must be URL-encoded when used as path parameters.
+:::
 
 ## Integration Example
 
