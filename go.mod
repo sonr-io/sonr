@@ -76,7 +76,7 @@ require (
 	github.com/labstack/echo/v4 v4.13.4
 	github.com/sonr-io/common v0.0.0-20251010142707-ab6d2fe7e9c9
 	github.com/sonr-io/crypto v1.0.1
-	github.com/spf13/cast v1.9.2
+	github.com/spf13/cast v1.10.0
 	github.com/spf13/cobra v1.8.1
 	github.com/spf13/viper v1.19.0
 	github.com/strangelove-ventures/tokenfactory v0.50.3
